@@ -9,7 +9,7 @@
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %div
         Currently waiting confirmation for: #{resource.unconfirmed_email}
-    (leave blank if you don't want to change it)
+
     = f.password_field :password, autocomplete: "off", label: "Password", help: "Leave this blank if you don't want to change it"
     = f.password_field :password_confirmation, autocomplete: "off", label: "Confirm password"
 
