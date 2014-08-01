@@ -1,0 +1,15 @@
+.container
+  %h1 Sign in
+  = render 'layouts/messages'
+
+  = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+    = f.text_field :login, autofocus: true, label: "User name"
+    = f.password_field :password, autocomplete: "off", label: "Password"
+
+    - if devise_mapping.rememberable?
+      = f.check_box :remember_me
+    
+    = f.submit "Sign in"
+
+  = render "devise/shared/links"
