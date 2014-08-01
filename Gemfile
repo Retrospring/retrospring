@@ -38,3 +38,10 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'thin'
+gem 'bootstrap-sass', '~> 3.2.0.1'
+gem 'bootswatch-rails', '~> 3.2.0'
+gem 'haml'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+gem 'http_accept_language'
