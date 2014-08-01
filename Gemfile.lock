@@ -28,6 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.7)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     bootswatch-rails (3.2.0)
@@ -41,6 +42,12 @@ GEM
       execjs
     coffee-script-source (1.7.1)
     daemons (1.1.9)
+    devise (3.2.4)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
@@ -62,6 +69,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.4.0)
     multi_json (1.10.1)
+    orm_adapter (0.5.0)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -121,6 +129,8 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    warden (1.2.3)
+      rack (>= 1.0)
     will_paginate (3.0.7)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
@@ -132,6 +142,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0.1)
   bootswatch-rails (~> 3.2.0)
   coffee-rails (~> 4.0.0)
+  devise
   haml
   http_accept_language
   jbuilder (~> 2.0)
