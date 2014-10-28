@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title justask2
+    %title justask
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -11,5 +11,5 @@
     - if Rails.env.development?
       %hr
       .container
-        %p.text-danger EVIL DEBUG MODE OF DOOM ENABLED!!!
+        %p.text-danger Debug output:
         = debug params

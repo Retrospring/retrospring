@@ -1,20 +1,105 @@
-# README
+# justask [![build status](https://ci.rrerr.net/projects/9/status.png?ref=master)](https://ci.rrerr.net/projects/9?ref=master)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+- UNIX-like system (Linux, *BSD, ...)
+- ruby 1.9.3+
+- Bundler
+- PostgreSQL or MySQL
 
-* Ruby version
-* System dependencies
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
-* ...
+## Installation
 
+### Database
 
-Please feel free to use a different markup language if you do not plan to run
-`rake doc:app`.
+#### PostgreSQL
+
+```
+$ sudo -u postgres psql -d template1
+template1=# CREATE USER justask CREATEDB;
+template1=# CREATE DATABASE justask_production OWNER justask;
+template1=# \q
+```
+
+Try connecting to the database:
+
+```
+$ psql -U justask -d justask_production
+```
+
+#### MySQL
+
+```
+$ mysql -u root -p
+# change 'hack me' in the command below to a real password
+mysql> CREATE USER 'justask'@'localhost' IDENTIFIED BY 'hack me';
+mysql> SET storage_engine=INNODB;
+mysql> CREATE DATABASE IF NOT EXISTS `justask_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;
+mysql> GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `justask_production`.* TO 'justask'@'localhost';
+mysql> \q
+```
+
+Try connecting to the database:
+
+```
+$ mysql -u justask -p -D justask_production
+```
+
+### justask
+
+#### Clone the Source
+
+```
+$ git clone https://git.rrerr.net/nilsding/justask.git justask
+```
+
+#### Configure It
+
+```
+# Change into the justask directory
+$ cd justask
+
+# Copy the example config
+$ cp config/justask.yml.example config/justask.yml
+
+# Edit the configuration file
+$ vi config/justask.yml
+```
+
+#### Database Configuration
+
+```
+# PostgreSQL only:
+$ cp config/database.yml.postgres config/database.yml
+
+# MySQL only:
+$ cp config/database.yml.mysql config/database.yml
+
+# MySQL and remote PostgreSQL only:
+$ vi config/database.yml
+
+# Both:
+# Make database.yml readable only for you
+chmod o-rwx config/database.yml
+```
+
+#### Install Gems
+
+```
+# For PostgreSQL (note: the option says "without ... mysql")
+$ bundle install --deployment --without development test mysql
+
+# Or, if you use MySQL
+$ bundle install --deployment --without development test postgres
+```
+
+#### Initialize Database
+
+```
+$ bundle exec rake db:migrate RAILS_ENV=production
+```
+
+#### Compile Assets
+
+```
+$ bundle exec rake assets:precompile RAILS_ENV=production
+```
