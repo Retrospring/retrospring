@@ -1,73 +1,9 @@
 /*
- *= require font-kit-rails/open-sans
+ *= require rails_bootstrap_forms
  *= require_self 
  */
-@import "semantic-ui";
+@import "bootswatch/flatly/variables";
+@import "bootstrap";
+body { padding-top: $navbar-height; }
+@import "bootswatch/flatly/bootswatch";
 @import "base";
-
-html,
-body {
-  font-size: 15px;
-  height: 100%;
-}
-
-body {
-  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "DejaVu Sans", "Arial", sans-serif;
-  background: #FFFFFF;
-  margin: 0px;
-  padding: 0px;
-  color: #555555;
-  text-rendering: optimizeLegibility;
-  min-width: 320px;
-}
-
-
-/* mobile only */
-
-@media only screen and (max-width : 768px) {
-  .ui.page.grid.segment {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-
-  h1.ui.header {
-    font-size: 1.5em;
-  }
-
-  .masthead.segment {
-    background-size: auto;
-  }
-
-  .masthead.segment .information {
-    margin-left: 190px;
-  }
-
-  .masthead.segment .image {
-    bottom: -65px;
-    width: 150px;
-  }
-
-  .masthead.segment .button {
-    font-size: 1rem;
-  }
-
-  .overview .divided.grid .header .icon {
-    font-size: 1.5em;
-  }
-
-  .overview .divided.grid .header + p {
-    min-height: 0px;
-  }
-
-  .masthead.segment .column {
-    font-size: 0.7rem;
-  }
-
-  .masthead.segment .column p {
-    display: none;
-  }
-}
-
-@media only screen and (max-width : 1000px) {
-
-}

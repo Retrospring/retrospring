@@ -1,9 +1,6 @@
 #= require jquery
 #= require jquery_ujs
 #= require turbolinks
-#= require semantic-ui
+#= require bootstrap
 #= require_tree .
 
-$(document).ready ->
-  $('.ui.dropdown').dropdown
-    on: "hover"

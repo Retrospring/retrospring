@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.7'
 
 gem 'pg', group: :postgres
 gem 'mysql2', group: :mysql
@@ -16,10 +16,12 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
-gem 'semantic-ui-sass', '~> 0.19.3.0'
+gem 'bootstrap-sass', '~> 3.2.0.1'
+gem 'bootswatch-rails', '~> 3.2.0'
 gem 'will_paginate'
 gem 'http_accept_language'
 gem 'devise'
+gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
 

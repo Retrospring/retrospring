@@ -1,19 +1,26 @@
-%nav.ui.fixed.inverted.main.menu
-  %h3.header.item justask
-  = nav_entry "Home", "/", icon: "home"
-  - if user_signed_in?
-    = nav_entry "Inbox", "/inbox", icon: "inbox", label: "2"
-  - else
-    = nav_entry "About", "/about", icon: ""
-  .right.menu
-    - if user_signed_in?
-      .ui.dropdown.item
-        = current_user.screen_name
-        = semantic_icon "dropdown"
-        .menu
-          = link_to "Profile", edit_user_registration_path, class: "item"
-          = link_to "Settings", "#", class: "item"
-          = link_to "Logout",  destroy_user_session_path, method: :delete, class: "item"
-    - else
-      = nav_entry "Sign in", new_user_session_path #, "right floated text"
-      = nav_entry "Sign up", new_user_registration_path #, "right floated text"
+%nav.navbar.navbar-default.navbar-fixed-top{role: "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#j2-main-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: "/"} justask2
+    #j2-main-navbar-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        = nav_entry "Front", "/"
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li.dropdown
+            %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+              = current_user.screen_name
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Profile", edit_user_registration_path
+              %li= link_to "Settings", "#"
+              %li.divider
+              %li= link_to "Logout",  destroy_user_session_path, method: :delete
+        - else
+          = nav_entry "Sign in", new_user_session_path
+          = nav_entry "Sign up", new_user_registration_path

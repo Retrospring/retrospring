@@ -2,7 +2,7 @@
   %h1 Sign in
   = render 'layouts/messages'
 
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
     = f.text_field :login, autofocus: true, label: "User name"
     = f.password_field :password, autocomplete: "off", label: "Password"
