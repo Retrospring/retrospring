@@ -2,8 +2,14 @@
  *= require rails_bootstrap_forms
  *= require_self 
  */
+
 @import "bootswatch/flatly/variables";
 @import "bootstrap";
 body { padding-top: $navbar-height; }
 @import "bootswatch/flatly/bootswatch";
 @import "base";
+
+@import "font-awesome";
+
+@import 'nprogress';
+@import 'nprogress-bootstrap';

@@ -54,6 +54,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.2)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     font-kit-rails (1.1.0)
       rails
     haml (4.0.5)
@@ -158,6 +160,7 @@ DEPENDENCIES
   bootswatch-rails (~> 3.2.0)
   coffee-rails (~> 4.1.0)
   devise
+  font-awesome-rails (~> 4.2.0.0)
   font-kit-rails
   haml
   http_accept_language

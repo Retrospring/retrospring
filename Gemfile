@@ -24,6 +24,7 @@ gem 'devise'
 gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
+gem 'font-awesome-rails', '~> 4.2.0.0'
 
 group :development do
   gem 'thin'
