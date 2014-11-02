@@ -1,0 +1,40 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      Ask something!
+  .panel-body
+    #question-box.row
+      .row
+        .col-xs-12
+          %textarea.form-control{:name => "qb_question", :placeholder => "Type your question here…"}
+      .row{:style => "padding-top: 5px; padding-left: 5px; padding-right: 5px;"}
+        .col-xs-6
+          - if user_signed_in? # and @user.allow_anonymous
+            %input{:name => "qb_hidename", :type => "checkbox"}/
+            Hide your name
+            %br/
+        .col-xs-6
+          %p.pull-right
+            %input{:name => "qb_to", :type => "hidden", :value => @user.id}/
+            %button#qb_ask.btn.btn-primary{"data-loading-text" => "Asking...", "data-promote" => user_signed_in? ? "true" : "false", :type => "button"} Ask
+    - unless user_signed_in?
+      #question-box-promote.row{:style => "display: none;"}
+        .row
+          .col-xs-12
+            %strong Your question has been sent.
+        .row
+          .col-sm-1
+          .col-sm-5
+            %button#create-account.btn.btn-block.btn-primary Create an account
+          .col-sm-5
+            %button#new-question.btn.btn-block.btn-default Ask another question
+          .col-sm-1
+        .row
+          .col-sm-1
+          .col-xs-12.col-sm-10
+            %small Join justask2 today!  You'll be able to follow and ask people you know and a lot more.
+          .col-sm-1
+/     %p
+/       This user does not want to get asked by strangers.  Why don't you
+/       = succeed "?" do
+/         %a{:href => "{{ url_for('register') }}"} sign up
