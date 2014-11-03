@@ -15,13 +15,14 @@ Rails.application.routes.draw do
     post '/user/create' => 'devise/registrations#create', as: :user_registration
     get '/sign_up' => 'devise/registrations#new', as: :new_user_registration
     get '/settings/account' => 'devise/registrations#edit', as: :edit_user_registration
-    patch '/settings/account' => 'devise/registrations#update'
+    patch '/settings/account' => 'devise/registrations#update', as: :update_user_registration
     put '/settings/account' => 'devise/registrations#update'
     delete '/settings/account' => 'devise/registrations#destroy'
   end
 
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
-  
+  match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
+
   match '/user/:username', to: 'user#show', via: 'get'
   match '/@:username', to: 'user#show', via: 'get', as: :show_user_profile_at
   match '/:username', to: 'user#show', via: 'get', as: :show_user_profile
