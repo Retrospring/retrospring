@@ -5,6 +5,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.boolean :author_is_anonymous
       t.string :author_name
       t.string :author_email
+      t.integer :user_id
 
       t.timestamps
     end
