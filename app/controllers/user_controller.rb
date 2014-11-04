@@ -8,7 +8,7 @@ class UserController < ApplicationController
   end
 
   def update
-    params.permit(:display_name)
+    params.require(:display_name)
     current_user.display_name = params[:display_name]
     current_user.save!
     redirect_to edit_user_profile_path
