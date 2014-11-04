@@ -11,3 +11,5 @@
 .sass-cache/
 coverage/
 *.swp
+
+\#*#
