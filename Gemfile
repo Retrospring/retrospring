@@ -17,7 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
 gem 'bootstrap-sass', '~> 3.2.0.1'
-gem 'bootswatch-rails', '~> 3.2.0'
+gem 'bootstrap-material-design'
 gem 'will_paginate'
 gem 'http_accept_language'
 gem 'devise'
