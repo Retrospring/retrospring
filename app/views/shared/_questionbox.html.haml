@@ -6,17 +6,17 @@
     #question-box.row
       .row
         .col-xs-12
-          %textarea.form-control{:name => "qb_question", :placeholder => "Type your question here…"}
+          %textarea.form-control{:name => "qb-question", :placeholder => "Type your question here…"}
       .row{:style => "padding-top: 5px; padding-left: 5px; padding-right: 5px;"}
         .col-xs-6
           - if user_signed_in? # and @user.allow_anonymous
-            %input{:name => "qb_hidename", :type => "checkbox"}/
+            %input{:name => "qb-anonymous", :type => "checkbox"}/
             Hide your name
             %br/
         .col-xs-6
           %p.pull-right
-            %input{:name => "qb_to", :type => "hidden", :value => @user.id}/
-            %button#qb_ask.btn.btn-primary{"data-loading-text" => "Asking...", "data-promote" => user_signed_in? ? "true" : "false", :type => "button"} Ask
+            %input{name: 'qb-to', type: 'hidden', :value => @user.id}/
+            %button.btn.btn-primary{name: 'qb-ask', 'data-loading-text' => "Asking...", "data-promote" => user_signed_in? ? "false" : "true", :type => "button"} Ask
     - unless user_signed_in?
       #question-box-promote.row{:style => "display: none;"}
         .row
