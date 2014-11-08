@@ -13,3 +13,6 @@ coverage/
 *.swp
 
 \#*#
+
+# Curse you, JetBrains!
+.idea/
