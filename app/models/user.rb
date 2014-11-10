@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :inboxes, dependent: :destroy
   
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   
