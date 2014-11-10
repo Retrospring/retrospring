@@ -22,8 +22,12 @@ Rails.application.routes.draw do
 
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
+  
+  namespace :ajax do
+    match '/ask', to: 'ajax#ask', via: :post, as: :ajax_ask
+  end
 
   match '/user/:username', to: 'user#show', via: 'get'
-  match '/@:username', to: 'user#show', via: 'get', as: :show_user_profile_at
-  match '/:username', to: 'user#show', via: 'get', as: :show_user_profile
+  match '/@:username', to: 'user#show', via: 'get', as: :show_user_profile
+  match '/:username', to: 'user#show', via: 'get', as: :show_user_profile_alt
 end
