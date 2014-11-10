@@ -21,6 +21,7 @@ $(document).on "click", "button[name=qb-ask]", ->
                         true
   $.ajax
     url: '/ajax/ask' # TODO: find a way to use rake routes instead of hardcoding them here
+    type: 'POST'
     data:
       rcpt: $("input[name=qb-to]").val()
       question: $("textarea[name=qb-question]").val()
