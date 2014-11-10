@@ -10,5 +10,6 @@ body { padding-top: $navbar-height; }
 
 @import "font-awesome";
 
+$nprogress-color: #666; /* hail stan */
 @import 'nprogress';
 @import 'nprogress-bootstrap';
