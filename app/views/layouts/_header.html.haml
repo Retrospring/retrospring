@@ -9,9 +9,11 @@
       %a.navbar-brand{href: "/"}= APP_CONFIG['site_name']
     #j2-main-navbar-collapse.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        = nav_entry "Front", "/"
-      %ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
+        = nav_entry "Front", root_path
+      - if user_signed_in?
+        %ul.nav.navbar-nav
+          = nav_entry "Inbox", "/inbox", badge: inbox_count, badge_color: 'danger'
+        %ul.nav.navbar-nav.navbar-right
           %li.dropdown
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
               = current_user.screen_name
@@ -21,6 +23,7 @@
               %li= link_to "Settings", edit_user_registration_path
               %li.divider
               %li= link_to "Logout",  destroy_user_session_path, method: :delete
-        - else
+      - else
+        %ul.nav.navbar-nav.navbar-right
           = nav_entry "Sign in", new_user_session_path
           = nav_entry "Sign up", new_user_registration_path
