@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
   
   namespace :ajax do
-    match '/ask', to: 'ajax#ask', via: :post, as: :ask
+    match '/ask', to: 'question#create', via: :post, as: :ask
   end
 
   match '/user/:username', to: 'user#show', via: 'get'
