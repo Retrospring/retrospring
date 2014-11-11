@@ -1,7 +1,14 @@
-%ul
+.container.j2-page
   - @inbox.each do |i|
-    %li
-      %strong
-        = user_screen_name i.question.user
-        asked
-      = i.question.content
+    .panel.inbox-box{'data-id' => i.id}
+      %p
+        %strong
+          = user_screen_name i.question.user
+        asked:
+      %p
+        %strong
+          = i.question.content
+      %textarea{name: 'ib-answer', 'data-id' => i.id}
+      %br/
+      %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
+        Answer

@@ -11,9 +11,9 @@ class Ajax::InboxController < ApplicationController
       current_user.increment! :answered_count
     end
 
-    inbox = Inbox.find(params[:id]).first
+    inbox = Inbox.find(params[:id])
 
-    unless current_user.id == Inbox.user_id
+    unless current_user == inbox.user
       @status = :fail
       @message = "question not in your inbox"
       @success = false

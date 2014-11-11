@@ -10,6 +10,12 @@
 NProgress.configure
   showSpinner: false
 
+showSnackbar = (text) ->
+  $.snackbar # allahu snackbar
+    content: data.message
+    style: "snackbar"
+    timeout: 5000
+
 $(document).on "click", "button[name=qb-ask]", ->
   btn = $(this)
   btn.button "loading"
@@ -32,22 +38,13 @@ $(document).on "click", "button[name=qb-ask]", ->
         if promote
           $("div#question-box").hide()
           $("div#question-box-promote").show()
-        $.snackbar # allahu snackbar
-          content: data.message
-          style: "snackbar"
-          timeout: 5000
+        showSnackbar data.message
       else
         console.log data, status, jqxhr
-        $.snackbar # allahu snackbar
-          content: "An error occurred, a developer should check the console for details"
-          style: "snackbar"
-          timeout: 5000
+        showSnackbar "An error occurred, a developer should check the console for details"
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      $.snackbar # allahu snackbar
-        content: "An error occurred, a developer should check the console for details"
-        style: "snackbar"
-        timeout: 5000
+      showSnackbar "An error occurred, a developer should check the console for details"
     complete: (jqxhr, status) ->
       btn.button "reset"
       $("textarea[name=qb-question]").removeAttr "readonly"
@@ -55,36 +52,27 @@ $(document).on "click", "button[name=qb-ask]", ->
 $(document).on "click", "button[name=ib-answer]", ->
   btn = $(this)
   btn.button "loading"
-  iid = $("input[name=ib-id]").val()
+  iid = btn[0].dataset.ibId
+  $("textarea[name=ib-answer][data-id=#{iid}]").attr "readonly", "readonly"
   $.ajax
-    url: '/ajax/inbox' # TODO: find a way to use rake routes instead of hardcoding them here
+    url: '/ajax/answer' # TODO: find a way to use rake routes instead of hardcoding them here
     type: 'POST'
     data:
       id: iid
-      answer: $("textarea[name=ib-answer]").val()
+      answer: $("textarea[name=ib-answer][data-id=#{iid}]").val()
     success: (data, status, jqxhr) ->
       if data.success
-        $("div#inbox-box[data-id=#{iid}]").val ''
-        $("div#inbox-box").slideUp()
-        $.snackbar # allahu snackbar
-          content: data.message
-          style: "snackbar"
-          timeout: 5000
+        $("div.inbox-box[data-id=#{iid}]").slideUp()
+        showSnackbar data.message
       else
         console.log data, status, jqxhr
-        $.snackbar # allahu snackbar
-          content: "An error occurred, a developer should check the console for details"
-          style: "snackbar"
-          timeout: 5000
+        showSnackbar "An error occurred, a developer should check the console for details"
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      $.snackbar # allahu snackbar
-        content: "An error occurred, a developer should check the console for details"
-        style: "snackbar"
-        timeout: 5000
+      showSnackbar "An error occurred, a developer should check the console for details"
     complete: (jqxhr, status) ->
       btn.button "reset"
-      $("textarea[name=qb-question]").removeAttr "readonly"
+      $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"
 
 $(document).on "click", "button#create-account", ->
   Turbolinks.visit "/sign_up"
