@@ -3,14 +3,6 @@ class Ajax::InboxController < ApplicationController
     params.require :id
     params.require :answer
 
-    question = Question.create!(content: params[:question],
-                                author_is_anonymous: params[:anonymousQuestion],
-                                user: current_user)
-
-    unless current_user.nil?
-      current_user.increment! :answered_count
-    end
-
     inbox = Inbox.find(params[:id])
 
     unless current_user == inbox.user
@@ -23,6 +15,10 @@ class Ajax::InboxController < ApplicationController
     answer = Answer.create(content: params[:answer],
                            user: current_user,
                            question: inbox.question)
+
+    unless current_user.nil?
+      current_user.increment! :answered_count
+    end
 
     Inbox.destroy inbox.id
 

@@ -3,7 +3,7 @@
     .panel.inbox-box{'data-id' => i.id}
       %p
         %strong
-          = user_screen_name i.question.user
+          = user_screen_name i.question.user, i.question.author_is_anonymous
         asked:
       %p
         %strong
