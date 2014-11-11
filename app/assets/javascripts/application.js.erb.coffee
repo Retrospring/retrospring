@@ -13,7 +13,7 @@ NProgress.configure
 
 showSnackbar = (text) ->
   $.snackbar # allahu snackbar
-    content: data.message
+    content: text
     style: "snackbar"
     timeout: 5000
 
