@@ -1,8 +1,10 @@
 .container.j2-page
   = render 'settings_tabs'
   .col-md-9.col-xs-12.col-sm-9
-    = bootstrap_form_for(update_user_profile_path, method: "patch") do |f|
-      
-      = f.text_field :display_name, label: "Your name"
-      
-      = f.submit
+    .panel.panel-default
+      .panel-body
+        = bootstrap_form_for(update_user_profile_path, method: "patch") do |f|
+
+          = f.text_field :display_name, label: "Your name"
+
+          = f.submit "Save settings", class: 'btn btn-primary'

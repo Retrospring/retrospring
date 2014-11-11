@@ -1,23 +1,27 @@
 .container.j2-page
   = render 'user/settings_tabs'
   .col-md-9.col-xs-12.col-sm-9
-    = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      = devise_error_messages!
+    .panel.panel-default
+      .panel-body
+        = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = devise_error_messages!
 
-      = f.text_field :screen_name, autofocus: true, label: "User name"
+          = f.text_field :screen_name, autofocus: true, label: "User name"
 
-      = f.email_field :email, label: "Email address"
-      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        %div
-          Currently waiting confirmation for: #{resource.unconfirmed_email}
+          = f.email_field :email, label: "Email address"
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            %div
+              Currently waiting confirmation for: #{resource.unconfirmed_email}
 
-      = f.password_field :password, autocomplete: "off", label: "Password", help: "Leave this blank if you don't want to change it"
-      = f.password_field :password_confirmation, autocomplete: "off", label: "Confirm password"
+          = f.password_field :password, autocomplete: "off", label: "Password", help: "Leave this blank if you don't want to change it"
+          = f.password_field :password_confirmation, autocomplete: "off", label: "Confirm password"
 
-      = f.password_field :current_password, autocomplete: "off", label: "Current password", help: "We need your current password to confirm your changes"
+          = f.password_field :current_password, autocomplete: "off", label: "Current password", help: "We need your current password to confirm your changes"
 
-      = f.submit "Update"
-    %p
-      =button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-sm"
+          = f.submit "Save settings", class: 'btn btn-primary'
+          %hr/
+        %p
+          Unsatisfied?
+          =button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs"
 
-    = link_to "Back", :back
+        = link_to "Back", :back
