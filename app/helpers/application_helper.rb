@@ -41,8 +41,9 @@ module ApplicationHelper
                  .where(user_id: current_user.id)
                  .group(:user_id)
                  .order(:count)
-                 .first.count
-    return nil unless count > 0
-    count
+                 .first
+    return nil if count.nil?
+    return nil unless count.count > 0
+    count.count
   end
 end
