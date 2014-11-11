@@ -12,3 +12,6 @@
       %br/
       %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
         Answer
+
+  - if @inbox.empty?
+    Nothing to see here.
