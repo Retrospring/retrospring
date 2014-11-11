@@ -8,9 +8,9 @@
         %span.icon-bar
       %a.navbar-brand{href: "/"}= APP_CONFIG['site_name']
     #j2-main-navbar-collapse.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        = nav_entry "Front", root_path
       - if user_signed_in?
+        %ul.nav.navbar-nav
+          = nav_entry "Timeline", root_path
         %ul.nav.navbar-nav
           = nav_entry "Inbox", "/inbox", badge: inbox_count, badge_color: 'danger'
         %ul.nav.navbar-nav.navbar-right
