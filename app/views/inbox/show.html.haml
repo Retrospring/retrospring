@@ -1,17 +1,20 @@
 .container.j2-page
+  = render 'layouts/messages'
   - @inbox.each do |i|
-    .panel.inbox-box{'data-id' => i.id}
-      %p
-        %strong
-          = user_screen_name i.question.user, i.question.author_is_anonymous
-        asked:
-      %p
-        %strong
-          = i.question.content
-      %textarea{name: 'ib-answer', 'data-id' => i.id}
-      %br/
-      %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
-        Answer
+    .panel.panel-default.inbox-box{'data-id' => i.id}
+      .panel-body
+        %p
+          %strong
+            = user_screen_name i.question.user, i.question.author_is_anonymous
+          asked:
+        %p
+          %strong
+            = i.question.content
+        %textarea{name: 'ib-answer', 'data-id' => i.id}
+        %br/
+        %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
+          Answer
 
   - if @inbox.empty?
+
     Nothing to see here.
