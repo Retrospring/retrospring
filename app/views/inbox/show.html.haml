@@ -1,0 +1,7 @@
+%ul
+  - @inbox.each do |i|
+    %li
+      %strong
+        = user_screen_name i.question.user
+        asked
+      = i.question.content
