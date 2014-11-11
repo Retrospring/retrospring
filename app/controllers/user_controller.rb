@@ -4,10 +4,11 @@ class UserController < ApplicationController
   end
 
   def edit
-    
+    authenticate_user!
   end
 
   def update
+    authenticate_user!
     params.require(:display_name)
     current_user.display_name = params[:display_name]
     current_user.save!
