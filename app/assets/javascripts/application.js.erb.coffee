@@ -33,7 +33,41 @@ $(document).on "click", "button[name=qb-ask]", ->
           $("div#question-box").hide()
           $("div#question-box-promote").show()
         $.snackbar # allahu snackbar
-          content: "Successfully asked question"
+          content: data.message
+          style: "snackbar"
+          timeout: 5000
+      else
+        console.log data, status, jqxhr
+        $.snackbar # allahu snackbar
+          content: "An error occurred, a developer should check the console for details"
+          style: "snackbar"
+          timeout: 5000
+    error: (jqxhr, status, error) ->
+      console.log jqxhr, status, error
+      $.snackbar # allahu snackbar
+        content: "An error occurred, a developer should check the console for details"
+        style: "snackbar"
+        timeout: 5000
+    complete: (jqxhr, status) ->
+      btn.button "reset"
+      $("textarea[name=qb-question]").removeAttr "readonly"
+
+$(document).on "click", "button[name=ib-answer]", ->
+  btn = $(this)
+  btn.button "loading"
+  iid = $("input[name=ib-id]").val()
+  $.ajax
+    url: '/ajax/inbox' # TODO: find a way to use rake routes instead of hardcoding them here
+    type: 'POST'
+    data:
+      id: iid
+      answer: $("textarea[name=ib-answer]").val()
+    success: (data, status, jqxhr) ->
+      if data.success
+        $("div#inbox-box[data-id=#{iid}]").val ''
+        $("div#inbox-box").slideUp()
+        $.snackbar # allahu snackbar
+          content: data.message
           style: "snackbar"
           timeout: 5000
       else
