@@ -9,9 +9,10 @@ class UserController < ApplicationController
 
   def update
     authenticate_user!
-    params.require(:display_name)
-    current_user.display_name = params[:display_name]
-    current_user.save!
+    user_attributes = params.require(:user).permit(:display_name)
+    unless current_user.update_attributes(user_attributes)
+      flash[:error] = "fork it"
+    end
     redirect_to edit_user_profile_path
   end
 end

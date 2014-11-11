@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
-  
+
+
+
   def login=(login)
     @login = login
   end
