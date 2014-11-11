@@ -4,15 +4,9 @@ class Ajax::QuestionController < ApplicationController
     params.require :anonymousQuestion
     params.require :rcpt
 
-    user = unless user_signed_in?
-             current_user
-           else
-             nil
-           end
-
     question = Question.create!(content: params[:question],
                                 author_is_anonymous: params[:anonymousQuestion],
-                                user: user)
+                                user: current_user)
 
     Inbox.create!(user_id: params[:rcpt], question_id: question.id, new: true)
 
