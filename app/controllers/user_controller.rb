@@ -1,6 +1,7 @@
 class UserController < ApplicationController
   def show
     @user = User.find_by_screen_name!(params[:username])
+    @answers = @user.answers.reverse_order.paginate(page: params[:page])
   end
 
   def edit

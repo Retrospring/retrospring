@@ -16,3 +16,11 @@
             %span.badge#friend-count= @user.friend_count
   .col-md-9.col-xs-12.col-sm-9
     = render 'shared/questionbox'
+    - @answers.each do |a|
+      .panel.panel-default
+        .panel-body
+          %p
+            %strong= a.question.content
+            %small= user_screen_name a.question.user, a.question.author_is_anonymous
+          %hr/
+          %p= a.content

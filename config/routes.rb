@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   match '/inbox', to: 'inbox#show', via: 'get'
   
-  match '/user/:username', to: 'user#show', via: 'get'
-  match '/@:username', to: 'user#show', via: 'get', as: :show_user_profile
-  match '/:username', to: 'user#show', via: 'get', as: :show_user_profile_alt
+  match '/user/:username(/p/:page)', to: 'user#show', via: 'get', defaults: {page: 1}
+  match '/@:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile, defaults: {page: 1}
+  match '/:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
 end
