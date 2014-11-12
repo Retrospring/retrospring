@@ -1,3 +1,8 @@
+# The site name, shown everywhere.
 site_name: "justask"
 
-anonymous_name: "Anonymous Coward"
+# Name of the "Anonymous" user. (e.g. "Anonymous Coward", "Arno Nym", "Mr. X", ...)
+anonymous_name: "Anonymous"
+
+# How many items (questions, answers, ...) do you want to show per page?
+items_per_page: 10
