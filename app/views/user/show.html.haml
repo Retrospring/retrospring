@@ -14,6 +14,12 @@
           %li.list-group-item
             Followings
             %span.badge#friend-count= @user.friend_count
+          %li.list-group-item
+            Questions
+            %span.badge#friend-count= @user.asked_count
+          %li.list-group-item
+            Answers
+            %span.badge#friend-count= @user.answered_count
   .col-md-9.col-xs-12.col-sm-9
     = render 'shared/questionbox'
     - @answers.each do |a|
