@@ -35,7 +35,6 @@ module ApplicationHelper
 
   def inbox_count
     return 0 unless user_signed_in?
-    puts current_user.id
     count = Inbox.select("COUNT(id) AS count")
                  .where(new: true)
                  .where(user_id: current_user.id)
