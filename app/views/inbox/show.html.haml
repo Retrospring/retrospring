@@ -10,7 +10,7 @@
         %p
           %strong
             = i.question.content
-        %textarea{name: 'ib-answer', 'data-id' => i.id}
+        %textarea.form-control{name: 'ib-answer', 'data-id' => i.id}
         %br/
         %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
           Answer
