@@ -5,8 +5,11 @@
         .row
           .col-md-12.col-xs-12.col-sm-9
             %img.img-rounded.img-profile
-        %h1
-          = @user.screen_name
+        - if @user.display_name.blank?
+          %h1= @user.screen_name
+        - else
+          %h1= @user.display_name
+          %h3.text-muted= @user.screen_name
         %ul.list-group
           %li.list-group-item
             Followers
