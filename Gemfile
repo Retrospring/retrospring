@@ -36,6 +36,7 @@ group :production do
   gem 'unicorn', group: :production
 end
 
-group :test do
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'simplecov'
 end
