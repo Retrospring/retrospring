@@ -55,6 +55,11 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
     font-kit-rails (1.1.0)
@@ -133,6 +138,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (2.7.0)
+      activesupport (>= 3.0.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -180,6 +187,7 @@ DEPENDENCIES
   bootstrap_form
   coffee-rails (~> 4.1.0)
   devise
+  factory_girl_rails
   font-awesome-rails (~> 4.2.0.0)
   font-kit-rails
   haml
@@ -194,6 +202,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.1)
+  shoulda-matchers
   simplecov
   spring
   thin
