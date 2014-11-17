@@ -4,6 +4,7 @@
     = render 'layouts/messages'
     
     %p Find me in app/views/static/index.html.haml
+  = render "shared/links"
 - else
   .jumbotron
     .container
@@ -16,3 +17,4 @@
       %small
         Already a member?
         = link_to 'Sign in', new_user_session_path
+  = render "shared/links"
