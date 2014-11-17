@@ -1,5 +1,25 @@
 .container
-  %h1 Static#about
+  %h1
+    About
+    = APP_CONFIG['site_name']
+  
   = render 'layouts/messages'
   
-  %p Find me in app/views/static/about.html.haml
+  / TODO: fill this out.
+  
+  .row
+    .col-sm-4
+      %h3 Title 1
+      Blah blah blah blah...
+      %br/
+      Someone fill this text here.
+    .col-sm-4
+      %h3 Title 2
+      This app was made by
+      = Faker::Name.name
+      from the
+      = Faker::Company.name
+      company!
+    .col-sm-4
+      %h3 Another title.
+      = Faker::Hacker.say_something_smart
