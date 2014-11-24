@@ -28,7 +28,6 @@ gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.2.0.0'
 
 group :development do
-  gem 'thin'
   gem 'spring'
 end
 
@@ -37,10 +36,13 @@ group :production do
 end
 
 group :development, :test do
+  gem 'thin'
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'capybara'
+  gem 'poltergeist'
   gem 'simplecov'
+  gem 'database_cleaner'
 end
 
