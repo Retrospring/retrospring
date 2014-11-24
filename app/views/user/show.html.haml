@@ -23,6 +23,7 @@
           %li.list-group-item
             Answers
             %span.badge#friend-count= @user.answered_count
+    .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-9
     = render 'shared/questionbox'
     - @answers.each do |a|
@@ -33,3 +34,4 @@
             %small= user_screen_name a.question.user, a.question.author_is_anonymous
           %hr/
           %p= a.content
+  .visible-xs= render 'shared/links'
