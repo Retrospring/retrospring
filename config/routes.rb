@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   namespace :ajax do
     match '/ask', to: 'question#create', via: :post, as: :ask
     match '/answer', to: 'inbox#destroy', via: :post, as: :answer
+    match '/destroy_answer', to: 'answer#destroy', via: :post, as: :destroy_answer
   end
 
   match '/inbox', to: 'inbox#show', via: 'get'
