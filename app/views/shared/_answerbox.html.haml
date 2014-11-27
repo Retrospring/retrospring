@@ -1,0 +1,11 @@
+.panel.panel-default.answer-box{'data-id' => a.id}
+  .panel-body
+    %p
+      %strong= a.question.content
+      %small= user_screen_name a.question.user, a.question.author_is_anonymous
+    %hr/
+    %p= a.content
+    %br/
+    - if privileged?
+      %button.btn.btn-danger{name: 'ab-destroy', 'data-a-id' => a.id}
+        Delete
