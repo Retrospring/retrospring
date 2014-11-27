@@ -75,6 +75,26 @@ $(document).on "click", "button[name=ib-answer]", ->
       btn.button "reset"
       $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"
 
+# TODO
+$(document).on "click", "button[name=ab-destroy]", ->
+  btn = $(this)
+  btn.button "loading"
+  aid = btn[0].dataset.aId
+  $.ajax
+    url: '/ajax/destroy_answer' # TODO: find a way to use rake routes instead of hardcoding them here
+    type: 'POST'
+    data:
+      answer: aid
+    success: (data, status, jqxhr) ->
+      if data.success
+        $("div.answer-box[data-id=#{aid}]").slideUp()
+      showSnackbar data.message
+    error: (jqxhr, status, error) ->
+      console.log jqxhr, status, error
+      showSnackbar "An error occurred, a developer should check the console for details"
+    complete: (jqxhr, status) ->
+      btn.button "reset"
+
 $(document).on "click", "button#create-account", ->
   Turbolinks.visit "/sign_up"
 
