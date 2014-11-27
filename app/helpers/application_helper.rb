@@ -45,4 +45,12 @@ module ApplicationHelper
     return nil unless count.count > 0
     count.count
   end
+
+  def privileged?
+    if current_user && current_user.admin?
+      true
+    else
+      false
+    end
+  end
 end
