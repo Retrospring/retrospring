@@ -8,6 +8,8 @@ class Ajax::AnswerController < ApplicationController
 
     answer = Answer.find(params[:answer])
 
+    puts ">>>>>>>>>>>>", privileged?.inspect
+    
     unless answer.user == current_user || privileged?
       @status = :nopriv
       @message = "check yuor privlegs"
@@ -22,16 +24,5 @@ class Ajax::AnswerController < ApplicationController
     @status = :okay
     @message = "Successfully deleted answer."
     @success = true
-  end
-
-  private
-
-  # TODO:
-  def privileged?
-    if current_user && current_user.admin?
-      true
-    else
-      false
-    end
   end
 end
