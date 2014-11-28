@@ -10,6 +10,8 @@
         - else
           %h1= @user.display_name
           %h3.text-muted= @user.screen_name
+        - if @user.admin?
+          %span.label.label-danger Admin
         %ul.list-group
           %li.list-group-item
             Followers
