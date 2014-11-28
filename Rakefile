@@ -9,8 +9,8 @@ namespace :justask do
   desc "Recount every user's answer/question count."
   task recount: :environment do
     total = User.count
-    progress = ProgressBar.create title: 'Processing user', format: "%t (%c/%C) [%b>%i] %e", starting_at: 1, total: total
-    User.all do |user|
+    progress = ProgressBar.create title: 'Processing user', format: "%t (%c/%C) [%b>%i] %e", starting_at: 0, total: total
+    User.all.each do |user|
       begin
         answered = Question.where(user: user).count
         asked = Question.where(user: user).where(author_is_anonymous: false).count
