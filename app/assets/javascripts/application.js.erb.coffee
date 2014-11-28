@@ -5,16 +5,20 @@
 #= require bootstrap
 #= require nprogress
 #= require nprogress-turbolinks
+#= require growl
 #= require_tree .
 
 NProgress.configure
   showSpinner: false
 
-showSnackbar = (text) ->
-  $.snackbar # allahu snackbar
-    content: text
-    style: "snackbar"
-    timeout: 5000
+showNotification = (text, success=true) ->
+  args =
+    title: if success then "Success!" else "Uh-oh..."
+    message: text
+  if success
+    $.growl.notice args
+  else
+    $.growl.error args
 
 $(document).on "click", "button[name=qb-ask]", ->
   btn = $(this)
@@ -38,13 +42,10 @@ $(document).on "click", "button[name=qb-ask]", ->
         if promote
           $("div#question-box").hide()
           $("div#question-box-promote").show()
-        showSnackbar data.message
-      else
-        console.log data, status, jqxhr
-        showSnackbar "An error occurred, a developer should check the console for details"
+      showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      showSnackbar "An error occurred, a developer should check the console for details"
+      showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
       btn.button "reset"
       $("textarea[name=qb-question]").removeAttr "readonly"
@@ -63,13 +64,10 @@ $(document).on "click", "button[name=ib-answer]", ->
     success: (data, status, jqxhr) ->
       if data.success
         $("div.inbox-box[data-id=#{iid}]").slideUp()
-        showSnackbar data.message
-      else
-        console.log data, status, jqxhr
-        showSnackbar "An error occurred, a developer should check the console for details"
+      showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      showSnackbar "An error occurred, a developer should check the console for details"
+      showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
       btn.button "reset"
       $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"
@@ -87,10 +85,10 @@ $(document).on "click", "button[name=ab-destroy]", ->
     success: (data, status, jqxhr) ->
       if data.success
         $("div.answer-box[data-id=#{aid}]").slideUp()
-      showSnackbar data.message
+      showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      showSnackbar "An error occurred, a developer should check the console for details"
+      showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
       btn.button "reset"
 

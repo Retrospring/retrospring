@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'rails', '4.1.7'
 
@@ -26,6 +27,7 @@ gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.2.0.0'
+gem 'rails-assets-growl'
 
 group :development do
   gem 'spring'
