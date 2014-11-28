@@ -23,4 +23,24 @@ namespace :justask do
       progress.increment
     end
   end
+
+  desc "Gives admin status to an user."
+  task :admin, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.admin = true
+    user.save!
+    puts "#{user.screen_name} is now an admin"
+  end
+
+  desc "Removes admin status from an user."
+  task :deadmin, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.admin = false
+    user.save!
+    puts "#{user.screen_name} no longer an admin"
+  end
 end
