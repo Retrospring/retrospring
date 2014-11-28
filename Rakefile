@@ -22,6 +22,5 @@ namespace :justask do
       end
       progress.increment
     end
-    puts
   end
 end
