@@ -3,7 +3,6 @@
 #= require jquery.turbolinks
 #= require turbolinks
 #= require bootstrap
-#= require bootstrap-material-design
 #= require nprogress
 #= require nprogress-turbolinks
 #= require_tree .

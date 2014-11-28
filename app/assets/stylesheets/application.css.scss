@@ -1,11 +1,15 @@
 /*
  *= require rails_bootstrap_forms
  *= require_self
- *= require bootstrap-material-design
  */
+
+
+@import "bootswatch/paper/variables";
 
 @import "bootstrap";
 body { padding-top: $navbar-height; }
+@import "bootswatch/paper/bootswatch";
+
 @import "base";
 
 @import "font-awesome";
