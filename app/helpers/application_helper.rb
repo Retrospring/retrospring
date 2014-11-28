@@ -47,6 +47,6 @@ module ApplicationHelper
   end
 
   def privileged?(user)
-    (current_user == user && current_user.admin?) ? true : false
+    (current_user == user || current_user.admin?) ? true : false
   end
 end
