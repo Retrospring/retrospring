@@ -7,8 +7,6 @@ class Ajax::AnswerController < ApplicationController
     end
 
     answer = Answer.find(params[:answer])
-
-    puts ">>>>>>>>>>>>", privileged?.inspect
     
     unless answer.user == current_user || privileged?
       @status = :nopriv
@@ -18,7 +16,9 @@ class Ajax::AnswerController < ApplicationController
     end
 
     answer.user.decrement! :answered_count
-    Inbox.create!(user: answer.user, question: answer.question, new: true)
+    if answer.user == current_user
+      Inbox.create!(user: answer.user, question: answer.question, new: true)
+    end # TODO: decide what happens with the question
     answer.destroy
 
     @status = :okay
