@@ -46,11 +46,7 @@ module ApplicationHelper
     count.count
   end
 
-  def privileged?
-    if current_user && current_user.admin?
-      true
-    else
-      false
-    end
+  def privileged?(user)
+    (current_user == user && current_user.admin?) ? true : false
   end
 end

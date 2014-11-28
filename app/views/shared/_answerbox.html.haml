@@ -6,6 +6,6 @@
     %hr/
     %p= a.content
     %br/
-    - if privileged?
+    - if privileged? a.user
       %button.btn.btn-danger{name: 'ab-destroy', 'data-a-id' => a.id}
         Delete

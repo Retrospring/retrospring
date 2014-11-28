@@ -8,7 +8,7 @@ class Ajax::AnswerController < ApplicationController
 
     answer = Answer.find(params[:answer])
     
-    unless answer.user == current_user || privileged?
+    unless privileged? answer.user
       @status = :nopriv
       @message = "check yuor privlegs"
       @success = false

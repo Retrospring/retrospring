@@ -5,12 +5,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
   
-  def privileged?
-    if current_user && current_user.admin?
-      true
-    else
-      false
-    end
+  def privileged?(user)
+    (current_user == user && current_user.admin?) ? true : false
   end
   
   protected
