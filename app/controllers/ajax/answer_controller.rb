@@ -2,10 +2,6 @@ class Ajax::AnswerController < ApplicationController
   def destroy
     params.require :answer
 
-    unless current_user.nil?
-      current_user.increment! :asked_count unless params[:anonymousQuestion] == 'true'
-    end
-
     answer = Answer.find(params[:answer])
     
     unless privileged? answer.user
