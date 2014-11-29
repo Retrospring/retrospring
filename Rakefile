@@ -43,4 +43,11 @@ namespace :justask do
     user.save!
     puts "#{user.screen_name} no longer an admin"
   end
+
+  desc "Lists all users."
+  task lusers: :environment do
+    User.all.each do |u|
+      puts "#{sprintf "%3d", u.id}. #{u.screen_name}"
+    end
+  end
 end
