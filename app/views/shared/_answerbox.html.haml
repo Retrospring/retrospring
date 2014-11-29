@@ -4,8 +4,8 @@
       .media-left
         %img.img-rounded.img-answerbox
       .media-body
-        %h4.media-heading= user_screen_name a.question.user, a.question.author_is_anonymous
-        %p= a.question.content
+        %h5.media-heading.answerbox-question-user= user_screen_name a.question.user, a.question.author_is_anonymous
+        %p.answerbox-question-text= a.question.content
   .panel-body
     %p= a.content
     %br/

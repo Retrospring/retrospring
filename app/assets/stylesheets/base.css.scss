@@ -25,6 +25,12 @@ body {
 }
 
 .img-answerbox {
+  min-height: 64px;
+  min-width: 64px;
   height: 64px;
   width: 64px;
+}
+
+.answerbox-question-text, .answerbox-question-user {
+  margin-bottom: 0px;
 }
