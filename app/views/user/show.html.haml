@@ -11,7 +11,9 @@
           %h1.user-displayname= @user.display_name
           %h3.text-muted.user-username= @user.screen_name
         - if @user.admin?
-          %span.label.label-danger Admin
+          %p.text-danger
+            %i.fa.fa-flask
+            Admin
         %h4.entry-text= @user.follower_count
         %h6.entry-subtext Followers
         %h4.entry-text= @user.friend_count
