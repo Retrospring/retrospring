@@ -12,9 +12,9 @@ namespace :justask do
     progress = ProgressBar.create title: 'Processing user', format: "%t (%c/%C) [%b>%i] %e", starting_at: 0, total: total
     User.all.each do |user|
       begin
-        answered = Question.where(user: user).count
+        answered = Answer.where(user: user).count
         asked = Question.where(user: user).where(author_is_anonymous: false).count
-        commented = Question.where(user: user).count
+        commented = Comment.where(user: user).count
         user.answered_count = answered
         user.asked_count = asked
         user.commented_count = commented
