@@ -1,7 +1,10 @@
 .panel.panel-default
   .panel-heading
     %h3.panel-title
-      Ask something!
+      - if @user.motivation_header.blank?
+        Ask something!
+      - else
+        = @user.motivation_header
   .panel-body
     #question-box
       .row
