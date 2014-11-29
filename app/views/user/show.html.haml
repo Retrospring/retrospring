@@ -11,7 +11,7 @@
           %h1.user-displayname= @user.display_name
           %h3.text-muted.user-username= @user.screen_name
         - if @user.admin?
-          %p.text-danger
+          %p.user-admin
             %i.fa.fa-flask
             Admin
         %h4.entry-text= @user.follower_count
