@@ -8,8 +8,8 @@
         - if @user.display_name.blank?
           %h1= @user.screen_name
         - else
-          %h1= @user.display_name
-          %h3.text-muted= @user.screen_name
+          %h1.user-displayname= @user.display_name
+          %h3.text-muted.user-username= @user.screen_name
         - if @user.admin?
           %span.label.label-danger Admin
         %h4.entry-text= @user.follower_count
