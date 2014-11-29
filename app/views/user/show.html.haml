@@ -12,19 +12,14 @@
           %h3.text-muted= @user.screen_name
         - if @user.admin?
           %span.label.label-danger Admin
-        %ul.list-group
-          %li.list-group-item
-            Followers
-            %span.badge#follower-count= @user.follower_count
-          %li.list-group-item
-            Followings
-            %span.badge#friend-count= @user.friend_count
-          %li.list-group-item
-            Questions
-            %span.badge#friend-count= @user.asked_count
-          %li.list-group-item
-            Answers
-            %span.badge#friend-count= @user.answered_count
+        %h4.entry-text= @user.follower_count
+        %h6.entry-subtext Followers
+        %h4.entry-text= @user.friend_count
+        %h6.entry-subtext Followings
+        %h4.entry-text= @user.asked_count
+        %h6.entry-subtext Questions
+        %h4.entry-text= @user.answered_count
+        %h6.entry-subtext Answers
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-9
     = render 'shared/questionbox'
