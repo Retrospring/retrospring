@@ -35,6 +35,10 @@ body {
   margin-bottom: 0px;
 }
 
+.answerbox-question-text {
+  font-weight: bold;
+}
+
 .user-displayname {
   margin-top: 12px;
   margin-bottom: 2px;
@@ -50,4 +54,9 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 80%;
+}
+
+.text-muted a, .text-muted a:hover {
+  color: $gray-light;
+  text-decoration: none;
 }
