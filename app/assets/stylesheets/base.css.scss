@@ -37,6 +37,7 @@ body {
 
 .answerbox-question-text {
   font-weight: bold;
+  color: $gray-darker;
 }
 
 .user-displayname {
@@ -57,6 +58,6 @@ body {
 }
 
 .text-muted a, .text-muted a:hover {
-  color: $gray-light;
+  color: $gray-dark;
   text-decoration: none;
 }
