@@ -10,8 +10,8 @@
             %p
               %strong
                 You have
-                = inbox_count
-                new questions in your inbox!
+                pluralize(inbox_count, 'new question')
+                in your inbox!
           .row
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#follower-count= current_user.follower_count
