@@ -1,7 +1,7 @@
 .container.j2-page
   = render 'layouts/messages'
   - @inbox.each do |i|
-    .panel.panel-default.inbox-box{'data-id' => i.id}
+    .panel.inbox-box{'data-id' => i.id, class: "panel-#{i.new? ? 'primary' : 'default'}" }
       .panel-heading
         .media
           - unless i.question.author_is_anonymous
