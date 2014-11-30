@@ -20,6 +20,21 @@
             - @admins.each do |user|
               %li
                 %a= link_to user.screen_name, show_user_profile_path(user.screen_name)
+      .panel.panel-default
+        .panel-body
+          There are lies, damned lies, and then there are...
+          %h3 Statistics
+          .row
+            .col-xs-6
+              %h4.entry-text#asked-count= Question.count
+              %h6.entry-subtext Questions
+            .col-md-6.col-sm-6.col-xs-6
+              %h4.entry-text#answered-count= Answer.count
+              %h6.entry-subtext Answers
+          .row
+            .col-xs-6
+              %h4.entry-text#follower-count= User.count
+              %h6.entry-subtext Users
     .col-sm-4
       .panel.panel-default
         .panel-body
