@@ -19,8 +19,8 @@
           %a{href: show_user_profile_path(a.user.screen_name)}
             %img.img-rounded.img-answerbox-small{src: gravatar_url(a.user)}
             %span= a.user.screen_name
-            %span= time_ago_in_words(a.created_at)
-            ago
+          %span= time_ago_in_words(a.created_at)
+          ago
         .col-md-6.col-sm-8.col-xs-5.text-right
           %span.hidden-xs.text-muted
             %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
