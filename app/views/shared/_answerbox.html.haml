@@ -9,11 +9,12 @@
         %p.answerbox-question-text= a.question.content
   .panel-body
     %p= a.content
-    %p.text-muted
-      Answered by
-      %a{href: show_user_profile_path(a.user.screen_name)}
-        %img.img-rounded.img-answerbox-small{src: gravatar_url(a.user)}
-        %span= a.user.screen_name
+    - if @user.nil?
+      %p.text-muted
+        Answered by
+        %a{href: show_user_profile_path(a.user.screen_name)}
+          %img.img-rounded.img-answerbox-small{src: gravatar_url(a.user)}
+          %span= a.user.screen_name
     - if privileged? a.user
-      %button.btn.btn-danger{name: 'ab-destroy', 'data-a-id' => a.id}
+      %button.btn.btn-sm.btn-danger{name: 'ab-destroy', 'data-a-id' => a.id}
         Delete
