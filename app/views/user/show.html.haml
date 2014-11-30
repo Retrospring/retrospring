@@ -2,18 +2,19 @@
   .col-md-3.col-xs-12.col-sm-3
     .panel.panel-default
       .panel-body
-        .row
-          .col-md-12.col-xs-12.col-sm-9
+        .media
+          .pull-left
             %img.img-rounded.img-profile{src: gravatar_url(@user)}
-        - if @user.display_name.blank?
-          %h1= @user.screen_name
-        - else
-          %h1.user-displayname= @user.display_name
-          %h3.text-muted.user-username= @user.screen_name
-        - if @user.admin?
-          %p.user-admin
-            %i.fa.fa-flask
-            Admin
+          .media-body
+            - if @user.display_name.blank?
+              %h2= @user.screen_name
+            - else
+              %h2.user-displayname= @user.display_name
+              %h4.text-muted.user-username= @user.screen_name
+            - if @user.admin?
+              %p.user-admin
+                %i.fa.fa-flask
+                Admin
         .row
           .col-md-6.col-sm-6.col-xs-6
             %h4.entry-text#follower-count= @user.follower_count
