@@ -13,8 +13,8 @@
         %p.answerbox-question-text= a.question.content
   .panel-body
     %p= a.content
-    .row
-      - if @user.nil?
+    - if @user.nil?
+      .row
         .col-md-6.col-sm-4.col-xs-7.text-left.text-muted
           Answered by
           %a{href: show_user_profile_path(a.user.screen_name)}
@@ -22,19 +22,9 @@
             %span= a.user.screen_name
           %span= time_ago_in_words(a.created_at)
           ago
-      .col-md-6.col-sm-8.col-xs-5.text-right
-        %span.hidden-xs.text-muted
-          %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
-          users smiled this
-        - if user_signed_in?
-          - if current_user.smiled? a
-            %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'unsmile'}
-              %i.fa.fa-frown-o
-          - else
-            %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'smile'}
-              %i.fa.fa-smile-o
-        %a.btn.btn-primary.btn-sm
-          %i.fa.fa-comments
-        - if privileged? a.user
-          %button.btn.btn-danger.btn-sm{name: 'ab-destroy', 'data-a-id' => a.id}
-            %i.fa.fa-trash-o
+        .col-md-6.col-sm-8.col-xs-5.text-right
+          = render 'shared/answerbox_buttons', a: a
+    - else
+      .row
+        .col-md-6.col-md-offset-6.col-sm-8.col-sm-offset-4.col-xs-6.col-xs-offset-6.text-right
+          = render 'shared/answerbox_buttons', a: a
