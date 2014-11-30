@@ -61,3 +61,14 @@ body {
   color: $gray-dark;
   text-decoration: none;
 }
+
+.navbar .nav .badge {
+  padding: 3px 6px 3px;
+  background-color: $navbar-inverse-link-active-bg;
+}
+
+.navbar .nav .active .badge {
+  padding: 3px 6px 3px;
+  background-color: $navbar-inverse-bg;
+}
+
