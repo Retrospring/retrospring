@@ -11,7 +11,15 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :inboxes, dependent: :destroy
-  
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'source_id',
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'target_id',
+                                   dependent: :destroy
+  has_many :friends,   through: :active_relationships, source: :target
+  has_many :followers, through: :passive_relationships, source: :source
+
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
