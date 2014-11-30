@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141130130221) do
+ActiveRecord::Schema.define(version: 20141130180152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,11 @@ ActiveRecord::Schema.define(version: 20141130130221) do
   create_table "answers", force: true do |t|
     t.string   "content"
     t.integer  "question_id"
-    t.integer  "comments"
-    t.integer  "likes"
+    t.integer  "comment_count", default: 0, null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "smile_count", default: 0, null: false
+    t.integer  "smile_count",   default: 0, null: false
   end
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
@@ -69,6 +68,17 @@ ActiveRecord::Schema.define(version: 20141130130221) do
   add_index "relationships", ["source_id", "target_id"], name: "index_relationships_on_source_id_and_target_id", unique: true, using: :btree
   add_index "relationships", ["source_id"], name: "index_relationships_on_source_id", using: :btree
   add_index "relationships", ["target_id"], name: "index_relationships_on_target_id", using: :btree
+
+  create_table "smiles", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "smiles", ["answer_id"], name: "index_smiles_on_answer_id", using: :btree
+  add_index "smiles", ["user_id", "answer_id"], name: "index_smiles_on_user_id_and_answer_id", unique: true, using: :btree
+  add_index "smiles", ["user_id"], name: "index_smiles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false

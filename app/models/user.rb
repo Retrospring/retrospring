@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :authentication_keys => [:login]
-  
+
 #   attr_accessor :login
-  
+
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :source
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
-  
+
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
 
 
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   def login
     @login || self.screen_name || self.email
   end
-  
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -69,5 +69,21 @@ class User < ActiveRecord::Base
   # @return [Boolean] true if +current_user+ is following +target_user+
   def following?(target_user)
     friends.include? target_user
+  end
+
+  # smiles an answer
+  # @param answer [Answer] the answer to smile
+  def smile(answer)
+    Smile.create(user: self, answer: answer)
+    increment! :smiled_count
+    answer.increment! :smile_count
+  end
+
+  # unsmile an answer
+  # @param answer [Answer] the answer to unsmile
+  def unsmile(answer)
+    Smile.find_by(user: self, answer: answer).destroy
+    decrement! :smiled_count
+    answer.decrement! :smile_count
   end
 end
