@@ -2,14 +2,15 @@
   = render 'layouts/messages'
   - @inbox.each do |i|
     .panel.panel-default.inbox-box{'data-id' => i.id}
+      .panel-heading
+        .media
+          - unless i.question.author_is_anonymous
+            %a.pull-left{href: show_user_profile_path(i.question.user.screen_name)}
+              %img.img-rounded.img-answerbox{src: gravatar_url(i.question.user)}
+          .media-body
+            %h6.text-muted.media-heading.answerbox-question-user= user_screen_name i.question.user, i.question.author_is_anonymous
+            %p.answerbox-question-text= i.question.content
       .panel-body
-        %p
-          %strong
-            = user_screen_name i.question.user, i.question.author_is_anonymous
-          asked:
-        %p
-          %strong
-            = i.question.content
         %textarea.form-control{name: 'ib-answer', 'data-id' => i.id}
         %br/
         %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
