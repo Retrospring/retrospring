@@ -5,7 +5,11 @@
         %a.pull-left{href: show_user_profile_path(a.question.user.screen_name)}
           %img.img-rounded.img-answerbox{src: gravatar_url(a.question.user)}
       .media-body
-        %h6.text-muted.media-heading.answerbox-question-user= user_screen_name a.question.user, a.question.author_is_anonymous
+        %h6.text-muted.media-heading.answerbox-question-user
+          = user_screen_name a.question.user, a.question.author_is_anonymous
+          asked
+          = time_ago_in_words(a.question.created_at)
+          ago
         %p.answerbox-question-text= a.question.content
   .panel-body
     %p= a.content
