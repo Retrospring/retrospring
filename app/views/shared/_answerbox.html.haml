@@ -11,13 +11,13 @@
     %p= a.content
     - if @user.nil?
       .row
-        .col-md-6.col-sm-4.col-xs-12.text-left.text-muted
+        .col-md-6.col-sm-4.col-xs-8.text-left.text-muted
           Answered by
           %a{href: show_user_profile_path(a.user.screen_name)}
             %img.img-rounded.img-answerbox-small{src: gravatar_url(a.user)}
             %span= a.user.screen_name
-        .col-md-6.col-sm-8.col-xs-12.text-right
-          %span.text-muted x users smiled at this
+        .col-md-6.col-sm-8.col-xs-4.text-right
+          %span.hidden-xs.text-muted x users smiled at this
           %a.btn.btn-info.btn-sm
             %i.fa.fa-smile-o
           %a.btn.btn-primary.btn-sm
@@ -27,8 +27,8 @@
               %i.fa.fa-trash-o
     - else
       .row
-        .col-md-6.col-md-offset-6.col-sm-8.col-sm-offset-4.col-xs-12.text-right
-          %span.text-muted x users smiled at this
+        .col-md-6.col-md-offset-6.col-sm-8.col-sm-offset-4.col-xs-4.text-right
+          %span.hidden-xs.text-muted x users smiled at this
           %a.btn.btn-info.btn-sm
             %i.fa.fa-smile-o
           %a.btn.btn-primary.btn-sm
