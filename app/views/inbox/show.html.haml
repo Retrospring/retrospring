@@ -14,6 +14,8 @@
         %br/
         %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
           Answer
+        %button.btn.btn-danger{name: 'ib-destroy', 'data-ib-id' => i.id}
+          Delete
 
   - if @inbox.empty?
 

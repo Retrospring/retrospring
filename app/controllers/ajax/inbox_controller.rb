@@ -11,19 +11,44 @@ class Ajax::InboxController < ApplicationController
       @success = false
       return
     end
-    
-    answer = Answer.create(content: params[:answer],
-                           user: current_user,
-                           question: inbox.question)
 
-    unless current_user.nil?
-      current_user.increment! :answered_count
+    begin
+      inbox.answer params[:answer], current_user
+    rescue
+      @status = :err
+      @message = "An error occurred"
+      @success = false
+      return
     end
-
-    Inbox.destroy inbox.id
 
     @status = :okay
     @message = "Successfully answered question."
+    @success = true
+  end
+
+  def remove
+    params.require :id
+
+    inbox = Inbox.find(params[:id])
+
+    unless current_user == inbox.user
+      @status = :fail
+      @message = "question not in your inbox"
+      @success = false
+      return
+    end
+
+    begin
+      inbox.remove
+    rescue
+      @status = :err
+      @message = "An error occurred"
+      @success = false
+      return
+    end
+
+    @status = :okay
+    @message = "Successfully deleted question."
     @success = true
   end
 end
