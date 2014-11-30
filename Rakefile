@@ -15,6 +15,8 @@ namespace :justask do
         answered = Answer.where(user: user).count
         asked = Question.where(user: user).where(author_is_anonymous: false).count
         commented = Comment.where(user: user).count
+        user.friend_count = user.friends.count
+        user.follower_count = user.followers.count
         user.answered_count = answered
         user.asked_count = asked
         user.commented_count = commented

@@ -1,9 +1,10 @@
 - if user_signed_in?
   .container
-    %h1 Static#index
+    %h1 Timeline
     = render 'layouts/messages'
     
-    %p Find me in app/views/static/index.html.haml
+    - current_user.timeline.each do |answer|
+      = render 'shared/answerbox', a: answer
   = render "shared/links"
 - else
   .jumbotron

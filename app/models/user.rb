@@ -11,7 +11,15 @@ class User < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :inboxes, dependent: :destroy
-  
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'source_id',
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'target_id',
+                                   dependent: :destroy
+  has_many :friends,   through: :active_relationships, source: :target
+  has_many :followers, through: :passive_relationships, source: :source
+
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
@@ -33,5 +41,33 @@ class User < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  # @return [Array] the users' timeline
+  def timeline
+    Answer.where("user_id in (?) OR user_id = ?", friend_ids, id).order(:created_at).reverse_order
+  end
+
+  # follows an user.
+  def follow(target_user)
+    active_relationships.create(target: target_user)
+
+    # increment counts
+    increment! :friend_count
+    target_user.increment! :follower_count
+  end
+
+  # unfollows an user
+  def unfollow(target_user)
+    active_relationships.find_by(target: target_user).destroy
+
+    # decrement counts
+    decrement! :friend_count
+    target_user.decrement! :follower_count
+  end
+
+  # @return [Boolean] true if +current_user+ is following +target_user+
+  def following?(target_user)
+    friends.include? target_user
   end
 end

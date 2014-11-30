@@ -14,14 +14,15 @@
           %p.user-admin
             %i.fa.fa-flask
             Admin
-        %h4.entry-text= @user.follower_count
-        %h6.entry-subtext Followers
-        %h4.entry-text= @user.friend_count
-        %h6.entry-subtext Followings
-        %h4.entry-text= @user.asked_count
+        %h4.entry-text#follower-count= @user.follower_count
+        %h6.entry-subtext Follower
+        %h4.entry-text#friend-count= @user.friend_count
+        %h6.entry-subtext Following
+        %h4.entry-text#asked-count= @user.asked_count
         %h6.entry-subtext Questions
-        %h4.entry-text= @user.answered_count
+        %h4.entry-text#answered-count= @user.answered_count
         %h6.entry-subtext Answers
+        = render 'user/actions'
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-9
     = render 'shared/questionbox'

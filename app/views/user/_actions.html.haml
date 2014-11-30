@@ -1,0 +1,10 @@
+- if user_signed_in?
+  - if @user == current_user
+    %a.btn.btn-default.btn-block{href: edit_user_profile_path} Edit profile
+  - else
+    - if current_user.following? @user
+      %button#editprofile.btn.btn-default.btn-block{type: :button, name: 'user-action', 'data-action' => :unfollow, 'data-target' => @user.screen_name}
+        Unfollow
+    - else
+      %button#editprofile.btn.btn-primary.btn-block{type: :button, name: 'user-action', 'data-action' => :follow, 'data-target' => @user.screen_name}
+        Follow
