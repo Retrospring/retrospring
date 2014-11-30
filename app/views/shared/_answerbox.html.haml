@@ -7,16 +7,11 @@
       .media-body
         %h6.text-muted.media-heading.answerbox-question-user= user_screen_name a.question.user, a.question.author_is_anonymous
         %p.answerbox-question-text= a.question.content
-      / TODO: Andreas, mach was draus:
-      .timestamp
+      .pull-right.text-muted
+        %i.fa.fa-clock-o
         = time_ago_in_words(a.question.created_at)
-        ago
   .panel-body
     %p= a.content
-    / TODO: Andreas, mach was draus:
-    .timestamp
-      = time_ago_in_words(a.created_at)
-      ago
     - if @user.nil?
       .row
         .col-md-6.col-sm-4.col-xs-7.text-left.text-muted
@@ -24,6 +19,8 @@
           %a{href: show_user_profile_path(a.user.screen_name)}
             %img.img-rounded.img-answerbox-small{src: gravatar_url(a.user)}
             %span= a.user.screen_name
+            %span= = time_ago_in_words(a.created_at)
+            ago
         .col-md-6.col-sm-8.col-xs-5.text-right
           %span.hidden-xs.text-muted
             %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
