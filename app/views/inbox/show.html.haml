@@ -14,10 +14,6 @@
               = time_ago_in_words(i.question.created_at)
               ago
             %p.answerbox-question-text= i.question.content
-            %p.timestamp
-              asked
-              = time_ago_in_words(i.question.created_at)
-              ago
       .panel-body
         %textarea.form-control{name: 'ib-answer', 'data-id' => i.id}
         %br/
