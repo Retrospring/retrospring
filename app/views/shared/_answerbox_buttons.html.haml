@@ -1,15 +1,15 @@
 %span.hidden-xs.text-muted
   %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
   users smiled this
-  - if user_signed_in?
-    - if current_user.smiled? a
-      %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'unsmile'}
-        %i.fa.fa-frown-o
-    - else
-      %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'smile'}
-        %i.fa.fa-smile-o
-  %a.btn.btn-primary.btn-sm
-    %i.fa.fa-comments
-  - if privileged? a.user
-    %button.btn.btn-danger.btn-sm{name: 'ab-destroy', 'data-a-id' => a.id}
-      %i.fa.fa-trash-o
+- if user_signed_in?
+  - if current_user.smiled? a
+    %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'unsmile'}
+      %i.fa.fa-frown-o
+  - else
+    %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'smile'}
+      %i.fa.fa-smile-o
+%a.btn.btn-primary.btn-sm
+  %i.fa.fa-comments
+- if privileged? a.user
+  %button.btn.btn-danger.btn-sm{name: 'ab-destroy', 'data-a-id' => a.id}
+    %i.fa.fa-trash-o
