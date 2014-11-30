@@ -6,21 +6,34 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 namespace :justask do
-  desc "Recount every user's answer/question count."
+  desc "Recount everything!"
   task recount: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
     total = User.count
-    progress = ProgressBar.create title: 'Processing user', format: "%t (%c/%C) [%b>%i] %e", starting_at: 0, total: total
+    progress = ProgressBar.create title: 'Processing users', format: format, starting_at: 0, total: total
     User.all.each do |user|
       begin
         answered = Answer.where(user: user).count
         asked = Question.where(user: user).where(author_is_anonymous: false).count
         commented = Comment.where(user: user).count
+        smiled = Smile.where(user: user).count
         user.friend_count = user.friends.count
         user.follower_count = user.followers.count
         user.answered_count = answered
         user.asked_count = asked
         user.commented_count = commented
+        user.smiled_count = smiled
         user.save!
+      end
+      progress.increment
+    end
+    total = Answer.count
+    progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
+    Answer.all.each do |answer|
+      begin
+        smiles = Smile.where(answer: answer).count
+        answer.smile_count = smiles
+        answer.save!
       end
       progress.increment
     end
