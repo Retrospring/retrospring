@@ -42,4 +42,26 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  # follows an user.
+  def follow(target_user)
+    active_relationships.create(target: target_user)
+
+    # increment counts
+    increment! :friend_count
+    target_user.increment! :follower_count
+  end
+
+  def unfollow(target_user)
+    active_relationships.find_by(target: target_user).destroy
+
+    # decrement counts
+    decrement! :friend_count
+    target_user.decrement! :follower_count
+  end
+
+  # @return [Boolean] true if +current_user+ is following +target_user+
+  def following?(target_user)
+    friends.include? target_user
+  end
 end
