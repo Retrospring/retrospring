@@ -49,4 +49,8 @@ module ApplicationHelper
   def privileged?(user)
     (current_user && (current_user == user || current_user.admin?)) ? true : false
   end
+
+  def gravatar_url(user)
+    "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email)}"
+  end
 end

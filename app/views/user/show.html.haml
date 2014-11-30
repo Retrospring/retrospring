@@ -4,7 +4,7 @@
       .panel-body
         .row
           .col-md-12.col-xs-12.col-sm-9
-            %img.img-rounded.img-profile
+            %img.img-rounded.img-profile{src: gravatar_url(@user)}
         - if @user.display_name.blank?
           %h1= @user.screen_name
         - else
