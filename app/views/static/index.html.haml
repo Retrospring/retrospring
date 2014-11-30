@@ -6,7 +6,7 @@
           %p
             Welcome,
             = current_user.screen_name
-          - if inbox_count > 0
+          - unless inbox_count.nil?
             %p
               %strong
                 You have
