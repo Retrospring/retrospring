@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     match '/destroy_answer', to: 'answer#destroy', via: :post, as: :destroy_answer
     match '/create_friend', to: 'friend#create', via: :post, as: :create_friend
     match '/destroy_friend', to: 'friend#destroy', via: :post, as: :destroy_friend
+    match '/create_smile', to: 'smile#create', via: :post, as: :create_smile
+    match '/destroy_smile', to: 'smile#destroy', via: :post, as: :destroy_smile
   end
 
   match '/inbox', to: 'inbox#show', via: 'get'

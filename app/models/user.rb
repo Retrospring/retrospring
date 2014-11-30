@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
                                    dependent: :destroy
   has_many :friends,   through: :active_relationships, source: :target
   has_many :followers, through: :passive_relationships, source: :source
+  has_many :smiles
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
 
@@ -66,7 +67,7 @@ class User < ActiveRecord::Base
     target_user.decrement! :follower_count
   end
 
-  # @return [Boolean] true if +current_user+ is following +target_user+
+  # @return [Boolean] true if +self+ is following +target_user+
   def following?(target_user)
     friends.include? target_user
   end
@@ -85,5 +86,11 @@ class User < ActiveRecord::Base
     Smile.find_by(user: self, answer: answer).destroy
     decrement! :smiled_count
     answer.decrement! :smile_count
+  end
+
+  def smiled?(answer)
+    # TODO: you know what to do here, nilsding
+    answer.smiles.each { |s| return true if s.user_id == self.id }
+    false
   end
 end
