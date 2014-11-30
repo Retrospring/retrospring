@@ -78,3 +78,12 @@ body {
   padding: 3px 6px 3px;
   background-color: $navbar-inverse-bg;
 }
+
+.panel-primary .text-muted a, .panel-primary .text-muted a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.panel-primary .answerbox-question-text {
+  color: #fff;
+}
