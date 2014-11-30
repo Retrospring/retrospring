@@ -43,6 +43,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  # @return [Array] the users' timeline
+  def timeline
+    Answer.where("user_id in (?) OR user_id = ?", friend_ids, id).order(:created_at).reverse_order
+  end
+
   # follows an user.
   def follow(target_user)
     active_relationships.create(target: target_user)
@@ -52,6 +57,7 @@ class User < ActiveRecord::Base
     target_user.increment! :follower_count
   end
 
+  # unfollows an user
   def unfollow(target_user)
     active_relationships.find_by(target: target_user).destroy
 
