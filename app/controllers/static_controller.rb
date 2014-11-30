@@ -3,5 +3,6 @@ class StaticController < ApplicationController
   end
 
   def about
+    @admins = User.where(admin: true)
   end
 end

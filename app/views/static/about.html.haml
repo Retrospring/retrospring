@@ -13,10 +13,13 @@
     .col-sm-4
       .panel.panel-default
         .panel-body
-          %h3 Title 1
-          Blah blah blah blah...
+          %h3 The Team
+          The people behind justask!
           %br/
-          Someone fill this text here.
+          %ul
+            - @admins.each do |user|
+              %li
+                %a= link_to user.screen_name, show_user_profile_path(user.screen_name)
     .col-sm-4
       .panel.panel-default
         .panel-body
