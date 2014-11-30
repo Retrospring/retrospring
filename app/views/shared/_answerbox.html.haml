@@ -8,11 +8,15 @@
         %h6.text-muted.media-heading.answerbox-question-user= user_screen_name a.question.user, a.question.author_is_anonymous
         %p.answerbox-question-text= a.question.content
       / TODO: Andreas, mach was draus:
-      = time_ago_in_words(a.question.created_at)
+      .timestamp
+        = time_ago_in_words(a.question.created_at)
+        ago
   .panel-body
     %p= a.content
     / TODO: Andreas, mach was draus:
-    = time_ago_in_words(a.created_at)
+    .timestamp
+      = time_ago_in_words(a.created_at)
+      ago
     - if @user.nil?
       .row
         .col-md-6.col-sm-4.col-xs-7.text-left.text-muted
