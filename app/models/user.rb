@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
 
-  validates :website, format: { with: WEBSITE_REGEX }
+  # validates :website, format: { with: WEBSITE_REGEX }
 
   def login=(login)
     @login = login
