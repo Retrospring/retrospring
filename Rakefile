@@ -46,7 +46,7 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.admin = true
     user.save!
-    puts "#{user.screen_name} is now an admin"
+    puts "#{user.screen_name} is now an admin."
   end
 
   desc "Removes admin status from an user."
@@ -56,7 +56,7 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.admin = false
     user.save!
-    puts "#{user.screen_name} no longer an admin"
+    puts "#{user.screen_name} no longer an admin."
   end
 
   desc "Lists all users."
