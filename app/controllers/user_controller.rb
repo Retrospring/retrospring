@@ -10,7 +10,7 @@ class UserController < ApplicationController
 
   def update
     authenticate_user!
-    user_attributes = params.require(:user).permit(:display_name, :motivation_header)
+    user_attributes = params.require(:user).permit(:display_name, :motivation_header, :website, :location, :bio)
     unless current_user.update_attributes(user_attributes)
       flash[:error] = 'fork it'
     end

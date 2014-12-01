@@ -22,10 +22,11 @@ class User < ActiveRecord::Base
   has_many :smiles
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
+  WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
 
-
+  validates :website, format: { with: WEBSITE_REGEX }
 
   def login=(login)
     @login = login
@@ -92,5 +93,11 @@ class User < ActiveRecord::Base
     # TODO: you know what to do here, nilsding
     answer.smiles.each { |s| return true if s.user_id == self.id }
     false
+  end
+
+  def display_website
+    website.match(/https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i)[1]
+  rescue NoMethodError
+    website
   end
 end

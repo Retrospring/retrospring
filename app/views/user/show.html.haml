@@ -15,6 +15,15 @@
               %p.user-admin
                 %i.fa.fa-flask
                 Admin
+        / TODO: make this look prettier (pixeldesu!!!!)
+        - unless @user.website.blank?
+          %i.fa.fa-globe
+          %a{href: @user.website}= @user.display_website
+        - unless @user.location.blank?
+          %i.fa.fa-location-arrow
+          = @user.location
+        - unless @user.bio.blank?
+          = @user.bio
         .row
           .col-md-6.col-sm-6.col-xs-6
             %h4.entry-text#follower-count= @user.follower_count
