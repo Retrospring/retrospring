@@ -15,15 +15,14 @@
               %p.user-admin
                 %i.fa.fa-flask
                 Admin
-        / TODO: make this look prettier (pixeldesu!!!!)
         - unless @user.bio.blank?
-          %p= @user.bio
+          %p.user-profiletext= @user.bio
         - unless @user.website.blank?
-          %p
+          %p.user-profiletext
             %i.fa.fa-globe
             %a{href: @user.website}= @user.display_website
         - unless @user.location.blank?
-          %p
+          %p.user-profiletext
             %i.fa.fa-location-arrow
             = @user.location
         .row
