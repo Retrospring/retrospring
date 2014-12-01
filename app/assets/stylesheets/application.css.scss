@@ -4,10 +4,10 @@
  *= require_self
  */
 
-
+@import url(http://fonts.googleapis.com/css?family=Exo+2:400,700);
 @import "bootswatch/paper/variables";
 
-$font-family-sans-serif:  "Open Sans", "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;
+$font-family-sans-serif:  "Exo 2","Open Sans", "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;
 $font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
