@@ -7,6 +7,6 @@ RSpec.describe "user page", :type => :request do
 
   it 'shows the user page' do
     get "/@#{@user.screen_name}"
-    assert_select "h3.text-muted", :text => @user.screen_name
+    assert_select ".user-username", :text => @user.screen_name
   end
 end
