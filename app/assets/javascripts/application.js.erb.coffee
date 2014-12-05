@@ -154,6 +154,21 @@ $(document).on "click", "button[name=ab-smile]", ->
             btn[0].dataset.action = 'smile'
             btn.html "<i class=\"fa fa-smile-o\"></i>"
 
+$(document).on "click", "button[name=ab-comments]", ->
+  btn = $(this)
+  aid = btn[0].dataset.aId
+  state = btn[0].dataset.state
+  commentBox = $("#ab-comments-#{aid}")
+
+  switch state
+    when 'hidden'
+      commentBox.slideDown()
+      btn[0].dataset.state = 'shown'
+    when 'shown'
+      commentBox.slideUp()
+      btn[0].dataset.state = 'hidden'
+
+
 $(document).on "click", "button[name=user-action]", ->
   btn = $(this)
   btn.button "loading"

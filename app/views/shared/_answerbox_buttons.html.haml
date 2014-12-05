@@ -8,8 +8,9 @@
   - else
     %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'smile'}
       %i.fa.fa-smile-o
-%a.btn.btn-primary.btn-sm
+%button.btn.btn-primary.btn-sm{type: :button, name: 'ab-comments', 'data-a-id' => a.id, 'data-state' => :hidden}
   %i.fa.fa-comments
+  %span{id: "ab-comment-count-#{a.id}"}= a.comment_count
 - if privileged? a.user
   %button.btn.btn-danger.btn-sm{name: 'ab-destroy', 'data-a-id' => a.id}
     %i.fa.fa-trash-o

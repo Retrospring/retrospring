@@ -1,0 +1,8 @@
+- if comments.all.count == 0
+  There are no comments yet.
+- else # TODO: some design guy (i.e. pixeldesu) should make some black magic here
+  %ul
+    - comments.all.each do |comment|
+      %li
+        #{user_screen_name comment.user}:
+        = comment.content
