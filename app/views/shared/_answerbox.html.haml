@@ -30,4 +30,4 @@
         .col-md-6.col-md-offset-6.col-sm-8.col-sm-offset-4.col-xs-6.col-xs-offset-6.text-right
           = render 'shared/answerbox_buttons', a: a
   .panel-footer{id: "ab-comments-#{a.id}", style: 'display: none'}
-    = render 'shared/comments', comments: a.comments
+    = render 'shared/comments', a: a

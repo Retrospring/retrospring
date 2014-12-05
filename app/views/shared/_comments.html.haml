@@ -1,8 +1,12 @@
-- if comments.all.count == 0
+- if a.comments.all.count == 0
   There are no comments yet.
 - else # TODO: some design guy (i.e. pixeldesu) should make some black magic here
   %ul
-    - comments.all.each do |comment|
-      %li
+    - a.comments.all.each do |comment|
+      %li{'data-comment-id' => comment.id}
         #{user_screen_name comment.user}:
         = comment.content
+- if user_signed_in?
+  .form-group.has-feedback
+    %input.form-control{type: :text, placeholder: 'Comment...', id: "ab-comments-#{a.id}-new"}
+    %span.text-muted.form-control-feedback.comment-count{id: "ab-comments-#{a.id}-charcount"} 160
