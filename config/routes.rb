@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'static#index'
 
   match '/about', to: 'static#about', via: 'get'
@@ -38,5 +39,7 @@ Rails.application.routes.draw do
   
   match '/user/:username(/p/:page)', to: 'user#show', via: 'get', defaults: {page: 1}
   match '/@:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile, defaults: {page: 1}
+  match '/@:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer
   match '/:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
+  match '/:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer_alt
 end

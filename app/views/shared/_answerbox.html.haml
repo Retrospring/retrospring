@@ -8,8 +8,9 @@
         %h6.text-muted.media-heading.answerbox-question-user
           = user_screen_name a.question.user, a.question.author_is_anonymous
           asked
-          = time_ago_in_words(a.question.created_at)
-          ago
+          %a{href: show_user_answer_path(a.user.screen_name, a.id)}
+            = time_ago_in_words(a.question.created_at)
+            ago
         %p.answerbox-question-text= a.question.content
   .panel-body
     %p= a.content
