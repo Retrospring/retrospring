@@ -100,4 +100,14 @@ class User < ActiveRecord::Base
   rescue NoMethodError
     website
   end
+
+  def comment(answer, content)
+    Comment.create(user: self, answer: answer, content: content)
+    increment! :commented_count
+    answer.increment! :comment_count
+  end
+
+  def destroy_comment(comment)
+    # TODO: implement this
+  end
 end
