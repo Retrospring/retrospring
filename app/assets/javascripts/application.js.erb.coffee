@@ -117,7 +117,7 @@ $(document).on "click", "button[name=ab-smile]", ->
   aid = btn[0].dataset.aId
   action = btn[0].dataset.action
   count = Number $("span#ab-smile-count-#{aid}").html()
-  btn[0].dataset.loadingText = "<i class=\"fa fa-meh-o fa-spin\"></i>"
+  btn[0].dataset.loadingText = "<i class=\"fa fa-meh-o fa-spin\"></i> <span id=\"ab-smile-count-#{aid}\">#{count}</span>"
   btn.button "loading"
 
   target_url = switch action
@@ -149,10 +149,10 @@ $(document).on "click", "button[name=ab-smile]", ->
         switch action
           when 'smile'
             btn[0].dataset.action = 'unsmile'
-            btn.html "<i class=\"fa fa-frown-o\"></i>"
+            btn.html "<i class=\"fa fa-frown-o\"></i> <span id=\"ab-smile-count-#{aid}\">#{count}</span>"
           when 'unsmile'
             btn[0].dataset.action = 'smile'
-            btn.html "<i class=\"fa fa-smile-o\"></i>"
+            btn.html "<i class=\"fa fa-smile-o\"></i> <span id=\"ab-smile-count-#{aid}\">#{count}</span>"
 
 $(document).on "click", "button[name=ab-comments]", ->
   btn = $(this)
