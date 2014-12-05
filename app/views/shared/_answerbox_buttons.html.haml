@@ -1,13 +1,16 @@
 %span.hidden-xs.text-muted
-  %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
-  users smiled this
+  - unless user_signed_in?
+    %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
+    users smiled this
 - if user_signed_in?
   - if current_user.smiled? a
     %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'unsmile'}
       %i.fa.fa-frown-o
+      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
   - else
     %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', 'data-a-id' => a.id, 'data-action' => 'smile'}
       %i.fa.fa-smile-o
+      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
 %button.btn.btn-primary.btn-sm{type: :button, name: 'ab-comments', 'data-a-id' => a.id, 'data-state' => :hidden}
   %i.fa.fa-comments
   %span{id: "ab-comment-count-#{a.id}"}= a.comment_count
