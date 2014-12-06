@@ -1,5 +1,5 @@
 %nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
-  .container
+  .container{class: ios_web_app? ? "ios-web-app" : ''}
     .navbar-header
       %button.navbar-toggle{"data-target" => "#j2-main-navbar-collapse", "data-toggle" => "collapse", type: "button"}
         %span.sr-only Toggle navigation
