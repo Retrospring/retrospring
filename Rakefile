@@ -32,6 +32,8 @@ namespace :justask do
     Answer.all.each do |answer|
       begin
         smiles = Smile.where(answer: answer).count
+        comments = Comment.where(answer: answer).count
+        answer.comment_count = comments
         answer.smile_count = smiles
         answer.save!
       end
