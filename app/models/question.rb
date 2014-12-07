@@ -1,4 +1,4 @@
 class Question < ActiveRecord::Base
   belongs_to :user
-  has_one :answer
+  has_many :answers
 end

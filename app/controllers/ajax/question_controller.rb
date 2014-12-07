@@ -12,7 +12,15 @@ class Ajax::QuestionController < ApplicationController
       current_user.increment! :asked_count unless params[:anonymousQuestion] == 'true'
     end
 
-    Inbox.create!(user_id: params[:rcpt], question_id: question.id, new: true)
+    if params[:rcpt] == 'followers'
+      unless current_user.nil?
+        current_user.followers.each do |f|
+          Inbox.create!(user_id: f.id, question_id: question.id, new: true)
+        end
+      end
+    else
+      Inbox.create!(user_id: params[:rcpt], question_id: question.id, new: true)
+    end
 
     @status = :okay
     @message = "Question asked successfully."
