@@ -1,10 +1,11 @@
 - if a.comments.all.count == 0
   There are no comments yet.
 - else # TODO: some design guy (i.e. pixeldesu) should make some black magic here
-  %ul
+  %ul.comments
     - a.comments.all.each do |comment|
       %li{'data-comment-id' => comment.id}
-        #{user_screen_name comment.user}:
+        %img.img-answerbox-small{src: gravatar_url(comment.user)}
+        %b= user_screen_name comment.user
         = comment.content
 - if user_signed_in?
   .form-group.has-feedback{name: 'ab-comment-new-group', 'data-a-id' => a.id}
