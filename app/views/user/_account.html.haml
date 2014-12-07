@@ -3,7 +3,7 @@
   .col-md-9.col-xs-12.col-sm-9
     .panel.panel-default
       .panel-body
-        = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        = bootstrap_form_for(resource, as: resource_name, url: '/settings/account', html: { method: :put }) do |f|
           = devise_error_messages!
 
           = f.text_field :screen_name, autofocus: true, label: "User name"
