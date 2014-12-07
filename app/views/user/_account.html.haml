@@ -4,6 +4,21 @@
     .panel.panel-default
       .panel-body
         = bootstrap_form_for(resource, as: resource_name, url: '/settings/account', html: { method: :put }) do |f|
+          / Password field modal
+          #modal-passwd.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal-passwd-label", :role => "dialog", :tabindex => "-1"}
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  %button.close{"data-dismiss" => "modal", :type => "button"}
+                    %span{"aria-hidden" => "true"} ×
+                    %span.sr-only Close
+                  %h4#modal-passwd-label.modal-title Save account changes
+                .modal-body
+                  = f.password_field :current_password, autocomplete: "off", label: "Current password", help: "We need your current password to confirm your changes"
+                .modal-footer
+                  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+                  %button.btn.btn-primary{:type => "submit"} Save changes
+
           = devise_error_messages!
 
           = f.text_field :screen_name, autofocus: true, label: "User name"
@@ -16,13 +31,13 @@
           = f.password_field :password, autocomplete: "off", label: "Password", help: "Leave this blank if you don't want to change it"
           = f.password_field :password_confirmation, autocomplete: "off", label: "Confirm password"
 
-          = f.password_field :current_password, autocomplete: "off", label: "Current password", help: "We need your current password to confirm your changes"
+          %button.btn.btn-primary{"data-target" => "#modal-passwd", "data-toggle" => "modal", :type => "button"}
+            Save changes
 
-          = f.submit "Save settings", class: 'btn btn-primary'
           %hr/
         %p
           Unsatisfied?
-          =button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs"
+          =button_to "Delete my account", '/settings/account', data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs"
 
         = link_to "Back", :back
 
