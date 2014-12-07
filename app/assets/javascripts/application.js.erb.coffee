@@ -50,6 +50,12 @@ $(document).on "click", "button[name=qb-ask]", ->
       btn.button "reset"
       $("textarea[name=qb-question]").removeAttr "readonly"
 
+$(document).on "keydown", "textarea[name=ib-answer]", (evt) ->
+  iid = $(this)[0].dataset.id
+  if evt.keyCode == 13 and evt.ctrlKey
+    # trigger warning:
+    $("button[name=ib-answer][data-ib-id=#{iid}]").trigger 'click'
+
 $(document).on "click", "button[name=ib-answer]", ->
   btn = $(this)
   btn.button "loading"
