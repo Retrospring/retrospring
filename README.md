@@ -7,7 +7,7 @@
 - Bundler
 - PostgreSQL or MySQL
 
-## Installation
+## Installation (production)
 
 ### Database
 
@@ -23,6 +23,8 @@ Try connecting to the database:
     $ psql -U justask -d justask_production
 
 #### MySQL
+
+**Note:** We do not test for MySQL.  Caveat emptor.
 
     $ mysql -u root -p
     # change 'hack me' in the command below to a real password
