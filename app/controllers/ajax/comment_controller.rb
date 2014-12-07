@@ -18,5 +18,6 @@ class Ajax::CommentController < ApplicationController
     @message = "Comment posted successfully."
     @success = true
     @render = render_to_string(partial: 'shared/comments', locals: { a: answer })
+    @count = answer.comment_count
   end
 end

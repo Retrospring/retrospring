@@ -7,6 +7,6 @@
         #{user_screen_name comment.user}:
         = comment.content
 - if user_signed_in?
-  .form-group.has-feedback
-    %input.form-control{type: :text, placeholder: 'Comment...', id: "ab-comments-#{a.id}-new"}
-    %span.text-muted.form-control-feedback.comment-count{id: "ab-comments-#{a.id}-charcount"} 160
+  .form-group.has-feedback{name: 'ab-comment-new-group', 'data-a-id' => a.id}
+    %input.form-control{type: :text, placeholder: 'Comment...', name: 'ab-comment-new', 'data-a-id' => a.id}
+    %span.text-muted.form-control-feedback.comment-count{id: "ab-comment-charcount-#{a.id}"} 160
