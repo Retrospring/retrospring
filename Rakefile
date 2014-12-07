@@ -27,6 +27,18 @@ namespace :justask do
       end
       progress.increment
     end
+
+    total = Question.count
+    progress = ProgressBar.create title: 'Processing questions', format: format, starting_at: 0, total: total
+    Question.all.each do |question|
+      begin
+        answers = Answer.where(question: question).count
+        question.answer_count = answers
+        question.save!
+      end
+      progress.increment
+    end
+
     total = Answer.count
     progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
     Answer.all.each do |answer|
