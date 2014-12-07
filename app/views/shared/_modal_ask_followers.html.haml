@@ -1,0 +1,13 @@
+#modal-ask-followers.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal-ask-followers-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#modal-ask-followers-label.modal-title Ask your followers
+      .modal-body
+        %textarea.form-control{:name => "qb-all-question", :placeholder => "Type your question here…"}
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+        %button.btn.btn-primary{name: 'qb-all-ask', 'data-loading-text' => "Asking...", :type => "button"} Ask
