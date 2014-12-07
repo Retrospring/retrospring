@@ -1,4 +1,13 @@
-[  0%] user blocking (prohibites blocked user from asking question to that person and seeing their answers)
-[  0%] asking modal (ask all followers/one person a question with a modal you can open over the navbar)
-[  0%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
-[  0%] admin status page (like the one from justask2 in Python)
+[001|  0%] user blocking (prohibits blocked user from asking question to that person and seeing their answers)
+[002|  0%] asking modal (ask all followers/one person a question with a modal you can open over the navbar)
+[003|  0%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
+[004|  0%] admin status page (like the one from justask2 in Python)
+[005|  0%] make the hamburger menu button glow or something if there are new questions in the inbox
+[006|  0%] privacy options (e.g. profile visible for members only, disable anonymous questions)
+[007|  0%] (?) keyboard shortcuts
+[008|  0%] make email work!
+[009|  0%] a notification view or something
+[010|  0%] locales (these can wait for now)
+[011|  0%] auto-posting to other services (twatter, fakelook)
+[012|  0%] open source the entire thing – in late 2015 or 2016 maybe.
+[013|  0%] restructure questions (has_many :answers) for less redundancy in the DB when implementing #002
