@@ -4,9 +4,16 @@ class Ajax::QuestionController < ApplicationController
     params.require :anonymousQuestion
     params.require :rcpt
 
-    question = Question.create!(content: params[:question],
-                                author_is_anonymous: params[:anonymousQuestion],
-                                user: current_user)
+    begin
+      question = Question.create!(content: params[:question],
+                                  author_is_anonymous: params[:anonymousQuestion],
+                                  user: current_user)
+    rescue ActiveRecord::RecordInvalid
+      @status = :rec_inv
+      @message = "Your question is too long."
+      @success = false
+      return
+    end
 
     unless current_user.nil?
       current_user.increment! :asked_count unless params[:anonymousQuestion] == 'true'
