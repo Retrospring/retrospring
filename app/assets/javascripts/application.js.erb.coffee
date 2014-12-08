@@ -72,7 +72,7 @@ $(document).on "click", "button[name=qb-all-ask]", ->
       showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
       btn.button "reset"
-      $("textarea[name=qb-question]").removeAttr "readonly"
+      $("textarea[name=qb-all-question]").removeAttr "readonly"
 
 $(document).on "keydown", "textarea[name=ib-answer]", (evt) ->
   iid = $(this)[0].dataset.id
