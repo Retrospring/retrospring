@@ -24,12 +24,14 @@
         %i.fa.fa-location-arrow
         = @user.location
     .row
-      .col-md-6.col-sm-6.col-xs-6
-        %h4.entry-text#follower-count= @user.follower_count
-        %h6.entry-subtext Follower
-      .col-md-6.col-sm-6.col-xs-6
-        %h4.entry-text#friend-count= @user.friend_count
-        %h6.entry-subtext Following
+      %a{href: show_user_followers_path(@user.screen_name)}
+        .col-md-6.col-sm-6.col-xs-6
+          %h4.entry-text#follower-count= @user.follower_count
+          %h6.entry-subtext Follower
+      %a{href: show_user_following_path(@user.screen_name)}
+        .col-md-6.col-sm-6.col-xs-6
+          %h4.entry-text#friend-count= @user.friend_count
+          %h6.entry-subtext Following
     .row
       .col-md-6.col-sm-6.col-xs-6
         %h4.entry-text#asked-count= @user.asked_count
