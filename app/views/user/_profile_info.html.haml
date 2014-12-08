@@ -37,4 +37,4 @@
       .col-md-6.col-sm-6.col-xs-6
         %h4.entry-text#answered-count= @user.answered_count
         %h6.entry-subtext Answers
-    = render 'user/actions'
+    = render 'user/actions', user: @user
