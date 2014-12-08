@@ -36,8 +36,15 @@
     .col-md-9.col-xs-12.col-sm-9
       = render 'layouts/messages'
 
-      - current_user.timeline.each do |answer|
-        = render 'shared/answerbox', a: answer
+      #timeline
+        - @timeline.each do |answer|
+          = render 'shared/answerbox', a: answer
+
+      #pagination= will_paginate @timeline, renderer: BootstrapPagination::Rails, page_links: false
+
+      - if @timeline.next_page
+        %button#load-more-btn.btn.btn-default{type: :button, 'data-current-page' => @timeline.current_page, 'data-type' => 'timeline'}
+          Load more
   = render "shared/links"
 - else
   .jumbotron
