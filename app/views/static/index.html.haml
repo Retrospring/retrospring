@@ -13,12 +13,14 @@
                 = pluralize(inbox_count, 'new question')
                 in your inbox!
           .row
-            .col-md-6.col-sm-6.col-xs-6
-              %h4.entry-text#follower-count= current_user.follower_count
-              %h6.entry-subtext Follower
-            .col-md-6.col-sm-6.col-xs-6
-              %h4.entry-text#friend-count= current_user.friend_count
-              %h6.entry-subtext Following
+            %a{href: show_user_followers_path(current_user.screen_name)}
+              .col-md-6.col-sm-6.col-xs-6
+                %h4.entry-text#follower-count= current_user.follower_count
+                %h6.entry-subtext Follower
+            %a{href: show_user_following_path(current_user.screen_name)}
+              .col-md-6.col-sm-6.col-xs-6
+                %h4.entry-text#friend-count= current_user.friend_count
+                %h6.entry-subtext Following
           .row
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#asked-count= current_user.asked_count
