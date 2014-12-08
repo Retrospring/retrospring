@@ -31,4 +31,5 @@
           = nav_entry "Sign in", new_user_session_path
           = nav_entry "Sign up", new_user_registration_path
 
-= render 'shared/modal_ask_followers'
+- if user_signed_in?
+  = render 'shared/modal_ask_followers'
