@@ -20,4 +20,18 @@ class UserController < ApplicationController
     end
     redirect_to edit_user_profile_path
   end
+
+  def followers
+    @title = 'Followers'
+    @user = User.find_by_screen_name!(params[:username])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def following
+    @title = 'Following'
+    @user = User.find_by_screen_name!(params[:username])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
 end

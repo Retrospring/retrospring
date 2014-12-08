@@ -1,0 +1,17 @@
+.container.j2-page
+  .col-md-3.col-xs-12.col-sm-3
+    = render 'user/profile_info'
+    .hidden-xs= render 'shared/links'
+  .col-md-9.col-xs-12.col-sm-9
+    %h1= @title
+    #users
+      - @users.each do |user|
+        .col-sm-6
+          = render 'shared/userbox', user: user
+
+    #pagination= will_paginate @users, renderer: BootstrapPagination::Rails, page_links: false
+
+    - if @users.next_page
+      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @users.current_page }}
+        Load more
+  .visible-xs= render 'shared/links'

@@ -1,0 +1,40 @@
+.panel.panel-default
+  .panel-body
+    .media
+      .pull-left
+        %img.img-rounded.img-profile{src: gravatar_url(@user)}
+      .media-body
+        - if @user.display_name.blank?
+          %h2= @user.screen_name
+        - else
+          %h2.user-displayname= @user.display_name
+          %h4.text-muted.user-username= @user.screen_name
+        - if @user.admin?
+          %p.user-admin
+            %i.fa.fa-flask
+            Admin
+    - unless @user.bio.blank?
+      %p.user-profiletext= @user.bio
+    - unless @user.website.blank?
+      %p.user-profiletext
+        %i.fa.fa-globe
+        %a{href: @user.website}= @user.display_website
+    - unless @user.location.blank?
+      %p.user-profiletext
+        %i.fa.fa-location-arrow
+        = @user.location
+    .row
+      .col-md-6.col-sm-6.col-xs-6
+        %h4.entry-text#follower-count= @user.follower_count
+        %h6.entry-subtext Follower
+      .col-md-6.col-sm-6.col-xs-6
+        %h4.entry-text#friend-count= @user.friend_count
+        %h6.entry-subtext Following
+    .row
+      .col-md-6.col-sm-6.col-xs-6
+        %h4.entry-text#asked-count= @user.asked_count
+        %h6.entry-subtext Questions
+      .col-md-6.col-sm-6.col-xs-6
+        %h4.entry-text#answered-count= @user.answered_count
+        %h6.entry-subtext Answers
+    = render 'user/actions'

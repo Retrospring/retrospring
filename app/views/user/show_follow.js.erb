@@ -1,0 +1,8 @@
+$('#users').append('<% @users.each do |user|
+  %><div class="col-sm-6"><%= j render 'shared/userbox', user: user
+%></div><% end %>');
+<% if @users.next_page %>
+  $('#pagination').html('<%= j will_paginate @users, renderer: BootstrapPagination::Rails, page_links: false %>');
+<% else %>
+  $('#pagination, #load-more-btn').remove();
+<% end %>
