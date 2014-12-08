@@ -50,6 +50,6 @@
     #pagination= will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false
 
     - if @answers.next_page
-      %button#load-more-btn.btn.btn-default{type: :button, 'data-current-page' => @answers.current_page}
+      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
         Load more
   .visible-xs= render 'shared/links'

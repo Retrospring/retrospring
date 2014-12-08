@@ -3,11 +3,11 @@
 - else # TODO: some design guy (i.e. pixeldesu) should make some black magic here
   %ul.comments
     - a.comments.all.each do |comment|
-      %li{'data-comment-id' => comment.id}
+      %li{data: { comment_id: comment.id }}
         %img.img-answerbox-small{src: gravatar_url(comment.user)}
         %b= user_screen_name comment.user
         = comment.content
 - if user_signed_in?
   .form-group.has-feedback{name: 'ab-comment-new-group', 'data-a-id' => a.id}
-    %input.form-control{type: :text, placeholder: 'Comment...', name: 'ab-comment-new', 'data-a-id' => a.id}
+    %input.form-control{type: :text, placeholder: 'Comment...', name: 'ab-comment-new', data: {a_id: a.id }}
     %span.text-muted.form-control-feedback.comment-count{id: "ab-comment-charcount-#{a.id}"} 160

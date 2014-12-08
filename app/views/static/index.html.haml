@@ -44,7 +44,7 @@
       #pagination= will_paginate @timeline, renderer: BootstrapPagination::Rails, page_links: false
 
       - if @timeline.next_page
-        %button#load-more-btn.btn.btn-default{type: :button, 'data-current-page' => @timeline.current_page}
+        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @timeline.current_page }}
           Load more
   .visible-xs= render 'shared/links'
 - else

@@ -19,7 +19,7 @@
         .col-xs-6
           %p.pull-right
             %input{name: 'qb-to', type: 'hidden', :value => @user.id}/
-            %button.btn.btn-primary{name: 'qb-ask', 'data-loading-text' => "Asking...", "data-promote" => user_signed_in? ? "false" : "true", :type => "button"} Ask
+            %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: 'Asking...', promote: user_signed_in? ? "false" : "true" }} Ask
     - unless user_signed_in?
       #question-box-promote.row{:style => "display: none;"}
         .row

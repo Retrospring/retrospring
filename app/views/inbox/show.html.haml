@@ -1,7 +1,7 @@
 .container.j2-page
   = render 'layouts/messages'
   - @inbox.each do |i|
-    .panel.inbox-box{'data-id' => i.id, class: "panel-#{i.new? ? 'primary' : 'default'}" }
+    .panel.inbox-box{class: "panel-#{i.new? ? 'primary' : 'default'}", data: { id: i.id }}
       .panel-heading
         .media
           - unless i.question.author_is_anonymous
@@ -20,11 +20,11 @@
                     #{i.question.answer_count} response(s)
             %p.answerbox-question-text= i.question.content
       .panel-body
-        %textarea.form-control{name: 'ib-answer', 'data-id' => i.id}
+        %textarea.form-control{name: 'ib-answer', data: { id: i.id }}
         %br/
-        %button.btn.btn-success{name: 'ib-answer', 'data-ib-id' => i.id}
+        %button.btn.btn-success{name: 'ib-answer', data: { id: i.id }}
           Answer
-        %button.btn.btn-danger{name: 'ib-destroy', 'data-ib-id' => i.id}
+        %button.btn.btn-danger{name: 'ib-destroy', data: { id: i.id }}
           Delete
 
   - if @inbox.empty?
