@@ -33,6 +33,7 @@
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#answered-count= current_user.smiled_count
               %h6.entry-subtext Smiles
+      = render 'shared/links'
     .col-md-9.col-xs-12.col-sm-9
       = render 'layouts/messages'
 
@@ -45,7 +46,7 @@
       - if @timeline.next_page
         %button#load-more-btn.btn.btn-default{type: :button, 'data-current-page' => @timeline.current_page, 'data-type' => 'timeline'}
           Load more
-  = render "shared/links"
+  .visible-xs= render 'shared/links'
 - else
   .jumbotron
     .container
