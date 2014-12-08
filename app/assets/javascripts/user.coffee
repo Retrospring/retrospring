@@ -1,9 +1,11 @@
 $(document).on "click", "button[name=user-action]", ->
   btn = $(this)
   btn.button "loading"
+  type = btn[0].dataset.type
   target = btn[0].dataset.target
   action = btn[0].dataset.action
-  count = Number $("h4.entry-text#follower-count").html()
+  if type in ['follower', 'friend']
+    count = Number $("h4.entry-text##{type}-count").html()
 
   target_url = switch action
     when 'follow'
@@ -23,7 +25,8 @@ $(document).on "click", "button[name=user-action]", ->
     success: (data, status, jqxhr) ->
       success = data.success
       if data.success
-        $("h4.entry-text#follower-count").html(count)
+        if type in ['follower', 'friend']
+          $("h4.entry-text##{type}-count").html(count)
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
