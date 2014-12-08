@@ -28,7 +28,7 @@
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#follower-count= @user.follower_count
           %h6.entry-subtext Follower
-      %a{href: show_user_following_path(@user.screen_name)}
+      %a{href: show_user_friends_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= @user.friend_count
           %h6.entry-subtext Following

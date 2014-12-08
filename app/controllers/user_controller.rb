@@ -29,7 +29,7 @@ class UserController < ApplicationController
     render 'show_follow'
   end
 
-  def following
+  def friends
     @title = 'Following'
     @user = User.find_by_screen_name!(params[:username])
     @users = @user.friends.reverse_order.paginate(page: params[:page])
