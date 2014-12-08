@@ -43,6 +43,13 @@
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-9
     = render 'shared/questionbox'
-    - @answers.each do |a|
-      = render 'shared/answerbox', a: a
+    #answers
+      - @answers.each do |a|
+        = render 'shared/answerbox', a: a
+
+    #pagination= will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false
+
+    - if @answers.next_page
+      %button#load-more-btn.btn.btn-default{type: :button, 'data-current-page' => @answers.current_page}
+        Load more
   .visible-xs= render 'shared/links'
