@@ -22,9 +22,9 @@
       .panel-body
         %textarea.form-control{name: 'ib-answer', data: { id: i.id }}
         %br/
-        %button.btn.btn-success{name: 'ib-answer', data: { id: i.id }}
+        %button.btn.btn-success{name: 'ib-answer', data: { ib_id: i.id }}
           Answer
-        %button.btn.btn-danger{name: 'ib-destroy', data: { id: i.id }}
+        %button.btn.btn-danger{name: 'ib-destroy', data: { ib_id: i.id }}
           Delete
 
   - if @inbox.empty?
