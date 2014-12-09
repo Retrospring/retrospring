@@ -5,6 +5,13 @@ body {
   word-wrap: break-word;
 }
 
+@import "scss/answerbox";
+@import "scss/comments";
+@import "scss/entry";
+@import "scss/navbar";
+@import "scss/panel";
+@import "scss/user";
+
 .j2-page {
   padding-top: 30px;
 }
@@ -13,104 +20,6 @@ body {
   text-align: center;
 }
 
-.entry-subtext {
-  color: $navbar-inverse-bg;
-  margin-top: 0px;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 80%;
-}
-
-.entry-text {
-  margin-bottom: 0px;
-}
-
-.img-answerbox {
-  min-height: 32px;
-  min-width: 32px;
-  height: 32px;
-  width: 32px;
-}
-
-.img-answerbox-small {
-  min-height: 20px;
-  min-width: 20px;
-  height: 20px;
-  width: 20px;
-}
-
-.answerbox-question-text, .answerbox-question-user {
-  margin-bottom: 0px;
-}
-
-.answerbox-question-text {
-  font-weight: bold;
-  color: $gray-darker;
-}
-
-.user-displayname {
-  margin-top: -2px;
-  margin-bottom: 2px;
-}
-
-.user-username {
-  margin-top: 0px;
-  margin-bottom: 2px;
-}
-
-.user-admin {
-  color: $brand-danger;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 80%;
-}
-
-.user-profiletext {
-  margin-bottom: 2px;
-}
-
-.answer-box .text-muted a, .answer-box .text-muted a:hover {
-  color: $gray-dark;
-  text-decoration: none;
-}
-
-.navbar .nav .badge {
-  padding: 3px 6px 3px;
-  background-color: $navbar-inverse-link-active-bg;
-}
-
-.navbar .nav .active .badge {
-  padding: 3px 6px 3px;
-  background-color: $navbar-inverse-bg;
-}
-
-.panel-primary .text-muted a, .panel-primary .text-muted a:hover {
-  color: #fff;
-  text-decoration: none;
-  opacity: 1;
-}
-
-.panel-primary .text-muted {
-  color: #fff;
-  opacity: 0.7;
-}
-
-.panel-primary .answerbox-question-text {
-  color: #fff;
-}
-
-.comment-count {
-  margin-top: -2em;
-}
-
 .ios-web-app {
   padding-top: 1em;
-}
-
-.comments {
-  padding-left: 0;
-}
-
-.comments li {
-  list-style-type: none;
 }

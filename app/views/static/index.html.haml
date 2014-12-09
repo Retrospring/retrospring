@@ -16,7 +16,7 @@
             %a{href: show_user_followers_path(current_user.screen_name)}
               .col-md-6.col-sm-6.col-xs-6
                 %h4.entry-text#follower-count= current_user.follower_count
-                %h6.entry-subtext Follower
+                %h6.entry-subtext= pluralize(current_user.follower_count, 'Follower')
             %a{href: show_user_friends_path(current_user.screen_name)}
               .col-md-6.col-sm-6.col-xs-6
                 %h4.entry-text#friend-count= current_user.friend_count
@@ -24,17 +24,17 @@
           .row
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#asked-count= current_user.asked_count
-              %h6.entry-subtext Questions
+              %h6.entry-subtext= pluralize(current_user.asked_count, 'Question')
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#answered-count= current_user.answered_count
-              %h6.entry-subtext Answers
+              %h6.entry-subtext= pluralize(current_user.answered_count, 'Answer')
           .row
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#asked-count= current_user.commented_count
-              %h6.entry-subtext Comments
+              %h6.entry-subtext= pluralize(current_user.commented_count, 'Comment')
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#answered-count= current_user.smiled_count
-              %h6.entry-subtext Smiles
+              %h6.entry-subtext= pluralize(current_user.smiled_count, 'Smile')
       = render 'shared/links'
     .col-md-9.col-xs-12.col-sm-9
       = render 'layouts/messages'

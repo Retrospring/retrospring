@@ -1,0 +1,27 @@
+.profile--img {
+  min-height: 80px;
+  min-width: 80px;
+  height: 80px;
+  width: 8px;
+}
+
+.profile--displayname {
+  margin-top: -2px;
+  margin-bottom: 2px;
+}
+
+.profile--username {
+  margin-top: 0px;
+  margin-bottom: 2px;
+}
+
+.profile--admin {
+  color: $brand-danger;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 80%;
+}
+
+.profile--text {
+  margin-bottom: 2px;
+}

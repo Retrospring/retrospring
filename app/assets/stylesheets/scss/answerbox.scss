@@ -1,0 +1,27 @@
+.answerbox .text-muted a, .answerbox .text-muted a:hover {
+  color: $gray-dark;
+  text-decoration: none;
+}
+
+.answerbox--img {
+  min-height: 32px;
+  min-width: 32px;
+  height: 32px;
+  width: 32px;
+}
+
+.answerbox--img-small {
+  min-height: 20px;
+  min-width: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.answerbox--question-text, .answerbox--question-user {
+  margin-bottom: 0px;
+}
+
+.answerbox--question-text {
+  font-weight: bold;
+  color: $gray-darker;
+}

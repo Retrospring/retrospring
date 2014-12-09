@@ -4,17 +4,17 @@
   .panel-body
     .media
       .pull-left
-        %img.img-rounded.img-profile{src: gravatar_url(user)}
+        %img.img-rounded.profile--img{src: gravatar_url(user)}
       .media-body
         - if user.display_name.blank?
           %h2
             %a{href: show_user_profile_path(user.screen_name)}
               = user.screen_name
         - else
-          %h2.user-displayname
+          %h2.profile--displayname
             %a{href: show_user_profile_path(user.screen_name)}
               = user.display_name
-          %h4.text-muted.user-username= user.screen_name
+          %h4.text-muted.profile--username= user.screen_name
     .row
       .col-md-6.col-sm-6.col-xs-6
         %h4.entry-text#asked-count= user.asked_count
