@@ -21,3 +21,6 @@ coverage/
 
 # damn vim backup files
 *~
+
+# every fucking time, dolphin
+.directory
