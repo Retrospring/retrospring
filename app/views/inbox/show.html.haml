@@ -1,12 +1,14 @@
 .container.j2-page
   = render 'layouts/messages'
+  %button.btn.btn-default{type: :button, id: 'ib-generate-question'} Get new question
+
   #entries
     - @inbox.each do |i|
       = render 'inbox/entry', i: i
 
-  - if @inbox.empty?
+    - if @inbox.empty?
 
-    Nothing to see here.
+      Nothing to see here.
 
 = render "shared/links"
 - @inbox.update_all(new: false)

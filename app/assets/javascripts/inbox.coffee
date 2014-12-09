@@ -1,3 +1,19 @@
+($ document).on "click", "button#ib-generate-question", ->
+  btn = ($ this)
+  btn.button "loading"
+  $.ajax
+    url: '/ajax/generate_question'
+    type: 'POST'
+    dataType: 'json'
+    success: (data, status, jqxhr) ->
+      if data.success
+        ($ "div#entries").prepend(data.render) # TODO: slideDown or something
+    error: (jqxhr, status, error) ->
+      console.log jqxhr, status, error
+      showNotification "An error occurred, a developer should check the console for details", false
+    complete: (jqxhr, status) ->
+      btn.button "reset"
+
 $(document).on "keydown", "textarea[name=ib-answer]", (evt) ->
   iid = $(this)[0].dataset.id
   if evt.keyCode == 13 and evt.ctrlKey
