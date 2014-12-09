@@ -1,0 +1,20 @@
+.notification--img {
+  min-height: 32px;
+  min-width: 32px;
+  height: 32px;
+  width: 32px;
+}
+
+.notification--user, .notification--text {
+  z-index: 99;
+  margin-bottom: 0px;
+}
+
+.notification--icon {
+  position: relative;
+  float: right;
+  font-size: 18px;
+  color: $gray;
+  opacity: 0.8;
+  z-index: 0;
+}
