@@ -1,4 +1,26 @@
 class Ajax::InboxController < ApplicationController
+  def create
+    unless user_signed_in?
+      @status = :noauth
+      @message = "requires authentication"
+      @success = false
+      return
+    end
+
+    question = Question.create!(content: QuestionGenerator.generate,
+                                author_is_anonymous: true,
+                                author_name: 'justask',
+                                user: current_user)
+
+    inbox = Inbox.create!(user: current_user, question_id: question.id, new: true)
+
+    @status = :okay
+    @message = "Successfully added new question."
+    @success = true
+    @render = render_to_string(partial: 'inbox/entry', locals: { i: inbox })
+    inbox.update(new: false)
+  end
+
   def destroy
     params.require :id
     params.require :answer
