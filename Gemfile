@@ -32,6 +32,8 @@ gem 'rails-assets-growl'
 
 gem 'ruby-progressbar'
 
+gem 'questiongenerator'
+
 group :development do
   gem 'spring'
 end
