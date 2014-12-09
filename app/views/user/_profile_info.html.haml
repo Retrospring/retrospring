@@ -27,7 +27,7 @@
       %a{href: show_user_followers_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#follower-count= @user.follower_count
-          %h6.entry-subtext= pluralize(@user.follower_count, 'Follower')
+          %h6.entry-subtext Followers
       %a{href: show_user_friends_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= @user.friend_count
@@ -35,8 +35,8 @@
     .row
       .col-md-6.col-sm-6.col-xs-6
         %h4.entry-text#asked-count= @user.asked_count
-        %h6.entry-subtext= pluralize(@user.asked_count, 'Question')
+        %h6.entry-subtext Questions
       .col-md-6.col-sm-6.col-xs-6
         %h4.entry-text#answered-count= @user.answered_count
-        %h6.entry-subtext= pluralize(@user.answered_count, 'Answer')
+        %h6.entry-subtext Answers
     = render 'user/actions', user: @user, type: :follower
