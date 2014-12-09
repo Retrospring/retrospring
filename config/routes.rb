@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
+
   root 'static#index'
 
   match '/about', to: 'static#about', via: 'get'
