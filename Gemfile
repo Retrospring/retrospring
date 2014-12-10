@@ -32,6 +32,8 @@ gem 'rails-assets-growl'
 
 gem 'ruby-progressbar'
 
+gem 'rails_admin'
+
 gem 'questiongenerator'
 
 group :development do

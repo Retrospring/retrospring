@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'
   get 'notifications/index'
 
   root 'static#index'
