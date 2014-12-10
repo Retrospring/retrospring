@@ -17,7 +17,7 @@
                 #{i.question.answer_count} response(s)
         %p.answerbox--question-text= i.question.content
   .panel-body
-    %textarea.form-control{name: 'ib-answer', data: { id: i.id }}
+    %textarea.form-control{name: 'ib-answer', placeholder: 'Write your answer here...', data: { id: i.id }}
     %br/
     %button.btn.btn-success{name: 'ib-answer', data: { ib_id: i.id }}
       Answer
