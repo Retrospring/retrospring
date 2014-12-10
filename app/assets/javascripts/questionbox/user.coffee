@@ -27,3 +27,15 @@ $(document).on "click", "button[name=qb-ask]", ->
     complete: (jqxhr, status) ->
       btn.button "reset"
       $("textarea[name=qb-question]").removeAttr "readonly"
+
+
+# for that promotional thing
+$(document).on "click", "button#new-question", ->
+  $("div#question-box").show()
+  $("div#question-box-promote").hide()
+
+
+# see GitHub issue #2
+($ document).on "keydown", "textarea[name=qb-question]", (evt) ->
+  if evt.keyCode == 13 and evt.ctrlKey
+    ($ "button[name=qb-ask]").trigger 'click'
