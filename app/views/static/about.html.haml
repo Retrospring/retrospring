@@ -46,16 +46,22 @@
       .panel.panel-default
         .panel-body
           %h3 Alpha version
-          This is an alpha version, full of bugs.  Caveat emptor.
+          %p This is an alpha version, full of bugs.  Caveat emptor.
+          %p
+            Found a bug?  Have an idea for a must-have feature?  Please
+            = link_to "report them!", 'https://github.com/justask/justask-bugs/issues'
     .col-sm-4
       .panel.panel-default
         .panel-body
-          %h3 Made with...
-          %ul
-            %li HTML5
-            %li Ruby on Rails
-            %li FreeBSD, Linux
-            %li RubyMine, Kate, vim
-            %li GitLab
+          %h3 Donate
+          We are not backed by any company, but we need some money to keep
+          our server infrastructure running.
+
+          %form{:action => "https://www.paypal.com/cgi-bin/webscr", :method => "post", :target => "_top"}
+            %input{:name => "cmd", :type => "hidden", :value => "_s-xclick"}/
+            %input{:name => "hosted_button_id", :type => "hidden", :value => "6ZT5MS6UGU6HC"}/
+            %input{:alt => "PayPal - The safer, easier way to pay online!", :border => "0", :name => "submit", :src => "https://www.paypalobjects.com/en_US/AT/i/btn/btn_donateCC_LG.gif", :type => "image"}/
+            %img{:alt => "", :border => "0", :height => "1", :src => "https://www.paypalobjects.com/de_DE/i/scr/pixel.gif", :width => "1"}/
+
 
 = render "shared/links"
