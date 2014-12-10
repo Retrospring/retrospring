@@ -6,6 +6,11 @@
   list-style-type: none;
 }
 
+.comments--box {
+  z-index: 99;
+}
+
 .comments--count {
+  z-index: 0;
   margin-top: -2em;
 }
