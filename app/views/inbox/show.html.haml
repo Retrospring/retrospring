@@ -1,6 +1,11 @@
 .container.j2-page
   = render 'layouts/messages'
-  %button.btn.btn-default{type: :button, id: 'ib-generate-question'} Get new question
+  .alert.alert-info
+    .row
+      .col-md-9.col-sm-8.col-xs-12
+        %span.text-center Out of questions?
+      .col-md-9.col-sm-5.col-xs-12
+        %button.btn.btn-default{type: :button, id: 'ib-generate-question'} Get new question
 
   #entries
     - @inbox.each do |i|
