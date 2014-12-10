@@ -25,6 +25,9 @@
               %li= link_to "View profile", show_user_profile_path(current_user.screen_name)
               %li= link_to "Settings", edit_user_registration_path
               %li.divider
+              - if current_user.admin?
+                %li= link_to "Kontrollzentrum", rails_admin_path
+                %li.divider
               %li= link_to "Logout",  destroy_user_session_path, method: :delete
       - else
         %ul.nav.navbar-nav.navbar-right
