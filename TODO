@@ -2,7 +2,7 @@
 [002|100%] asking modal (ask all followers/one person a question with a modal you can open over the navbar)
 [003|  0%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
 [004|100%] admin status page (like the one from justask2 in Python)
-[005|  0%] make the hamburger menu button glow or something if there are new questions in the inbox
+[005|100%] make the hamburger menu button glow or something if there are new questions in the inbox
 [006|  0%] privacy options (e.g. profile visible for members only, disable anonymous questions)
 [007|  0%] (?) keyboard shortcuts
 [008|  0%] make email work!
