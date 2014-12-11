@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     match '/create_comment', to: 'comment#create', via: :post, as: :create_comment
   end
 
+  match '/public', to: 'public#index', via: :get, as: :public_timeline
+
   match '/inbox', to: 'inbox#show', via: 'get'
   
   match '/user/:username(/p/:page)', to: 'user#show', via: 'get', defaults: {page: 1}

@@ -1,0 +1,16 @@
+.container.j2-page
+  .col-md-3.col-sm-3.hidden-xs
+    = render 'shared/links'
+  .col-md-9.col-xs-12.col-sm-9
+    = render 'layouts/messages'
+
+    #timeline
+      - @timeline.each do |answer|
+        = render 'shared/answerbox', a: answer
+
+    #pagination= will_paginate @timeline, renderer: BootstrapPagination::Rails, page_links: false
+
+    - if @timeline.next_page
+      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @timeline.current_page }}
+        Load more
+.visible-xs= render 'shared/links'
