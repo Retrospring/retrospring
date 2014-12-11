@@ -7,3 +7,61 @@
   padding: 3px 6px 3px;
   background-color: $navbar-inverse-bg;
 }
+
+.navbar--inbox-animation {
+  animation: animationFrames ease-in-out 1.5s;
+  animation-iteration-count: infinite;
+  -webkit-animation: animationFrames ease-in-out 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation: animationFrames ease-in-out 1.5s;
+  -moz-animation-iteration-count: infinite;
+  -o-animation: animationFrames ease-in-out 1.5s;
+  -o-animation-iteration-count: infinite;
+  -ms-animation: animationFrames ease-in-out 1.5s;
+  -ms-animation-iteration-count: infinite;
+}
+
+@keyframes animationFrames{
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: $navbar-inverse-toggle-border-color;
+  }
+}
+
+@-moz-keyframes animationFrames{
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: $navbar-inverse-toggle-border-color;
+  }
+}
+
+@-webkit-keyframes animationFrames {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: $navbar-inverse-toggle-border-color;
+  }
+}
+
+@-o-keyframes animationFrames {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: $navbar-inverse-toggle-border-color;
+  }
+}
+
+@-ms-keyframes animationFrames {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: $navbar-inverse-toggle-border-color;
+  }
+}
