@@ -34,6 +34,9 @@ gem 'ruby-progressbar'
 
 gem 'rails_admin'
 
+gem 'twitter'
+gem 'sidekiq'
+
 gem 'questiongenerator'
 
 group :development do
