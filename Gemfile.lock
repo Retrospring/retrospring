@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/justask/questiongenerator.git
+  revision: 95bfac7b8e9157702befb5a6f7ea8220037fd804
+  specs:
+    questiongenerator (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -28,6 +34,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
     bootstrap-sass (3.2.0.2)
@@ -35,6 +42,7 @@ GEM
     bootstrap_form (2.2.0)
     bootswatch-rails (3.2.4)
       railties (>= 3.1)
+    buftok (0.2.0)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -42,6 +50,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     cliver (0.3.2)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -50,6 +60,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    connection_pool (2.1.0)
     daemons (1.1.9)
     database_cleaner (1.3.0)
     devise (3.4.1)
@@ -61,6 +72,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.2)
@@ -71,6 +83,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     font-awesome-rails (4.2.0.0)
       railties (>= 3.2, < 5.0)
     font-kit-rails (1.1.0)
@@ -78,7 +92,11 @@ GEM
     haml (4.0.6)
       tilt
     hike (1.2.3)
+    hitimes (1.2.2)
+    http (0.6.3)
+      http_parser.rb (~> 0.6.0)
     http_accept_language (2.0.2)
+    http_parser.rb (0.6.0)
     i18n (0.6.11)
     jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
@@ -98,11 +116,15 @@ GEM
     kgio (2.9.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
     mime-types (2.4.3)
     mini_portile (0.6.1)
     minitest (5.4.3)
     multi_json (1.10.1)
+    multipart-post (2.0.0)
     mysql2 (0.3.17)
+    naught (1.0.0)
     nested_form (0.3.2)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
@@ -114,7 +136,6 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    questiongenerator (0.0.1)
     rack (1.5.2)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -157,6 +178,9 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redis (3.2.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     remotipart (1.2.1)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
@@ -187,6 +211,13 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sidekiq (3.3.0)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
+    simple_oauth (0.3.0)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -209,8 +240,21 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
     turbolinks (2.5.3)
       coffee-rails
+    twitter (5.13.0)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      equalizer (~> 0.0.9)
+      faraday (~> 0.9.0)
+      http (~> 0.6.0)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.4.0)
+      naught (~> 1.0)
+      simple_oauth (~> 0.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -254,7 +298,7 @@ DEPENDENCIES
   nprogress-rails
   pg
   poltergeist
-  questiongenerator
+  questiongenerator!
   rails (= 4.1.8)
   rails-assets-growl
   rails_admin
@@ -262,10 +306,12 @@ DEPENDENCIES
   ruby-progressbar
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.1)
+  sidekiq
   simplecov
   spring
   thin
   turbolinks
+  twitter
   uglifier (>= 1.3.0)
   unicorn
   will_paginate

@@ -37,7 +37,7 @@ gem 'rails_admin'
 gem 'twitter'
 gem 'sidekiq'
 
-gem 'questiongenerator'
+gem 'questiongenerator', git: 'https://github.com/justask/questiongenerator.git'
 
 group :development do
   gem 'spring'
