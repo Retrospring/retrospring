@@ -3,10 +3,15 @@
     .navbar-header
       %button.navbar-toggle{"data-target" => "#j2-main-navbar-collapse", "data-toggle" => "collapse", type: "button"}
         %span.sr-only Toggle navigation
-        - if inbox_count > 0
-          %span.icon-bar.navbar--inbox-animation
-          %span.icon-bar.navbar--inbox-animation
-          %span.icon-bar.navbar--inbox-animation
+        - if user_signed_in?
+          - if inbox_count > 0
+            %span.icon-bar.navbar--inbox-animation
+            %span.icon-bar.navbar--inbox-animation
+            %span.icon-bar.navbar--inbox-animation
+          - else
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
         - else
           %span.icon-bar
           %span.icon-bar
