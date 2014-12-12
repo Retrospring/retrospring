@@ -25,10 +25,9 @@
         = a.content[0..255]
         - if a.content.length > 255
           [...]
-          %br/
-          Answer too long to display.
-          %a{href: show_user_answer_path(a.user.screen_name, a.id)}
-            Read the entire answer
+          %p
+            %a.btn.btn-primary{href: show_user_answer_path(a.user.screen_name, a.id)}
+              Read the entire answer
       - else
         = a.content
     - if @user.nil?
