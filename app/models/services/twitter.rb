@@ -31,10 +31,12 @@ class Services::Twitter < Service
       answer_content = answer.content
       answer_url = show_user_answer_url(
         id: answer.id,
-        username: answer.user.screen_name
+        username: answer.user.screen_name,
+        host: APP_CONFIG['hostname'],
+        protocol: (APP_CONFIG['https'] ? :https : :http)
       )
       Rails.logger.debug "answer_url => #{answer_url}"
       "#{question_content[0..55]}#{'…' if question_content.length > 56}" \
-        " — #{answer_content[0..55]}#{'…' if answercontent.length > 56} #{answer_url}"
+        " — #{answer_content[0..55]}#{'…' if answer_content.length > 56} #{answer_url}"
     end
 end

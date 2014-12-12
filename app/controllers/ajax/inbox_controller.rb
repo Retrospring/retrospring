@@ -34,10 +34,10 @@ class Ajax::InboxController < ApplicationController
       return
     end
 
-    a = nil
+    answer = nil
 
     begin
-      a = inbox.answer params[:answer], current_user
+      answer = inbox.answer params[:answer], current_user
     rescue
       @status = :err
       @message = "An error occurred"
@@ -45,8 +45,10 @@ class Ajax::InboxController < ApplicationController
       return
     end
 
-    current_user.services.each do |service|
-      service.post a
+    Thread.new do
+      current_user.services.each do |service|
+        service.post answer
+      end
     end
 
     @status = :okay
