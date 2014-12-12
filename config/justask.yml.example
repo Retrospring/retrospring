@@ -17,3 +17,5 @@ sharing:
   facebook:
     enabled: false
 
+# Redis
+redis_url: "redis://localhost:6379"
