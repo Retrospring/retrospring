@@ -33,6 +33,16 @@ Rails.application.routes.draw do
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
 
+  # resources :services, only: [:index, :destroy]
+  match '/settings/services', to: 'services#index', via: 'get', as: :services
+  match '/settings/services/:id', to: 'services#destroy', via: 'delete', as: :service
+  controller :services do
+    scope "/auth", as: "auth" do
+      get ':provider/callback' => :create
+      get :failure
+    end
+  end
+
   namespace :ajax do
     match '/ask', to: 'question#create', via: :post, as: :ask
     match '/answer', to: 'inbox#destroy', via: :post, as: :answer
