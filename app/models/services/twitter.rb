@@ -1,0 +1,40 @@
+class Services::Twitter < Service
+  include Rails.application.routes.url_helpers
+
+  def provider
+    "twitter"
+  end
+
+  def post(answer)
+    Rails.logger.debug "posting to Twitter {'answer' => #{answer.id}, 'user' => #{self.user_id}}"
+    post_tweet answer
+  end
+
+  private
+
+    def client
+      @client ||= Twitter::REST::Client.new(
+        consumer_key: APP_CONFIG['sharing']['twitter']['consumer_key'],
+        consumer_secret: APP_CONFIG['sharing']['twitter']['consumer_secret'],
+        access_token: self.access_token,
+        access_token_secret: self.access_secret
+      )
+    end
+
+    def post_tweet(answer)
+      client.update prepare_tweet(answer)
+    end
+
+    def prepare_tweet(answer)
+      # TODO: improve this.
+      question_content = answer.question.content
+      answer_content = answer.content
+      answer_url = show_user_answer_url(
+        id: answer.id,
+        username: answer.user.screen_name
+      )
+      Rails.logger.debug "answer_url => #{answer_url}"
+      "#{question_content[0..55]}#{'…' if question_content.length > 56}" \
+        " — #{answer_content[0..55]}#{'…' if answercontent.length > 56} #{answer_url}"
+    end
+end
