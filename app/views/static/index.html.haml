@@ -1,7 +1,7 @@
 - if user_signed_in?
   .container.j2-page
-    .col-md-3.col-sm-3.hidden-xs
-      .panel.panel-default
+    .col-md-3.col-sm-3
+      .panel.panel-default.hidden-xs
         .panel-body
           %p
             Welcome,
@@ -35,6 +35,11 @@
             .col-md-6.col-sm-6.col-xs-6
               %h4.entry-text#answered-count= current_user.smiled_count
               %h6.entry-subtext Smiles
+      .panel.panel-default
+        .panel-body
+          %ul.nav.nav-pills.nav-stacked
+            = nav_entry "Timeline", root_path
+            = nav_entry "Public", public_timeline_path
       = render 'shared/links'
     .col-md-9.col-xs-12.col-sm-9
       = render 'layouts/messages'
