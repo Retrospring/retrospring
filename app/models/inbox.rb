@@ -3,12 +3,13 @@ class Inbox < ActiveRecord::Base
   belongs_to :question
 
   def answer(answer, user)
-    Answer.create!(content: answer,
-                   user: user,
-                   question: self.question)
+    answer = Answer.create!(content: answer,
+                            user: user,
+                            question: self.question)
     user.increment! :answered_count
     self.question.increment! :answer_count
     self.destroy
+    answer
   end
 
   def remove
