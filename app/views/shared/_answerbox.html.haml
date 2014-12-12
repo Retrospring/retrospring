@@ -20,13 +20,17 @@
           %p.answerbox--question-text
             = a.question.content
   .panel-body
-    %p= a.content[0..255]
-    - if a.content.length > 255
-      [...]
-      %br/
-      Answer too long to display.
-      %a{href: show_user_answer_path(a.user.screen_name, a.id)}
-        Read the entire answer
+    %p
+      - if @display_all.nil?
+        = a.content[0..255]
+        - if a.content.length > 255
+          [...]
+          %br/
+          Answer too long to display.
+          %a{href: show_user_answer_path(a.user.screen_name, a.id)}
+            Read the entire answer
+      - else
+        = a.content
     - if @user.nil?
       .row
         .col-md-6.col-sm-4.col-xs-7.text-left.text-muted
