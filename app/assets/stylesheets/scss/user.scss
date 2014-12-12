@@ -25,3 +25,12 @@
 .profile--text {
   margin-bottom: 2px;
 }
+
+.profile--header {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 40vh;
+  background-color: darken($navbar-inverse-bg, 10%);
+  background-size: cover;
+}
