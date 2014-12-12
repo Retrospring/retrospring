@@ -18,15 +18,15 @@
           %br/
           .media
             .pull-left
-              %a= show_user_profile_path('nilsding'.screen_name)
-                %img.img-rounded.answerbox--img{src: gravatar_url('nilsding')}
+              %a{href: show_user_profile_path('nilsding')}
+                %img.img-rounded.answerbox--img{src: gravatar_url('nilsding@nilsding.org')}
             .media-body
               %h4.entry-text nilsding
               %h6.entry-subtext Backend, Server & Code
           .media
             .pull-left
-              %a= show_user_profile_path('pixeldesu'.screen_name)
-                %img.img-rounded.answerbox--img{src: gravatar_url('pixeldesu')}
+              %a{href: show_user_profile_path('pixeldesu')}
+                %img.img-rounded.answerbox--img{src: gravatar_url('pixeldesu@outlook.com')}
             .media-body
               %h4.entry-text pixeldesu
               %h6.entry-subtext Frontend Design & Layout

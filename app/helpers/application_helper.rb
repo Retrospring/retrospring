@@ -52,6 +52,7 @@ module ApplicationHelper
 
   def gravatar_url(user)
     return '//www.gravatar.com/avatar' if user.nil?
+    return "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user)}" if user.is_a? String
     "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email)}"
   end
 
