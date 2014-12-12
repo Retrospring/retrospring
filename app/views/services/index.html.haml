@@ -8,12 +8,12 @@
           %ul
           - @services.each do |service|
             %li
-              %strong= service.provider
+              %strong= service.provider.capitalize
               (#{service.nickname})
-              = link_to 'Disconnect', service_path(service), data: { confirm: "Really disconnect service #{service.provider}?" }, method: :delete
+              = link_to 'Disconnect', service_path(service), data: { confirm: "Really disconnect service #{service.provider.capitalize}?" }, method: :delete
         - else
           You have not connected any services yet.
 
         - APP_CONFIG['sharing'].each do |service, service_options|
-          - if service_options['enabled']
+          - if service_options['enabled'] and !@services.any? { |x| x.provider == service.to_s }
             %p=link_to "Connect to #{service.capitalize}", "/auth/#{service}"
