@@ -44,6 +44,8 @@ gem 'questiongenerator', git: 'https://github.com/justask/questiongenerator.git'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
+gem 'foreman'
+
 group :development do
   gem 'spring'
 end
