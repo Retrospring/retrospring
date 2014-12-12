@@ -16,10 +16,20 @@
           %h3 The Team
           The people behind justask!
           %br/
-          %ul
-            - @admins.each do |user|
-              %li
-                %a= link_to user.screen_name, show_user_profile_path(user.screen_name)
+          .media
+            .pull-left
+              %a{href: show_user_profile_path('nilsding')}
+                %img.img-rounded.answerbox--img{src: gravatar_url('nilsding@nilsding.org')}
+            .media-body
+              %h4.entry-text.entry-about nilsding
+              %h6.entry-subtext Backend, Server & Code
+          .media
+            .pull-left
+              %a{href: show_user_profile_path('pixeldesu')}
+                %img.img-rounded.answerbox--img{src: gravatar_url('pixeldesu@outlook.com')}
+            .media-body
+              %h4.entry-text.entry-about pixeldesu
+              %h6.entry-subtext Frontend Design & Layout
       .panel.panel-default
         .panel-body
           There are lies, damned lies, and then there are...
