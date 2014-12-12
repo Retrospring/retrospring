@@ -40,6 +40,10 @@ gem 'sinatra', require: false
 
 gem 'questiongenerator', git: 'https://github.com/justask/questiongenerator.git'
 
+# OmniAuth and providers
+gem 'omniauth'
+gem 'omniauth-twitter'
+
 group :development do
   gem 'spring'
 end
