@@ -1,2 +1,19 @@
-<h1>Services#index</h1>
-<p>Find me in app/views/services/index.html.erb</p>
+.container.j2-page
+  = render 'user/settings_tabs'
+  .col-md-9.col-xs-12.col-sm-9
+    .panel.panel-default
+      .panel-body
+        - if @services.count > 0
+          Sharing is enabled for the following services:
+          %ul
+          - @services.each do |service|
+            %li
+              %strong= service.provider
+              (#{service.nickname})
+              = link_to 'Disconnect', service_path(service), data: { confirm: "Really disconnect service #{service.provider}?" }, method: :delete
+        - else
+          You have not connected any services yet.
+
+        - APP_CONFIG['sharing'].each do |service, service_options|
+          - if service_options['enabled']
+            %p=link_to "Connect to #{service.capitalize}", "/auth/#{service}"
