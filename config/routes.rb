@@ -1,6 +1,12 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'
+  constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
+                        req.env['warden'].user.admin? } do
+    mount Sidekiq::Web, at: "/sidekiq"
+  end
+
   get 'notifications/index'
 
   root 'static#index'

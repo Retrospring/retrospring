@@ -36,6 +36,7 @@ gem 'rails_admin'
 
 gem 'twitter'
 gem 'sidekiq'
+gem 'sinatra', require: false
 
 gem 'questiongenerator', git: 'https://github.com/justask/questiongenerator.git'
 
