@@ -35,4 +35,14 @@ class ServicesController < ApplicationController
     flash[:success] = 'Successfully removed service'
     redirect_to services_path
   end
+
+  private
+
+    def origin
+      request.env['omniauth.origin']
+    end
+
+    def omniauth_hash
+      request.env['omniauth.auth']
+    end
 end

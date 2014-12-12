@@ -1,4 +1,6 @@
 class Service < ActiveRecord::Base
+  attr_accessor :provider, :info
+
   belongs_to :user
   validates_uniqueness_of :uid, scope: :type
 
