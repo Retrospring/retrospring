@@ -10,7 +10,7 @@ $(document).on "click", "button[name=ab-destroy]", ->
         answer: aid
       success: (data, status, jqxhr) ->
         if data.success
-          $("div.answer-box[data-id=#{aid}]").slideUp()
+          $("div.answerbox[data-id=#{aid}]").slideUp()
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
