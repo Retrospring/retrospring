@@ -47,11 +47,12 @@ class Ajax::InboxController < ApplicationController
     end
 
     # sharing
-    Thread.new do
+    begin
       share_to = JSON.parse params[:share]
       current_user.services.each do |service|
         service.post(answer) if share_to.include? service.provider
       end
+    rescue
     end
 
     @status = :okay
