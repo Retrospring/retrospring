@@ -3,7 +3,8 @@ module ApplicationHelper
     options = {
       badge: nil,
       badge_color: nil,
-      icon: nil
+      icon: nil,
+      class: ''
     }.merge(options)
 
     unless options[:icon].nil?
@@ -17,7 +18,7 @@ module ApplicationHelper
         }"))}"
     end
 
-    content_tag(:li, link_to(body.html_safe, path), class: ('active' if current_page? path))
+    content_tag(:li, link_to(body.html_safe, path), class: ("#{'active ' if current_page? path}#{options[:class]}"))
   end
   
   ##
