@@ -33,3 +33,16 @@ body {
   background-color: darken($navbar-inverse-bg, 10%);
   color: #fff;
 }
+
+.j2-jumbo h1, .j2-jumbo h2, .j2-jumbo h3, .j2-jumbo h4, .j2-jumbo h5, .j2-jumbo h6 {
+  color: #fff;
+}
+
+.j2-jumbo a, .j2-jumbo a:hover {
+  color: #fff;
+  opacity: 0.6;
+}
+
+.j2-jumbo a:hover {
+  opacity: 1;
+}
