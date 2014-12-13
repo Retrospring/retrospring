@@ -25,6 +25,6 @@
       Delete
     - current_user.services.each do |service|
       %label
-        %input{type: 'checkbox', name: 'ib-share', data: { ib_id: i.id, service: service.provider }}
+        %input{type: 'checkbox', name: 'ib-share', checked: :checked, data: { ib_id: i.id, service: service.provider }}
         Post to
         = service.provider.capitalize
