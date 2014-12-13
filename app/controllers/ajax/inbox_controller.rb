@@ -24,6 +24,7 @@ class Ajax::InboxController < ApplicationController
   def destroy
     params.require :id
     params.require :answer
+    params.require :share
 
     inbox = Inbox.find(params[:id])
 
@@ -45,9 +46,11 @@ class Ajax::InboxController < ApplicationController
       return
     end
 
+    # sharing
+    share_to = JSON.parse params[:share]
     Thread.new do
       current_user.services.each do |service|
-        service.post answer
+        service.post answer if share_to.include? service.provider
       end
     end
 
