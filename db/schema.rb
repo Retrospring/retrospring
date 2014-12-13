@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208111714) do
+ActiveRecord::Schema.define(version: 20141212193625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 20141208111714) do
   add_index "relationships", ["source_id", "target_id"], name: "index_relationships_on_source_id_and_target_id", unique: true, using: :btree
   add_index "relationships", ["source_id"], name: "index_relationships_on_source_id", using: :btree
   add_index "relationships", ["target_id"], name: "index_relationships_on_target_id", using: :btree
+
+  create_table "services", force: true do |t|
+    t.string   "type",          null: false
+    t.integer  "user_id",       null: false
+    t.string   "uid"
+    t.string   "access_token"
+    t.string   "access_secret"
+    t.string   "nickname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "smiles", force: true do |t|
     t.integer  "user_id"

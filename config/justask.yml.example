@@ -1,6 +1,9 @@
 # The site name, shown everywhere.
 site_name: "justask"
 
+hostname: "justask.rrerr.net"
+https: true
+
 # Name of the "Anonymous" user. (e.g. "Anonymous Coward", "Arno Nym", "Mr. X", ...)
 anonymous_name: "Anonymous"
 

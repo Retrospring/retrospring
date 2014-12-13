@@ -25,12 +25,18 @@ $(document).on "click", "button[name=ib-answer]", ->
   btn.button "loading"
   iid = btn[0].dataset.ibId
   $("textarea[name=ib-answer][data-id=#{iid}]").attr "readonly", "readonly"
+
+  shareTo = []
+  ($ "input[type=checkbox][name=ib-share][data-ib-id=#{iid}]:checked").each (i, share) ->
+    shareTo.push share.dataset.service
+
   $.ajax
-    url: '/ajax/answer' # TODO: find a way to use rake routes instead of hardcoding them here
+    url: '/ajax/answer'
     type: 'POST'
     data:
       id: iid
       answer: $("textarea[name=ib-answer][data-id=#{iid}]").val()
+      share: JSON.stringify shareTo
     success: (data, status, jqxhr) ->
       if data.success
         $("div.inbox-box[data-id=#{iid}]").slideUp()

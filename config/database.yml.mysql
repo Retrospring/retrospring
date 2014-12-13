@@ -7,7 +7,7 @@ production:
   collation: utf8_general_ci
   reconnect: false
   database: justask_production
-  pool: 10
+  pool: 25
   username: justask
   password: "hack me"
   # host: localhost

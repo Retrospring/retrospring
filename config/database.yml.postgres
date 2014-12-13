@@ -5,7 +5,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: justask_production
-  pool: 10
+  pool: 25
   # username: justask
   # password:
   # host: localhost
