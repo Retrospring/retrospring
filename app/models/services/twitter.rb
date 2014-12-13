@@ -35,7 +35,6 @@ class Services::Twitter < Service
         host: APP_CONFIG['hostname'],
         protocol: (APP_CONFIG['https'] ? :https : :http)
       )
-      Rails.logger.debug "answer_url => #{answer_url}"
       "#{question_content[0..55]}#{'…' if question_content.length > 56}" \
         " — #{answer_content[0..55]}#{'…' if answer_content.length > 56} #{answer_url}"
     end
