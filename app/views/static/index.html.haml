@@ -55,15 +55,4 @@
           Load more
   .visible-xs= render 'shared/links'
 - else
-  .jumbotron
-    .container
-      = render 'layouts/messages'
-      %h1 Hi!
-      %p Ask questions, give answers and learn more about your friends.
-      %p
-        %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
-          Register now
-      %small
-        Already a member?
-        = link_to 'Sign in', new_user_session_path
-  = render "shared/links"
+    = render 'static/front'

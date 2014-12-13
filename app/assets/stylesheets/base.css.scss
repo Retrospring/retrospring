@@ -28,3 +28,8 @@ body {
 #load-more-btn {
   margin-bottom: 1.5em;
 }
+
+.j2-jumbo {
+  background-color: darken($navbar-inverse-bg, 10%);
+  color: #fff;
+}

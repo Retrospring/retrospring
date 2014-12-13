@@ -1,0 +1,29 @@
+.jumbotron.j2-jumbo.text-center
+  .container
+    = render 'layouts/messages'
+    %h1 justask
+    %p Ask questions, give answers and learn more about your friends.
+    %p
+      %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
+        Register now
+    %small
+      Already a member?
+      = link_to 'Sign in', new_user_session_path
+  %h2 Features
+  .row
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        Ask and receive questions
+      %p
+        With justask you can ask users questions and receive some from other users or unregistered people! Need to know something more? Keep the discussion ongoing with comments!
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        Follow users and get followed
+      %p
+        Following users will allow you to get a personalized feed of all people you want to know more about! Also, you can send a question to all your followers at once!
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        Sharing to other networks
+      %p
+        Want to share the answer you just wrote to a question you think more people should know about? With the simple press of a button your answer is shared where you want!
+  = render "shared/links"
