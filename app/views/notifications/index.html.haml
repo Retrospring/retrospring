@@ -2,6 +2,24 @@
   = render 'notification_tabs'
   .col-md-9.col-xs-12.col-sm-9
     %ul.list-group
+      - Notification.for(current_user).each do |notification|
+        %li.list-group-item
+          .media
+            .pull-left
+              %img.notification--img
+            .media-body
+              - case notification.target_type
+                - when "Answer"
+                  %h6.media-heading.notification--user
+                    = notification.target.user.screen_name
+                  %p.notification--text
+                    answered
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)}
+                      your question
+                    = time_ago_in_words notification.target.created_at
+                    ago
+                  .notification--icon
+                    %i.fa.fa-exclamation
       %li.list-group-item
         .media
           .pull-left

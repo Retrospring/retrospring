@@ -6,6 +6,7 @@ class Inbox < ActiveRecord::Base
     answer = Answer.create!(content: answer,
                             user: user,
                             question: self.question)
+    Notification.notify self.question.user, answer
     user.increment! :answered_count
     self.question.increment! :answer_count
     self.destroy
