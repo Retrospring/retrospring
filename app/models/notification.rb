@@ -22,7 +22,8 @@ class Notification < ActiveRecord::Base
       notif_type = target.notification_type
       return nil unless notif_type
 
-      notif_type.find_by(recipient: recipient, target: target).destroy
+      notif = notif_type.find_by(recipient: recipient, target: target)
+      notif.destroy unless notif.nil?
     end
 
     private
