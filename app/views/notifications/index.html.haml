@@ -6,12 +6,12 @@
         %li.list-group-item
           .media
             .pull-left
-              %img.notification--img
+              %img.notification--img{src: gravatar_url(notification.target.user)}
             .media-body
+              %h6.media-heading.notification--user
+                = user_screen_name notification.target.user
               - case notification.target_type
                 - when "Answer"
-                  %h6.media-heading.notification--user
-                    = notification.target.user.screen_name
                   %p.notification--text
                     answered
                     %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)}
@@ -31,19 +31,6 @@
               followed you!
             .notification--icon
               %i.fa.fa-users
-      %li.list-group-item
-        .media
-          .pull-left
-            %img.notification--img
-          .media-body
-            %h6.media-heading.notification--user
-              username
-            %p.notification--text
-              answered
-              %a your question
-              some time ago!
-            .notification--icon
-              %i.fa.fa-exclamation
       %li.list-group-item
         .media
           .pull-left
