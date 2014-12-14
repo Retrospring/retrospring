@@ -1,0 +1,10 @@
+.media
+  .pull-left
+    %i.fa.fa-smile-o
+  .media-body
+    - if a.smiles.all.count == 0
+      No one smiled this, yet.
+    - else
+      - a.smiles.all.each do |smile|
+        %a{href: show_user_profile_path(smile.user), data: {smile_id: smile.id}}
+          %img.img-rounded.answerbox--img-small{src: gravatar_url(smile.user)}
