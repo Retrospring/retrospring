@@ -47,6 +47,14 @@ module ApplicationHelper
     count.count
   end
 
+  def notification_count
+    return 0 unless user_signed_in?
+    count = Notification.for(current_user).where(new: true)
+    return nil if count.nil?
+    return nil unless count.count > 0
+    count.count
+  end
+
   def privileged?(user)
     (current_user && (current_user == user || current_user.admin?)) ? true : false
   end
