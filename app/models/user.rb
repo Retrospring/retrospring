@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
   # unfollows an user
   def unfollow(target_user)
     active_relationships.find_by(target: target_user).destroy
+    Notification.denotify target_user, relationship
 
     # decrement counts
     decrement! :friend_count
@@ -90,7 +91,8 @@ class User < ActiveRecord::Base
   # unsmile an answer
   # @param answer [Answer] the answer to unsmile
   def unsmile(answer)
-    Smile.find_by(user: self, answer: answer).destroy
+    smile = Smile.find_by(user: self, answer: answer).destroy
+    Notification.denotify answer.user, smile unless answer.user == self
     decrement! :smiled_count
     answer.decrement! :smile_count
   end
