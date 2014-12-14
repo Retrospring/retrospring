@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   def can_be_removed?
     return false if self.answers.count > 0
     return false if Inbox.where(question: self).count > 1
-    self.user.decrement! :asked_count
+    self.user.decrement! :asked_count unless self.author_is_anonymous
     true
   end
 end
