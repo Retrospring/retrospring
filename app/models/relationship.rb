@@ -3,4 +3,8 @@ class Relationship < ActiveRecord::Base
   belongs_to :target, class_name: 'User'
   validates :source_id, presence: true
   validates :target_id, presence: true
+
+  def notification_type(*_args)
+    Notifications::StartedFollowing
+  end
 end

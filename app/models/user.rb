@@ -56,7 +56,8 @@ class User < ActiveRecord::Base
 
   # follows an user.
   def follow(target_user)
-    active_relationships.create(target: target_user)
+    relationship = active_relationships.create(target: target_user)
+    Notification.notify target_user, relationship
 
     # increment counts
     increment! :friend_count
