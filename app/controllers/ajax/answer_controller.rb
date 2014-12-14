@@ -16,6 +16,7 @@ class Ajax::AnswerController < ApplicationController
     if answer.user == current_user
       Inbox.create!(user: answer.user, question: answer.question, new: true)
     end # TODO: decide what happens with the question
+    Notification.denotify self.question.user, answer
     answer.destroy
 
     @status = :okay
