@@ -13,11 +13,7 @@ class Inbox < ActiveRecord::Base
   end
 
   def remove
-    unless self.question.user.nil?
-      self.question.user.decrement! :asked_count if self.question.answer_count == 1
-    end
-
-    self.question.destroy if self.question.answer_count == 1
+    self.question.destroy if self.question.can_be_removed?
     self.destroy
   end
 end
