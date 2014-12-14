@@ -16,6 +16,15 @@ class Notification < ActiveRecord::Base
       make_notification(recipient, target, notif_type)
     end
 
+    def denotify(recipient, target)
+      return nil unless target.respond_to? :notification_type
+
+      notif_type = target.notification_type
+      return nil unless notif_type
+
+      notif_type.find_by(recipient: recipient, target: target).destroy
+    end
+
     private
 
       def make_notification(recipient, target, notification_type)
