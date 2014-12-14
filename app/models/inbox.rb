@@ -13,7 +13,7 @@ class Inbox < ActiveRecord::Base
   end
 
   def remove
-    self.question.destroy if self.question.can_be_removed
+    self.question.destroy if self.question.can_be_removed?
     self.destroy
   end
 end
