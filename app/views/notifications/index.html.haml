@@ -8,7 +8,7 @@
             - case notification.target_type
               - when "Answer"
                 .pull-left
-                  %img.notification--img{src: gravatar_url(notification.target.user)}
+                  %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
                 .media-body
                   %h6.media-heading.notification--user
                     = user_screen_name notification.target.user
@@ -22,7 +22,7 @@
                     %i.fa.fa-exclamation
               - when "Relationship"
                 .pull-left
-                  %img.notification--img{src: gravatar_url(notification.target.source)}
+                  %img.img-rounded.notification--img{src: gravatar_url(notification.target.source)}
                 .media-body
                   %h6.media-heading.notification--user
                     = user_screen_name notification.target.source
@@ -34,7 +34,7 @@
                     %i.fa.fa-users
               - when "Smile"
                 .pull-left
-                  %img.notification--img{src: gravatar_url(notification.target.user)}
+                  %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
                 .media-body
                   %h6.media-heading.notification--user
                     = user_screen_name notification.target.user
@@ -48,7 +48,7 @@
                     %i.fa.fa-smile-o
               - when "Comment"
                 .pull-left
-                  %img.notification--img{src: gravatar_url(notification.target.user)}
+                  %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
                 .media-body
                   %h6.media-heading.notification--user
                     = user_screen_name notification.target.user
