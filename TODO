@@ -18,3 +18,7 @@
 [018|  0%] that annoying "we use cookies" thing every website in the EU must? add
 [019|100%] omniAuth (twatter, fakelook, goggles plus) for social networking elitists
 [020|  0%] helper function for profile headings to resize on certain string length
+[021|  0%] deleting comments
+    |----- restructure comment design
+    |----- comment deletion function
+[022|  0%] recommended follows
