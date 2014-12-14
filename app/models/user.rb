@@ -81,7 +81,8 @@ class User < ActiveRecord::Base
   # smiles an answer
   # @param answer [Answer] the answer to smile
   def smile(answer)
-    Smile.create(user: self, answer: answer)
+    smile = Smile.create(user: self, answer: answer)
+    Notification.notify answer.user, smile unless answer.user == self
     increment! :smiled_count
     answer.increment! :smile_count
   end
