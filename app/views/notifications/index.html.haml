@@ -3,7 +3,7 @@
   .col-md-9.col-xs-12.col-sm-9
     %ul.list-group
       - @notifications.each do |notification|
-        %li.list-group-item
+        %li.list-group-item{class: (notification.new? ? 'list-group-item-warning' : '')}
           .media
             - case notification.target_type
               - when "Answer"
