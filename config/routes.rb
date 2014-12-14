@@ -7,8 +7,6 @@ Rails.application.routes.draw do
     mount Sidekiq::Web, at: "/sidekiq"
   end
 
-  get 'notifications/index'
-
   root 'static#index'
 
   match '/about', to: 'static#about', via: 'get'
@@ -57,6 +55,8 @@ Rails.application.routes.draw do
   end
 
   match '/public', to: 'public#index', via: :get, as: :public_timeline
+
+  match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'all'}
 
   match '/inbox', to: 'inbox#show', via: 'get'
   
