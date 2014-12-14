@@ -5,4 +5,8 @@ class Comment < ActiveRecord::Base
   validates :answer_id, presence: true
 
   validates :content, length: { maximum: 160 }
+
+  def notification_type(*_args)
+    Notifications::Commented
+  end
 end

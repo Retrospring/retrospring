@@ -46,16 +46,17 @@
                     ago
                   .notification--icon
                     %i.fa.fa-smile-o
-      %li.list-group-item
-        .media
-          .pull-left
-            %img.notification--img
-          .media-body
-            %h6.media-heading.notification--user
-              username
-            %p.notification--text
-              commented
-              %a your answer
-              some time ago!
-            .notification--icon
-              %i.fa.fa-comments
+              - when "Comment"
+                .pull-left
+                  %img.notification--img{src: gravatar_url(notification.target.user)}
+                .media-body
+                  %h6.media-heading.notification--user
+                    = user_screen_name notification.target.user
+                  %p.notification--text
+                    commented on
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)}
+                      %a your answer
+                    = time_ago_in_words notification.target.created_at
+                    ago
+                  .notification--icon
+                    %i.fa.fa-comments

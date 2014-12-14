@@ -108,7 +108,8 @@ class User < ActiveRecord::Base
   end
 
   def comment(answer, content)
-    Comment.create!(user: self, answer: answer, content: content)
+    comment = Comment.create!(user: self, answer: answer, content: content)
+    Notification.notify answer.user, comment unless answer.user == self
     increment! :commented_count
     answer.increment! :comment_count
   end
