@@ -2,8 +2,8 @@
   .panel.panel-default
     .panel-body
       %ul.nav.nav-pills.nav-stacked
-        = nav_entry "All notifications", ""
-        = nav_entry "Answers", ""
-        = nav_entry "Smiles", ""
-        = nav_entry "Comments", ""
-        = nav_entry "Followers", ""
+        = nav_entry "All notifications", notifications_path
+        = nav_entry "Answers", notifications_path('answer')
+        = nav_entry "Smiles", notifications_path('smile')
+        = nav_entry "Comments", notifications_path('comment')
+        = nav_entry "Followers", notifications_path('relationship')

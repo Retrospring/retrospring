@@ -2,7 +2,7 @@
   = render 'notification_tabs'
   .col-md-9.col-xs-12.col-sm-9
     %ul.list-group
-      - Notification.for(current_user).each do |notification|
+      - @notifications.each do |notification|
         %li.list-group-item
           .media
             - case notification.target_type
