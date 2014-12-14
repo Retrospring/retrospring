@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
 
   # unfollows an user
   def unfollow(target_user)
-    active_relationships.find_by(target: target_user).destroy
+    relationship = active_relationships.find_by(target: target_user).destroy
     Notification.denotify target_user, relationship
 
     # decrement counts
