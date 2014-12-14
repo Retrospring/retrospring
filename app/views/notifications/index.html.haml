@@ -55,7 +55,7 @@
                   %p.notification--text
                     commented on
                     %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)}
-                      %a your answer
+                      your answer
                     = time_ago_in_words notification.target.created_at
                     ago
                   .notification--icon
