@@ -1,6 +1,6 @@
 class Notification < ActiveRecord::Base
   belongs_to :recipient, class_name: 'User'
-  belongs_to :target, :polymorphic => true
+  belongs_to :target, polymorphic: true
 
   class << self
     def for(recipient, options={})
