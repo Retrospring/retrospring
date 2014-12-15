@@ -3,7 +3,7 @@ $(document).on "click", "button[name=ab-comments]", ->
   btn = $(this)
   aid = btn[0].dataset.aId
   state = btn[0].dataset.state
-  commentBox = $("#ab-comments-#{aid}")
+  commentBox = $("#ab-comments-section-#{aid}")
 
   switch state
     when 'hidden'
@@ -35,7 +35,7 @@ $(document).on "keyup", "input[name=ab-comment-new]", (evt) ->
       success: (data, status, jqxhr) ->
         console.log data
         if data.success
-          $(".panel-footer#ab-comments-#{aid}").html data.render
+          $("#ab-comments-#{aid}").html data.render
           input.val ''
           ctr.html 160
           $("span#ab-comment-count-#{aid}").html data.count
