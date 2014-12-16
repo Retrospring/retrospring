@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
 
   validates :display_name, length: { maximum: 50 }
+  validates :bio, length: { maximum: 200 }
 
   # validates :website, format: { with: WEBSITE_REGEX }
 
