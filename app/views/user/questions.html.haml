@@ -4,7 +4,8 @@
     = render 'user/profile_info'
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-9
-    %h1.j2-lh= @title
+    %h1.j2-lh.hidden-xs= @title
+    %h1.visible-xs= @title
     #questions
       - @questions.each do |q|
         = render 'shared/question', q: q
