@@ -34,3 +34,10 @@
   background-color: darken($navbar-inverse-bg, 10%);
   background-size: cover;
 }
+
+.profile--panel .panel-heading {
+  color: $brand-primary;
+  border-bottom: 2px solid $brand-primary;
+  background-color: #fff;
+  text-transform: uppercase;
+}
