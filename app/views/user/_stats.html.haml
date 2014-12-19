@@ -11,12 +11,12 @@
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= @user.friend_count
           %h6.entry-subtext Following
-      .row
-        %a{href: show_user_questions_path(@user.screen_name)}
-          .col-md-6.col-sm-6.col-xs-6
-            %h4.entry-text#asked-count= @user.asked_count
-            %h6.entry-subtext Questions
-        %a{href: show_user_profile_path(@user.screen_name)}
-          .col-md-6.col-sm-6.col-xs-6
-            %h4.entry-text#answered-count= @user.answered_count
-            %h6.entry-subtext Answers
+    .row
+      %a{href: show_user_questions_path(@user.screen_name)}
+        .col-md-6.col-sm-6.col-xs-6
+          %h4.entry-text#asked-count= @user.asked_count
+          %h6.entry-subtext Questions
+      %a{href: show_user_profile_path(@user.screen_name)}
+        .col-md-6.col-sm-6.col-xs-6
+          %h4.entry-text#answered-count= @user.answered_count
+          %h6.entry-subtext Answers
