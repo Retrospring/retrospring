@@ -7,7 +7,7 @@
     %h1.j2-lh= @title
     #questions
       - @questions.each do |a|
-        = render 'shared/answerbox', a: a
+        = render 'shared/question', a: a
 
     #pagination= will_paginate @questions, renderer: BootstrapPagination::Rails, page_links: false
 
