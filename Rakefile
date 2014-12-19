@@ -79,4 +79,22 @@ namespace :justask do
       puts "#{sprintf "%3d", u.id}. #{u.screen_name}"
     end
   end
+
+  desc "Fixes the notifications"
+  task fix_notifications: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
+    total = Notification.count
+    progress = ProgressBar.create title: 'Processing notifications', format: format, starting_at: 0, total: total
+    destroyed_count = 0
+
+    Notification.all.each do |n|
+      if n.target.nil?
+        n.destroy
+        destroyed_count += 1
+      end
+      progress.increment
+    end
+
+    puts "\nPurged #{destroyed_count} dead notifications."
+  end
 end
