@@ -95,6 +95,6 @@ namespace :justask do
       progress.increment
     end
 
-    puts "\nPurged #{destroyed_count} dead notifications."
+    puts "Purged #{destroyed_count} dead notifications."
   end
 end
