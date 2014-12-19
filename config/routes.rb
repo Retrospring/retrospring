@@ -71,4 +71,5 @@ Rails.application.routes.draw do
   match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question_alt
   match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers_alt, defaults: {page: 1}
   match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends_alt, defaults: {page: 1}
+  match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 end

@@ -36,4 +36,10 @@ class UserController < ApplicationController
     @type = :friend
     render 'show_follow'
   end
+
+  def questions
+    @title = 'Questions'
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first
+    @questions = @user.questions.reverse_order.paginate(page: params[:page])
+  end
 end
