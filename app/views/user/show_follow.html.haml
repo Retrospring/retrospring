@@ -4,7 +4,7 @@
     = render 'user/profile_info'
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-9
-    %h1= @title
+    %h1.j2-lh= @title
     #users
       - @users.each do |user|
         .col-sm-6
