@@ -2,13 +2,13 @@
   .media
     .media-body
       %h6.media-heading.text-muted.answerbox--question-user
-        = user_screen_name a.question.user
+        = user_screen_name q.user
         asked
-        = time_ago_in_words(a.question.created_at)
+        = time_ago_in_words(q.created_at)
         ago
-        - if a.question.answer_count > 1
+        - if q.answer_count > 1
           ·
-          %a{href: show_user_question_path(a.question.user.screen_name, a.question.id)}
-            #{a.question.answer_count} answers
+          %a{href: show_user_question_path(q.user.screen_name, q.id)}
+            #{q.answer_count} answers
       %p.answerbox--question-text
         = a.question.content
