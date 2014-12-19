@@ -40,6 +40,6 @@ class UserController < ApplicationController
   def questions
     @title = 'Questions'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first
-    @questions = @user.questions.reverse_order.paginate(page: params[:page])
+    @questions = @user.questions.where(author_is_anonymous: false).reverse_order.paginate(page: params[:page])
   end
 end
