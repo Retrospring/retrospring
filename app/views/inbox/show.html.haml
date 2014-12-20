@@ -6,11 +6,12 @@
           %h3 Out of questions?
         .panel-body
           %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'} Get new question
-      .panel.panel-default.warning--panel
-        .panel-heading
-          %h3 Actions
-        .panel-body
-          %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all'} Delete all questions
+      /
+        .panel.panel-default.warning--panel
+          .panel-heading
+            %h3 Actions
+          .panel-body
+            %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all'} Delete all questions
     .col-md-9.col-xs-12.col-sm-9
   = render 'layouts/messages'
   #entries
