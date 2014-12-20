@@ -4,7 +4,7 @@
       %button.navbar-toggle{"data-target" => "#j2-main-navbar-collapse", "data-toggle" => "collapse", type: "button"}
         %span.sr-only Toggle navigation
         - if user_signed_in?
-          - unless inbox_count.nil?
+          - unless inbox_count.nil? or notification_count.nil?
             %span.icon-bar.navbar--inbox-animation
             %span.icon-bar.navbar--inbox-animation
             %span.icon-bar.navbar--inbox-animation
