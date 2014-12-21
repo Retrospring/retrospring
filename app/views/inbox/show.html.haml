@@ -10,7 +10,7 @@
         .panel-heading
           %h3.panel-title Actions
         .panel-body
-          %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (@inbox.empty? ? 'disabled' : nil)} Delete all questions
+          %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (@inbox.empty? ? 'disabled' : nil), data: { ib_count: @inbox.count }} Delete all questions
     .col-md-9.col-xs-12.col-sm-9
       = render 'layouts/messages'
       #entries

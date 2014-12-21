@@ -16,8 +16,9 @@
 
 
 ($ document).on "click", "button#ib-delete-all", ->
-  if confirm 'Are you sure?'
-    btn = ($ this)
+  btn = ($ this)
+  count = btn[0].dataset.ibCount
+  if confirm "Really delete #{count} questions?"
     btn.button "loading"
     succ = no
     $.ajax
@@ -38,6 +39,7 @@
         btn.button "reset"
         if succ
           btn.attr "disabled", "disabled"  # this doesn't really work like I wanted it to…
+          btn[0].dataset.ibCount = 0
 
 
 $(document).on "keydown", "textarea[name=ib-answer]", (evt) ->
