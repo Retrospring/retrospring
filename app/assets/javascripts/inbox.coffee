@@ -19,22 +19,25 @@
   if confirm 'Are you sure?'
     btn = ($ this)
     btn.button "loading"
+    succ = no
     $.ajax
       url: '/ajax/delete_all_inbox'
       type: 'POST'
       dataType: 'json'
       success: (data, status, jqxhr) ->
         if data.success
+          succ = yes
           entries = ($ "div#entries")
           entries.slideUp 400, ->
             entries.html("Nothing to see here.")
             entries.fadeIn()
-          btn.attr("disabled", "disabled")
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
         showNotification "An error occurred, a developer should check the console for details", false
       complete: (jqxhr, status) ->
         btn.button "reset"
+        if succ
+          btn.attr "disabled", "disabled"  # this doesn't really work like I wanted it to…
 
 
 $(document).on "keydown", "textarea[name=ib-answer]", (evt) ->
