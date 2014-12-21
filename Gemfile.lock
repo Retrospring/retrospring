@@ -44,6 +44,21 @@ GEM
       railties (>= 3.1)
     buftok (0.2.0)
     builder (3.2.2)
+    capistrano (3.3.5)
+      capistrano-stats (~> 1.1.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.1.2)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano-stats (1.1.1)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -60,6 +75,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colorize (0.7.5)
     connection_pool (2.1.0)
     daemons (1.1.9)
     database_cleaner (1.3.0)
@@ -131,6 +147,9 @@ GEM
     mysql2 (0.3.17)
     naught (1.0.0)
     nested_form (0.3.2)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     nprogress-rails (0.1.6.3)
@@ -254,6 +273,10 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sshkit (1.6.1)
+      colorize (>= 0.7.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0)
@@ -302,6 +325,9 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0.1)
   bootstrap_form
   bootswatch-rails
+  capistrano (~> 3.1)
+  capistrano-rails (~> 1.1)
+  capistrano-rvm
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
