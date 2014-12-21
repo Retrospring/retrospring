@@ -6,6 +6,7 @@
 #= require nprogress
 #= require nprogress-turbolinks
 #= require growl
+#= require cheet
 #= require_tree .
 
 NProgress.configure
