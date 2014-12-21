@@ -1,6 +1,6 @@
 class UserController < ApplicationController
   def show
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @answers = @user.answers.reverse_order.paginate(page: params[:page])
     respond_to do |format|
       format.html
@@ -23,7 +23,7 @@ class UserController < ApplicationController
 
   def followers
     @title = 'Followers'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @users = @user.followers.reverse_order.paginate(page: params[:page])
     @type = :friend
     render 'show_follow'
@@ -31,7 +31,7 @@ class UserController < ApplicationController
 
   def friends
     @title = 'Following'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @users = @user.friends.reverse_order.paginate(page: params[:page])
     @type = :friend
     render 'show_follow'
@@ -39,7 +39,7 @@ class UserController < ApplicationController
 
   def questions
     @title = 'Questions'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @questions = @user.questions.where(author_is_anonymous: false).reverse_order.paginate(page: params[:page])
   end
 end
