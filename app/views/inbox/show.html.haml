@@ -3,12 +3,12 @@
     .col-md-3.col-xs-12.col-sm-3
       .panel.panel-default.inbox--panel
         .panel-heading
-          %h3 Out of questions?
+          %h3.panel-title Out of questions?
         .panel-body
           %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'} Get new question
       .panel.panel-default.warning--panel
         .panel-heading
-          %h3 Actions
+          %h3.panel-title Actions
         .panel-body
           %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (@inbox.empty? ? 'disabled' : nil)} Delete all questions
     .col-md-9.col-xs-12.col-sm-9
