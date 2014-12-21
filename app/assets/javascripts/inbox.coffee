@@ -8,6 +8,10 @@
     success: (data, status, jqxhr) ->
       if data.success
         ($ "div#entries").prepend(data.render) # TODO: slideDown or something
+        # GitHub issue #26:
+        del_all_btn = ($ "button#ib-delete-all")
+        del_all_btn.removeAttr 'disabled'
+        del_all_btn[0].dataset.ibCount = 1
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
       showNotification "An error occurred, a developer should check the console for details", false
