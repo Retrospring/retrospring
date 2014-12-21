@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     match '/answer', to: 'inbox#destroy', via: :post, as: :answer
     match '/generate_question', to: 'inbox#create', via: :post, as: :generate_question
     match '/delete_inbox', to: 'inbox#remove', via: :post, as: :delete_inbox
+    match '/delete_all_inbox', to: 'inbox#remove_all', via: :post, as: :delete_all_inbox
     match '/destroy_answer', to: 'answer#destroy', via: :post, as: :destroy_answer
     match '/create_friend', to: 'friend#create', via: :post, as: :create_friend
     match '/destroy_friend', to: 'friend#destroy', via: :post, as: :destroy_friend

@@ -85,4 +85,20 @@ class Ajax::InboxController < ApplicationController
     @message = "Successfully deleted question."
     @success = true
   end
+
+  def remove_all
+    begin
+      Inbox.where(user: current_user).each { |i| i.remove }
+    rescue
+      @status = :err
+      @message = "An error occurred"
+      @success = false
+      return
+    end
+
+    @status = :okay
+    @message = "Successfully deleted questions."
+    @success = true
+    render 'ajax/inbox/remove'
+  end
 end

@@ -45,3 +45,17 @@
 .profile--panel .panel-body {
   padding-top: 0px;
 }
+
+.inbox--panel .panel-heading {
+  color: $brand-info;
+  border-bottom: 2px solid $brand-info;
+  background-color: #fff;
+  text-transform: uppercase;
+}
+
+.warning--panel .panel-heading {
+  color: $brand-danger;
+  border-bottom: 2px solid $brand-danger;
+  background-color: #fff;
+  text-transform: uppercase;
+}
