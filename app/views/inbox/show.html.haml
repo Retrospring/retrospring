@@ -6,6 +6,8 @@
           %h3.panel-title Out of questions?
         .panel-body
           %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'} Get new question
+          %br
+          %a.btn.btn-block.btn-primary{href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything?url=#{show_user_profile_path(@user.screen_name)}"} Share on Twitter
       .panel.panel-default.warning--panel
         .panel-heading
           %h3.panel-title Actions
