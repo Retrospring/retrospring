@@ -8,9 +8,15 @@
         .media-body
           %h6.text-muted.media-heading.answerbox--question-user
             = user_screen_name a.question.user, a.question.author_is_anonymous
-            asked
-            = time_ago_in_words(a.question.created_at)
-            ago
+            - if @user.nil?
+              asked
+              = time_ago_in_words(a.question.created_at)
+              ago
+            - else
+              asked
+              %a{href: show_user_question_path(a.question.user.screen_name, a.question.id)}
+                = time_ago_in_words(a.question.created_at)
+                ago
             - unless a.question.author_is_anonymous
               - if a.question.answer_count > 1
                 ·
