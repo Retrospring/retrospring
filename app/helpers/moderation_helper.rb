@@ -1,0 +1,2 @@
+module ModerationHelper
+end
