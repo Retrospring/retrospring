@@ -1,0 +1,23 @@
+.panel.panel-default.moderationbox
+  .panel-heading
+    %img.img-rounded.answerbox--img-small
+    username reported some minutes ago
+  .panel-body
+    %p really, really bad content
+    .row
+      .col-md-6.col-sm-4.col-xs-6.text-left
+        %button.btn.btn-primary
+          View reported
+          contenttype
+      .col-md-6.col-sm-8.col-xs-6.text-right
+        %button.btn.btn-success.btn-sm
+          %i.fa.fa-thumbs-up
+          %span 0
+        %button.btn.btn-danger.btn-sm
+          %i.fa.fa-thumbs-down
+          %span 0
+        %button.btn.btn-primary.btn-sm
+          %i.fa.fa-comments
+          %span 0
+  .panel-footer
+    = render 'moderation/discussion'
