@@ -31,15 +31,16 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-=begin
   config.included_models = %w[
     Answer
     Comment
     Inbox
+    Notification
     Question
     Relationship
+    Service
+    Services::Twitter
     Smile
     User
   ]
-=end
 end
