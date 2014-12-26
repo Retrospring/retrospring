@@ -116,4 +116,10 @@ class User < ActiveRecord::Base
     increment! :commented_count
     answer.increment! :comment_count
   end
+
+  # @return [Boolean] is the user a moderator?
+  def mod?
+    return true if self.moderator? or self.admin?
+    false
+  end
 end
