@@ -49,6 +49,11 @@
       .row
         .col-md-6.col-md-offset-6.col-sm-8.col-sm-offset-4.col-xs-6.col-xs-offset-6.text-right
           = render 'shared/answerbox_buttons', a: a
-  .panel-footer{id: "ab-comments-section-#{a.id}", style: 'display: none'}
-    %div{id: "ab-smiles-#{a.id}"}= render 'shared/smiles', a: a
-    %div{id: "ab-comments-#{a.id}"}= render 'shared/comments', a: a
+  -if @display_all.nil?
+    .panel-footer{id: "ab-comments-section-#{a.id}", style: 'display: none'}
+      %div{id: "ab-smiles-#{a.id}"}= render 'shared/smiles', a: a
+      %div{id: "ab-comments-#{a.id}"}= render 'shared/comments', a: a
+  - else
+    .panel-footer{id: "ab-comments-section-#{a.id}"}
+      %div{id: "ab-smiles-#{a.id}"}= render 'shared/smiles', a: a
+      %div{id: "ab-comments-#{a.id}"}= render 'shared/comments', a: a
