@@ -8,12 +8,12 @@
 
           = f.text_field :display_name, label: "Your name"
 
-          = f.text_field :motivation_header, label: "Motivation header"
+          = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
 
-          = f.text_field :website, label: "Website"
+          = f.text_field :website, label: "Website", placeholder: 'http://bad-dragon.com'
 
-          = f.text_field :location, label: "Location"
+          = f.text_field :location, label: "Location", placeholder: 'Germoney'
 
-          = f.text_area :bio, label: "Bio"
+          = f.text_area :bio, label: "Bio", placeholder: 'In Bio war ich nie gut x--DD'
 
           = f.submit "Save settings", class: 'btn btn-primary'
