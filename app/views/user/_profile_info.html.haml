@@ -13,6 +13,10 @@
           %p.profile--admin
             %i.fa.fa-flask
             Admin
+        - if @user.moderator?
+          %p.profile--moderator
+            %i.fa.fa-users
+            Mod
     - unless @user.bio.blank?
       %p.profile--text= @user.bio
     - unless @user.website.blank?

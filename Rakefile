@@ -72,6 +72,26 @@ namespace :justask do
     user.save!
     puts "#{user.screen_name} no longer an admin."
   end
+  
+  desc "Gives moderator status to an user."
+  task :mod, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.moderator = true
+    user.save!
+    puts "#{user.screen_name} is now an moderator."
+  end
+
+  desc "Removes moderator status from an user."
+  task :demod, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.moderator = false
+    user.save!
+    puts "#{user.screen_name} no longer an moderator."
+  end
 
   desc "Lists all users."
   task lusers: :environment do
