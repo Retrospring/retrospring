@@ -1,12 +1,19 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
-  get 'moderation/index'
-
+  # Admin panel
   mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'
+
+  # Sidekiq
   constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
                         req.env['warden'].user.admin? } do
     mount Sidekiq::Web, at: "/sidekiq"
+  end
+
+  # Moderation panel
+  constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
+                       (req.env['warden'].user.admin? or req.env['warden'].user.moderator?) } do
+    match '/moderation', to: 'moderation#index', via: :get, as: :moderation
   end
 
   root 'static#index'
