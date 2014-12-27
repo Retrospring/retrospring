@@ -1,9 +1,17 @@
 .panel.panel-default.moderationbox
   .panel-heading
-    %img.img-rounded.answerbox--img-small
-    username reported some minutes ago
+    %img.img-rounded.answerbox--img{src: gravatar_url(report.user)}
+    = user_screen_name report.user
+    reported a
+    = report.type.sub('Reports::', '')
+    = time_ago_in_words(report.created_at)
+    ago
   .panel-body
-    %p really, really bad content
+    %p
+      - if report.type == 'Reports::User'
+        = user_screen_name report.target
+      - else
+        = report.target.content
     .row
       .col-md-6.col-sm-4.col-xs-6.text-left
         %button.btn.btn-primary
@@ -20,4 +28,4 @@
           %i.fa.fa-comments
           %span 0
   .panel-footer
-    = render 'moderation/discussion'
+    = render 'moderation/discussion', report: report

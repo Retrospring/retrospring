@@ -1,6 +1,6 @@
 There are no comments yet
 %ul.comments
-  - a.comments.all.each do |comment|
+  - report.moderation_comments.all.each do |comment|
     %li{data: { comment_id: comment.id }}
       .media.comments--media
         .pull-left
