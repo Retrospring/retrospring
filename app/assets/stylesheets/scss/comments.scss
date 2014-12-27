@@ -16,7 +16,7 @@
 }
 
 .comments--body {
-  overflow: visible;
+  overflow: visible !important;
 }
 
 .comments--content {
@@ -24,10 +24,6 @@
   word-break: break-all;
 }
 
-.media-body {
-  overflow: visible !important;
-}
-
-.media {
+.comments--media {
   overflow: visible !important;
 }
