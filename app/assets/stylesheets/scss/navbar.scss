@@ -70,7 +70,7 @@
   border-radius: 100%;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 6px rgba(0, 0, 0, 0.12);
   margin: 0px;
-  padding: 15px;
+  padding: 4px 5px 4px 8px;
   font-size: 26px;
   width: 56px;
   height: 56px;
@@ -78,9 +78,9 @@
   outline: medium none !important;
   text-transform: uppercase;
   text-decoration: none;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   right: 0px;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  margin-right: 7px;
+  margin-bottom: 7px;
 }
