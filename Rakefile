@@ -97,4 +97,33 @@ namespace :justask do
 
     puts "Purged #{destroyed_count} dead notifications."
   end
+
+  desc "Prints lonely people."
+  task loners: :environment do
+    people = {}
+    Question.all.each do |q|
+      if q.author_is_anonymous and q.author_name != 'justask'
+        q.answers.each do |a|
+          if q.user == a.user
+            people[q.user.screen_name] ||= 0
+            people[q.user.screen_name] += 1
+            puts "#{q.user.screen_name} -- answer id #{a.id}"
+          end
+        end
+      end
+    end
+
+    max = 0
+    res = []
+    people.each { |k, v| max = v if v > max }
+    people.each { |k, v| res << k if v == max }
+    if res.length == 0
+      puts "No one?  I hope you're just on the development session."
+    else
+      puts res.length == 1 ? "And the winner is..." : "And the winners are..."
+      print "\033[5;31m"
+      res.each { |name| puts " - #{name}" }
+      print "\033[0m"
+    end
+  end
 end
