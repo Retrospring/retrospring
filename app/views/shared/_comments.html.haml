@@ -25,8 +25,6 @@
                     %a{href: '#', name: 'ab-report', data: { a_id: comment.id }}
                       %i.fa.fa-exclamation-triangle
                       Report
-        %b= user_screen_name comment.user
-        = comment.content
 - if user_signed_in?
   .form-group.has-feedback{name: 'ab-comment-new-group', 'data-a-id' => a.id}
     %input.form-control.comments--box{type: :text, placeholder: 'Comment...', name: 'ab-comment-new', data: {a_id: a.id }}
