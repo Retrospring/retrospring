@@ -20,7 +20,7 @@
   .btn-group
     %button.btn.btn-default.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
       %span.caret
-    %ul.dropdown-menu{role: :menu}
+    %ul.dropdown-menu.dropdown-menu-right{role: :menu}
       - if privileged? a.user
         %li.text-danger
           %a{href: '#', name: 'ab-destroy', data: { a_id: a.id }}
