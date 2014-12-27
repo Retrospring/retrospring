@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
                                    dependent: :destroy
   has_many :friends,   through: :active_relationships, source: :target
   has_many :followers, through: :passive_relationships, source: :source
-  has_many :smiles
-  has_many :services
-  has_many :notifications, foreign_key: :recipient_id
+  has_many :smiles, dependent: :destroy
+  has_many :services, dependent: :destroy
+  has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
