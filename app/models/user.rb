@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :smiles
   has_many :services
   has_many :notifications, foreign_key: :recipient_id
+  has_many :reports, dependent: :destroy
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
@@ -130,5 +131,9 @@ class User < ActiveRecord::Base
   def mod?
     return true if self.moderator? or self.admin?
     false
+  end
+
+  def report(object)
+    Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id)
   end
 end

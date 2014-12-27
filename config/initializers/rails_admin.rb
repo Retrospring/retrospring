@@ -38,6 +38,7 @@ RailsAdmin.config do |config|
     Notification
     Question
     Relationship
+    Report
     Service
     Services::Twitter
     Smile

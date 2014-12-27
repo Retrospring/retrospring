@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141226115905) do
+ActiveRecord::Schema.define(version: 20141227130618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,28 @@ ActiveRecord::Schema.define(version: 20141226115905) do
     t.datetime "updated_at"
   end
 
+  create_table "moderation_comments", force: true do |t|
+    t.integer  "report_id"
+    t.integer  "user_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "moderation_comments", ["user_id", "created_at"], name: "index_moderation_comments_on_user_id_and_created_at", using: :btree
+
+  create_table "moderation_votes", force: true do |t|
+    t.integer  "report_id",                  null: false
+    t.integer  "user_id",                    null: false
+    t.boolean  "upvote",     default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "moderation_votes", ["report_id"], name: "index_moderation_votes_on_report_id", using: :btree
+  add_index "moderation_votes", ["user_id", "report_id"], name: "index_moderation_votes_on_user_id_and_report_id", unique: true, using: :btree
+  add_index "moderation_votes", ["user_id"], name: "index_moderation_votes_on_user_id", using: :btree
+
   create_table "notifications", force: true do |t|
     t.string   "target_type"
     t.integer  "target_id"
@@ -78,6 +100,14 @@ ActiveRecord::Schema.define(version: 20141226115905) do
   add_index "relationships", ["source_id", "target_id"], name: "index_relationships_on_source_id_and_target_id", unique: true, using: :btree
   add_index "relationships", ["source_id"], name: "index_relationships_on_source_id", using: :btree
   add_index "relationships", ["target_id"], name: "index_relationships_on_target_id", using: :btree
+
+  create_table "reports", force: true do |t|
+    t.string   "type",       null: false
+    t.integer  "target_id",  null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "services", force: true do |t|
     t.string   "type",          null: false
