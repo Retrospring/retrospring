@@ -16,6 +16,17 @@
   %button.btn.btn-primary.btn-sm{type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden }}
     %i.fa.fa-comments
     %span{id: "ab-comment-count-#{a.id}"}= a.comment_count
-- if privileged? a.user
-  %button.btn.btn-danger.btn-sm{name: 'ab-destroy', data: { a_id: a.id }}
-    %i.fa.fa-trash-o
+- if user_signed_in?
+  .btn-group
+    %button.btn.btn-default.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
+      %span.caret
+    %ul.dropdown-menu{role: :menu}
+      - if privileged? a.user
+        %a{href: '#', name: 'ab-destroy', data: { a_id: a.id }}
+          %li.text-danger
+            %i.fa.fa-trash-o
+            Delete
+      %a{href: '#', name: 'ab-report', data: { a_id: a.id }}
+        %li
+          %i.fa.fa-exclamation-triangle
+          Report
