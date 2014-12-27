@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     match '/answer', to: 'inbox#destroy', via: :post, as: :answer
     match '/generate_question', to: 'inbox#create', via: :post, as: :generate_question
     match '/delete_inbox', to: 'inbox#remove', via: :post, as: :delete_inbox
+    match '/delete_all_inbox', to: 'inbox#remove_all', via: :post, as: :delete_all_inbox
     match '/destroy_answer', to: 'answer#destroy', via: :post, as: :destroy_answer
     match '/create_friend', to: 'friend#create', via: :post, as: :create_friend
     match '/destroy_friend', to: 'friend#destroy', via: :post, as: :destroy_friend
@@ -71,4 +72,5 @@ Rails.application.routes.draw do
   match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question_alt
   match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers_alt, defaults: {page: 1}
   match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends_alt, defaults: {page: 1}
+  match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 end

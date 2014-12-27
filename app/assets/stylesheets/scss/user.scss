@@ -34,3 +34,32 @@
   background-color: darken($navbar-inverse-bg, 10%);
   background-size: cover;
 }
+
+.profile--panel .panel-heading {
+  color: $brand-primary;
+  border-bottom: 2px solid $brand-primary;
+  background-color: #fff;
+  text-transform: uppercase;
+}
+
+.profile--panel .panel-body {
+  padding-top: 0px;
+}
+
+.inbox--panel .panel-heading {
+  color: $brand-info;
+  border-bottom: 2px solid $brand-info;
+  background-color: #fff;
+  text-transform: uppercase;
+}
+
+.warning--panel .panel-heading {
+  color: $brand-danger;
+  border-bottom: 2px solid $brand-danger;
+  background-color: #fff;
+  text-transform: uppercase;
+}
+
+.profile--follow-btn {
+  margin-top: 5px;
+}

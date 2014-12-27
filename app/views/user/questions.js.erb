@@ -1,0 +1,8 @@
+$('#questions').append('<% @questions.each do |q|
+  %><%= j render 'shared/question', q: q
+%><% end %>');
+<% if @questions.next_page %>
+$('#pagination').html('<%= j will_paginate @questions, renderer: BootstrapPagination::Rails, page_links: false %>');
+<% else %>
+$('#pagination, #load-more-btn').remove();
+<% end %>

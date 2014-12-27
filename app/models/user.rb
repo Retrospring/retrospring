@@ -33,6 +33,15 @@ class User < ActiveRecord::Base
 
   # validates :website, format: { with: WEBSITE_REGEX }
 
+  before_save do
+    self.display_name = 'WRYYYYYYYY' if display_name == 'Dio Brando'
+    self.website = if website.match %r{\Ahttps?://}
+                     website
+                   else
+                     "http://#{website}"
+                   end unless website.blank?
+  end
+
   def login=(login)
     @login = login
   end

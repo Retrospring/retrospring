@@ -1,9 +1,11 @@
+.profile--header
 .container.j2-page
-  .col-md-3.col-xs-12.col-sm-3
+  .col-md-4.col-xs-12.col-sm-4
     = render 'user/profile_info'
     .hidden-xs= render 'shared/links'
-  .col-md-9.col-xs-12.col-sm-9
-    %h1= @title
+  .col-md-8.col-xs-12.col-sm-8
+    %h1.j2-lh.hidden-xs= @title
+    %h1.visible-xs= @title
     #users
       - @users.each do |user|
         .col-sm-6

@@ -1,0 +1,18 @@
+.profile--header
+.container.j2-page
+  .col-md-4.col-xs-12.col-sm-4
+    = render 'user/profile_info'
+    .hidden-xs= render 'shared/links'
+  .col-md-8.col-xs-12.col-sm-8
+    %h1.j2-lh.hidden-xs= @title
+    %h1.visible-xs= @title
+    #questions
+      - @questions.each do |q|
+        = render 'shared/question', q: q
+
+    #pagination= will_paginate @questions, renderer: BootstrapPagination::Rails, page_links: false
+
+    - if @questions.next_page
+      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @questions.current_page }}
+        Load more
+  .visible-xs= render 'shared/links'
