@@ -17,7 +17,7 @@
     %i.fa.fa-comments
     %span{id: "ab-comment-count-#{a.id}"}= a.comment_count
 - if user_signed_in?
-  .btn-group.dropdown
+  .btn-group
     %button.btn.btn-default.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
       %span.caret
     %ul.dropdown-menu.dropdown-menu-right{role: :menu}
