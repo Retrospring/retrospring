@@ -46,14 +46,8 @@ class Ajax::InboxController < ApplicationController
       return
     end
 
-    # sharing
-    begin
-      share_to = JSON.parse params[:share]
-      current_user.services.each do |service|
-        service.post(answer) if share_to.include? service.provider
-      end
-    rescue
-    end
+    services = JSON.parse params[:share]
+    ShareWorker.perform_async(current_user.id, answer.id, services)
 
     @status = :okay
     @message = "Successfully answered question."
