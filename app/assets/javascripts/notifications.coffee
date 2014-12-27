@@ -1,1 +1,1 @@
-($ '[data-toggle="tooltip"]').tooltip(placement: 'top')
+($ document).ready -> ($ '[data-toggle="tooltip"]').tooltip()

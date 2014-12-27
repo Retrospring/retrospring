@@ -14,7 +14,7 @@
                     = user_screen_name notification.target.user
                   %p.notification--text
                     answered
-                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: "#{notification.target.content[0..40]}..."}
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id), title: "#{notification.target.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
                       your question
                     = time_ago_in_words notification.target.created_at
                     ago
@@ -40,7 +40,7 @@
                     = user_screen_name notification.target.user
                   %p.notification--text
                     smiled at
-                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: "#{notification.target.answer.content[0..40]}..."}
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
                       your answer
                     = time_ago_in_words notification.target.created_at
                     ago
@@ -54,7 +54,7 @@
                     = user_screen_name notification.target.user
                   %p.notification--text
                     commented on
-                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: "#{notification.target.answer.content[0..40]}..."}
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
                       your answer
                     = time_ago_in_words notification.target.created_at
                     ago
