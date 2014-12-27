@@ -98,6 +98,26 @@ namespace :justask do
     puts "Purged #{destroyed_count} dead notifications."
   end
 
+  desc "Fixes everything else"
+  task fix_db: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
+    total = Inbox.count
+    progress = ProgressBar.create title: 'Processing inboxes', format: format, starting_at: 0, total: total
+    destroyed_count = {
+        inbox: 0
+    }
+
+    Inbox.all.each do |n|
+      if n.question.nil?
+        n.destroy
+        destroyed_count[:inbox] += 1
+      end
+      progress.increment
+    end
+
+    puts "Purged #{destroyed_count[:inbox]} dead inbox entries."
+  end
+
   desc "Prints lonely people."
   task loners: :environment do
     people = {}
