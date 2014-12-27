@@ -23,7 +23,7 @@
     %ul.dropdown-menu.dropdown-menu-right{role: :menu}
       - if privileged? a.user
         %li.text-danger
-          %a{href: '#', name: 'ab-destroy', data: { a_id: a.id }}
+          %a{href: '#', data: { a_id: a.id, action: 'ab-destroy' }}
             %i.fa.fa-trash-o
             Delete
         %li

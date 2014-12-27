@@ -1,4 +1,5 @@
-$(document).on "click", "button[name=ab-destroy]", ->
+$(document).on "click", "a[data-action=ab-destroy]", (ev) ->
+  ev.preventDefault()
   if confirm 'Are you sure?'
     btn = $(this)
     btn.button "loading"
