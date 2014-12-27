@@ -22,11 +22,11 @@
       %span.caret
     %ul.dropdown-menu{role: :menu}
       - if privileged? a.user
-        %a{href: '#', name: 'ab-destroy', data: { a_id: a.id }}
-          %li.text-danger
+        %li.text-danger
+          %a{href: '#', name: 'ab-destroy', data: { a_id: a.id }}
             %i.fa.fa-trash-o
             Delete
-      %a{href: '#', name: 'ab-report', data: { a_id: a.id }}
         %li
-          %i.fa.fa-exclamation-triangle
-          Report
+          %a{href: '#', name: 'ab-report', data: { a_id: a.id }}
+            %i.fa.fa-exclamation-triangle
+            Report
