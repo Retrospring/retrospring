@@ -11,13 +11,10 @@ class Ajax::AnswerController < ApplicationController
       return
     end
 
-    answer.user.decrement! :answered_count
-    answer.question.decrement! :answer_count
     if answer.user == current_user
       Inbox.create!(user: answer.user, question: answer.question, new: true)
     end # TODO: decide what happens with the question
-    Notification.denotify answer.question.user, answer
-    answer.destroy
+    answer.remove
 
     @status = :okay
     @message = "Successfully deleted answer."
