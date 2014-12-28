@@ -4,11 +4,14 @@ class Answer < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :smiles, dependent: :destroy
 
-  def notification_type(*_args)
-    Notifications::QuestionAnswered
-  end
+  before_destroy do
+    # mark a report as deleted if it exists
+    rep = Report.where(target_id: self.id).first
+    unless rep.nil?
+      rep.deleted = true
+      rep.save
+    end
 
-  def remove
     self.user.decrement! :answered_count
     self.question.decrement! :answer_count
     self.smiles.each do |smile|
@@ -19,6 +22,9 @@ class Answer < ActiveRecord::Base
       Notification.denotify self.user, comment
     end
     Notification.denotify self.question.user, self
-    self.destroy
+  end
+
+  def notification_type(*_args)
+    Notifications::QuestionAnswered
   end
 end

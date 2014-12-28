@@ -14,7 +14,7 @@ class Ajax::AnswerController < ApplicationController
     if answer.user == current_user
       Inbox.create!(user: answer.user, question: answer.question, new: true)
     end # TODO: decide what happens with the question
-    answer.remove
+    answer.destroy
 
     @status = :okay
     @message = "Successfully deleted answer."
