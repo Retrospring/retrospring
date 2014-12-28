@@ -126,4 +126,13 @@ class User < ActiveRecord::Base
     increment! :commented_count
     answer.increment! :comment_count
   end
+
+  # @return [Boolean] is the user a moderator?
+  def mod?
+    self.moderator? || self.admin?
+  end
+
+  def report(object)
+    Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id)
+  end
 end
