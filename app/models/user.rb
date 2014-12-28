@@ -29,7 +29,11 @@ class User < ActiveRecord::Base
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 
-  validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }
+  validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }#,
+            #exclusion: { in: %w(justask_admin retrospring_admin admin justask retrospring support about public
+            #                    notifications inbox sign_in sign_up sidekiq moderation moderator mod administrator
+            #                    siteadmin site_admin),
+            #             message: "%{value} is reserved." }
 
   validates :display_name, length: { maximum: 50 }
   validates :bio, length: { maximum: 200 }
@@ -85,7 +89,7 @@ class User < ActiveRecord::Base
   # smiles an answer
   # @param answer [Answer] the answer to smile
   def smile(answer)
-    Smile.create(user: self, answer: answer)
+    Smile.create!(user: self, answer: answer)
   end
 
   # unsmile an answer
@@ -117,5 +121,22 @@ class User < ActiveRecord::Base
 
   def report(object)
     Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id)
+  end
+
+  # @param upvote [Boolean]
+  def report_vote(report, upvote = false)
+    return unless mod?
+    ModerationVote.create!(user: self, report: report, upvote: upvote)
+  end
+
+  def report_unvote(report)
+    return unless mod?
+    ModerationVote.find_by(user: self, report: report).destroy
+  end
+
+  def report_voted?(report)
+    return false unless mod?
+    report.moderation_votes.each { |s| return true if s.user_id == self.id }
+    false
   end
 end

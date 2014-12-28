@@ -18,12 +18,13 @@
           View reported
           = report.type.sub('Reports::', '')
       .col-md-6.col-sm-8.col-xs-6.text-right
-        %button.btn.btn-success.btn-sm
-          %i.fa.fa-thumbs-up
-          %span 0
-        %button.btn.btn-danger.btn-sm
-          %i.fa.fa-thumbs-down
-          %span 0
+        %span.mod-count{id: "mod-count-#{report.id}"}
+          = report.votes
+        .btn-group
+          %button.btn.btn-success.btn-sm{name: "mod-vote", disabled: current_user.report_voted?(report) ? 'disabled' : nil, data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'upvote' }}
+            %i.fa.fa-thumbs-up
+          %button.btn.btn-danger.btn-sm{name: "mod-vote", disabled: current_user.report_voted?(report) ? 'disabled' : nil, data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'downvote' }}
+            %i.fa.fa-thumbs-down
         %button.btn.btn-primary.btn-sm
           %i.fa.fa-comments
           %span 0
