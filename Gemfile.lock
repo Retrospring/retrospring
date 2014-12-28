@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/justask/questiongenerator.git
-  revision: 95bfac7b8e9157702befb5a6f7ea8220037fd804
+  revision: 64d82a2b9de9df699fe5cf53bdfc90cb2bc3e771
   specs:
-    questiongenerator (0.0.1)
+    questiongenerator (0.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -214,6 +214,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redcarpet (3.2.2)
     redis (3.2.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
@@ -352,6 +353,8 @@ DEPENDENCIES
   rails (= 4.1.8)
   rails-assets-growl
   rails_admin
+  redcarpet
+  redis
   rspec-rails (~> 3.0.0)
   ruby-progressbar
   sass-rails (~> 4.0.3)
