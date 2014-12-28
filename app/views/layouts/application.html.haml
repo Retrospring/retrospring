@@ -17,6 +17,12 @@
     - if Rails.env.development?
       %hr
       .container
+        %p
+          Current branch:
+          %code= `git rev-parse --abbrev-ref HEAD`
+          (commit
+          = succeed ')' do
+            = `git rev-parse --short HEAD`.strip
         %p.text-danger Debug params:
         = debug params
 
