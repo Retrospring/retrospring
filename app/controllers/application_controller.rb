@@ -4,11 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  
-  def privileged?(user)
-    (current_user && (current_user == user || current_user.admin?)) ? true : false
-  end
-  
+
+  include ApplicationHelper
+
   protected
 
   def configure_permitted_parameters
