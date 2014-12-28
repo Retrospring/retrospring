@@ -1,4 +1,4 @@
-.panel.panel-default.moderationbox
+.panel.panel-default.moderationbox{data: { id: report.id }}
   .panel-heading
     %img.img-rounded.answerbox--img{src: gravatar_url(report.user)}
     = user_screen_name report.user
@@ -21,14 +21,14 @@
         %span.mod-count{id: "mod-count-#{report.id}"}
           = report.votes
         .btn-group
-          %button.btn.btn-success.btn-sm{name: "mod-vote", disabled: current_user.report_x_voted?(report, true) ? 'disabled' : nil, data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'upvote' }}
+          %button.btn.btn-success.btn-sm{type: :button, name: "mod-vote", disabled: current_user.report_x_voted?(report, true) ? 'disabled' : nil, data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'upvote' }}
             %i.fa.fa-thumbs-up
-          %button.btn.btn-danger.btn-sm{name: "mod-vote", disabled: current_user.report_x_voted?(report, false) ? 'disabled' : nil, data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'downvote' }}
+          %button.btn.btn-danger.btn-sm{type: :button, name: "mod-vote", disabled: current_user.report_x_voted?(report, false) ? 'disabled' : nil, data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'downvote' }}
             %i.fa.fa-thumbs-down
-        %button.btn.btn-primary.btn-sm
+        %button.btn.btn-primary.btn-sm{type: :button}
           %i.fa.fa-comments
           %span 0
-        %button.btn.btn-default.btn-sm
+        %button.btn.btn-default.btn-sm{type: :button, name: "mod-delete-report", data: { id: report.id }}
           %i.fa.fa-trash-o
   .panel-footer
     = render 'moderation/discussion', report: report

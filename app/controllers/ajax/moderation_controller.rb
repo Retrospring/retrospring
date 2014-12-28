@@ -40,4 +40,24 @@ class Ajax::ModerationController < ApplicationController
     @message = "Successfully removed vote from report."
     @success = true
   end
+
+  def destroy_report
+    params.require :id
+
+    report = Report.find(params[:id])
+
+    begin
+      report.deleted = true
+      report.save
+    rescue
+      @status = :fail
+      @message = "Something bad happened!"
+      @success = false
+      return
+    end
+
+    @status = :okay
+    @message = "WHERE DID IT GO??? OH NO!!!"
+    @success = true
+  end
 end
