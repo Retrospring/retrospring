@@ -1,7 +1,7 @@
 class Smile < ActiveRecord::Base
   belongs_to :user
   belongs_to :answer
-  validates :user_id, presence: true
+  validates :user_id, presence: true, uniqueness: { scope: :answer_id, message: "already smiled answer" }
   validates :answer_id, presence: true
 
   after_create do
