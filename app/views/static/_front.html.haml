@@ -1,7 +1,7 @@
 .jumbotron.j2-jumbo.text-center
   .container
     = render 'layouts/messages'
-    %h1 justask
+    %h1= APP_CONFIG['site_name']
     %p Ask questions, give answers and learn more about your friends.
     %p
       %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
@@ -16,7 +16,9 @@
       %h3
         Ask and answer questions
       %p
-        With justask you can ask people questions and answer questions from other users or unregistered people.  Want to know something more?  Keep the discussion ongoing in the comments!
+        With
+        = APP_CONFIG['site_name']
+        you can ask people questions and answer questions from other users or unregistered people.  Want to know something more?  Keep the discussion ongoing in the comments!
     .col-md-4.col-sm-4.col-xs-12
       %h3
         Follow users and get followed

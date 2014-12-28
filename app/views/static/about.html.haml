@@ -14,7 +14,9 @@
       .panel.panel-default
         .panel-body
           %h3 The Team
-          The people behind justask!
+          The people behind
+          = succeed '!' do
+            = APP_CONFIG['site_name']
           %br/
           .media
             .pull-left
