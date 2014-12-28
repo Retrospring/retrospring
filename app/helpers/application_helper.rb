@@ -56,7 +56,7 @@ module ApplicationHelper
   end
 
   def privileged?(user)
-    (current_user && (current_user == user || current_user.admin?)) ? true : false
+    ((!current_user.nil?) && ((current_user == user) || current_user.mod?)) ? true : false
   end
 
   def gravatar_url(user)

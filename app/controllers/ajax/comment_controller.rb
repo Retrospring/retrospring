@@ -20,4 +20,29 @@ class Ajax::CommentController < ApplicationController
     @render = render_to_string(partial: 'shared/comments', locals: { a: answer })
     @count = answer.comment_count
   end
+
+  def destroy
+    params.require :comment
+
+    @status = :err
+    @success = false
+    comment = Comment.find(params[:comment])
+
+    unless (current_user == comment.user) or (current_user == comment.answer.user) or (privileged? comment.user)
+      @status = :nopriv
+      @message = "can't delete other people's comments"
+      @success = false
+      return
+    end
+
+    comment.user.decrement! :commented_count
+    comment.answer.decrement! :comment_count
+    Notification.denotify comment.answer.user, comment
+    @count = comment.answer.comment_count
+    comment.destroy
+
+    @status = :okay
+    @message = "Successfully deleted comment."
+    @success = true
+  end
 end

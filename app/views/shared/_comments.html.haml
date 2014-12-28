@@ -15,17 +15,17 @@
                   %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                     %span.caret
                   %ul.dropdown-menu.dropdown-menu-right{role: :menu}
-                    - if privileged? a.user
+                    - if privileged?(comment.user) or privileged?(a.user)
                       %li.text-danger
-                        %a{href: '#', name: 'ab-destroy', data: { a_id: comment.id }}
+                        %a{href: '#', data: { action: 'ab-comment-destroy', c_id: comment.id }}
                           %i.fa.fa-trash-o
                           Delete
                     %li
-                      %a{href: '#', name: 'ab-report', data: { a_id: comment.id }}
+                      %a{href: '#', data: { action: 'ab-comment-report', c_id: comment.id }}
                         %i.fa.fa-exclamation-triangle
                         Report
             %p.comments--content= comment.content
 - if user_signed_in?
-  .form-group.has-feedback{name: 'ab-comment-new-group', 'data-a-id' => a.id}
+  .form-group.has-feedback{name: 'ab-comment-new-group', data: { a_id: a.id }}
     %input.form-control.comments--box{type: :text, placeholder: 'Comment...', name: 'ab-comment-new', data: {a_id: a.id }}
     %span.text-muted.form-control-feedback.comments--count{id: "ab-comment-charcount-#{a.id}"} 160

@@ -3,10 +3,10 @@ class Ajax::AnswerController < ApplicationController
     params.require :answer
 
     answer = Answer.find(params[:answer])
-    
-    unless privileged? answer.user
+
+    unless (current_user == answer.user) or (privileged? answer.user)
       @status = :nopriv
-      @message = "check yuor privlegs"
+      @message = "can't delete other people's answers"
       @success = false
       return
     end
