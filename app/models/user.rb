@@ -107,10 +107,7 @@ class User < ActiveRecord::Base
   end
 
   def comment(answer, content)
-    comment = Comment.create!(user: self, answer: answer, content: content)
-    Notification.notify answer.user, comment unless answer.user == self
-    increment! :commented_count
-    answer.increment! :comment_count
+    Comment.create!(user: self, answer: answer, content: content)
   end
 
   # @return [Boolean] is the user a moderator?

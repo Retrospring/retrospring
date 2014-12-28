@@ -35,10 +35,7 @@ class Ajax::CommentController < ApplicationController
       return
     end
 
-    comment.user.decrement! :commented_count
-    comment.answer.decrement! :comment_count
-    Notification.denotify comment.answer.user, comment
-    @count = comment.answer.comment_count
+    @count = comment.answer.comment_count - 1
     comment.destroy
 
     @status = :okay

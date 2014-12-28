@@ -5,10 +5,13 @@ class Question < ActiveRecord::Base
 
   validates :content, length: { maximum: 255 }
 
+  before_destroy do
+    user.decrement! :asked_count unless self.author_is_anonymous
+  end
+
   def can_be_removed?
     return false if self.answers.count > 0
     return false if Inbox.where(question: self).count > 1
-    self.user.decrement! :asked_count unless self.author_is_anonymous
     true
   end
 end
