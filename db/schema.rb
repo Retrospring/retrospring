@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141227130618) do
+ActiveRecord::Schema.define(version: 20141228202825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,11 +102,12 @@ ActiveRecord::Schema.define(version: 20141227130618) do
   add_index "relationships", ["target_id"], name: "index_relationships_on_target_id", using: :btree
 
   create_table "reports", force: true do |t|
-    t.string   "type",       null: false
-    t.integer  "target_id",  null: false
-    t.integer  "user_id",    null: false
+    t.string   "type",                       null: false
+    t.integer  "target_id",                  null: false
+    t.integer  "user_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted",    default: false
   end
 
   create_table "services", force: true do |t|
