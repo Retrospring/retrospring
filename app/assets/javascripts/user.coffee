@@ -37,9 +37,9 @@ $(document).on "click", "button[name=user-action]", ->
         switch action
           when 'follow'
             btn[0].dataset.action = 'unfollow'
-            btn.attr 'class', 'btn btn-default btn-block'
+            btn.attr 'class', 'btn btn-default btn-block profile--follow-btn'
             btn.html 'Unfollow'
           when 'unfollow'
             btn[0].dataset.action = 'follow'
-            btn.attr 'class', 'btn btn-primary btn-block'
+            btn.attr 'class', 'btn btn-primary btn-block profile--follow-btn'
             btn.html 'Follow'
