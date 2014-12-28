@@ -15,10 +15,10 @@
                   %span.caret
                 %ul.dropdown-menu.dropdown-menu-right{role: :menu}
                   %li.text-danger
-                    %a{href: '#', name: 'ab-destroy', data: { a_id: comment.id }}
+                    %a{href: '#', name: 'mod-comment-destroy', data: { id: comment.id }}
                       %i.fa.fa-trash-o
                       Delete
             %p.comments--content= comment.content
-.form-group.has-feedback
-  %input.form-control.comments--box{type: :text, placeholder: 'Comment...'}
-  %span.text-muted.form-control-feedback.comments--count 160
+.form-group.has-feedback{name: 'mod-comment-new-group', data: { id: report.id }}
+  %input.form-control.comments--box{type: :text, placeholder: 'Comment...', name: 'mod-comment-new', data: { id: report.id }}
+  %span.text-muted.form-control-feedback.comments--count{id: "mod-comment-charcount-#{report.id}"} 160

@@ -146,4 +146,8 @@ class User < ActiveRecord::Base
     report.moderation_votes.where(upvote: upvote).each { |s| return true if s.user_id == self.id }
     false
   end
+
+  def report_comment(report, content)
+    ModerationComment.create!(user: self, report: report, content: content)
+  end
 end

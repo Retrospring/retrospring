@@ -60,4 +60,31 @@ class Ajax::ModerationController < ApplicationController
     @message = "WHERE DID IT GO??? OH NO!!!"
     @success = true
   end
+
+  def create_comment
+    params.require :id
+    params.require :comment
+
+    report = Report.find(params[:id])
+
+    @success = false
+
+    begin
+      current_user.report_comment(report, params[:comment])
+    rescue ActiveRecord::RecordInvalid
+      @status = :rec_inv
+      @message = "Your comment is too long."
+      return
+    end
+
+    @status = :okay
+    @message = "Comment posted successfully."
+    @success = true
+    @render = render_to_string(partial: 'moderation/discussion', locals: { report: report })
+    @count = report.moderation_comments.all.count
+  end
+
+  def destroy_comment
+
+  end
 end

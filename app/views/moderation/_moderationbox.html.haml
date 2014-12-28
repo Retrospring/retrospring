@@ -25,10 +25,10 @@
             %i.fa.fa-thumbs-up
           %button.btn.btn-danger.btn-sm{type: :button, name: "mod-vote", disabled: current_user.report_x_voted?(report, false) ? 'disabled' : nil, data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'downvote' }}
             %i.fa.fa-thumbs-down
-        %button.btn.btn-primary.btn-sm{type: :button}
+        %button.btn.btn-primary.btn-sm{type: :button, name: 'mod-comments', data: { id: report.id, state: :hidden }}
           %i.fa.fa-comments
-          %span 0
+          %span{id: "mod-comment-count-#{report.id}"}= report.moderation_comments.all.count
         %button.btn.btn-default.btn-sm{type: :button, name: "mod-delete-report", data: { id: report.id }}
           %i.fa.fa-trash-o
-  .panel-footer
-    = render 'moderation/discussion', report: report
+  .panel-footer{id: "mod-comments-section-#{report.id}", style: 'display: none'}
+    %div{id: "mod-comments-#{report.id}"}= render 'moderation/discussion', report: report
