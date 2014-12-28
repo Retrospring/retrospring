@@ -101,12 +101,16 @@ namespace :justask do
   desc "Fixes everything else"
   task fix_db: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
-    total = Inbox.count
-    progress = ProgressBar.create title: 'Processing inboxes', format: format, starting_at: 0, total: total
     destroyed_count = {
-        inbox: 0
+        inbox: 0,
+        question: 0,
+        answer: 0,
+        smile: 0,
+        comment: 0
     }
 
+    total = Inbox.count
+    progress = ProgressBar.create title: 'Processing inboxes', format: format, starting_at: 0, total: total
     Inbox.all.each do |n|
       if n.question.nil?
         n.destroy
@@ -115,7 +119,41 @@ namespace :justask do
       progress.increment
     end
 
+    total = Question.count
+    progress = ProgressBar.create title: 'Processing questions', format: format, starting_at: 0, total: total
+    Question.all.each do |q|
+      if q.user.nil?
+        q.user_id = nil
+        q.author_is_anonymous = true
+        destroyed_count[:question] += 1
+      end
+      progress.increment
+    end
+
+    total = Answer.count
+    progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
+    Answer.all.each do |a|
+      if a.user.nil? or a.question.nil?
+        a.destroy
+        destroyed_count[:answer] += 1
+      end
+      progress.increment
+    end
+
+    total = Comment.count
+    progress = ProgressBar.create title: 'Processing comments', format: format, starting_at: 0, total: total
+    Comment.all.each do |c|
+      if c.user.nil? or c.answer.nil?
+        c.destroy
+        destroyed_count[:comment] += 1
+      end
+      progress.increment
+    end
+
     puts "Purged #{destroyed_count[:inbox]} dead inbox entries."
+    puts "Marked #{destroyed_count[:question]} questions as anonymous."
+    puts "Purged #{destroyed_count[:answer]} dead answers."
+    puts "Purged #{destroyed_count[:answer]} dead comments."
   end
 
   desc "Prints lonely people."
