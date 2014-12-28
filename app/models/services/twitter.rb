@@ -22,7 +22,7 @@ class Services::Twitter < Service
     end
 
     def post_tweet(answer)
-      client.update prepare_tweet(answer)
+      client.update! prepare_tweet(answer)
     end
 
     def prepare_tweet(answer)
@@ -35,7 +35,7 @@ class Services::Twitter < Service
         host: APP_CONFIG['hostname'],
         protocol: (APP_CONFIG['https'] ? :https : :http)
       )
-      "#{question_content[0..55]}#{'…' if question_content.length > 56}" \
+      "#{question_content[0..54]}#{'…' if question_content.length > 55}" \
         " — #{answer_content[0..55]}#{'…' if answer_content.length > 56} #{answer_url}"
     end
 end

@@ -117,4 +117,91 @@ namespace :justask do
 
     puts "Purged #{destroyed_count} dead notifications."
   end
+
+  desc "Fixes everything else"
+  task fix_db: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
+    destroyed_count = {
+        inbox: 0,
+        question: 0,
+        answer: 0,
+        smile: 0,
+        comment: 0
+    }
+
+    total = Inbox.count
+    progress = ProgressBar.create title: 'Processing inboxes', format: format, starting_at: 0, total: total
+    Inbox.all.each do |n|
+      if n.question.nil?
+        n.destroy
+        destroyed_count[:inbox] += 1
+      end
+      progress.increment
+    end
+
+    total = Question.count
+    progress = ProgressBar.create title: 'Processing questions', format: format, starting_at: 0, total: total
+    Question.all.each do |q|
+      if q.user.nil?
+        q.user_id = nil
+        q.author_is_anonymous = true
+        destroyed_count[:question] += 1
+      end
+      progress.increment
+    end
+
+    total = Answer.count
+    progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
+    Answer.all.each do |a|
+      if a.user.nil? or a.question.nil?
+        a.destroy
+        destroyed_count[:answer] += 1
+      end
+      progress.increment
+    end
+
+    total = Comment.count
+    progress = ProgressBar.create title: 'Processing comments', format: format, starting_at: 0, total: total
+    Comment.all.each do |c|
+      if c.user.nil? or c.answer.nil?
+        c.destroy
+        destroyed_count[:comment] += 1
+      end
+      progress.increment
+    end
+
+    puts "Purged #{destroyed_count[:inbox]} dead inbox entries."
+    puts "Marked #{destroyed_count[:question]} questions as anonymous."
+    puts "Purged #{destroyed_count[:answer]} dead answers."
+    puts "Purged #{destroyed_count[:answer]} dead comments."
+  end
+
+  desc "Prints lonely people."
+  task loners: :environment do
+    people = {}
+    Question.all.each do |q|
+      if q.author_is_anonymous and q.author_name != 'justask'
+        q.answers.each do |a|
+          if q.user == a.user
+            people[q.user.screen_name] ||= 0
+            people[q.user.screen_name] += 1
+            puts "#{q.user.screen_name} -- answer id #{a.id}"
+          end
+        end
+      end
+    end
+
+    max = 0
+    res = []
+    people.each { |k, v| max = v if v > max }
+    people.each { |k, v| res << k if v == max }
+    if res.length == 0
+      puts "No one?  I hope you're just on the development session."
+    else
+      puts res.length == 1 ? "And the winner is..." : "And the winners are..."
+      print "\033[5;31m"
+      res.each { |name| puts " - #{name}" }
+      print "\033[0m"
+    end
+  end
 end

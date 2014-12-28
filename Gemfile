@@ -40,11 +40,15 @@ gem 'sinatra', require: false
 
 gem 'questiongenerator', git: 'https://github.com/justask/questiongenerator.git'
 
+gem 'sanitize'
+gem 'redcarpet'
+
 # OmniAuth and providers
 gem 'omniauth'
 gem 'omniauth-twitter'
 
 gem 'foreman'
+gem 'redis'
 
 group :development do
   gem 'spring'

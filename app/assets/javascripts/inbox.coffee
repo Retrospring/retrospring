@@ -42,7 +42,7 @@
       complete: (jqxhr, status) ->
         btn.button "reset"
         if succ
-          btn.attr "disabled", "disabled"  # this doesn't really work like I wanted it to…
+          btn.prop "disabled", true  # this doesn't really work like I wanted it to…
           btn[0].dataset.ibCount = 0
 
 

@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers
+  has_many :inboxes, dependent: :destroy
 
   validates :content, length: { maximum: 255 }
 
