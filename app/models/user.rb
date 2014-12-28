@@ -43,12 +43,6 @@ class User < ActiveRecord::Base
                    end unless website.blank?
   end
 
-  before_destroy do
-    friends.each do |u|
-      unfollow u
-    end
-  end
-
   def login=(login)
     @login = login
   end
@@ -89,19 +83,13 @@ class User < ActiveRecord::Base
   # smiles an answer
   # @param answer [Answer] the answer to smile
   def smile(answer)
-    smile = Smile.create(user: self, answer: answer)
-    Notification.notify answer.user, smile unless answer.user == self
-    increment! :smiled_count
-    answer.increment! :smile_count
+    Smile.create(user: self, answer: answer)
   end
 
   # unsmile an answer
   # @param answer [Answer] the answer to unsmile
   def unsmile(answer)
-    smile = Smile.find_by(user: self, answer: answer).destroy
-    Notification.denotify answer.user, smile unless answer.user == self
-    decrement! :smiled_count
-    answer.decrement! :smile_count
+    Smile.find_by(user: self, answer: answer).destroy
   end
 
   def smiled?(answer)
