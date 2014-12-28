@@ -28,16 +28,19 @@
       console.log jqxhr, status, error
       showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
-      btn.removeAttr 'disabled'
       if success
         switch action
           when 'vote'
+            btn.attr 'disabled', 'disabled'
             btn[0].dataset.action = 'unvote'
-            other_btn = ($ "button[name=mod-vote][data-id=#{id}][data-action=vote]")
-            other_btn.attr 'disabled', 'disabled'
+            console.log("vote for #{upvote ? 'downvote' : 'upvote'}")
+            other_btn = $ "button[name=mod-vote][data-id=#{id}][data-vote-type=#{if upvote then 'downvote' else 'upvote'}]"
+            other_btn.removeAttr 'disabled'
             other_btn[0].dataset.action = 'unvote'
           when 'unvote'
+            btn.removeAttr 'disabled'
             btn[0].dataset.action = 'vote'
-            other_btn = ($ "button[name=mod-vote][data-id=#{id}][data-action=unvote]")
-            other_btn.removeAttr 'disabled'
+            console.log("vote for #{upvote ? 'downvote' : 'upvote'}")
+            other_btn = $ "button[name=mod-vote][data-id=#{id}][data-vote-type=#{if upvote then 'downvote' else 'upvote'}]"
+            other_btn.removeAttr 'disabled', 'disabled'
             other_btn[0].dataset.action = 'vote'

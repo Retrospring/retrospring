@@ -139,4 +139,11 @@ class User < ActiveRecord::Base
     report.moderation_votes.each { |s| return true if s.user_id == self.id }
     false
   end
+
+  # @param upvote [Boolean]
+  def report_x_voted?(report, upvote)
+    return false unless mod?
+    report.moderation_votes.where(upvote: upvote).each { |s| return true if s.user_id == self.id }
+    false
+  end
 end
