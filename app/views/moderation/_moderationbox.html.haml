@@ -14,9 +14,9 @@
         = report.target.content
     .row
       .col-md-6.col-sm-4.col-xs-6.text-left
-        %button.btn.btn-primary
+        %a.btn.btn-primary{href: content_url(report)}
           View reported
-          contenttype
+          = report.type.sub('Reports::', '')
       .col-md-6.col-sm-8.col-xs-6.text-right
         %button.btn.btn-success.btn-sm
           %i.fa.fa-thumbs-up
