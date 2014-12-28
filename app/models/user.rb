@@ -43,6 +43,12 @@ class User < ActiveRecord::Base
                    end unless website.blank?
   end
 
+  before_destroy do
+    friends.each do |u|
+      unfollow u
+    end
+  end
+
   def login=(login)
     @login = login
   end
@@ -67,22 +73,12 @@ class User < ActiveRecord::Base
 
   # follows an user.
   def follow(target_user)
-    relationship = active_relationships.create(target: target_user)
-    Notification.notify target_user, relationship
-
-    # increment counts
-    increment! :friend_count
-    target_user.increment! :follower_count
+    active_relationships.create(target: target_user)
   end
 
   # unfollows an user
   def unfollow(target_user)
-    relationship = active_relationships.find_by(target: target_user).destroy
-    Notification.denotify target_user, relationship
-
-    # decrement counts
-    decrement! :friend_count
-    target_user.decrement! :follower_count
+    active_relationships.find_by(target: target_user).destroy
   end
 
   # @return [Boolean] true if +self+ is following +target_user+
