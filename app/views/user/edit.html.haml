@@ -10,14 +10,20 @@
 
           .media
             .pull-left
-              %div.img-rounded.profile--img{style: 'width:100px;height:100px;overflow:hidden;margin-left:5px:'}
-                %img#profile-picture-preview{src: current_user.profile_picture.url(:medium), style: 'width: 100%; height: 100%'}
+              %img.img-rounded.profile--img{src: current_user.profile_picture.url(:medium)}
             .media-body
               = f.file_field :profile_picture
 
-          .well#profile-picture-crop-controls{style: 'display: none;'}
-            %strong Adjust image
-            %img#profile-picture-cropper{src: current_user.profile_picture.url(:medium)}
+          .row#profile-picture-crop-controls{style: 'display: none;'}
+            .col-sm-10.col-md-8
+              %strong Adjust your new image
+              %img#profile-picture-cropper{src: current_user.profile_picture.url(:medium)}
+            .col-sm-2.col-md-4
+              .btn-group
+                %button#cropper-zoom-out.btn.btn-inverse{type: :button}
+                  %i.fa.fa-search-minus
+                %button#cropper-zoom-in.btn.btn-inverse{type: :button}
+                  %i.fa.fa-search-plus
 
           = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
 
