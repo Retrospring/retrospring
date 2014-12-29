@@ -29,7 +29,6 @@ gem 'font-kit-rails'
 gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.2.0.0'
 gem 'rails-assets-growl'
-gem 'jcrop-rails-v2'
 gem "paperclip", "~> 4.2"
 gem 'delayed_paperclip'
 
