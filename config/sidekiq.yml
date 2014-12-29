@@ -7,3 +7,4 @@ production:
   :concurrency: 25
 :queues:
   - share
+  - paperclip

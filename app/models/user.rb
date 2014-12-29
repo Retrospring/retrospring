@@ -40,8 +40,10 @@ class User < ActiveRecord::Base
 
   # validates :website, format: { with: WEBSITE_REGEX }
 
-  has_attached_file :profile_picture, styles: { medium: "256x256>", thumb: "80x80>" }, default_url: "/images/:style/no_avatar.png"
+  has_attached_file :profile_picture, styles: { medium: "256x256>", thumb: "80x80>" },
+                    default_url: "/images/:style/no_avatar.png", use_timestamp: false
   validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/
+  process_in_background :profile_picture
 
   before_save do
     self.display_name = 'WRYYYYYYYY' if display_name == 'Dio Brando'
