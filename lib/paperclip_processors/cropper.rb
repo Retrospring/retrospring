@@ -5,7 +5,7 @@ module Paperclip
         x = super
         i = x.index '-crop'
         2.times { x.delete_at i } if i
-        x
+        crop_command + x
       else
         super
       end
