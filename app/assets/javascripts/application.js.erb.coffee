@@ -7,6 +7,7 @@
 #= require nprogress-turbolinks
 #= require growl
 #= require cheet
+#= require jquery.Jcrop
 #= require_tree .
 
 NProgress.configure
