@@ -85,6 +85,23 @@ class Ajax::ModerationController < ApplicationController
   end
 
   def destroy_comment
+    params.require :comment
 
+    @status = :err
+    @success = false
+    comment = ModerationComment.find(params[:comment])
+
+    unless current_user == comment.user
+      @status = :nopriv
+      @message = "can't delete other people's comments"
+      @success = false
+      return
+    end
+
+    comment.destroy
+
+    @status = :okay
+    @message = "Successfully deleted comment."
+    @success = true
   end
 end
