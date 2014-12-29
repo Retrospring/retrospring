@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_filter :authenticate_user!, only: %w(edit update)
+
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @answers = @user.answers.reverse_order.paginate(page: params[:page])
@@ -9,14 +11,17 @@ class UserController < ApplicationController
   end
 
   def edit
-    authenticate_user!
   end
 
   def update
-    authenticate_user!
-    user_attributes = params.require(:user).permit(:display_name, :motivation_header, :website, :location, :bio)
-    unless current_user.update_attributes(user_attributes)
-      flash[:error] = 'fork it'
+    user_attributes = params.require(:user).permit(:display_name, :profile_picture, :motivation_header, :website,
+                                                   :location, :bio, :crop_x, :crop_y, :crop_w, :crop_h)
+    if current_user.update_attributes(user_attributes)
+      text = 'Your profile has been updated!'
+      text += ' It might take a few minutes until your new profile picture is shown everywhere.' if user_attributes[:profile_picture]
+      flash[:success] = text
+    else
+      flash[:error] = 'An error occurred. ;_;'
     end
     redirect_to edit_user_profile_path
   end

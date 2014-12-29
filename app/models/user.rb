@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
 
   # validates :website, format: { with: WEBSITE_REGEX }
 
+  has_attached_file :profile_picture, styles: { large: "500x500#", medium: "256x256#", small: "80x80#" },
+                    default_url: "/images/:style/no_avatar.png", use_timestamp: false,
+                    processors: [:cropper]
+  validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/
+  process_in_background :profile_picture
+
   before_save do
     self.display_name = 'WRYYYYYYYY' if display_name == 'Dio Brando'
     self.website = if website.match %r{\Ahttps?://}
@@ -149,5 +155,9 @@ class User < ActiveRecord::Base
 
   def report_comment(report, content)
     ModerationComment.create!(user: self, report: report, content: content)
+  end
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
 end

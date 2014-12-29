@@ -1,11 +1,6 @@
 .container.j2-page
   = render 'user/settings_tabs'
   .col-md-9.col-xs-12.col-sm-9
-    .alert.alert-info
-      We currently only support avatars using
-      = succeed ',' do
-        %a{href: "https://en.gravatar.com"} Gravatar
-      after you set yours up, use the E-Mail you are using for it on here as well, we will directly use this image then!
     = render 'layouts/messages'
     .panel.panel-default
       .panel-body

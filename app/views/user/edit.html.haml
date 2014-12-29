@@ -4,9 +4,26 @@
     = render 'layouts/messages'
     .panel.panel-default
       .panel-body
-        = bootstrap_form_for(current_user, url: {action: "edit"}, method: "patch") do |f|
+        = bootstrap_form_for(current_user, url: {action: "edit"}, :html => { :multipart => true }, method: "patch") do |f|
 
           = f.text_field :display_name, label: "Your name"
+
+          .media
+            .pull-left
+              %img.img-rounded.profile--img{src: current_user.profile_picture.url(:medium)}
+            .media-body
+              = f.file_field :profile_picture
+
+          .row#profile-picture-crop-controls{style: 'display: none;'}
+            .col-sm-10.col-md-8
+              %strong Adjust your new image
+              %img#profile-picture-cropper{src: current_user.profile_picture.url(:medium)}
+            .col-sm-2.col-md-4
+              .btn-group
+                %button#cropper-zoom-out.btn.btn-inverse{type: :button}
+                  %i.fa.fa-search-minus
+                %button#cropper-zoom-in.btn.btn-inverse{type: :button}
+                  %i.fa.fa-search-plus
 
           = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
 
@@ -15,5 +32,8 @@
           = f.text_field :location, label: "Location", placeholder: 'Germoney'
 
           = f.text_area :bio, label: "Bio", placeholder: 'In Bio war ich nie gut x--DD'
+
+          - for attrib in %i(crop_x crop_y crop_w crop_h)
+            = f.hidden_field attrib, id: attrib
 
           = f.submit "Save settings", class: 'btn btn-primary'
