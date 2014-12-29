@@ -48,5 +48,9 @@
           height: Math.round(ry * preview[0].naturalHeight) + 'px'
           marginLeft: '-' + Math.round(rx * coords.x) + 'px'
           marginTop: '-' + Math.round(ry * coords.y) + 'px'
+          ($ '#crop_x').val Math.floor(coords.x)
+          ($ '#crop_y').val Math.floor(coords.y)
+          ($ '#crop_w').val Math.floor(coords.w)
+          ($ '#crop_h').val Math.floor(coords.h)
 
-    fr.readAsDataURL(input.files[0])
+  fr.readAsDataURL(input.files[0])
