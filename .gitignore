@@ -18,6 +18,7 @@ coverage/
 .idea/
 
 /public/assets
+/public/system
 
 # damn vim backup files
 *~
