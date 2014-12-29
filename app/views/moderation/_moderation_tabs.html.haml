@@ -2,7 +2,8 @@
   .panel.panel-default
     .panel-body
       %ul.nav.nav-pills.nav-stacked
-        = nav_entry "All reports", "#"
-        = nav_entry "Users", "#"
-        = nav_entry "Answers", "#"
-        = nav_entry "Comments", "#"
+        = nav_entry "All reports", moderation_path
+        = nav_entry "Answers",     moderation_path('answer')
+        = nav_entry "Comments",    moderation_path('comment')
+        = nav_entry "Users",       moderation_path('user')
+        = nav_entry "Questions",   moderation_path('question')

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # Moderation panel
   constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
                        (req.env['warden'].user.admin? or req.env['warden'].user.moderator?) } do
-    match '/moderation', to: 'moderation#index', via: :get, as: :moderation
+    match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}
     namespace :ajax do
       match '/mod/destroy_report', to: 'moderation#destroy_report', via: :post, as: :mod_destroy_report
       match '/mod/create_comment', to: 'moderation#create_comment', via: :post, as: :mod_create_comment
