@@ -17,6 +17,10 @@
           %p.profile--moderator
             %i.fa.fa-users
             Mod
+    - if @user.following? current_user
+      %p
+        %span.label.label-default
+          FOLLOWS YOU
     - unless @user.bio.blank?
       %p.profile--text= @user.bio
     - unless @user.website.blank?
