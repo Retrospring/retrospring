@@ -8,7 +8,16 @@
 
           = f.text_field :display_name, label: "Your name"
 
-          = f.file_field :profile_picture
+          .media
+            .pull-left
+              %div.img-rounded.profile--img{style: 'width:100px;height:100px;overflow:hidden;margin-left:5px:'}
+                %img#profile-picture-preview{src: current_user.profile_picture.url, style: 'width: 100%; height: 100%'}
+            .media-body
+              = f.file_field :profile_picture
+
+          .well#profile-picture-crop-controls{style: 'display: none;'}
+            %strong Adjust image
+            %img#profile-picture-cropper{src: current_user.profile_picture.url}
 
           = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
 
