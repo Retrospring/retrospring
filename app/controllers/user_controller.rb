@@ -15,7 +15,7 @@ class UserController < ApplicationController
 
   def update
     user_attributes = params.require(:user).permit(:display_name, :profile_picture, :motivation_header, :website,
-                                                   :location, :bio)
+                                                   :location, :bio, :crop_x, :crop_y, :crop_w, :crop_h)
     unless current_user.update_attributes(user_attributes)
       flash[:error] = 'An error occurred. ;_;'
     end
