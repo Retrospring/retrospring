@@ -16,7 +16,12 @@ class Ajax::ReportController < ApplicationController
       return
     end
 
-    object = params[:type].strip.capitalize.constantize.find params[:id]
+    object = if params[:type] == 'user'
+               User.find_by_screen_name params[:id]
+             else
+               params[:type].strip.capitalize.constantize.find params[:id]
+             end
+
 
     if object.nil?
       @message = "Could not find #{params[:type]}"
