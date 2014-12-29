@@ -4,9 +4,11 @@
     = render 'layouts/messages'
     .panel.panel-default
       .panel-body
-        = bootstrap_form_for(current_user, url: {action: "edit"}, method: "patch") do |f|
+        = bootstrap_form_for(current_user, url: {action: "edit"}, :html => { :multipart => true }, method: "patch") do |f|
 
           = f.text_field :display_name, label: "Your name"
+
+          = f.file_field :profile_picture
 
           = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
 
