@@ -60,6 +60,7 @@ module ApplicationHelper
   end
 
   def gravatar_url(user)
+    return user.profile_picture.url
     # return '/cage.png'
     return '//www.gravatar.com/avatar' if user.nil?
     return "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user)}" if user.is_a? String
