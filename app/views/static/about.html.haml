@@ -21,14 +21,14 @@
           .media
             .pull-left
               %a{href: show_user_profile_path('nilsding')}
-                %img.img-rounded.answerbox--img{src: gravatar_url('nilsding@nilsding.org')}
+                %img.img-rounded.answerbox--img{src: User.find_by_screen_name('nilsding').profile_picture.url}
             .media-body
               %h4.entry-text.entry-about nilsding
               %h6.entry-subtext Backend, Server & Code
           .media
             .pull-left
               %a{href: show_user_profile_path('pixeldesu')}
-                %img.img-rounded.answerbox--img{src: gravatar_url('pixeldesu@outlook.com')}
+                %img.img-rounded.answerbox--img{src: User.find_by_screen_name('pixeldesu').profile_picture.url}
             .media-body
               %h4.entry-text.entry-about pixeldesu
               %h6.entry-subtext Frontend Design & Layout
