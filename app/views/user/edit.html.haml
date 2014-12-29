@@ -27,4 +27,7 @@
 
           = f.text_area :bio, label: "Bio", placeholder: 'In Bio war ich nie gut x--DD'
 
+          - for attrib in %i(crop_x crop_y crop_w crop_h)
+            = f.hidden_field attrib, id: attrib
+
           = f.submit "Save settings", class: 'btn btn-primary'
