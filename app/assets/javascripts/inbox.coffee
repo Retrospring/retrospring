@@ -11,7 +11,7 @@
         # GitHub issue #26:
         del_all_btn = ($ "button#ib-delete-all")
         del_all_btn.removeAttr 'disabled'
-        del_all_btn[0].dataset.ibCount = 1
+        del_all_btn[0].dataset.ibCount = (Number del_all_btn[0].dataset.ibCount) + 1
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
       showNotification "An error occurred, a developer should check the console for details", false
@@ -40,9 +40,10 @@
         console.log jqxhr, status, error
         showNotification "An error occurred, a developer should check the console for details", false
       complete: (jqxhr, status) ->
-        btn.button "reset"
         if succ
-          btn.prop "disabled", true  # this doesn't really work like I wanted it to…
+          # and now: a (broken?) re-implementation of Bootstrap's button.js
+          btn.html btn.data('resetText')
+          btn.removeClass 'disabled'
           btn[0].dataset.ibCount = 0
 
 
