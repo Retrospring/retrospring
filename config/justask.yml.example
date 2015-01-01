@@ -4,6 +4,8 @@ site_name: "justask"
 hostname: "justask.rrerr.net"
 https: true
 
+email_from: "noreply@justask.rrerr.net"
+
 # Name of the "Anonymous" user. (e.g. "Anonymous Coward", "Arno Nym", "Mr. X", ...)
 anonymous_name: "Anonymous"
 
