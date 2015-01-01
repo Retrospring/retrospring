@@ -1,3 +1,8 @@
-%p Welcome #{@screen_name}!
+%p
+  Welcome to
+  = succeed ',' do
+    = APP_CONFIG['site_name']
+  = succeed '!' do
+    = @resource.screen_name
 %p You can confirm your account email through the link below:
 %p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)

@@ -3,7 +3,7 @@
   = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
     = devise_error_messages!
 
-    = f.email_field :screen_name, autofocus: true, label: "User name"
+    = f.text_field :screen_name, autofocus: true, label: "User name"
     = f.submit "Resend confirmation instructions"
 
   = render "devise/shared/links"
