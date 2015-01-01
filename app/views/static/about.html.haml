@@ -32,6 +32,13 @@
             .media-body
               %h4.entry-text.entry-about pixeldesu
               %h6.entry-subtext Frontend Design & Layout
+          %h3 Moderators
+          %ul.about--moderator
+            - User.where(moderator: true).each do |mod|
+              %li
+                %a{href: show_user_profile_path(mod.screen_name)}
+                  %img.answerbox--img-small{src: User.find_by_screen_name(mod.screen_name).profile_picture.url(:medium)}
+                = mod.screen_name
       .panel.panel-default
         .panel-body
           There are lies, damned lies, and then there are...
