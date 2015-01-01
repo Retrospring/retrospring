@@ -20,10 +20,11 @@
                         %a{href: '#', data: { action: 'ab-comment-destroy', c_id: comment.id }}
                           %i.fa.fa-trash-o
                           Delete
-                    %li
-                      %a{href: '#', data: { action: 'ab-comment-report', c_id: comment.id }}
-                        %i.fa.fa-exclamation-triangle
-                        Report
+                    - unless comment.user == current_user
+                      %li
+                        %a{href: '#', data: { action: 'ab-comment-report', c_id: comment.id }}
+                          %i.fa.fa-exclamation-triangle
+                          Report
             %p.comments--content= comment.content
 - if user_signed_in?
   .form-group.has-feedback{name: 'ab-comment-new-group', data: { a_id: a.id }}
