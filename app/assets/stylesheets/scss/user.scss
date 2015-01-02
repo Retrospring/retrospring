@@ -23,6 +23,13 @@
 }
 
 .profile--moderator {
+  color: $brand-success;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 80%;
+}
+
+.profile--supporter {
   color: $brand-warning;
   text-transform: uppercase;
   font-weight: bold;

@@ -17,6 +17,10 @@
           %p.profile--moderator
             %i.fa.fa-users
             Mod
+        - if @user.supporter?
+          %p.profile-supporter
+            %i.fa.fa-star
+              Supporter
     - if @user.following? current_user
       %p
         %span.label.label-default
