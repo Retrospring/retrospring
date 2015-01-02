@@ -39,6 +39,8 @@
                 %li= link_to "Moderation panel", moderation_path
                 %li.divider
               %li= link_to "Logout",  destroy_user_session_path, method: :delete
+          .btn.btn-primary.navbar-btn.hidden-xs{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
+            %i.fa.fa-pencil-square-o
       - else
         %ul.nav.navbar-nav.navbar-right
           = nav_entry "Sign in", new_user_session_path
@@ -47,5 +49,5 @@
 - if user_signed_in?
   = render 'shared/modal_ask_followers'
 - if user_signed_in?
-  %button.btn.btn-primary.btn-fab{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
+  %button.btn.btn-primary.btn-fab.visible-xs{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
     %i.fa.fa-pencil-square-o
