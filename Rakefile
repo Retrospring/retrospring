@@ -93,6 +93,26 @@ namespace :justask do
     puts "#{user.screen_name} no longer an moderator."
   end
 
+  desc "Gives supporter status to an user."
+  task :sup, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.supporter = true
+    user.save!
+    puts "#{user.screen_name} is now an moderator."
+  end
+
+  desc "Removes supporter status from an user."
+  task :desup, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.supporter = false
+    user.save!
+    puts "#{user.screen_name} no longer an moderator."
+  end
+
   desc "Lists all users."
   task lusers: :environment do
     User.all.each do |u|
