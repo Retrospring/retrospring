@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :authenticate_user!, only: %w(edit update)
+  before_filter :authenticate_user!, only: %w(edit update privacy)
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
@@ -24,6 +24,10 @@ class UserController < ApplicationController
       flash[:error] = 'An error occurred. ;_;'
     end
     redirect_to edit_user_profile_path
+  end
+
+  def privacy
+
   end
 
   def followers
