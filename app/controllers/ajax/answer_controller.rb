@@ -38,10 +38,14 @@ class Ajax::AnswerController < ApplicationController
     services = JSON.parse params[:share]
     ShareWorker.perform_async(current_user.id, answer.id, services)
 
+
     @status = :okay
     @message = "Successfully answered question."
     @success = true
-    @render = render_to_string(partial: 'shared/answerbox', locals: { a: answer, show_question: false }) unless inbox
+    unless inbox
+      @question = 1
+      @render = render_to_string(partial: 'shared/answerbox', locals: { a: answer, show_question: false })
+    end
   end
 
   def destroy

@@ -14,8 +14,9 @@
             ago
           %p.answerbox--question-text= @question.content
 
-  - @answers.each do |a|
-    = render 'shared/answerbox', a: a, show_question: false
+  #answers
+    - @answers.each do |a|
+      = render 'shared/answerbox', a: a, show_question: false
 
   - if user_signed_in? and !current_user.answered? @question and current_user != @question.user
     .panel.panel-default#q-answer-box

@@ -27,8 +27,7 @@ $(document).on "click", "button#q-answer", ->
     success: (data, status, jqxhr) ->
       if data.success
         $("div#q-answer-box").slideUp()
-        # TODO:
-        # ($ "div#q-answer-box").prepend data.render
+        ($ "div#answers").prepend data.render
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
