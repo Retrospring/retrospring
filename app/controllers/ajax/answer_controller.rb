@@ -41,6 +41,7 @@ class Ajax::AnswerController < ApplicationController
     @status = :okay
     @message = "Successfully answered question."
     @success = true
+    @render = render_to_string(partial: 'shared/answerbox', locals: { a: answer, show_question: false }) unless inbox
   end
 
   def destroy

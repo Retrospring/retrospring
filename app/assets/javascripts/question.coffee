@@ -18,6 +18,7 @@ $(document).on "click", "button#q-answer", ->
   $.ajax
     url: '/ajax/answer'
     type: 'POST'
+    dataType: 'json'
     data:
       id: qid
       answer: $("textarea#q-answer[data-id=#{qid}]").val()
@@ -26,6 +27,8 @@ $(document).on "click", "button#q-answer", ->
     success: (data, status, jqxhr) ->
       if data.success
         $("div#q-answer-box").slideUp()
+        # TODO:
+        # ($ "div#q-answer-box").prepend data.render
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
