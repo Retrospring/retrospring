@@ -34,7 +34,7 @@
       .profile--username
         = @user.screen_name
     - if @user.following? current_user
-      %p
+      %p.profile--followtag
         %span.label.label-default.j2-up
           Follows you
     - unless @user.bio.blank?
