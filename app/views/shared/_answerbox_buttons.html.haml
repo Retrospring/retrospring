@@ -5,31 +5,20 @@
       users smiled this
 - if user_signed_in?
   - if current_user.smiled? a
-    %button.btn.btn-info.btn-sm.hidden-xs{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile }}
-      %i.fa.fa-frown-o
-      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
-    %button.btn.btn-info.btn-xs.visible-xs{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile }}
+    %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile }}
       %i.fa.fa-frown-o
       %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
   - else
-    %button.btn.btn-info.btn-sm.hidden-xs{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :smile }}
-      %i.fa.fa-smile-o
-      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
-    %button.btn.btn-info.btn-xs.visible-xs{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :smile }}
+    %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :smile }}
       %i.fa.fa-smile-o
       %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
 - unless @display_all
-  %button.btn.btn-primary.btn-sm.hidden-xs{type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden }}
-    %i.fa.fa-comments
-    %span{id: "ab-comment-count-#{a.id}"}= a.comment_count
-  %button.btn.btn-primary.btn-xs.visible-xs{type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden }}
+  %button.btn.btn-primary.btn-sm{type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden }}
     %i.fa.fa-comments
     %span{id: "ab-comment-count-#{a.id}"}= a.comment_count
 - if user_signed_in?
   .btn-group
-    %button.btn.btn-default.btn-sm.hidden-xs.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
-      %span.caret
-    %button.btn.btn-default.btn-xs.visible-xs.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
+    %button.btn.btn-default.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
       %span.caret
     %ul.dropdown-menu.dropdown-menu-right{role: :menu}
       - if privileged? a.user
