@@ -101,6 +101,13 @@ class User < ActiveRecord::Base
                    question: question)
   end
 
+  # has the user answered +question+ yet?
+  # @param question [Question]
+  def answered?(question)
+    question.answers.each { |a| return true if a.user_id == self.id }
+    false
+  end
+
   # smiles an answer
   # @param answer [Answer] the answer to smile
   def smile(answer)
