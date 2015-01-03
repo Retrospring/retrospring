@@ -5,13 +5,27 @@
       - unless @question.author_is_anonymous
         %a.pull-left{href: show_user_profile_path(@question.user.screen_name)}
           %img.img-rounded.answerbox--img{src: gravatar_url(@question.user)}
-        .media-body
-          %h6.text-muted.media-heading.answerbox--question-user
-            = user_screen_name @question.user, @question.author_is_anonymous
-            asked
-            = time_ago_in_words(@question.created_at)
-            ago
-          %p.answerbox--question-text= @question.content
+      .media-body
+        %h6.text-muted.media-heading.answerbox--question-user
+          = user_screen_name @question.user, @question.author_is_anonymous
+          asked
+          = time_ago_in_words(@question.created_at)
+          ago
+        %p.answerbox--question-text= @question.content
+
+  - if user_signed_in? and !current_user.answered? @question
+    #q-answer-box
+      Add your Senf here:
+      .panel-body
+        %textarea#q-answer.form-control{placeholder: 'Write your answer here...', data: { id: @question.id }}
+        %br/
+        %button#q-answer.btn.btn-success{data: { q_id: @question.id }}
+          Answer
+        - current_user.services.each do |service|
+          %label
+            %input{type: 'checkbox', name: 'share', checked: :checked, data: { q_id: @question.id, service: service.provider }}
+            Post to
+            = service.provider.capitalize
 
   - @answers.each do |a|
     = render 'shared/answerbox', a: a, show_question: false
