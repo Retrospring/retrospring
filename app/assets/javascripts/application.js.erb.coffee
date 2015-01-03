@@ -8,6 +8,7 @@
 #= require growl
 #= require cheet
 #= require jquery.guillotine
+#= require sweet-alert
 #= require_tree .
 
 NProgress.configure
