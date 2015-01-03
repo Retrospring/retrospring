@@ -7,8 +7,6 @@ class Ajax::AnswerController < ApplicationController
 
     inbox = (params[:inbox] == 'true')
 
-    puts inbox
-
     if inbox
       inbox_entry = Inbox.find(params[:id])
 
