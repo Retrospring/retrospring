@@ -2,7 +2,7 @@ $(document).on "click", "a[data-action=ab-destroy]", (ev) ->
   ev.preventDefault()
   swal
     title: "Are you sure?"
-    text: "You will not be able to recover this!"
+    text: "If you delete this answer it will be moved back to your inbox!"
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
