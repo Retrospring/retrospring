@@ -17,7 +17,7 @@
   - @answers.each do |a|
     = render 'shared/answerbox', a: a, show_question: false
 
-  - if user_signed_in? and !current_user.answered? @question
+  - if user_signed_in? and !current_user.answered? @question and current_user != @question.user
     .panel.panel-default#q-answer-box
       .panel-heading
         %h3.panel-title This question was not in your inbox? Answer it here!
