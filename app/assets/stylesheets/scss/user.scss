@@ -87,48 +87,9 @@
 }
 
 .profile--avatar {
-  width: 100%;
-  height: auto;
-}
-
-.profile--avatar img {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   width: 100%;
   height: auto;
   border: medium none;
-}
-
-.profile--avatar .dimmer {
-  position: absolute;
-  top: 0px !important;
-  left: 0px !important;
-  width: 100%;
-  height: 100%;
-  display: block;
-  min-height: 0px;
-  background: none repeat scroll 0% 0% #FFF;
-  padding: 0px;
-  border: medium none;
-  border-radius: 0.2857rem;
-  box-shadow: 0px 0.2em 0px 0px #D4D4D5, 0px 0px 0px 1px #D4D4D5;
-  transition: box-shadow 0.2s ease 0s;
-  opacity: 0;
-}
-
-.profile--avatar .dimmer:hover {
-  opacity: 1;
-}
-
-.profile--avatar .dimmer .content {
-  width: 100%;
-  height: 100%;
-  display: table;
-  -moz-user-select: text;
-}
-
-.profile--avatar .dimmer .content .center {
-  display: table-cell;
-  vertical-align: middle;
-  padding: 20px;
 }
