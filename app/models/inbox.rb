@@ -2,13 +2,8 @@ class Inbox < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
 
-  def answer(answer, user)
-    answer = Answer.create!(content: answer,
-                            user: user,
-                            question: self.question)
-    Notification.notify self.question.user, answer unless self.question.author_is_anonymous
-    user.increment! :answered_count
-    self.question.increment! :answer_count
+  def answer(answer_content, user)
+    answer = user.answer(self.question, answer_content)
     self.destroy
     answer
   end

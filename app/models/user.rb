@@ -92,6 +92,15 @@ class User < ActiveRecord::Base
     friends.include? target_user
   end
 
+  # answers a question
+  # @param question [Question] the question to answer
+  # @param content [String] the answer content
+  def answer(question, content)
+    Answer.create!(content: content,
+                   user: self,
+                   question: question)
+  end
+
   # smiles an answer
   # @param answer [Answer] the answer to smile
   def smile(answer)
@@ -125,6 +134,7 @@ class User < ActiveRecord::Base
     self.moderator? || self.admin?
   end
 
+  # region stuff used for reporting/moderation
   def report(object)
     Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id)
   end
@@ -156,6 +166,7 @@ class User < ActiveRecord::Base
   def report_comment(report, content)
     ModerationComment.create!(user: self, report: report, content: content)
   end
+  # endregion
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
