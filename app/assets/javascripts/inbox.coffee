@@ -23,12 +23,12 @@
   btn = ($ this)
   count = btn[0].dataset.ibCount
   swal
-    title: "Really delete #{count} questions??"
-    text: "You will not be able to recover them!"
+    title: "Really delete #{count} questions?"
+    text: "They will be gone forever."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Yes, delete all!"
+    confirmButtonText: "Delete"
     closeOnConfirm: false
   , ->
     btn.button "loading"
@@ -93,12 +93,12 @@ $(document).on "click", "button[name=ib-answer]", ->
 
 $(document).on "click", "button[name=ib-destroy]", ->
   swal
-    title: "Are you sure?"
-    text: "You will not be able to recover this question!"
+    title: "Really delete?"
+    text: "This question will be gone forever."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Delete"
     closeOnConfirm: false
   , ->
     btn = $(this)

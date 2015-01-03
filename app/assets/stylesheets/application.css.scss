@@ -2,9 +2,8 @@
  *= require rails_bootstrap_forms
  *= require growl
  *= require jquery.guillotine
- *= require_self
  *= require sweet-alert
- *= require_tree .
+ *= require_self
  */
 
 @import url(https://fonts.googleapis.com/css?family=Exo+2:400,700);

@@ -69,12 +69,12 @@ $(document).on "input", "input[name=mod-comment-new]", (evt) ->
 $(document).on "click", "a[data-action=mod-comment-destroy]", (ev) ->
   ev.preventDefault()
   swal
-    title: "Are you sure?"
-    text: "You will not be able to recover this comment!"
+    title: "Really delete?"
+    text: "You will not be able to recover this comment."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Delete"
     closeOnConfirm: false
   , ->
     btn = $(this)

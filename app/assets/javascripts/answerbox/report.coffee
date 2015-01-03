@@ -1,12 +1,12 @@
 $(document).on "click", "a[data-action=ab-report]", (ev) ->
   ev.preventDefault()
   swal
-    title: "Report?"
-    text: "A moderator will check this and decide what happens!"
+    title: "Really report?"
+    text: "A moderator will review this comment and decide what happens."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Report!"
+    confirmButtonText: "Report"
     closeOnConfirm: false
   , ->
     btn = $(this)

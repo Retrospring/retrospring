@@ -1,11 +1,11 @@
 $(document).on "click", "button[name=mod-delete-report]", ->
   swal
-    title: "Are you sure?"
-    text: "You will not be able to recover this!"
+    title: "Really delete?"
+    text: "You will not be able to recover this report."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Delete"
     closeOnConfirm: false
   , ->
     btn = $(this)

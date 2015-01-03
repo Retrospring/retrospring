@@ -1,12 +1,12 @@
 $(document).on "click", "a[data-action=ab-destroy]", (ev) ->
   ev.preventDefault()
   swal
-    title: "Are you sure?"
-    text: "If you delete this answer it will be moved back to your inbox!"
+    title: "Really delete?"
+    text: "The question will be moved back to your inbox."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Delete"
     closeOnConfirm: false
   , ->
     btn = $(this)
