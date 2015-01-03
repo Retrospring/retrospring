@@ -3,6 +3,8 @@
  *= require growl
  *= require jquery.guillotine
  *= require_self
+ *= require sweet-alert
+ *= require_tree .
  */
 
 @import url(https://fonts.googleapis.com/css?family=Exo+2:400,700);
