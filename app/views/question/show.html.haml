@@ -14,6 +14,9 @@
             ago
           %p.answerbox--question-text= @question.content
 
+  - @answers.each do |a|
+    = render 'shared/answerbox', a: a, show_question: false
+
   - if user_signed_in? and !current_user.answered? @question
     .panel.panel-default#q-answer-box
       .panel-heading
@@ -28,7 +31,3 @@
             %input{type: 'checkbox', name: 'share', checked: :checked, data: { q_id: @question.id, service: service.provider }}
             Post to
             = service.provider.capitalize
-
-  - @answers.each do |a|
-    = render 'shared/answerbox', a: a, show_question: false
-
