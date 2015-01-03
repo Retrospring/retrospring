@@ -2,14 +2,14 @@ $(document).on "keydown", "textarea#q-answer", (evt) ->
   qid = $(this)[0].dataset.id
   if evt.keyCode == 13 and evt.ctrlKey
     # trigger warning:
-    $("button#q-answer[data-q-id=#{qid}]").trigger 'click'
+    $("button#q-answer").trigger 'click'
 
 
 $(document).on "click", "button#q-answer", ->
   btn = $(this)
   btn.button "loading"
   qid = btn[0].dataset.qId
-  $("textarea#q-answer[data-q=#{qid}]").attr "readonly", "readonly"
+  $("textarea#q-answer").attr "readonly", "readonly"
 
   shareTo = []
   ($ "input[type=checkbox][name=share][data-q-id=#{qid}]:checked").each (i, share) ->
@@ -34,4 +34,4 @@ $(document).on "click", "button#q-answer", ->
       showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
       btn.button "reset"
-      $("textarea#q-answer[data-id=#{qid}]").removeAttr "readonly"
+      $("textarea#q-answer").removeAttr "readonly"
