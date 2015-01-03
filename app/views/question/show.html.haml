@@ -24,7 +24,7 @@
     %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
       Load more
 
-  - if user_signed_in? and !current_user.answered? @question and current_user != @question.user
+  - if user_signed_in? and !current_user.answered? @question and current_user != @question.user and @question.user.privacy_allow_stranger_answers
     .panel.panel-default#q-answer-box
       .panel-heading
         %h3.panel-title This question was not in your inbox? Answer it here!

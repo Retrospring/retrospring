@@ -18,6 +18,13 @@ class Ajax::AnswerController < ApplicationController
       end
     else
       question = Question.find(params[:id])
+
+      unless question.user.privacy_allow_stranger_answers
+        @status = :privacy_stronk
+        @message = "This user does not want other users to answer their question."
+        @success = false
+        return
+      end
     end
 
     answer = nil
