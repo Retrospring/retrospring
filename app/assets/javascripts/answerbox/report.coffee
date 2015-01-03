@@ -1,8 +1,16 @@
 $(document).on "click", "a[data-action=ab-report]", (ev) ->
   ev.preventDefault()
-  if confirm 'Are you sure you want to report this answer?'
-    btn = $(this)
-    aid = btn[0].dataset.aId
+  btn = $(this)
+  aid = btn[0].dataset.aId
+  swal
+    title: "Really report?"
+    text: "A moderator will review this answer and decide what happens."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Report"
+    closeOnConfirm: true
+  , ->
     $.ajax
       url: '/ajax/report' # TODO: find a way to use rake routes instead of hardcoding them here
       type: 'POST'
