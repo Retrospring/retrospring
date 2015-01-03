@@ -57,7 +57,8 @@ Rails.application.routes.draw do
     end
   end
 
-  match '/settings/privacy', to: 'user#privacy', via: :get, as: :privacy_settings
+  match '/settings/privacy', to: 'user#edit_privacy', via: :get, as: :edit_user_privacy
+  match '/settings/privacy', to: 'user#update_privacy', via: :patch, as: :update_user_privacy
 
   namespace :ajax do
     match '/ask', to: 'question#create', via: :post, as: :ask

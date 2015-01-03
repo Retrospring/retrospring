@@ -10,6 +10,7 @@ class UserController < ApplicationController
     end
   end
 
+  # region Account settings
   def edit
   end
 
@@ -25,10 +26,25 @@ class UserController < ApplicationController
     end
     redirect_to edit_user_profile_path
   end
+  # endregion
 
-  def privacy
-
+  # region Privacy settings
+  def edit_privacy
   end
+
+  def update_privacy
+    user_attributes = params.require(:user).permit(:privacy_allow_anonymous_questions,
+                                                   :privacy_allow_public_timeline,
+                                                   :privacy_allow_stranger_answers,
+                                                   :privacy_show_in_search)
+    if current_user.update_attributes(user_attributes)
+      flash[:success] = 'Your privacy settings have been updated!'
+    else
+      flash[:error] = 'An error occurred. ;_;'
+    end
+    redirect_to edit_user_privacy_path
+  end
+  # endregion
 
   def followers
     @title = 'Followers'
