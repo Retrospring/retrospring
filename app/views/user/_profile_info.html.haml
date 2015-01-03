@@ -1,5 +1,10 @@
 .panel.panel-default
-  %img.profile--avatar{src: @user.profile_picture.url(:large)}
+  .profile--avatar
+    .dimmer
+      .content
+        .center
+          = render 'user/actions', user: @user, type: :follower
+    %img{src: @user.profile_picture.url(:large)}
   .panel-body
     - if @user.display_name.blank?
       .profile--displayname
@@ -47,5 +52,4 @@
       %p.profile--text
         %i.fa.fa-location-arrow
         = @user.location
-    = render 'user/actions', user: @user, type: :follower
 = render 'user/stats', user: @user
