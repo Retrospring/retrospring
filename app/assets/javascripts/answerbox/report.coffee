@@ -2,7 +2,7 @@ $(document).on "click", "a[data-action=ab-report]", (ev) ->
   ev.preventDefault()
   swal
     title: "Really report?"
-    text: "A moderator will review this comment and decide what happens."
+    text: "A moderator will review this answer and decide what happens."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
