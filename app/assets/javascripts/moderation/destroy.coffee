@@ -1,5 +1,13 @@
 $(document).on "click", "button[name=mod-delete-report]", ->
-  if confirm 'Are you sure?'
+  swal
+    title: "Are you sure?"
+    text: "You will not be able to recover this!"
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Yes, delete it!"
+    closeOnConfirm: false
+  , ->
     btn = $(this)
     id = btn[0].dataset.id
     $.ajax

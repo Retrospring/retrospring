@@ -22,7 +22,15 @@
 ($ document).on "click", "button#ib-delete-all", ->
   btn = ($ this)
   count = btn[0].dataset.ibCount
-  if confirm "Really delete #{count} questions?"
+  swal
+    title: "Really delete #{count} questions??"
+    text: "You will not be able to recover them!"
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Yes, delete all!"
+    closeOnConfirm: false
+  , ->
     btn.button "loading"
     succ = no
     $.ajax
@@ -84,7 +92,15 @@ $(document).on "click", "button[name=ib-answer]", ->
 
 
 $(document).on "click", "button[name=ib-destroy]", ->
-  if confirm 'Are you sure?'
+  swal
+    title: "Are you sure?"
+    text: "You will not be able to recover this question!"
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Yes, delete it!"
+    closeOnConfirm: false
+  , ->
     btn = $(this)
     btn.button "loading"
     iid = btn[0].dataset.ibId

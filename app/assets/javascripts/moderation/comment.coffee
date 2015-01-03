@@ -68,7 +68,15 @@ $(document).on "input", "input[name=mod-comment-new]", (evt) ->
 # destroy
 $(document).on "click", "a[data-action=mod-comment-destroy]", (ev) ->
   ev.preventDefault()
-  if confirm 'Are you sure?'
+  swal
+    title: "Are you sure?"
+    text: "You will not be able to recover this comment!"
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Yes, delete it!"
+    closeOnConfirm: false
+  , ->
     btn = $(this)
     cid = btn[0].dataset.id
     $.ajax

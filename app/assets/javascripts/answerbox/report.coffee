@@ -1,6 +1,14 @@
 $(document).on "click", "a[data-action=ab-report]", (ev) ->
   ev.preventDefault()
-  if confirm 'Are you sure you want to report this answer?'
+  swal
+    title: "Report?"
+    text: "A moderator will check this and decide what happens!"
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Report!"
+    closeOnConfirm: false
+  , ->
     btn = $(this)
     aid = btn[0].dataset.aId
     $.ajax

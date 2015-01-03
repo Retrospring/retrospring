@@ -1,6 +1,14 @@
 $(document).on "click", "a[data-action=ab-destroy]", (ev) ->
   ev.preventDefault()
-  if confirm 'Are you sure?'
+  swal
+    title: "Are you sure?"
+    text: "You will not be able to recover this!"
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Yes, delete it!"
+    closeOnConfirm: false
+  , ->
     btn = $(this)
     aid = btn[0].dataset.aId
     $.ajax
