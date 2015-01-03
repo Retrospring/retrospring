@@ -71,6 +71,7 @@ $(document).on "click", "button[name=ib-answer]", ->
       id: iid
       answer: $("textarea[name=ib-answer][data-id=#{iid}]").val()
       share: JSON.stringify shareTo
+      inbox: true
     success: (data, status, jqxhr) ->
       if data.success
         $("div.inbox-box[data-id=#{iid}]").slideUp()

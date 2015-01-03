@@ -1,4 +1,50 @@
 class Ajax::AnswerController < ApplicationController
+  def create
+    params.require :id
+    params.require :answer
+    params.require :share
+    params.require :inbox
+
+    inbox = (params[:inbox] == 'true')
+
+    puts inbox
+
+    if inbox
+      inbox_entry = Inbox.find(params[:id])
+
+      unless current_user == inbox_entry.user
+        @status = :fail
+        @message = "question not in your inbox"
+        @success = false
+        return
+      end
+    else
+      question = Question.find(params[:id])
+    end
+
+    answer = nil
+
+    begin
+      answer = if inbox
+                 inbox_entry.answer params[:answer], current_user
+               else
+                 current_user.answer question, params[:answer]
+               end
+    rescue
+      @status = :err
+      @message = "An error occurred"
+      @success = false
+      return
+    end
+
+    services = JSON.parse params[:share]
+    ShareWorker.perform_async(current_user.id, answer.id, services)
+
+    @status = :okay
+    @message = "Successfully answered question."
+    @success = true
+  end
+
   def destroy
     params.require :answer
 
