@@ -29,7 +29,7 @@
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
-    closeOnConfirm: false
+    closeOnConfirm: true
   , ->
     btn.button "loading"
     succ = no
@@ -92,6 +92,7 @@ $(document).on "click", "button[name=ib-answer]", ->
 
 
 $(document).on "click", "button[name=ib-destroy]", ->
+  btn = $(this)
   swal
     title: "Really delete?"
     text: "This question will be gone forever."
@@ -99,9 +100,8 @@ $(document).on "click", "button[name=ib-destroy]", ->
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
-    closeOnConfirm: false
+    closeOnConfirm: true
   , ->
-    btn = $(this)
     btn.button "loading"
     iid = btn[0].dataset.ibId
     $("textarea[name=ib-answer][data-id=#{iid}]").attr "readonly", "readonly"

@@ -58,7 +58,7 @@ $(document).on "click", "a[data-action=report-user]", (ev) ->
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Report"
-    closeOnConfirm: false
+    closeOnConfirm: true
   , ->
     $.ajax
       url: '/ajax/report'

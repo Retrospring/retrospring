@@ -1,4 +1,6 @@
 $(document).on "click", "button[name=mod-delete-report]", ->
+  btn = $(this)
+  id = btn[0].dataset.id
   swal
     title: "Really delete?"
     text: "You will not be able to recover this report."
@@ -6,10 +8,8 @@ $(document).on "click", "button[name=mod-delete-report]", ->
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
-    closeOnConfirm: false
+    closeOnConfirm: true
   , ->
-    btn = $(this)
-    id = btn[0].dataset.id
     $.ajax
       url: '/ajax/mod/destroy_report'
       type: 'POST'
