@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :authenticate_user!, only: %w(edit update privacy)
+  before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy)
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
