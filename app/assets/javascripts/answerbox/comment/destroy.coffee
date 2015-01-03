@@ -1,8 +1,16 @@
 $(document).on "click", "a[data-action=ab-comment-destroy]", (ev) ->
   ev.preventDefault()
-  if confirm 'Are you sure?'
-    btn = $(this)
-    cid = btn[0].dataset.cId
+  btn = $(this)
+  cid = btn[0].dataset.cId
+  swal
+    title: "Really delete?"
+    text: "You will not be able to recover this comment."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Delete"
+    closeOnConfirm: true
+  , ->
     $.ajax
       url: '/ajax/destroy_comment'
       type: 'POST'

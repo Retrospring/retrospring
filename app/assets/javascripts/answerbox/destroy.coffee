@@ -1,8 +1,16 @@
 $(document).on "click", "a[data-action=ab-destroy]", (ev) ->
   ev.preventDefault()
-  if confirm 'Are you sure?'
-    btn = $(this)
-    aid = btn[0].dataset.aId
+  btn = $(this)
+  aid = btn[0].dataset.aId
+  swal
+    title: "Really delete?"
+    text: "The question will be moved back to your inbox."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Delete"
+    closeOnConfirm: true
+  , ->
     $.ajax
       url: '/ajax/destroy_answer' # TODO: find a way to use rake routes instead of hardcoding them here
       type: 'POST'

@@ -298,6 +298,8 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    sweetalert-rails (0.3.3)
+      railties (>= 3.1.0)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0)
@@ -387,6 +389,7 @@ DEPENDENCIES
   simplecov
   sinatra
   spring
+  sweetalert-rails
   thin
   turbolinks
   twitter

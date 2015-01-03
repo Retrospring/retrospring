@@ -24,6 +24,9 @@
           = nav_entry "Inbox", "/inbox", badge: inbox_count
           = render "layouts/notifications"
         %ul.nav.navbar-nav.navbar-right
+          %li
+            .btn.btn-primary.navbar-btn.btn-sm.hidden-xs{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
+              %i.fa.fa-pencil-square-o
           %li.dropdown
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
               = current_user.screen_name
@@ -46,6 +49,5 @@
 
 - if user_signed_in?
   = render 'shared/modal_ask_followers'
-- if user_signed_in?
-  %button.btn.btn-primary.btn-fab{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
+  %button.btn.btn-primary.btn-fab.visible-xs{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
     %i.fa.fa-pencil-square-o

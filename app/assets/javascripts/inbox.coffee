@@ -22,7 +22,15 @@
 ($ document).on "click", "button#ib-delete-all", ->
   btn = ($ this)
   count = btn[0].dataset.ibCount
-  if confirm "Really delete #{count} questions?"
+  swal
+    title: "Really delete #{count} questions?"
+    text: "They will be gone forever."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Delete"
+    closeOnConfirm: true
+  , ->
     btn.button "loading"
     succ = no
     $.ajax
@@ -71,6 +79,7 @@ $(document).on "click", "button[name=ib-answer]", ->
       id: iid
       answer: $("textarea[name=ib-answer][data-id=#{iid}]").val()
       share: JSON.stringify shareTo
+      inbox: true
     success: (data, status, jqxhr) ->
       if data.success
         $("div.inbox-box[data-id=#{iid}]").slideUp()
@@ -84,8 +93,16 @@ $(document).on "click", "button[name=ib-answer]", ->
 
 
 $(document).on "click", "button[name=ib-destroy]", ->
-  if confirm 'Are you sure?'
-    btn = $(this)
+  btn = $(this)
+  swal
+    title: "Really delete?"
+    text: "This question will be gone forever."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Delete"
+    closeOnConfirm: true
+  , ->
     btn.button "loading"
     iid = btn[0].dataset.ibId
     $("textarea[name=ib-answer][data-id=#{iid}]").attr "readonly", "readonly"

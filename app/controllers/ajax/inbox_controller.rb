@@ -21,39 +21,6 @@ class Ajax::InboxController < ApplicationController
     inbox.update(new: false)
   end
 
-  def destroy
-    params.require :id
-    params.require :answer
-    params.require :share
-
-    inbox = Inbox.find(params[:id])
-
-    unless current_user == inbox.user
-      @status = :fail
-      @message = "question not in your inbox"
-      @success = false
-      return
-    end
-
-    answer = nil
-
-    begin
-      answer = inbox.answer params[:answer], current_user
-    rescue
-      @status = :err
-      @message = "An error occurred"
-      @success = false
-      return
-    end
-
-    services = JSON.parse params[:share]
-    ShareWorker.perform_async(current_user.id, answer.id, services)
-
-    @status = :okay
-    @message = "Successfully answered question."
-    @success = true
-  end
-
   def remove
     params.require :id
 
