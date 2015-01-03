@@ -1,30 +1,44 @@
 .panel.panel-default
+  %img.profile--avatar{src: @user.profile_picture.url(:large)}
   .panel-body
-    .media
-      .pull-left
-        %img.img-rounded.profile--img{src: gravatar_url(@user)}
-      .media-body
-        - if @user.display_name.blank?
-          %h2= @user.screen_name
-        - else
-          %h2.profile--displayname= @user.display_name
-          %h4.text-muted.profile--username= @user.screen_name
+    - if @user.display_name.blank?
+      .profile--displayname
+        = @user.screen_name
         - if @user.admin?
-          %p.profile--admin
+          %span.label.label-danger
             %i.fa.fa-flask
             Admin
         - if @user.moderator?
-          %p.profile--moderator
+          %span.label.label-success
             %i.fa.fa-users
             Mod
         - if @user.supporter?
-          %p.profile--supporter
+          %span.label.label-warning
             %i.fa.fa-star
             Supporter
-    - if @user.following? current_user
-      %p
-        %span.label.label-default
-          FOLLOWS YOU
+        - if @user.following? current_user
+          %span.label.label-default
+            FOLLOWS YOU
+    - else
+      .profile--displayname
+        = @user.display_name
+        - if @user.admin?
+          %span.label.label-danger
+            %i.fa.fa-flask
+            Admin
+        - if @user.moderator?
+          %span.label.label-success
+            %i.fa.fa-users
+            Mod
+        - if @user.supporter?
+          %span.label.label-warning
+            %i.fa.fa-star
+            Supporter
+        - if @user.following? current_user
+          %span.label.label-default
+            FOLLOWS YOU
+      .profile--username
+        = @user.screen_name
     - unless @user.bio.blank?
       %p.profile--text= @user.bio
     - unless @user.website.blank?

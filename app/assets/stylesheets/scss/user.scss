@@ -6,13 +6,15 @@
 }
 
 .profile--displayname {
-  margin-top: -2px;
-  margin-bottom: 2px;
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-top: -0.165em;
+  line-height: 1.33em;
 }
 
 .profile--username {
-  margin-top: 0px;
-  margin-bottom: 2px;
+  font-size: 0.9em;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .profile--admin {
@@ -76,4 +78,10 @@
 
 .profile--follow-btn {
   margin-top: 5px;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: auto;
+  border: medium none;
 }
