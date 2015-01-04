@@ -100,7 +100,7 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.supporter = true
     user.save!
-    puts "#{user.screen_name} is now an moderator."
+    puts "#{user.screen_name} is now an supporter."
   end
 
   desc "Removes supporter status from an user."
@@ -110,7 +110,7 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.supporter = false
     user.save!
-    puts "#{user.screen_name} no longer an moderator."
+    puts "#{user.screen_name} no longer an supporter."
   end
 
   desc "Lists all users."
