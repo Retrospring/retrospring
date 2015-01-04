@@ -1,9 +1,6 @@
 Not done:
 [001|  0%] user blocking (prohibits blocked user from asking question to that person and seeing their answers)
-[003| 50%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
-[006|  0%] privacy options (e.g. profile visible for members only, disable anonymous questions, opt-out from public timeline)
 [007|  0%] (?) keyboard shortcuts
-[008|  0%] make email work!
 [010|  0%] locales (these can wait for now)
 [012|  0%] (?) open source the entire thing – in late 2015 or 2016 maybe, after we got bought by fakelook.
 [015|  0%] make a public accessible API (maybe even as an oauth provider?)
@@ -11,8 +8,6 @@ Not done:
 [017|  0%] write "terms of service" and a privacy policy.
 [018|  0%] that annoying "we use cookies" thing every website in the EU must? add
 [020|  0%] helper function for profile headings to resize on certain string length
-[021|100%] deleting comments
-    |----- restructure comment design
 [022|  0%] recommended follows
 [023|  0%] disabling group-questions
 [024|  0%] disabling questions from certain users
@@ -24,13 +19,18 @@ Not done:
     |----- ability to report questions ×
 
 In Progress:
+[003| 50%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
 [011| 75%] auto-posting to other services (twatter, fakelook)
 
 Finished:
 [002|100%] asking modal (ask all followers/one person a question with a modal you can open over the navbar)
 [004|100%] admin status page (like the one from justask2 in Python)
 [005|100%] make the hamburger menu button glow or something if there are new questions in the inbox
+[006|100%] privacy options (e.g. profile visible for members only, disable anonymous questions, opt-out from public timeline)
+[008|100%] make email work!
 [009|100%] a notification view or something
 [013|100%] restructure questions (has_many :answers) for less redundancy in the DB when implementing #002
 [014|100%] generate questions if there are none in the inbox (probably make it as a gem)
 [019|100%] omniAuth (twatter, fakelook, goggles plus) for social networking elitists
+[021|100%] deleting comments
+    |----- restructure comment design
