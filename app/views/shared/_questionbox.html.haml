@@ -6,41 +6,47 @@
       - else
         = @user.motivation_header
   .panel-body
-    #question-box
-      .row
-        .col-xs-12
-          %textarea.form-control{:name => "qb-question", :placeholder => "Type your question here…"}
-      .row{:style => "padding-top: 5px; padding-left: 5px; padding-right: 5px;"}
-        .col-xs-6
-          - if user_signed_in? # and @user.allow_anonymous
-            %input{:name => "qb-anonymous", :type => "checkbox"}/
-            Hide your name
-            %br/
-        .col-xs-6
-          %p.pull-right
-            %input{name: 'qb-to', type: 'hidden', :value => @user.id}/
-            %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: 'Asking...', promote: user_signed_in? ? "false" : "true" }} Ask
+    - if user_signed_in? or @user.privacy_allow_anonymous_questions?
+      #question-box
+        .row
+          .col-xs-12
+            %textarea.form-control{:name => "qb-question", :placeholder => "Type your question here…"}
+        .row{:style => "padding-top: 5px; padding-left: 5px; padding-right: 5px;"}
+          .col-xs-6
+            - if user_signed_in?
+              - if @user.privacy_allow_anonymous_questions?
+                %input{:name => "qb-anonymous", :type => "checkbox"}/
+                Hide your name
+                %br/
+              - else
+                %input{:name => "qb-anonymous", :type => "hidden", :value => "false"}/
+          .col-xs-6
+            %p.pull-right
+              %input{name: 'qb-to', type: 'hidden', :value => @user.id}/
+              %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: 'Asking...', promote: user_signed_in? ? "false" : "true" }} Ask
     - unless user_signed_in?
-      #question-box-promote.row{:style => "display: none;"}
-        .row
-          .col-xs-12.text-center
-            %strong Your question has been sent.
-        .row
-          .col-sm-1
-          .col-sm-5
-            %button#create-account.btn.btn-block.btn-primary Create an account
-          .col-sm-5
-            %button#new-question.btn.btn-block.btn-default Ask another question
-          .col-sm-1
-        .row
-          .col-sm-1
-          .col-xs-12.col-sm-10
-            %small
-              Join
-              = APP_CONFIG['site_name']
-              today!  You'll be able to follow and ask people you know and a lot more.
-          .col-sm-1
-/     %p
-/       This user does not want to get asked by strangers.  Why don't you
-/       = succeed "?" do
-/         %a{:href => "{{ url_for('register') }}"} sign up
+      - if @user.privacy_allow_anonymous_questions?
+        #question-box-promote.row{:style => "display: none;"}
+          .row
+            .col-xs-12.text-center
+              %strong Your question has been sent.
+          .row
+            .col-sm-1
+            .col-sm-5
+              %button#create-account.btn.btn-block.btn-primary Create an account
+            .col-sm-5
+              %button#new-question.btn.btn-block.btn-default Ask another question
+            .col-sm-1
+          .row
+            .col-sm-1
+            .col-xs-12.col-sm-10
+              %small
+                Join
+                = APP_CONFIG['site_name']
+                today!  You'll be able to follow and ask people you know and a lot more.
+            .col-sm-1
+      - else
+        %p
+          This user does not want to get asked by strangers.  Why don't you
+          = succeed "?" do
+            %a{:href => "{{ url_for('register') }}"} sign up

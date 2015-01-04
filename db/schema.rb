@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150102231343) do
+ActiveRecord::Schema.define(version: 20150103200732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,12 +133,12 @@ ActiveRecord::Schema.define(version: 20150102231343) do
   add_index "smiles", ["user_id"], name: "index_smiles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                        default: "",    null: false
-    t.string   "encrypted_password",           default: "",    null: false
+    t.string   "email",                             default: "",    null: false
+    t.string   "encrypted_password",                default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                default: 0,     null: false
+    t.integer  "sign_in_count",                     default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -146,19 +146,19 @@ ActiveRecord::Schema.define(version: 20150102231343) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "screen_name"
-    t.integer  "friend_count",                 default: 0,     null: false
-    t.integer  "follower_count",               default: 0,     null: false
-    t.integer  "asked_count",                  default: 0,     null: false
-    t.integer  "answered_count",               default: 0,     null: false
-    t.integer  "commented_count",              default: 0,     null: false
+    t.integer  "friend_count",                      default: 0,     null: false
+    t.integer  "follower_count",                    default: 0,     null: false
+    t.integer  "asked_count",                       default: 0,     null: false
+    t.integer  "answered_count",                    default: 0,     null: false
+    t.integer  "commented_count",                   default: 0,     null: false
     t.string   "display_name"
-    t.integer  "smiled_count",                 default: 0,     null: false
-    t.boolean  "admin",                        default: false, null: false
-    t.string   "motivation_header",            default: "",    null: false
-    t.string   "website",                      default: "",    null: false
-    t.string   "location",                     default: "",    null: false
-    t.text     "bio",                          default: "",    null: false
-    t.boolean  "moderator",                    default: false, null: false
+    t.integer  "smiled_count",                      default: 0,     null: false
+    t.boolean  "admin",                             default: false, null: false
+    t.string   "motivation_header",                 default: "",    null: false
+    t.string   "website",                           default: "",    null: false
+    t.string   "location",                          default: "",    null: false
+    t.text     "bio",                               default: "",    null: false
+    t.boolean  "moderator",                         default: false, null: false
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
@@ -168,7 +168,11 @@ ActiveRecord::Schema.define(version: 20150102231343) do
     t.integer  "crop_y"
     t.integer  "crop_w"
     t.integer  "crop_h"
-    t.boolean  "supporter",                    default: false
+    t.boolean  "supporter",                         default: false
+    t.boolean  "privacy_allow_anonymous_questions", default: true
+    t.boolean  "privacy_allow_public_timeline",     default: true
+    t.boolean  "privacy_allow_stranger_answers",    default: true
+    t.boolean  "privacy_show_in_search",            default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

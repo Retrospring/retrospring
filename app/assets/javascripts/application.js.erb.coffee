@@ -8,6 +8,7 @@
 #= require growl
 #= require cheet
 #= require jquery.guillotine
+#= require sweet-alert
 #= require_tree .
 
 NProgress.configure
@@ -24,3 +25,9 @@ window.showNotification = (text, success=true) ->
 
 $(document).on "click", "button#create-account", ->
   Turbolinks.visit "/sign_up"
+
+_ready = ->
+  sweetAlertInitialize()
+
+$(document).ready _ready
+$(document).on 'page:load', _ready

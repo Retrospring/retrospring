@@ -14,7 +14,17 @@
             ago
           %p.answerbox--question-text= @question.content
 
-  - if user_signed_in? and !current_user.answered? @question
+  #answers
+    - @answers.each do |a|
+      = render 'shared/answerbox', a: a, show_question: false
+
+  #pagination= will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false
+
+  - if @answers.next_page
+    %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
+      Load more
+
+  - if user_signed_in? and !current_user.answered? @question and current_user != @question.user and @question.user.privacy_allow_stranger_answers
     .panel.panel-default#q-answer-box
       .panel-heading
         %h3.panel-title This question was not in your inbox? Answer it here!
@@ -28,7 +38,3 @@
             %input{type: 'checkbox', name: 'share', checked: :checked, data: { q_id: @question.id, service: service.provider }}
             Post to
             = service.provider.capitalize
-
-  - @answers.each do |a|
-    = render 'shared/answerbox', a: a, show_question: false
-

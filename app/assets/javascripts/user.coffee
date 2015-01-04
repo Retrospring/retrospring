@@ -50,7 +50,16 @@ $(document).on "click", "a[data-action=report-user]", (ev) ->
   ev.preventDefault()
   btn = $(this)
   target = btn[0].dataset.target
-  if confirm "Are you sure you want to report #{target}?"
+
+  swal
+    title: "Really report #{target}?"
+    text: "A moderator will review this user and decide what happens."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Report"
+    closeOnConfirm: true
+  , ->
     $.ajax
       url: '/ajax/report'
       type: 'POST'

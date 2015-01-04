@@ -18,6 +18,13 @@ class Ajax::AnswerController < ApplicationController
       end
     else
       question = Question.find(params[:id])
+
+      unless question.user.privacy_allow_stranger_answers
+        @status = :privacy_stronk
+        @message = "This user does not want other users to answer their question."
+        @success = false
+        return
+      end
     end
 
     answer = nil
@@ -38,10 +45,14 @@ class Ajax::AnswerController < ApplicationController
     services = JSON.parse params[:share]
     ShareWorker.perform_async(current_user.id, answer.id, services)
 
+
     @status = :okay
     @message = "Successfully answered question."
     @success = true
-    @render = render_to_string(partial: 'shared/answerbox', locals: { a: answer, show_question: false }) unless inbox
+    unless inbox
+      @question = 1
+      @render = render_to_string(partial: 'shared/answerbox', locals: { a: answer, show_question: false })
+    end
   end
 
   def destroy
