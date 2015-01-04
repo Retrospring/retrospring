@@ -96,5 +96,15 @@
 
           Want to support us over a longer timespan? We also have a Patreon campaign!
           %a.btn.btn-primary.btn-block{href: "https://patreon.com/retrospring"} Patreon
+      .panel.panel-default
+        .panel-body
+          %h3 Patrons
+          People that believe in our vision, and that's why we love them <3
+          %ul.about--moderator
+            - User.where(supporter: true).each do |sup|
+              %li
+                %a{href: show_user_profile_path(sup.screen_name)}
+                  %img.answerbox--img-small{src: User.find_by_screen_name(sup.screen_name).profile_picture.url(:medium)}
+                = sup.screen_name
 
 = render "shared/links"
