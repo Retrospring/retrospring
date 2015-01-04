@@ -5,30 +5,30 @@
       .profile--displayname
         = @user.screen_name
         - if @user.admin?
-          %span.label.label-danger.j2-up
+          %span.label.label-danger.j2-up.j2-label
             %i.fa.fa-flask
             Admin
         - if @user.moderator?
-          %span.label.label-success.j2-up
+          %span.label.label-success.j2-up.j2-label
             %i.fa.fa-users
             Mod
         - if @user.supporter?
-          %span.label.label-warning.j2-up
+          %span.label.label-warning.j2-up.j2-label
             %i.fa.fa-star
             Supporter
     - else
       .profile--displayname
         = @user.display_name
         - if @user.admin?
-          %span.label.label-danger.j2-up
+          %span.label.label-danger.j2-up.j2-label
             %i.fa.fa-flask
             Admin
         - if @user.moderator?
-          %span.label.label-success.j2-up
+          %span.label.label-success.j2-up.j2-label
             %i.fa.fa-users
             Mod
         - if @user.supporter?
-          %span.label.label-warning.j2-up
+          %span.label.label-warning.j2-up.j2-label
             %i.fa.fa-star
             Supporter
       .profile--username
