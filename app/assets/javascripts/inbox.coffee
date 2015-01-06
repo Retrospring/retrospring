@@ -57,7 +57,7 @@
 
 $(document).on "keydown", "textarea[name=ib-answer]", (evt) ->
   iid = $(this)[0].dataset.id
-  if evt.keyCode == 13 and evt.ctrlKey
+  if evt.keyCode == 13 and (evt.ctrlKey or evt.metaKey)
     # trigger warning:
     $("button[name=ib-answer][data-ib-id=#{iid}]").trigger 'click'
 
