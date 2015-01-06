@@ -86,3 +86,8 @@ Add/remove moderators:
 
     $ bundle exec rake 'justask:mod[someone_else]' RAILS_ENV=production
     $ bundle exec rake 'justask:demod[someone_else]' RAILS_ENV=production
+
+Add/remove supporters:
+
+    $ bundle exec rake 'justask:sup[someone_else]' RAILS_ENV=production
+    $ bundle exec rake 'justask:desup[someone_else]' RAILS_ENV=production

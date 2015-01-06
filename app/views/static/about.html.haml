@@ -32,13 +32,33 @@
             .media-body
               %h4.entry-text.entry-about pixeldesu
               %h6.entry-subtext Frontend Design & Layout
+          .media
+            .pull-left
+              %a{href: show_user_profile_path('kyr')}
+                %img.img-rounded.answerbox--img{src: User.find_by_screen_name('kyr').profile_picture.url(:medium)}
+            .media-body
+              %h4.entry-text.entry-about kyr
+              %h6.entry-subtext Node.js & Javascript
+      .panel.panel-default
+        .panel-body
           %h3 Moderators
+          The people on
+          = APP_CONFIG['site_name']
+          that look after you!
           %ul.about--moderator
             - User.where(moderator: true).each do |mod|
               %li
                 %a{href: show_user_profile_path(mod.screen_name)}
                   %img.answerbox--img-small{src: User.find_by_screen_name(mod.screen_name).profile_picture.url(:medium)}
                 = mod.screen_name
+    .col-sm-4
+      .panel.panel-default
+        .panel-body
+          %h3 Alpha version
+          %p This is an alpha version, full of bugs.  Caveat emptor.
+          %p
+            Found a bug?  Have an idea for a must-have feature?  Please
+            = link_to "report them!", 'https://github.com/retrospring/bugs/issues'
       .panel.panel-default
         .panel-body
           There are lies, damned lies, and then there are...
@@ -64,14 +84,6 @@
     .col-sm-4
       .panel.panel-default
         .panel-body
-          %h3 Alpha version
-          %p This is an alpha version, full of bugs.  Caveat emptor.
-          %p
-            Found a bug?  Have an idea for a must-have feature?  Please
-            = link_to "report them!", 'https://github.com/retrospring/bugs/issues'
-    .col-sm-4
-      .panel.panel-default
-        .panel-body
           %h3 Donate
           We are not backed by any company, but we need some money to keep
           our server infrastructure running.
@@ -82,5 +94,17 @@
             %input{:alt => "PayPal - The safer, easier way to pay online!", :border => "0", :name => "submit", :src => "https://www.paypalobjects.com/en_US/AT/i/btn/btn_donateCC_LG.gif", :type => "image"}/
             %img{:alt => "", :border => "0", :height => "1", :src => "https://www.paypalobjects.com/de_DE/i/scr/pixel.gif", :width => "1"}/
 
+          Want to support us over a longer timespan? We also have a Patreon campaign!
+          %a.btn.btn-primary.btn-block{href: "https://patreon.com/retrospring"} Patreon
+      .panel.panel-default
+        .panel-body
+          %h3 Patrons
+          People that believe in our vision, and that's why we love them <3
+          %ul.about--moderator
+            - User.where(supporter: true).each do |sup|
+              %li
+                %a{href: show_user_profile_path(sup.screen_name)}
+                  %img.answerbox--img-small{src: User.find_by_screen_name(sup.screen_name).profile_picture.url(:medium)}
+                = sup.screen_name
 
 = render "shared/links"

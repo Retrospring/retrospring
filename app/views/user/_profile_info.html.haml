@@ -1,42 +1,29 @@
 .panel.panel-default
   %img.profile--avatar{src: @user.profile_picture.url(:large)}
+  - if @user.admin?
+    .profile--panel-badge.panel-badge-danger
+      %i.fa.fa-flask
+      Admin
+  - if @user.moderator?
+    .profile--panel-badge.panel-badge-success
+      %i.fa.fa-users
+      Mod
+  - if @user.supporter?
+    .profile--panel-badge.panel-badge-warning
+      %i.fa.fa-star
+      Supporter
+  - if @user.following? current_user
+    .profile--panel-badge.panel-badge-default
+      Follows you
   .panel-body
     - if @user.display_name.blank?
       .profile--displayname
         = @user.screen_name
-        - if @user.admin?
-          %span.label.label-danger.j2-up
-            %i.fa.fa-flask
-            Admin
-        - if @user.moderator?
-          %span.label.label-success.j2-up
-            %i.fa.fa-users
-            Mod
-        - if @user.supporter?
-          %span.label.label-warning.j2-up
-            %i.fa.fa-star
-            Supporter
     - else
       .profile--displayname
         = @user.display_name
-        - if @user.admin?
-          %span.label.label-danger.j2-up
-            %i.fa.fa-flask
-            Admin
-        - if @user.moderator?
-          %span.label.label-success.j2-up
-            %i.fa.fa-users
-            Mod
-        - if @user.supporter?
-          %span.label.label-warning.j2-up
-            %i.fa.fa-star
-            Supporter
       .profile--username
         = @user.screen_name
-    - if @user.following? current_user
-      %p.profile--followtag
-        %span.label.label-default.j2-up
-          Follows you
     - unless @user.bio.blank?
       %p.profile--text= @user.bio
     - unless @user.website.blank?

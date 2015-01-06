@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   end
 
   def display_website
-    website.match(/https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i)[1]
+    website.match(/https?:\/\/([A-Za-z.\-0-9]+)\/?(?:.*)/i)[1]
   rescue NoMethodError
     website
   end
