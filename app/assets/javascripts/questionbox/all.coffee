@@ -25,7 +25,7 @@ $(document).on "click", "button[name=qb-all-ask]", ->
 # hotkey for accessing this quickly
 $(document).on "keydown", (evt) ->
   if evt.keyCode == 77 and (evt.ctrlKey or evt.metaKey)
-    $('button[name=toggle-all-ask]').trigger 'click'
+    $('.btn[name=toggle-all-ask]').trigger 'click'
 
 # see GitHub issue #2
 ($ document).on "keydown", "textarea[name=qb-all-question]", (evt) ->
