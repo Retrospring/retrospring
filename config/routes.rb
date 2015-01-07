@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   root 'static#index'
 
   match '/about', to: 'static#about', via: 'get'
+  match '/help/faq', to: 'static#faq', via: 'get', as: :help_faq
 
   # Devise routes
   devise_for :users, path: 'user', skip: [:sessions, :registrations]
