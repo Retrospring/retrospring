@@ -22,8 +22,12 @@ $(document).on "click", "button[name=qb-all-ask]", ->
       btn.button "reset"
       $("textarea[name=qb-all-question]").removeAttr "readonly"
 
+# hotkey for accessing this quickly
+$(document).on "keydown", (evt) ->
+  if evt.keyCode == 77 and (evt.ctrlKey or evt.metaKey)
+    $('button[name=toggle-all-ask]').trigger 'click'
 
 # see GitHub issue #2
 ($ document).on "keydown", "textarea[name=qb-all-question]", (evt) ->
-  if evt.keyCode == 13 and evt.ctrlKey
+  if evt.keyCode == 13 and (evt.ctrlKey or evt.metaKey)
     ($ "button[name=qb-all-ask]").trigger 'click'
