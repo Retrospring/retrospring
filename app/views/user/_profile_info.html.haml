@@ -25,7 +25,7 @@
       .profile--username
         = @user.screen_name
     - unless @user.bio.blank?
-      %p.profile--text= @user.bio
+      %p.profile--text= markdown @user.bio
     - unless @user.website.blank?
       %p.profile--text
         %i.fa.fa-globe
