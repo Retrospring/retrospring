@@ -25,7 +25,7 @@
                         %a{href: '#', data: { action: 'ab-comment-report', c_id: comment.id }}
                           %i.fa.fa-exclamation-triangle
                           Report
-            %p.comments--content
+            .comments--content
               = markdown comment.content
 - if user_signed_in?
   .form-group.has-feedback{name: 'ab-comment-new-group', data: { a_id: a.id }}
