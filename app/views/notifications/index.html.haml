@@ -5,9 +5,9 @@
       - @notifications.each do |notification|
         = render 'notifications/notification', notification: notification
 
-      #pagination= will_paginate @notifications, renderer: BootstrapPagination::Rails, page_links: false
+    #pagination= will_paginate @notifications, renderer: BootstrapPagination::Rails, page_links: false
 
-      - if @notifications.next_page
-        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @notifications.current_page }}
-          Load more
+    - if @notifications.next_page
+      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @notifications.current_page }}
+        Load more
 - Notification.for(current_user).update_all(new: false)
