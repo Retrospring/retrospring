@@ -106,9 +106,7 @@
           People that believe in our vision, and that's why we love them <3
           %ul.about--moderator
             - User.where(supporter: true).each do |sup|
-              %li
-                %a{href: show_user_profile_path(sup.screen_name)}
-                  %img.answerbox--img-small{src: User.find_by_screen_name(sup.screen_name).profile_picture.url(:medium)}
-                = sup.screen_name
+              %a{href: show_user_profile_path(sup.user.screen_name), title: sup.user.screen_name, data: { toggle: :tooltip, placement: :top }}
+                %img.img-rounded.answerbox--img-small{src: gravatar_url(sup.user)}
 
 = render "shared/links"
