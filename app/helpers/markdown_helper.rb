@@ -1,7 +1,5 @@
 module MarkdownHelper
 
-  include EmojiHelper
-
   def markdown(content)
     md = Redcarpet::Markdown.new(FlavoredMarkdown,
                                  filter_html: true,
@@ -18,6 +16,6 @@ module MarkdownHelper
                                  disable_indented_code_blocks: true,
                                  strikethrough: true,
                                  superscript: false)
-    emojify Sanitize.fragment(md.render(content), EVIL_TAGS).html_safe
+    Sanitize.fragment(md.render(content), EVIL_TAGS).html_safe
   end
 end
