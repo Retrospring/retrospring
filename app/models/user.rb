@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   has_many :reports, dependent: :destroy
   has_many :moderation_comments, dependent: :destroy
   has_many :moderation_votes, dependent: :destroy
+  has_many :groups, dependent: :destroy
+  belongs_to :group, foreign_key: :target_id
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
