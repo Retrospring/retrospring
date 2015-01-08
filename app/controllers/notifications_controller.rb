@@ -7,6 +7,10 @@ class NotificationsController < ApplicationController
                        Notification.for(current_user)
                      else
                        Notification.for(current_user).where('LOWER(target_type) = ?', @type)
-                     end
+                     end.paginate(page: params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 end

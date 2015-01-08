@@ -1,0 +1,57 @@
+%li.list-group-item{class: (notification.new? ? 'list-group-item-warning' : '')}
+  .media
+    - case notification.target_type
+      - when "Answer"
+        .pull-left
+          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+        .media-body
+          %h6.media-heading.notification--user
+            = user_screen_name notification.target.user
+          %p.notification--text
+            answered
+            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id), title: "#{notification.target.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
+              your question
+            = time_ago_in_words notification.target.created_at
+            ago
+          .notification--icon
+            %i.fa.fa-exclamation
+      - when "Relationship"
+        .pull-left
+          %img.img-rounded.notification--img{src: gravatar_url(notification.target.source)}
+        .media-body
+          %h6.media-heading.notification--user
+            = user_screen_name notification.target.source
+          %p.notification--text
+            followed you
+            = time_ago_in_words notification.target.created_at
+            ago
+          .notification--icon
+            %i.fa.fa-users
+      - when "Smile"
+        .pull-left
+          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+        .media-body
+          %h6.media-heading.notification--user
+            = user_screen_name notification.target.user
+          %p.notification--text
+            smiled at
+            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
+              your answer
+            = time_ago_in_words notification.target.created_at
+            ago
+          .notification--icon
+            %i.fa.fa-smile-o
+      - when "Comment"
+        .pull-left
+          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+        .media-body
+          %h6.media-heading.notification--user
+            = user_screen_name notification.target.user
+          %p.notification--text
+            commented on
+            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
+              your answer
+            = time_ago_in_words notification.target.created_at
+            ago
+          .notification--icon
+            %i.fa.fa-comments
