@@ -21,7 +21,7 @@
                 %a{href: show_user_question_path(a.question.user.screen_name, a.question.id)}
                   #{a.question.answer_count} answers
           %p.answerbox--question-text
-            = a.question.content
+            = emojify a.question.content, 16
   .panel-body
     - if @display_all.nil?
       = markdown a.content[0..255]

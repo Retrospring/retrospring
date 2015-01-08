@@ -19,6 +19,7 @@ coverage/
 
 /public/assets
 /public/system
+/public/images/emoji
 
 # damn vim backup files
 *~

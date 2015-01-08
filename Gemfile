@@ -34,6 +34,10 @@ gem 'rails-assets-growl'
 gem "paperclip", "~> 4.2"
 gem 'delayed_paperclip'
 
+# x--DD
+gem 'gemoji'
+gem 'rumoji'
+
 gem 'ruby-progressbar'
 
 gem 'rails_admin'

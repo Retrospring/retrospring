@@ -15,7 +15,7 @@
               ·
               %a{href: show_user_question_path(i.question.user.screen_name, i.question.id)}
                 #{i.question.answer_count} response(s)
-        %p.answerbox--question-text= i.question.content
+        %p.answerbox--question-text= emojify i.question.content, 16
   .panel-body
     %textarea.form-control{name: 'ib-answer', placeholder: 'Write your answer here...', data: { id: i.id }}
     %br/
