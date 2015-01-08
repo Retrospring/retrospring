@@ -15,7 +15,7 @@ module MarkdownHelper
                                  autolink: true,
                                  disable_indented_code_blocks: true,
                                  strikethrough: true,
-                                 superscript: true)
+                                 superscript: false)
     Sanitize.fragment(md.render(content), EVIL_TAGS).html_safe
   end
 end
