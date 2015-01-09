@@ -21,7 +21,7 @@
                 %a{href: show_user_question_path(a.question.user.screen_name, a.question.id)}
                   #{a.question.answer_count} answers
           .answerbox--question-text
-            = markdown a.question.content
+            = a.question.content
   .panel-body
     - if @display_all.nil?
       .answerbox--answer-text
