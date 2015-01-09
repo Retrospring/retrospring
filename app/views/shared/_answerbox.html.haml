@@ -20,18 +20,20 @@
                 ·
                 %a{href: show_user_question_path(a.question.user.screen_name, a.question.id)}
                   #{a.question.answer_count} answers
-          %p.answerbox--question-text
-            = a.question.content
+          .answerbox--question-text
+            = markdown a.question.content
   .panel-body
     - if @display_all.nil?
-      = markdown a.content[0..255]
-      - if a.content.length > 255
-        [...]
-        %p
-          %a.btn.btn-primary{href: show_user_answer_path(a.user.screen_name, a.id)}
-            Read the entire answer
+      .answerbox--answer-text
+        = markdown a.content[0..255]
+        - if a.content.length > 255
+          [...]
+          %p
+            %a.btn.btn-primary{href: show_user_answer_path(a.user.screen_name, a.id)}
+              Read the entire answer
     - else
-      = markdown a.content
+      .answerbox--answer-text
+        = markdown a.content
     - if @user.nil?
       .row
         .col-md-6.col-sm-4.col-xs-7.text-left.text-muted
