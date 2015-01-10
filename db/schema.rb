@@ -38,17 +38,27 @@ ActiveRecord::Schema.define(version: 20150108121010) do
 
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
 
+  create_table "group_members", force: true do |t|
+    t.integer  "group_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_members", ["group_id", "user_id"], name: "index_group_members_on_group_id_and_user_id", unique: true, using: :btree
+  add_index "group_members", ["group_id"], name: "index_group_members_on_group_id", using: :btree
+  add_index "group_members", ["user_id"], name: "index_group_members_on_user_id", using: :btree
+
   create_table "groups", force: true do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "target_id",    null: false
+    t.integer  "user_id",                     null: false
     t.string   "name"
     t.string   "display_name"
+    t.boolean  "private",      default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "groups", ["name"], name: "index_groups_on_name", using: :btree
-  add_index "groups", ["target_id"], name: "index_groups_on_target_id", using: :btree
   add_index "groups", ["user_id", "name"], name: "index_groups_on_user_id_and_name", unique: true, using: :btree
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
