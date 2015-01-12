@@ -12,6 +12,10 @@
     .profile--panel-badge.panel-badge-warning
       %i.fa.fa-star
       Supporter
+  - if @user.banned?
+    .profile--panel-badge.panel-badge-default
+      %i.fa.fa-ban
+      Banned
   - if @user.following? current_user
     .profile--panel-badge.panel-badge-default
       Follows you

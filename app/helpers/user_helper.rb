@@ -4,7 +4,7 @@ module UserHelper
   def user_screen_name(user, anonymous=false, url=true)
     return APP_CONFIG['anonymous_name'] if user.nil? || anonymous
     name = user.display_name.blank? ? user.screen_name : user.display_name
-    return link_to(name, show_user_profile_path(user.screen_name)) if url
+    return link_to(name, show_user_profile_path(user.screen_name), class: "#{"user--banned" if user.banned?}") if url
     name
   end
 end
