@@ -50,10 +50,10 @@ class UserController < ApplicationController
   def groups
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @groups = if current_user == @user
-                @user.groups.all
+                @user.groups
               else
-                @user.groups.where(private: false).all
-              end
+                @user.groups.where(private: false)
+              end.all
   end
   # endregion
 
