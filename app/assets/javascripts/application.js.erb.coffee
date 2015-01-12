@@ -3,16 +3,13 @@
 #= require jquery.turbolinks
 #= require turbolinks
 #= require bootstrap
-#= require nprogress
-#= require nprogress-turbolinks
 #= require growl
 #= require cheet
 #= require jquery.guillotine
 #= require sweet-alert
 #= require_tree .
 
-NProgress.configure
-  showSpinner: false
+Turbolinks.enableProgressBar()
 
 window.showNotification = (text, success=true) ->
   args =
