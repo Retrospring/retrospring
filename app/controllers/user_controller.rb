@@ -46,6 +46,17 @@ class UserController < ApplicationController
   end
   # endregion
 
+  # region Groups
+  def groups
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
+    @groups = if current_user == @user
+                @user.groups.all
+              else
+                @user.groups.where(private: false).all
+              end
+  end
+  # endregion
+
   def followers
     @title = 'Followers'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!

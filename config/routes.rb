@@ -89,6 +89,7 @@ Rails.application.routes.draw do
   match '/@:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question
   match '/@:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers, defaults: {page: 1}
   match '/@:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends, defaults: {page: 1}
+  match '/@:username/groups(/p/:page)', to: 'user#groups', via: 'get', as: :show_user_groups, defaults: {page: 1}
   match '/:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
   match '/:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer_alt
   match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question_alt
