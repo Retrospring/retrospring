@@ -6,7 +6,13 @@ class Group < ActiveRecord::Base
     self.name = self.display_name.downcase.sub(/\s+/, '-')
   end
 
+  alias members group_members
+
   def add_member(user)
     GroupMember.create! group: self, user: user
+  end
+
+  def remove_member(user)
+    GroupMember.where(group: self, user: user).first!.destroy
   end
 end
