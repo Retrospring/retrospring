@@ -1,5 +1,6 @@
 class Services::Twitter < Service
   include Rails.application.routes.url_helpers
+  include MarkdownHelper
 
   def provider
     "twitter"
@@ -27,8 +28,8 @@ class Services::Twitter < Service
 
     def prepare_tweet(answer)
       # TODO: improve this.
-      question_content = answer.question.content
-      answer_content = answer.content
+      question_content = strip_markdown answer.question.content
+      answer_content = strip_markdown answer.content
       answer_url = show_user_answer_url(
         id: answer.id,
         username: answer.user.screen_name,
