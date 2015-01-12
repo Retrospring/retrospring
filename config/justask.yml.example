@@ -21,6 +21,11 @@ sharing:
     consumer_secret: ''
   facebook:
     enabled: false
+  tumblr:
+    enabled: true
+    # Get the tokens from https://www.tumblr.com/oauth/apps
+    consumer_key: ''
+    consumer_secret: ''
 
 # Redis
 redis_url: "redis://localhost:6379"

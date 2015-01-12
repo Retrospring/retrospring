@@ -37,7 +37,6 @@ gem 'ruby-progressbar'
 
 gem 'rails_admin'
 
-gem 'twitter'
 gem 'sidekiq'
 gem 'sinatra', require: false
 
@@ -49,6 +48,11 @@ gem 'redcarpet'
 # OmniAuth and providers
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-tumblr'
+
+# OAuth clients
+gem 'twitter'
+gem 'tumblr_client'
 
 gem 'foreman'
 gem 'redis'
