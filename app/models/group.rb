@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
 
   before_validation do
     self.name = self.display_name.downcase.sub(/\s+/, '-')
+    self.name = 'group-followers' if self.name == 'followers'
   end
 
   alias members group_members

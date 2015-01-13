@@ -3,11 +3,18 @@ $(document).on "click", "button[name=qb-all-ask]", ->
   btn.button "loading"
   $("textarea[name=qb-all-question]").attr "readonly", "readonly"
 
+  rcptSelect = ($ 'select[name=qb-all-rcpt]')
+
+  rcpt = if rcptSelect.length > 0
+           rcptSelect.first().val()
+         else
+           'followers'
+
   $.ajax
     url: '/ajax/ask'
     type: 'POST'
     data:
-      rcpt: "followers"
+      rcpt: rcpt
       question: $("textarea[name=qb-all-question]").val()
       anonymousQuestion: false
     success: (data, status, jqxhr) ->

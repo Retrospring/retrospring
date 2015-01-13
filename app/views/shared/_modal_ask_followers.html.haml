@@ -12,10 +12,10 @@
         - if current_user.groups.count > 0
           %label
             Choose group:
-            %select{name: 'qb-all-target', class: 'form-control', autocomplete: 'off'}
-              %option{value: '_followers', selected: true} Followers
+            %select{name: 'qb-all-rcpt', class: 'form-control', autocomplete: 'off'}
+              %option{value: 'followers', selected: true} Followers
               %optgroup{label: 'Groups'}
                 - current_user.groups.each do |group|
-                  %option{value: group.name}= group.display_name
+                  %option{value: "grp:#{group.name}"}= group.display_name
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
         %button.btn.btn-primary{name: 'qb-all-ask', :type => "button", data: {loading_text: 'Asking...' }} Ask
