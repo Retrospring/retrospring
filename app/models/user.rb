@@ -31,11 +31,11 @@ class User < ActiveRecord::Base
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 
-  validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }#,
-            #exclusion: { in: %w(justask_admin retrospring_admin admin justask retrospring support about public
-            #                    notifications inbox sign_in sign_up sidekiq moderation moderator mod administrator
-            #                    siteadmin site_admin),
-            #             message: "%{value} is reserved." }
+  before_validation do
+    screen_name.strip!
+  end
+
+  validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }, screen_name: true
 
   validates :display_name, length: { maximum: 50 }
   validates :bio, length: { maximum: 200 }

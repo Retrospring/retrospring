@@ -72,7 +72,7 @@ namespace :justask do
     user.save!
     puts "#{user.screen_name} no longer an admin."
   end
-  
+
   desc "Gives moderator status to an user."
   task :mod, [:screen_name] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
@@ -90,7 +90,27 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.moderator = false
     user.save!
-    puts "#{user.screen_name} no longer an moderator."
+    puts "#{user.screen_name} is no longer an moderator."
+  end
+
+  desc "Hits an user with the banhammer."
+  task :ban, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.banned = true
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Removes banned status from an user."
+  task :unban, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.banned = false
+    user.save!
+    puts "#{user.screen_name} is no longer banned."
   end
 
   desc "Gives supporter status to an user."

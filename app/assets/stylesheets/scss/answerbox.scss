@@ -1,5 +1,5 @@
-.text-muted a, .answerbox .text-muted a:hover {
-  color: $gray-dark;
+.answerbox .text-muted a, .answerbox .text-muted a:hover {
+  color: $gray;
   text-decoration: none;
 }
 
@@ -23,6 +23,11 @@
 }
 
 .answerbox--question-text {
-  font-weight: bold;
-  color: $gray-darker;
+  color: $gray;
+}
+
+.answerbox--answer-text {
+  font-size: 16px;
+  color: #000;
+  line-height: 1.3em;
 }

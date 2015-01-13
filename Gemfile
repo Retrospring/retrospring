@@ -28,7 +28,6 @@ gem 'devise'
 gem 'devise-async'
 gem 'bootstrap_form'
 gem 'font-kit-rails'
-gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.2.0.0'
 gem 'rails-assets-growl'
 gem "paperclip", "~> 4.2"
@@ -38,7 +37,6 @@ gem 'ruby-progressbar'
 
 gem 'rails_admin'
 
-gem 'twitter'
 gem 'sidekiq'
 gem 'sinatra', require: false
 
@@ -50,6 +48,11 @@ gem 'redcarpet'
 # OmniAuth and providers
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-tumblr'
+
+# OAuth clients
+gem 'twitter'
+gem 'tumblr_client'
 
 gem 'foreman'
 gem 'redis'

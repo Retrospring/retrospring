@@ -1,0 +1,8 @@
+$('#notifications').append('<% @notifications.each do |notification|
+  %><%= j render 'notifications/notification', notification: notification
+%><% end %>');
+<% if @notifications.next_page %>
+  $('#pagination').html('<%= j will_paginate @notifications, renderer: BootstrapPagination::Rails, page_links: false %>');
+<% else %>
+  $('#pagination, #load-more-btn').remove();
+<% end %>

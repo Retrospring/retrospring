@@ -5,8 +5,13 @@
     %meta{'http-equiv' => 'X-UA-Compatible' ,content: 'IE=edge'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no'}
     %meta{name: 'theme-color', content: '#0C84E4'}
+    %meta{name: "mobile-web-app-capable", content: "yes"}
     %meta{name: "apple-mobile-web-app-capable", content: "yes"}
     %meta{name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent'}
+    %link{rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png'}
+    %link{rel: 'icon', href: '/images/favicon/favicon-16.png', sizes: '16x16'}
+    %link{rel: 'icon', href: '/icon-152.png', sizes: '152x152'}
+    %link{rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32'}
     %title= APP_CONFIG['site_name']
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -27,19 +32,6 @@
         = debug params
 
     - if Rails.env.production?
-      :javascript
-        var _paq = _paq || [];
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        _paq.push(['setCustomUrl', document.location]);
-        _paq.push(['setDocumentTitle', document.title]);
-        (function() {
-          var u="//stat.rrerr.net/";
-          _paq.push(['setTrackerUrl', u+'piwik.php']);
-          _paq.push(['setSiteId', 9]);
-          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-        })();
       %noscript
         %p
           %img{:alt => "", :src => "//stat.rrerr.net/piwik.php?idsite=9", :style => "border:0;"}/
