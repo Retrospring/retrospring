@@ -7,12 +7,11 @@
  */
 
 @import url(https://fonts.googleapis.com/css?family=Exo+2:400,700);
-@import "bootswatch/paper/variables";
 
 $font-family-sans-serif:  "Exo 2","Open Sans", "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;
 $font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-$font-family-monospace:   Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
+$font-family-monospace:   "PragmataPro", Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
 $font-family-base:        $font-family-sans-serif;
 
 $font-size-base:          14px;
@@ -41,6 +40,8 @@ $navbar-inverse-brand-hover-bg: transparent;
 $navbar-inverse-toggle-hover-bg: #512da8;
 $navbar-inverse-toggle-icon-bar-bg: #7e57c2;
 $navbar-inverse-toggle-border-color: #512da8;
+
+@import "bootswatch/paper/variables";
 
 @import "bootstrap";
 body { padding-top: $navbar-height; }
