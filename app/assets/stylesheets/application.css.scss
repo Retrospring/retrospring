@@ -40,6 +40,7 @@ $navbar-inverse-brand-hover-bg: transparent;
 $navbar-inverse-toggle-hover-bg: #512da8;
 $navbar-inverse-toggle-icon-bar-bg: #7e57c2;
 $navbar-inverse-toggle-border-color: #512da8;
+$brand-primary: #5e35b1 !default;
 
 @import "bootstrap";
 body { padding-top: $navbar-height; }
@@ -52,5 +53,3 @@ body { padding-top: $navbar-height; }
 $nprogress-color: darken($navbar-inverse-bg, 15%);
 @import 'nprogress';
 @import 'nprogress-bootstrap';
-
-$brand-primary: #5e35b1 !default;
