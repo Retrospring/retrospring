@@ -165,6 +165,7 @@ GEM
       mini_portile (~> 0.6.0)
     nokogumbo (1.2.0)
       nokogiri
+    nprogress-rails (0.1.6.3)
     oauth (0.4.7)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
@@ -378,6 +379,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   mysql2
+  nprogress-rails
   omniauth
   omniauth-tumblr
   omniauth-twitter
