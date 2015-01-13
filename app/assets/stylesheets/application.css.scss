@@ -53,4 +53,4 @@ $nprogress-color: darken($navbar-inverse-bg, 15%);
 @import 'nprogress';
 @import 'nprogress-bootstrap';
 
-$brand-primary: #5e35b1;
+$brand-primary: #5e35b1 !default;
