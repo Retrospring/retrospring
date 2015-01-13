@@ -78,6 +78,7 @@ Rails.application.routes.draw do
   end
 
   match '/public', to: 'public#index', via: :get, as: :public_timeline
+  match '/group/:group_name', to: 'group#index', via: :get, as: :group_timeline
 
   match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'all'}
 

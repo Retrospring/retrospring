@@ -15,4 +15,9 @@ class Group < ActiveRecord::Base
   def remove_member(user)
     GroupMember.where(group: self, user: user).first!.destroy
   end
+
+  # @return [Array] the groups' timeline
+  def timeline
+    Answer.where("user_id in (?)", members.pluck(:user_id)).order(:created_at).reverse_order
+  end
 end
