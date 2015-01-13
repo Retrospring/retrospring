@@ -26,20 +26,6 @@ $font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
 $font-size-h5:            $font-size-base;
 $font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 
-@import "bootstrap";
-body { padding-top: $navbar-height; }
-@import "bootswatch/paper/bootswatch";
-
-@import "base";
-
-@import "font-awesome";
-
-html.turbolinks-progress-bar::before {
-  background-color: darken($navbar-inverse-bg, 15%) !important;
-  box-shadow: 0px 0px 10px darken($navbar-inverse-bg, 15%), 0px 0px 5px darken($navbar-inverse-bg, 15%);
-  height: 2px !important;
-}
-
 $navbar-inverse-bg: #5e35b1;
 $navbar-inverse-link-color: #ffffff;
 $navbar-inverse-link-hover-color: #bfbfbf;
@@ -54,3 +40,18 @@ $navbar-inverse-brand-hover-bg: transparent;
 $navbar-inverse-toggle-hover-bg: #512da8;
 $navbar-inverse-toggle-icon-bar-bg: #7e57c2;
 $navbar-inverse-toggle-border-color: #512da8;
+
+@import "bootstrap";
+body { padding-top: $navbar-height; }
+@import "bootswatch/paper/bootswatch";
+
+@import "base";
+
+@import "font-awesome";
+
+html.turbolinks-progress-bar::before {
+  background-color: darken($navbar-inverse-bg, 15%) !important;
+  box-shadow: 0px 0px 10px darken($navbar-inverse-bg, 15%), 0px 0px 5px darken($navbar-inverse-bg, 15%);
+  height: 2px !important;
+}
+
