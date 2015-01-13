@@ -39,3 +39,18 @@ html.turbolinks-progress-bar::before {
   box-shadow: 0px 0px 10px darken($navbar-inverse-bg, 15%), 0px 0px 5px darken($navbar-inverse-bg, 15%);
   height: 2px !important;
 }
+
+$navbar-default-bg: #5e35b1;
+$navbar-default-link-color: #ffffff;
+$navbar-default-link-hover-color: #bfbfbf;
+$navbar-default-link-hover-bg: transparent;
+$navbar-default-link-active-color: #bfbfbf;
+$navbar-default-link-active-bg: darken($navbar-default-bg, 6.5%);
+$navbar-default-link-disabled-color: darken(#fff, 12.5%);
+$navbar-default-link-disabled-bg: transparent;
+$navbar-default-brand-color: $navbar-default-link-color;
+$navbar-default-brand-hover-color: darken($navbar-default-link-color, 10%);
+$navbar-default-brand-hover-bg: transparent;
+$navbar-default-toggle-hover-bg: #512da8;
+$navbar-default-toggle-icon-bar-bg: #7e57c2;
+$navbar-default-toggle-border-color: #512da8;
