@@ -26,6 +26,7 @@ $font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
 $font-size-h5:            $font-size-base;
 $font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 
+$brand-primary: #5e35b1;
 $navbar-inverse-bg: #5e35b1;
 $navbar-inverse-link-color: #ffffff;
 $navbar-inverse-link-hover-color: #bfbfbf;
@@ -52,5 +53,3 @@ body { padding-top: $navbar-height; }
 $nprogress-color: darken($navbar-inverse-bg, 15%);
 @import 'nprogress';
 @import 'nprogress-bootstrap';
-
-$brand-primary: #5e35b1;
