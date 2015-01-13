@@ -34,8 +34,6 @@ body { padding-top: $navbar-height; }
 
 @import "font-awesome";
 
-html.turbolinks-progress-bar::before {
-  background-color: darken($navbar-inverse-bg, 15%) !important;
-  box-shadow: 0px 0px 10px darken($navbar-inverse-bg, 15%), 0px 0px 5px darken($navbar-inverse-bg, 15%);
-  height: 2px !important;
-}
+$nprogress-color: darken($navbar-inverse-bg, 15%);
+@import 'nprogress';
+@import 'nprogress-bootstrap';
