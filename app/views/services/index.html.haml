@@ -24,7 +24,7 @@
       %ul.list-group
         - @services.each do |service|
           %li.list-group-item
-            %i.fa.fa-#{service.provider}
+            %i{class: "fa fa-#{service.provider}"}
             %strong= service.provider.capitalize
             (#{service.nickname})
             = link_to 'Disconnect', service_path(service), data: { confirm: "Really disconnect service #{service.provider.capitalize}?" }, method: :delete
