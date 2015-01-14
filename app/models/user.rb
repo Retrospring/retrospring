@@ -112,8 +112,7 @@ class User < ActiveRecord::Base
   # has the user answered +question+ yet?
   # @param question [Question]
   def answered?(question)
-    question.answers.each { |a| return true if a.user_id == self.id }
-    false
+    question.answers.pluck(:user_id).include? self.id
   end
 
   # smiles an answer
@@ -129,9 +128,7 @@ class User < ActiveRecord::Base
   end
 
   def smiled?(answer)
-    # TODO: you know what to do here, nilsding
-    answer.smiles.each { |s| return true if s.user_id == self.id }
-    false
+    answer.smiles.pluck(:user_id).include? self.id
   end
 
   def display_website
