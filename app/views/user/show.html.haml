@@ -15,3 +15,5 @@
       %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
         Load more
   .visible-xs= render 'shared/links'
+- if user_signed_in?
+  = render 'user/modal_group_memberships'

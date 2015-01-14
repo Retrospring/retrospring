@@ -1,0 +1,16 @@
+#modal-group-memberships.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal-group-memberships-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#modal-group-memberships-label.modal-title Manage group memberships
+      .modal-body
+        - current_user.groups.each do |group|
+          %label
+            %input{type: :checkbox, name: 'gm-group-check', data: { group_name: group.name }, checked: @user.member_of?(group)}
+            = group.display_name
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
+        %button.btn.btn-primary{name: 'gm-save', :type => "button"} Save

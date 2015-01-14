@@ -15,3 +15,5 @@
           = group.display_name
 
   .visible-xs= render 'shared/links'
+- if user_signed_in?
+  = render 'user/modal_group_memberships'

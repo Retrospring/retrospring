@@ -94,6 +94,12 @@ class User < ActiveRecord::Base
     friends.include? target_user
   end
 
+  # @param group [Group]
+  # @return [Boolean] true if +self+ is a member of +group+
+  def member_of?(group)
+    group_memberships.pluck(:group_id).include? group.id
+  end
+
   # answers a question
   # @param question [Question] the question to answer
   # @param content [String] the answer content

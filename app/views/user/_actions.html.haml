@@ -21,6 +21,9 @@
               %i.fa.fa-minus-circle
               Block
         %li
+          %a{href: '#', data: { target: "#modal-group-memberships", toggle: :modal }}
+            Manage group memberships
+        %li
           %a{href: '#', data: { action: 'report-user', target: user.screen_name }}
             %i.fa.fa-exclamation-triangle
             Report
