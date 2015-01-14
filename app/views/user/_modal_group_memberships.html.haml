@@ -6,7 +6,7 @@
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
         %h4#modal-group-memberships-label.modal-title Manage group memberships
-      %ul.list-group
+      %ul.list-group.groups--list
         - current_user.groups.each do |group|
           %li.list-group-item
             .media
