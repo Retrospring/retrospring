@@ -7,12 +7,11 @@
  */
 
 @import url(https://fonts.googleapis.com/css?family=Exo+2:400,700);
-@import "bootswatch/paper/variables";
 
 $font-family-sans-serif:  "Exo 2","Open Sans", "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;
 $font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-$font-family-monospace:   Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
+$font-family-monospace:   "PragmataPro", Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
 $font-family-base:        $font-family-sans-serif;
 
 $font-size-base:          14px;
@@ -26,6 +25,24 @@ $font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
 $font-size-h5:            $font-size-base;
 $font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 
+$brand-primary: #5e35b1;
+$navbar-inverse-bg: #5e35b1;
+$navbar-inverse-link-color: #ffffff;
+$navbar-inverse-link-hover-color: #bfbfbf;
+$navbar-inverse-link-hover-bg: transparent;
+$navbar-inverse-link-active-color: #bfbfbf;
+$navbar-inverse-link-active-bg: darken($navbar-inverse-bg, 6.5%);
+$navbar-inverse-link-disabled-color: darken(#fff, 12.5%);
+$navbar-inverse-link-disabled-bg: transparent;
+$navbar-inverse-brand-color: $navbar-inverse-link-color;
+$navbar-inverse-brand-hover-color: darken($navbar-inverse-link-color, 10%);
+$navbar-inverse-brand-hover-bg: transparent;
+$navbar-inverse-toggle-hover-bg: #512da8;
+$navbar-inverse-toggle-icon-bar-bg: #7e57c2;
+$navbar-inverse-toggle-border-color: #512da8;
+
+@import "bootswatch/paper/variables";
+
 @import "bootstrap";
 body { padding-top: $navbar-height; }
 @import "bootswatch/paper/bootswatch";
@@ -34,8 +51,6 @@ body { padding-top: $navbar-height; }
 
 @import "font-awesome";
 
-html.turbolinks-progress-bar::before {
-  background-color: darken($navbar-inverse-bg, 15%) !important;
-  box-shadow: 0px 0px 10px darken($navbar-inverse-bg, 15%), 0px 0px 5px darken($navbar-inverse-bg, 15%);
-  height: 2px !important;
-}
+$nprogress-color: darken($navbar-inverse-bg, 15%);
+@import 'nprogress';
+@import 'nprogress-bootstrap';
