@@ -75,6 +75,17 @@ body {
   display: inline-block;
 }
 
+.j2-table {
+  display: table;
+}
+
+.input--center {
+  display: table-cell;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .sweet-overlay {
   z-index: 1031;
 }

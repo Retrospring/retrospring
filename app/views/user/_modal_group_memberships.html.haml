@@ -10,8 +10,8 @@
         - current_user.groups.each do |group|
           %li.list-group-item
             .media
-              .pull-left
-                %input{type: :checkbox, name: 'gm-group-check', data: { group_name: group.name }, checked: @user.member_of?(group)}
+              .pull-left.j2-table
+                %input.input--center{type: :checkbox, name: 'gm-group-check', data: { group_name: group.name }, checked: @user.member_of?(group)}
             .media-body
               .list-group-item-heading= group.display_name
               .list-group-item-text.text-muted.j2-up
