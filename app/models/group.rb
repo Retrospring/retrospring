@@ -2,9 +2,12 @@ class Group < ActiveRecord::Base
   belongs_to :user
   has_many :group_members, dependent: :destroy
 
+  validates :display_name, length: { maximum: 30 }
+
   before_validation do
+    self.display_name.strip!
     self.name = self.display_name.downcase.sub(/\s+/, '-')
-    self.name = 'group-followers' if self.name == 'followers'
+    self.name = '-followers-' if self.name == 'followers'
   end
 
   alias members group_members
