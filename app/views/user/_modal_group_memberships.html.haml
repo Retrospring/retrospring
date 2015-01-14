@@ -6,11 +6,17 @@
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
         %h4#modal-group-memberships-label.modal-title Manage group memberships
-      .modal-body
+      %ul.list-group
         - current_user.groups.each do |group|
-          %label
-            %input{type: :checkbox, name: 'gm-group-check', data: { group_name: group.name }, checked: @user.member_of?(group)}
-            = group.display_name
+          %li.list-group-item
+            .media
+              .pull-left
+                %input{type: :checkbox, name: 'gm-group-check', data: { group_name: group.name }, checked: @user.member_of?(group)}
+            .media-body
+              .list-group-item-heading= group.display_name
+              .list-group-item-text.text-muted.j2-up
+                %span{id: "#{group.name}-members"} x
+                members
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
         %button.btn.btn-primary{name: 'gm-save', :type => "button"} Save
