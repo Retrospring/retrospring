@@ -6,7 +6,18 @@
           %h3.panel-title Out of questions?
         .panel-body
           %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'} Get new question
-          %a.btn.btn-block.btn-primary{target: '_blank', href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{show_user_profile_url(current_user.screen_name)}"} Share on Twitter
+      .panel.panel-default.inbox--panel
+        .panel-heading
+          %h3.panel-title Share
+        .panel-body
+          %a.btn.btn-block.btn-primary{target: '_blank', href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{show_user_profile_url(current_user.screen_name)}"}
+            Share on
+            %i.fa.fa-twitter
+            Twitter
+          %a.btn.btn-block.btn-primary{target: '_blank', href: "http://www.tumblr.com/share/link?url=#{show_user_profile_url(current_user.screen_name)}&name=Ask%20me%20anything%21"}
+            Share on
+            %i.fa.fa-tumblr
+            Tumblr
       .panel.panel-default.warning--panel
         .panel-heading
           %h3.panel-title Actions
