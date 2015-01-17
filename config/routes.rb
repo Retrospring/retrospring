@@ -75,6 +75,7 @@ Rails.application.routes.draw do
     match '/create_comment', to: 'comment#create', via: :post, as: :create_comment
     match '/destroy_comment', to: 'comment#destroy', via: :post, as: :destroy_comment
     match '/report', to: 'report#create', via: :post, as: :report
+    match '/group_membership', to: 'group#membership', via: :post, as: :group_membership
   end
 
   match '/public', to: 'public#index', via: :get, as: :public_timeline

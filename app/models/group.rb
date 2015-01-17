@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
 
   before_validation do
     self.display_name.strip!
-    self.name = self.display_name.downcase.sub(/\s+/, '-')
+    self.name = self.display_name.parameterize
     self.name = '-followers-' if self.name == 'followers'
   end
 
