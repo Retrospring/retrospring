@@ -35,6 +35,31 @@ class Ajax::GroupController < ApplicationController
     @render = render_to_string(partial: 'user/modal_group_item', locals: { group: group, user: target_user })
   end
 
+  def destroy
+    @status = :err
+    @success = false
+
+    unless user_signed_in?
+      @status = :noauth
+      @message = "requires authentication"
+      return
+    end
+
+    params.require :group
+
+    begin
+      Group.where(user: current_user, name: params[:group]).first.destroy!
+    rescue ActiveRecord::RecordNotFound
+      @status = :notfound
+      @message = "Could not find group."
+      return
+    end
+
+    @status = :okay
+    @success = true
+    @message = "Successfully created group."
+  end
+
   def membership
     @status = :err
     @success = false

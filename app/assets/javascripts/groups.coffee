@@ -57,3 +57,33 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
       showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
       btn.button "reset"
+
+
+($ document).on "click", "a#delete-group", (ev) ->
+  ev.preventDefault()
+  btn = $(this)
+  group = btn[0].dataset.group
+
+  swal
+    title: "Really delete this group?"
+    text: "You will not be able to recover this group."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Delete"
+    closeOnConfirm: true
+  , ->
+    $.ajax
+      url: '/ajax/destroy_group'
+      type: 'POST'
+      data:
+        group: group
+      dataType: 'json'
+      success: (data, status, jqxhr) ->
+        if data.success
+          ($ "li.list-group-item#group-#{group}").slideUp()
+        showNotification data.message, data.success
+      error: (jqxhr, status, error) ->
+        console.log jqxhr, status, error
+        showNotification "An error occurred, a developer should check the console for details", false
+      complete: (jqxhr, status) ->

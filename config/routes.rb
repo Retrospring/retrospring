@@ -76,6 +76,7 @@ Rails.application.routes.draw do
     match '/destroy_comment', to: 'comment#destroy', via: :post, as: :destroy_comment
     match '/report', to: 'report#create', via: :post, as: :report
     match '/create_group', to: 'group#create', via: :post, as: :create_group
+    match '/destroy_group', to: 'group#destroy', via: :post, as: :destroy_group
     match '/group_membership', to: 'group#membership', via: :post, as: :group_membership
   end
 

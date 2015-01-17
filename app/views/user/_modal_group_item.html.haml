@@ -1,4 +1,4 @@
-%li.list-group-item
+%li.list-group-item{id: "group-#{group.name}"}
   .media
     .pull-left.j2-table
       %input.input--center{type: :checkbox, name: 'gm-group-check', data: { group: group.name, user: user.screen_name }, checked: user.member_of?(group), autocomplete: 'off'}
@@ -7,6 +7,6 @@
       .list-group-item-text.text-muted.j2-up
         %span{id: "#{group.name}-members"}= group.members.count
         members ·
-        %a.j2-delete{href: "#", id: "#{group.name}-delete"}
+        %a.j2-delete#delete-group{href: "#", data: { group: group.name }}
           %i.fa.fa-close
           Delete
