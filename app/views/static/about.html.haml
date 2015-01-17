@@ -1,14 +1,9 @@
+.jumbotron.j2-jumbo.text-center
+  %h1= APP_CONFIG['site_name']
+  %p About our service, features and other information
 .container
-  %h1.centre
-    About
-    = APP_CONFIG['site_name']
-  
   = render 'layouts/messages'
-  
-  /
-    TODO: fill this out.
-    also TODO: find a way to make each panel's height equal
-  
+
   .row
     .col-sm-4
       .panel.panel-default
