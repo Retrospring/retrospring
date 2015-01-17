@@ -12,5 +12,5 @@ jQuery ->
         $.getScript more_posts_url, ->
           $this.text('Load more').removeClass('disabled') if $this
           loading_posts = false
-        $('[data-toggle="tooltip"]').tooltip()
+          $('[data-toggle="tooltip"]').tooltip()
       return
