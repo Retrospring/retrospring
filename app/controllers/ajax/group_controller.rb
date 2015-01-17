@@ -16,8 +16,15 @@ class Ajax::GroupController < ApplicationController
       target_user = User.find_by_screen_name(params[:user])
       group = Group.create! user: current_user, display_name: params[:name]
     rescue ActiveRecord::RecordInvalid
-      @status = :toolong
-      @message = "Group name too long (30 characters max.)"
+      if params[:name].strip.length > 30
+        @status = :toolong
+        @message = "Group name too long (30 characters max.)"
+      elsif params[:name].strip.length == 0
+        @status = :noname
+        @message = "Please enter a group name."
+      else
+        @message = "???"
+      end
       return
     rescue ActiveRecord::RecordNotFound
       @status = :notfound
@@ -57,7 +64,7 @@ class Ajax::GroupController < ApplicationController
 
     @status = :okay
     @success = true
-    @message = "Successfully created group."
+    @message = "Successfully deleted group."
   end
 
   def membership
