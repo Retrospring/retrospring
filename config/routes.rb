@@ -85,16 +85,16 @@ Rails.application.routes.draw do
   match '/inbox', to: 'inbox#show', via: 'get'
   
   match '/user/:username(/p/:page)', to: 'user#show', via: 'get', defaults: {page: 1}
-  match '/@:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile, defaults: {page: 1}
-  match '/@:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer
-  match '/@:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question
-  match '/@:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers, defaults: {page: 1}
-  match '/@:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends, defaults: {page: 1}
-  match '/@:username/groups(/p/:page)', to: 'user#groups', via: 'get', as: :show_user_groups, defaults: {page: 1}
-  match '/:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
-  match '/:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer_alt
-  match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question_alt
-  match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers_alt, defaults: {page: 1}
-  match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends_alt, defaults: {page: 1}
+  match '/@:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
+  match '/@:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer_alt
+  match '/@:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question_alt
+  match '/@:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers_alt, defaults: {page: 1}
+  match '/@:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends_alt, defaults: {page: 1}
+  match '/:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile, defaults: {page: 1}
+  match '/:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer
+  match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question
+  match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers, defaults: {page: 1}
+  match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends, defaults: {page: 1}
+  match '/:username/groups(/p/:page)', to: 'user#groups', via: 'get', as: :show_user_groups, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 end
