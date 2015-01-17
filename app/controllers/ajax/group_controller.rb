@@ -9,22 +9,21 @@ class Ajax::GroupController < ApplicationController
       return
     end
 
-    params.require :name
+    begin
+      params.require :name
+    rescue ActionController::ParameterMissing
+      @status = :toolong
+      @message = "Please give that group a name."
+      return
+    end
     params.require :user
 
     begin
       target_user = User.find_by_screen_name(params[:user])
       group = Group.create! user: current_user, display_name: params[:name]
     rescue ActiveRecord::RecordInvalid
-      if params[:name].strip.length > 30
-        @status = :toolong
-        @message = "Group name too long (30 characters max.)"
-      elsif params[:name].strip.length == 0
-        @status = :noname
-        @message = "Please enter a group name."
-      else
-        @message = "???"
-      end
+      @status = :toolong
+      @message = "Group name too long (30 characters max.)"
       return
     rescue ActiveRecord::RecordNotFound
       @status = :notfound
