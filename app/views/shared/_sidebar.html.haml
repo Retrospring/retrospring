@@ -45,7 +45,7 @@
       %h3.panel-title Members
     .panel-body
       - @group.members.each do |member|
-        %a{href: show_user_profile_path(member.screen_name), title: member.screen_name, data: { toggle: :tooltip, placement: :top }}
-          %img.img-rounded.answerbox--img-small{src: member.profile_picture.url(:medium)}
+        %a{href: show_user_profile_path(member.user.screen_name), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top }}
+          %img.img-rounded.answerbox--img-small{src: member.user.profile_picture.url(:medium)}
 
 .hidden-xs= render 'shared/links'
