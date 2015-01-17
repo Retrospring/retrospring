@@ -6,4 +6,7 @@
       .list-group-item-heading= group.display_name
       .list-group-item-text.text-muted.j2-up
         %span{id: "#{group.name}-members"}= group.members.count
-        members
+        members ·
+        %a.j2-delete{href: "#", id: "#{group.name}-delete"}
+          %i.fa.fa-close
+          Delete
