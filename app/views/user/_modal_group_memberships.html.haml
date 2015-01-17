@@ -19,17 +19,10 @@
           .tab-pane.active{role:"tabpanel", id: "grouplist"}
             %ul.list-group.groups--list
               - current_user.groups.each do |group|
-                %li.list-group-item
-                  .media
-                    .pull-left.j2-table
-                      %input.input--center{type: :checkbox, name: 'gm-group-check', data: { group: group.name, user: @user.screen_name }, checked: @user.member_of?(group), autocomplete: 'off'}
-                    .media-body
-                      .list-group-item-heading= group.display_name
-                      .list-group-item-text.text-muted.j2-up
-                        %span{id: "#{group.name}-members"}= group.members.count
-                        members
+                = render 'user/modal_group_item', group: group, user: @user
           .tab-pane{role:"tabpanel", id: "create"}
             .modal-body
-              Nothing here yet :(
+              %input#new-group-name.form-control{type: :text, placeholder: 'Group name'}
+              %button#create-group.btn.btn-primary{type: :button, data: { user: @user.screen_name }} Create group
       .modal-footer
         %button.btn.btn-primary{name: 'gm-save', type: :button, data: { dismiss: :modal }} Done

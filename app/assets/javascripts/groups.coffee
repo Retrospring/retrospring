@@ -4,7 +4,7 @@
 
   groupName = box[0].dataset.group
 
-  count = Number $("span##{groupName}-members").html()
+  count = Number ($ "span##{groupName}-members").html()
   boxChecked = box[0].checked
 
   count += if boxChecked then 1 else -1
@@ -19,7 +19,7 @@
     success: (data, status, jqxhr) ->
       if data.success
         box[0].checked = if data.checked? then data.checked else !boxChecked
-        $("span##{groupName}-members").html(count)
+        ($ "span##{groupName}-members").html(count)
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       box[0].checked = false
@@ -27,3 +27,33 @@
       showNotification "An error occurred, a developer should check the console for details", false
     complete: (jqxhr, status) ->
       box.removeAttr "disabled"
+
+
+$(document).on "keyup", "input#new-group-name", (evt) ->
+  if evt.which == 13  # return key
+    evt.preventDefault()
+    $("button#create-group").trigger 'click'
+
+
+($ document).on "click", "button#create-group", ->
+  btn = $(this)
+  btn.button "loading"
+  input = ($ "input#new-group-name")
+
+  $.ajax
+    url: '/ajax/create_group'
+    type: 'POST'
+    data:
+      name: input.val()
+      user: btn[0].dataset.user
+    dataType: 'json'
+    success: (data, status, jqxhr) ->
+      if data.success
+        ($ "ul.list-group.groups--list").append(data.render)
+        input.val ''
+      showNotification data.message, data.success
+    error: (jqxhr, status, error) ->
+      console.log jqxhr, status, error
+      showNotification "An error occurred, a developer should check the console for details", false
+    complete: (jqxhr, status) ->
+      btn.button "reset"
