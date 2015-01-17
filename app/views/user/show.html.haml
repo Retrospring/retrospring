@@ -1,9 +1,11 @@
 .profile--header
 .container.j2-page
   .col-md-3.col-xs-12.col-sm-4
+    .profile--panel-push-50.hidden-xs
     = render 'user/profile_info'
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-8
+    .profile--panel-push-200.hidden-xs
     = render 'shared/questionbox'
     #answers
       - @answers.each do |a|
