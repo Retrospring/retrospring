@@ -78,17 +78,37 @@
             7. Can I format my questions/answers?
       .panel-collapse.collapse{id: "collapseEight", role: "tabpanel", aria: {labelledby: "faqEight"}}
         .panel-body
-          You sure can! We use a customized version of markdown for this. Wrap your text in following ways to format it!
-          %code *italic*
-          or
-          %code _italic_
+          %p
+            You sure can! We use a customized version of markdown for this. Wrap your text in following ways to format it!
+            %code *italic*
+            or
+            %code _italic_
+            ,
+            %code **bold**
+            or
+            %code __bold__
+            and
+            %code
+              \~~strikethrough~~
+
+          %p You can also create lists with this method:
+          %pre
+            * item 1
+            * item 2
+            ...
+
+          %p Quotes? Here you go!:
+          %pre
+            > This is a quote from a famous person
+
+          %p Don't like the formatting? You can escape it with prepending a
+          %code \
+          before the
+          %code *
           ,
-          %code **bold**
+          %code _
           or
-          %code __bold__
-          and
-          %code
-            \~~strikethrough~~
+          %code >
 
     .panel.panel-default
       .panel-heading{id: "faqNine", role: "tab"}
