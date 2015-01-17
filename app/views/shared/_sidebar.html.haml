@@ -39,4 +39,13 @@
       = nav_entry "Public", public_timeline_path
       - current_user.groups.each do |group|
         = nav_entry group.display_name, group_timeline_path(group.name)
+- unless @group.nil?
+  .panel.panel-default.profile--panel.hidden-xs
+    .panel-heading
+      %h3.panel-title Members
+    .panel-body
+      = @group.members.each do |member|
+        %a{href: show_user_profile_path(member.screen_name), title: member.screen_name, data: { toggle: :tooltip, placement: :top }}
+          %img.img-rounded.answerbox--img-small{src: member.profile_picture.url(:medium)}
+
 .hidden-xs= render 'shared/links'
