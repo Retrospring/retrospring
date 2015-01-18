@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/justask/questiongenerator.git
-  revision: 99f2469bbe59f50a0cf3df60d7e82b2b5f7aab9b
+  revision: d90f681be8e3a155a6aa45fc9afaae95c24d5114
   specs:
-    questiongenerator (0.0.2)
+    questiongenerator (0.1.0)
 
 GEM
   remote: https://rubygems.org/
