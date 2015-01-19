@@ -27,6 +27,13 @@
             .media-body
               %h4.entry-text.entry-about pixeldesu
               %h6.entry-subtext Frontend Design & Layout
+          .media
+            .pull-left
+              %a{href: show_user_profile_path('Filippus')}
+                %img.img-rounded.answerbox--img{src: User.find_by_screen_name('Filippus').profile_picture.url(:medium)}
+            .media-body
+              %h4.entry-text.entry-about Filippus
+              %h6.entry-subtext Moderator Management & Support
       .panel.panel-default
         .panel-body
           %h3 Moderators
