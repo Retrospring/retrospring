@@ -78,7 +78,9 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
-  gem 'simplecov'
+  gem 'simplecov', require: false
+  gem 'simplecov-json', require: false
+  gem 'simplecov-rcov', require: false
   gem 'database_cleaner'
 end
 

@@ -284,6 +284,11 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    simplecov-json (0.2)
+      json
+      simplecov
+    simplecov-rcov (0.2.3)
+      simplecov (>= 0.4.1)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -399,6 +404,8 @@ DEPENDENCIES
   sdoc (~> 0.4.1)
   sidekiq
   simplecov
+  simplecov-json
+  simplecov-rcov
   sinatra
   spring
   sweetalert-rails
