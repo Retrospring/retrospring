@@ -3,7 +3,9 @@ SimpleCov.start
 
 require 'capybara/poltergeist'
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: false)
+  Capybara::Poltergeist::Driver.new app,
+    js_errors: false,
+    timeout: 180
 end
 Capybara.javascript_driver = :poltergeist
 
@@ -26,14 +28,6 @@ require 'factory_girl_rails'
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-
-  # this should prevent timeouts for waiting on the assets to be compiled,
-  # makes testing a bit longer though
-  config.before(:all, type: :feature) do
-    visit "/assets/application.css"
-    visit "/assets/application.js"
-  end
-
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
