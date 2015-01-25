@@ -74,7 +74,7 @@ end
 group :development, :test do
   gem 'thin'
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
