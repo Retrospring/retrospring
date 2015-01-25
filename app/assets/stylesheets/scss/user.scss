@@ -89,8 +89,8 @@ $colours: danger $brand-danger,
           default #BBB,
           success $brand-success,
           warning $brand-warning,
-          info $brand-info,
-          primary $brand-primary;
+          primary $brand-primary,
+          info #2980b9;
 
 @each $colour in $colours {
   .panel-badge-#{nth($colour, 1)} {
