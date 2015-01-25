@@ -70,7 +70,7 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.admin = false
     user.save!
-    puts "#{user.screen_name} no longer an admin."
+    puts "#{user.screen_name} is no longer an admin."
   end
 
   desc "Gives moderator status to an user."
@@ -113,6 +113,26 @@ namespace :justask do
     puts "#{user.screen_name} is no longer banned."
   end
 
+  desc "Gives blogger status to an user."
+  task :blog, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.blogger = true
+    user.save!
+    puts "#{user.screen_name} is now a blogger."
+  end
+
+  desc "Removes blogger status from an user."
+  task :unblog, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.blogger = false
+    user.save!
+    puts "#{user.screen_name} is no longer a blogger."
+  end
+
   desc "Gives supporter status to an user."
   task :sup, [:screen_name] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
@@ -130,7 +150,7 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.supporter = false
     user.save!
-    puts "#{user.screen_name} no longer an supporter."
+    puts "#{user.screen_name} is no longer an supporter."
   end
 
   desc "Lists all users."

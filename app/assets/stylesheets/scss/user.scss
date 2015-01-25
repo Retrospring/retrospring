@@ -22,27 +22,6 @@
   margin: 0px 0px 0.2em;
 }
 
-.profile--admin {
-  color: $brand-danger;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 80%;
-}
-
-.profile--moderator {
-  color: $brand-success;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 80%;
-}
-
-.profile--supporter {
-  color: $brand-warning;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 80%;
-}
-
 .profile--text {
   margin-bottom: 2px;
   line-height: 1.5em;
@@ -106,20 +85,17 @@
   color: #fff;
 }
 
-.panel-badge-danger {
-  background-color: #E51C23;
-}
+$colours: danger $brand-danger,
+          default #BBB,
+          success $brand-success,
+          warning $brand-warning,
+          info $brand-info,
+          primary $brand-primary;
 
-.panel-badge-default {
-  background-color: #BBB;
-}
-
-.panel-badge-success {
-  background-color: #4CAF50;
-}
-
-.panel-badge-warning {
-  background-color: #FF9800;
+@each $colour in $colours {
+  .panel-badge-#{nth($colour, 1)} {
+    background-color: nth($colour, 2);
+  }
 }
 
 .user--banned {
