@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/justask/questiongenerator.git
-  revision: d90f681be8e3a155a6aa45fc9afaae95c24d5114
+  revision: 4f85dafbaf226e3dfbfad9ed3f169bab03b9a84c
   specs:
     questiongenerator (0.1.0)
 
