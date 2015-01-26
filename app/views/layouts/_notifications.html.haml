@@ -1,1 +1,43 @@
 = nav_entry "Notifications", notifications_path, badge: notification_count
+%li.dropdown.hidden-xs
+  %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+    Notifications
+    %span.badge= notification_count
+  %ul.dropdown-menu.notification--dropdown
+    %li
+      .media.notification--dropdown-media
+        .pull-left
+          %img.img-rounded.notification--dropdown-img
+      .media-body
+        %h6.media-heading.notification--dropdown-user
+          username
+        .notification--dropdown-text
+          followed you 33 minutes ago
+    %li
+      .media.notification--dropdown-media
+        .pull-left
+          %img.img-rounded.notification--dropdown-img
+      .media-body
+        %h6.media-heading.notification--dropdown-user
+          username
+        .notification--dropdown-text
+          smiled at your answer about 1 hour ago
+    %li
+      .media.notification--dropdown-media
+        .pull-left
+          %img.img-rounded.notification--dropdown-img
+      .media-body
+        %h6.media-heading.notification--dropdown-user
+          username
+        .notification--dropdown-text
+          answered your question about 4 hours ago
+    %li
+      .media.notification--dropdown-media
+        .pull-left
+          %img.img-rounded.notification--dropdown-img
+      .media-body
+        %h6.media-heading.notification--dropdown-user
+          username
+        .notification--dropdown-text
+          commented on your answer about 5 hours ago
+    %li= link_to "Show all Notifications", notifications_path
