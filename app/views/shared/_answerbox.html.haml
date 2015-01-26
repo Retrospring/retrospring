@@ -36,15 +36,21 @@
         = markdown a.content
     - if @user.nil?
       .row
-        .col-md-6.col-sm-4.col-xs-7.text-left.text-muted
-          Answered by
-          %a{href: show_user_profile_path(a.user.screen_name)}
-            %img.img-rounded.answerbox--img-small{src: gravatar_url(a.user)}
-            %span= a.user.screen_name
-          %a{href: show_user_answer_path(a.user.screen_name, a.id)}
-            %span= time_ago_in_words(a.created_at)
-            ago
-        .col-md-6.col-sm-8.col-xs-5.text-right
+        .col-md-6.col-sm-4.col-xs-6.text-left.text-muted
+          .media
+            .pull-left
+              %a{href: show_user_profile_path(a.user.screen_name)}
+                %img.img-rounded.answerbox--img{src: gravatar_url(a.user)}
+            .media-body
+              %h6.media-heading.answerbox--answer-user
+                %span.hidden-xs
+                  Answered by
+                = user_screen_name a.user.screen_name
+              .answerbox--answer-date
+                %a{href: show_user_answer_path(a.user.screen_name, a.id)}
+                  %span= time_ago_in_words(a.created_at)
+                  ago
+        .col-md-6.col-sm-8.col-xs-6.text-right
           = render 'shared/answerbox_buttons', a: a
     - else
       .row

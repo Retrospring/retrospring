@@ -17,7 +17,7 @@
   width: 20px;
 }
 
-.answerbox--question-text, .answerbox--question-user {
+.answerbox--question-text, .answerbox--question-user, .answerbox--answer-user, .answerbox--answer-date {
   margin-bottom: 0px;
   overflow: hidden;
 }
@@ -29,5 +29,10 @@
 .answerbox--answer-text {
   font-size: 16px;
   color: #000;
+  line-height: 1.3em;
+}
+
+.answerbox--answer-date {
+  font-size: 12px;
   line-height: 1.3em;
 }
