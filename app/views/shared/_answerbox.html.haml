@@ -45,7 +45,7 @@
               %h6.media-heading.answerbox--answer-user
                 %span.hidden-xs
                   Answered by
-                = user_screen_name a.user.screen_name
+                = user_screen_name a.user
               .answerbox--answer-date
                 %a{href: show_user_answer_path(a.user.screen_name, a.id)}
                   %span= time_ago_in_words(a.created_at)
