@@ -1,1 +1,61 @@
-= nav_entry "Notifications", notifications_path, badge: notification_count
+= nav_entry "Notifications", notifications_path, badge: notification_count, class: 'visible-xs'
+- notifications = Notification.for(current_user).limit(4)
+%li.dropdown.hidden-xs
+  %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+    Notifications
+    %span.badge= notification_count
+  %ul.dropdown-menu.notification--dropdown
+    - if notifications.count == 0
+      %li.centre.text-muted New notifications will appear here.
+    - else
+      - notifications.each do |notification|
+        %li{class: (notification.new? ? 'list-group-item-warning' : '')}
+          .media.notification--dropdown-media
+            - case notification.target_type
+              - when "Answer"
+                .pull-left
+                  %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.user)}
+                .media-body
+                  %h6.media-heading.notification--dropdown-user
+                    = user_screen_name notification.target.user
+                  .notification--dropdown-text
+                    answered
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id), title: "#{notification.target.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
+                      your question
+                    = time_ago_in_words notification.target.created_at
+                    ago
+              - when "Relationship"
+                .pull-left
+                  %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.source)}
+                .media-body
+                  %h6.media-heading.notification--dropdown-user
+                    = user_screen_name notification.target.source
+                  .notification--dropdown-text
+                    followed you
+                    = time_ago_in_words notification.target.created_at
+                    ago
+              - when "Smile"
+                .pull-left
+                  %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.user)}
+                .media-body
+                  %h6.media-heading.notification--dropdown-user
+                    = user_screen_name notification.target.user
+                  .notification--dropdown-text
+                    smiled at
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
+                      your answer
+                    = time_ago_in_words notification.target.created_at
+                    ago
+              - when "Comment"
+                .pull-left
+                  %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.user)}
+                .media-body
+                  %h6.media-heading.notification--dropdown-user
+                    = user_screen_name notification.target.user
+                  .notification--dropdown-text
+                    commented on
+                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
+                      your answer
+                    = time_ago_in_words notification.target.created_at
+                    ago
+    %li= link_to "Show all notifications#{" and mark them as read" if notifications.pluck(:new).any?}", notifications_path
