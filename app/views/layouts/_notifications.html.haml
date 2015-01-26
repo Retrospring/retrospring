@@ -1,4 +1,4 @@
-.visible-xs= nav_entry "Notifications", notifications_path, badge: notification_count
+= nav_entry "Notifications", notifications_path, badge: notification_count, class: 'visible-xs'
 - notifications = Notification.for(current_user).limit(4)
 %li.dropdown.hidden-xs
   %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
@@ -6,7 +6,7 @@
     %span.badge= notification_count
   %ul.dropdown-menu.notification--dropdown
     - if notifications.count == 0
-      %p New notifications will appear here.
+      %li.centre.text-muted New notifications will appear here.
     - else
       - notifications.each do |notification|
         %li{class: (notification.new? ? 'list-group-item-warning' : '')}

@@ -60,7 +60,6 @@ feature "Inbox", :devise do
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_2.png"), full: true
   end
 
-=begin
   # Scenario: User deletes a question
   #   Given I am signed in
   #   When I visit the inbox
@@ -84,7 +83,7 @@ feature "Inbox", :devise do
     page.find('.sweet-alert').click_button 'Delete'
     wait_for_ajax
 
-    visit root_path
+    login_as me, scope: :user
     visit inbox_path
     expect(page).not_to have_text(question.content)
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_2.png"), full: true
@@ -111,14 +110,14 @@ feature "Inbox", :devise do
     expect(page).to have_text('Really delete 5 questions?')
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_1.png"), full: true
 
-    # this apparently doesn't get triggered :(
     page.find('.sweet-alert').click_button 'Delete'
     wait_for_ajax
 
-    visit root_path
+    puts me.inbox.all
+
+    login_as me, scope: :user
     visit inbox_path
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_2.png"), full: true
     expect(page).not_to have_text('Answer'.upcase)
   end
-=end
 end
