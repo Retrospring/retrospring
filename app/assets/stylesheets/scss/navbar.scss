@@ -3,7 +3,7 @@
   background-color: $navbar-inverse-link-active-bg;
 }
 
-.navbar .nav .active .badge {
+.navbar .nav .active .badge, li.dropdown.open a.dropdown-toggle span.badge {
   padding: 3px 6px 3px;
   background-color: $navbar-inverse-bg;
 }
