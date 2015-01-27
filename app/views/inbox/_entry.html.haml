@@ -23,9 +23,9 @@
       Answer
     %button.btn.btn-danger{name: 'ib-destroy', data: { ib_id: i.id }}
       Delete
-    %button.btn.btn-default
+    %button.btn.btn-default{name: 'ib-options', data: { ib_id: i.id, state: :hidden }}
       Options
-  .panel-footer
+  .panel-footer{id: "ib-options-#{i.id}", style: 'display: none'}
     %h4 Sharing
     - if @services.count > 0
       .row
