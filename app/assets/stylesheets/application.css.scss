@@ -51,6 +51,6 @@ body { padding-top: $navbar-height; }
 
 @import "font-awesome";
 
-$nprogress-color: darken($navbar-inverse-bg, 15%);
+$nprogress-color: lighten($navbar-inverse-bg, 25%);
 @import 'nprogress';
 @import 'nprogress-bootstrap';
