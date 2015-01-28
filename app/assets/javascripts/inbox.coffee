@@ -122,10 +122,11 @@ $(document).on "click", "button[name=ib-destroy]", ->
         btn.button "reset"
         $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"
 
+
 # Toggle button
 $(document).on "click", "button[name=ib-options]", ->
   btn = $(this)
-  ibid = btn[0].dataset.ib_id
+  ibid = btn[0].dataset.ibId
   state = btn[0].dataset.state
   optionBox = $("#ib-options-#{ibid}")
 
