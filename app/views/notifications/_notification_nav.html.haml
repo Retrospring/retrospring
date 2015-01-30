@@ -1,0 +1,16 @@
+%nav.navbar.navbar-default.navbar-static-top.j2-navbar.visible-xs{role: "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#j2-tl-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: "/"} Notifications
+    #j2-tl-navbar-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        = nav_entry "All notifications", notifications_path
+        = nav_entry "Answers", notifications_path('answer')
+        = nav_entry "Smiles", notifications_path('smile')
+        = nav_entry "Comments", notifications_path('comment')
+        = nav_entry "Followers", notifications_path('relationship')
