@@ -121,3 +121,18 @@ $(document).on "click", "button[name=ib-destroy]", ->
       complete: (jqxhr, status) ->
         btn.button "reset"
         $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"
+
+# Toggle button
+$(document).on "click", "button[name=ib-options]", ->
+  btn = $(this)
+  ibid = btn[0].dataset.ib_id
+  state = btn[0].dataset.state
+  optionBox = $("#ib-options-#{ibid}")
+
+  switch state
+    when 'hidden'
+      optionBox.slideDown()
+      btn[0].dataset.state = 'shown'
+    when 'shown'
+      optionBox.slideUp()
+      btn[0].dataset.state = 'hidden'
