@@ -24,10 +24,11 @@
     %button.btn.btn-danger{name: 'ib-destroy', data: { ib_id: i.id }}
       Delete
     %button.btn.btn-default{name: 'ib-options', data: { ib_id: i.id, state: :hidden }}
-      Options
+      %i.fa.fa-cog
+      %span.sr-only Options
   .panel-footer{id: "ib-options-#{i.id}", style: 'display: none'}
     %h4 Sharing
-    - if @services.count > 0
+    - if current_user.services.count > 0
       .row
       - current_user.services.each do |service|
         .col-md-2.col-sm-4.col-xs-6
