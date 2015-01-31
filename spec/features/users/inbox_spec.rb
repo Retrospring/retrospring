@@ -24,7 +24,7 @@ feature "Inbox", :devise do
 
     login_as me, scope: :user
     visit root_path
-    expect(page).to have_text('1 new question')
+    expect(page).to have_text('1 new question'.upcase)
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_1.png"), full: true
 
     click_link "Inbox"
