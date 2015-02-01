@@ -27,11 +27,11 @@
 
           = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
 
-          = f.text_field :website, label: "Website", placeholder: 'http://bad-dragon.com'
+          = f.text_field :website, label: "Website", placeholder: 'http://example.com'
 
-          = f.text_field :location, label: "Location", placeholder: 'Germoney'
+          = f.text_field :location, label: "Location", placeholder: 'Where are you?'
 
-          = f.text_area :bio, label: "Bio", placeholder: 'In Bio war ich nie gut x--DD'
+          = f.text_area :bio, label: "Bio", placeholder: 'Tell us something nice about you!'
 
           - for attrib in %i(crop_x crop_y crop_w crop_h)
             = f.hidden_field attrib, id: attrib
