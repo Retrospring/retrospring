@@ -31,7 +31,7 @@
         - if current_user.mod?
           %li
             %a{href: '#', data: { target: "#modal-privileges", toggle: :modal }}
-              %i.fa.fa-paw
+              %i.fa.fa-wrench
               Check
               = succeed "'s" do
                 = user.screen_name
