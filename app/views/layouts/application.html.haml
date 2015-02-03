@@ -15,6 +15,9 @@
     %title= APP_CONFIG['site_name']
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    - if user_signed_in?
+      - if current_user.mod?
+        = javascript_include_tag 'moderation', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     = render 'layouts/header'
