@@ -17,3 +17,5 @@
   .visible-xs= render 'shared/links'
 - if user_signed_in?
   = render 'user/modal_group_memberships'
+  - if current_user.mod? and @user != current_user
+    = render 'user/modal_privileges'
