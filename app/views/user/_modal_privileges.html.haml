@@ -10,14 +10,13 @@
           = succeed "'s" do
             = @user.screen_name
           privileges
-      .modal-body
-        %ul.list-group.groups--list
-          - unless @user.admin?
-            = render 'user/modal_privileges_item', privilege: 'banned', description: 'Hit the user with ye olde banhammer', user: @user
-          = render 'user/modal_privileges_item', privilege: 'blogger', description: 'The user gets that privilege if they blogged something (nice) about Retrospring.', user: @user
-          - if current_user.admin?
-            = render 'user/modal_privileges_item', privilege: 'supporter', description: 'oy vey muh shekels', user: @user
-            = render 'user/modal_privileges_item', privilege: 'moderator', user: @user
-            = render 'user/modal_privileges_item', privilege: 'admin', user: @user
+      %ul.list-group.groups--list
+        - unless @user.admin?
+          = render 'user/modal_privileges_item', privilege: 'banned', description: 'Hit the user with ye olde banhammer', user: @user
+        = render 'user/modal_privileges_item', privilege: 'blogger', description: 'The user gets that privilege if they blogged something (nice) about Retrospring.', user: @user
+        - if current_user.admin?
+          = render 'user/modal_privileges_item', privilege: 'supporter', description: 'This user supports the site with money', user: @user
+          = render 'user/modal_privileges_item', privilege: 'moderator', description: 'Someone trustworthy enough to help managing reports',user: @user
+          = render 'user/modal_privileges_item', privilege: 'admin', description: 'This user is part of the core team', user: @user
       .modal-footer
         %button.btn.btn-primary{name: 'checked-privileges', type: :button, data: { dismiss: :modal }} Done
