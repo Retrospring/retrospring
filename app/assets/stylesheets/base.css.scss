@@ -101,3 +101,10 @@ body {
 .j2-navbar {
   margin-bottom: 0px;
 }
+
+@media (max-width: $screen-xs-max) {
+  .j2-col-reset {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
