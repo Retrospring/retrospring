@@ -2,7 +2,11 @@
 - notifications = Notification.for(current_user).limit(4)
 %li.dropdown.hidden-xs
   %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
-    Notifications
+    - if notification_count.nil?
+      %i.fa.fa-bell-o
+    - else
+      %i.fa.fa-bell
+    %span.sr-only Notifications
     %span.badge= notification_count
   %ul.dropdown-menu.notification--dropdown
     - if notifications.count == 0

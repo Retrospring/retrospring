@@ -22,8 +22,8 @@
         %ul.nav.navbar-nav
           = nav_entry "Timeline", root_path
           = nav_entry "Inbox", "/inbox", badge: inbox_count
-          = render "layouts/notifications"
         %ul.nav.navbar-nav.navbar-right
+          = render "layouts/notifications"
           %li.hidden-xs
             %span{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Ask a question"}
               .btn.btn-link.navbar-btn.btn-sm{name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
