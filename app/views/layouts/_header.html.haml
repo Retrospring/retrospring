@@ -24,10 +24,9 @@
           = nav_entry "Inbox", "/inbox", badge: inbox_count
         %ul.nav.navbar-nav.navbar-right
           = render "layouts/notifications"
-          %li.hidden-xs
-            %span{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Ask a question"}
-              .btn.btn-link.navbar-btn{name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
-                %i.fa.fa-pencil-square-o
+          %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Ask a question"}
+            .btn.btn-link.navbar-btn{name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
+              %i.fa.fa-pencil-square-o
           %li.dropdown
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
               %img.img-rounded.answerbox--img-small.hidden-xs{src: current_user.profile_picture.url(:small)}
