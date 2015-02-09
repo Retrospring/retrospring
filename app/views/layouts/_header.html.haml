@@ -25,10 +25,12 @@
           = render "layouts/notifications"
         %ul.nav.navbar-nav.navbar-right
           %li
-            .btn.btn-primary.navbar-btn.btn-sm.hidden-xs{name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
-              %i.fa.fa-pencil-square-o
+            %span{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Ask a question"}
+              .btn.btn-link.navbar-btn.btn-sm.hidden-xs{name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
+                %i.fa.fa-pencil-square-o
           %li.dropdown
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+              %img.img-rounded.answerbox--img-small.hidden-xs{src: current_user.profile_picture.url(:small)}
               = current_user.screen_name
               %b.caret
             %ul.dropdown-menu
