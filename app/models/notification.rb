@@ -4,7 +4,7 @@ class Notification < ActiveRecord::Base
 
   class << self
     def for(recipient, options={})
-      self.where(options.merge!(recipient: recipient)).order(:updated_at).reverse_order
+      self.where(options.merge!(recipient: recipient)).order(:created_at).reverse_order
     end
 
     def notify(recipient, target)
