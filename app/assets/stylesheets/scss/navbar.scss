@@ -121,6 +121,8 @@
   padding-bottom: 16px !important;
 }
 
-.profile--image-dropdown .visible-xs {
-  display: inline-block !important;
+@media (max-width: $screen-xs-max) {
+  .profile--image-dropdown > .visible-xs {
+    display: inline-block !important;
+  }
 }
