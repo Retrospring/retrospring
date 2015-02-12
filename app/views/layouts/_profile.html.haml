@@ -12,10 +12,12 @@
         .media-body
           - if current_user.display_name.blank?
             .profile--dropdown-username
-              = current_user.screen_name
+              %a{href: show_user_profile_path(current_user.screen_name)}
+                = current_user.screen_name
           - else
             .profile--dropdown-displayname
-              = current_user.display_name
+              %a{href: show_user_profile_path(current_user.screen_name)}
+                = current_user.display_name
             .profile--username
               = current_user.screen_name
     %li.divider.hidden-xs
