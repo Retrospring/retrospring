@@ -1,8 +1,9 @@
-$('#timeline').append('<% @timeline.each do |answer|
-  %><%= j render 'inbox/entry', a: answer
+$('#entries').append('<% @inbox.each do |i|
+  %><%= j render 'inbox/entry', i: i
 %><% end %>');
 <% if @timeline.next_page %>
 $('#pagination').html('<%= j will_paginate @inbox, renderer: BootstrapPagination::Rails, page_links: false %>');
 <% else %>
 $('#pagination, #load-more-btn').remove();
 <% end %>
+<% @inbox.update_all(new: false) %>
