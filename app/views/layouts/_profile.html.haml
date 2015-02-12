@@ -1,8 +1,9 @@
 %li.dropdown.profile--image-dropdown
   %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
     %img.img-rounded.answerbox--img.hidden-xs{src: current_user.profile_picture.url(:small)}
-    .visible-xs.navbar--inline-block= current_user.screen_name
-    %b.caret.visible-xs.navbar--inline-block
+    %span.visible-xs
+      = current_user.screen_name
+      %b.caret
   %ul.dropdown-menu.profile--dropdown
     %li.hidden-xs
       .media.profile--dropdown-media
