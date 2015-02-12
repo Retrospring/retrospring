@@ -9,14 +9,14 @@
         .pull-left
           %img.img-rounded.profile--dropdown-img{src: current_user.profile_picture.url(:medium)}
         .media-body
-          - if @user.display_name.blank?
+          - if current_user.display_name.blank?
             .profile--displayname
-              = @user.screen_name
+              = current_user.screen_name
           - else
             .profile--displayname
-              = @user.display_name
+              = current_user.display_name
             .profile--username
-              = @user.screen_name
+              = current_user.screen_name
     %li= link_to "View profile", show_user_profile_path(current_user.screen_name)
     %li= link_to "Settings", edit_user_registration_path
     %li.divider
