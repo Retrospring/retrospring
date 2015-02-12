@@ -85,3 +85,38 @@
   margin-bottom: 7px;
   z-index: 99;
 }
+
+.profile--dropdown {
+  min-width: 220px;
+  margin-top: 0px !important;
+}
+
+.profile--dropdown-media {
+  padding: 3px 15px;
+}
+
+.profile--dropdown-img {
+  min-height: 45px;
+  min-width: 45px;
+  height: 45px;
+  width: 45px;
+}
+
+.profile--dropdown-username {
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1.33em;
+  margin-top: 10px;
+}
+
+.profile--dropdown-displayname {
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 1.33em;
+  margin-top: 2px;
+}
+
+.profile--image-dropdown > a {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
