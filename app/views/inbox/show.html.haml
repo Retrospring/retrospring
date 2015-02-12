@@ -8,6 +8,12 @@
         - @inbox.each do |i|
           = render 'inbox/entry', i: i
 
+        #pagination= will_paginate @inbox, renderer: BootstrapPagination::Rails, page_links: false
+
+        - if @inbox.next_page
+          %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @inbox.current_page }}
+            Load more
+
         - if @inbox.empty?
 
           Nothing to see here.
