@@ -10,14 +10,15 @@
           %img.img-rounded.profile--dropdown-img{src: current_user.profile_picture.url(:medium)}
         .media-body
           - if current_user.display_name.blank?
-            .profile--displayname
+            .profile--dropdown-username
               = current_user.screen_name
           - else
-            .profile--displayname
+            .profile--dropdown-displayname
               = current_user.display_name
             .profile--username
               = current_user.screen_name
-    %li= link_to "View profile", show_user_profile_path(current_user.screen_name)
+    %li.divider.hidden-xs
+    %li.visible-xs= link_to "View profile", show_user_profile_path(current_user.screen_name)
     %li= link_to "Settings", edit_user_registration_path
     %li.divider
     - if current_user.admin?
