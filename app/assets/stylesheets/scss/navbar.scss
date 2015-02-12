@@ -85,3 +85,19 @@
   margin-bottom: 7px;
   z-index: 99;
 }
+
+.profile--dropdown {
+  min-width: 220px;
+  margin-top: 0px !important;
+}
+
+.profile--dropdown-media {
+  padding: 3px 5px;
+}
+
+.profile--dropdown-img {
+  min-height: 45px;
+  min-width: 45px;
+  height: 45px;
+  width: 45px;
+}
