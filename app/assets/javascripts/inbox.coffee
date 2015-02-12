@@ -40,6 +40,7 @@
       success: (data, status, jqxhr) ->
         if data.success
           succ = yes
+          ($ "div#pagination, button#load-more-btn").slideUp()
           entries = ($ "div#entries")
           entries.slideUp 400, ->
             entries.html("Nothing to see here.")

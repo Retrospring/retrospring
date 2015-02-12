@@ -17,4 +17,4 @@
   .panel-heading
     %h3.panel-title Actions
   .panel-body
-    %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (@inbox.empty? ? 'disabled' : nil), data: { ib_count: @inbox.count }} Delete all questions
+    %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (Inbox.where(user: current_user).empty? ? 'disabled' : nil), data: { ib_count: Inbox.where(user: current_user).count }} Delete all questions
