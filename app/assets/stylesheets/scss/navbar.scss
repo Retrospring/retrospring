@@ -123,6 +123,12 @@
 
 @media (max-width: $screen-xs-max) {
   .profile--image-dropdown > .visible-xs {
-    display: inline-block;
+    display: inline-block !important;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .profile--image-dropdown > .visible-xs {
+    display: none !important;
   }
 }
