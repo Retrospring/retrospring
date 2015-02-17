@@ -55,13 +55,8 @@
     - else
       .row
         .col-md-6.col-sm-4.col-xs-6.text-left.text-muted
-          - if a.question.author_is_anonymous?
-            %i.fa.fa-clock-o
-            %a{href: show_user_answer_path(a.user.screen_name, a.id)}
-              %span= time_ago_in_words(a.created_at)
-              ago
-          - else
-            %i.fa.fa-clock-o
+          %i.fa.fa-clock-o
+          %a{href: show_user_answer_path(a.user.screen_name, a.id)}
             %span= time_ago_in_words(a.created_at)
             ago
         .col-md-6.col-sm-8.col-xs-6.text-right
