@@ -10,10 +10,12 @@
             = user_screen_name a.question.user, a.question.author_is_anonymous
             asked
             - if @user.nil? or a.question.author_is_anonymous
-              = time_ago_in_words(a.question.created_at)
+              %span{title: a.question.created_at, data: { toggle: :tooltip, placement: :bottom }}
+                = time_ago_in_words(a.question.created_at)
             - else
               %a{href: show_user_question_path(a.question.user.screen_name, a.question.id)}
-                = time_ago_in_words(a.question.created_at)
+                %span{title: a.question.created_at, data: { toggle: :tooltip, placement: :bottom }}
+                  = time_ago_in_words(a.question.created_at)
             ago
             - unless a.question.author_is_anonymous
               - if a.question.answer_count > 1
@@ -48,7 +50,8 @@
                 = user_screen_name a.user
               .answerbox--answer-date
                 %a{href: show_user_answer_path(a.user.screen_name, a.id)}
-                  %span= time_ago_in_words(a.created_at)
+                  %span{title: a.created_at, data: { toggle: :tooltip, placement: :bottom }}
+                    = time_ago_in_words(a.created_at)
                   ago
         .col-md-6.col-sm-8.col-xs-6.text-right
           = render 'shared/answerbox_buttons', a: a
@@ -57,7 +60,8 @@
         .col-md-6.col-sm-4.col-xs-6.text-left.text-muted
           %i.fa.fa-clock-o
           %a{href: show_user_answer_path(a.user.screen_name, a.id)}
-            %span= time_ago_in_words(a.created_at)
+            %span{title: a.created_at, data: { toggle: :tooltip, placement: :bottom }}
+              = time_ago_in_words(a.created_at)
             ago
         .col-md-6.col-sm-8.col-xs-6.text-right
           = render 'shared/answerbox_buttons', a: a
