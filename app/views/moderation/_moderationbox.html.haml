@@ -4,7 +4,8 @@
     = user_screen_name report.user
     reported a
     = report.type.sub('Reports::', '')
-    = time_ago_in_words(report.created_at)
+    %span{title: report.created_at, data: { toggle: :tooltip, placement: :bottom }}
+      = time_ago_in_words(report.created_at)
     ago
   .panel-body
     %p

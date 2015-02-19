@@ -8,7 +8,8 @@
         %h6.text-muted.media-heading.answerbox--question-user
           = user_screen_name i.question.user, i.question.author_is_anonymous
           asked
-          = time_ago_in_words(i.question.created_at)
+          %span{title: i.question.created_at, data: { toggle: :tooltip, placement: :bottom }}
+            = time_ago_in_words(i.question.created_at)
           ago
           - unless i.question.author_is_anonymous
             - if i.question.answer_count > 0
