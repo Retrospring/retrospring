@@ -6,4 +6,4 @@ $('#pagination').html('<%= j will_paginate @inbox, renderer: BootstrapPagination
 <% else %>
 $('#pagination, #load-more-btn').remove();
 <% end %>
-<% @inbox.update_all(new: false) %>
+<% Inbox.where(id: @inbox.pluck(:id)).update_all(new: false) %>
