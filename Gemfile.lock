@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/justask/questiongenerator.git
-  revision: 4f85dafbaf226e3dfbfad9ed3f169bab03b9a84c
+  remote: https://github.com/retrospring/questiongenerator.git
+  revision: 326d82728a96ff58bad4516c46f9abba06ba31df
   specs:
     questiongenerator (0.1.0)
 

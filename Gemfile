@@ -41,7 +41,7 @@ gem 'rails_admin'
 gem 'sidekiq'
 gem 'sinatra', require: false
 
-gem 'questiongenerator', git: 'https://github.com/justask/questiongenerator.git'
+gem 'questiongenerator', git: 'https://github.com/retrospring/questiongenerator.git'
 
 gem 'sanitize'
 gem 'redcarpet'
