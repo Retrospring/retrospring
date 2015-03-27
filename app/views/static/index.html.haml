@@ -5,7 +5,13 @@
       = render 'shared/sidebar'
     .col-md-9.col-xs-12.col-sm-9.j2-col-reset
       = render 'layouts/messages'
-
+      .alert.alert-danger.alert-dismissible{"role": "alert"}
+        %button.close{data: {dismiss: :alert}, aria: {label: "Close"}}
+          %span{aria: {hidden: true}}
+            &times;
+        %strong
+          Retrospring will shut down
+        on 1.4.2015!
       #timeline
         - @timeline.each do |answer|
           = render 'shared/answerbox', a: answer
