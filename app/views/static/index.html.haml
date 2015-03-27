@@ -8,9 +8,7 @@
       .alert.alert-danger.alert-dismissible{role: "alert"}
         %button.close{type: "button", "data-dismiss" => "alert"}
           %span{"aria-hidden" => "true"} &times;
-        %strong
-          Retrospring will shut down
-        on 1.4.2015!
+        Retrospring will shut down on 1st April 2015!
       #timeline
         - @timeline.each do |answer|
           = render 'shared/answerbox', a: answer
