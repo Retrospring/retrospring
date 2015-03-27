@@ -264,4 +264,118 @@ namespace :justask do
       print "\033[0m"
     end
   end
+
+  desc "Export data for an user"
+  task :export, [:email] => :environment do |t, args|
+    require 'json'
+    require 'yaml'
+    return if args[:email].nil?
+    obj = {}
+    format = '%t (%c/%C) [%b>%i] %e'
+    u = User.where("LOWER(email) = ?", args[:email].downcase).first!
+    export_dirname = "export_#{u.screen_name}_#{Time.now.to_i}"
+    export_filename = u.screen_name
+
+    %i(id screen_name display_name created_at sign_in_count last_sign_in_at friend_count follower_count asked_count answered_count commented_count smiled_count motivation_header bio website location moderator admin supporter banned blogger).each do |f|
+      obj[f] = u.send f
+    end
+
+    total = u.questions.count
+    progress = ProgressBar.create title: 'Processing questions', format: format, starting_at: 0, total: total
+    obj[:questions] = []
+    u.questions.each do |q|
+      qobj = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        qobj[f] = q.send f
+      end
+      obj[:questions] << qobj
+      progress.increment
+    end
+
+    total = u.answers.count
+    progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
+    obj[:answers] = []
+    u.answers.each do |a|
+      aobj = {}
+      %i(id content comment_count smile_count created_at).each do |f|
+        aobj[f] = a.send f
+      end
+      aobj[:question] = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        aobj[:question][f] = a.question.send f
+      end
+      aobj[:question][:user] = a.question.user.screen_name unless a.question.author_is_anonymous
+      aobj[:comments] = []
+      a.comments.each do |c|
+        cobj = {}
+        %i(id content created_at).each do |f|
+          cobj[f] = c.send f
+        end
+        cobj[:user] = c.user.screen_name
+        aobj[:comments] << cobj
+      end
+      obj[:answers] << aobj
+      progress.increment
+    end
+
+    total = u.comments.count
+    progress = ProgressBar.create title: 'Processing comments', format: format, starting_at: 0, total: total
+    obj[:comments] = []
+    u.comments.each do |c|
+      cobj = {}
+      %i(id content created_at).each do |f|
+        cobj[f] = c.send f
+      end
+      cobj[:answer] = {}
+      %i(id content comment_count smile_count created_at).each do |f|
+        cobj[:answer][f] = c.answer.send f
+      end
+      cobj[:answer][:question] = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        cobj[:answer][:question][f] = c.answer.question.send f
+      end
+      cobj[:answer][:question][:user] = c.answer.question.user.screen_name unless c.answer.question.author_is_anonymous
+      obj[:comments] << cobj
+      progress.increment
+    end
+
+    total = u.smiles.count
+    progress = ProgressBar.create title: 'Processing smiles', format: format, starting_at: 0, total: total
+    obj[:smiles] = []
+    u.smiles.each do |s|
+      sobj = {}
+      %i(id created_at).each do |f|
+        sobj[f] = s.send f
+      end
+
+      sobj[:answer] = {}
+      %i(id content comment_count smile_count created_at).each do |f|
+        sobj[:answer][f] = s.answer.send f
+      end
+      sobj[:answer][:question] = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        sobj[:answer][:question][f] = s.answer.question.send f
+      end
+      sobj[:answer][:question][:user] = s.answer.question.user.screen_name unless s.answer.question.author_is_anonymous
+
+      obj[:smiles] << sobj
+      progress.increment
+    end
+
+    `mkdir -p /usr/home/justask/justask/public/export`
+    `mkdir -p /tmp/rs_export/#{export_dirname}/picture`
+    if u.profile_picture
+      %i(large medium small original).each do |s|
+        `cp #{u.profile_picture.path s} /tmp/rs_export/#{export_dirname}/picture/#{s}_#{File.basename u.profile_picture.path}`
+      end
+    end
+    File.open "/tmp/rs_export/#{export_dirname}/#{export_filename}.json", 'w' do |f|
+      f.puts obj.to_json
+    end
+    File.open "/tmp/rs_export/#{export_dirname}/#{export_filename}.yml", 'w' do |f|
+      f.puts obj.to_yaml
+    end
+    `tar czvf public/export/#{export_dirname}.tar.gz -C /tmp/rs_export #{export_dirname}`
+    puts "\033[1mhttps://retrospring.net/export/#{export_dirname}.tar.gz\033[0m"
+  end
 end
