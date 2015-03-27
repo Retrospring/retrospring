@@ -366,7 +366,8 @@ namespace :justask do
     `mkdir -p /tmp/rs_export/#{export_dirname}/picture`
     if u.profile_picture
       %i(large medium small original).each do |s|
-        `cp #{u.profile_picture.path s} /tmp/rs_export/#{export_dirname}/picture/#{s}_#{File.basename u.profile_picture.path}`
+        x = u.profile_picture.path(s).gsub('"', '\\"')
+        `cp "#{x}" "/tmp/rs_export/#{export_dirname}/picture/#{s}_#{File.basename x}"`
       end
     end
     File.open "/tmp/rs_export/#{export_dirname}/#{export_filename}.json", 'w' do |f|
