@@ -1,8 +1,8 @@
-# justask [![build status](https://ci.rrerr.net/projects/9/status.png?ref=master)](https://ci.rrerr.net/projects/9?ref=master)
+# justask
 
 ## Requirements
 
-- UNIX-like system (Linux, *BSD, ...)
+- UNIX-like system (Linux, FreeBSD, ...)
 - Ruby 2.0.0+
 - Bundler
 - PostgreSQL
@@ -91,3 +91,7 @@ Add/remove supporters:
 
     $ bundle exec rake 'justask:sup[someone_else]' RAILS_ENV=production
     $ bundle exec rake 'justask:desup[someone_else]' RAILS_ENV=production
+
+Export user data:
+
+    $ bundle exec rake 'justask:export[jdoe@example.tld]' RAILS_ENV=production
