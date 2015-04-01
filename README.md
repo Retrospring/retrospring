@@ -3,6 +3,12 @@
 This is the source code that powered Retrospring.  Yep, all of it.  Including
 all the branches where we left off.
 
+<!--
+Except for the memes that happened 4 hours before the shutdown.  I've edited
+it right on the server, without a special branch or something.  If you want
+to, I can make a branch with all the modifications we made.
+-->
+
 ## Requirements
 
 - UNIX-like system (Linux, FreeBSD, ...)
