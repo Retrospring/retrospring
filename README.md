@@ -134,3 +134,6 @@ Find the user(s) with the most self-asked anonymous questions:
 * [Darude - Sandstorm](https://www.youtube.com/watch?v=y6120QOlsfU)
 * [Max Raabe - Oops I Did It Again](https://www.youtube.com/watch?v=qYr9kIyambE)
 
+## License
+
+AGPLv3.  
