@@ -60,11 +60,6 @@ gem 'redis'
 
 group :development do
   gem 'spring'
-
-  # Capistrano for deployment
-  gem 'capistrano', '~> 3.1'
-  gem 'capistrano-rvm', group: :rvm
-  gem 'capistrano-rails', '~> 1.1'
 end
 
 group :production do
