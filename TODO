@@ -1,10 +1,11 @@
 Not done:
 [001|  0%] user blocking (prohibits blocked user from asking question to that person and seeing their answers)
-[007|  0%] (?) keyboard shortcuts
+[007| 20%] (?) keyboard shortcuts
+    |----- Open "Ask your followers" with Ctrl/Meta+M
 [010|  0%] locales (these can wait for now)
+    |----- (somewhat) working in justask/feature-semantic
 [015|  0%] make a public accessible API (maybe even as an oauth provider?)
 [016|  5%] WRYYYYte more specs
-[018|  0%] that annoying "we use cookies" thing every website in the EU must? add
 [020|  0%] helper function for profile headings to resize on certain string length
 [022|  0%] recommended follows
 [023|  0%] disabling group-questions
@@ -29,6 +30,7 @@ Finished:
 [009|100%] a notification view or something
 [013|100%] restructure questions (has_many :answers) for less redundancy in the DB when implementing #002
 [014|100%] generate questions if there are none in the inbox (probably make it as a gem)
+[018|100%] that annoying "we use cookies" thing every website in the EU must? add
 [019|100%] omniAuth (twatter, fakelook, goggles plus) for social networking elitists
 [021|100%] deleting comments
     |----- restructure comment design
