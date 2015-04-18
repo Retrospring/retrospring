@@ -28,7 +28,7 @@ class Services::Twitter < Service
 
     def prepare_tweet(answer)
       # TODO: improve this.
-      question_content = twitter_markdown answer.question.content
+      question_content = twitter_markdown answer.question.content.gsub(/\@(\w+)/, '\1')
       answer_content = twitter_markdown answer.content
       answer_url = show_user_answer_url(
         id: answer.id,
