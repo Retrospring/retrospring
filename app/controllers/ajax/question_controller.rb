@@ -1,4 +1,6 @@
 class Ajax::QuestionController < ApplicationController
+  include MarkdownHelper
+
   def create
     params.require :question
     params.require :anonymousQuestion
