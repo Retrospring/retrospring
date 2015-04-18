@@ -35,7 +35,9 @@
       .panel.panel-default
         .panel-body
           %h3 Unfinished
-          %p Retrospring is running on unfinished code, full of bugs. Caveat emptor.
+          %p
+            = APP_CONFIG['site_name']
+            is running on unfinished code, full of bugs. Caveat emptor.
           %p
             Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help
             = APP_CONFIG['site_name']
@@ -71,9 +73,7 @@
       .panel.panel-default
         .panel-body
           %h3 Funding
-          Currently Retrospring is running of the developers funds and will be able to sustain at the current needs of servers. Hereby want to thank the people who previously donated to our project and helped it grow. Everyone shown at the bottom of this panel has contributed to the project with donations or great input.
-          %h3 Supporter
-          People that believe in our vision, and that's why we love them <3
+          Currently Retrospring is running of the developers funds and will be able to sustain at the current needs of servers. Hereby we want to thank the people who previously donated to our project and helped it grow. Everyone shown at the bottom of this panel has contributed to the project with donations or great input.
           %ul.about--moderator
             - User.where(supporter: true).each do |sup|
               %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
