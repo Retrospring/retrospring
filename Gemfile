@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.1'
 
 gem 'pg', group: :postgres
 gem 'mysql2', group: :mysql
