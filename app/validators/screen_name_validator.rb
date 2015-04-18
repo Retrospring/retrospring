@@ -1,5 +1,5 @@
 class ScreenNameValidator < ActiveModel::EachValidator
-  FORBIDDEN_SCREEN_NAMES = %w(justask_admin retrospring_admin admin justask retrospring support about public
+  FORBIDDEN_SCREEN_NAMES = %w(justask_admin retrospring_admin admin justask retrospring about public
                               notifications inbox sign_in sign_up sidekiq moderation moderator mod administrator
                               siteadmin site_admin help retro_spring retroospring retrosprlng niisding nllsding 
                               pixeidesu plxeldesu plxeidesu terms privacy)
