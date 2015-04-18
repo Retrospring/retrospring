@@ -70,21 +70,9 @@
     .col-sm-4
       .panel.panel-default
         .panel-body
-          %h3 Donate
-          We are not backed by any company, but we need some money to keep
-          our server infrastructure running.
-
-          %form{:action => "https://www.paypal.com/cgi-bin/webscr", :method => "post", :target => "_top"}
-            %input{:name => "cmd", :type => "hidden", :value => "_s-xclick"}/
-            %input{:name => "hosted_button_id", :type => "hidden", :value => "6ZT5MS6UGU6HC"}/
-            %input{:alt => "PayPal - The safer, easier way to pay online!", :border => "0", :name => "submit", :src => "https://www.paypalobjects.com/en_US/AT/i/btn/btn_donateCC_LG.gif", :type => "image"}/
-            %img{:alt => "", :border => "0", :height => "1", :src => "https://www.paypalobjects.com/de_DE/i/scr/pixel.gif", :width => "1"}/
-
-          Want to support us over a longer timespan? We also have a Patreon campaign!
-          %a.btn.btn-primary.btn-block{href: "https://patreon.com/retrospring"} Patreon
-      .panel.panel-default
-        .panel-body
-          %h3 Patrons
+          %h3 Funding
+          Currently Retrospring is running of the developers funds and will be able to sustain at the current needs of servers. Hereby want to thank the people who previously donated to our project and helped it grow. Everyone shown at the bottom of this panel has contributed to the project with donations or great input.
+          %h3 Supporter
           People that believe in our vision, and that's why we love them <3
           %ul.about--moderator
             - User.where(supporter: true).each do |sup|
