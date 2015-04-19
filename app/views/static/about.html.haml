@@ -83,5 +83,18 @@
             - User.where(supporter: true).each do |sup|
               %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
                 %img.img-rounded.answerbox--img-small{src: sup.profile_picture.url(:medium)}
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Contributors
+        .panel-body
+          %p These people have contributed to #{APP_CONFIG['site_name']}'s source code.
+          %p
+            Want to get listed here?
+            = link_to "Fork this repo", 'https://github.com/retrospring/retrospring'
+            and create a new pull request with your changes.
+          %ul.about--moderator
+            - User.where(contributor: true).each do |sup|
+              %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
+                %img.img-rounded.answerbox--img-small{src: sup.profile_picture.url(:medium)}
 
 = render "shared/links"
