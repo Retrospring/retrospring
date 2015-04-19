@@ -1,8 +1,8 @@
 .col-md-3.col-xs-12.col-sm-3
   .panel.panel-default.hidden-xs
     .list-group
-      = list_group_item "All notifications", notifications_path, badge: Notification.where(new: true).count
-      = list_group_item "Answers", notifications_path('answer'), badge: Notification.where(target_type: "Answer", new: true).count
-      = list_group_item "Smiles", notifications_path('smile'), badge: Notification.where(target_type: "Smile", new: true).count
-      = list_group_item "Comments", notifications_path('comment'), badge: Notification.where(target_type: "Comment", new: true).count
-      = list_group_item "Followers", notifications_path('relationship'), badge: Notification.where(target_type: "Relationship", new: true).count
+      = list_group_item "All notifications", notifications_path, badge: Notification.for(current_user).where(new: true).count
+      = list_group_item "Answers", notifications_path('answer'), badge: Notification.for(current_user).where(target_type: "Answer", new: true).count
+      = list_group_item "Smiles", notifications_path('smile'), badge: Notification.for(current_user).where(target_type: "Smile", new: true).count
+      = list_group_item "Comments", notifications_path('comment'), badge: Notification.for(current_user).where(target_type: "Comment", new: true).count
+      = list_group_item "Followers", notifications_path('relationship'), badge: Notification.for(current_user).where(target_type: "Relationship", new: true).count
