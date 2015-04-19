@@ -110,12 +110,12 @@ If you want to remove admin status from a certain user, you can do this:
 
     $ bundle exec rake 'justask:deadmin[get_rekt]' RAILS_ENV=production
 
-Add/remove moderators (this can be done via the web interface by visiting an user as an admin):
+Add/remove moderators (this can also be done via the web interface by visiting an user as an admin):
 
     $ bundle exec rake 'justask:mod[someone_else]' RAILS_ENV=production
     $ bundle exec rake 'justask:demod[someone_else]' RAILS_ENV=production
 
-Add/remove supporters (this can be done via the web interface by visiting an user as an admin/mod):
+Add/remove supporters (this can also be done via the web interface by visiting an user as an admin/mod):
 
     $ bundle exec rake 'justask:sup[someone_else]' RAILS_ENV=production
     $ bundle exec rake 'justask:desup[someone_else]' RAILS_ENV=production
@@ -128,7 +128,7 @@ Find the user(s) with the most self-asked anonymous questions:
 
     $ bundle exec rake justask:loners
 
-## The Official Retrospring Closedown Soundtrack™
+## The Official Retrospring Closedown Soundtrack™ (now redundant)
 
 * [Scooter - Can't Stop The Hardcore](https://www.youtube.com/watch?v=nJ3bet-Y79w)
 * [Darude - Sandstorm](https://www.youtube.com/watch?v=y6120QOlsfU)
