@@ -153,6 +153,26 @@ namespace :justask do
     puts "#{user.screen_name} is no longer an supporter."
   end
 
+  desc "Gives contributor status to an user."
+  task :contrib, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.contributor = true
+    user.save!
+    puts "#{user.screen_name} is now a contributor."
+  end
+
+  desc "Removes contributor status from an user."
+  task :decontrib, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.contributor = false
+    user.save!
+    puts "#{user.screen_name} is no longer a contributor."
+  end
+
   desc "Lists all users."
   task lusers: :environment do
     User.all.each do |u|
