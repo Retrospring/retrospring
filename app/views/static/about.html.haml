@@ -26,9 +26,10 @@
         .panel-heading
           %h3.panel-title Moderators
         .panel-body
-          The people on
-          = APP_CONFIG['site_name']
-          that look after you!
+          %p
+            The people on
+            = APP_CONFIG['site_name']
+            that look after you!
           %ul.about--moderator
             - User.where(moderator: true).each do |mod|
               %a{href: show_user_profile_path(mod.screen_name), title: mod.screen_name, data: { toggle: :tooltip, placement: :top }}
@@ -44,8 +45,9 @@
           %p
             Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help
             = APP_CONFIG['site_name']
-            to get the features everyone wanted! If you are not, you can still report bugs at our 
-            = link_to "Github repository!", 'https://github.com/retrospring/retrospring'
+            to get the features everyone wanted.  If that's not the case, you can still report bugs at our
+            = succeed '.' do
+              = link_to "Github repository", 'https://github.com/retrospring/retrospring'
 
           %p
             Still have some questions? Check our
@@ -78,7 +80,7 @@
         .panel-heading
           %h3.panel-title Funding
         .panel-body
-          Currently Retrospring is running of the developers funds and will be able to sustain at the current needs of servers. Hereby we want to thank the people who previously donated to our project and helped it grow. Everyone shown at the bottom of this panel has contributed to the project with donations or great input.
+          %p Currently Retrospring is running of the developers funds and will be able to sustain at the current needs of servers. Hereby we want to thank the people who previously donated to our project and helped it grow. Everyone shown at the bottom of this panel has contributed to the project with donations or great input.
           %ul.about--moderator
             - User.where(supporter: true).each do |sup|
               %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
