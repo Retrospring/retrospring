@@ -1,85 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>what is going on (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    body {
-      background-color: #EFEFEF;
-      color: #2E2F30;
-      text-align: center;
-      font-family: arial, sans-serif;
+    body { 
+      padding: 0;
       margin: 0;
-    }
-
-    a { color: #4183c4; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    div.dialog {
-      width: 95%;
-      max-width: 33em;
-      margin: 4em auto 0;
-    }
-
-    div.dialog > div {
-      border: 1px solid #CCC;
-      border-right-color: #999;
-      border-left-color: #999;
-      border-bottom-color: #BBB;
-      border-top: #00A0F0 solid 4px;
-      border-top-left-radius: 9px;
-      border-top-right-radius: 9px;
-      background-color: white;
-      padding: 7px 12% 0;
-      box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+      overflow: hidden;
     }
 
     h1 {
-      font-size: 100%;
-      color: #0b79C5;
-      line-height: 1.5em;
+      font-family: sans-serif;
+      font-size: 1.5em;
+      display: inline-block;
+      margin-left: 10px;
+      margin-top: 10px;
     }
 
-    div.dialog img { margin-bottom: 0.5em; }
-
-    div.dialog > p {
-      margin: 0 0 1em;
-      padding: 1em;
-      background-color: #F7F7F7;
-      border: 1px solid #CCC;
-      border-right-color: #999;
-      border-left-color: #999;
-      border-bottom-color: #999;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-      border-top-color: #DADADA;
-      color: #666;
-      box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    h1 > small {
+      font-size: 0.7em;
+      font-weight: 300;
+    }
+    
+    span#links {
+      font-family: sans-serif;
+      float: right;
+      margin-right: 10px;
+      margin-top: 17px;
+    }
+    
+    span#links > a {
+      color: #5E35B1;
+      text-decoration: none;
     }
 
-    div.links {
-      margin-top: 2em;
-      color: #999;
-    }
+    @media only screen and (max-device-width: 480px) {
+      canvas {
+        display: none;
+      }
 
-    div.links a {
-      color: #666;
-      font-weight: 200;
-      font-size: 14px;
-      margin: 0 10px;
+      h1::after {
+        content: ' ...there is nothing here if you are on a mobile device';
+      }
     }
   </style>
 </head>
 <body>
-  <div class="dialog">
-    <div>
-      <h1>Looks like something went wrong!</h1>
-    </div>
-    <p>This usually happens due to an error in our code.  If you think you found a bug, <a href="https://github.com/justask/justask-bugs/issues">please let us know</a>.</p>
-  </div>
-  <div class="links">
-    <a href="https://github.com/retrospring/bugs/issues">Bug tracker</a> &middot;
-    <a href="https://twitter.com/retro_spring">Twitter</a>
-  </div>
+  <canvas id="canvas"></canvas>
+  <h1>500. Something went wrong :( <small>But play some Pong while you're at it.</small></h1><span id="links"><a href="http://github.com/Retrospring/bugs">Is it a bug?</a> · <a href="http://retrospring.net">Back to Retrospring</a></span>
+  <script type="text/javascript">
+    function paintCanvas(){ctx.fillStyle="#5E35B1",ctx.fillRect(0,0,W,H)}function Paddle(a){this.h=5,this.w=150,this.x=W/2-this.w/2,this.y="top"==a?0:H-this.h}function createParticles(a,b,c){this.x=a||0,this.y=b||0,this.radius=1.2,this.vx=-1.5+3*Math.random(),this.vy=c*Math.random()*1.5}function draw(){paintCanvas();for(var a=0;a<paddles.length;a++)p=paddles[a],ctx.fillStyle="white",ctx.fillRect(p.x,p.y,p.w,p.h);ball.draw(),update()}function increaseSpd(){points%4==0&&Math.abs(ball.vx)<15&&(ball.vx+=ball.vx<0?-1:1,ball.vy+=ball.vy<0?-2:2)}function trackPosition(a){mouse.x=a.pageX,mouse.y=a.pageY}function update(){if(updateScore(),mouse.x&&mouse.y)for(var a=1;a<paddles.length;a++)p=paddles[a],p.x=mouse.x-p.w/2;if(ball.x+=ball.vx,ball.y+=ball.vy,p1=paddles[1],p2=paddles[2],collides(ball,p1)?collideAction(ball,p1):collides(ball,p2)?collideAction(ball,p2):(ball.y+ball.r>H?(ball.y=H-ball.r,gameOver()):ball.y<0&&(ball.y=ball.r,gameOver()),ball.x+ball.r>W?(ball.vx=-ball.vx,ball.x=W-ball.r):ball.x-ball.r<0&&(ball.vx=-ball.vx,ball.x=ball.r)),1==flag)for(var b=0;b<particlesCount;b++)particles.push(new createParticles(particlePos.x,particlePos.y,multiplier));emitParticles(),flag=0}function collides(a,b){return a.x+ball.r>=b.x&&a.x-ball.r<=b.x+b.w?a.y>=b.y-b.h&&b.y>0?(paddleHit=1,!0):a.y<=b.h&&0==b.y?(paddleHit=2,!0):!1:void 0}function collideAction(a,b){a.vy=-a.vy,1==paddleHit?(a.y=b.y-b.h,particlePos.y=a.y+a.r,multiplier=-1):2==paddleHit&&(a.y=b.h+a.r,particlePos.y=a.y-a.r,multiplier=1),points++,increaseSpd(),collision&&(points>0&&collision.pause(),collision.currentTime=0,collision.play()),particlePos.x=a.x,flag=1}function emitParticles(){for(var a=0;a<particles.length;a++)par=particles[a],ctx.beginPath(),ctx.fillStyle="white",par.radius>0&&ctx.arc(par.x,par.y,par.radius,0,2*Math.PI,!1),ctx.fill(),par.x+=par.vx,par.y+=par.vy,par.radius=Math.max(par.radius-.05,0)}function updateScore(){ctx.fillStlye="white",ctx.font="16px Arial, sans-serif",ctx.textAlign="left",ctx.textBaseline="top",ctx.fillText("Score: "+points,20,20)}function gameOver(){ctx.fillStlye="white",ctx.font="20px Arial, sans-serif",ctx.textAlign="center",ctx.textBaseline="middle",ctx.fillText("Game Over - You scored "+points+" points!",W/2,H/2+25),cancelRequestAnimFrame(init),over=1,restartBtn.draw()}function animloop(){init=requestAnimFrame(animloop),draw()}function startScreen(){draw(),startBtn.draw()}function btnClick(a){{var b=a.pageX;a.pageY}b>=startBtn.x&&b<=startBtn.x+startBtn.w&&(animloop(),startBtn={}),1==over&&b>=restartBtn.x&&b<=restartBtn.x+restartBtn.w&&(ball.x=20,ball.y=20,points=0,ball.vx=4,ball.vy=8,animloop(),over=0)}window.requestAnimFrame=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(a){return window.setTimeout(a,1e3/60)}}(),window.cancelRequestAnimFrame=function(){return window.cancelAnimationFrame||window.webkitCancelRequestAnimationFrame||window.mozCancelRequestAnimationFrame||window.oCancelRequestAnimationFrame||window.msCancelRequestAnimationFrame||clearTimeout}();var canvas=document.getElementById("canvas"),ctx=canvas.getContext("2d"),W=window.innerWidth,H=window.innerHeight/1.09,particles=[],ball={},paddles=[2],mouse={},points=0,fps=60,particlesCount=20,flag=0,particlePos={},multipler=1,startBtn={},restartBtn={},over=0,init,paddleHit;canvas.addEventListener("mousemove",trackPosition,!0),canvas.addEventListener("mousedown",btnClick,!0),collision=document.getElementById("collide"),canvas.width=W,canvas.height=H,paddles.push(new Paddle("bottom")),paddles.push(new Paddle("top")),ball={x:50,y:50,r:5,c:"white",vx:4,vy:8,draw:function(){ctx.beginPath(),ctx.fillStyle=this.c,ctx.arc(this.x,this.y,this.r,0,2*Math.PI,!1),ctx.fill()}},startBtn={w:100,h:50,x:W/2-50,y:H/2-25,draw:function(){ctx.strokeStyle="white",ctx.lineWidth="2",ctx.strokeRect(this.x,this.y,this.w,this.h),ctx.font="18px Arial, sans-serif",ctx.textAlign="center",ctx.textBaseline="middle",ctx.fillStlye="white",ctx.fillText("Start",W/2,H/2)}},restartBtn={w:100,h:50,x:W/2-50,y:H/2-50,draw:function(){ctx.strokeStyle="white",ctx.lineWidth="2",ctx.strokeRect(this.x,this.y,this.w,this.h),ctx.font="18px Arial, sans-serif",ctx.textAlign="center",ctx.textBaseline="middle",ctx.fillStlye="white",ctx.fillText("Restart",W/2,H/2-25)}},startScreen();
+  </script>
 </body>
 </html>
