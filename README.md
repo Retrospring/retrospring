@@ -49,7 +49,7 @@ Try connecting to the database:
 ### nginx
 
 See [docs/nginx.conf](https://github.com/nilsding/justask/blob/master/docs/nginx.conf)
-for the configuration we used on Retrospring.
+for the configuration we use on Retrospring.
 
 ### justask
 
