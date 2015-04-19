@@ -12,6 +12,10 @@
     .profile--panel-badge.panel-badge-warning
       %i.fa.fa-star
       Supporter
+  - if @user.contributor?
+    .profile--panel-badge.panel-badge-primary
+      %i.fa.fa-github
+      Contributor
   - if @user.blogger?
     .profile--panel-badge.panel-badge-info
       %i.fa.fa-pencil
