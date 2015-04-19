@@ -118,7 +118,7 @@ class Ajax::ModerationController < ApplicationController
     target_user = User.find_by_screen_name(params[:user])
 
     @message = "nope!"
-    return unless %w(banned blogger supporter moderator admin).include? params[:type].downcase
+    return unless %w(banned blogger supporter moderator admin contributor).include? params[:type].downcase
 
     if (%w(supporter moderator admin).include?(params[:type].downcase) and !current_user.admin?) or
       (params[:type].downcase == 'banned' and target_user.admin?)
