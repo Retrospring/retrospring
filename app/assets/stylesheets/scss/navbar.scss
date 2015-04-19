@@ -1,11 +1,13 @@
 .navbar .nav .badge {
   padding: 3px 6px 3px;
   background-color: $navbar-inverse-link-active-bg;
+  color: #fff;
 }
 
 .navbar .nav .active .badge, li.dropdown.open a.dropdown-toggle span.badge {
   padding: 3px 6px 3px;
   background-color: $navbar-inverse-bg;
+  color: #fff;
 }
 
 .navbar--inbox-animation {
@@ -117,6 +119,16 @@
 }
 
 .profile--image-dropdown > a {
-  padding-top: 16px !important;
-  padding-bottom: 16px !important;
+  padding: 0px !important;
+}
+
+.profile--image-avatar {
+  min-height: 50px;
+  min-width: 50px;
+  height: 50px;
+  width: 50px;  
+}
+
+.navbar-inverse {
+  border: none;
 }

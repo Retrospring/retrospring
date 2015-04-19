@@ -1,11 +1,10 @@
 .col-md-3.col-xs-12.col-sm-3
   .panel.panel-default
-    .panel-body
-      %ul.nav.nav-pills.nav-stacked
-        = nav_entry "Account", edit_user_registration_path
-        = nav_entry "Profile", edit_user_profile_path
-        = nav_entry "Privacy", edit_user_privacy_path
-        = nav_entry "Sharing", services_path
+    .list-group
+      = list_group_item "Account", edit_user_registration_path
+      = list_group_item "Profile", edit_user_profile_path
+      = list_group_item "Privacy", edit_user_privacy_path
+      = list_group_item "Sharing", services_path
 
   
   .hidden-xs= render "shared/links"

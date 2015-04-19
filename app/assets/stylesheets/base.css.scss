@@ -125,3 +125,14 @@ body {
 .links {
   padding-bottom: 10px;
 }
+
+.panel {
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.panel-default {
+  border-color: transparent;
+}
