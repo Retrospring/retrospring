@@ -1,6 +1,6 @@
 # justask (aka. the software behind Retrospring)
 
-This is the source code that powered Retrospring.  Yep, all of it.  Including
+This is the source code that powers Retrospring.  Yep, all of it.  Including
 all the branches where we left off.
 
 <!--
