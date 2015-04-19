@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125191224) do
+ActiveRecord::Schema.define(version: 20150419201122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: true do |t|
+  create_table "answers", force: :cascade do |t|
     t.text     "content"
     t.integer  "question_id"
     t.integer  "comment_count", default: 0, null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.string   "content"
     t.integer  "answer_id"
     t.integer  "user_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
 
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
 
-  create_table "group_members", force: true do |t|
+  create_table "group_members", force: :cascade do |t|
     t.integer  "group_id",   null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
   add_index "group_members", ["group_id"], name: "index_group_members_on_group_id", using: :btree
   add_index "group_members", ["user_id"], name: "index_group_members_on_user_id", using: :btree
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.integer  "user_id",                     null: false
     t.string   "name"
     t.string   "display_name"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
   add_index "groups", ["user_id", "name"], name: "index_groups_on_user_id_and_name", unique: true, using: :btree
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
-  create_table "inboxes", force: true do |t|
+  create_table "inboxes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
     t.boolean  "new"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
     t.datetime "updated_at"
   end
 
-  create_table "moderation_comments", force: true do |t|
+  create_table "moderation_comments", force: :cascade do |t|
     t.integer  "report_id"
     t.integer  "user_id"
     t.string   "content"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
 
   add_index "moderation_comments", ["user_id", "created_at"], name: "index_moderation_comments_on_user_id_and_created_at", using: :btree
 
-  create_table "moderation_votes", force: true do |t|
+  create_table "moderation_votes", force: :cascade do |t|
     t.integer  "report_id",                  null: false
     t.integer  "user_id",                    null: false
     t.boolean  "upvote",     default: false, null: false
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
   add_index "moderation_votes", ["user_id", "report_id"], name: "index_moderation_votes_on_user_id_and_report_id", unique: true, using: :btree
   add_index "moderation_votes", ["user_id"], name: "index_moderation_votes_on_user_id", using: :btree
 
-  create_table "notifications", force: true do |t|
+  create_table "notifications", force: :cascade do |t|
     t.string   "target_type"
     t.integer  "target_id"
     t.integer  "recipient_id"
@@ -101,50 +101,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
     t.datetime "updated_at"
   end
 
-  create_table "oauth_access_grants", force: true do |t|
-    t.integer  "resource_owner_id", null: false
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.integer  "expires_in",        null: false
-    t.text     "redirect_uri",      null: false
-    t.datetime "created_at",        null: false
-    t.datetime "revoked_at"
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
-
-  create_table "oauth_access_tokens", force: true do |t|
-    t.integer  "resource_owner_id"
-    t.integer  "application_id"
-    t.string   "token",             null: false
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
-  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
-  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
-
-  create_table "oauth_applications", force: true do |t|
-    t.string   "name",                      null: false
-    t.string   "uid",                       null: false
-    t.string   "secret",                    null: false
-    t.text     "redirect_uri",              null: false
-    t.string   "scopes",       default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "owner_id"
-    t.string   "owner_type"
-  end
-
-  add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
-  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
-
-  create_table "questions", force: true do |t|
+  create_table "questions", force: :cascade do |t|
     t.string   "content"
     t.boolean  "author_is_anonymous"
     t.string   "author_name"
@@ -157,7 +114,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
 
-  create_table "relationships", force: true do |t|
+  create_table "relationships", force: :cascade do |t|
     t.integer  "source_id"
     t.integer  "target_id"
     t.datetime "created_at"
@@ -168,7 +125,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
   add_index "relationships", ["source_id"], name: "index_relationships_on_source_id", using: :btree
   add_index "relationships", ["target_id"], name: "index_relationships_on_target_id", using: :btree
 
-  create_table "reports", force: true do |t|
+  create_table "reports", force: :cascade do |t|
     t.string   "type",                       null: false
     t.integer  "target_id",                  null: false
     t.integer  "user_id",                    null: false
@@ -177,7 +134,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
     t.boolean  "deleted",    default: false
   end
 
-  create_table "services", force: true do |t|
+  create_table "services", force: :cascade do |t|
     t.string   "type",          null: false
     t.integer  "user_id",       null: false
     t.string   "uid"
@@ -188,7 +145,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
     t.datetime "updated_at"
   end
 
-  create_table "smiles", force: true do |t|
+  create_table "smiles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "answer_id"
     t.datetime "created_at"
@@ -199,7 +156,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
   add_index "smiles", ["user_id", "answer_id"], name: "index_smiles_on_user_id_and_answer_id", unique: true, using: :btree
   add_index "smiles", ["user_id"], name: "index_smiles_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                             default: "",    null: false
     t.string   "encrypted_password",                default: "",    null: false
     t.string   "reset_password_token"
@@ -242,6 +199,7 @@ ActiveRecord::Schema.define(version: 20150125191224) do
     t.boolean  "privacy_show_in_search",            default: true
     t.boolean  "banned",                            default: false
     t.boolean  "blogger",                           default: false
+    t.boolean  "contributor",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
