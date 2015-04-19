@@ -7,8 +7,9 @@
   .row
     .col-sm-4
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title The Team
         .panel-body
-          %h3 The Team
           The people behind
           = succeed '!' do
             = APP_CONFIG['site_name']
@@ -22,8 +23,9 @@
                 %h4.entry-text.entry-about= adm['about_text']
                 %h6.entry-subtext= adm['subtext']
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Moderators
         .panel-body
-          %h3 Moderators
           The people on
           = APP_CONFIG['site_name']
           that look after you!
@@ -33,8 +35,9 @@
                 %img.img-rounded.answerbox--img-small{src: mod.profile_picture.url(:small)}
     .col-sm-4
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Unfinished Project
         .panel-body
-          %h3 Unfinished
           %p
             = APP_CONFIG['site_name']
             is running on unfinished code, full of bugs. Caveat emptor.
@@ -48,9 +51,10 @@
             Still have some questions? Check our
             = link_to "FAQ!", help_faq_path
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Statistics
         .panel-body
-          There are lies, damned lies, and then there are...
-          %h3 Statistics
+          %p All-time statistics for #{APP_CONFIG['site_name']}
           .row
             .col-xs-6
               %h4.entry-text#asked-count= Question.count
@@ -71,8 +75,9 @@
               %h6.entry-subtext Users
     .col-sm-4
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Funding
         .panel-body
-          %h3 Funding
           Currently Retrospring is running of the developers funds and will be able to sustain at the current needs of servers. Hereby we want to thank the people who previously donated to our project and helped it grow. Everyone shown at the bottom of this panel has contributed to the project with donations or great input.
           %ul.about--moderator
             - User.where(supporter: true).each do |sup|

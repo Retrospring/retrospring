@@ -23,12 +23,11 @@
           %h4.entry-text#friend-count= current_user.friend_count
           %h6.entry-subtext Following
 .panel.panel-default.hidden-xs
-  .panel-body
-    %ul.nav.nav-pills.nav-stacked
-      = nav_entry "Timeline", root_path
-      = nav_entry "Public", public_timeline_path
-      - current_user.groups.each do |group|
-        = nav_entry group.display_name, group_timeline_path(group.name)
+  %ul.nav.nav-pills.nav-stacked
+    = list_group_item "Timeline", root_path
+    = list_group_item "Public", public_timeline_path
+    - current_user.groups.each do |group|
+      = list_group_item group.display_name, group_timeline_path(group.name)
 - unless @group.nil?
   .panel.panel-default.profile--panel.hidden-xs
     .panel-heading

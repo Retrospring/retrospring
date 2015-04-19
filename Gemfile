@@ -29,7 +29,7 @@ gem 'devise-async'
 gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
-gem 'font-awesome-rails', '~> 4.2.0.0'
+gem 'font-awesome-rails', '~> 4.3.0.0'
 gem 'rails-assets-growl'
 gem "paperclip", "~> 4.2"
 gem 'delayed_paperclip'

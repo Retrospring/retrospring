@@ -1,33 +1,36 @@
 %li.dropdown.profile--image-dropdown
   %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
-    %img.img-rounded.answerbox--img.hidden-xs{src: current_user.profile_picture.url(:small)}
+    %img.profile--image-avatar.hidden-xs{src: current_user.profile_picture.url(:small)}
     %span.visible-xs
       = current_user.screen_name
       %b.caret
-  %ul.dropdown-menu.profile--dropdown
-    %li.hidden-xs
-      .media.profile--dropdown-media
-        .pull-left
-          %img.img-rounded.profile--dropdown-img{src: current_user.profile_picture.url(:medium)}
-        .media-body
-          - if current_user.display_name.blank?
-            .profile--dropdown-username
-              %a{href: show_user_profile_path(current_user.screen_name)}
-                = current_user.screen_name
-          - else
-            .profile--dropdown-displayname
-              %a{href: show_user_profile_path(current_user.screen_name)}
-                = current_user.display_name
-            .profile--username
-              = current_user.screen_name
-    %li.divider.hidden-xs
-    %li.visible-xs= link_to "View profile", show_user_profile_path(current_user.screen_name)
-    %li= link_to "Settings", edit_user_registration_path
+  %ul.dropdown-menu
+    %li.dropdown-header.hidden-xs= current_user.screen_name
+    %li
+      %a{href: show_user_profile_path(current_user.screen_name)}
+        %i.fa.fa-fw.fa-user
+        View profile
+    %li
+      %a{href: edit_user_registration_path}
+        %i.fa.fa-fw.fa-cog
+        Settings
     %li.divider
     - if current_user.admin?
-      %li= link_to "Kontrollzentrum", rails_admin_path
-      %li= link_to "Sidekiq", sidekiq_web_path
+      %li
+        %a{href: rails_admin_path}
+          %i.fa.fa-fw.fa-cogs
+          Kontrollzentrum
+      %li
+        %a{href: sidekiq_web_path}
+          %i.fa.fa-fw.fa-bar-chart
+          Sidekiq
     - if current_user.mod?
-      %li= link_to "Moderation panel", moderation_path
+      %li
+        %a{href: moderation_path}
+          %i.fa.fa-fw.fa-gavel
+          Moderation Panel
       %li.divider
-    %li= link_to "Logout",  destroy_user_session_path, method: :delete
+    %li
+      %a{href: destroy_user_session_path, data: {method: :delete} }
+        %i.fa.fa-fw.fa-sign-out
+        Logout
