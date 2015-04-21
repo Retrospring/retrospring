@@ -3,7 +3,7 @@
   = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     = devise_error_messages!
 
-    = f.text_field :screen_name, autofocus: true, label: "User name"
+    = f.text_field :login, autofocus: true, label: "User name"
     = f.submit "Send me password reset instructions"
 
   = render "devise/shared/links"
