@@ -207,7 +207,7 @@ namespace :justask do
     subscribed = 0
 
     Answer.all.each do |a|
-      if not s.user.nil? and not s.answer.nil?
+      if not a.user.nil?
         Subscription.subscribe a.user, a
         subscribed += 1
       end
