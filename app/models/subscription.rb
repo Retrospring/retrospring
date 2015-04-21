@@ -9,7 +9,11 @@ class Subscription < ActiveRecord::Base
 
     def is_subscribed(recipient, target)
       existing = Subscription.find_by(user: recipient, answer: target)
-      existing.nil? or existing.is_active
+      if existing.nil?
+        false
+      else
+        existing.is_active
+      end
     end
 
     def subscribe(recipient, target, force = true)
