@@ -3,9 +3,21 @@ class Subscription < ActiveRecord::Base
   belongs_to :answer
 
   class << self
-    def subscribe(recipient, target)
-      if Subscription.find_by(user: recipient, answer: target).nil?
+    def for(target)
+      Subscription.where(answer: target)
+    end
+
+    def is_subscribed(recipient, target)
+      existing = Subscription.find_by(user: recipient, answer: target)
+      existing.nil? or existing.is_active
+    end
+
+    def subscribe(recipient, target, force = true)
+      existing = Subscription.find_by(user: recipient, answer: target)
+      if existing.nil?
         Subscription.new(user: recipient, answer: target).save!
+      elsif force
+        existing.update(is_active: true)
       end
     end
 
@@ -15,7 +27,7 @@ class Subscription < ActiveRecord::Base
       end
 
       subs = Subscription.find_by(user: recipient, answer: target)
-      subs.destroy unless subs.nil?
+      subs.update(is_active: false) unless subs.nil?
     end
 
     def destruct(target)
@@ -25,12 +37,21 @@ class Subscription < ActiveRecord::Base
       Subscription.where(answer: target).destroy_all
     end
 
+    def destruct_by(recipient, target)
+      if recipient.nil? or target.nil?
+        return nil
+      end
+
+      subs = Subscription.find_by(user: recipient, answer: target)
+      subs.destroy unless subs.nil?
+    end
+
     def notify(source, target)
       if source.nil? or target.nil?
         return nil
       end
 
-      Subscription.where(answer: target).each do |subs|
+      Subscription.where(answer: target, is_active: true).each do |subs|
         next unless not subs.user == source.user
         Notification.notify subs.user, source
       end

@@ -7,7 +7,7 @@ class Comment < ActiveRecord::Base
   validates :content, length: { maximum: 160 }
 
   after_create do
-    Subscription.subscribe self.user, answer
+    Subscription.subscribe self.user, answer, false
     Subscription.notify self, answer
     user.increment! :commented_count
     answer.increment! :comment_count
