@@ -199,7 +199,7 @@ namespace :justask do
   end
 
   desc "Subscribes everyone to their answers"
-  task fix_submarines: :enviornment do
+  task fix_submarines: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
 
     total = Answer.count
@@ -219,7 +219,7 @@ namespace :justask do
   end
 
   desc "Destroy lost subscriptions"
-  task fix_torpedoes: :enviornment do
+  task fix_torpedoes: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
 
     total = Subscription.count
