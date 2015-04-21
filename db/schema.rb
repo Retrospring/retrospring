@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421120557) do
+ActiveRecord::Schema.define(version: 20150419201122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,49 +101,6 @@ ActiveRecord::Schema.define(version: 20150421120557) do
     t.datetime "updated_at"
   end
 
-  create_table "oauth_access_grants", force: :cascade do |t|
-    t.integer  "resource_owner_id", null: false
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.integer  "expires_in",        null: false
-    t.text     "redirect_uri",      null: false
-    t.datetime "created_at",        null: false
-    t.datetime "revoked_at"
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
-
-  create_table "oauth_access_tokens", force: :cascade do |t|
-    t.integer  "resource_owner_id"
-    t.integer  "application_id"
-    t.string   "token",             null: false
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
-  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
-  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
-
-  create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.string   "uid",                       null: false
-    t.string   "secret",                    null: false
-    t.text     "redirect_uri",              null: false
-    t.string   "scopes",       default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "owner_id"
-    t.string   "owner_type"
-  end
-
-  add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
-  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
-
   create_table "questions", force: :cascade do |t|
     t.string   "content"
     t.boolean  "author_is_anonymous"
@@ -198,25 +155,6 @@ ActiveRecord::Schema.define(version: 20150421120557) do
   add_index "smiles", ["answer_id"], name: "index_smiles_on_answer_id", using: :btree
   add_index "smiles", ["user_id", "answer_id"], name: "index_smiles_on_user_id_and_answer_id", unique: true, using: :btree
   add_index "smiles", ["user_id"], name: "index_smiles_on_user_id", using: :btree
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "answer_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "is_active",  default: true
-  end
-
-  create_table "user_themes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "bg",         default: "#fafafa"
-    t.string   "color",      default: "#5e35b1"
-    t.string   "color_a",    default: "#5e35b1"
-    t.string   "color_alt",  default: "#eeeeee"
-    t.string   "bg_primary", default: "#5e35b1"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                             default: "",    null: false
