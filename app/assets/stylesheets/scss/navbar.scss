@@ -126,9 +126,50 @@
   min-height: 50px;
   min-width: 50px;
   height: 50px;
-  width: 50px;  
+  width: 50px;
 }
 
 .navbar-inverse {
   border: none;
+}
+
+nav.navbar .nav > li:not(.profile--image-dropdown) {
+  & > *:first-child {
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $navbar-inverse-link-color;
+        height: 0px;
+        -webkit-transition-property: height;
+        transition-property: height;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+
+    &:hover, &:focus, &:active {
+      &:before {
+        height: 4px
+      }
+    }
+  }
+
+  &.active *:first-child:before {
+    height: 4px;
+  }
+
+  & > .btn {
+    line-height: 50px;
+    width: 44px;
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
 }
