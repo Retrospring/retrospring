@@ -10,7 +10,7 @@ class Answer < ActiveRecord::Base
 
     Notification.notify self.question.user, self unless self.question.author_is_anonymous
     Subscription.subscribe self.user, self
-    Subscription.subscribe self.question.user, self
+    Subscription.subscribe self.question.user, self unless self.question.user.nil?
     self.user.increment! :answered_count
     self.question.increment! :answer_count
   end
