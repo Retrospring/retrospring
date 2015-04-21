@@ -198,6 +198,45 @@ namespace :justask do
     puts "Purged #{destroyed_count} dead notifications."
   end
 
+  desc "Subscribes everyone to their answers"
+  task fix_submarines: :enviornment do
+    format = '%t (%c/%C) [%b>%i] %e'
+
+    total = Answer.count
+    progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
+    subscribed = 0
+
+    Answer.all.each do |a|
+      if not s.user.nil? and not s.answer.nil?
+        Subscription.subscribe a.user, a
+        subscribed += 1
+      end
+
+      progress.increment
+    end
+
+    puts "Subscribed to #{subscribed} posts."
+  end
+
+  desc "Destroy lost subscriptions"
+  task fix_torpedoes: :enviornment do
+    format = '%t (%c/%C) [%b>%i] %e'
+
+    total = Subscription.count
+    progress = ProgressBar.create title: 'Processing subscriptions', format: format, starting_at: 0, total: total
+    destroyed = 0
+    Subscription.all.each do |s|
+      if s.user.nil? or s.answer.nil?
+        s.destroy
+        destroyed += 1
+      end
+
+      progress.increment
+    end
+
+    puts "Put #{destroyed} subscriptions up for adoption."
+  end
+
   desc "Fixes everything else"
   task fix_db: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
@@ -206,7 +245,8 @@ namespace :justask do
         question: 0,
         answer: 0,
         smile: 0,
-        comment: 0
+        comment: 0,
+        subscription: 0
     }
 
     total = Inbox.count
@@ -250,10 +290,24 @@ namespace :justask do
       progress.increment
     end
 
+    total = Subscription.count
+    progress = ProgressBar.create title: 'Processing subscriptions', format: format, starting_at: 0, total: total
+    Subscription.all.each do |s|
+      if s.user.nil? or s.answer.nil?
+        s.destroy
+        destroyed_count[:subscription] += 1
+      end
+
+      progress.increment
+    end
+
+    puts "Put #{destroyed} subscriptions up for adoption."
+
     puts "Purged #{destroyed_count[:inbox]} dead inbox entries."
     puts "Marked #{destroyed_count[:question]} questions as anonymous."
     puts "Purged #{destroyed_count[:answer]} dead answers."
     puts "Purged #{destroyed_count[:answer]} dead comments."
+    puts "Purged #{destroyed_count[:subscription]} dead subscriptions."
   end
 
   desc "Prints lonely people."

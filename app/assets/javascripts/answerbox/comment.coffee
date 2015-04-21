@@ -39,6 +39,9 @@ $(document).on "keyup", "input[name=ab-comment-new]", (evt) ->
           input.val ''
           ctr.html 160
           $("span#ab-comment-count-#{aid}").html data.count
+          subs = $("a[data-action=ab-submarine][data-a-id=#{aid}]")[0]
+          subs.dataset.torpedo = "no"
+          subs.children[0].nextSibling.textContent = "Unsubscribe"
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error

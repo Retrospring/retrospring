@@ -82,6 +82,8 @@ Rails.application.routes.draw do
     match '/destroy_group', to: 'group#destroy', via: :post, as: :destroy_group
     match '/group_membership', to: 'group#membership', via: :post, as: :group_membership
     match '/preview', to: "question#preview", via: :post, as: :preview
+    match '/subscribe', to: 'subscription#subscribe', via: :post, as: :subscribe_answer
+    match '/unsubscribe', to: 'subscription#unsubscribe', via: :post, as: :unsubscribe_answer
   end
 
   match '/public', to: 'public#index', via: :get, as: :public_timeline

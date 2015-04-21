@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
   has_many :groups, dependent: :destroy
   has_many :group_memberships, class_name: "GroupMember", foreign_key: 'user_id', dependent: :destroy
 
+  has_many :subscriptions, dependent: :destroy
+
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 
