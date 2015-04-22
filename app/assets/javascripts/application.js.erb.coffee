@@ -21,6 +21,7 @@
 #= require question
 #= require settings
 #= require user
+#= require report
 # not required:
 # _tree ./moderation
 

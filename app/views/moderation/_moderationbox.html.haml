@@ -13,6 +13,14 @@
         = user_screen_name report.target
       - else
         = report.target.content
+    %p
+      %b
+        Reason:
+      %br
+      - (report.reason || "No reason provided.").lines.each do |reason|
+        - next unless reason.strip.length > 0
+        = reason.strip
+        %br
     .row
       .col-md-6.col-sm-4.col-xs-6.text-left
         %a.btn.btn-primary{href: content_url(report)}
