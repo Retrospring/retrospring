@@ -2,7 +2,7 @@
   There are no comments yet.
 - else
   %ul.comments
-    - report.moderation_comments.all.each do |comment|
+    - report.moderation_comments.order(:created_at).each do |comment|
       %li{data: { comment_id: comment.id }}
         .media.comments--media
           .pull-left
