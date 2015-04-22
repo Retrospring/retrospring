@@ -50,26 +50,4 @@ $(document).on "click", "a[data-action=report-user]", (ev) ->
   ev.preventDefault()
   btn = $(this)
   target = btn[0].dataset.target
-
-  swal
-    title: "Really report #{target}?"
-    text: "A moderator will review this user and decide what happens."
-    type: "warning"
-    showCancelButton: true
-    confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Report"
-    closeOnConfirm: true
-  , ->
-    $.ajax
-      url: '/ajax/report'
-      type: 'POST'
-      data:
-        id: target
-        type: 'user'
-      success: (data, status, jqxhr) ->
-        showNotification data.message, data.success
-      error: (jqxhr, status, error) ->
-        console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
-      complete: (jqxhr, status) ->
-        btn.button "reset"
+  reportDialog "user", target, -> btn.button "reset"

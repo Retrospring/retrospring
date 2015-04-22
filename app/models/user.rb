@@ -149,8 +149,19 @@ class User < ActiveRecord::Base
   end
 
   # region stuff used for reporting/moderation
-  def report(object)
-    Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id)
+  def report(object, reason = nil)
+    existing = Report.find_by(target_id: object.id, user_id: self.id, deleted: false)
+    if existing.nil?
+      Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id, reason: reason)
+    elsif not reason.nil? and reason.length > 0
+      if existing.reason.nil?
+        existing.update(reason: reason)
+      else
+        existing.update(reason: [existing.reason || "", reason].join("\n"))
+      end
+    else
+      existing
+    end
   end
 
   # @param upvote [Boolean]
