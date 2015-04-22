@@ -1,7 +1,7 @@
 window.reportDialog = (type, target, callback) ->
   swal
-    title: "Really report #{target}?"
-    text: "A moderator will review this #{type} and decide what happens.\nIf you'd like, you can also specify a reason."
+    title: "Really report this #{type}?"
+    text: "A moderator will review your report and decide what happens.\nIf you'd like, you can also specify a reason."
     type: "input"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
