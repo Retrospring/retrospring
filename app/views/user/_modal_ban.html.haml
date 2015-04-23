@@ -14,7 +14,7 @@
           #ban-controls{style: "#{"display: none" unless @user.banned?}"}
             = f.check_box :permaban, label: "Permanently?", checked: @user.permanently_banned?
             #ban-controls-time{style: "#{"display: none" unless not @user.permanently_banned?}"}
-              = f.datetime_local_field :until, label: "", required: true, value: (@user.banned_until || DateTime.now).strftime("%Y-%m-%dT%H:%M")
+              = f.datetime_local_field :until, label: "", required: true, value: (@user.banned_until || DateTime.current).strftime("%Y-%m-%dT%H:%M")
             = f.text_field :reason, placeholder: "Reason", value: @user.ban_reason
         .modal-footer
           %button.btn.btn-default{name: 'stop-time', type: :button, data: { dismiss: :modal }} Close

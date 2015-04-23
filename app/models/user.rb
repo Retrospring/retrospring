@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
 
   # forwards fill
   def banned?
-    self.permanently_banned? or ((not self.banned_until.nil?) and self.banned_until > DateTime.now)
+    self.permanently_banned? or ((not self.banned_until.nil?) and self.banned_until >= DateTime.current)
   end
 
   def unban

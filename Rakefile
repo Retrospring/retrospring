@@ -109,7 +109,7 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     user.permanently_banned = false
-    user.banned_until = DateTime.now + 1
+    user.banned_until = DateTime.current + 1
     user.ban_reason = args[:reason]
     user.save!
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
@@ -120,7 +120,7 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     user.permanently_banned = false
-    user.banned_until = DateTime.now + 7
+    user.banned_until = DateTime.current + 7
     user.ban_reason = args[:reason]
     user.save!
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
@@ -131,7 +131,7 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     user.permanently_banned = false
-    user.banned_until = DateTime.now + 30
+    user.banned_until = DateTime.current + 30
     user.ban_reason = args[:reason]
     user.save!
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
@@ -142,7 +142,7 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     user.permanently_banned = false
-    user.banned_until = DateTime.now + 365
+    user.banned_until = DateTime.current + 365
     user.ban_reason = args[:reason]
     user.save!
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
@@ -153,7 +153,7 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     user.permanently_banned = false
-    user.banned_until = DateTime.now + 365_000_000_000
+    user.banned_until = DateTime.current + 365_000_000_000
     user.ban_reason = args[:reason]
     user.save!
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
