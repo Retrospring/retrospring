@@ -165,7 +165,8 @@ namespace :justask do
     user = User.find_by_screen_name(args[:screen_name])
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.permanently_banned = false
-    user.banned_until = DateTime.now - 0.00001
+    user.banned_until = nil
+    user.ban_reason = nil
     user.save!
     puts "#{user.screen_name} is no longer banned."
   end
