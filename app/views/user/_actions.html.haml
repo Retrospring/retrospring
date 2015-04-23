@@ -36,11 +36,8 @@
               = succeed "'s" do
                 = user.screen_name
               privileges
-          %li
-            %a{href: '#', data: { target: "#modal-ban", toggle: :modal }}
-              %i.fa.fa-wrench
-              - if user.banned?
-                Unban or extend ban duration
-              - else
-                Ban
-                = user.screen_name
+          - unless user.admin?
+            %li
+              %a{href: '#', data: { target: "#modal-ban", toggle: :modal }}
+                %i.fa.fa-ban
+                Ban Control
