@@ -3,12 +3,13 @@ $(document).on "click", "a[data-action=ab-destroy]", (ev) ->
   btn = $(this)
   aid = btn[0].dataset.aId
   swal
-    title: "Really delete?"
-    text: "The question will be moved back to your inbox."
+    title: "Are you sure?"
+    text: "The question will be moved back to your inbox, but it won't delete any posts to social media."
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Delete"
+    confirmButtonText: "Yes"
+    cancelButtonText: "No"
     closeOnConfirm: true
   , ->
     $.ajax
