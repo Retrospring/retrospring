@@ -13,6 +13,18 @@ $(document).on "DOMContentLoaded", ->
     else
       $("#ban-controls-time").show()
 
+  $("#until").addClass("remove-native-picker").datetimepicker
+    icons:
+      time: "fa fa-clock-o"
+      date: "fa fa-calendar"
+      up: "fa fa-chevron-up"
+      down: "fa fa-chevron-down"
+      previous: "fa fa-chevron-left"
+      next: "fa fa-chevron-right"
+      today: "fa fa-home"
+      clear: "fa fa-trash-o"
+      close: "fa fa-times"
+
   parent.parent()[0].addEventListener "submit", (event) ->
     event.preventDefault();
 

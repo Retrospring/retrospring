@@ -48,6 +48,8 @@ GEM
     bcrypt (3.1.10)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap3-datetimepicker-rails (4.7.14)
+      momentjs-rails (>= 2.8.1)
     bootstrap_form (2.3.0)
     bootswatch-rails (3.2.4)
       railties (>= 3.1)
@@ -149,6 +151,8 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.6.0)
+    momentjs-rails (2.9.0)
+      railties (>= 3.1)
     multi_json (1.11.0)
     multipart-post (2.0.0)
     mysql2 (0.3.18)
@@ -362,6 +366,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.2.0.1)
+  bootstrap3-datetimepicker-rails (~> 4.7.14)
   bootstrap_form
   bootswatch-rails
   capybara
@@ -380,6 +385,7 @@ DEPENDENCIES
   jbuilder (~> 2.2.4)
   jquery-rails
   jquery-turbolinks
+  momentjs-rails (>= 2.9.0)
   mysql2
   nprogress-rails
   omniauth

@@ -45,7 +45,14 @@ $navbar-inverse-toggle-border-color: #512da8;
 @import "bootswatch/cosmo/variables";
 
 @import "bootstrap";
+
 body { padding-top: $navbar-height; }
+
+@import 'bootstrap-datetimepicker';
+.remove-native-picker::-webkit-calendar-picker-indicator{
+  display: none
+}
+
 @import "bootswatch/cosmo/bootswatch";
 
 @import "base";

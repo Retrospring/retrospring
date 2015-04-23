@@ -33,6 +33,8 @@ gem 'font-awesome-rails', '~> 4.3.0.0'
 gem 'rails-assets-growl'
 gem "paperclip", "~> 4.2"
 gem 'delayed_paperclip'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 gem 'ruby-progressbar'
 
@@ -78,4 +80,3 @@ group :development, :test do
   gem 'simplecov-rcov', require: false
   gem 'database_cleaner'
 end
-
