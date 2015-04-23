@@ -125,6 +125,7 @@ class Ajax::ModerationController < ApplicationController
       @status = :nopriv
       @message = "You cannot ban an administrator!"
       @success = false
+      return
     end
 
     if unban
