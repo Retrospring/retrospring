@@ -13,7 +13,9 @@ $(document).on "DOMContentLoaded", ->
     else
       $("#ban-controls-time").show()
 
-  $("#until").addClass("remove-native-picker").datetimepicker
+  parent.find("#until").datetimepicker
+    defaultDate: parent.find("#until").val()
+    sideBySide: true
     icons:
       time: "fa fa-clock-o"
       date: "fa fa-calendar"
@@ -39,8 +41,8 @@ $(document).on "DOMContentLoaded", ->
     data = {
       ban: checktostr "#_ban"
       permaban: checktostr "#_permaban"
-      until: $("#until")[0].value
-      reason: $("#reason")[0].value
+      until: $("#until")[0].value.trim()
+      reason: $("#reason")[0].value.trim()
       user: $("#_user")[0].value
     }
 

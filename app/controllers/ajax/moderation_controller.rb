@@ -119,7 +119,7 @@ class Ajax::ModerationController < ApplicationController
     unban  = params[:ban] == "0"
     perma  = params[:permaban] == "1"
 
-    buntil = DateTime.strptime params[:until], "%Y-%m-%dT%H:%M" unless unban or perma
+    buntil = DateTime.strptime params[:until], "%m/%d/%Y %I:%M %p" unless unban or perma
 
     if not unban and target.admin?
       @status = :nopriv
