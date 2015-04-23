@@ -94,11 +94,67 @@ namespace :justask do
   end
 
   desc "Hits an user with the banhammer."
-  task :ban, [:screen_name] => :environment do |t, args|
+  task :permanently_ban, [:screen_name, :reason] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     fail "user #{args[:screen_name]} not found" if user.nil?
-    user.banned = true
+    user.permanently_banned = true
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one day."
+  task :ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.now + 1
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one week."
+  task :week_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.now + 7
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one month."
+  task :month_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.now + 30
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one year."
+  task :year_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.now + 365
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one aeon."
+  task :aeon_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.now + 365_000_000_000
+    user.ban_reason = args[:reason]
     user.save!
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
@@ -108,7 +164,8 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     fail "user #{args[:screen_name]} not found" if user.nil?
-    user.banned = false
+    user.permanently_banned = false
+    user.banned_until = DateTime.now - 0.00001
     user.save!
     puts "#{user.screen_name} is no longer banned."
   end

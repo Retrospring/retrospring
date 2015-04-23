@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
       name = current_user.screen_name
       # obligatory '2001: A Space Odyssey' reference
       flash[:notice] = "I'm sorry, #{name}, I'm afraid I can't do that."
+      if current_user.ban_reason.nil?
+        flash[:notice] += "\nBan reason: #{current_user.ban_reason}"
+      end
+      if not current_user.permanently_banned?
+        # TODO format banned_until
+        flash[:notice] += "\nBanned until: #{current_user.banned_until}"
+      end
       sign_out current_user
       redirect_to new_user_session_path
     end
