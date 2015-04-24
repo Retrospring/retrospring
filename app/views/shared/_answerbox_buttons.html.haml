@@ -36,7 +36,7 @@
         %li.text-danger
           %a{href: '#', data: { a_id: a.id, action: 'ab-destroy' }}
             %i.fa.fa-trash-o
-            Delete
+            Return to Inbox
       - unless a.user == current_user
         %li
           %a{href: '#', data: { a_id: a.id, action: 'ab-report' }}
