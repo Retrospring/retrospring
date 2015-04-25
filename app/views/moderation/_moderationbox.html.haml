@@ -26,6 +26,9 @@
         %a.btn.btn-primary{href: content_url(report)}
           View reported
           = report.type.sub('Reports::', '')
+        - if report.target.respond_to? :user and not report.target.user.nil?
+          %a.btn.btn-primary{href: show_user_profile_path(report.target.user.screen_name)}
+            View reported User
       .col-md-6.col-sm-8.col-xs-6.text-right
         %span.mod-count{id: "mod-count-#{report.id}"}
           = report.votes
