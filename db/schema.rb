@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20150422024104) do
   create_table "answers", force: :cascade do |t|
     t.text     "content"
     t.integer  "question_id"
-    t.integer  "comment_count", default: 0,     null: false
+    t.integer  "comment_count", default: 0, null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "smile_count",   default: 0,     null: false
+    t.integer  "smile_count",   default: 0, null: false
   end
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20150422024104) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "answer_count",        default: 0,     null: false
+    t.integer  "answer_count",        default: 0, null: false
   end
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
