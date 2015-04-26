@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20150422024104) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "smile_count",   default: 0,     null: false
-    t.boolean  "nsfw",          default: false
   end
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
@@ -111,7 +110,6 @@ ActiveRecord::Schema.define(version: 20150422024104) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "answer_count",        default: 0,     null: false
-    t.boolean  "nsfw",                default: false
   end
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
@@ -210,9 +208,6 @@ ActiveRecord::Schema.define(version: 20150422024104) do
     t.boolean  "privacy_show_in_search",            default: true
     t.boolean  "banned",                            default: false
     t.boolean  "blogger",                           default: false
-    t.boolean  "nsfw",                              default: false
-    t.boolean  "show_nsfw",                         default: false
-    t.boolean  "privacy_allow_nsfw_questions",      default: true
     t.boolean  "contributor",                       default: false
   end
 

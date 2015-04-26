@@ -5,15 +5,9 @@
         %a.pull-left{href: show_user_profile_path(@question.user.screen_name)}
           %img.img-rounded.answerbox--img{src: gravatar_url(@question.user)}
       .media-body.question-body
-        %h6.text-muted.media-heading.answerbox--question-user
-          = user_screen_name @question.user, @question.author_is_anonymous
-          asked
-          %span{title: @question.created_at, data: { toggle: :tooltip, placement: :bottom }}
-            = time_ago_in_words(@question.created_at)
-          ago
         - if user_signed_in?
           .pull-right
-            .btn-group.question-actions
+            .btn-group
               %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                 %span.caret
               %ul.dropdown-menu.dropdown-menu-right{role: :menu}
@@ -27,6 +21,12 @@
                     %a{href: '#', data: { action: 'ab-question-report', q_id: @question.id }}
                       %i.fa.fa-exclamation-triangle
                       Report
+        %h6.text-muted.media-heading.answerbox--question-user
+          = user_screen_name @question.user, @question.author_is_anonymous
+          asked
+          %span{title: @question.created_at, data: { toggle: :tooltip, placement: :bottom }}
+            = time_ago_in_words(@question.created_at)
+          ago
         %p.answerbox--question-text= @question.content
 .container.question-page
   / TODO: make this pretty (it's currently C-c'd straight from shared/_answerbox)
