@@ -12,6 +12,13 @@ class Ajax::QuestionController < ApplicationController
       return
     end
 
+    if not (current_user.mod? or question.user == current_user)
+      @status = :not_authorized
+      @message = "You are not allowed to delete this question"
+      @success = false
+      return
+    end
+
     question.destroy!
 
     @status = :okay
