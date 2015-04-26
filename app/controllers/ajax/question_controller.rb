@@ -1,6 +1,24 @@
 class Ajax::QuestionController < ApplicationController
   include MarkdownHelper
 
+  def destroy
+    params.require :question
+
+    question = Question.find params[:question]
+    if question.nil?
+      @status = :not_found
+      @message = "Question does not exist"
+      @success = false
+      return
+    end
+
+    question.destroy!
+
+    @status = :okay
+    @message = "Successfully deleted question."
+    @success = true
+  end
+
   def create
     params.require :question
     params.require :anonymousQuestion

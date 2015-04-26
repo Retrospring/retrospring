@@ -1,4 +1,4 @@
-.panel.panel-default.answerbox{data: { id: a.id }}
+.panel.panel-default.answerbox{data: { id: a.id, q_id: a.question.id }}
   - if @question.nil?
     .panel-heading
       .media.question-media
@@ -12,11 +12,11 @@
                 %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                   %span.caret
                 %ul.dropdown-menu.dropdown-menu-right{role: :menu}
-                  - if current_user.mod?
+                  - if current_user.mod? or a.question.user == current_user
                     %li.text-danger
                       %a{href: '#', data: { action: 'ab-question-destroy', q_id: a.question.id }}
                         %i.fa.fa-trash-o
-                        Delete
+                        Delete Question
                   - unless a.question.user == current_user
                     %li
                       %a{href: '#', data: { action: 'ab-question-report', q_id: a.question.id }}

@@ -11,11 +11,11 @@
               %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                 %span.caret
               %ul.dropdown-menu.dropdown-menu-right{role: :menu}
-                - if current_user.mod?
+                - if current_user.mod? or @question.user == current_user
                   %li.text-danger
-                    %a{href: '#', data: { action: 'ab-question-destroy', q_id: @question.id }}
+                    %a{href: '#', data: { action: 'ab-question-destroy', q_id: @question.id, redirect: show_user_questions_path(@question.user.screen_name) }}
                       %i.fa.fa-trash-o
-                      Delete
+                      Delete Question
                 - unless @question.user == current_user
                   %li
                     %a{href: '#', data: { action: 'ab-question-report', q_id: @question.id }}

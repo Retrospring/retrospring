@@ -12,3 +12,9 @@
 .panel-primary .answerbox--question-text {
   color: #fff;
 }
+
+#questions .panel-body .media {
+  &, .media-body {
+    overflow: visible;
+  }
+}
