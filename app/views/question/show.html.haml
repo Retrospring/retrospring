@@ -13,7 +13,7 @@
               %ul.dropdown-menu.dropdown-menu-right{role: :menu}
                 - if current_user.mod? or @question.user == current_user
                   %li.text-danger
-                    %a{href: '#', data: { action: 'ab-question-destroy', q_id: @question.id, redirect: show_user_questions_path(@question.user.screen_name) }}
+                    %a{href: '#', data: { action: 'ab-question-destroy', q_id: @question.id, redirect: '/' }}
                       %i.fa.fa-trash-o
                       Delete Question
                 - unless @question.user == current_user
