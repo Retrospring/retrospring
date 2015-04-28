@@ -336,7 +336,7 @@ namespace :justask do
     puts "Purged #{destroyed_count[:inbox]} dead inbox entries."
     puts "Marked #{destroyed_count[:question]} questions as anonymous."
     puts "Purged #{destroyed_count[:answer]} dead answers."
-    puts "Purged #{destroyed_count[:answer]} dead comments."
+    puts "Purged #{destroyed_count[:comment]} dead comments."
     puts "Purged #{destroyed_count[:subscription]} dead subscriptions."
     puts "Marked #{destroyed_count[:report]} reports as deleted."
   end
