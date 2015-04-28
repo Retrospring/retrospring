@@ -237,6 +237,24 @@ namespace :justask do
     puts "Put #{destroyed} subscriptions up for adoption."
   end
 
+  desc "Fixes reports"
+  task fix_reports: :enviornment do
+    format = '%t (%c/%C) [%b>%i] %e'
+
+    total = Report.count
+    progress = ProgressBar.create title: 'Processing reports', format: format, starting_at: 0, total: total
+    destroyed = 0
+    Report.all.each do |r|
+      if r.target.nil?
+        r.deleted = true
+        r.save
+        destroyed += 1
+      progress.increment
+    end
+
+    puts "Marked #{destroyed} reports as deleted."
+  end
+
   desc "Fixes everything else"
   task fix_db: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
@@ -246,7 +264,8 @@ namespace :justask do
         answer: 0,
         smile: 0,
         comment: 0,
-        subscription: 0
+        subscription: 0,
+        report: 0
     }
 
     total = Inbox.count
@@ -301,13 +320,23 @@ namespace :justask do
       progress.increment
     end
 
-    puts "Put #{destroyed} subscriptions up for adoption."
+    total = Report.count
+    progress = ProgressBar.create title: 'Processing reports', format: format, starting_at: 0, total: total
+    Report.all.each do |r|
+      if r.target.nil?
+        r.deleted = true
+        r.save
+        destroyed_count[:report] += 1
+      progress.increment
+    end
 
+    puts "Put #{destroyed_count[:subscription]} subscriptions up for adoption."
     puts "Purged #{destroyed_count[:inbox]} dead inbox entries."
     puts "Marked #{destroyed_count[:question]} questions as anonymous."
     puts "Purged #{destroyed_count[:answer]} dead answers."
     puts "Purged #{destroyed_count[:answer]} dead comments."
     puts "Purged #{destroyed_count[:subscription]} dead subscriptions."
+    puts "Marked #{destroyed_count[:report]} reports as deleted."
   end
 
   desc "Prints lonely people."
