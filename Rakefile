@@ -245,7 +245,7 @@ namespace :justask do
     progress = ProgressBar.create title: 'Processing reports', format: format, starting_at: 0, total: total
     destroyed = 0
     Report.all.each do |r|
-      if r.target.nil?
+      if r.target.nil? and not r.deleted?
         r.deleted = true
         r.save
         destroyed += 1
@@ -324,7 +324,7 @@ namespace :justask do
     total = Report.count
     progress = ProgressBar.create title: 'Processing reports', format: format, starting_at: 0, total: total
     Report.all.each do |r|
-      if r.target.nil?
+      if r.target.nil? and not r.deleted?
         r.deleted = true
         r.save
         destroyed_count[:report] += 1
