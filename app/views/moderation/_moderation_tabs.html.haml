@@ -1,9 +1,8 @@
 .col-md-3.col-sm-3.col-xs-12
   .panel.panel-default.hidden-xs
-    .panel-body
-      %ul.nav.nav-pills.nav-stacked
-        = nav_entry "All reports", moderation_path
-        = nav_entry "Answers",     moderation_path('answer')
-        = nav_entry "Comments",    moderation_path('comment')
-        = nav_entry "Users",       moderation_path('user')
-        = nav_entry "Questions",   moderation_path('question')
+    %ul.nav.nav-pills.nav-stacked
+      = list_group_item "All reports", moderation_path
+      = list_group_item "Answers",     moderation_path('answer')
+      = list_group_item "Comments",    moderation_path('comment')
+      = list_group_item "Users",       moderation_path('user')
+      = list_group_item "Questions",   moderation_path('question')

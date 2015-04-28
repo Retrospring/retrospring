@@ -8,9 +8,9 @@ class Answer < ActiveRecord::Base
   after_create do
     Inbox.where(user: self.user, question: self.question).destroy_all
 
-    Notification.notify self.question.user, self unless self.question.author_is_anonymous
+    Notification.notify self.question.user, self unless self.question.user == self.user or self.question.user.nil?
     Subscription.subscribe self.user, self
-    Subscription.subscribe self.question.user, self unless self.question.user.nil?
+    Subscription.subscribe self.question.user, self unless self.question.author_is_anonymous
     self.user.increment! :answered_count
     self.question.increment! :answer_count
   end

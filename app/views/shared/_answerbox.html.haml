@@ -1,11 +1,27 @@
-.panel.panel-default.answerbox{data: { id: a.id }}
+.panel.panel-default.answerbox{data: { id: a.id, q_id: a.question.id }}
   - if @question.nil?
     .panel-heading
-      .media
+      .media.question-media
         - unless a.question.author_is_anonymous
           %a.pull-left{href: show_user_profile_path(a.question.user.screen_name)}
             %img.img-rounded.answerbox--img{src: gravatar_url(a.question.user)}
-        .media-body
+        .media-body.question-body
+          - if user_signed_in?
+            .pull-right
+              .btn-group
+                %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
+                  %span.caret
+                %ul.dropdown-menu.dropdown-menu-right{role: :menu}
+                  - if current_user.mod? or a.question.user == current_user
+                    %li.text-danger
+                      %a{href: '#', data: { action: 'ab-question-destroy', q_id: a.question.id }}
+                        %i.fa.fa-trash-o
+                        Delete Question
+                  - unless a.question.user == current_user
+                    %li
+                      %a{href: '#', data: { action: 'ab-question-report', q_id: a.question.id }}
+                        %i.fa.fa-exclamation-triangle
+                        Report
           %h6.text-muted.media-heading.answerbox--question-user
             = user_screen_name a.question.user, a.question.author_is_anonymous
             asked

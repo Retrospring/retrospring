@@ -1,12 +1,27 @@
-.container.j2-page
-  / TODO: make this pretty (it's currently C-c'd straight from shared/_answerbox)
-  .panel.panel-default
+.panel.panel-question
+  .container
     .panel-body
-      .media
+      .media.question-media
         - unless @question.author_is_anonymous
           %a.pull-left{href: show_user_profile_path(@question.user.screen_name)}
             %img.img-rounded.answerbox--img{src: gravatar_url(@question.user)}
-        .media-body
+        .media-body.question-body
+          - if user_signed_in?
+            .pull-right
+              .btn-group
+                %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
+                  %span.caret
+                %ul.dropdown-menu.dropdown-menu-right{role: :menu}
+                  - if current_user.mod? or @question.user == current_user
+                    %li.text-danger
+                      %a{href: '#', data: { action: 'ab-question-destroy', q_id: @question.id, redirect: if @question.author_is_anonymous? then "/" else show_user_questions_path(@question.user.screen_name) end }}
+                        %i.fa.fa-trash-o
+                        Delete Question
+                  - unless @question.user == current_user
+                    %li
+                      %a{href: '#', data: { action: 'ab-question-report', q_id: @question.id }}
+                        %i.fa.fa-exclamation-triangle
+                        Report
           %h6.text-muted.media-heading.answerbox--question-user
             = user_screen_name @question.user, @question.author_is_anonymous
             asked
@@ -14,6 +29,8 @@
               = time_ago_in_words(@question.created_at)
             ago
           %p.answerbox--question-text= @question.content
+.container.question-page
+  / TODO: make this pretty (it's currently C-c'd straight from shared/_answerbox)
 
   #answers
     - @answers.each do |a|
