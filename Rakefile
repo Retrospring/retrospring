@@ -238,7 +238,7 @@ namespace :justask do
   end
 
   desc "Fixes reports"
-  task fix_reports: :enviornment do
+  task fix_reports: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
 
     total = Report.count
@@ -249,6 +249,7 @@ namespace :justask do
         r.deleted = true
         r.save
         destroyed += 1
+      end
       progress.increment
     end
 
@@ -327,6 +328,7 @@ namespace :justask do
         r.deleted = true
         r.save
         destroyed_count[:report] += 1
+      end
       progress.increment
     end
 
