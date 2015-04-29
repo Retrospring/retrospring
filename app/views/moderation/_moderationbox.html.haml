@@ -1,4 +1,4 @@
-- unless report.target.nil?
+- unless report.nil? or report.target.nil? or report.user.nil? or report.type.nil?
   .panel.panel-default.moderationbox{data: { id: report.id }}
     .panel-heading
       %img.img-rounded.answerbox--img{src: gravatar_url(report.user)}
