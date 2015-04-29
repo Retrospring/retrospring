@@ -249,6 +249,9 @@ namespace :justask do
         r.deleted = true
         r.save
         destroyed += 1
+      elsif r.user.nil?
+        r.destroy
+        destroyed += 1
       end
       progress.increment
     end
@@ -327,6 +330,9 @@ namespace :justask do
       if r.target.nil? and not r.deleted?
         r.deleted = true
         r.save
+        destroyed_count[:report] += 1
+      elsif r.user.nil?
+        r.destroy
         destroyed_count[:report] += 1
       end
       progress.increment
