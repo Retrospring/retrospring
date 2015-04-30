@@ -68,14 +68,6 @@ class User < ActiveRecord::Base
         r.save
       end
     end
-
-    rep = Report.where(user_id: self.id)
-    rep.each do |r|
-      unless r.nil?
-        r.deleted = true
-        r.save
-      end
-    end
   end
 
   def login=(login)
