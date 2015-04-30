@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   validates :content, length: { maximum: 255 }
 
   before_destroy do
-    rep = Report.where(target_id: self.id, type: Reports::Question)
+    rep = Report.where(target_id: self.id, type: 'Reports::Question')
     rep.each do |r|
       unless r.nil?
         r.deleted = true

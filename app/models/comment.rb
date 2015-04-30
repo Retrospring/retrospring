@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
   end
 
   before_destroy do
-    rep = Report.where(target_id: self.id, type: Reports::Comment)
+    rep = Report.where(target_id: self.id, type: 'Reports::Comment')
     rep.each do |r|
       unless r.nil?
         r.deleted = true

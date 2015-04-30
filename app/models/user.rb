@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   # when a user deleted himself, all reports relating to the user are invalid
   before_destroy do
-    rep = Report.where(target_id: self.id, type: Reports::User)
+    rep = Report.where(target_id: self.id, type: 'Reports::User')
     rep.each do |r|
       unless r.nil?
         r.deleted = true
@@ -161,7 +161,7 @@ class User < ActiveRecord::Base
 
   # region stuff used for reporting/moderation
   def report(object, reason = nil)
-    existing = Report.find_by(target_id: object.id, user_id: self.id, deleted: false)
+    existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id, deleted: false)
     if existing.nil?
       Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id, reason: reason)
     elsif not reason.nil? and reason.length > 0

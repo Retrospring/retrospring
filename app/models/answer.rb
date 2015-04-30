@@ -17,7 +17,7 @@ class Answer < ActiveRecord::Base
 
   before_destroy do
     # mark a report as deleted if it exists
-    rep = Report.where(target_id: self.id, type: Reports::Answer)
+    rep = Report.where(target_id: self.id, type: 'Reports::Answer')
     rep.each do |r|
       unless r.nil?
         r.deleted = true
