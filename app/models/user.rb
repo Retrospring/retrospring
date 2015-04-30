@@ -59,6 +59,25 @@ class User < ActiveRecord::Base
                    end unless website.blank?
   end
 
+  # when a user deleted himself, all reports relating to the user are invalid
+  before_destroy do
+    rep = Report.where(target_id: self.id, type: Reports::User)
+    rep.each do |r|
+      unless r.nil?
+        r.deleted = true
+        r.save
+      end
+    end
+
+    rep = Report.where(user_id: self.id)
+    rep.each do |r|
+      unless r.nil?
+        r.deleted = true
+        r.save
+      end
+    end
+  end
+
   def login=(login)
     @login = login
   end
