@@ -16,4 +16,11 @@
   span {
     margin-left: 5px;
   }
+
+  a:hover {
+    text-decoration: none;
+    span {
+      text-decoration: underline;
+    }
+  }
 }
