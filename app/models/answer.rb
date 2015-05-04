@@ -4,6 +4,7 @@ class Answer < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :smiles, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
+  has_many :comment_smiles, through: :comments, source: :smiles
 
   after_create do
     Inbox.where(user: self.user, question: self.question).destroy_all
