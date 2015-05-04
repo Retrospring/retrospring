@@ -41,3 +41,19 @@
   font-size: 12px;
   line-height: 1.3em;
 }
+
+.answerbox [name="ab-smile"], .answerbox [name="ab-smile-comment"] {
+  padding: 6px 11px;
+  padding-left: 21px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+
+  i.fa.fa-smile-o, i.fa.fa-frown-o, i.fa.fa-meh-o {
+    position: absolute;
+    font-size: 3em;
+    left: -13px;
+    top: -10px;
+    display: block;
+  }
+}

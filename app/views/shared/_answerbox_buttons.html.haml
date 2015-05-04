@@ -1,8 +1,9 @@
 %span.hidden-xs.text-muted
   - unless user_signed_in?
     - if a.smile_count > 0
-      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
-      users smiled this
+      %button.btn.btn-info.btn-sm{name: 'ab-smile', disabled: true}
+        %i.fa.fa-smile-o
+        %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
 - if user_signed_in?
   - if current_user.smiled? a
     %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile }}

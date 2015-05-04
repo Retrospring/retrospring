@@ -44,6 +44,21 @@
             ago
           .notification--icon
             %i.fa.fa-smile-o
+      - when "CommentSmile"
+        .pull-left
+          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+        .media-body
+          %h6.media-heading.notification--user
+            = user_screen_name notification.target.user
+          %p.notification--text
+            smiled at
+            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.comment.answer.id), title: "#{notification.target.comment.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
+              your comment
+            %span{title: notification.target.created_at, data: { toggle: :tooltip, placement: :bottom }}
+              = time_ago_in_words notification.target.created_at
+            ago
+          .notification--icon
+            %i.fa.fa-smile-o
       - when "Comment"
         .pull-left
           %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}

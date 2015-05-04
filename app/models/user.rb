@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :friends,   through: :active_relationships, source: :target
   has_many :followers, through: :passive_relationships, source: :source
   has_many :smiles, dependent: :destroy
+  has_many :comment_smiles, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
   has_many :reports, dependent: :destroy
@@ -140,8 +141,24 @@ class User < ActiveRecord::Base
     Smile.find_by(user: self, answer: answer).destroy
   end
 
+  # smiles a comment
+  # @param comment [Comment] the comment to smile
+  def smile_comment(comment)
+    CommentSmile.create!(user: self, comment: comment)
+  end
+
+  # unsmile an comment
+  # @param comment [Comment] the comment to unsmile
+  def unsmile_comment(comment)
+    CommentSmile.find_by(user: self, comment: comment).destroy
+  end
+
   def smiled?(answer)
     answer.smiles.pluck(:user_id).include? self.id
+  end
+
+  def smiled_comment?(comment)
+    comment.smiles.pluck(:user_id).include? self.id
   end
 
   def display_website
