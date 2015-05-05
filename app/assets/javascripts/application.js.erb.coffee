@@ -41,7 +41,8 @@ $(document).on "click", "button#create-account", ->
   Turbolinks.visit "/sign_up"
 
 _ready = ->
-  sweetAlertInitialize()
+  if typeof sweetAlertInitialize != "undefined"
+    sweetAlertInitialize()
 
 $(document).ready _ready
 $(document).on 'page:load', _ready

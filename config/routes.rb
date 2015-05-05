@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       match '/mod/create_vote', to: 'moderation#vote', via: :post, as: :mod_create_vote
       match '/mod/destroy_vote', to: 'moderation#destroy_vote', via: :post, as: :mod_destroy_vote
       match '/mod/privilege', to: 'moderation#privilege', via: :post, as: :mod_privilege
+      match '/mod/ban', to: 'moderation#ban', via: :post, as: :mod_ban
     end
   end
 

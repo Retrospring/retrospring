@@ -36,3 +36,8 @@
               = succeed "'s" do
                 = user.screen_name
               privileges
+          - unless user.admin?
+            %li
+              %a{href: '#', data: { target: "#modal-ban", toggle: :modal }}
+                %i.fa.fa-ban
+                Ban Control

@@ -11,8 +11,6 @@
             = @user.screen_name
           privileges
       %ul.list-group.groups--list
-        - unless @user.admin?
-          = render 'user/modal_privileges_item', privilege: 'banned', description: 'Hit the user with ye olde banhammer', user: @user
         = render 'user/modal_privileges_item', privilege: 'blogger', description: 'The user gets that privilege if they blogged something (nice) about Retrospring.', user: @user
         = render 'user/modal_privileges_item', privilege: 'contributor', description: "This user has contributed to justask#{" (the software behind #{APP_CONFIG['site_name']})" unless APP_CONFIG['site_name'] == 'justask'}.", user: @user
         - if current_user.admin?

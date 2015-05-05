@@ -224,4 +224,21 @@ class User < ActiveRecord::Base
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
+
+  # forwards fill
+  def banned?
+    self.permanently_banned? or ((not self.banned_until.nil?) and self.banned_until >= DateTime.current)
+  end
+
+  def unban
+    self.update(permanently_banned: false, ban_reason: nil, banned_until: nil)
+  end
+
+  def ban(buntil=nil, reason=nil)
+    if buntil == nil
+      self.update(permanently_banned: true, ban_reason: reason)
+    else
+      self.update(permanently_banned: false, banned_until: buntil, ban_reason: reason)
+    end
+  end
 end
