@@ -5,7 +5,7 @@
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-8.j2-col-reset
     = render 'shared/questionbox'
-    = unless @user.banned?
+    - unless @user.banned?
       #answers
         - @answers.each do |a|
           = render 'shared/answerbox', a: a
