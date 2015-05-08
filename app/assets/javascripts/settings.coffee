@@ -65,24 +65,14 @@
           ($ '#crop_h_y').val Math.floor(data.y / data.scale)
           ($ '#crop_h_w').val Math.floor(data.w / data.scale)
           ($ '#crop_h_h').val Math.floor(data.h / data.scale)
-#          rx = 100 / data.w
-#          ry = 100 / data.h
-#          ($ '#profile-picture-preview').css
-#            width: Math.round(rx * preview[0].naturalWidth) + 'px'
-#            height: Math.round(ry * preview[0].naturalHeight) + 'px'
-#            marginLeft: '-' + Math.round(rx * data.x) + 'px'
-#            marginTop: '-' + Math.round(ry * data.y) + 'px'
 
         cropper.on 'load', ->
-          width = 1500
-          height = 500
-
           cropper.guillotine
             width: 1500
-            height: 500
+            height: 350
             onChange: updateVars
 
-          updateVars cropper.guillotine('getData'), 'drag' # just because
+          updateVars cropper.guillotine('getData'), 'drag'
 
           ($ '#cropper-zoom-out').click -> cropper.guillotine 'zoomOut'
           ($ '#cropper-zoom-in').click -> cropper.guillotine 'zoomIn'
