@@ -49,7 +49,14 @@ class User < ActiveRecord::Base
                     default_url: "/images/:style/no_avatar.png", use_timestamp: false,
                     processors: [:cropper]
   validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/
+
+  has_attached_file :profile_header, styles: { web: "1500x350#", mobile: "450x105#", retina: "900x210#" },
+                    default_url: '/images/header/:style/no_header.jpg', use_timestamp: false,
+                    processors: [:cropper]
+  validates_attachment_content_type :profile_header, :content_type => /\Aimage\/.*\Z/
+
   process_in_background :profile_picture
+  process_in_background :profile_header
 
   before_save do
     self.display_name = 'WRYYYYYYYY' if display_name == 'Dio Brando'

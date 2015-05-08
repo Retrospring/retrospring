@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422024104) do
+ActiveRecord::Schema.define(version: 20150508144336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,24 @@ ActiveRecord::Schema.define(version: 20150422024104) do
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
 
+  create_table "comment_smiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comment_smiles", ["comment_id"], name: "index_comment_smiles_on_comment_id", using: :btree
+  add_index "comment_smiles", ["user_id", "comment_id"], name: "index_comment_smiles_on_user_id_and_comment_id", unique: true, using: :btree
+  add_index "comment_smiles", ["user_id"], name: "index_comment_smiles_on_user_id", using: :btree
+
   create_table "comments", force: :cascade do |t|
     t.string   "content"
     t.integer  "answer_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "smile_count", default: 0, null: false
   end
 
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
@@ -206,9 +218,21 @@ ActiveRecord::Schema.define(version: 20150422024104) do
     t.boolean  "privacy_allow_public_timeline",     default: true
     t.boolean  "privacy_allow_stranger_answers",    default: true
     t.boolean  "privacy_show_in_search",            default: true
-    t.boolean  "banned",                            default: false
+    t.boolean  "permanently_banned",                default: false
     t.boolean  "blogger",                           default: false
     t.boolean  "contributor",                       default: false
+    t.string   "ban_reason"
+    t.datetime "banned_until"
+    t.integer  "comment_smiled_count",              default: 0,     null: false
+    t.string   "profile_header_file_name"
+    t.string   "profile_header_content_type"
+    t.integer  "profile_header_file_size"
+    t.datetime "profile_header_updated_at"
+    t.boolean  "profile_header_processing"
+    t.integer  "crop_h_x"
+    t.integer  "crop_h_y"
+    t.integer  "crop_h_w"
+    t.integer  "crop_h_h"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -25,3 +25,6 @@ coverage/
 
 # every fucking time, dolphin
 .directory
+# lookin' at you, OS trash
+.DS_Store
+Thumbs.DB

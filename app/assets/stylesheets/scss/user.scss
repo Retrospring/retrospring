@@ -28,13 +28,11 @@
   margin-top: 0.65em;
 }
 
-.profile--header {
-  position: absolute;
-  z-index: 0;
+#profile--header {
+  position: relative;
+  z-index: -1;
   width: 100%;
-  height: 300px;
   background-color: darken($navbar-inverse-bg, 10%);
-  background-size: cover;
 }
 
 .profile--panel .panel-heading {
@@ -100,14 +98,20 @@ $colours: danger $brand-danger,
   text-decoration: line-through !important;
 }
 
-.profile--panel-push-50 {
+.profile--panel-push-inner {
   display: block;
-  height: 50px;
+  height: 60px;
+}
+
+.profile--header-img {
+  display: block;
+  min-width: 900px;
   width: 100%;
 }
 
-.profile--panel-push-200 {
-  display: block;
-  height: 180px;
-  width: 100%;
+@media(min-width: 767px) {
+  .container.headerable {
+    padding-top: 0;
+    margin-top: -30px;
+  }
 }
