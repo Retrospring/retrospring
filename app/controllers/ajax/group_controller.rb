@@ -1,4 +1,11 @@
 class Ajax::GroupController < ApplicationController
+  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
+    @status = :parameter_error
+    @message = "#{param_miss_ex.param.capitalize} is required"
+    @success = false
+    render partial: "ajax/shared/status"
+  end
+  
   def create
     @status = :err
     @success = false
@@ -101,7 +108,7 @@ class Ajax::GroupController < ApplicationController
       @checked = false
       @message = "Successfully removed user from group."
     end
-      
+
     @status = :okay
     @success = true
   end
