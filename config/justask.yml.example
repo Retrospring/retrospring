@@ -42,3 +42,14 @@ admins:
     about_text: Filippus
     subtext: Moderator Management & Support
 
+# delete if using local storage
+fog:
+  # fog credentials
+  credentials:
+    provider: 'AWS'
+    aws_access_key_id: 'ACCESS KEY'
+    aws_secret_access_key: 'SECRET KEY'
+  # bucket name
+  directory: 'retrospring-user-content'
+  # URL host
+  host: "retrospring-user-content.s3.amazonaws.com"
