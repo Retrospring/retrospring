@@ -42,8 +42,10 @@
 
           updateVars cropper.guillotine('getData'), 'drag' # just because
 
-          ($ '#cropper-zoom-out').click -> cropper.guillotine 'zoomOut'
-          ($ '#cropper-zoom-in').click -> cropper.guillotine 'zoomIn'
+          unless ($ '#profile-picture-crop-controls')[0].dataset.bound?
+            ($ '#cropper-zoom-out').click -> cropper.guillotine 'zoomOut'
+            ($ '#cropper-zoom-in').click -> cropper.guillotine 'zoomIn'
+            ($ '#profile-picture-crop-controls')[0].dataset.bound = true
           ($ '#profile-picture-crop-controls').slideDown()
 
         cropper.attr 'src', e.target.result
@@ -74,8 +76,10 @@
 
           updateVars cropper.guillotine('getData'), 'drag'
 
-          ($ '#cropper-header-zoom-out').click -> cropper.guillotine 'zoomOut'
-          ($ '#cropper-header-zoom-in').click -> cropper.guillotine 'zoomIn'
+          unless ($ '#profile-header-crop-controls')[0].dataset.bound?
+            ($ '#cropper-header-zoom-out').click -> cropper.guillotine 'zoomOut'
+            ($ '#cropper-header-zoom-in').click -> cropper.guillotine 'zoomIn'
+            ($ '#profile-header-crop-controls')[0].dataset.bound = true
           ($ '#profile-header-crop-controls').slideDown()
 
         cropper.attr 'src', e.target.result
