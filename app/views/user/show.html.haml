@@ -1,11 +1,12 @@
-#profile--header.hidden-xs{class: unless @user.profile_header.exists? then "profile--no-header" end}
+- no_header = unless @user.profile_header.exists? then "profile--no-header" else "" end
+#profile--header.hidden-xs{class: no_header}
   %img.profile--header-img{src: @user.profile_header.url(:web)}
-.container.j2-page.headerable{class: unless @user.profile_header.exists? then "profile--no-header" end}
+.container.j2-page.headerable{class: no_header}
   .col-md-3.col-xs-12.col-sm-4.j2-col-reset
     = render 'user/profile_info'
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-8.j2-col-reset
-    .profile--panel-push-inner.hidden-xs{class: unless @user.profile_header.exists? then "profile--no-header" end}
+    .profile--panel-push-inner.hidden-xs{class: no_header}
     = render 'shared/questionbox'
     - unless @user.banned?
       #answers
