@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.1'
 
 gem 'pg', group: :postgres
 gem 'mysql2', group: :mysql
@@ -29,10 +29,12 @@ gem 'devise-async'
 gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
-gem 'font-awesome-rails', '~> 4.2.0.0'
+gem 'font-awesome-rails', '~> 4.3.0.0'
 gem 'rails-assets-growl'
 gem "paperclip", "~> 4.2"
 gem 'delayed_paperclip'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 gem 'ruby-progressbar'
 
@@ -41,7 +43,7 @@ gem 'rails_admin'
 gem 'sidekiq'
 gem 'sinatra', require: false
 
-gem 'questiongenerator', git: 'https://github.com/justask/questiongenerator.git'
+gem 'questiongenerator', git: 'https://github.com/retrospring/questiongenerator.git'
 
 gem 'sanitize'
 gem 'redcarpet'
@@ -60,11 +62,6 @@ gem 'redis'
 
 group :development do
   gem 'spring'
-
-  # Capistrano for deployment
-  gem 'capistrano', '~> 3.1'
-  gem 'capistrano-rvm', group: :rvm
-  gem 'capistrano-rails', '~> 1.1'
 end
 
 group :production do
@@ -74,11 +71,12 @@ end
 group :development, :test do
   gem 'thin'
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
-  gem 'simplecov'
+  gem 'simplecov', require: false
+  gem 'simplecov-json', require: false
+  gem 'simplecov-rcov', require: false
   gem 'database_cleaner'
 end
-

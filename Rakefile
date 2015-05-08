@@ -70,7 +70,7 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.admin = false
     user.save!
-    puts "#{user.screen_name} no longer an admin."
+    puts "#{user.screen_name} is no longer an admin."
   end
 
   desc "Gives moderator status to an user."
@@ -94,11 +94,67 @@ namespace :justask do
   end
 
   desc "Hits an user with the banhammer."
-  task :ban, [:screen_name] => :environment do |t, args|
+  task :permanently_ban, [:screen_name, :reason] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     fail "user #{args[:screen_name]} not found" if user.nil?
-    user.banned = true
+    user.permanently_banned = true
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one day."
+  task :ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.current + 1
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one week."
+  task :week_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.current + 7
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one month."
+  task :month_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.current + 30
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one year."
+  task :year_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.current + 365
+    user.ban_reason = args[:reason]
+    user.save!
+    puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
+  end
+
+  desc "Hits an user with the banhammer for one aeon."
+  task :aeon_ban, [:screen_name, :reason] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    user.permanently_banned = false
+    user.banned_until = DateTime.current + 365_000_000_000
+    user.ban_reason = args[:reason]
     user.save!
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
@@ -108,9 +164,31 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     fail "user #{args[:screen_name]} not found" if user.nil?
-    user.banned = false
+    user.permanently_banned = false
+    user.banned_until = nil
+    user.ban_reason = nil
     user.save!
     puts "#{user.screen_name} is no longer banned."
+  end
+
+  desc "Gives blogger status to an user."
+  task :blog, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.blogger = true
+    user.save!
+    puts "#{user.screen_name} is now a blogger."
+  end
+
+  desc "Removes blogger status from an user."
+  task :unblog, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.blogger = false
+    user.save!
+    puts "#{user.screen_name} is no longer a blogger."
   end
 
   desc "Gives supporter status to an user."
@@ -130,7 +208,27 @@ namespace :justask do
     fail "user #{args[:screen_name]} not found" if user.nil?
     user.supporter = false
     user.save!
-    puts "#{user.screen_name} no longer an supporter."
+    puts "#{user.screen_name} is no longer an supporter."
+  end
+
+  desc "Gives contributor status to an user."
+  task :contrib, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.contributor = true
+    user.save!
+    puts "#{user.screen_name} is now a contributor."
+  end
+
+  desc "Removes contributor status from an user."
+  task :decontrib, [:screen_name] => :environment do |t, args|
+    fail "screen name required" if args[:screen_name].nil?
+    user = User.find_by_screen_name(args[:screen_name])
+    fail "user #{args[:screen_name]} not found" if user.nil?
+    user.contributor = false
+    user.save!
+    puts "#{user.screen_name} is no longer a contributor."
   end
 
   desc "Lists all users."
@@ -158,6 +256,67 @@ namespace :justask do
     puts "Purged #{destroyed_count} dead notifications."
   end
 
+  desc "Subscribes everyone to their answers"
+  task fix_submarines: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
+
+    total = Answer.count
+    progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
+    subscribed = 0
+
+    Answer.all.each do |a|
+      if not a.user.nil?
+        Subscription.subscribe a.user, a
+        subscribed += 1
+      end
+
+      progress.increment
+    end
+
+    puts "Subscribed to #{subscribed} posts."
+  end
+
+  desc "Destroy lost subscriptions"
+  task fix_torpedoes: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
+
+    total = Subscription.count
+    progress = ProgressBar.create title: 'Processing subscriptions', format: format, starting_at: 0, total: total
+    destroyed = 0
+    Subscription.all.each do |s|
+      if s.user.nil? or s.answer.nil?
+        s.destroy
+        destroyed += 1
+      end
+
+      progress.increment
+    end
+
+    puts "Put #{destroyed} subscriptions up for adoption."
+  end
+
+  desc "Fixes reports"
+  task fix_reports: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
+
+    total = Report.count
+    progress = ProgressBar.create title: 'Processing reports', format: format, starting_at: 0, total: total
+    destroyed = 0
+    Report.all.each do |r|
+      if r.target.nil? and not r.deleted?
+        r.deleted = true
+        r.save
+        destroyed += 1
+      elsif r.user.nil?
+        r.destroy
+        destroyed += 1
+      end
+      progress.increment
+    end
+
+    puts "Marked #{destroyed} reports as deleted."
+  end
+
   desc "Fixes everything else"
   task fix_db: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
@@ -166,7 +325,9 @@ namespace :justask do
         question: 0,
         answer: 0,
         smile: 0,
-        comment: 0
+        comment: 0,
+        subscription: 0,
+        report: 0
     }
 
     total = Inbox.count
@@ -210,10 +371,38 @@ namespace :justask do
       progress.increment
     end
 
+    total = Subscription.count
+    progress = ProgressBar.create title: 'Processing subscriptions', format: format, starting_at: 0, total: total
+    Subscription.all.each do |s|
+      if s.user.nil? or s.answer.nil?
+        s.destroy
+        destroyed_count[:subscription] += 1
+      end
+
+      progress.increment
+    end
+
+    total = Report.count
+    progress = ProgressBar.create title: 'Processing reports', format: format, starting_at: 0, total: total
+    Report.all.each do |r|
+      if r.target.nil? and not r.deleted?
+        r.deleted = true
+        r.save
+        destroyed_count[:report] += 1
+      elsif r.user.nil?
+        r.destroy
+        destroyed_count[:report] += 1
+      end
+      progress.increment
+    end
+
+    puts "Put #{destroyed_count[:subscription]} subscriptions up for adoption."
     puts "Purged #{destroyed_count[:inbox]} dead inbox entries."
     puts "Marked #{destroyed_count[:question]} questions as anonymous."
     puts "Purged #{destroyed_count[:answer]} dead answers."
-    puts "Purged #{destroyed_count[:answer]} dead comments."
+    puts "Purged #{destroyed_count[:comment]} dead comments."
+    puts "Purged #{destroyed_count[:subscription]} dead subscriptions."
+    puts "Marked #{destroyed_count[:report]} reports as deleted."
   end
 
   desc "Prints lonely people."
@@ -243,5 +432,120 @@ namespace :justask do
       res.each { |name| puts " - #{name}" }
       print "\033[0m"
     end
+  end
+
+  desc "Export data for an user"
+  task :export, [:email] => :environment do |t, args|
+    require 'json'
+    require 'yaml'
+    return if args[:email].nil?
+    obj = {}
+    format = '%t (%c/%C) [%b>%i] %e'
+    u = User.where("LOWER(email) = ?", args[:email].downcase).first!
+    export_dirname = "export_#{u.screen_name}_#{Time.now.to_i}"
+    export_filename = u.screen_name
+
+    %i(id screen_name display_name created_at sign_in_count last_sign_in_at friend_count follower_count asked_count answered_count commented_count smiled_count motivation_header bio website location moderator admin supporter banned blogger).each do |f|
+      obj[f] = u.send f
+    end
+
+    total = u.questions.count
+    progress = ProgressBar.create title: 'Processing questions', format: format, starting_at: 0, total: total
+    obj[:questions] = []
+    u.questions.each do |q|
+      qobj = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        qobj[f] = q.send f
+      end
+      obj[:questions] << qobj
+      progress.increment
+    end
+
+    total = u.answers.count
+    progress = ProgressBar.create title: 'Processing answers', format: format, starting_at: 0, total: total
+    obj[:answers] = []
+    u.answers.each do |a|
+      aobj = {}
+      %i(id content comment_count smile_count created_at).each do |f|
+        aobj[f] = a.send f
+      end
+      aobj[:question] = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        aobj[:question][f] = a.question.send f
+      end
+      aobj[:question][:user] = a.question.user.screen_name unless a.question.author_is_anonymous
+      aobj[:comments] = []
+      a.comments.each do |c|
+        cobj = {}
+        %i(id content created_at).each do |f|
+          cobj[f] = c.send f
+        end
+        cobj[:user] = c.user.screen_name
+        aobj[:comments] << cobj
+      end
+      obj[:answers] << aobj
+      progress.increment
+    end
+
+    total = u.comments.count
+    progress = ProgressBar.create title: 'Processing comments', format: format, starting_at: 0, total: total
+    obj[:comments] = []
+    u.comments.each do |c|
+      cobj = {}
+      %i(id content created_at).each do |f|
+        cobj[f] = c.send f
+      end
+      cobj[:answer] = {}
+      %i(id content comment_count smile_count created_at).each do |f|
+        cobj[:answer][f] = c.answer.send f
+      end
+      cobj[:answer][:question] = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        cobj[:answer][:question][f] = c.answer.question.send f
+      end
+      cobj[:answer][:question][:user] = c.answer.question.user.screen_name unless c.answer.question.author_is_anonymous
+      obj[:comments] << cobj
+      progress.increment
+    end
+
+    total = u.smiles.count
+    progress = ProgressBar.create title: 'Processing smiles', format: format, starting_at: 0, total: total
+    obj[:smiles] = []
+    u.smiles.each do |s|
+      sobj = {}
+      %i(id created_at).each do |f|
+        sobj[f] = s.send f
+      end
+
+      sobj[:answer] = {}
+      %i(id content comment_count smile_count created_at).each do |f|
+        sobj[:answer][f] = s.answer.send f
+      end
+      sobj[:answer][:question] = {}
+      %i(id content author_is_anonymous created_at answer_count).each do |f|
+        sobj[:answer][:question][f] = s.answer.question.send f
+      end
+      sobj[:answer][:question][:user] = s.answer.question.user.screen_name unless s.answer.question.author_is_anonymous
+
+      obj[:smiles] << sobj
+      progress.increment
+    end
+
+    `mkdir -p /usr/home/justask/justask/public/export`
+    `mkdir -p /tmp/rs_export/#{export_dirname}/picture`
+    if u.profile_picture
+      %i(large medium small original).each do |s|
+        x = u.profile_picture.path(s).gsub('"', '\\"')
+        `cp "#{x}" "/tmp/rs_export/#{export_dirname}/picture/#{s}_#{File.basename x}"`
+      end
+    end
+    File.open "/tmp/rs_export/#{export_dirname}/#{export_filename}.json", 'w' do |f|
+      f.puts obj.to_json
+    end
+    File.open "/tmp/rs_export/#{export_dirname}/#{export_filename}.yml", 'w' do |f|
+      f.puts obj.to_yaml
+    end
+    `tar czvf public/export/#{export_dirname}.tar.gz -C /tmp/rs_export #{export_dirname}`
+    puts "\033[1mhttps://retrospring.net/export/#{export_dirname}.tar.gz\033[0m"
   end
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # Moderation panel
   constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
-                       (req.env['warden'].user.admin? or req.env['warden'].user.moderator?) } do
+                       (req.env['warden'].user.mod?) } do
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}
     namespace :ajax do
       match '/mod/destroy_report', to: 'moderation#destroy_report', via: :post, as: :mod_destroy_report
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       match '/mod/destroy_comment', to: 'moderation#destroy_comment', via: :post, as: :mod_destroy_comment
       match '/mod/create_vote', to: 'moderation#vote', via: :post, as: :mod_create_vote
       match '/mod/destroy_vote', to: 'moderation#destroy_vote', via: :post, as: :mod_destroy_vote
+      match '/mod/privilege', to: 'moderation#privilege', via: :post, as: :mod_privilege
+      match '/mod/ban', to: 'moderation#ban', via: :post, as: :mod_ban
     end
   end
 
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
 
   match '/about', to: 'static#about', via: 'get'
   match '/help/faq', to: 'static#faq', via: 'get', as: :help_faq
+  match '/privacy', to: 'static#privacy_policy', via: 'get', as: :privacy_policy
+  match '/terms', to: 'static#terms', via: 'get', as: :terms
 
   # Devise routes
   devise_for :users, path: 'user', skip: [:sessions, :registrations]
@@ -63,6 +67,7 @@ Rails.application.routes.draw do
 
   namespace :ajax do
     match '/ask', to: 'question#create', via: :post, as: :ask
+    match '/destroy_question', to: 'question#destroy', via: :post, as: :destroy_question
     match '/generate_question', to: 'inbox#create', via: :post, as: :generate_question
     match '/delete_inbox', to: 'inbox#remove', via: :post, as: :delete_inbox
     match '/delete_all_inbox', to: 'inbox#remove_all', via: :post, as: :delete_all_inbox
@@ -72,12 +77,17 @@ Rails.application.routes.draw do
     match '/destroy_friend', to: 'friend#destroy', via: :post, as: :destroy_friend
     match '/create_smile', to: 'smile#create', via: :post, as: :create_smile
     match '/destroy_smile', to: 'smile#destroy', via: :post, as: :destroy_smile
+    match '/create_comment_smile', to: 'smile#create_comment', via: :post, as: :create_comment_smile
+    match '/destroy_comment_smile', to: 'smile#destroy_comment', via: :post, as: :destroy_comment_smile
     match '/create_comment', to: 'comment#create', via: :post, as: :create_comment
     match '/destroy_comment', to: 'comment#destroy', via: :post, as: :destroy_comment
     match '/report', to: 'report#create', via: :post, as: :report
     match '/create_group', to: 'group#create', via: :post, as: :create_group
     match '/destroy_group', to: 'group#destroy', via: :post, as: :destroy_group
     match '/group_membership', to: 'group#membership', via: :post, as: :group_membership
+    match '/preview', to: "question#preview", via: :post, as: :preview
+    match '/subscribe', to: 'subscription#subscribe', via: :post, as: :subscribe_answer
+    match '/unsubscribe', to: 'subscription#unsubscribe', via: :post, as: :unsubscribe_answer
   end
 
   match '/public', to: 'public#index', via: :get, as: :public_timeline
@@ -86,7 +96,7 @@ Rails.application.routes.draw do
   match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'all'}
 
   match '/inbox', to: 'inbox#show', via: 'get'
-  
+
   match '/user/:username(/p/:page)', to: 'user#show', via: 'get', defaults: {page: 1}
   match '/@:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
   match '/@:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer_alt

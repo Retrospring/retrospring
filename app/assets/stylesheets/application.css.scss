@@ -6,9 +6,9 @@
  *= require_self
  */
 
-@import url(https://fonts.googleapis.com/css?family=Exo+2:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 
-$font-family-sans-serif:  "Exo 2","Open Sans", "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;
+$font-family-sans-serif:  "Lato","Open Sans", "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;
 $font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   "PragmataPro", Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
@@ -28,10 +28,11 @@ $font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 $brand-primary: #5e35b1;
 $navbar-inverse-bg: #5e35b1;
 $navbar-inverse-link-color: #ffffff;
-$navbar-inverse-link-hover-color: #bfbfbf;
+$navbar-inverse-link-hover-color: #ffffff;
 $navbar-inverse-link-hover-bg: transparent;
-$navbar-inverse-link-active-color: #bfbfbf;
-$navbar-inverse-link-active-bg: darken($navbar-inverse-bg, 6.5%);
+$navbar-inverse-link-active-color: #ffffff;
+$navbar-inverse-link-active-bg: transparent;
+$navbar-inverse-link-active-bg-mobile: darken(#5e35b1, 7%);
 $navbar-inverse-link-disabled-color: darken(#fff, 12.5%);
 $navbar-inverse-link-disabled-bg: transparent;
 $navbar-inverse-brand-color: $navbar-inverse-link-color;
@@ -41,16 +42,23 @@ $navbar-inverse-toggle-hover-bg: #512da8;
 $navbar-inverse-toggle-icon-bar-bg: #7e57c2;
 $navbar-inverse-toggle-border-color: #512da8;
 
-@import "bootswatch/paper/variables";
+@import "bootswatch/cosmo/variables";
 
 @import "bootstrap";
+
 body { padding-top: $navbar-height; }
-@import "bootswatch/paper/bootswatch";
+
+@import 'bootstrap-datetimepicker';
+.remove-native-picker::-webkit-calendar-picker-indicator{
+  display: none
+}
+
+@import "bootswatch/cosmo/bootswatch";
 
 @import "base";
 
 @import "font-awesome";
 
-$nprogress-color: darken($navbar-inverse-bg, 15%);
+$nprogress-color: lighten($navbar-inverse-bg, 25%);
 @import 'nprogress';
 @import 'nprogress-bootstrap';

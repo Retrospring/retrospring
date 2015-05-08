@@ -1,0 +1,36 @@
+%li.dropdown.profile--image-dropdown
+  %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+    %img.profile--image-avatar.hidden-xs{src: current_user.profile_picture.url(:small)}
+    %span.visible-xs
+      = current_user.screen_name
+      %b.caret
+  %ul.dropdown-menu
+    %li.dropdown-header.hidden-xs= current_user.screen_name
+    %li
+      %a{href: show_user_profile_path(current_user.screen_name)}
+        %i.fa.fa-fw.fa-user
+        View profile
+    %li
+      %a{href: edit_user_registration_path}
+        %i.fa.fa-fw.fa-cog
+        Settings
+    %li.divider
+    - if current_user.admin?
+      %li
+        %a{href: rails_admin_path}
+          %i.fa.fa-fw.fa-cogs
+          Kontrollzentrum
+      %li
+        %a{href: sidekiq_web_path}
+          %i.fa.fa-fw.fa-bar-chart
+          Sidekiq
+    - if current_user.mod?
+      %li
+        %a{href: moderation_path}
+          %i.fa.fa-fw.fa-gavel
+          Moderation Panel
+      %li.divider
+    %li
+      %a{href: destroy_user_session_path, data: {method: :delete} }
+        %i.fa.fa-fw.fa-sign-out
+        Logout

@@ -28,3 +28,16 @@
           %a{href: '#', data: { action: 'report-user', target: user.screen_name }}
             %i.fa.fa-exclamation-triangle
             Report
+        - if current_user.mod?
+          %li
+            %a{href: '#', data: { target: "#modal-privileges", toggle: :modal }}
+              %i.fa.fa-wrench
+              Check
+              = succeed "'s" do
+                = user.screen_name
+              privileges
+          - unless user.admin?
+            %li
+              %a{href: '#', data: { target: "#modal-ban", toggle: :modal }}
+                %i.fa.fa-ban
+                Ban Control

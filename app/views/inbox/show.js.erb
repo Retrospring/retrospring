@@ -1,0 +1,9 @@
+$('#entries').append('<% @inbox.each do |i|
+  %><%= j render 'inbox/entry', i: i
+%><% end %>');
+<% if @inbox.next_page %>
+$('#pagination').html('<%= j will_paginate @inbox, renderer: BootstrapPagination::Rails, page_links: false %>');
+<% else %>
+$('#pagination, #load-more-btn').remove();
+<% end %>
+<% Inbox.where(id: @inbox.pluck(:id)).update_all(new: false) %>

@@ -22,13 +22,12 @@ class Ajax::ReportController < ApplicationController
                params[:type].strip.capitalize.constantize.find params[:id]
              end
 
-
     if object.nil?
       @message = "Could not find #{params[:type]}"
       return
     end
 
-    current_user.report object
+    current_user.report object, params[:reason]
 
     @status = :okay
     @message = "#{params[:type].capitalize} reported.  A moderator will decide what happens with the #{params[:type]}."

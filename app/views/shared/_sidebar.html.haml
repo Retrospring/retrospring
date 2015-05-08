@@ -1,14 +1,18 @@
 .panel.panel-default.hidden-xs
+  %img.profile--avatar{src: current_user.profile_picture.url(:large)}
+  - unless inbox_count.nil?
+    .profile--panel-badge.panel-badge-info
+      %i.fa.fa-envelope
+      = pluralize(inbox_count, 'new question')
   .panel-body
-    %p
-      Welcome,
-      = current_user.screen_name
-    - unless inbox_count.nil?
-      %p
-        %strong
-          You have
-          = pluralize(inbox_count, 'new question')
-          in your inbox!
+    - if current_user.display_name.blank?
+      .profile--displayname
+        = current_user.screen_name
+    - else
+      .profile--displayname
+        = current_user.display_name
+      .profile--username
+        = current_user.screen_name
     .row
       %a{href: show_user_followers_path(current_user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
@@ -18,27 +22,12 @@
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= current_user.friend_count
           %h6.entry-subtext Following
-    .row
-      .col-md-6.col-sm-6.col-xs-6
-        %h4.entry-text#asked-count= current_user.asked_count
-        %h6.entry-subtext Questions
-      .col-md-6.col-sm-6.col-xs-6
-        %h4.entry-text#answered-count= current_user.answered_count
-        %h6.entry-subtext Answers
-    .row
-      .col-md-6.col-sm-6.col-xs-6
-        %h4.entry-text#asked-count= current_user.commented_count
-        %h6.entry-subtext Comments
-      .col-md-6.col-sm-6.col-xs-6
-        %h4.entry-text#answered-count= current_user.smiled_count
-        %h6.entry-subtext Smiles
-.panel.panel-default
-  .panel-body
-    %ul.nav.nav-pills.nav-stacked
-      = nav_entry "Timeline", root_path
-      = nav_entry "Public", public_timeline_path
-      - current_user.groups.each do |group|
-        = nav_entry group.display_name, group_timeline_path(group.name)
+.panel.panel-default.hidden-xs
+  %ul.nav.nav-pills.nav-stacked
+    = list_group_item "Timeline", root_path
+    = list_group_item "Public", public_timeline_path
+    - current_user.groups.each do |group|
+      = list_group_item group.display_name, group_timeline_path(group.name)
 - unless @group.nil?
   .panel.panel-default.profile--panel.hidden-xs
     .panel-heading

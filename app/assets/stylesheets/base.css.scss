@@ -6,6 +6,7 @@ body {
   background-color: #fafafa;
 }
 
+@import "scss/generic";
 @import "scss/answerbox";
 @import "scss/comments";
 @import "scss/entry";
@@ -17,6 +18,16 @@ body {
 
 .j2-page {
   padding-top: 30px;
+}
+
+.question-page {
+  padding-top: 100px;
+}
+
+@media(max-width: $screen-xs-max) {
+  .question-page {
+    padding-top: 130px;
+  }
 }
 
 .centre {
@@ -68,6 +79,14 @@ body {
   list-style: none;
 }
 
+.about--moderator a {
+  text-decoration: none;
+}
+
+.about--moderator a:hover {
+  text-decoration: none;
+}
+
 .j2-up {
   text-transform: uppercase;
 }
@@ -96,4 +115,35 @@ body {
 .j2-delete {
   color: $brand-danger;
   text-decoration: none;
+}
+
+.j2-navbar {
+  margin-bottom: 0px;
+}
+
+@media (max-width: $screen-xs-max) {
+  .j2-col-reset {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+#growls.default{
+  top:64px;
+  right:10px
+}
+
+.links {
+  padding-bottom: 10px;
+}
+
+.panel {
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.panel-default {
+  border-color: transparent;
 }

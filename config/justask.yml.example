@@ -29,3 +29,16 @@ sharing:
 
 # Redis
 redis_url: "redis://localhost:6379"
+
+# Site admins
+admins:
+  - screen_name: 'nilsding'
+    about_text: nilsding
+    subtext: Backend, Server & Code
+  - screen_name: 'pixeldesu'
+    about_text: pixeldesu
+    subtext: Frontend Design & Layout
+  - screen_name: 'Filippus'
+    about_text: Filippus
+    subtext: Moderator Management & Support
+

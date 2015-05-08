@@ -20,3 +20,29 @@
   opacity: 0.4;
   z-index: 0;
 }
+
+.notification--dropdown {
+  min-width: 370px;
+  margin-top: 0px !important;
+}
+
+.notification--dropdown-media {
+  padding: 3px 5px;
+}
+
+.notification--dropdown-user, .notification--dropdown-text {
+  margin-bottom: 0px;
+  overflow: hidden;
+  line-height: 1.3em;
+}
+
+.notification--dropdown-user {
+  margin-top: 0px;
+}
+
+.notification--dropdown-img {
+  min-height: 32px;
+  min-width: 32px;
+  height: 32px;
+  width: 32px;
+}

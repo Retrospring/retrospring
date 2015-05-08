@@ -9,7 +9,21 @@
 #= require cheet
 #= require jquery.guillotine
 #= require sweet-alert
-#= require_tree .
+# local requires to be seen by everyone:
+#= require_tree ./answerbox
+#= require_tree ./questionbox
+#= require groups
+#= require inbox
+#= require memes
+#= require notifications
+#= require pagination
+#= require piwik
+#= require question
+#= require settings
+#= require user
+#= require report
+# not required:
+# _tree ./moderation
 
 NProgress.configure
   showSpinner: false
@@ -27,7 +41,8 @@ $(document).on "click", "button#create-account", ->
   Turbolinks.visit "/sign_up"
 
 _ready = ->
-  sweetAlertInitialize()
+  if typeof sweetAlertInitialize != "undefined"
+    sweetAlertInitialize()
 
 $(document).ready _ready
 $(document).on 'page:load', _ready

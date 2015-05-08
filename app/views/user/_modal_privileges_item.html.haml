@@ -1,0 +1,9 @@
+- description ||= ''
+%li.list-group-item{id: "privilege-#{privilege}"}
+  .media
+    .pull-left.j2-table
+      %input.input--center{type: :checkbox, name: 'check-your-privileges', data: { type: privilege, user: user.screen_name }, checked: user.send("#{privilege}?"), autocomplete: 'off'}
+    .media-body
+      .list-group-item-heading= privilege.capitalize
+      - unless description.blank?
+        .list-group-item-text.text-muted= description

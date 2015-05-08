@@ -6,6 +6,14 @@ class Question < ActiveRecord::Base
   validates :content, length: { maximum: 255 }
 
   before_destroy do
+    rep = Report.where(target_id: self.id, type: 'Reports::Question')
+    rep.each do |r|
+      unless r.nil?
+        r.deleted = true
+        r.save
+      end
+    end
+
     user.decrement! :asked_count unless self.author_is_anonymous
   end
 

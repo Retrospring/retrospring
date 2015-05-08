@@ -1,16 +1,39 @@
-# justask [![build status](https://ci.rrerr.net/projects/9/status.png?ref=master)](https://ci.rrerr.net/projects/9?ref=master)
+# justask (aka. the software behind Retrospring)
+
+This is the source code that powers Retrospring.  Yep, all of it.  Including
+all the branches where we left off.
+
+<!--
+Except for the memes that happened 4 hours before the shutdown.  I've edited
+it right on the server, without a special branch or something.  If you want
+to, I can make a branch with all the modifications we made.
+-->
 
 ## Requirements
 
-- UNIX-like system (Linux, *BSD, ...)
+- UNIX-like system (Linux, FreeBSD, ...)
 - Ruby 2.0.0+
 - Bundler
 - PostgreSQL
-- Redis
+- Redis (for Sidekiq)
+- ImageMagick (for image processing)
 
 ## Installation (production)
 
+We've installed justask on FreeBSD 10 using rvm.  What we also did was
+creating a new, seperate user just for justask to run in.  On FreeBSD, this
+is done with:
+
+    # pw user add justask
+
 ### Database
+
+At Retrospring, we were using PostgreSQL as the database backend.  The
+software might work on MySQL too, but that was not tested.
+
+Installation from Ports (using `portmaster`):
+
+    # portmaster databases/postgresql93-server
 
 #### PostgreSQL
 
@@ -23,11 +46,16 @@ Try connecting to the database:
 
     $ psql -U justask -d justask_production
 
+### nginx
+
+See [docs/nginx.conf](https://github.com/nilsding/justask/blob/master/docs/nginx.conf)
+for the configuration we use on Retrospring.
+
 ### justask
 
 #### Clone the Source
 
-    $ git clone https://git.rrerr.net/nilsding/justask.git justask
+    $ git clone https://github.com/nilsding/justask.git justask
 
 #### Configure It
 
@@ -72,7 +100,7 @@ Try connecting to the database:
     # Development mode:
     $ bundle exec rails server
 
-Create an account on your justask installation.
+Now, create an account on your justask installation.
 
 To make yourself an admin, just execute:
 
@@ -82,12 +110,30 @@ If you want to remove admin status from a certain user, you can do this:
 
     $ bundle exec rake 'justask:deadmin[get_rekt]' RAILS_ENV=production
 
-Add/remove moderators:
+Add/remove moderators (this can also be done via the web interface by visiting an user as an admin):
 
     $ bundle exec rake 'justask:mod[someone_else]' RAILS_ENV=production
     $ bundle exec rake 'justask:demod[someone_else]' RAILS_ENV=production
 
-Add/remove supporters:
+Add/remove supporters (this can also be done via the web interface by visiting an user as an admin/mod):
 
     $ bundle exec rake 'justask:sup[someone_else]' RAILS_ENV=production
     $ bundle exec rake 'justask:desup[someone_else]' RAILS_ENV=production
+
+Export user data:
+
+    $ bundle exec rake 'justask:export[jdoe@example.tld]' RAILS_ENV=production
+
+Find the user(s) with the most self-asked anonymous questions:
+
+    $ bundle exec rake justask:loners
+
+## The Official Retrospring Closedown Soundtrack™ (now redundant)
+
+* [Scooter - Can't Stop The Hardcore](https://www.youtube.com/watch?v=nJ3bet-Y79w)
+* [Darude - Sandstorm](https://www.youtube.com/watch?v=y6120QOlsfU)
+* [Max Raabe - Oops I Did It Again](https://www.youtube.com/watch?v=qYr9kIyambE)
+
+## License
+
+AGPLv3.  

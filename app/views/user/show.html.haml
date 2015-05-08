@@ -1,21 +1,24 @@
 .profile--header
 .container.j2-page
-  .col-md-3.col-xs-12.col-sm-4
-    .profile--panel-push-50.hidden-xs
+  .col-md-3.col-xs-12.col-sm-4.j2-col-reset
     = render 'user/profile_info'
     .hidden-xs= render 'shared/links'
-  .col-md-9.col-xs-12.col-sm-8
+  .col-md-9.col-xs-12.col-sm-8.j2-col-reset
     .profile--panel-push-200.hidden-xs
     = render 'shared/questionbox'
-    #answers
-      - @answers.each do |a|
-        = render 'shared/answerbox', a: a
+    - unless @user.banned?
+      #answers
+        - @answers.each do |a|
+          = render 'shared/answerbox', a: a
 
-    #pagination= will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false
+      #pagination= will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false
 
-    - if @answers.next_page
-      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
-        Load more
+      - if @answers.next_page
+        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
+          Load more
   .visible-xs= render 'shared/links'
 - if user_signed_in?
   = render 'user/modal_group_memberships'
+  - if current_user.mod? and @user != current_user
+    = render 'user/modal_privileges'
+    = render 'user/modal_ban'

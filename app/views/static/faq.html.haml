@@ -119,5 +119,10 @@
             8. Is this open-source software?
       .panel-collapse.collapse{id: "collapseNine", role: "tabpanel", aria: {labelledby: "faqNine"}}
         .panel-body
-          Currently not. We haven't decided if we want to publish the underlying software stack at some point.
+          Yep!  #{APP_CONFIG['site_name']} runs
+          = succeed ',' do
+            %a{href: 'https://github.com/nilsding/justask'} justask
+          an open source (AGPLv3) question and answer platform. If you want to contribute or report bugs you find in  #{APP_CONFIG['site_name']}, please look at our 
+          = link_to "Github repository!", "https://github.com/retrospring/retrospring"
+
 

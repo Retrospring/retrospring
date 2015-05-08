@@ -1,9 +1,9 @@
 .col-md-3.col-xs-12.col-sm-3
-  .panel.panel-default
-    .panel-body
-      %ul.nav.nav-pills.nav-stacked
-        = nav_entry "All notifications", notifications_path
-        = nav_entry "Answers", notifications_path('answer')
-        = nav_entry "Smiles", notifications_path('smile')
-        = nav_entry "Comments", notifications_path('comment')
-        = nav_entry "Followers", notifications_path('relationship')
+  .panel.panel-default.hidden-xs
+    .list-group
+      = list_group_item "All notifications", notifications_path, badge: Notification.for(current_user).where(new: true).count
+      = list_group_item "Answers", notifications_path('answer'), badge: Notification.for(current_user).where(target_type: "Answer", new: true).count
+      = list_group_item "Smiles", notifications_path('smile'), badge: Notification.for(current_user).where(target_type: "Smile", new: true).count
+      = list_group_item "Comments", notifications_path('comment'), badge: Notification.for(current_user).where(target_type: "Comment", new: true).count
+      = list_group_item "Comment Smiles", notifications_path('commentsmile'), badge: Notification.for(current_user).where(target_type: "CommentSmile", new: true).count
+      = list_group_item "Followers", notifications_path('relationship'), badge: Notification.for(current_user).where(target_type: "Relationship", new: true).count

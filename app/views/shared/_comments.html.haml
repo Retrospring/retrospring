@@ -2,19 +2,38 @@
   There are no comments yet.
 - else
   %ul.comments
-    - a.comments.all.each do |comment|
+    - a.comments.order(:created_at).each do |comment|
       %li{data: { comment_id: comment.id }}
+        %div{class: "ab-comment-smile-list", style: "height: 0; width: 0"}= render "shared/comment_smiles", comment: comment
         .media.comments--media
           .pull-left
             %img.img-rounded.answerbox--img{src: gravatar_url(comment.user)}
           .media-body.comments--body
             %h6.media-heading.answerbox--question-user= user_screen_name comment.user
-            - if user_signed_in?
-              .pull-right
+            .pull-right
+              %span.hidden-xs.text-muted
+                - unless user_signed_in?
+                  - if comment.smile_count > 0
+                    %button.btn.btn-info.btn-sm{name: 'ab-smile-comment', disabled: true}
+                      %i.fa.fa-smile-o
+                      %span{id: "ab-comment-smile-count-#{comment.id}"}= comment.smile_count
+              - if user_signed_in?
+                - if current_user.smiled_comment? comment
+                  %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile-comment', data: { c_id: comment.id, action: :unsmile }}
+                    %i.fa.fa-frown-o
+                    %span{id: "ab-comment-smile-count-#{comment.id}"}= comment.smile_count
+                - else
+                  %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile-comment', data: { c_id: comment.id, action: :smile }}
+                    %i.fa.fa-smile-o
+                    %span{id: "ab-comment-smile-count-#{comment.id}"}= comment.smile_count
                 .btn-group
                   %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                     %span.caret
                   %ul.dropdown-menu.dropdown-menu-right{role: :menu}
+                    %li
+                      %a{href: '#', type: :button, data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal}}
+                        %i.fa.fa-smile-o
+                        View comment smiles
                     - if privileged?(comment.user) or privileged?(a.user)
                       %li.text-danger
                         %a{href: '#', data: { action: 'ab-comment-destroy', c_id: comment.id }}

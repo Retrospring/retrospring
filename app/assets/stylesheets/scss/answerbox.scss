@@ -17,7 +17,7 @@
   width: 20px;
 }
 
-.answerbox--question-text, .answerbox--question-user {
+.answerbox--question-text, .answerbox--question-user, .answerbox--answer-user, .answerbox--answer-date {
   margin-bottom: 0px;
   overflow: hidden;
 }
@@ -30,4 +30,30 @@
   font-size: 16px;
   color: #000;
   line-height: 1.3em;
+}
+
+.answerbox--question-text {
+  line-height: 1.3em;
+  overflow: hidden;
+}
+
+.answerbox--answer-date {
+  font-size: 12px;
+  line-height: 1.3em;
+}
+
+.answerbox [name="ab-smile"], .answerbox [name="ab-smile-comment"] {
+  padding: 6px 11px;
+  padding-left: 21px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+
+  i.fa.fa-smile-o, i.fa.fa-frown-o, i.fa.fa-meh-o {
+    position: absolute;
+    font-size: 3em;
+    left: -13px;
+    top: -10px;
+    display: block;
+  }
 }

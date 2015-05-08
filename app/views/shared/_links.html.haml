@@ -1,8 +1,12 @@
-.centre.text-muted
+.centre.text-muted.links
   &copy;
   = Date.today.year
   = APP_CONFIG['site_name']
   ·
   = link_to "About", about_path
   ·
-  = link_to "Bugs", 'https://github.com/retrospring/bugs/issues'
+  = link_to "Github", 'https://github.com/retrospring/retrospring'
+  ·
+  = link_to "Terms of Service", terms_path
+  ·
+  = link_to "Privacy Policy", privacy_policy_path

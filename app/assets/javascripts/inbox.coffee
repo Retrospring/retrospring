@@ -40,6 +40,7 @@
       success: (data, status, jqxhr) ->
         if data.success
           succ = yes
+          ($ "div#pagination, button#load-more-btn").slideUp()
           entries = ($ "div#entries")
           entries.slideUp 400, ->
             entries.html("Nothing to see here.")
@@ -121,3 +122,19 @@ $(document).on "click", "button[name=ib-destroy]", ->
       complete: (jqxhr, status) ->
         btn.button "reset"
         $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"
+
+
+# Toggle button
+$(document).on "click", "button[name=ib-options]", ->
+  btn = $(this)
+  ibid = btn[0].dataset.ibId
+  state = btn[0].dataset.state
+  optionBox = $("#ib-options-#{ibid}")
+
+  switch state
+    when 'hidden'
+      optionBox.slideDown()
+      btn[0].dataset.state = 'shown'
+    when 'shown'
+      optionBox.slideUp()
+      btn[0].dataset.state = 'hidden'

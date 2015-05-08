@@ -8,7 +8,8 @@
         %h6.text-muted.media-heading.answerbox--question-user
           = user_screen_name i.question.user, i.question.author_is_anonymous
           asked
-          = time_ago_in_words(i.question.created_at)
+          %span{title: i.question.created_at, data: { toggle: :tooltip, placement: :bottom }}
+            = time_ago_in_words(i.question.created_at)
           ago
           - unless i.question.author_is_anonymous
             - if i.question.answer_count > 0
@@ -23,8 +24,21 @@
       Answer
     %button.btn.btn-danger{name: 'ib-destroy', data: { ib_id: i.id }}
       Delete
-    - current_user.services.each do |service|
-      %label
-        %input{type: 'checkbox', name: 'ib-share', checked: :checked, data: { ib_id: i.id, service: service.provider }}
-        Post to
-        = service.provider.capitalize
+    %button.btn.btn-default{name: 'ib-options', data: { ib_id: i.id, state: :hidden }}
+      %i.fa.fa-cog
+      %span.sr-only Options
+  .panel-footer{id: "ib-options-#{i.id}", style: 'display: none'}
+    %h4 Sharing
+    - if current_user.services.count > 0
+      .row
+        - current_user.services.each do |service|
+          .col-md-3.col-sm-4.col-xs-6
+            %label
+              %input{type: 'checkbox', name: 'ib-share', checked: :checked, data: { ib_id: i.id, service: service.provider }}
+              Post to
+              = service.provider.capitalize
+    - else
+      %p
+        You have not connected any services yet. Visit your
+        = link_to "service settings", services_path
+        to connect one.

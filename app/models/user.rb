@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :friends,   through: :active_relationships, source: :target
   has_many :followers, through: :passive_relationships, source: :source
   has_many :smiles, dependent: :destroy
+  has_many :comment_smiles, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
   has_many :reports, dependent: :destroy
@@ -27,6 +28,8 @@ class User < ActiveRecord::Base
   has_many :moderation_votes, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :group_memberships, class_name: "GroupMember", foreign_key: 'user_id', dependent: :destroy
+
+  has_many :subscriptions, dependent: :destroy
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
@@ -57,6 +60,17 @@ class User < ActiveRecord::Base
                    end unless website.blank?
   end
 
+  # when a user deleted himself, all reports relating to the user are invalid
+  before_destroy do
+    rep = Report.where(target_id: self.id, type: 'Reports::User')
+    rep.each do |r|
+      unless r.nil?
+        r.deleted = true
+        r.save
+      end
+    end
+  end
+
   def login=(login)
     @login = login
   end
@@ -66,7 +80,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_first_by_auth_conditions(warden_conditions)
-    conditions = warden_conditions.dup.to_h
+    conditions = warden_conditions.dup
     if login = conditions.delete(:login)
       where(conditions).where(["lower(screen_name) = :value OR lower(email) = :value", { :value => login.downcase }]).first
     else
@@ -127,8 +141,24 @@ class User < ActiveRecord::Base
     Smile.find_by(user: self, answer: answer).destroy
   end
 
+  # smiles a comment
+  # @param comment [Comment] the comment to smile
+  def smile_comment(comment)
+    CommentSmile.create!(user: self, comment: comment)
+  end
+
+  # unsmile an comment
+  # @param comment [Comment] the comment to unsmile
+  def unsmile_comment(comment)
+    CommentSmile.find_by(user: self, comment: comment).destroy
+  end
+
   def smiled?(answer)
     answer.smiles.pluck(:user_id).include? self.id
+  end
+
+  def smiled_comment?(comment)
+    comment.smiles.pluck(:user_id).include? self.id
   end
 
   def display_website
@@ -147,8 +177,19 @@ class User < ActiveRecord::Base
   end
 
   # region stuff used for reporting/moderation
-  def report(object)
-    Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id)
+  def report(object, reason = nil)
+    existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id, deleted: false)
+    if existing.nil?
+      Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id, reason: reason)
+    elsif not reason.nil? and reason.length > 0
+      if existing.reason.nil?
+        existing.update(reason: reason)
+      else
+        existing.update(reason: [existing.reason || "", reason].join("\n"))
+      end
+    else
+      existing
+    end
   end
 
   # @param upvote [Boolean]
@@ -182,5 +223,22 @@ class User < ActiveRecord::Base
 
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+
+  # forwards fill
+  def banned?
+    self.permanently_banned? or ((not self.banned_until.nil?) and self.banned_until >= DateTime.current)
+  end
+
+  def unban
+    self.update(permanently_banned: false, ban_reason: nil, banned_until: nil)
+  end
+
+  def ban(buntil=nil, reason=nil)
+    if buntil == nil
+      self.update(permanently_banned: true, ban_reason: reason)
+    else
+      self.update(permanently_banned: false, banned_until: buntil, ban_reason: reason)
+    end
   end
 end

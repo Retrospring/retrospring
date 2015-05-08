@@ -4,6 +4,15 @@ class UserController < ApplicationController
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @answers = @user.answers.reverse_order.paginate(page: params[:page])
+
+    if user_signed_in?
+      notif = Notification.where(target_type: "Relationship", target_id: @user.active_relationships.where(target_id: current_user.id).pluck(:id), recipient_id: current_user.id, new: true).first
+      unless notif.nil?
+        notif.new = false
+        notif.save
+      end
+    end
+
     respond_to do |format|
       format.html
       format.js

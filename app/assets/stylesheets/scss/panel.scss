@@ -12,3 +12,21 @@
 .panel-primary .answerbox--question-text {
   color: #fff;
 }
+
+#questions .panel-body .media {
+  &, .media-body {
+    overflow: visible;
+  }
+}
+
+.panel-question {
+  position: fixed;
+  border-top: 1px solid #fff;
+  width: 100%;
+  z-index: 999;
+  border-color: #fff;
+}
+
+.answerbox--question-media, .question-media, .question-body {
+  overflow: visible !important;
+}

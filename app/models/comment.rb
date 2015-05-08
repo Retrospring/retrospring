@@ -3,18 +3,28 @@ class Comment < ActiveRecord::Base
   belongs_to :answer
   validates :user_id, presence: true
   validates :answer_id, presence: true
+  has_many :smiles, class_name: "CommentSmile", foreign_key: :comment_id, dependent: :destroy
 
   validates :content, length: { maximum: 160 }
 
   after_create do
-    Notification.notify answer.user, self unless answer.user == self.user
+    Subscription.subscribe self.user, answer, false
+    Subscription.notify self, answer
     user.increment! :commented_count
     answer.increment! :comment_count
   end
 
   before_destroy do
-    Notification.denotify answer.user, self unless answer.user == self.user
-    user.decrement! :commented_count
+    rep = Report.where(target_id: self.id, type: 'Reports::Comment')
+    rep.each do |r|
+      unless r.nil?
+        r.deleted = true
+        r.save
+      end
+    end
+
+    Subscription.denotify self, answer
+    user.decrement!  :commented_count
     answer.decrement! :comment_count
   end
 

@@ -1,26 +1,7 @@
 .container.j2-page
   .row
-    .col-md-3.col-xs-12.col-sm-3
-      .panel.panel-default.inbox--panel
-        .panel-heading
-          %h3.panel-title Out of questions?
-        .panel-body
-          %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'} Get new question
-      .panel.panel-default.inbox--panel
-        .panel-heading
-          %h3.panel-title Share
-        .panel-body
-          %a.btn.btn-block.btn-primary{target: '_blank', href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{show_user_profile_url(current_user.screen_name)}"}
-            %i.fa.fa-twitter
-            Share on Twitter
-          %a.btn.btn-block.btn-primary{target: '_blank', href: "http://www.tumblr.com/share/link?url=#{show_user_profile_url(current_user.screen_name)}&name=Ask%20me%20anything%21"}
-            %i.fa.fa-tumblr
-            Share on Tumblr
-      .panel.panel-default.warning--panel
-        .panel-heading
-          %h3.panel-title Actions
-        .panel-body
-          %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (@inbox.empty? ? 'disabled' : nil), data: { ib_count: @inbox.count }} Delete all questions
+    .col-md-3.col-xs-12.col-sm-3.hidden-xs
+      = render 'inbox/sidebar'
     .col-md-9.col-xs-12.col-sm-9
       = render 'layouts/messages'
       #entries
@@ -28,8 +9,16 @@
           = render 'inbox/entry', i: i
 
         - if @inbox.empty?
-
           Nothing to see here.
+
+      #pagination= will_paginate @inbox, renderer: BootstrapPagination::Rails, page_links: false
+
+      - if @inbox.next_page
+        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @inbox.current_page }}
+          Load more
+
+    .col-md-9.col-xs-12.col-sm-9.visible-xs
+      = render 'inbox/sidebar'
 
 = render "shared/links"
 - @inbox.update_all(new: false)

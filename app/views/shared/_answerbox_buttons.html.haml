@@ -1,8 +1,9 @@
 %span.hidden-xs.text-muted
   - unless user_signed_in?
     - if a.smile_count > 0
-      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
-      users smiled this
+      %button.btn.btn-info.btn-sm{name: 'ab-smile', disabled: true}
+        %i.fa.fa-smile-o
+        %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
 - if user_signed_in?
   - if current_user.smiled? a
     %button.btn.btn-info.btn-sm{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile }}
@@ -21,11 +22,22 @@
     %button.btn.btn-default.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
       %span.caret
     %ul.dropdown-menu.dropdown-menu-right{role: :menu}
+      - if Subscription.is_subscribed(current_user, a)
+        %li
+          -#                                            fun joke    should subscribe?
+          %a{href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: "no" }}
+            %i.fa.fa-anchor
+            Unsubscribe
+      - else
+        %li
+          %a{href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: "yes" }}
+            %i.fa.fa-anchor
+            Subscribe
       - if privileged? a.user
         %li.text-danger
           %a{href: '#', data: { a_id: a.id, action: 'ab-destroy' }}
             %i.fa.fa-trash-o
-            Delete
+            Return to Inbox
       - unless a.user == current_user
         %li
           %a{href: '#', data: { a_id: a.id, action: 'ab-report' }}

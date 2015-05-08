@@ -1,4 +1,31 @@
 class Ajax::QuestionController < ApplicationController
+  include MarkdownHelper
+
+  def destroy
+    params.require :question
+
+    question = Question.find params[:question]
+    if question.nil?
+      @status = :not_found
+      @message = "Question does not exist"
+      @success = false
+      return
+    end
+
+    if not (current_user.mod? or question.user == current_user)
+      @status = :not_authorized
+      @message = "You are not allowed to delete this question"
+      @success = false
+      return
+    end
+
+    question.destroy!
+
+    @status = :okay
+    @message = "Successfully deleted question."
+    @success = true
+  end
+
   def create
     params.require :question
     params.require :anonymousQuestion
@@ -44,6 +71,22 @@ class Ajax::QuestionController < ApplicationController
 
     @status = :okay
     @message = "Question asked successfully."
+    @success = true
+  end
+
+  def preview
+    params.require :md
+
+    @message = "Failed to render markdown."
+    begin
+      @markdown = markdown(params[:md], Time.new)
+      @message = "Successfully rendered markdown."
+    rescue
+      @status = :fail
+      @success = false
+      return
+    end
+    @status = :okay
     @success = true
   end
 end

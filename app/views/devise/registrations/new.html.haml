@@ -10,6 +10,9 @@
     = f.password_field :password, autocomplete: "off", label: "Password"
     = f.password_field :password_confirmation, autocomplete: "off", label: "Confirm password"
 
+    %p
+      With signing up you accept our
+      = link_to "Terms of Service", terms_path
     = f.submit "Sign up"
 
   = render "devise/shared/links"

@@ -1,0 +1,18 @@
+.modal.fade{"id" => "modal-view-comment#{comment.id}-smiles","aria-hidden" => "true", "aria-labelledby" => "modal-view-comment#{comment.id}-smiles-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#modal-ask-followers-label.modal-title People who smiled this comment
+      .modal-body
+        - if comment.smiles.all.count == 0
+          No one smiled this, yet.
+        - else
+          %ul.user-list.user-list-smiles
+            - comment.smiles.all.each do |smile|
+              %li.user-list-entry.user-list-entry-smiles
+                %a{href: show_user_profile_path(smile.user.screen_name)}
+                  %img.img-rounded{src: gravatar_url(smile.user), alt: user_screen_name(smile.user, false, false)}
+                  %span= user_screen_name(smile.user, false, false)

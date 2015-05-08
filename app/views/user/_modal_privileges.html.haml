@@ -1,0 +1,21 @@
+#modal-privileges.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal-privileges-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only Close
+        %h4#modal-privileges-label.modal-title
+          Check
+          = succeed "'s" do
+            = @user.screen_name
+          privileges
+      %ul.list-group.groups--list
+        = render 'user/modal_privileges_item', privilege: 'blogger', description: 'The user gets that privilege if they blogged something (nice) about Retrospring.', user: @user
+        = render 'user/modal_privileges_item', privilege: 'contributor', description: "This user has contributed to justask#{" (the software behind #{APP_CONFIG['site_name']})" unless APP_CONFIG['site_name'] == 'justask'}.", user: @user
+        - if current_user.admin?
+          = render 'user/modal_privileges_item', privilege: 'supporter', description: 'This user monetarily supports the site', user: @user
+          = render 'user/modal_privileges_item', privilege: 'moderator', description: 'Someone trustworthy enough to help managing reports',user: @user
+          = render 'user/modal_privileges_item', privilege: 'admin', description: 'This user is part of the core team', user: @user
+      .modal-footer
+        %button.btn.btn-primary{name: 'checked-privileges', type: :button, data: { dismiss: :modal }} Done

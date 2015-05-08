@@ -7,54 +7,59 @@
   .row
     .col-sm-4
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title The Team
         .panel-body
-          %h3 The Team
           The people behind
           = succeed '!' do
             = APP_CONFIG['site_name']
           %br/
-          .media
-            .pull-left
-              %a{href: show_user_profile_path('nilsding')}
-                %img.img-rounded.answerbox--img{src: User.find_by_screen_name('nilsding').profile_picture.url(:medium)}
-            .media-body
-              %h4.entry-text.entry-about nilsding
-              %h6.entry-subtext Backend, Server & Code
-          .media
-            .pull-left
-              %a{href: show_user_profile_path('pixeldesu')}
-                %img.img-rounded.answerbox--img{src: User.find_by_screen_name('pixeldesu').profile_picture.url(:medium)}
-            .media-body
-              %h4.entry-text.entry-about pixeldesu
-              %h6.entry-subtext Frontend Design & Layout
+          - APP_CONFIG['admins'].each do |adm|
+            .media
+              .pull-left
+                %a{href: show_user_profile_path(adm['screen_name'])}
+                  %img.img-rounded.answerbox--img{src: User.find_by_screen_name(adm['screen_name']).profile_picture.url(:medium)}
+              .media-body
+                %h4.entry-text.entry-about= adm['about_text']
+                %h6.entry-subtext= adm['subtext']
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Moderators
         .panel-body
-          %h3 Moderators
-          The people on
-          = APP_CONFIG['site_name']
-          that look after you!
+          %p
+            The people on
+            = APP_CONFIG['site_name']
+            that look after you!
           %ul.about--moderator
             - User.where(moderator: true).each do |mod|
-              %li
-                %a{href: show_user_profile_path(mod.screen_name)}
-                  %img.answerbox--img-small{src: User.find_by_screen_name(mod.screen_name).profile_picture.url(:medium)}
-                = mod.screen_name
+              %a{href: show_user_profile_path(mod.screen_name), title: mod.screen_name, data: { toggle: :tooltip, placement: :top }}
+                %img.img-rounded.answerbox--img-small{src: mod.profile_picture.url(:small)}
     .col-sm-4
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Unfinished Project
         .panel-body
-          %h3 Alpha version
-          %p This is an alpha version, full of bugs.  Caveat emptor.
           %p
-            Found a bug?  Have an idea for a must-have feature?  Please
-            = link_to "report them!", 'https://github.com/retrospring/bugs/issues'
+            = APP_CONFIG['site_name']
+            is running on unfinished code, full of bugs. Caveat emptor.
+          %p
+            Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help
+            = APP_CONFIG['site_name']
+            to get the features everyone wanted by forking our
+            = succeed '.' do
+              = link_to "GitHub repository", 'https://github.com/retrospring/retrospring'
+            If that's not the case, you can still report bugs and request features at our
+            = succeed '.' do
+              = link_to "bug tracker", 'https://github.com/retrospring/bugs'
 
           %p
             Still have some questions? Check our
             = link_to "FAQ!", help_faq_path
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Statistics
         .panel-body
-          There are lies, damned lies, and then there are...
-          %h3 Statistics
+          %p All-time statistics for #{APP_CONFIG['site_name']}
           .row
             .col-xs-6
               %h4.entry-text#asked-count= Question.count
@@ -67,7 +72,7 @@
               %h4.entry-text#asked-count= Comment.count
               %h6.entry-subtext Comments
             .col-md-6.col-sm-6.col-xs-6
-              %h4.entry-text#answered-count= Smile.count
+              %h4.entry-text#answered-count= Smile.count + CommentSmile.count
               %h6.entry-subtext Smiles
           .row
             .col-xs-6
@@ -75,25 +80,25 @@
               %h6.entry-subtext Users
     .col-sm-4
       .panel.panel-default
+        .panel-heading
+          %h3.panel-title Funding
         .panel-body
-          %h3 Donate
-          We are not backed by any company, but we need some money to keep
-          our server infrastructure running.
-
-          %form{:action => "https://www.paypal.com/cgi-bin/webscr", :method => "post", :target => "_top"}
-            %input{:name => "cmd", :type => "hidden", :value => "_s-xclick"}/
-            %input{:name => "hosted_button_id", :type => "hidden", :value => "6ZT5MS6UGU6HC"}/
-            %input{:alt => "PayPal - The safer, easier way to pay online!", :border => "0", :name => "submit", :src => "https://www.paypalobjects.com/en_US/AT/i/btn/btn_donateCC_LG.gif", :type => "image"}/
-            %img{:alt => "", :border => "0", :height => "1", :src => "https://www.paypalobjects.com/de_DE/i/scr/pixel.gif", :width => "1"}/
-
-          Want to support us over a longer timespan? We also have a Patreon campaign!
-          %a.btn.btn-primary.btn-block{href: "https://patreon.com/retrospring"} Patreon
-      .panel.panel-default
-        .panel-body
-          %h3 Patrons
-          People that believe in our vision, and that's why we love them <3
+          %p Currently Retrospring is running of the developers funds and will be able to sustain at the current needs of servers. Hereby we want to thank the people who previously donated to our project and helped it grow. Everyone shown at the bottom of this panel has contributed to the project with donations or great input.
           %ul.about--moderator
             - User.where(supporter: true).each do |sup|
+              %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
+                %img.img-rounded.answerbox--img-small{src: sup.profile_picture.url(:medium)}
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Contributors
+        .panel-body
+          %p These people have contributed to #{APP_CONFIG['site_name']}'s source code.
+          %p
+            Want to get listed here?
+            = link_to "Fork this repo", 'https://github.com/retrospring/retrospring'
+            and create a new pull request with your changes.
+          %ul.about--moderator
+            - User.where(contributor: true).each do |sup|
               %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
                 %img.img-rounded.answerbox--img-small{src: sup.profile_picture.url(:medium)}
 
