@@ -36,6 +36,10 @@
   background-color: darken($navbar-inverse-bg, 10%);
 }
 
+#profile--header.profile--no-header {
+  position: absolute;
+}
+
 .profile--panel .panel-heading {
   color: $brand-primary;
   border-bottom: 2px solid $brand-primary;
@@ -99,7 +103,7 @@ $colours: danger $brand-danger,
   text-decoration: line-through !important;
 }
 
-.profile--panel-push-inner {
+.profile--panel-push-inner:not(.profile--no-header) {
   display: block;
   height: 60px;
 }
@@ -111,7 +115,7 @@ $colours: danger $brand-danger,
 }
 
 @media(min-width: 767px) {
-  .container.headerable {
+  .container.headerable:not(.profile--no-header) {
     padding-top: 0;
     margin-top: -30px;
   }
