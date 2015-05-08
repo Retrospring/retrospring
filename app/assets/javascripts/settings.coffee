@@ -74,8 +74,8 @@
 
           updateVars cropper.guillotine('getData'), 'drag'
 
-          ($ '#cropper-zoom-out').click -> cropper.guillotine 'zoomOut'
-          ($ '#cropper-zoom-in').click -> cropper.guillotine 'zoomIn'
+          ($ '#cropper-header-zoom-out').click -> cropper.guillotine 'zoomOut'
+          ($ '#cropper-header-zoom-in').click -> cropper.guillotine 'zoomIn'
           ($ '#profile-header-crop-controls').slideDown()
 
         cropper.attr 'src', e.target.result

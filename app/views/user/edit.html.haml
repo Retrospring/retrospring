@@ -37,9 +37,9 @@
               %img#profile-header-cropper{src: current_user.profile_header.url(:web)}
             .col-sm-2.col-md-4
               .btn-group
-                %button#cropper-zoom-out.btn.btn-inverse{type: :button}
+                %button#cropper-header-zoom-out.btn.btn-inverse{type: :button}
                   %i.fa.fa-search-minus
-                %button#cropper-zoom-in.btn.btn-inverse{type: :button}
+                %button#cropper-header-zoom-in.btn.btn-inverse{type: :button}
                   %i.fa.fa-search-plus
 
           = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
