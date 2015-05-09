@@ -6,6 +6,36 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 namespace :justask do
+  desc "Upload to AWS"
+  task paperclaws: :environment do
+    if APP_CONFIG["fog"]["credentials"].nil? or APP_CONFIG["fog"]["credentials"]["provider"] != :AWS
+      throw "Needs fog (AWS) to be defined in justask.yml"
+
+    format = '%t (%c/%C) [%b>%i] %e'
+    root = "#{Rails.root}/public/system"
+    files = Dir["#{root}/**/*.*"]
+    progress = ProgressBar.create title: 'Processing files', format: format, starting_at: 0, total: files.length
+
+    # weird voodoo, something is causing just using "APP_CONFIG["fog"]["credentials"]" as Fog::Storage.new to cause an exception
+    # TODO: Programmatically copy?
+    credentials = {
+      provider: :AWS,
+      aws_access_key_id: APP_CONFIG["fog"]["credentials"]["aws_access_key_id"],
+      aws_secret_access_key: APP_CONFIG["fog"]["credentials"]["aws_secret_access_key"],
+      region: APP_CONFIG["fog"]["credentials"]["region"]
+    }
+
+    fog = Fog::Storage.new credentials
+    bucket = fog.directories.get APP_CONFIG["fog"]["directory"]
+
+    files.each do |file|
+      bucket.files.create key: file[root.length + 1 ... file.length], body: File.open(file), public: true
+      progress.increment
+    end
+
+    puts "hopefully uploaded #{files.length} files"
+  end
+
   desc "Recount everything!"
   task recount: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
