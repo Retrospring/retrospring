@@ -10,6 +10,7 @@ namespace :justask do
   task paperclaws: :environment do
     if APP_CONFIG["fog"]["credentials"].nil? or APP_CONFIG["fog"]["credentials"]["provider"] != :AWS
       throw "Needs fog (AWS) to be defined in justask.yml"
+    end
 
     format = '%t (%c/%C) [%b>%i] %e'
     root = "#{Rails.root}/public/system"
