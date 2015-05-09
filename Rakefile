@@ -8,7 +8,7 @@ Rails.application.load_tasks
 namespace :justask do
   desc "Upload to AWS"
   task paperclaws: :environment do
-    if APP_CONFIG["fog"]["credentials"].nil? or APP_CONFIG["fog"]["credentials"]["provider"] != :AWS
+    if APP_CONFIG["fog"]["credentials"].nil? or APP_CONFIG["fog"]["credentials"]["provider"] != "AWS"
       throw "Needs fog (AWS) to be defined in justask.yml"
     end
 
@@ -20,7 +20,7 @@ namespace :justask do
     # weird voodoo, something is causing just using "APP_CONFIG["fog"]["credentials"]" as Fog::Storage.new to cause an exception
     # TODO: Programmatically copy?
     credentials = {
-      provider: :AWS,
+      provider: "AWS",
       aws_access_key_id: APP_CONFIG["fog"]["credentials"]["aws_access_key_id"],
       aws_secret_access_key: APP_CONFIG["fog"]["credentials"]["aws_secret_access_key"],
       region: APP_CONFIG["fog"]["credentials"]["region"]
