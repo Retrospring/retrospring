@@ -1,4 +1,11 @@
 class Ajax::CommentController < ApplicationController
+  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
+    @status = :parameter_error
+    @message = "#{param_miss_ex.param.capitalize} is required"
+    @success = false
+    render partial: "ajax/shared/status"
+  end
+
   def create
     params.require :answer
     params.require :comment

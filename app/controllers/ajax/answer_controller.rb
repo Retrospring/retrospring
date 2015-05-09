@@ -1,4 +1,11 @@
 class Ajax::AnswerController < ApplicationController
+  rescue_from(ActionController::ParameterMissing) do |titanic_param|
+    @status = :parameter_error
+    @message = "#{titanic_param.param.capitalize} is required"
+    @success = false
+    render partial: "ajax/shared/status"
+  end
+
   def create
     params.require :id
     params.require :answer
@@ -25,6 +32,14 @@ class Ajax::AnswerController < ApplicationController
         @success = false
         return
       end
+    end
+
+    # this should never trigger because empty params throw ParameterMissing
+    unless params[:answer].length > 0
+      @status = :peter_dinklage
+      @message = "Answer is too short"
+      @success = false
+      return
     end
 
     answer = nil
