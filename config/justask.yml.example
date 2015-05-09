@@ -49,7 +49,8 @@ fog:
     provider: 'AWS'
     aws_access_key_id: 'ACCESS KEY'
     aws_secret_access_key: 'SECRET KEY'
-  # bucket name
-  directory: 'retrospring-user-content'
-  # URL host
-  host: "retrospring-user-content.s3.amazonaws.com"
+    region: 'space-pluto-1'
+  # bucket name, required
+  directory: 'retrospring'
+  # URL host, comment out to use default, GENERALLY you don't want to define this
+  # host: ''
