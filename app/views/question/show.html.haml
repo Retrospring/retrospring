@@ -1,3 +1,4 @@
+- provide(:title, "#{@question.user.display_name.blank? ? "@#{@question.user.screen_name}'s" : "#{@question.user.display_name}'s"} question | #{APP_CONFIG['site_name']}")
 .panel.panel-question
   .container
     .panel-body

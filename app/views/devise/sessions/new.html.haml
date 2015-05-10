@@ -1,3 +1,4 @@
+- provide(:title, "Sign in | #{APP_CONFIG['site_name']}")
 .container
   %h1 Sign in
   = render 'layouts/messages'
@@ -9,7 +10,7 @@
 
     - if devise_mapping.rememberable?
       = f.check_box :remember_me
-    
+
     = f.submit "Sign in"
 
   = render "devise/shared/links"

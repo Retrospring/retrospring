@@ -1,3 +1,4 @@
+- provide(:title, "#{@user.display_name.blank? ? "@#{@user.screen_name}" : "#{@user.display_name} (@#{@user.screen_name})"} | #{APP_CONFIG['site_name']}")
 - no_header = unless @user.profile_header.exists? then "profile--no-header" else "" end
 #profile--header.hidden-xs{class: no_header}
   %img.profile--header-img{src: @user.profile_header.url(:web)}

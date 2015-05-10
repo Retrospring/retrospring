@@ -1,3 +1,4 @@
+- provide(:title, "#{@user.display_name.blank? ? "@#{@user.screen_name}'s" : "#{@user.display_name}'s"} friends & followers | #{APP_CONFIG['site_name']}")
 .profile--header
 .container.j2-page
   .col-md-3.col-xs-12.col-sm-4.j2-col-reset

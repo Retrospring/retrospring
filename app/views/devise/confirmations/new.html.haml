@@ -1,3 +1,4 @@
+- provide(:title, "Resend confirmation instructions | #{APP_CONFIG['site_name']}")
 .container
   %h1 Resend confirmation instructions
   = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
