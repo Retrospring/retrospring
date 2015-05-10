@@ -81,4 +81,5 @@ group :development, :test do
   gem 'simplecov-json', require: false
   gem 'simplecov-rcov', require: false
   gem 'database_cleaner'
+  gem 'better_errors'
 end

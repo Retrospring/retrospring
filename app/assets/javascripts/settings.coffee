@@ -42,9 +42,45 @@
 
           updateVars cropper.guillotine('getData'), 'drag' # just because
 
-          ($ '#cropper-zoom-out').click -> cropper.guillotine 'zoomOut'
-          ($ '#cropper-zoom-in').click -> cropper.guillotine 'zoomIn'
+          unless ($ '#profile-picture-crop-controls')[0].dataset.bound?
+            ($ '#cropper-zoom-out').click -> cropper.guillotine 'zoomOut'
+            ($ '#cropper-zoom-in').click -> cropper.guillotine 'zoomIn'
+            ($ '#profile-picture-crop-controls')[0].dataset.bound = true
           ($ '#profile-picture-crop-controls').slideDown()
+
+        cropper.attr 'src', e.target.result
+
+    fr.readAsDataURL(input.files[0])
+
+($ document).on 'change', 'input#user_profile_header[type=file]', ->
+  input = ($ this)[0]
+
+  ($ '#profile-header-crop-controls').slideUp 400, ->
+    if input.files and input.files[0]
+      fr = new FileReader()
+      ($ fr).on 'load', (e) ->
+        cropper = ($ '#profile-header-cropper')
+        preview = ($ '#profile-header-preview')
+
+        updateVars = (data, action) ->
+          ($ '#crop_h_x').val Math.floor(data.x / data.scale)
+          ($ '#crop_h_y').val Math.floor(data.y / data.scale)
+          ($ '#crop_h_w').val Math.floor(data.w / data.scale)
+          ($ '#crop_h_h').val Math.floor(data.h / data.scale)
+
+        cropper.on 'load', ->
+          cropper.guillotine
+            width: 1500
+            height: 350
+            onChange: updateVars
+
+          updateVars cropper.guillotine('getData'), 'drag'
+
+          unless ($ '#profile-header-crop-controls')[0].dataset.bound?
+            ($ '#cropper-header-zoom-out').click -> cropper.guillotine 'zoomOut'
+            ($ '#cropper-header-zoom-in').click -> cropper.guillotine 'zoomIn'
+            ($ '#profile-header-crop-controls')[0].dataset.bound = true
+          ($ '#profile-header-crop-controls').slideDown()
 
         cropper.attr 'src', e.target.result
 
