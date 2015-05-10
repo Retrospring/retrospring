@@ -25,7 +25,7 @@ class UserController < ApplicationController
 
   def update
     user_attributes = params.require(:user).permit(:display_name, :profile_picture, :profile_header, :motivation_header, :website,
-                                                   :location, :bio, :crop_x, :crop_y, :crop_w, :crop_h)
+                                                   :location, :bio, :crop_x, :crop_y, :crop_w, :crop_h, :crop_h_x, :crop_h_y, :crop_h_w, :crop_h_h)
     if current_user.update_attributes(user_attributes)
       text = 'Your profile has been updated!'
       text += ' It might take a few minutes until your new profile picture is shown everywhere.' if user_attributes[:profile_picture]
