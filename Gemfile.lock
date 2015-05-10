@@ -496,6 +496,7 @@ DEPENDENCIES
   rails (= 4.2.1)
   rails-assets-growl
   rails_admin
+  rake
   redcarpet
   redis
   rspec-rails (~> 3.0.0)

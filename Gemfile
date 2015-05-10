@@ -71,6 +71,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'rake'
   gem 'thin'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails', require: false
