@@ -3,3 +3,4 @@ rvm: 2.1
 before_script:
   - psql -c  'create database justask_test;' -U postgres 
   - cp config/database.yml.postgres config/database.yml
+  - cp config/justask.yml.example config/justask.yml
