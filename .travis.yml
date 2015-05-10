@@ -1,7 +1,7 @@
 language: ruby
 rvm: 2.1
 before_script:
-  - bundle exec rake db:create
   - cp config/database.yml.postgres config/database.yml
   - cp config/justask.yml.example config/justask.yml
+  - bundle exec rake db:setup
   - bundle exec rake db:migrate
