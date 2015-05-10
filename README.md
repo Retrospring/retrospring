@@ -1,4 +1,4 @@
-# Retrospring [![Build Status](https://travis-ci.org/Retrospring/retrospring.svg)](https://travis-ci.org/Retrospring/retrospring)
+# Retrospring [![Build Status](https://travis-ci.org/Retrospring/retrospring.svg?branch=master)](https://travis-ci.org/Retrospring/retrospring)
 
 This is the source code that powers Retrospring.  Yep, all of it.  Including
 all the branches where we left off.
