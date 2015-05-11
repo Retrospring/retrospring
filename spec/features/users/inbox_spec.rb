@@ -28,13 +28,14 @@ feature "Inbox", :devise do
     page.driver.render Rails.root.join("tmp/answer_#{Time.now.to_i}_1.png"), full: true
 
     click_link "Inbox"
-    expect(page).to have_text(question.content, wait: 2)
+    expect(page).to have_text(question.content)
+    expect(page).to have_field('ib-answer', wait: 2)
     fill_in "ib-answer", with: "This is an answer. I'm number i!"
     page.driver.render Rails.root.join("tmp/answer_#{Time.now.to_i}_2.png"), full: true
 
     click_button "Answer"
     wait_for_ajax
-    expect(page).to have_text("Successfully answered question.", wait: 2)
+    expect(page).not_to have_text(question.content, wait: 2)
     page.driver.render Rails.root.join("tmp/answer_#{Time.now.to_i}_3.png"), full: true
 
     visit show_user_profile_path(me.screen_name)
