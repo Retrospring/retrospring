@@ -56,7 +56,7 @@ feature "Inbox", :devise do
 
     click_button "Get new question"
     wait_for_ajax
-    expect(page).to have_text('Answer'.upcase)
+    expect(page).to have_text('Answer')
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_2.png"), full: true
   end
 
@@ -77,7 +77,7 @@ feature "Inbox", :devise do
 
     click_button "Get new question"
     wait_for_ajax
-    expect(page).to have_text('Answer'.upcase)
+    expect(page).to have_text('Answer')
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_2.png"), full: true
   end
 

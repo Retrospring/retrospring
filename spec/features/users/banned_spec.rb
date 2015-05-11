@@ -22,22 +22,24 @@ feature "Ban users", :devise do
     login_as me, scope: :user
     visit root_path
     expect(page).to have_text("Timeline")
-    page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_1.png"), full: true
+    page.driver.render Rails.root.join("tmp/ban_#{Time.now.to_i}_1.png"), full: true
 
-    me.banned = true
+    me.permanently_banned = true
     me.save
-    click_link "Inbox"
+
+    visit "/inbox"
+
     expect(current_path).to eq(new_user_session_path)
-    page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_2.png"), full: true
+    page.driver.render Rails.root.join("tmp/ban_#{Time.now.to_i}_2.png"), full: true
   end
 
   scenario 'user visits banned user profiles', js: true do
     evil_user = FactoryGirl.create :user
-    evil_user.banned = true
+    evil_user.permanently_banned = true
     evil_user.save
 
     visit show_user_profile_path(evil_user.screen_name)
-    expect(page).to have_text('Banned'.upcase)
-    page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_3.png"), full: true
+    expect(page).to have_text('BANNED')
+    page.driver.render Rails.root.join("tmp/ban_#{Time.now.to_i}_3.png"), full: true
   end
 end
