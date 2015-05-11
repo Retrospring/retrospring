@@ -34,7 +34,7 @@ feature "Inbox", :devise do
 
     click_button "Answer"
     wait_for_ajax
-    expect(page).not_to have_text(question.content)
+    expect(page).not_to have_text(question.content, wait: 2)
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_3.png"), full: true
 
     visit show_user_profile_path(me.screen_name)
