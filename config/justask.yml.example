@@ -15,14 +15,14 @@ items_per_page: 10
 # OAuth tokens
 sharing:
   twitter:
-    enabled: false
+    enabled: true
     # Get the tokens from https://apps.twitter.com
     consumer_key: ''
     consumer_secret: ''
   facebook:
     enabled: false
   tumblr:
-    enabled: false
+    enabled: true
     # Get the tokens from https://www.tumblr.com/oauth/apps
     consumer_key: ''
     consumer_secret: ''

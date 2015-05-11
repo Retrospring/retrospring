@@ -1,5 +1,5 @@
 language: ruby
-rvm: 2.0.0
+rvm: 2.1
 before_script:
   - cp config/database.yml.postgres config/database.yml
   - cp config/justask.yml.example config/justask.yml
