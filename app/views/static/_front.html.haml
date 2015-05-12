@@ -1,14 +1,16 @@
-.jumbotron.j2-jumbo.text-center
-  .container
-    = render 'layouts/messages'
-    %h1= APP_CONFIG['site_name']
-    %p Ask questions, give answers and learn more about your friends.
-    %p
-      %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
-        Register now
-    %small
-      Already a member?
-      = link_to 'Sign in', new_user_session_path
+.jumbotron.j2-jumbo.text-center.particle-jumbotron
+  #particles
+  .particle-content
+    .container
+      = render 'layouts/messages'
+      %h1= APP_CONFIG['site_name']
+      %p Ask questions, give answers and learn more about your friends.
+      %p
+        %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
+          Register now
+      %small
+        Already a member?
+        = link_to 'Sign in', new_user_session_path
 .container-fluid
   %h2.text-center Features
   .row.text-center
