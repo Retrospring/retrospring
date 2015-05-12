@@ -1,8 +1,11 @@
 language: ruby
 rvm: 2.1
 services:
-  - redis-server
+- redis-server
 before_script:
-  - cp config/database.yml.postgres config/database.yml
-  - cp config/justask.yml.example config/justask.yml
-  - bundle exec rake db:drop db:create db:migrate db:test:prepare
+- cp config/database.yml.postgres config/database.yml
+- cp config/justask.yml.example config/justask.yml
+- bundle exec rake db:drop db:create db:migrate db:test:prepare
+notifications:
+  slack:
+    secure: aXIzsmSiwfwwIjBq759esN2+0jVXHt4XYRmhT6cpvkbtdE4LQapnco7XA3c6hD5LXvR67KZgBQjPcayhaPfbRCWbmmU5IXZyXpH1u+CcGsOZyDsStnGWF+AjYTMhWz3d0t+vbYDk3P4+hqXGvV3gi04a4nqNFI+soohBT919slJt9hqCY/fZYRkpXrn+F+OHSLRwp9R+SSznpwPAxyL0AXcqrRaThHupFtWQCCMTDGDPBfz5oJWzF7cWK+BRar2WIZ3q5lnp7CqTRbOlcpIDnGUMVTFLH7H13h/NZclaqqmgLZ0iCbs6sqN6ZLTVY6HQoUG8qJItEOomFQ6eXMgZ9ZZmINaDINojLjg1b2Y8mrwE6IXtDP9pQ/Hqth0kn1cCW1mQyjvhus+uEJ2N1y4QcZVoHFUCaOj/oEnCb+F8ZGKICtODRNWPEnX1cfLAxK9Hhc6zfkP5GAK9DNxaZNo0Zxvc2eVyS6XnnNzvLFjI7RVju+bJdQarW2nficbawiU8Z0KplKuQCA5yyC2CmKh4wWbBLcNd5y4iqcKIn0pdbc+xCPB89JgOyOfIPemtNpBhev2tffbUCH6hQ2j6C1iDCEZezLW/7oW+SAPGYSySw0uLGeqmB1oLRlDudgJGIITgP+hOhMcOKcQRM7+QwVAgxR2nMGOWAX5HD5aJeCZ+Z3Q=
