@@ -27,6 +27,13 @@
   border-color: #fff;
 }
 
+.panel-question.question-hidden {
+  visibility: hidden;
+  position: relative;
+  box-shadow: none;
+  z-index: -1;
+}
+
 .answerbox--question-media, .question-media, .question-body {
   overflow: visible !important;
 }
