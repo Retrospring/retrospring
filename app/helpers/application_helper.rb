@@ -96,7 +96,7 @@ module ApplicationHelper
 
   def generate_title(name, junction = nil, content = nil, s = false)
     if s
-      if name[-1] != "s"
+      if name[-1].downcase != "s"
         name = name + "'s"
       else
         name = name + "'"
