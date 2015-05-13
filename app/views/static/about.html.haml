@@ -1,7 +1,9 @@
 - provide(:title, "About | #{APP_CONFIG['site_name']}")
-.jumbotron.j2-jumbo.text-center
-  %h1= APP_CONFIG['site_name']
-  %p About our service, features and other information
+.jumbotron.j2-jumbo.text-center.particle-jumbotron
+  #particles
+  .particle-content
+    %h1= APP_CONFIG['site_name']
+    %p About our service, features and other information
 .container
   = render 'layouts/messages'
 
