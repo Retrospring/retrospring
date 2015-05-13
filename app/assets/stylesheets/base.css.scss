@@ -6,6 +6,7 @@ body {
   background-color: #fafafa;
 }
 
+@import "scss/variable";
 @import "scss/generic";
 @import "scss/answerbox";
 @import "scss/comments";
@@ -59,7 +60,7 @@ body {
 }
 
 .j2-lh {
-  color: #fff;
+  color: $main-color;
 }
 .about--moderator {
   padding-left: 0px;
