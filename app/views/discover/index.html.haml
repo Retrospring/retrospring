@@ -20,7 +20,7 @@
           %li{role: "presentation"}
             %a{href: "#questions", role: "tab", aria: {controls: "questions"}, data: {toggle: "tab"}}
               Questions
-        .tab-content
+        .tab-content.discover
           = render 'discover/tab_answers', answers: @popular_answers
           = render 'discover/tab_questions', questions: @popular_questions
     .col-md-4.col-sm-6
@@ -34,7 +34,7 @@
           %li{role: "presentation"}
             %a{href: "#asked", role: "tab", aria: {controls: "asked"}, data: {toggle: "tab"}}
               Most Asked Questions
-        .tab-content
+        .tab-content.discover
           = render 'discover/tab_new', new: @new_users
           = render 'discover/tab_asked', asked: @users_with_most_questions
-          .tab-content
+  = render 'shared/links'

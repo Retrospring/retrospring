@@ -2,14 +2,17 @@
   .panel-body
     .media
       .pull-left
-        %img.answerbox--img{src: u.profile_picture.url(:medium)}
+        %a{href: show_user_profile_path(u.screen_name)}
+          %img.answerbox--img{src: u.profile_picture.url(:medium)}
       .media-body
         %h6.media-heading
           - if u.display_name.blank?
-            %span= u.screen_name
+            %a{href: show_user_profile_path(u.screen_name)}
+              %span= "@#{u.screen_name}"
           - else
-            %span= u.display_name
-            %span.text-muted= u.screen_name
+            %a{href: show_user_profile_path(u.screen_name)}
+              %span= u.display_name
+            %span.text-muted= "@#{u.screen_name}"
         %p.answerbox--question-text
           - if type == "new"
             registered
