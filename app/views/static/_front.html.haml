@@ -1,31 +1,38 @@
-.jumbotron.j2-jumbo.text-center
-  .container
-    = render 'layouts/messages'
-    %h1= APP_CONFIG['site_name']
-    %p Ask questions, give answers and learn more about your friends.
-    %p
-      %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
-        Register now
-    %small
-      Already a member?
-      = link_to 'Sign in', new_user_session_path
+.jumbotron.j2-jumbo.text-center.particle-jumbotron
+  #particles
+  .particle-content
+    .container
+      = render 'layouts/messages'
+      %h1= APP_CONFIG['site_name']
+      %p Ask questions, give answers and learn more about your friends.
+      %p
+        %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
+          Register now
+      %small
+        Already a member?
+        = link_to 'Sign in', new_user_session_path
 .container-fluid
-  %h2.text-center Features
   .row.text-center
     .col-md-4.col-sm-4.col-xs-12
-      %h3
+      .icon-showcase
+        %i.fa.fa-comments
+      %h3.heading-showcase
         Ask and answer questions
       %p
         With
         = APP_CONFIG['site_name']
         you can ask people questions and answer questions from other users or unregistered people.  Want to know something more?  Keep the discussion ongoing in the comments!
     .col-md-4.col-sm-4.col-xs-12
-      %h3
+      .icon-showcase
+        %i.fa.fa-users
+      %h3.heading-showcase
         Follow users and get followed
       %p
         Following users allows you to get a personalized feed of all people you want to know more about.  You can also send a question to all your followers at once!
     .col-md-4.col-sm-4.col-xs-12
-      %h3
+      .icon-showcase
+        %i.fa.fa-share-square-o
+      %h3.heading-showcase
         Sharing to other networks
       %p
         Want to share your answer to a question so that more people read it?  With a simple click on the answer button, your answer is shared wherever you want!

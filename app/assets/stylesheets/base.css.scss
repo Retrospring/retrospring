@@ -157,3 +157,35 @@ body {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
+
+.particle-jumbotron {
+  padding: 0px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.particle-content {
+  position: relative;
+  top: 0;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.icon-showcase {
+  font-size: 78px;
+  text-align: center;
+  display: block;
+}
+
+.heading-showcase {
+  margin-top: 5px;
+}
