@@ -1,4 +1,4 @@
-- provide(:title, "Privacy Settings | #{APP_CONFIG['site_name']}")
+- provide(:title, generate_title("Privacy Settings"))
 .container.j2-page
   = render 'settings_tabs'
   .col-md-9.col-xs-12.col-sm-9

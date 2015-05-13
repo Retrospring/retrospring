@@ -1,4 +1,4 @@
-- provide(:title, "Change your password | #{APP_CONFIG['site_name']}")
+- provide(:title, generate_title("Reset Password"))
 .container
   %h1 Change your password
   = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|

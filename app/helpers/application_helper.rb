@@ -38,9 +38,9 @@ module ApplicationHelper
 
     content_tag(:a, body.html_safe, href: path, class: ("list-group-item #{'active ' if current_page? path}#{options[:class]}"))
   end
-  
+
   ##
-  # 
+  #
   def bootstrap_color c
     case c
     when "error", "alert"
@@ -92,5 +92,65 @@ module ApplicationHelper
     # webapp UA: Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B435
     return true if user_agent.match /^Mozilla\/\d+\.\d+ \(i(?:Phone|Pad|Pod); CPU(?:.*) like Mac OS X\)(?:.*) Mobile(?:\S*)$/
     false
+  end
+
+  def generate_title(name, junction = nil, content = nil, s = false)
+    if s
+      if name[-1] != "s"
+        name = name + "'s"
+      else
+        name = name + "'"
+      end
+    end
+
+    list = [name]
+
+    list.push junction unless junction.nil?
+
+    unless content.nil?
+      content = strip_markdown(content)
+      if content.length > 45
+        content = content[0..42] + "..."
+      end
+      list.push content
+    end
+    list.push "|", APP_CONFIG['site_name']
+
+    list.join " "
+  end
+
+  def question_title(question)
+    name = user_screen_name question.user, question.author_is_anonymous, false
+    generate_title name, "asked", question.content
+  end
+
+  def answer_title(answer)
+    name = user_screen_name answer.user, false, false
+    generate_title name, "answered", answer.content
+  end
+
+  def user_title(user, junction = nil)
+    name = user_screen_name user, false, false
+    generate_title name, junction, nil, !junction.nil?
+  end
+
+  def questions_title(user)
+    user_title user, "questions"
+  end
+
+  def answers_title(user)
+    user_title user, "answers"
+  end
+
+  def smiles_title(user)
+    user_title user, "smiles"
+  end
+
+  def comments_title(user)
+    user_title user, "comments"
+  end
+
+  def group_title(group)
+    generate_title group.name
   end
 end
