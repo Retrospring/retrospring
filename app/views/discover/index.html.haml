@@ -1,1 +1,11 @@
- 
+- provide(:title, "Discover | #{APP_CONFIG['site_name']}")
+.jumbotron.j2-jumbo.text-center.particle-jumbotron
+  #particles
+  .particle-content
+    %h1 Discover
+    %p
+      The perfect place to find interesting content on
+      = succeed '!' do
+        = APP_CONFIG['site_name']
+.container
+  %p TODO: Add content
