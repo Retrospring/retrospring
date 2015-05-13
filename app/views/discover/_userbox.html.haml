@@ -1,0 +1,20 @@
+.panel.panel-default.questionbox{data: { id: u.id }}
+  .panel-body
+    .media
+      .pull-left
+        %img.answerbox--img{src: u.profile_picture.url(:medium)}
+      .media-body
+        %h6.media-heading
+          - if u.display_name.blank?
+            %span= u.screen_name
+          - else
+            %span= u.display_name
+            %span.text-muted= u.screen_name
+        %p.answerbox--question-text
+          - if type == "new"
+            registered
+            = time_ago_in_words(u.created_at)
+            ago
+          - else
+            asked
+            = pluralize(q, "question")
