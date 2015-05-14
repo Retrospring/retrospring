@@ -11,7 +11,7 @@
   .row
     .col-md-8.col-sm-6
       %h2 Popular Content
-      %p Most answered questions and answers with most smiles!
+      %p Answers with most smiles and most answered questions.
       %div{role: "tabpanel"}
         %ul.nav.nav-tabs{role: "tablist"}
           %li.active{role: "presentation"}
@@ -24,8 +24,8 @@
           = render 'discover/tab_answers', answers: @popular_answers
           = render 'discover/tab_questions', questions: @popular_questions
     .col-md-4.col-sm-6
-      %h2 Users
-      %p Users that ask the most questions and new users!
+      %h2 People
+      %p Newcomers and people who asked the most questions
       %div{role: "tabpanel"}
         %ul.nav.nav-tabs{role: "tablist"}
           %li.active{role: "presentation"}
