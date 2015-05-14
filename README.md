@@ -1,4 +1,5 @@
-# Retrospring [![Build Status](https://travis-ci.org/Retrospring/retrospring.svg)](https://travis-ci.org/Retrospring/retrospring)
+# Retrospring [![Build Status](https://travis-ci.org/Retrospring/retrospring.svg)](https://travis-ci.org/Retrospring/retrospring) [![Bugs](https://badge.waffle.io/retrospring/bugs.svg?label=in+progress&title=In+Progress)](http://waffle.io/retrospring/bugs)
+
 
 This is the source code that powers Retrospring.  Yep, all of it.  Including
 all the branches where we left off.
