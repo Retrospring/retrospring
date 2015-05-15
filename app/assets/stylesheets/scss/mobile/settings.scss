@@ -1,0 +1,11 @@
+#profile-header-media {
+  clear: both;
+  display: block;
+  .pull-left {
+    float: none !important;
+    clear: both;
+    img {
+      width: 100%
+    }
+  }
+}

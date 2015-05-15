@@ -28,14 +28,15 @@
     .profile--panel-badge.panel-badge-default
       Follows you
   .panel-body
-    - if @user.display_name.blank?
-      .profile--displayname
-        = @user.screen_name
-    - else
-      .profile--displayname
-        = @user.display_name
-      .profile--username
-        = @user.screen_name
+    .profile--panel-name
+      - if @user.display_name.blank?
+        .profile--displayname
+          = @user.screen_name
+      - else
+        .profile--displayname
+          = @user.display_name
+        .profile--username
+          = @user.screen_name
     - unless @user.bio.blank?
       %p.profile--text= markdown @user.bio
     - unless @user.website.blank?
