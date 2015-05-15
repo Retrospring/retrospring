@@ -1,12 +1,12 @@
 class DiscoverController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def index
     top_x = 10  # only display the top X items
 
     @popular_answers = Answer.where("created_at > ?", Time.now.ago(1.week)).order(:smile_count).reverse_order.limit(top_x)
     @popular_questions = Question.where("created_at > ?", Time.now.ago(1.week)).order(:answer_count).reverse_order.limit(top_x)
-    @new_users = User.order(:id).reverse_order.limit(top_x)
+    @new_users = User.where("asked_count > 0").order(:id).reverse_order.limit(top_x)
 
     # .user = the user
     # .question_count = how many questions did the user ask
