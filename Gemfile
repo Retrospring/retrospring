@@ -62,6 +62,12 @@ gem 'tumblr_client'
 gem 'foreman'
 gem 'redis'
 
+# API
+gem 'doorkeeper'
+gem 'grape'
+gem 'wine_bouncer'
+gem 'grape-swagger'
+
 group :development do
   gem 'spring'
   # ten thousand raises no more!

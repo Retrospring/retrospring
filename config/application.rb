@@ -21,6 +21,9 @@ module Justask
     # config.i18n.default_locale = :de
     config.autoload_paths += %W["#{config.root}/app/validators"]
 
+    # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+    # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+
     # Use Sidekiq for background jobs
     config.active_job.queue_adapter = :sidekiq
 
