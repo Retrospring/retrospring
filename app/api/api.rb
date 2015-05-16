@@ -14,7 +14,7 @@ class API < Grape::API
           403
         when source.match('RecordNotFound'), e.message.match(/unable to find/i).present?
           404
-        when source == TeapotError
+        when source.match('TeapotError')
           418
         else
           (e.respond_to? :status) && e.status || 500
