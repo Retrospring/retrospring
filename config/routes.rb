@@ -2,7 +2,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
 
   use_doorkeeper
-  mount API::Root => '/api', as: :api_root
+  mount API => "/"
 
   # Admin panel
   mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'

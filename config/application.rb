@@ -19,10 +19,9 @@ module Justask
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.autoload_paths += %W["#{config.root}/app/validators"]
+    config.autoload_paths += %W["#{config.root}/app/validators" "#{config.root}/app/api/*"]
+    config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
 
-    # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
-    # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     # Use Sidekiq for background jobs
     config.active_job.queue_adapter = :sidekiq

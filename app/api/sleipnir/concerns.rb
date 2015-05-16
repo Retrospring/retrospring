@@ -1,4 +1,4 @@
-module API::Sleipnir::Concern
+module Sleipnir::Concerns
   extend ActiveSupport::Concern
   included do
     formatter :json, Grape::Formatter::ActiveModelSerializers
@@ -21,5 +21,6 @@ module API::Sleipnir::Concern
         current_token.scopes
       end
     end
+
   end
 end

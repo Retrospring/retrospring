@@ -37,6 +37,13 @@ namespace :justask do
     puts "hopefully uploaded #{files.length} files"
   end
 
+  desc "API Routes"
+  task eihenjahr: :environment do
+    API.routes.each do |route|
+      puts route
+    end
+  end
+
   desc "Recount everything!"
   task recount: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
