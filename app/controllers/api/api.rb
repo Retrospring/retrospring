@@ -15,8 +15,10 @@ module API
         401
       when eclass.match('OAuthForbiddenError')
         403
-      when eclass.match('RecordNotFound'), e.message.match(/unable to find/i).present?
+      when eclass.match('RecordNotFound')
         404
+      when eclass.match('Teapot')
+        418
       else
         (e.respond_to? :status) && e.status || 500
       end
