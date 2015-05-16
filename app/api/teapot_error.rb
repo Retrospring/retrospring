@@ -5,6 +5,6 @@ class TeapotError < NotImplementedError
     super
     # QUALITY COMEDY
     @message = "I'm a teapot, please implement me."
-    @stauts  = 418
+    @status  = 418
   end
 end
