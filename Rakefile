@@ -52,7 +52,7 @@ namespace :justask do
       "Path"
     ]]
 
-    max = [6, 7, 4, 4]
+    max = [6, 7, 4]
     API.routes.each do |route|
       info = route.instance_variable_get :@options
       result = [
@@ -65,12 +65,11 @@ namespace :justask do
       max[0] = [[15, result[0].length].min, max[0]].max
       max[1] = [[10, result[1].length].min, max[1]].max
       max[2] = [[ 7, result[2].length].min, max[2]].max
-      max[3] = [[50, result[3].length].min, max[3]].max
 
       out.push result
     end
 
-    format = "%#{max[0]}s %#{max[1]}s %-#{max[2]}s %-#{max[3]}s"
+    format = "%#{max[0]}s %#{max[1]}s %-#{max[2]}s %s"
     out.each do |route|
       puts format % route
     end
