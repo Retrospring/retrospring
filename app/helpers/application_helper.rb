@@ -126,7 +126,7 @@ module ApplicationHelper
 
   def answer_title(answer)
     name = user_screen_name answer.user, false, false
-    generate_title name, "answered", answer.content
+    generate_title name, "answered", answer.question.content
   end
 
   def user_title(user, junction = nil)
