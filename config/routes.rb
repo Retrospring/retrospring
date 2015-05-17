@@ -1,7 +1,18 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  
+  use_doorkeeper do
+    skip_controllers :applications, :authorized_applications
+    controllers :authorizations => 'oauth/authorizations'
+  end
 
-  use_doorkeeper
+  scope :settings do
+    use_doorkeeper do
+      skip_controllers :authorizations, :tokens, :token_info
+      controllers :applications => 'oauth/applications', :authorized_applications => 'oauth/authorized_applications'
+    end
+  end
+
   mount API => "/"
 
   # Admin panel
