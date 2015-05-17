@@ -37,10 +37,11 @@ class API < Grape::API
 
 
   format :json
+  content_type :json, 'application/json'
 
   use APIErrorHandler
 
-  get '/api.json' do
+  get '/api' do
     status 200
     result = {
       notes: "This page is a list of API entry points, true means they are active, false means they are depricated. You can find their swagger documentation at /api/:entry/swagger_doc.json",
@@ -56,6 +57,6 @@ class API < Grape::API
 
   route :any, '*path' do
     status 404
-    {error: {message: "Not found", status: 404}}
+    {message: "Not found", status: 404}
   end
 end
