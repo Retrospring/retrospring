@@ -18,6 +18,9 @@
             registered
             = time_ago_in_words(u.created_at)
             ago
+          - elsif type == "most"
+            answered
+            = pluralize(a, "question")
           - else
             asked
             = pluralize(q, "question")

@@ -9,7 +9,7 @@
         = APP_CONFIG['site_name']
 .container
   .row
-    .col-md-8.col-sm-6
+    .col-md-7.col-sm-6
       %h2 Popular Content
       %p Answers with most smiles and most answered questions
       %div{role: "tabpanel"}
@@ -20,10 +20,14 @@
           %li{role: "presentation"}
             %a{href: "#questions", role: "tab", aria: {controls: "questions"}, data: {toggle: "tab"}}
               Questions
+          %li{role: "presentation"}
+            %a{href: "#comments", role: "tab", aria: {controls: "comments"}, data: {toggle: "tab"}}
+              Most Comments
         .tab-content.discover
           = render 'discover/tab_answers', answers: @popular_answers
           = render 'discover/tab_questions', questions: @popular_questions
-    .col-md-4.col-sm-6
+          = render 'discover/tab_discussed', comments: @most_discussed
+    .col-md-5.col-sm-6
       %h2 People
       %p Newcomers and people who asked the most questions
       %div{role: "tabpanel"}
@@ -34,7 +38,11 @@
           %li{role: "presentation"}
             %a{href: "#asked", role: "tab", aria: {controls: "asked"}, data: {toggle: "tab"}}
               Most Asked Questions
+          %li{role: "presentation"}
+            %a{href: "#answered", role: "tab", aria: {controls: "answered"}, data: {toggle: "tab"}}
+              Most Answers
         .tab-content.discover
           = render 'discover/tab_new', new: @new_users
           = render 'discover/tab_asked', asked: @users_with_most_questions
+          = render 'discover/tab_most', answered: @users_with_most_answers
   = render 'shared/links'
