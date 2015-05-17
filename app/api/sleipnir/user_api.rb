@@ -4,7 +4,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
   resource :user, desc: "Operations about the current user" do
     desc "Current user's profile"
     oauth2 'public'
-    get do
+    get as: "user_api" do
       raise TeapotError.new
     end
   end

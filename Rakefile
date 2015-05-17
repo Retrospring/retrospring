@@ -5,6 +5,11 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
+task :routes do
+  puts "\n"
+  Rake::Task['justask:einherjar'].invoke
+end
+
 namespace :justask do
   desc "Upload to AWS"
   task paperclaws: :environment do
@@ -38,9 +43,36 @@ namespace :justask do
   end
 
   desc "API Routes"
-  task eihenjahr: :environment do
+  task einherjar: :environment do
+    puts "Routes for API:"
+    out = [[
+      "Prefix",
+      "Version",
+      "Verb",
+      "Path"
+    ]]
+
+    max = [6, 7, 4, 4]
     API.routes.each do |route|
-      puts route
+      info = route.instance_variable_get :@options
+      result = [
+        info[:as] ? info[:as] : '',
+        info[:version] ? info[:version] : '',
+        info[:method] ? info[:method] : 'ALL',
+        info[:path]
+      ]
+
+      max[0] = [[15, result[0].length].min, max[0]].max
+      max[1] = [[10, result[1].length].min, max[1]].max
+      max[2] = [[ 7, result[2].length].min, max[2]].max
+      max[3] = [[50, result[3].length].min, max[3]].max
+
+      out.push result
+    end
+
+    format = "%#{max[0]}s %#{max[1]}s %-#{max[2]}s %-#{max[3]}s"
+    out.each do |route|
+      puts format % route
     end
   end
 
