@@ -1,6 +1,6 @@
 class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
   before_filter :authenticate_user!
-  before_filter :app_owner!, only: %i(show update)
+  before_filter :app_owner!, only: %i(show update edit destroy)
 
   layout "oauth"
 
@@ -17,19 +17,6 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
     else
       redirect_to new_oauth_application_path
     end
-  end
-
-  def update
-    if @application.update_attributes(application_params)
-      flash[:notice] = I18n.t(:notice, scope: [:doorkeeper, :flash, :applications, :update])
-      redirect_to oauth_application_url(@application)
-    else
-      render :edit
-    end
-  end
-
-  def new
-    super
   end
 
   protected
