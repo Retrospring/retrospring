@@ -2,11 +2,10 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
   before_filter :authenticate_user!
   before_filter :app_owner!, only: %i(show update)
 
-  layout "application"
+  layout "oauth"
 
   def index
     @applications = current_user.oauth_applications
-    render "settings/oauth_proxy", locals: { title: "Applications", template: "doorkeeper/applications/index" }
   end
 
   def create
@@ -25,21 +24,12 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
       flash[:notice] = I18n.t(:notice, scope: [:doorkeeper, :flash, :applications, :update])
       redirect_to oauth_application_url(@application)
     else
-      render "settings/oauth_proxy", locals: { title: "Edit #{@application.name}", template: "doorkeeper/applications/edit" }
+      render :edit
     end
-  end
-
-  def edit
-    render "settings/oauth_proxy", locals: { title: "Edit #{@application.name}", template: "doorkeeper/applications/edit" }
-  end
-
-  def show
-    render "settings/oauth_proxy", locals: { title: @application.name, template: "doorkeeper/applications/show" }
   end
 
   def new
     super
-    render "settings/oauth_proxy", locals: { title: @application.name, template: "doorkeeper/applications/new" }
   end
 
   protected
