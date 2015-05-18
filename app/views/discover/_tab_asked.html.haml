@@ -1,0 +1,3 @@
+.tab-pane.fade{role: "tabpanel", id: "asked"}
+  - asked.each do |user|
+    = render 'discover/userbox', u: user.user, type: "asked", q: user.question_count

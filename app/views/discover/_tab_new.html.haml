@@ -1,0 +1,3 @@
+.tab-pane.active.fade.in{role: "tabpanel", id: "new"}
+  - new.each do |user|
+    = render 'discover/userbox', u: user, type: "new"

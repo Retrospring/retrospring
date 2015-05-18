@@ -8,6 +8,7 @@
 #= require growl
 #= require cheet
 #= require jquery.guillotine
+#= require jquery.particleground
 #= require sweet-alert
 # local requires to be seen by everyone:
 #= require_tree ./answerbox
@@ -43,6 +44,10 @@ $(document).on "click", "button#create-account", ->
 _ready = ->
   if typeof sweetAlertInitialize != "undefined"
     sweetAlertInitialize()
+
+  particleground document.getElementById('particles'),
+    dotColor: '#5e35b1'
+    lineColor: '#5e35b1'
 
 $(document).ready _ready
 $(document).on 'page:load', _ready

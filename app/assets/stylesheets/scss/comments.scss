@@ -6,6 +6,10 @@
   list-style-type: none;
 }
 
+.comments .pull-right {
+  margin-top: -13px;
+}
+
 .comments--box {
   z-index: 99;
 }
@@ -22,6 +26,10 @@
 .comments--content {
   overflow: hidden;
   word-break: normal;
+}
+
+.comments--content p {
+  margin-bottom: 0px;
 }
 
 .comments--media {

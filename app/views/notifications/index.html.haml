@@ -1,4 +1,4 @@
-- provide(:title, "Notifications | #{APP_CONFIG['site_name']}")
+- provide(:title, generate_title("Notifications"))
 = render 'notifications/notification_nav'
 .container.j2-page
   = render 'notification_tabs'

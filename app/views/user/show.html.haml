@@ -1,9 +1,9 @@
-- provide(:title, "#{@user.display_name.blank? ? "@#{@user.screen_name}" : "#{@user.display_name} (@#{@user.screen_name})"} | #{APP_CONFIG['site_name']}")
+- provide(:title, user_title(@user))
 - no_header = unless @user.profile_header.exists? then "profile--no-header" else "" end
-#profile--header.hidden-xs{class: no_header}
+#profile--header{class: no_header}
   %img.profile--header-img{src: @user.profile_header.url(:web)}
 .container.j2-page.headerable{class: no_header}
-  .col-md-3.col-xs-12.col-sm-4.j2-col-reset
+  #profile-info.col-md-3.col-xs-12.col-sm-4.j2-col-reset
     = render 'user/profile_info'
     .hidden-xs= render 'shared/links'
   .col-md-9.col-xs-12.col-sm-8.j2-col-reset

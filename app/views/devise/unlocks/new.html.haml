@@ -1,4 +1,4 @@
-- provide(:title, "Unlock | #{APP_CONFIG['site_name']}")
+- provide(:title, generate_title("Unlock"))
 .container
   %h1 Resend unlock instructions
   = render 'layouts/messages'

@@ -64,6 +64,9 @@ gem 'redis'
 
 group :development do
   gem 'spring'
+  # ten thousand raises no more!
+  gem 'byebug'
+  gem 'web-console'
 end
 
 group :production do

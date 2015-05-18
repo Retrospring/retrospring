@@ -8,7 +8,10 @@
           .pull-left
             %img.img-rounded.answerbox--img{src: gravatar_url(comment.user)}
           .media-body.comments--body
-            %h6.media-heading.answerbox--question-user= user_screen_name comment.user
+            %h6.media-heading.answerbox--question-user
+              = user_screen_name comment.user
+              %span.text-muted{title: comment.created_at, data: { toggle: :tooltip, placement: :right }}
+                = "#{time_ago_in_words(comment.created_at)} ago"
             - if comment.user == current_user
               .pull-right
                 .btn-group

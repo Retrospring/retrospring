@@ -1,0 +1,3 @@
+.tab-pane.active.fade.in{role: "tabpanel", id: "answers"}
+  - answers.each do |a|
+    = render 'shared/answerbox', a: a

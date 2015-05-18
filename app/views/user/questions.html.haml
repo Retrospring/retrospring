@@ -1,4 +1,4 @@
-- provide(:title, "#{@user.display_name.blank? ? "@#{@user.screen_name}'s" : "#{@user.display_name}'s"} questions | #{APP_CONFIG['site_name']}")
+- provide(:title, questions_title(@user))
 .profile--header
 .container.j2-page
   .col-md-3.col-xs-12.col-sm-4.j2-col-reset
@@ -9,7 +9,7 @@
     %h1.visible-xs= @title
     #questions
       - @questions.each do |q|
-        = render 'shared/question', q: q
+        = render 'shared/question', q: q, type: nil
 
     #pagination= will_paginate @questions, renderer: BootstrapPagination::Rails, page_links: false
 

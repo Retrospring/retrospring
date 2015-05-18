@@ -22,6 +22,7 @@
         %ul.nav.navbar-nav
           = nav_entry "Timeline", root_path
           = nav_entry "Inbox", "/inbox", badge: inbox_count
+          = nav_entry "Discover", discover_path
         %ul.nav.navbar-nav.navbar-right
           = render "layouts/notifications"
           %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Ask a question"}

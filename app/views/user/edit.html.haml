@@ -1,4 +1,4 @@
-- provide(:title, "Profile Settings | #{APP_CONFIG['site_name']}")
+- provide(:title, generate_title("Profile Settings"))
 .container.j2-page
   = render 'settings_tabs'
   .col-md-9.col-xs-12.col-sm-9
@@ -9,7 +9,7 @@
 
           = f.text_field :display_name, label: "Your name"
 
-          .media
+          .media#profile-picture-media
             .pull-left
               %img.img-rounded.profile--img{src: current_user.profile_picture.url(:medium)}
             .media-body
@@ -26,7 +26,7 @@
                 %button#cropper-zoom-in.btn.btn-inverse{type: :button}
                   %i.fa.fa-search-plus
 
-          .media
+          .media#profile-header-media
             .pull-left
               %img.img-rounded.header--img{src: current_user.profile_header.url(:mobile)}
             .media-body

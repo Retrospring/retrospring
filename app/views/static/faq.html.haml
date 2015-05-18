@@ -1,7 +1,13 @@
-- provide(:title, "Frequently Asked Questions | #{APP_CONFIG['site_name']}")
+- provide(:title, generate_title("Frequently Asked Questions"))
+.jumbotron.j2-jumbo.text-center.particle-jumbotron
+  #particles
+  .particle-content
+    %h1 Frequently Asked Questions
+    %p
+      Everything you want to know about
+      = succeed '!' do
+        = APP_CONFIG['site_name']
 .container
-  %h1.text-center Frequently Asked Questions
-
   .panel-group{id: "accordion", role: "tablist", aria: {multiselectable: :true}}
     .panel.panel-default
       .panel-heading{id: "faqOne", role: "tab"}

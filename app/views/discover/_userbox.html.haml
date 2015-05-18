@@ -1,0 +1,26 @@
+.panel.panel-default.questionbox{data: { id: u.id }}
+  .panel-body
+    .media
+      .pull-left
+        %a{href: show_user_profile_path(u.screen_name)}
+          %img.answerbox--img{src: u.profile_picture.url(:medium)}
+      .media-body
+        %h6.media-heading
+          - if u.display_name.blank?
+            %a{href: show_user_profile_path(u.screen_name)}
+              %span= "@#{u.screen_name}"
+          - else
+            %a{href: show_user_profile_path(u.screen_name)}
+              %span= u.display_name
+            %span.text-muted= "@#{u.screen_name}"
+        %p.answerbox--question-text
+          - if type == "new"
+            registered
+            = time_ago_in_words(u.created_at)
+            ago
+          - elsif type == "most"
+            answered
+            = pluralize(a, "question")
+          - else
+            asked
+            = pluralize(q, "question")

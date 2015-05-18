@@ -6,6 +6,7 @@ body {
   background-color: #fafafa;
 }
 
+@import "scss/variable";
 @import "scss/generic";
 @import "scss/answerbox";
 @import "scss/comments";
@@ -15,19 +16,10 @@ body {
 @import "scss/user";
 @import "scss/notifications";
 @import "scss/groups";
+@import "scss/mobile";
 
 .j2-page {
   padding-top: 30px;
-}
-
-.question-page {
-  padding-top: 100px;
-}
-
-@media(max-width: $screen-xs-max) {
-  .question-page {
-    padding-top: 130px;
-  }
 }
 
 .centre {
@@ -69,7 +61,7 @@ body {
 }
 
 .j2-lh {
-  color: #fff;
+  color: $main-color;
 }
 .about--moderator {
   padding-left: 0px;
@@ -166,4 +158,40 @@ body {
 .panel > .panel-footer {
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
+}
+
+.particle-jumbotron {
+  padding: 0px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.particle-content {
+  position: relative;
+  top: 0;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.icon-showcase {
+  font-size: 78px;
+  text-align: center;
+  display: block;
+}
+
+.heading-showcase {
+  margin-top: 5px;
+}
+
+.discover {
+  padding-top: 20px;
 }
