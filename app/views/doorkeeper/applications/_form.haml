@@ -1,0 +1,53 @@
+= bootstrap_form_for application, url: doorkeeper_submit_path(application), :html => { :multipart => true }, method: :patch do |f|
+  - if application.errors.any?
+    .alert.alert-danger{data: { alert: true }}
+      %p= t('doorkeeper.applications.form.error')
+  = f.text_field :name
+  = doorkeeper_errors_for application, :name
+  = f.text_field :description
+  = doorkeeper_errors_for application, :description
+  = f.text_area :redirect_uri
+  = doorkeeper_errors_for application, :redirect_uri
+  .form-group
+    = f.label :scopes
+    = f.hidden_field :scopes
+    .checkbox
+      %label.doorkeeper_application_scopes
+        = check_box_tag 'scopes', :public, !application.scopes.all.index("public").nil?
+        Public
+    .checkbox
+      %label.doorkeeper_application_scopes
+        = check_box_tag 'scopes', :write, !application.scopes.all.index("write").nil?
+        Write
+    .checkbox
+      %label.doorkeeper_application_scopes
+        = check_box_tag 'scopes', :rewrite, !application.scopes.all.index("rewrite").nil?
+        Rewrite
+    .checkbox
+      %label.doorkeeper_application_scopes
+        = check_box_tag 'scopes', :moderation, !application.scopes.all.index("moderation").nil?
+        Moderation
+    = doorkeeper_errors_for application, :scopes
+  .form-group
+    .media#app-icon-media
+      .pull-left
+        %img.img-rounded.app--icon{src: application.icon.url(:normal)}
+      .media-body
+        = f.file_field :icon
+  #app-icon-crop-controls{style: 'display: none;'}
+    .row
+      .col-12
+        %strong Adjust your app's icon
+        %img#app-icon-cropper{src: application.icon.url(:normal)}
+    .row
+      .col-12
+        .btn-group
+          %button#cropper-app-icon-zoom-out.btn.btn-inverse{type: :button}
+            %i.fa.fa-search-minus
+          %button#cropper-app-icon-zoom-in.btn.btn-inverse{type: :button}
+            %i.fa.fa-search-plus
+  - for attrib in %i(crop_x crop_y crop_w crop_h)
+    = f.hidden_field attrib, id: attrib
+  .form-group
+    = f.primary t('doorkeeper.applications.buttons.submit')
+    = f.button t('doorkeeper.applications.buttons.cancel'), html: { data: { url: oauth_applications_path } }, :class => "btn btn-danger"

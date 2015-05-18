@@ -25,7 +25,9 @@
       = render 'user/settings_tabs'
       .col-md-9.col-xs-12.col-sm-9
         = render 'layouts/messages'
-        = yield
+        .panel.panel-default
+          .panel-body
+            = yield
     .visible-xs= render "shared/links"
     - if Rails.env.development?
       %hr

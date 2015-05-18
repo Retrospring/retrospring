@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518044043) do
+ActiveRecord::Schema.define(version: 20150518100409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20150518044043) do
     t.integer  "crop_y"
     t.integer  "crop_w"
     t.integer  "crop_h"
+    t.boolean  "icon_processing"
   end
 
   add_index "oauth_applications", ["name"], name: "index_oauth_applications_on_name", unique: true, using: :btree

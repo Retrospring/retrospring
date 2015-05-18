@@ -23,6 +23,7 @@
 #= require settings
 #= require user
 #= require report
+#= require oauth
 # not required:
 # _tree ./moderation
 
