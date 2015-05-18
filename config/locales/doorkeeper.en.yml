@@ -45,6 +45,12 @@ en:
               secured_uri: 'must be an HTTPS/SSL URI.'
 
   doorkeeper:
+    scopes:
+      public: "read your inbox and notifications"
+      write: "post questions, answers and comments on your behalf"
+      rewrite: "edit your settings"
+      moderation: "manage moderation"
+
     applications:
       confirmations:
         destroy: 'Are you sure?'

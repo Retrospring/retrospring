@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517151930) do
+ActiveRecord::Schema.define(version: 20150518044043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,16 +142,24 @@ ActiveRecord::Schema.define(version: 20150517151930) do
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
   create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.string   "uid",                       null: false
-    t.string   "secret",                    null: false
-    t.text     "redirect_uri",              null: false
-    t.string   "scopes",       default: "", null: false
+    t.string   "name",                           null: false
+    t.string   "uid",                            null: false
+    t.string   "secret",                         null: false
+    t.text     "redirect_uri",                   null: false
+    t.string   "scopes",            default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.string   "description"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.integer  "crop_x"
+    t.integer  "crop_y"
+    t.integer  "crop_w"
+    t.integer  "crop_h"
   end
 
   add_index "oauth_applications", ["name"], name: "index_oauth_applications_on_name", unique: true, using: :btree
@@ -223,12 +231,12 @@ ActiveRecord::Schema.define(version: 20150517151930) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                             default: "",    null: false
-    t.string   "encrypted_password",                default: "",    null: false
+    t.string   "email",                             default: "",                    null: false
+    t.string   "encrypted_password",                default: "",                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,     null: false
+    t.integer  "sign_in_count",                     default: 0,                     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -236,19 +244,19 @@ ActiveRecord::Schema.define(version: 20150517151930) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "screen_name"
-    t.integer  "friend_count",                      default: 0,     null: false
-    t.integer  "follower_count",                    default: 0,     null: false
-    t.integer  "asked_count",                       default: 0,     null: false
-    t.integer  "answered_count",                    default: 0,     null: false
-    t.integer  "commented_count",                   default: 0,     null: false
+    t.integer  "friend_count",                      default: 0,                     null: false
+    t.integer  "follower_count",                    default: 0,                     null: false
+    t.integer  "asked_count",                       default: 0,                     null: false
+    t.integer  "answered_count",                    default: 0,                     null: false
+    t.integer  "commented_count",                   default: 0,                     null: false
     t.string   "display_name"
-    t.integer  "smiled_count",                      default: 0,     null: false
-    t.boolean  "admin",                             default: false, null: false
-    t.string   "motivation_header",                 default: "",    null: false
-    t.string   "website",                           default: "",    null: false
-    t.string   "location",                          default: "",    null: false
-    t.text     "bio",                               default: "",    null: false
-    t.boolean  "moderator",                         default: false, null: false
+    t.integer  "smiled_count",                      default: 0,                     null: false
+    t.boolean  "admin",                             default: false,                 null: false
+    t.string   "motivation_header",                 default: "",                    null: false
+    t.string   "website",                           default: "",                    null: false
+    t.string   "location",                          default: "",                    null: false
+    t.text     "bio",                               default: "",                    null: false
+    t.boolean  "moderator",                         default: false,                 null: false
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
@@ -268,7 +276,7 @@ ActiveRecord::Schema.define(version: 20150517151930) do
     t.boolean  "contributor",                       default: false
     t.string   "ban_reason"
     t.datetime "banned_until"
-    t.integer  "comment_smiled_count",              default: 0,     null: false
+    t.integer  "comment_smiled_count",              default: 0,                     null: false
     t.string   "profile_header_file_name"
     t.string   "profile_header_content_type"
     t.integer  "profile_header_file_size"
@@ -278,6 +286,8 @@ ActiveRecord::Schema.define(version: 20150517151930) do
     t.integer  "crop_h_y"
     t.integer  "crop_h_w"
     t.integer  "crop_h_h"
+    t.string   "socket_key",                        default: ""
+    t.datetime "socket_key_expiry",                 default: '0001-01-01 00:00:00'
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

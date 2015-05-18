@@ -32,5 +32,9 @@ module Justask
     # Instead, the errors will propagate normally just like in other Active Record callbacks.
     # fix for this warning:
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.after_initialize do
+      Doorkeeper::Application.send :include, Concerns::ApplicationExtension
+    end
   end
 end

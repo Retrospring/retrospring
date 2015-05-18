@@ -15,7 +15,7 @@ module Paperclip
       target = @attachment.instance
       if target.cropping?
         case @attachment.name
-        when :profile_picture
+        when :profile_picture or :icon
           ['-crop', "'#{target.crop_w.to_i}x#{target.crop_h.to_i}+#{target.crop_x.to_i}+#{target.crop_y.to_i}'"]
         when :profile_header
           ['-crop', "'#{target.crop_h_w.to_i}x#{target.crop_h_h.to_i}+#{target.crop_h_x.to_i}+#{target.crop_h_y.to_i}'"]
@@ -24,4 +24,3 @@ module Paperclip
     end
   end
 end
-
