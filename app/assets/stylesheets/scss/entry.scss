@@ -13,3 +13,33 @@
 .entry-about {
   margin-top: 0px;
 }
+
+.statistics {
+  .entry-text {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+  }
+
+  .entry-subtext {
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+.users {
+  .entry-text {
+    display: block;
+    text-align: center;
+    margin-top: 7px;
+    font-size: 78px;
+    line-height: 1;
+  }
+
+  .entry-subtext {
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
