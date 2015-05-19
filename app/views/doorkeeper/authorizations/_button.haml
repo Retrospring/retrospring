@@ -1,0 +1,8 @@
+.col-md-6
+  = bootstrap_form_tag url: oauth_authorization_path, html: { method: method } do |f|
+    = f.hidden_field :client_id, value: pre_auth.client.uid
+    = f.hidden_field :redirect_uri, value: pre_auth.redirect_uri
+    = f.hidden_field :state, value: pre_auth.state
+    = f.hidden_field :response_type, value: pre_auth.response_type
+    = f.hidden_field :scope, value: pre_auth.scope
+    = f.button text, class: classname

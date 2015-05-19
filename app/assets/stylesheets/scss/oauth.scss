@@ -1,0 +1,42 @@
+.app--clear {
+  clear: both;
+}
+
+.app--profile {
+  h1 {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    small {
+      clear: both;
+      display: block;
+    }
+  }
+
+  img {
+    height: 90px;
+    vertical-align: middle;
+  }
+}
+
+#app--secret-details {
+  td {
+    vertical-align: middle;
+  }
+}
+
+#oautherize {
+  .col-md-6:last-child {
+    padding-left: 0
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .app--profile {
+    margin-bottom: 15px;
+    clear: both;
+  }
+}

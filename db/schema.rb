@@ -277,6 +277,8 @@ ActiveRecord::Schema.define(version: 20150518100409) do
     t.boolean  "contributor",                       default: false
     t.string   "ban_reason"
     t.datetime "banned_until"
+    t.string   "socket_key",                        default: ""
+    t.datetime "socket_key_expiry",                 default: '0001-01-01 00:00:00'
     t.integer  "comment_smiled_count",              default: 0,                     null: false
     t.string   "profile_header_file_name"
     t.string   "profile_header_content_type"
@@ -287,8 +289,6 @@ ActiveRecord::Schema.define(version: 20150518100409) do
     t.integer  "crop_h_y"
     t.integer  "crop_h_w"
     t.integer  "crop_h_h"
-    t.string   "socket_key",                        default: ""
-    t.datetime "socket_key_expiry",                 default: '0001-01-01 00:00:00'
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

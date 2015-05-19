@@ -1,0 +1,38 @@
+.row.app--secret-details
+  .col-md-8.app--details
+    .pull-left.app--profile
+      %img{src: @application.icon.url(:normal), alt: @application.name}
+      %h1
+        = @application.name
+        %small= @application.description
+    .app--clear
+      %h4= t('.application_id')
+      %p
+        %code.app--id= @application.uid
+      %h4= t('.secret')
+      %p
+        %code.app--secret= @application.secret
+      %h4= t('.scopes')
+      %p
+        %code.app--scopes= @application.scopes.all.join(", ")
+      %h4= t('.callback_urls')
+      %table.table.table-hover
+        %thead
+          %tr
+            %td
+              URI
+            %td
+              Actions
+        %tbody
+          - @application.redirect_uri.split.each do |uri|
+            %tr
+              %td
+                %code= uri
+              %td
+                %a.btn.btn-warning.btn-expand{href: oauth_authorization_path(client_id: @application.uid, redirect_uri: uri, response_type: 'code', scopes: @application.scopes)}= t('doorkeeper.applications.buttons.authorize')
+  .col-md-4.app--actions
+    %h1= t('.actions')
+    %p
+      %a.btn.btn-primary.btn-expand{href: edit_oauth_application_path(@application)}= t('doorkeeper.applications.buttons.edit')
+    %p
+      =render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger btn-expand'

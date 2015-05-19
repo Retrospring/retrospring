@@ -1,11 +1,21 @@
-($ document).on 'submit', 'form.edit_doorkeeper_application', (ev) ->
+($ document).on 'submit', 'form.mogrify_doorkeeper_application', (ev) ->
   # ev.preventDefault()
-  scopes = []
+  scopes = ["public"]
   ($ this).find("[name=\"scopes\"]").each ->
     if this.checked
       scopes.push this.value
   ($ "[name=\"doorkeeper_application[scopes]\"]").val(scopes.join " ")
 
+
+($ document).on 'click', '#delete_oauth_app_btn', (ev) ->
+  return swal
+    title: "Really delete your app?"
+    text: "It will be really gone!"
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Delete"
+    closeOnConfirm: true
 
 readImage = (file, callback) ->
   fr = new FileReader()

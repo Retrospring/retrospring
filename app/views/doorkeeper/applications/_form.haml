@@ -1,4 +1,4 @@
-= bootstrap_form_for application, url: doorkeeper_submit_path(application), :html => { :multipart => true }, method: :patch do |f|
+= bootstrap_form_for application, url: doorkeeper_submit_path(application), :html => { :multipart => true, class: :mogrify_doorkeeper_application }, method: :post do |f|
   - if application.errors.any?
     .alert.alert-danger{data: { alert: true }}
       %p= t('doorkeeper.applications.form.error')
@@ -8,13 +8,12 @@
   = doorkeeper_errors_for application, :description
   = f.text_area :redirect_uri
   = doorkeeper_errors_for application, :redirect_uri
+  %span.help-block= t('doorkeeper.applications.help.redirect_uri')
+  - if Doorkeeper.configuration.native_redirect_uri
+    %span.help-block= raw t('doorkeeper.applications.help.native_redirect_uri', native_redirect_uri: "<code>#{ Doorkeeper.configuration.native_redirect_uri }</code>")
   .form-group
-    = f.label :scopes
+    = f.label "Optional Scopes"
     = f.hidden_field :scopes
-    .checkbox
-      %label.doorkeeper_application_scopes
-        = check_box_tag 'scopes', :public, !application.scopes.all.index("public").nil?
-        Public
     .checkbox
       %label.doorkeeper_application_scopes
         = check_box_tag 'scopes', :write, !application.scopes.all.index("write").nil?

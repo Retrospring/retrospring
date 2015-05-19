@@ -1,26 +1,29 @@
 - provide(:title, "Authorize #{@pre_auth.client.name}")
 .container.j2-page
-  .app-icon
-    %img{src: current_user.profile_picture.url}
-  %h1.app-name
-    Authorize
-    %strong= @pre_auth.client.name
-  %h3.app-description
-    = @pre_auth.client.application.description
-    %small
-      Managed by
-      = user_screen_name(@pre_auth.client.application.owner)
-  %p
-    %strong= @pre_auth.client.name
-    will be able to:
-    %ul
-      - @pre_auth.scopes.each do |scope|
-        %li{class: "scope--#{scope}"}= t scope, scope: [:doorkeeper, :scopes]
-  = bootstrap_form_tag url: oauth_authorization_path, html: { method: :post } do |f|
-    = f.hidden_field :client_id, value: @pre_auth.client.uid
-    = f.hidden_field :redirect_uri, value: @pre_auth.redirect_uri
-    = f.hidden_field :state, value: @pre_auth.state
-    = f.hidden_field :response_type, value: @pre_auth.response_type
-    = f.hidden_field :scope, value: @pre_auth.scope
-    = f.primary "Authorize"
-    = f.button "Deny", class: "btn btn-danger"
+  .row
+    .col-md-2
+    .col-md-8
+      .panel
+        .panel-body#oautherize
+          .app--profile
+            .app--icon.clearfix
+              %img.pull-left{src: @pre_auth.client.application.icon.url(:normal)}
+              %h1.app--name
+                Authorize
+                %strong= @pre_auth.client.name
+              %h3.app--description
+                = @pre_auth.client.application.description
+                %br
+                %small
+                  Managed by
+                  = user_screen_name(@pre_auth.client.application.owner)
+          %p
+            %strong= @pre_auth.client.name
+            will be able to:
+            %ul
+              - @pre_auth.scopes.each do |scope|
+                %li{class: "scope--#{scope}"}= t scope, scope: [:doorkeeper, :scopes]
+          .row
+            = render "button", method: :post, classname: "btn btn-primary btn-expand", text: :Authorize, pre_auth: @pre_auth
+            = render "button", method: :delete, classname: "btn btn-danger btn-expand", text: :Deny, pre_auth: @pre_auth
+    .col-md-2
