@@ -1,5 +1,0 @@
-<%- submit_btn_css ||= 'btn btn-link' %>
-<%= form_tag oauth_application_path(application) do %>
-  <input type="hidden" name="_method" value="delete">
-  <%= submit_tag t('doorkeeper.applications.buttons.destroy'), id: :delete_oauth_app_btn, class: submit_btn_css %>
-<% end %>

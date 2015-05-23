@@ -8,7 +8,8 @@
 
 
 ($ document).on 'click', '#delete_oauth_app_btn', (ev) ->
-  return swal
+  ev.preventDefault()
+  swal
     title: "Really delete your app?"
     text: "It will be really gone!"
     type: "warning"
@@ -16,6 +17,21 @@
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
     closeOnConfirm: true
+  , =>
+    this.parentElement.submit()
+
+($ document).on 'click', '#delete_oautherization_btn', (ev) ->
+  ev.preventDefault()
+  swal
+    title: "Really revoke app permissions?"
+    text: "The app won't be able to perform tasks under your behalf."
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: "Delete"
+    closeOnConfirm: true
+  , =>
+    this.parentElement.submit()
 
 readImage = (file, callback) ->
   fr = new FileReader()

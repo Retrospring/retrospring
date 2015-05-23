@@ -1,0 +1,14 @@
+- provide(:title, "Applications on your account")
+.oauth-panel
+  %h1
+    Applications
+  %ul.list-group.oautherizations--list
+    - @applications.each do |application|
+      %li.list-group-item.oautherization
+        .row
+          .col-md-8
+            = render "doorkeeper/shared/app", application: application, listing: true, managed_by: true
+          .col-md-4
+            .row
+              .col-md-12
+                = render "delete_form", application: application, submit_btn_css: "btn btn-danger btn-expand"

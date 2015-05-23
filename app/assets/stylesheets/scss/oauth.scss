@@ -30,13 +30,25 @@
     padding-left: 0
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0;
-  }
-
   .app--profile {
     margin-bottom: 15px;
     clear: both;
   }
+}
+
+#oautherize, .oautherization, .oauth-panel {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.applications--list-entry, .oautherization {
+  border: none;
+  margin-bottom: 5px
+}
+
+.oautherizations--list, .applications--list {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

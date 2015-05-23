@@ -1,0 +1,4 @@
+- submit_btn_css ||= 'btn btn-primary'
+= form_tag oauth_authorized_application_path(application) do
+  %input{type: :hidden, name: :_method, value: :delete}
+  %a{class: submit_btn_css, id: :delete_oautherization_btn}= t('doorkeeper.authorized_applications.buttons.revoke')

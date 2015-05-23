@@ -1,0 +1,10 @@
+- provide(:title, "Authorization Granted")
+.container.j2-page
+  .row
+    .col-md-2
+    .col-md-8
+      .panel
+        .panel-body#oautherize
+          %h1
+            Authorization granted;
+          %code#authorization_code= params[:code]

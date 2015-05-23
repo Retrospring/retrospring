@@ -28,3 +28,20 @@
 .btn-expand {
   width: 100%;
 }
+
+.no-pad:not(:first-child):not(:last-child) {
+  margin-left: 0;
+  padding-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.no-pad:first-child {
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.no-pad:last-child {
+  margin-left: 0;
+  padding-left: 0;
+}

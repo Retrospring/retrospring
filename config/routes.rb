@@ -1,16 +1,15 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  
+
   use_doorkeeper do
     skip_controllers :applications, :authorized_applications
     controllers :authorizations => 'oauth/authorizations'
   end
 
-  scope :settings do
-    use_doorkeeper do
-      skip_controllers :authorizations, :tokens, :token_info
-      controllers :applications => 'oauth/applications', :authorized_applications => 'oauth/authorized_applications'
-    end
+  scope "settings", module: "oauth" do
+    resources :applications, path: :develop, as: :oauth_applications
+    match 'develop/:id', to: "applications#update", via: :post, as: :update_oauth_application
+    resources :authorized_applications, path: :applications, only: [:index, :destroy], as: :oauth_authorized_applications
   end
 
   mount API => "/"

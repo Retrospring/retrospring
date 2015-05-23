@@ -5,8 +5,9 @@ Doorkeeper.configure do
   orm :active_record
 
   # This block will be called to check whether the resource owner is authenticated or not.
-  resource_owner_authenticator do
-    current_user || warden.authenticate?(scope: :user)
+  resource_owner_authenticator do |routes|
+    session[:user_return_to] = request.fullpath
+    current_user || warden.authenticate?(scope: :user) || redirect_to(routes.new_user_session_path)
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
@@ -33,7 +34,7 @@ Doorkeeper.configure do
   # reuse_access_token
 
   # Issue access tokens with refresh token (disabled by default)
-  # use_refresh_token
+  use_refresh_token
 
   # Provide support for an owner to be assigned to each registered application (disabled by default)
   # Optional parameter :confirmation => true (default false) if you want to enforce ownership of
@@ -57,7 +58,7 @@ Doorkeeper.configure do
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
   # falls back to the `:access_token` or `:bearer_token` params from the `params` object.
   # Check out the wiki for more information on customization
-  # access_token_methods :from_bearer_authorization, :from_access_token_param, :from_bearer_param
+  access_token_methods :from_bearer_authorization, :from_access_token_param, :from_bearer_param
 
   # Change the native redirect uri for client apps
   # When clients register with the following redirect uri, they won't be redirected to any server and the authorization code will be displayed within the provider

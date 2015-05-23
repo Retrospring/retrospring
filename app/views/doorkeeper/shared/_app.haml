@@ -1,0 +1,20 @@
+- managed_by ||= false
+- listing    ||= false
+.app--profile
+  .app--icon.clearfix
+    %img.pull-left{src: application.icon.url(:normal)}
+    %h1.app--name
+      - if managed_by and not listing
+        Authorize
+      %strong= application.name
+      %small= application.description
+    - if managed_by
+      %br
+        %h3
+          %small
+            Managed by
+            = user_screen_name(application.owner)
+            - if listing
+              %br
+              Created at
+              = application.created_at.strftime(t('doorkeeper.authorized_applications.index.date_format'))

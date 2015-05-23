@@ -1,10 +1,7 @@
+- provide(:title, "Viewing #{@application.name}") 
 .row.app--secret-details
   .col-md-8.app--details
-    .pull-left.app--profile
-      %img{src: @application.icon.url(:normal), alt: @application.name}
-      %h1
-        = @application.name
-        %small= @application.description
+    = render "doorkeeper/shared/app", application: @application
     .app--clear
       %h4= t('.application_id')
       %p

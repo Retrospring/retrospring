@@ -46,9 +46,10 @@ _ready = ->
   if typeof sweetAlertInitialize != "undefined"
     sweetAlertInitialize()
 
-  particleground document.getElementById('particles'),
-    dotColor: '#5e35b1'
-    lineColor: '#5e35b1'
+  if document.getElementById('particles')?
+    particleground document.getElementById('particles'),
+      dotColor: '#5e35b1'
+      lineColor: '#5e35b1'
 
 $(document).ready _ready
 $(document).on 'page:load', _ready

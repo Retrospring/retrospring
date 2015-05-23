@@ -1,0 +1,9 @@
+- provide(:title, "Error authorizing #{@pre_auth.client.name}")
+.container.j2-page
+  .row
+    .col-md-2
+    .col-md-8
+      .page-header
+        %h1= t('doorkeeper.authorizations.error.title')
+      %main.main
+        %pre= @pre_auth.error_response.body[:error_description]
