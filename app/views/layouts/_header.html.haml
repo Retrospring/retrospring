@@ -24,6 +24,12 @@
           = nav_entry "Inbox", "/inbox", badge: inbox_count
           = nav_entry "Discover", discover_path
         %ul.nav.navbar-nav.navbar-right
+          - unless @user.nil?
+            - unless @user == current_user
+              %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Manage group memberships"}
+                %a{href: '#', data: { target: "#modal-group-memberships", toggle: :modal }}
+                  %i.fa.fa-users.hidden-xs
+                  %span.visible-xs Manage group memberships
           = render "layouts/notifications"
           %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Ask a question"}
             .btn.btn-link.navbar-btn{name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
