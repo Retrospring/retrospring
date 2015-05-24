@@ -35,13 +35,33 @@ class API < Grape::API
     end
   end
 
-
   format :json
   content_type :json, 'application/json'
+  content_type :txt, 'text/plain'
 
   use APIErrorHandler
 
-  get '/api' do
+  formatter :json, Grape::Formatter::ActiveModelSerializers
+
+  before do
+    header['Access-Control-Allow-Origin'] = '*'
+    header['Access-Control-Request-Method'] = '*'
+  end
+
+  helpers do
+    def current_user
+      resource_owner
+    end
+  end
+
+  use ::WineBouncer::OAuth2
+
+  use Grape::Middleware::ThrottleMiddleware, cache: Redis.new(url: APP_CONFIG['redis_url']), user_key: ->(env) do
+    user = current_owner
+    user.nil? ? nil : current_owner.id
+  end
+
+  get do
     status 200
     result = {
       notes: "This page is a list of API entry points, true means they are active, false means they are depricated. You can find their swagger documentation at /api/:entry/swagger_doc.json",
@@ -51,9 +71,7 @@ class API < Grape::API
     }
   end
 
-  prefix 'api'
-
-  mount Sleipnir::MountAPI => "/"
+  mount Sleipnir::MountAPI
 
   route :any, '*path' do
     status 404

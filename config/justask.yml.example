@@ -1,6 +1,7 @@
 # The site name, shown everywhere.
 site_name: "justask"
 
+port: 80
 hostname: "justask.rrerr.net"
 https: true
 

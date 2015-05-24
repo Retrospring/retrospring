@@ -69,6 +69,8 @@ gem 'wine_bouncer'
 gem 'grape-swagger'
 gem 'rouge', require: false # grape-swagger requires this
 gem 'grape-active_model_serializers'
+gem 'grape-kaminari'
+gem 'grape-throttle'
 
 group :development do
   gem 'spring'

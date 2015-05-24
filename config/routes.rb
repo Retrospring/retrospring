@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :authorized_applications, path: :applications, only: [:index, :destroy], as: :oauth_authorized_applications
   end
 
-  mount API => "/"
+  mount API => "/api"
 
   # Admin panel
   mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'
