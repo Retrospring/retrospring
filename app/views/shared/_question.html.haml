@@ -14,12 +14,12 @@
               %ul.dropdown-menu.dropdown-menu-right{role: :menu}
                 - if current_user.mod? or q.user == current_user
                   %li.text-danger
-                    %a{href: '#', data: { action: 'ab-question-destroy', q_id: q.id }}
+                    %a{href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: q.id }}
                       %i.fa.fa-trash-o
                       Delete Question
                 - unless q.user == current_user
                   %li
-                    %a{href: '#', data: { action: 'ab-question-report', q_id: q.id }}
+                    %a{href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id }}
                       %i.fa.fa-exclamation-triangle
                       Report
         %h6.media-heading.text-muted.answerbox--question-user

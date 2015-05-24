@@ -19,7 +19,7 @@
                     %span.caret
                   %ul.dropdown-menu.dropdown-menu-right{role: :menu}
                     %li.text-danger
-                      %a{href: '#', data: { action: 'mod-comment-destroy', id: comment.id }}
+                      %a{href: '#', tabindex: -1, data: { action: 'mod-comment-destroy', id: comment.id }}
                         %i.fa.fa-trash-o
                         Delete
             %p.comments--content= comment.content
