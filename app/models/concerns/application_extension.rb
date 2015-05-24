@@ -10,6 +10,18 @@ module Concerns::ApplicationExtension
                       processors: [:cropper]
     validates_attachment_content_type :icon, :content_type => /\Aimage\/(png|jpe?g|gif)\Z/
     process_in_background :icon
+
+    before_save do
+      self.homepage = if homepage.match %r{\Ahttps?://}
+                       homepage
+                     else
+                       "http://#{homepage}"
+                     end unless homepage.blank? or homepage.empty?
+
+      # if self.deleted
+      #   self.destroy_associations
+      # end
+    end
   end
 
   def cropping?

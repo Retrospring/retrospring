@@ -6,6 +6,8 @@
   = doorkeeper_errors_for application, :name
   = f.text_field :description
   = doorkeeper_errors_for application, :description
+  = f.text_field :homepage
+  = doorkeeper_errors_for application, :homepage
   = f.text_area :redirect_uri
   = doorkeeper_errors_for application, :redirect_uri
   %span.help-block= t('doorkeeper.applications.help.redirect_uri')

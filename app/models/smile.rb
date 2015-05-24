@@ -3,6 +3,7 @@ class Smile < ActiveRecord::Base
   belongs_to :answer
   validates :user_id, presence: true, uniqueness: { scope: :answer_id, message: "already smiled answer" }
   validates :answer_id, presence: true
+  has_one  :application, class_name: "Doorkeeper::Application"
 
   after_create do
     Notification.notify answer.user, self unless answer.user == user

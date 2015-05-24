@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518100409) do
+ActiveRecord::Schema.define(version: 20150524111424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(version: 20150518100409) do
   create_table "answers", force: :cascade do |t|
     t.text     "content"
     t.integer  "question_id"
-    t.integer  "comment_count", default: 0, null: false
+    t.integer  "comment_count",  default: 0, null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "smile_count",   default: 0, null: false
+    t.integer  "smile_count",    default: 0, null: false
+    t.integer  "application_id"
   end
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
@@ -31,8 +32,9 @@ ActiveRecord::Schema.define(version: 20150518100409) do
   create_table "comment_smiles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "application_id"
   end
 
   add_index "comment_smiles", ["comment_id"], name: "index_comment_smiles_on_comment_id", using: :btree
@@ -45,7 +47,8 @@ ActiveRecord::Schema.define(version: 20150518100409) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "smile_count", default: 0, null: false
+    t.integer  "smile_count",    default: 0, null: false
+    t.integer  "application_id"
   end
 
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
@@ -142,11 +145,11 @@ ActiveRecord::Schema.define(version: 20150518100409) do
   add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
   create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",                           null: false
-    t.string   "uid",                            null: false
-    t.string   "secret",                         null: false
-    t.text     "redirect_uri",                   null: false
-    t.string   "scopes",            default: "", null: false
+    t.string   "name",                              null: false
+    t.string   "uid",                               null: false
+    t.string   "secret",                            null: false
+    t.text     "redirect_uri",                      null: false
+    t.string   "scopes",            default: "",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "owner_id"
@@ -161,6 +164,8 @@ ActiveRecord::Schema.define(version: 20150518100409) do
     t.integer  "crop_w"
     t.integer  "crop_h"
     t.boolean  "icon_processing"
+    t.string   "homepage",          default: ""
+    t.boolean  "deleted",           default: false
   end
 
   add_index "oauth_applications", ["name"], name: "index_oauth_applications_on_name", unique: true, using: :btree
@@ -176,6 +181,7 @@ ActiveRecord::Schema.define(version: 20150518100409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "answer_count",        default: 0, null: false
+    t.integer  "application_id"
   end
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
@@ -217,6 +223,7 @@ ActiveRecord::Schema.define(version: 20150518100409) do
     t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "application_id"
   end
 
   add_index "smiles", ["answer_id"], name: "index_smiles_on_answer_id", using: :btree

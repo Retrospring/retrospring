@@ -5,6 +5,7 @@ class Answer < ActiveRecord::Base
   has_many :smiles, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :comment_smiles, through: :comments, source: :smiles
+  has_one  :application, class_name: "Doorkeeper::Application"
 
   after_create do
     Inbox.where(user: self.user, question: self.question).destroy_all
