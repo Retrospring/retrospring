@@ -49,14 +49,14 @@ Try connecting to the database:
 
 ### nginx
 
-See [docs/nginx.conf](https://github.com/nilsding/justask/blob/master/docs/nginx.conf)
+See [docs/nginx.conf](https://github.com/Retrospring/retrospring/blob/master/docs/nginx.conf)
 for the configuration we use on Retrospring.
 
 ### justask
 
 #### Clone the Source
 
-    $ git clone --recursive https://github.com/nilsding/justask.git justask
+    $ git clone --recursive https://github.com/Retrospring/retrospring.git retrospring
 
 #### Configure It
 
