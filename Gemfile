@@ -71,6 +71,7 @@ gem 'rouge', require: false # grape-swagger requires this
 gem 'grape-active_model_serializers'
 gem 'grape-kaminari'
 gem 'grape-throttle'
+gem 'msgpack', '~> 0.6.0pre1' # .mpak application/x-msgpack application/msgpack
 
 group :development do
   gem 'spring'

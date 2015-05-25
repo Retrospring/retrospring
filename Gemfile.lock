@@ -289,6 +289,7 @@ GEM
     minitest (5.6.0)
     momentjs-rails (2.9.0)
       railties (>= 3.1)
+    msgpack (0.6.0pre1)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -554,6 +555,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   momentjs-rails (>= 2.9.0)
+  msgpack (~> 0.6.0pre1)
   mysql2
   nprogress-rails
   omniauth
