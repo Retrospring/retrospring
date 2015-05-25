@@ -58,6 +58,11 @@ for the configuration we use on Retrospring.
 
     $ git clone https://github.com/nilsding/justask.git justask
 
+#### Initialize Submodules
+
+    $ git submodule init
+    $ git submodule update
+
 #### Configure It
 
     # Change into the justask directory
