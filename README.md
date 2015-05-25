@@ -56,12 +56,7 @@ for the configuration we use on Retrospring.
 
 #### Clone the Source
 
-    $ git clone https://github.com/nilsding/justask.git justask
-
-#### Initialize Submodules
-
-    $ git submodule init
-    $ git submodule update
+    $ git clone --recursive https://github.com/nilsding/justask.git justask
 
 #### Configure It
 
@@ -133,6 +128,13 @@ Export user data:
 Find the user(s) with the most self-asked anonymous questions:
 
     $ bundle exec rake justask:loners
+
+#### Updating Submodules
+
+If you already have an existing copy of justask, you can initialize and update the submodules with;
+
+    $ git submodule init
+    $ git submodule update
 
 ## The Official Retrospring Closedown Soundtrack™ (now redundant)
 
