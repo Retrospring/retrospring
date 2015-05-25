@@ -1,6 +1,6 @@
 [submodule "service-docs"]
 	path = service-docs
-	url = git@github.com:Retrospring/service-docs.git
+	url = https://github.com/Retrospring/service-docs.git
 [submodule "api-docs"]
 	path = api-docs
 	url = https://github.com/Retrospring/api-docs.git
