@@ -16,7 +16,7 @@ module MarkdownHelper
   end
 
   def raw_markdown(content)
-    md = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    md = Redcarpet::Markdown.new(Redcarpet::Render::HTML, RAW_MARKDOWN_OPTS)
     raw md.render content
   end
 
