@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_locale
   before_filter :banned?
 
-  # check if user got hit by the banhammer of doom
+  # check if user wants to read
   def check_locale
     if params[:hl].nil?
       if current_user.present?
@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
     cookies[:hl] = I18n.locale #unless cookies[:allow_cookies].nil? # some EU cookie bullsh-
   end
 
+  # check if user got hit by the banhammer of doom
   def banned?
     if current_user.present? && current_user.banned?
       name = current_user.screen_name
