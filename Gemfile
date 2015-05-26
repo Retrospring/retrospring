@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 gem 'rails', '4.2.1'
+gem 'rails-i18n'
 
 gem 'pg', group: :postgres
 gem 'mysql2', group: :mysql
@@ -25,6 +26,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'http_accept_language'
 gem 'devise'
+gem 'devise-i18n'
 gem 'devise-async'
 gem 'bootstrap_form'
 gem 'font-kit-rails'

@@ -102,6 +102,7 @@ GEM
       warden (~> 1.2.3)
     devise-async (0.9.0)
       devise (~> 3.2)
+    devise-i18n (0.12.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     equalizer (0.0.11)
@@ -318,6 +319,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails-i18n (4.0.4)
+      i18n (~> 0.6)
+      railties (~> 4.0)
     rails_admin (0.6.7)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
@@ -483,6 +487,7 @@ DEPENDENCIES
   delayed_paperclip
   devise
   devise-async
+  devise-i18n
   factory_girl_rails
   faker
   fog
@@ -507,6 +512,7 @@ DEPENDENCIES
   questiongenerator!
   rails (= 4.2.1)
   rails-assets-growl
+  rails-i18n
   rails_admin
   rake
   redcarpet
