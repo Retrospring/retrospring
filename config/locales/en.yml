@@ -20,4 +20,85 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  views:
+    sessions:
+      destroy: "Logout"
+      create: "Sign in"
+      new: "Sign up"
+    navigation:
+      timeline: "Timeline"
+      inbox: "Inbox"
+      discover: "Discover"
+      notifications: "Notifications"
+      show: "View profile"
+      settings: "Settings"
+      admin: "Kontrollzentrum"
+      sidekiq: "Sidekiq"
+      moderation: "Moderation Panel"
+    front:
+      subtitle: "Ask questions, give answers and learn more about your friends."
+      ask:
+        title: "Ask and answer questions"
+        desc: "With Retrospring you can ask people questions and answer questions from other users or unregistered people. Want to know something more? Keep the discussion ongoing in the comments!"
+      follow:
+        title: "Follow users and get followed"
+        desc: "Following users allows you to get a personalized feed of all people you want to know more about. You can also send a question to all your followers at once!"
+      share:
+        title: "Sharing to other networks"
+        desc: "Want to share your answer to a question so that more people read it? With a simple click on the answer button, your answer is shared wherever you want!"
+    about:
+      subtitle: "About our service, features and other information"
+      links:
+        title: "Links"
+        # TODO: add placeholder for app title in desc
+        desc: "Important pages and social media profiles from the Retrospring team, which are recommended to visit!"
+      opensource:
+        title: "Open Source"
+        warning: "Retrospring is running on unfinished code, full of bugs. Caveat emptor."
+        # TODO: add placeholders for links in desc
+        # TODO: add placeholder for app title in desc
+        desc: "Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help Retrospring to get the features everyone wanted by forking our GitHub repository. If that's not the case, you can still report bugs and request features at our bug tracker."
+      repository:
+        title: "Main Repository"
+        desc: "The place where all the code magic and fixing happens!"
+      contributors:
+        title: "Contributors"
+        # TODO: add placeholder for app title in desc
+        desc: "These people have contributed to Retrospring's source code."
+        # TODO: add placeholders for links in howto
+        howto: "Want to get listed here? Fork this repo and create a new pull request with your changes."
+      team:
+        title: "The Team"
+        # TODO: add placeholder for app title in desc
+        desc: "The people behind Retrospring!"
+      moderators:
+        title: "Moderators"
+        # TODO: add placeholder for app title in desc
+        desc: "The people on Retrospring that look after you!"
+      funding:
+        title: "Funding"
+        # TODO: add placeholder for app title in desc
+        desc: "People which (previously) donated to Retrospring!"
+      statistics:
+        title: "Statistics"
+        # TODO: add placeholder for app title in desc
+        desc: "All-time statistics for Retrospring, updated every time you refresh the page!"
+    discover:
+      title: "Discover"
+      # TODO: add placeholder for app title in subtitle
+      subtitle: "The perfect place to find interesting content from the last week on Retrospring!"
+      content:
+        title: "Popular Content"
+        desc: "Answers with most smiles and most answered questions"
+        tab:
+          answers: "Answers"
+          questions: "Questions"
+          comments: "Most Comments"
+      people:
+        title: "People"
+        desc: "Newcomers and people who asked the most questions"
+        tab:
+          new: "New Users"
+          questions: "Most Asked Questions"
+          answers: "Most Answers"
   hello: "Hello world"
