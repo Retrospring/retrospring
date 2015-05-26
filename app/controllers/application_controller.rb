@@ -4,9 +4,28 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :check_locale
   before_filter :banned?
 
   # check if user got hit by the banhammer of doom
+  def check_locale
+    if params[:hl].nil?
+      if current_user.present?
+        I18n.locale = current_user.locale
+      elsif not cookies[:hl].nil?
+        I18n.locale = cookies[:hl]
+      end
+    else
+      I18n.locale = params[:hl]
+      if current_user.present?
+        current_user.locale = I18n.locale
+        current_user.save!
+      end
+    end
+
+    cookies[:hl] = I18n.locale #unless cookies[:allow_cookies].nil? # some EU cookie bullsh-
+  end
+
   def banned?
     if current_user.present? && current_user.banned?
       name = current_user.screen_name
