@@ -70,20 +70,16 @@ en:
       contributors:
         title: "Contributors"
         desc: "These people have contributed to %{app_title}'s source code."
-        # TODO: add placeholders for links in howto
         howto: "Want to get listed here? %{fork} and create a new pull request with your changes."
         fork: "Fork this repo"
       team:
         title: "The Team"
-        # TODO: add placeholder for app title in desc
         desc: "The people behind %{app_title}!"
       moderators:
         title: "Moderators"
-        # TODO: add placeholder for app title in desc
         desc: "The people on %{app_title} that look after you!"
       funding:
         title: "Funding"
-        # TODO: add placeholder for app title in desc
         desc: "People which (previously) donated to %{app_title}!"
       statistics:
         title: "Statistics"
