@@ -15,12 +15,8 @@
             %span.text-muted= "@#{u.screen_name}"
         %p.answerbox--question-text
           - if type == "new"
-            registered
-            = time_ago_in_words(u.created_at)
-            ago
+            = t('views.discover.userbox.new', time: time_ago_in_words(u.created_at))
           - elsif type == "most"
-            answered
-            = pluralize(a, "question")
+            = t('views.discover.userbox.answers', questions: pluralize(a, t('views.general.question')))
           - else
-            asked
-            = pluralize(q, "question")
+            = t('views.discover.userbox.answers', questions: pluralize(q, t('views.general.question')))

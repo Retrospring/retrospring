@@ -21,6 +21,13 @@
 
 en:
   views:
+    general:
+      answer: "answer"
+      question: "question"
+      comment: "comment"
+      smile: "smile"
+      follower: "follower"
+      following: "following"
     sessions:
       destroy: "Logout"
       create: "Sign in"
@@ -39,7 +46,7 @@ en:
       subtitle: "Ask questions, give answers and learn more about your friends."
       ask:
         title: "Ask and answer questions"
-        desc: "With Retrospring you can ask people questions and answer questions from other users or unregistered people. Want to know something more? Keep the discussion ongoing in the comments!"
+        desc: "With %{app_title} you can ask people questions and answer questions from other users or unregistered people. Want to know something more? Keep the discussion ongoing in the comments!"
       follow:
         title: "Follow users and get followed"
         desc: "Following users allows you to get a personalized feed of all people you want to know more about. You can also send a question to all your followers at once!"
@@ -50,43 +57,40 @@ en:
       subtitle: "About our service, features and other information"
       links:
         title: "Links"
-        # TODO: add placeholder for app title in desc
-        desc: "Important pages and social media profiles from the Retrospring team, which are recommended to visit!"
+        desc: "Important pages and social media profiles from the %{app_title} team, which are recommended to visit!"
       opensource:
         title: "Open Source"
-        warning: "Retrospring is running on unfinished code, full of bugs. Caveat emptor."
-        # TODO: add placeholders for links in desc
-        # TODO: add placeholder for app title in desc
-        desc: "Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help Retrospring to get the features everyone wanted by forking our GitHub repository. If that's not the case, you can still report bugs and request features at our bug tracker."
+        warning: "%{app_title} is running on unfinished code, full of bugs. Caveat emptor."
+        desc: "Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help %{app_title} to get the features everyone wanted by forking our %{github}. If that's not the case, you can still report bugs and request features at our %{bugtracker}."
+        github: "Github repository"
+        bugtracker: "bug tracker"
       repository:
         title: "Main Repository"
         desc: "The place where all the code magic and fixing happens!"
       contributors:
         title: "Contributors"
-        # TODO: add placeholder for app title in desc
-        desc: "These people have contributed to Retrospring's source code."
+        desc: "These people have contributed to %{app_title}'s source code."
         # TODO: add placeholders for links in howto
-        howto: "Want to get listed here? Fork this repo and create a new pull request with your changes."
+        howto: "Want to get listed here? %{fork} and create a new pull request with your changes."
+        fork: "Fork this repo"
       team:
         title: "The Team"
         # TODO: add placeholder for app title in desc
-        desc: "The people behind Retrospring!"
+        desc: "The people behind %{app_title}!"
       moderators:
         title: "Moderators"
         # TODO: add placeholder for app title in desc
-        desc: "The people on Retrospring that look after you!"
+        desc: "The people on %{app_title} that look after you!"
       funding:
         title: "Funding"
         # TODO: add placeholder for app title in desc
-        desc: "People which (previously) donated to Retrospring!"
+        desc: "People which (previously) donated to %{app_title}!"
       statistics:
         title: "Statistics"
-        # TODO: add placeholder for app title in desc
-        desc: "All-time statistics for Retrospring, updated every time you refresh the page!"
+        desc: "All-time statistics for %{app_title}, updated every time you refresh the page!"
     discover:
       title: "Discover"
-      # TODO: add placeholder for app title in subtitle
-      subtitle: "The perfect place to find interesting content from the last week on Retrospring!"
+      subtitle: "The perfect place to find interesting content from the last week on %{app_title}!"
       content:
         title: "Popular Content"
         desc: "Answers with most smiles and most answered questions"
@@ -101,4 +105,8 @@ en:
           new: "New Users"
           questions: "Most Asked Questions"
           answers: "Most Answers"
+      userbox:
+        new: "registered %{time} ago"
+        answers: "answered %{questions}"
+        questions: "asked %{questions}"
   hello: "Hello world"

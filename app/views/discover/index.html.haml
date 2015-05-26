@@ -2,45 +2,36 @@
 .jumbotron.j2-jumbo.text-center.particle-jumbotron
   #particles
   .particle-content
-    %h1 Discover
-    %p
-      The perfect place to find interesting content from the last week on
-      = succeed '!' do
-        = APP_CONFIG['site_name']
+    %h1= t 'views.discover.title'
+    %p= t('views.discover.subtitle', app_title: APP_CONFIG['site_name'])
 .container
   .row
     .col-md-7.col-sm-6
-      %h2 Popular Content
-      %p Answers with most smiles and most answered questions
+      %h2= t 'views.discover.content.title'
+      %p= t 'views.discover.content.desc'
       %div{role: "tabpanel"}
         %ul.nav.nav-tabs{role: "tablist"}
           %li.active{role: "presentation"}
-            %a{href: "#answers", role: "tab", aria: {controls: "answers"}, data: {toggle: "tab"}}
-              Answers
+            %a{href: "#answers", role: "tab", aria: {controls: "answers"}, data: {toggle: "tab"}}= t 'views.discover.content.tab.answers'
           %li{role: "presentation"}
-            %a{href: "#questions", role: "tab", aria: {controls: "questions"}, data: {toggle: "tab"}}
-              Questions
+            %a{href: "#questions", role: "tab", aria: {controls: "questions"}, data: {toggle: "tab"}}= t 'views.discover.content.tab.questions'
           %li{role: "presentation"}
-            %a{href: "#comments", role: "tab", aria: {controls: "comments"}, data: {toggle: "tab"}}
-              Most Comments
+            %a{href: "#comments", role: "tab", aria: {controls: "comments"}, data: {toggle: "tab"}}= t 'views.discover.content.tab.comments'
         .tab-content.discover
           = render 'discover/tab_answers', answers: @popular_answers
           = render 'discover/tab_questions', questions: @popular_questions
           = render 'discover/tab_discussed', comments: @most_discussed
     .col-md-5.col-sm-6
-      %h2 People
-      %p Newcomers and people who asked the most questions
+      %h2= t 'views.discover.people.title'
+      %p= t 'views.discover.people.desc'
       %div{role: "tabpanel"}
         %ul.nav.nav-tabs{role: "tablist"}
           %li.active{role: "presentation"}
-            %a{href: "#new", role: "tab", aria: {controls: "new"}, data: {toggle: "tab"}}
-              New Users
+            %a{href: "#new", role: "tab", aria: {controls: "new"}, data: {toggle: "tab"}}= t 'views.discover.people.tab.new'
           %li{role: "presentation"}
-            %a{href: "#asked", role: "tab", aria: {controls: "asked"}, data: {toggle: "tab"}}
-              Most Asked Questions
+            %a{href: "#asked", role: "tab", aria: {controls: "asked"}, data: {toggle: "tab"}}= t 'views.discover.people.tab.questions'
           %li{role: "presentation"}
-            %a{href: "#answered", role: "tab", aria: {controls: "answered"}, data: {toggle: "tab"}}
-              Most Answers
+            %a{href: "#answered", role: "tab", aria: {controls: "answered"}, data: {toggle: "tab"}}= t 'views.discover.people.tab.answers'
         .tab-content.discover
           = render 'discover/tab_new', new: @new_users
           = render 'discover/tab_asked', asked: @users_with_most_questions
