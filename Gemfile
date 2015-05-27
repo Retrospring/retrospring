@@ -39,7 +39,6 @@ gem 'fog'
 gem 'fog-aws'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
-gem 'http_accept_language'
 
 gem 'ruby-progressbar'
 
