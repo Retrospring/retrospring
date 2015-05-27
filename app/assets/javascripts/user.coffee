@@ -79,7 +79,7 @@ if PARALLAX_PREFIX?
   HEADER_PARALLAX = ->
     header = $("#profile--header:not(.profile--no-header) img")[0]
     return unless header?
-    top = (document.body || document.documentElement).scrollTop * HEADER_PARALLAX_INERTIA
+    top = (document.documentElement || document.body).scrollTop * HEADER_PARALLAX_INERTIA
     header.style[PARALLAX_CSS] = "translate3d(0px, #{top}px, 0px)";
 
   $(window).on "scroll", (event) ->
