@@ -28,6 +28,13 @@ en:
       smile: "smile"
       follower: "follower"
       following: "following"
+    actions:
+      delete: "Delete"
+      report: "Report"
+      return: "Return to Inbox"
+      subscribe: "Subscribe"
+      unsubscribe: "Unsubscribe"
+      view: "View comment smiles"
     sessions:
       destroy: "Logout"
       create: "Sign in"
@@ -111,4 +118,7 @@ en:
       answered: "%{hide} %{user}"
       hide: "Answered by"
       time: "%{time} ago"
+      no_smile: "No one smiled this, yet."
+      no_comment: "There are no comments yet."
+      commentsmile: "People who smiled this comment"
   hello: "Hello world"

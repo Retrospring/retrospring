@@ -1,5 +1,5 @@
 - if a.comments.all.count == 0
-  There are no comments yet.
+  = t 'views.answerbox.no_comment'
 - else
   %ul.comments
     - a.comments.order(:created_at).each do |comment|
@@ -36,17 +36,17 @@
                     %li
                       %a{href: '#', type: :button, data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal}}
                         %i.fa.fa-smile-o
-                        View comment smiles
+                        = t 'views.actions.view'
                     - if privileged?(comment.user) or privileged?(a.user)
                       %li.text-danger
                         %a{href: '#', data: { action: 'ab-comment-destroy', c_id: comment.id }}
                           %i.fa.fa-trash-o
-                          Delete
+                          = t 'views.actions.delete'
                     - unless comment.user == current_user
                       %li
                         %a{href: '#', data: { action: 'ab-comment-report', c_id: comment.id }}
                           %i.fa.fa-exclamation-triangle
-                          Report
+                          = t 'views.acions.report'
             .comments--content
               = markdown comment.content
 - if user_signed_in?
