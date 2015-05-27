@@ -51,3 +51,39 @@ $(document).on "click", "a[data-action=report-user]", (ev) ->
   btn = $(this)
   target = btn[0].dataset.target
   reportDialog "user", target, -> btn.button "reset"
+
+# parallax
+PARALLAX_PREFIX = undefined
+if typeof document.documentElement.style.webkitTransform == "string"
+  PARALLAX_PREFIX = "webkit"
+if typeof document.documentElement.style.mozTransform == "string"
+  PARALLAX_PREFIX = "moz"
+if typeof document.documentElement.style.oTransform == "string"
+  PARALLAX_PREFIX = "o"
+if typeof document.documentElement.style.msTransform == "string"
+  PARALLAX_PREFIX = "ms"
+if typeof document.documentElement.style.khtmlTransform == "string"
+  PARALLAX_PREFIX = "khtml"
+if typeof document.documentElement.style.transform == "string"
+  PARALLAX_PREFIX = ""
+
+HEADER_PARALLAX = undefined
+
+if PARALLAX_PREFIX?
+  PARALLAX_CSS = "transform"
+  if PARALLAX_PREFIX.length
+    PARALLAX_CSS = PARALLAX_PREFIX + PARALLAX_CSS.charAt(0).toUpperCase() + PARALLAX_CSS.slice(1)
+
+  window.HEADER_PARALLAX_INERTIA = 0.4;
+
+  HEADER_PARALLAX = ->
+    header = $("#profile--header:not(.profile--no-header) img")[0]
+    return unless header?
+    top = (document.body || document.documentElement).scrollTop * HEADER_PARALLAX_INERTIA
+    header.style[PARALLAX_CSS] = "translate3d(0px, #{top}px, 0px)";
+
+  $(window).on "scroll", (event) ->
+    HEADER_PARALLAX()
+
+$(document).ready ->
+  HEADER_PARALLAX() if HEADER_PARALLAX?

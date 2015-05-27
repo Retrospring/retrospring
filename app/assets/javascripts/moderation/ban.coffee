@@ -1,5 +1,7 @@
-$(document).on "DOMContentLoaded", ->
+load = ->
   parent = $ "#ban-control-super"
+  return unless parent.length > 0
+
   parent.find('#_ban').on "change", (event) ->
     $t = $ this
     if $t.is(":checked")
@@ -56,3 +58,9 @@ $(document).on "DOMContentLoaded", ->
         console.log jqxhr, status, error
         showNotification "An error occurred, a developer should check the console for details", false
       complete: (jqxhr, status) ->
+
+$(document).on "DOMContentLoaded", ->
+  load()
+
+$(document).on "page:load", ->
+  load()
