@@ -24,10 +24,8 @@
                           %i.fa.fa-exclamation-triangle
                           = t 'views.actions.report'
           %h6.text-muted.media-heading.answerbox--question-user
-            = user_screen_name question.user, question.author_is_anonymous, !hidden
-            - unless hidden
-              asked
-              %span{title: question.created_at, data: { toggle: :tooltip, placement: :bottom }}
-                = time_ago_in_words(question.created_at)
-              ago
+            - if hidden
+              = user_screen_name question.user, question.author_is_anonymous, false
+            - else
+              = raw t('views.answerbox.asked', user: user_screen_name(question.user, question.author_is_anonymous), time: time_tooltip(question))
           %p.answerbox--question-text= question.content
