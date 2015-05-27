@@ -39,8 +39,16 @@ module ApplicationHelper
     content_tag(:a, body.html_safe, href: path, class: ("list-group-item #{'active ' if current_page? path}#{options[:class]}"))
   end
 
-  def tooltip(body, tooltip_content, placement)
+  def tooltip(body, tooltip_content, placement = "bottom")
     content_tag(:span, body, {title: tooltip_content, "data-toggle" => "tooltip", "data-placement" => placement} )
+  end
+
+  def time_tooltip(question, placement = "bottom")
+    t = tooltip time_ago_in_words(question.created_at), localize(question.created_at), placement
+    unless question.user.nil? or question.author_is_anonymous
+      t = content_tag(:a, t, {href: show_user_question_path(question.user.screen_name, question.id)})
+    end
+    t
   end
 
   def hidespan(body, hide)
