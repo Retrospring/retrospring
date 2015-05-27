@@ -54,14 +54,14 @@
               %h6.media-heading.answerbox--answer-user
                 = raw t('views.answerbox.answered', hide: hidespan(t('views.answerbox.hide'), "xs"), user: user_screen_name(a.user))
               .answerbox--answer-date
-                = link_to((raw t('views.answerbox.time', time: tooltip(time_ago_in_words(a.created_at), a.created_at, "bottom"))), show_user_answer_path(a.user.screen_name, a.id))
+                = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))))
         .col-md-6.col-sm-8.col-xs-6.text-right
           = render 'shared/answerbox_buttons', a: a
     - else
       .row
         .col-md-6.col-sm-4.col-xs-6.text-left.text-muted
           %i.fa.fa-clock-o
-          = link_to((raw t('views.answerbox.time', time: tooltip(time_ago_in_words(a.created_at), a.created_at, "bottom"))), show_user_answer_path(a.user.screen_name, a.id))
+            = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))))
         .col-md-6.col-sm-8.col-xs-6.text-right
           = render 'shared/answerbox_buttons', a: a
   .panel-footer{id: "ab-comments-section-#{a.id}", style: @display_all.nil? ? 'display: none' : nil }
