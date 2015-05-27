@@ -26,6 +26,8 @@ module Justask
 
     config.i18n.default_locale = "en"
     config.i18n.fallbacks = true
+    config.i18n.enforce_available_locales = false
+
 
     # DEPRECATION WARNING: Currently, Active Record suppresses errors raised
     # within `after_rollback`/`after_commit` callbacks and only print them to the logs.
