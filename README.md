@@ -49,14 +49,14 @@ Try connecting to the database:
 
 ### nginx
 
-See [docs/nginx.conf](https://github.com/nilsding/justask/blob/master/docs/nginx.conf)
+See [docs/nginx.conf](https://github.com/Retrospring/retrospring/blob/master/docs/nginx.conf)
 for the configuration we use on Retrospring.
 
 ### justask
 
 #### Clone the Source
 
-    $ git clone https://github.com/nilsding/justask.git justask
+    $ git clone --recursive https://github.com/Retrospring/retrospring.git retrospring
 
 #### Configure It
 
@@ -128,6 +128,13 @@ Export user data:
 Find the user(s) with the most self-asked anonymous questions:
 
     $ bundle exec rake justask:loners
+
+#### Updating Submodules
+
+If you already have an existing copy of justask, you can initialize and update the submodules with;
+
+    $ git submodule init
+    $ git submodule update
 
 ## The Official Retrospring Closedown Soundtrack™ (now redundant)
 

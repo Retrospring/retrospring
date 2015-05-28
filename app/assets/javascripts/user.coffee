@@ -51,3 +51,45 @@ $(document).on "click", "a[data-action=report-user]", (ev) ->
   btn = $(this)
   target = btn[0].dataset.target
   reportDialog "user", target, -> btn.button "reset"
+
+# parallax
+PARALLAX_PREFIX = null
+if typeof document.documentElement.style.webkitTransform == "string"
+  PARALLAX_PREFIX = "webkit"
+if typeof document.documentElement.style.mozTransform == "string"
+  PARALLAX_PREFIX = "moz"
+if typeof document.documentElement.style.oTransform == "string"
+  PARALLAX_PREFIX = "o"
+if typeof document.documentElement.style.msTransform == "string"
+  PARALLAX_PREFIX = "ms"
+if typeof document.documentElement.style.khtmlTransform == "string"
+  PARALLAX_PREFIX = "khtml"
+if typeof document.documentElement.style.transform == "string"
+  PARALLAX_PREFIX = ""
+
+HEADER_PARALLAX = null
+
+if PARALLAX_PREFIX?
+  PARALLAX_CSS = "transform"
+  if PARALLAX_PREFIX.length
+    PARALLAX_CSS = PARALLAX_PREFIX + PARALLAX_CSS.charAt(0).toUpperCase() + PARALLAX_CSS.slice(1)
+
+  window.HEADER_PARALLAX_INERTIA = 0.4;
+
+  HEADER_PARALLAX = ->
+    header = $("#profile--header:not(.profile--no-header) img")[0]
+    if header?
+      headerOffset = document.body.scrollTop * HEADER_PARALLAX_INERTIA
+      header.style[PARALLAX_CSS] = "translate3d(0px, #{headerOffset}px, 0px)";
+    return # coffee doesn't have !-> to prevent returning like LiveScript has, god I miss livescript ;-;
+    # also no := to set global variables :-(
+    # or var-iables = varIables :-((
+    # or fun! = fun() :-(((
+
+  $(window).on "scroll", (event) ->
+    HEADER_PARALLAX()
+    return
+
+$(document).ready ->
+  HEADER_PARALLAX() if HEADER_PARALLAX?
+  return

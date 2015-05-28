@@ -4,15 +4,28 @@
     evt.preventDefault()
     $("button[data-target=#modal-passwd]").trigger 'click'
 
+readImage = (file, callback) ->
+  fr = new FileReader()
+  fr.addEventListener "load", (e) ->
+    callback e.target.result
+  fr.readAsBinaryString file
+
+freeURL = () ->
+
+if window.URL? or window.webkitURL?
+  readImage = (file, callback) ->
+    callback (window.URL || window.webkitURL).createObjectURL file
+  freeURL = (url) ->
+    URL.revokeObjectURL url
+
 
 # Profile pic
 ($ document).on 'change', 'input#user_profile_picture[type=file]', ->
-  input = ($ this)[0]
+  input = this
 
   ($ '#profile-picture-crop-controls').slideUp 400, ->
     if input.files and input.files[0]
-      fr = new FileReader()
-      ($ fr).on 'load', (e) ->
+      readImage input.files[0], (src) ->
         cropper = ($ '#profile-picture-cropper')
         preview = ($ '#profile-picture-preview')
 
@@ -30,6 +43,9 @@
 #            marginTop: '-' + Math.round(ry * data.y) + 'px'
 
         cropper.on 'load', ->
+          if ({}.toString).call(src) == "[object URL]"
+            freeURL src
+
           side = if cropper[0].naturalWidth > cropper[0].naturalHeight
             cropper[0].naturalHeight
           else
@@ -48,17 +64,14 @@
             ($ '#profile-picture-crop-controls')[0].dataset.bound = true
           ($ '#profile-picture-crop-controls').slideDown()
 
-        cropper.attr 'src', e.target.result
-
-    fr.readAsDataURL(input.files[0])
+        cropper.attr 'src', src
 
 ($ document).on 'change', 'input#user_profile_header[type=file]', ->
-  input = ($ this)[0]
+  input = this
 
   ($ '#profile-header-crop-controls').slideUp 400, ->
     if input.files and input.files[0]
-      fr = new FileReader()
-      ($ fr).on 'load', (e) ->
+      readImage input.files[0], (src) ->
         cropper = ($ '#profile-header-cropper')
         preview = ($ '#profile-header-preview')
 
@@ -69,6 +82,9 @@
           ($ '#crop_h_h').val Math.floor(data.h / data.scale)
 
         cropper.on 'load', ->
+          if ({}.toString).call(src) == "[object URL]"
+            freeURL src
+
           cropper.guillotine
             width: 1500
             height: 350
@@ -82,6 +98,4 @@
             ($ '#profile-header-crop-controls')[0].dataset.bound = true
           ($ '#profile-header-crop-controls').slideDown()
 
-        cropper.attr 'src', e.target.result
-
-    fr.readAsDataURL(input.files[0])
+        cropper.attr 'src', src
