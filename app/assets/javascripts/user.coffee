@@ -53,7 +53,7 @@ $(document).on "click", "a[data-action=report-user]", (ev) ->
   reportDialog "user", target, -> btn.button "reset"
 
 # parallax
-PARALLAX_PREFIX = undefined
+PARALLAX_PREFIX = null
 if typeof document.documentElement.style.webkitTransform == "string"
   PARALLAX_PREFIX = "webkit"
 if typeof document.documentElement.style.mozTransform == "string"
@@ -67,7 +67,7 @@ if typeof document.documentElement.style.khtmlTransform == "string"
 if typeof document.documentElement.style.transform == "string"
   PARALLAX_PREFIX = ""
 
-HEADER_PARALLAX = undefined
+HEADER_PARALLAX = null
 
 if PARALLAX_PREFIX?
   PARALLAX_CSS = "transform"
@@ -78,12 +78,18 @@ if PARALLAX_PREFIX?
 
   HEADER_PARALLAX = ->
     header = $("#profile--header:not(.profile--no-header) img")[0]
-    return unless header?
-    top = (document.documentElement || document.body).scrollTop * HEADER_PARALLAX_INERTIA
-    header.style[PARALLAX_CSS] = "translate3d(0px, #{top}px, 0px)";
+    if header?
+      headerOffset = document.body.scrollTop * HEADER_PARALLAX_INERTIA
+      header.style[PARALLAX_CSS] = "translate3d(0px, #{headerOffset}px, 0px)";
+    return # coffee doesn't have !-> to prevent returning like LiveScript has, god I miss livescript ;-;
+    # also no := to set global variables :-(
+    # or var-iables = varIables :-((
+    # or fun! = fun() :-(((
 
   $(window).on "scroll", (event) ->
     HEADER_PARALLAX()
+    return
 
 $(document).ready ->
   HEADER_PARALLAX() if HEADER_PARALLAX?
+  return
