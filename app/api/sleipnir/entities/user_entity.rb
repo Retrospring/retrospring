@@ -8,13 +8,8 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   expose :screen_name
   expose :display_name
 
-  expose :profile_picture do |user, options|
-    user.profile_picture.url(:large)
-  end
-  expose :profile_header do |user, options|
-    user.profile_header.url(:web)
-  end
-
+  expose_image :profile_picture, :avatar
+  expose_image :profile_header, :header
   expose :motivation_header
   expose :website
   expose :location
@@ -60,6 +55,14 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   expose :created_at, as: :member_since, format_with: :epochtime
   expose :_created_at, as: :member_since, if: :nanotime do |object, _| object.created_at.to_i * 1000 end
 
+  class ProfilePictureProxy < Sleipnir::Entities::BaseEntity
+    expose_image :profile_picture, :avatar
+  end
+
+  class ProfileHeaderProxy < Sleipnir::Entities::BaseEntity
+    expose_image :profile_header, :header
+  end
+  
 private
 
   def banned

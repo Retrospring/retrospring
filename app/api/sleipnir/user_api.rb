@@ -15,16 +15,22 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     content_type :txt, 'text/plain'
     params do
       optional :redirect, type: Boolean, default: false
+      optional :size, type: String, default: "medium"
     end
     get "/:id/avatar", as: :user_profile_picture_api do
-      avatar = user_avatar_for_id(params[:id])
+      if params[:size] == "original"
+        params[:size] = "small" # no
+      end
+
       if params[:redirect]
-        redirect avatar
+        redirect user_avatar_for_id(params[:id], params[:size])
       else
         if env['api.format'] == :txt
-          avatar
+          user_avatar_for_id(params[:id], params[:size])
         else
-          {avatar: avatar}
+          # doesn't work??
+          # present User.find(params[:id]), with: Sleipnir::Entities::UserEntity, only: [:profile_header, :header]
+          present User.find(params[:id]), with: Sleipnir::Entities::UserEntity::ProfilePictureProxy
         end
       end
     end
@@ -32,17 +38,22 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     desc "Specified user's profile header"
     content_type :txt, 'text/plain'
     params do
-      optional :redirect, type: Boolean
+      optional :redirect, type: Boolean, default: false
+      optional :size, type: String, default: "web"
     end
     get "/:id/header", as: :user_profile_picture_api do
-      header = user_header_for_id(params[:id])
+      if params[:size] == "original"
+        params[:size] = "mobile" # no
+      end
+
       if params[:redirect]
-        redirect_to header
+        redirect user_header_for_id(params[:id], params[:size])
       else
         if env['api.format'] == :txt
-          header
+          user_header_for_id(params[:id], params[:size])
         else
-          {header: header}
+          # present User.find(params[:id]), with: Sleipnir::Entities::UserEntity, only: [:profile_picture, :avatar]
+          present User.find(params[:id]), with: Sleipnir::Entities::UserEntity::ProfileHeaderProxy
         end
       end
     end
