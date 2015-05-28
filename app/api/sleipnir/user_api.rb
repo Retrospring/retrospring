@@ -8,26 +8,42 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     oauth2 'public'
     throttle hourly: 72
     get "/", as: :user_api do
-      raise TeapotError.new
+      represent current_user, with: Sleipnir::Entities::UserEntity, type: :full
     end
 
     desc "Specified user's profile picture"
+    content_type :txt, 'text/plain'
+    params do
+      optional :redirect, type: Boolean, default: false
+    end
     get "/:id/avatar", as: :user_profile_picture_api do
       avatar = user_avatar_for_id(params[:id])
-      if env['api.format'] == :txt
-        avatar
+      if params[:redirect]
+        redirect avatar
       else
-        {avatar: avatar}
+        if env['api.format'] == :txt
+          avatar
+        else
+          {avatar: avatar}
+        end
       end
     end
 
     desc "Specified user's profile header"
+    content_type :txt, 'text/plain'
+    params do
+      optional :redirect, type: Boolean
+    end
     get "/:id/header", as: :user_profile_picture_api do
       header = user_header_for_id(params[:id])
-      if env['api.format'] == :txt
-        header
+      if params[:redirect]
+        redirect_to header
       else
-        {header: header}
+        if env['api.format'] == :txt
+          header
+        else
+          {header: header}
+        end
       end
     end
   end

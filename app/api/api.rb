@@ -37,11 +37,9 @@ class API < Grape::API
 
   format :json
   content_type :json, 'application/json'
-  content_type :txt, 'text/plain'
+  content_type :msgpack, 'application/x-msgpack'
 
   use APIErrorHandler
-
-  formatter :json, Grape::Formatter::ActiveModelSerializers
 
   before do
     header['Access-Control-Allow-Origin'] = '*'
@@ -49,16 +47,32 @@ class API < Grape::API
   end
 
   helpers do
+    def current_token
+      doorkeeper_access_token
+    end
+
     def current_user
       resource_owner
+    end
+
+    def current_application
+      current_token.application
+    end
+
+    def current_scopes
+      current_token.scopes
     end
   end
 
   use ::WineBouncer::OAuth2
 
   use Grape::Middleware::ThrottleMiddleware, cache: Redis.new(url: APP_CONFIG['redis_url']), user_key: ->(env) do
-    user = current_owner
-    user.nil? ? nil : current_owner.id
+    context = env['api.endpoint']
+    user = unless context.current_token.nil?
+      "#{context.current_application.id}-#{context.current_user.id}"
+    else
+      "#{env['REMOTE_ADDR']}"
+    end
   end
 
   get do

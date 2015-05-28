@@ -1,26 +1,22 @@
 module Sleipnir::Concerns
   extend ActiveSupport::Concern
-  included do
-    formatter :json, Grape::Formatter::ActiveModelSerializers
 
-    before do
-      header['Access-Control-Allow-Origin'] = '*'
-      header['Access-Control-Request-Method'] = '*'
+  included do
+    params do
+      optional :nanotime, type: Grape::API::Boolean, default: false
+      optional :id_to_string, type: Grape::API::Boolean, default: false
     end
 
     helpers do
-      def current_token
-        doorkeeper_access_token
-      end
-
-      def current_user
-        resource_owner
-      end
-
-      def current_scopes
-        current_token.scopes
+      # monkey patch embeds
+      def represent(*args)
+        if args.length == 1
+          args.push({})
+        end
+        args[1][:id_to_string] = params[:id_to_string]
+        args[1][:nanotime] = params[:nanotime]
+        send("present", *args)
       end
     end
-
   end
 end
