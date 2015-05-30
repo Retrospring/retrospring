@@ -79,7 +79,7 @@ if PARALLAX_PREFIX?
   HEADER_PARALLAX = ->
     header = $("#profile--header:not(.profile--no-header) img")[0]
     if header?
-      headerOffset = document.body.scrollTop * HEADER_PARALLAX_INERTIA
+      headerOffset = Math.max(window.pageYOffset, window.scrollY, document.documentElement.scrollTop) * HEADER_PARALLAX_INERTIA
       header.style[PARALLAX_CSS] = "translate3d(0px, #{headerOffset}px, 0px)";
     return # coffee doesn't have !-> to prevent returning like LiveScript has, god I miss livescript ;-;
     # also no := to set global variables :-(
