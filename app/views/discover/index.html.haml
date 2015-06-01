@@ -16,13 +16,13 @@
         %ul.nav.nav-tabs{role: "tablist"}
           %li.active{role: "presentation"}
             %a{href: "#answers", role: "tab", aria: {controls: "answers"}, data: {toggle: "tab"}}
-              Answers
+              Most Liked
           %li{role: "presentation"}
             %a{href: "#questions", role: "tab", aria: {controls: "questions"}, data: {toggle: "tab"}}
-              Questions
+              Most Answers
           %li{role: "presentation"}
             %a{href: "#comments", role: "tab", aria: {controls: "comments"}, data: {toggle: "tab"}}
-              Most Comments
+              Most Controversial
         .tab-content.discover
           = render 'discover/tab_answers', answers: @popular_answers
           = render 'discover/tab_questions', questions: @popular_questions
@@ -37,7 +37,7 @@
               New Users
           %li{role: "presentation"}
             %a{href: "#asked", role: "tab", aria: {controls: "asked"}, data: {toggle: "tab"}}
-              Most Asked Questions
+              Active Askers
           %li{role: "presentation"}
             %a{href: "#answered", role: "tab", aria: {controls: "answered"}, data: {toggle: "tab"}}
               Most Answers
