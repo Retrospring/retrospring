@@ -1,3 +1,3 @@
-class Sleipnir::Entities::SubscriptionEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::SubscriptionEntity < Sleipnir::Entities::BaseEntity
 
 end

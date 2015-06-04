@@ -1,3 +1,3 @@
-class Sleipnir::Entities::InboxEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::InboxEntity < Sleipnir::Entities::BaseEntity
 
 end

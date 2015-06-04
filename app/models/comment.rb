@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   validates :user_id, presence: true
   validates :answer_id, presence: true
   has_many :smiles, class_name: "CommentSmile", foreign_key: :comment_id, dependent: :destroy
-  has_one  :application, class_name: "Doorkeeper::Application"
+  belongs_to :application, class_name: "Doorkeeper::Application"
 
   validates :content, length: { maximum: 160 }
 

@@ -1,3 +1,3 @@
-class Sleipnir::Entities::RelationshipEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::RelationshipEntity < Sleipnir::Entities::BaseEntity
 
 end

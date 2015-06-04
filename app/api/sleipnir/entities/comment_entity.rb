@@ -1,3 +1,3 @@
-class Sleipnir::Entities::CommentEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::CommentEntity < Sleipnir::Entities::BaseEntity
 
 end

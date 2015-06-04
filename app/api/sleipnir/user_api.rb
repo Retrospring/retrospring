@@ -7,8 +7,47 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     desc "Current user's profile"
     oauth2 'public'
     throttle hourly: 72
-    get "/", as: :user_api do
+    get "/me", as: :user_api do
       represent current_user, with: Sleipnir::Entities::UserEntity, type: :full
+    end
+
+    desc "Given user's profile"
+    oauth2 'public'
+    throttle hourly: 72
+    get "/:id/profile", as: :given_user_api do
+      represent User.find(params[:id]), with: Sleipnir::Entities::UserEntity
+    end
+
+    desc "Given user's questions"
+    # oauth2 'public'
+    throttle hourly: 720
+    params do
+      optional :since_id, type: Fixnum
+    end
+    get "/:id/questions", as: :user_questions_api do
+      collection = since_id Question, "author_is_anonymous = FALSE AND user_id = ?", [params[:id]]
+      represent_collection collection, with: Sleipnir::Entities::QuestionsEntity 
+    end
+
+    desc "Given user's answers"
+    oauth2 'public'
+    throttle hourly: 720
+    get "/:id/questions", as: :user_answers_api do
+      throw new TeapotError
+    end
+
+    desc "Given user's followers"
+    oauth2 'public'
+    throttle hourly: 72
+    get "/:id/questions", as: :user_followers_api do
+      throw new TeapotError
+    end
+
+    desc "Given user's following"
+    oauth2 'public'
+    throttle hourly: 72
+    get "/:id/questions", as: :user_following_api do
+      throw new TeapotError
     end
 
     desc "Specified user's profile picture"

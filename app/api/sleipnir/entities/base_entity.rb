@@ -19,4 +19,19 @@ class Sleipnir::Entities::BaseEntity < Grape::Entity
       r
     end
   end
+
+private
+
+  def api_collection_count
+    options[:collection].length
+  end
+
+  def api_next_page
+    return nil if options[:collection].last.nil?
+    "#{options[:ENDPOINT]}?since_id=#{options[:collection].last.id}"
+  end
+
+  def api_collection
+    options[:collection]
+  end
 end

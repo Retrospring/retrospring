@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions, dependent: :destroy
 
-  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner, dependent: :destroy
+  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
@@ -79,13 +79,13 @@ class User < ActiveRecord::Base
       end
     end
 
-    # self.applications.each do |application|
-    #   application.uid = application.secret = application.redirect_uri = application.owner_type = ""
-    #   application.scopes = Doorkeeper::OAuth::Scopes.from_string "INVALID"
-    #   application.deleted = true
-    #   application.owner_id = 0
-    #   application.save validate: false
-    # end
+    self.applications.each do |application|
+      application.uid = application.secret = application.redirect_uri = application.owner_type = ""
+      application.scopes = Doorkeeper::OAuth::Scopes.from_string "INVALID"
+      application.deleted = true
+      application.owner_id = -1
+      application.save validate: false
+    end
   end
 
   def login=(login)

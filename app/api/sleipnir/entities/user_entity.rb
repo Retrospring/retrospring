@@ -29,7 +29,7 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
     expose :banned_until, as: :until, format_with: :epochtime
     expose :_banned_until, as: :until, if: :nanotime do |object, _| object.banned_until.to_i * 1000 end
 
-    expose :ban_reason, safe: true, as: :reason, if: {type: :full}
+    expose :ban_reason, safe: true, as: :reason do |object| object.ban_reason || "" end
   end
 
   # expose :locale
@@ -62,7 +62,7 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   class ProfileHeaderProxy < Sleipnir::Entities::BaseEntity
     expose_image :profile_header, :header
   end
-  
+
 private
 
   def banned

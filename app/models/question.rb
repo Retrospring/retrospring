@@ -2,7 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers, dependent: :destroy
   has_many :inboxes, dependent: :destroy
-  has_one  :application, class_name: "Doorkeeper::Application"
+  belongs_to :application, class_name: "Doorkeeper::Application"
 
   validates :content, length: { maximum: 255 }
 

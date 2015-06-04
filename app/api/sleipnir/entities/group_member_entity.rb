@@ -1,3 +1,3 @@
-class Sleipnir::Entities::GroupMemberEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::GroupMemberEntity < Sleipnir::Entities::BaseEntity
 
 end

@@ -1,3 +1,3 @@
-class Sleipnir::Entities::AnswerEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::AnswerEntity < Sleipnir::Entities::BaseEntity
 
 end

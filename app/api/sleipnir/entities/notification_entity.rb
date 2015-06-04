@@ -1,3 +1,3 @@
-class Sleipnir::Entities::NotificiationEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::NotificiationEntity < Sleipnir::Entities::BaseEntity
 
 end

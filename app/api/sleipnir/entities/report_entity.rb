@@ -1,3 +1,3 @@
-class Sleipnir::Entities::ReportEntity < Sleipnir::Entites::BaseEntity
+class Sleipnir::Entities::ReportEntity < Sleipnir::Entities::BaseEntity
 
 end

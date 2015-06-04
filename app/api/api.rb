@@ -56,10 +56,12 @@ class API < Grape::API
     end
 
     def current_application
+      return nil if current_token.nil?
       current_token.application
     end
 
     def current_scopes
+      return nil if current_token.nil?
       current_token.scopes
     end
   end
