@@ -60,8 +60,8 @@ for the configuration we use on Retrospring.
 
 #### Configure It
 
-    # Change into the justask directory
-    $ cd justask
+    # Change into the project directory
+    $ cd retrospring
 
     # Copy the example config
     $ cp config/justask.yml.example config/justask.yml
