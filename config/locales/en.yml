@@ -21,6 +21,28 @@
 
 en:
   views:
+    messages:
+      noscript: "Please activate JavaScript."
+    inbox:
+      empty: "Nothing to see here."
+      sidebar:
+        questions:
+          title: "Out of questions?"
+          button: "Get new question"
+        share:
+          title: "Share"
+          button: "Share on %{service}"
+        actions:
+          title: "Actions"
+          button: "Delete all questions"
+      entry:
+        asked: "%{user} asked %{time} ago"
+        response: "response"
+        sharing:
+          title: "Sharing"
+          post: "Post to %{service}"
+          none: "You have not connected any services yet. Visit your %{settings} to connect one."
+          settings: "service settings"
     general:
       answer: "answer"
       question: "question"
@@ -29,6 +51,8 @@ en:
       follower: "follower"
       following: "following"
     actions:
+      answer: "Answer"
+      options: "Options"
       anonymous: "Hide your name"
       delete: "Delete"
       report: "Report"
@@ -36,6 +60,7 @@ en:
       subscribe: "Subscribe"
       unsubscribe: "Unsubscribe"
       view: "View comment smiles"
+      load: "Load more"
     sessions:
       destroy: "Logout"
       create: "Sign in"
