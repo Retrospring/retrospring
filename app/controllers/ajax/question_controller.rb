@@ -86,7 +86,7 @@ class Ajax::QuestionController < ApplicationController
 
     @message = "Failed to render markdown."
     begin
-      @markdown = markdown(params[:md], Time.new)
+      @markdown = markdown params[:md]
       @message = "Successfully rendered markdown."
     rescue
       @status = :fail
