@@ -23,6 +23,25 @@ en:
   views:
     messages:
       noscript: "Please activate JavaScript."
+    notifications:
+      show: "Show all notifications"
+      mark: " and mark them as read"
+      answer:
+        body: "answered %{question} %{time} ago"
+        question: "your question"
+      relationship:
+        body: "followed you %{time} ago"
+      smile:
+        body: "smiled at %{content} %{time} ago" # content v
+        answer: "your answer" # content if smile
+        comment: "your comment" # content if commentsmile
+      tabs:
+        all: "All notifications"
+        answer: "Answers"
+        smile: "Smiles"
+        comment: "Comments"
+        commentsmile: "Comment Smiles"
+        relationship: "Followers"
     inbox:
       empty: "Nothing to see here."
       sidebar:

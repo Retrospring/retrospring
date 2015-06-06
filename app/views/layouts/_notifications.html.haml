@@ -23,11 +23,7 @@
                   %h6.media-heading.notification--dropdown-user
                     = user_screen_name notification.target.user
                   .notification--dropdown-text
-                    answered
-                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id), title: "#{notification.target.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-                      your question
-                    = time_ago_in_words notification.target.created_at
-                    ago
+                    = raw t('views.notifications.answer.body', question: link_to(t('views.notifications.answer.question'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)), time: time_ago_in_words(notification.target.created_at))
               - when "Relationship"
                 .pull-left
                   %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.source)}
@@ -35,9 +31,7 @@
                   %h6.media-heading.notification--dropdown-user
                     = user_screen_name notification.target.source
                   .notification--dropdown-text
-                    followed you
-                    = time_ago_in_words notification.target.created_at
-                    ago
+                    = raw t('views.notifications.relationship.body', time: time_ago_in_words(notification.target.created_at))
               - when "Smile"
                 .pull-left
                   %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.user)}
@@ -45,11 +39,7 @@
                   %h6.media-heading.notification--dropdown-user
                     = user_screen_name notification.target.user
                   .notification--dropdown-text
-                    smiled at
-                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-                      your answer
-                    = time_ago_in_words notification.target.created_at
-                    ago
+                    = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.answer'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_ago_in_words(notification.target.created_at))
               - when "CommentSmile"
                 .pull-left
                   %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.user)}
@@ -57,11 +47,7 @@
                   %h6.media-heading.notification--dropdown-user
                     = user_screen_name notification.target.user
                   .notification--dropdown-text
-                    smiled at
-                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.comment.answer.id), title: "#{notification.target.comment.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-                      your comment
-                    = time_ago_in_words notification.target.created_at
-                    ago
+                    = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.comment'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_ago_in_words(notification.target.created_at))
               - when "Comment"
                 .pull-left
                   %img.img-rounded.notification--dropdown-img{src: gravatar_url(notification.target.user)}
@@ -69,6 +55,7 @@
                   %h6.media-heading.notification--dropdown-user
                     = user_screen_name notification.target.user
                   .notification--dropdown-text
+                    / TODO: holy fuck I'm not going to touch this with locales for now, this one will be complicated.
                     commented on
                     %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
                       - if notification.target.answer.user == current_user
@@ -80,4 +67,4 @@
                       answer
                     = time_ago_in_words notification.target.created_at
                     ago
-    %li= link_to "Show all notifications#{" and mark them as read" if notifications.pluck(:new).any?}", notifications_path
+    %li= link_to "#{t('views.notifications.show')}#{t('views.notifications.mark') if notifications.pluck(:new).any?}", notifications_path

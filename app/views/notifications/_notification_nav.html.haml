@@ -6,12 +6,12 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{href: "/"} Notifications
+      %a.navbar-brand{href: notifications_path} Notifications
     #j2-tl-navbar-collapse.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        = nav_entry "All notifications", notifications_path
-        = nav_entry "Answers", notifications_path('answer')
-        = nav_entry "Smiles", notifications_path('smile')
-        = nav_entry "Comments", notifications_path('comment')
-        = nav_entry "Comment Smiles", notifications_path('commentsmile')
-        = nav_entry "Followers", notifications_path('relationship')
+        = nav_entry t('views.notifications.tabs.all'), notifications_path
+        = nav_entry t('views.notifications.tabs.answer'), notifications_path('answer')
+        = nav_entry t('views.notifications.tabs.smile'), notifications_path('smile')
+        = nav_entry t('views.notifications.tabs.comment'), notifications_path('comment')
+        = nav_entry t('views.notifications.tabs.commentsmile'), notifications_path('commentsmile')
+        = nav_entry t('views.notifications.tabs.relationship'), notifications_path('relationship')
