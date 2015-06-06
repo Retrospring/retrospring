@@ -141,8 +141,8 @@ en:
     answerbox:
       asked: "%{user} asked %{time} ago"
       read: "Read the entire answer"
-      answered: "%{hide} %{user}"
-      hide: "Answered by"
+      answered: "%{hide} %{user}" # resolves into "Answered by %{user}"
+      hide: "Answered by" # ^
       time: "%{time} ago"
       no_smile: "No one smiled this, yet."
       no_comment: "There are no comments yet."
