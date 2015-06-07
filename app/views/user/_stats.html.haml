@@ -19,4 +19,4 @@
       %a{href: show_user_profile_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#answered-count= @user.answered_count
-          %h6.entry-subtext= t('views.general.question').pluralize(@user.answered_count)
+          %h6.entry-subtext= t('views.general.answer').pluralize(@user.answered_count)
