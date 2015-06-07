@@ -55,16 +55,10 @@
                   %h6.media-heading.notification--dropdown-user
                     = user_screen_name notification.target.user
                   .notification--dropdown-text
-                    / TODO: holy fuck I'm not going to touch this with locales for now, this one will be complicated.
-                    commented on
-                    %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-                      - if notification.target.answer.user == current_user
-                        your
-                      - elsif notification.target.user == notification.target.answer.user
-                        their
-                      - else
-                        = user_screen_name(notification.target.answer.user, false, false) + "'s"
-                      answer
-                    = time_ago_in_words notification.target.created_at
-                    ago
+                    - if notification.target.answer.user == current_user
+                      = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.your', user: user_screen_name(current_user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+                    - elsif notification.target.user == notification.target.answer.user
+                      = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.their', user: user_screen_name(notification.target.answer.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+                    - else
+                      = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.user', user: user_screen_name(notification.target.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
     %li= link_to "#{t('views.notifications.show')}#{t('views.notifications.mark') if notifications.pluck(:new).any?}", notifications_path
