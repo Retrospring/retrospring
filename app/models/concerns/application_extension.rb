@@ -11,6 +11,8 @@ module Concerns::ApplicationExtension
     validates_attachment_content_type :icon, :content_type => /\Aimage\/(png|jpe?g|gif)\Z/
     process_in_background :icon
 
+    validates :name, exclusion: { in: %w(Web) }, length: { minimum: 3 }
+
     before_save do
       self.homepage = if homepage.match %r{\Ahttps?://}
                        homepage

@@ -3,13 +3,9 @@
     .alert.alert-danger{data: { alert: true }}
       %p= t('doorkeeper.applications.form.error')
   = f.text_field :name
-  = doorkeeper_errors_for application, :name
   = f.text_field :description
-  = doorkeeper_errors_for application, :description
   = f.text_field :homepage
-  = doorkeeper_errors_for application, :homepage
   = f.text_area :redirect_uri
-  = doorkeeper_errors_for application, :redirect_uri
   %span.help-block= t('doorkeeper.applications.help.redirect_uri')
   - if Doorkeeper.configuration.native_redirect_uri
     %span.help-block= raw t('doorkeeper.applications.help.native_redirect_uri', native_redirect_uri: "<code>#{ Doorkeeper.configuration.native_redirect_uri }</code>")
@@ -28,7 +24,6 @@
       %label.doorkeeper_application_scopes
         = check_box_tag 'scopes', :moderation, !application.scopes.all.index("moderation").nil?
         Moderation
-    = doorkeeper_errors_for application, :scopes
   .form-group
     .media#app-icon-media
       .pull-left
