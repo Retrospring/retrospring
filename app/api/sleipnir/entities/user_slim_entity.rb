@@ -1,10 +1,10 @@
 class Sleipnir::Entities::UserSlimEntity < Sleipnir::Entities::UserEntity
   expose :avatar do |user, options|
-    user.profile_picture.url(:medium)
+    globalize_paperclip user.profile_picture.url(:medium)
   end
 
   expose :header do |user, options|
-    user.profile_header.url(:web)
+    globalize_paperclip user.profile_header.url(:web)
   end
 
   unexpose :motivation_header

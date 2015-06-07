@@ -9,18 +9,22 @@ class Sleipnir::Entities::BaseEntity < Grape::Entity
       styles = attachment.options[:styles]
       r = {}
       for style, _ in styles
-        url = attachment.url(style)
-        if url[0] == "/"
-          # so dirty
-          url = "http#{APP_CONFIG["https"] && "s" || ""}://#{APP_CONFIG["hostname"]}#{APP_CONFIG["port"] && APP_CONFIG["port"] != 80 && ":#{APP_CONFIG["port"]}" || ""}#{url}"
-        end
-        r[style] = url
+        r[style] = globalize_paperclip(attachment.url(style))
       end
       r
     end
   end
 
 private
+
+  def globalize_paperclip(entity)
+    if entity[0] == "/"
+      # so dirty
+      "http#{APP_CONFIG["https"] && "s" || ""}://#{APP_CONFIG["hostname"]}#{APP_CONFIG["port"] && APP_CONFIG["port"] != 80 && ":#{APP_CONFIG["port"]}" || ""}#{entity}"
+    else
+      entity
+    end
+  end
 
   def api_collection_count
     options[:collection].length
