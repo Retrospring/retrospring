@@ -8,8 +8,10 @@ class Sleipnir::Entities::QuestionEntity < Sleipnir::Entities::BaseEntity
 
   expose :author_is_anonymous, as: :anonymous
 
-  expose :user_id
-  expose :_user_id, as: :user_id, if: :id_to_string do |object, _| object.id.to_s end
+  expose :user_id, if: :no_question_user
+  expose :_user_id, as: :user_id, if: {id_to_string: true, no_question_user: true} do |object, _| user_id.to_s end
+
+  expose :user, with: Sleipnir::Entities::UserSlimEntity, unless: :no_question_user
 
   expose :application, as: :created_with, with: Sleipnir::Entities::ApplicationReferenceEntity
 
@@ -20,7 +22,7 @@ private
 
   def user_id()
     if object.author_is_anonymous
-      -1
+      nil
     else
       object.user_id
     end

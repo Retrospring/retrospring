@@ -12,7 +12,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
 
     desc "Given user's profile"
-    oauth2 'public'
+    # oauth2 'public'
     throttle hourly: 72
     get "/:id/profile", as: :given_user_api do
       represent User.find(params[:id]), with: Sleipnir::Entities::UserEntity
@@ -26,28 +26,67 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
     get "/:id/questions", as: :user_questions_api do
       collection = since_id Question, "author_is_anonymous = FALSE AND user_id = ?", [params[:id]]
-      represent_collection collection, with: Sleipnir::Entities::QuestionsEntity 
+      represent_collection collection, with: Sleipnir::Entities::QuestionsEntity, no_question_user: true
     end
 
     desc "Given user's answers"
-    oauth2 'public'
+    # oauth2 'public'
     throttle hourly: 720
-    get "/:id/questions", as: :user_answers_api do
-      throw new TeapotError
+    get "/:id/answers", as: :user_answers_api do
+      collection = since_id Answer, "user_id = ?", [params[:id]]
+      represent_collection collection, with: Sleipnir::Entities::AnswersEntity, no_answer_user: true
     end
 
     desc "Given user's followers"
-    oauth2 'public'
+    # oauth2 'public'
     throttle hourly: 72
-    get "/:id/questions", as: :user_followers_api do
-      throw new TeapotError
+    get "/:id/followers", as: :user_followers_api do
+      collection = since_id Relationship, "target_id = ?", [params[:id]]
+      represent_collection collection, with: Sleipnir::Entities::RelationshipsEntity, relationship: :them
     end
 
     desc "Given user's following"
-    oauth2 'public'
+    # oauth2 'public'
     throttle hourly: 72
-    get "/:id/questions", as: :user_following_api do
-      throw new TeapotError
+    get "/:id/following", as: :user_following_api do
+      collection = since_id Relationship, "source_id = ?", [params[:id]]
+      represent_collection collection, with: Sleipnir::Entities::RelationshipsEntity, relationship: :me
+    end
+
+    desc "Follow given user"
+    oauth2 'write'
+    throttle hourly: 72
+    post "/:id/follow", as: :user_follow_api do
+      begin
+        user = User.find(params["id"])
+        if user.nil?
+          status 404
+          return present({success: false, code: 404, reason: "Cannot find user #{params["id"]}"})
+        end
+        current_user.follow(user)
+        present({success: true, code: 200, reason: "Followed user #{params["id"]}"})
+      rescue
+        status 403
+        present({success: false, code: 503, reason: "Already following user"})
+      end
+    end
+
+    desc "Unfollow given user"
+    oauth2 'write'
+    throttle hourly: 72
+    delete "/:id/follow", as: :user_unfollow_api do
+      begin
+        user = User.find(params["id"])
+        if user.nil?
+          status 404
+          return present({success: false, code: 404, reason: "Cannot find user #{params["id"]}"})
+        end
+        current_user.unfollow(user)
+        present({success: true, code: 200, reason: "Unfollowed user #{params["id"]}"})
+      rescue
+        status 403
+        present({success: false, code: 403, reason: "Not following user"})
+      end
     end
 
     desc "Specified user's profile picture"

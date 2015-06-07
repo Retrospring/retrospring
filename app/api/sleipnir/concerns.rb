@@ -46,7 +46,7 @@ module Sleipnir::Concerns
         end
         query_params.unshift query
 
-        collection.send("where", query_params).limit(max_results)
+        collection.send("where", query_params).limit(max_results).order(:created_at)
       end
     end
   end
