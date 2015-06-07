@@ -5,14 +5,14 @@
   - else
     - if current_user.following? user
       %button#editprofile.btn.btn-default.btn-block.profile--follow-btn{type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name }}
-        Unfollow
+        = t 'views.actions.unfollow'
     - else
       %button#editprofile.btn.btn-primary.btn-block.profile--follow-btn{type: :button, name: 'user-action', data: { action: :follow, type: type, target: user.screen_name }}
-        Follow
+        = t 'views.actions.follow'
   - unless user == current_user
     .btn-group.btn-block
       %button.btn.btn-default.btn-block.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
-        Actions
+        = t 'views.actions.title'
         %span.caret
       %ul.dropdown-menu
         /
@@ -23,21 +23,18 @@
         %li.visible-xs
           %a{href: '#', data: { target: "#modal-group-memberships", toggle: :modal }}
             %i.fa.fa-users
-            Manage group memberships
+            = t 'views.actions.group'
         %li
           %a{href: '#', data: { action: 'report-user', target: user.screen_name }}
             %i.fa.fa-exclamation-triangle
-            Report
+            = t 'views.actions.report'
         - if current_user.mod?
           %li
             %a{href: '#', data: { target: "#modal-privileges", toggle: :modal }}
               %i.fa.fa-wrench
-              Check
-              = succeed "'s" do
-                = user.screen_name
-              privileges
+              = raw t('views.actions.privilege', user: user.screen_name)
           - unless user.admin?
             %li
               %a{href: '#', data: { target: "#modal-ban", toggle: :modal }}
                 %i.fa.fa-ban
-                Ban Control
+                = t 'views.actions.ban'

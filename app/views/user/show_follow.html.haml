@@ -16,7 +16,7 @@
 
     - if @users.next_page
       %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @users.current_page }}
-        Load more
+        = t 'views.actions.load'
   .visible-xs= render 'shared/links'
 - if user_signed_in?
   = render 'user/modal_group_memberships'

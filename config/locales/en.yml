@@ -76,6 +76,7 @@ en:
       follower: "follower"
       following: "following"
     actions:
+      title: "Actions"
       answer: "Answer"
       options: "Options"
       anonymous: "Hide your name"
@@ -86,6 +87,15 @@ en:
       unsubscribe: "Unsubscribe"
       view: "View comment smiles"
       load: "Load more"
+      follow: "Follow"
+      unfollow: "Unfollow"
+      group: "Manage group memberships"
+      ban: "Ban Control"
+      privilege: "Check %{user}'s privileges"
+      save: "Save changes"
+      cancel: "Cancel"
+      close: "Close"
+      done: "Done"
     sessions:
       destroy: "Logout"
       create: "Sign in"
@@ -181,4 +191,70 @@ en:
         create: "Create an account"
         another: "Ask another question"
         join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
+    settings:
+      tabs:
+        account: "Account"
+        profile: "Profile"
+        privacy: "Privacy"
+        sharing: "Sharing"
+      account:
+        modal:
+          title: "Save account changes"
+        username: "User name"
+        email: "Email address"
+        email_confirm: "Currently awaiting confirmation for %{resource}"
+        password: "Password"
+        password_confirm: "Confirm password"
+        password_help: "Leave this blank if you don't want to change it"
+        password_current: "Current password"
+        password_current_help:
+        delete: "Delete my account"
+        unsatisfied: "Unsatisfied?"
+        back: "Back"
+      profile:
+        displayname: "Your name"
+        avatar_adjust: "Adjust your new avatar"
+        header_adjust: "Adjust your new header"
+        motivation: "Motivation header"
+        website: "Website"
+        location: "Location"
+        bio: "Bio"
+        placeholder:
+          motivation: "Ask me anything!"
+          location: "Where are you?"
+          bio: "Tell us something nice about you!"
+      privacy:
+        anonymous: "Allow anonymous questions"
+        public: "Show your answers in the public timeline"
+        stranger: "Allow other people to answer your questions"
+    modal:
+      bancontrol:
+        title: "Ban Control Center"
+        ban: "Ban?"
+        permanent: "Permanently?"
+        reason: "Reason"
+        hammertime: "Hammer Time"
+      group:
+        title: "Manage group memberships"
+        tabs:
+          main: "Groups"
+          create: "Create new group"
+        create: "Create group"
+        name: "Group name"
+        members: "members"
+      privilege:
+        blogger: "The user gets that privilege if they blogged something (nice) about Retrospring."
+        contributor: "This user has contributed to justask (the software behind Retrospring)."
+        supporter: "This user monetarily supports the site."
+        moderator: "Someone trustworthy enough to help managing reports."
+        admin: "This user is part of the core team."
+    user:
+      follows_you: "Follows you"
+      title:
+        admin: "Admin"
+        moderator: "Moderator"
+        supporter: "Supporter"
+        contributor: "Contributor"
+        blogger: "Blogger"
+        banned: "Banned"
   hello: "Hello world"
