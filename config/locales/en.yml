@@ -36,10 +36,10 @@ en:
         answer: "your answer" # content if smile, 'smiled at your answer'
         comment: "your comment" # content if commentsmile, 'smiled at your comment'
       comment:
-        body: 'commented on %{content} %{time} ago' # see below for 'content' vvvv
-        your: 'your answer' # 'commented on your answer'
-        their: 'their answer' # 'commented on their answer'
-        user: '#{user}\'s answer' # 'commented on user's asnwer'
+        body: "commented on %{content} %{time} ago" # see below for 'content' vvvv
+        your: "your answer" # 'commented on your answer'
+        their: "their answer" # 'commented on their answer'
+        user: "#{user}'s answer" # 'commented on user's asnwer'
         # all three have the 'user' variable
       tabs:
         all: "All notifications"
