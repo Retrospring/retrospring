@@ -3,7 +3,7 @@ class Ajax::QuestionController < ApplicationController
 
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
-    @message = "#{param_miss_ex.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -14,14 +14,14 @@ class Ajax::QuestionController < ApplicationController
     question = Question.find params[:question]
     if question.nil?
       @status = :not_found
-      @message = "Question does not exist"
+      @message = I18n.t('messages.question.destroy.not_found')
       @success = false
       return
     end
 
     if not (current_user.mod? or question.user == current_user)
       @status = :not_authorized
-      @message = "You are not allowed to delete this question"
+      @message = I18n.t('messages.question.destroy.not_authorized')
       @success = false
       return
     end
@@ -29,7 +29,7 @@ class Ajax::QuestionController < ApplicationController
     question.destroy!
 
     @status = :okay
-    @message = "Successfully deleted question."
+    @message = I18n.t('messages.question.destroy.okay')
     @success = true
   end
 
@@ -44,7 +44,7 @@ class Ajax::QuestionController < ApplicationController
                                   user: current_user)
     rescue ActiveRecord::RecordInvalid
       @status = :rec_inv
-      @message = "Your question is too long."
+      @message = I18n.t('messages.question.create.rec_inv')
       @success = false
       return
     end
@@ -67,7 +67,7 @@ class Ajax::QuestionController < ApplicationController
           end
         rescue ActiveRecord::RecordNotFound
           @status = :not_found
-          @message = "Group not found"
+          @message = I18n.t('messages.question.create.not_found')
           @success = false
           return
         end
@@ -77,17 +77,17 @@ class Ajax::QuestionController < ApplicationController
     end
 
     @status = :okay
-    @message = "Question asked successfully."
+    @message = I18n.t('messages.question.create.okay')
     @success = true
   end
 
   def preview
     params.require :md
 
-    @message = "Failed to render markdown."
+    @message = I18n.t('messages.question.preview.fail')
     begin
       @markdown = markdown(params[:md], Time.new)
-      @message = "Successfully rendered markdown."
+      @message = I18n.t('messages.question.preview.okay')
     rescue
       @status = :fail
       @success = false

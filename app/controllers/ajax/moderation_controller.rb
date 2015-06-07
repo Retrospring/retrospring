@@ -1,7 +1,7 @@
 class Ajax::ModerationController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
-    @message = "#{param_miss_ex.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -16,14 +16,14 @@ class Ajax::ModerationController < ApplicationController
       current_user.report_vote(report, params[:upvote])
     rescue
       @status = :fail
-      @message = "You have already voted on this report."
+      @message = I18n.t('messages.moderation.vote.fail')
       @success = false
       return
     end
 
     @count = report.votes
     @status = :okay
-    @message = "Successfully voted on report."
+    @message = I18n.t('messages.moderation.vote.okay')
     @success = true
   end
 
@@ -36,14 +36,14 @@ class Ajax::ModerationController < ApplicationController
       current_user.report_unvote report
     rescue
       @status = :fail
-      @message = "You have not voted on that report."
+      @message = I18n.t('messages.moderation.destroy_vote.fail')
       @success = false
       return
     end
 
     @count = report.votes
     @status = :okay
-    @message = "Successfully removed vote from report."
+    @message = I18n.t('messages.moderation.destroy_vote.okay')
     @success = true
   end
 
@@ -57,13 +57,13 @@ class Ajax::ModerationController < ApplicationController
       report.save
     rescue
       @status = :fail
-      @message = "Something bad happened!"
+      @message = I18n.t('messages.moderation.destroy_report.fail')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "WHERE DID IT GO??? OH NO!!!"
+    @message = I18n.t('messages.moderation.destroy_report.okay')
     @success = true
   end
 
@@ -79,12 +79,12 @@ class Ajax::ModerationController < ApplicationController
       current_user.report_comment(report, params[:comment])
     rescue ActiveRecord::RecordInvalid
       @status = :rec_inv
-      @message = "Your comment is too long."
+      @message = I18n.t('messages.moderation.create_comment.rec_inv')
       return
     end
 
     @status = :okay
-    @message = "Comment posted successfully."
+    @message = I18n.t('messages.moderation.create_comment.okay')
     @success = true
     @render = render_to_string(partial: 'moderation/discussion', locals: { report: report })
     @count = report.moderation_comments.all.count
@@ -99,7 +99,7 @@ class Ajax::ModerationController < ApplicationController
 
     unless current_user == comment.user
       @status = :nopriv
-      @message = "can't delete other people's comments"
+      @message = I18n.t('messages.moderation.destroy_comment.nopriv')
       @success = false
       return
     end
@@ -107,13 +107,13 @@ class Ajax::ModerationController < ApplicationController
     comment.destroy
 
     @status = :okay
-    @message = "Successfully deleted comment."
+    @message = I18n.t('messages.moderation.destroy_comment.okay')
     @success = true
   end
 
   def ban
     @status = :err
-    @message = "Weird..."
+    @message = I18n.t('messages.moderation.ban.error')
     @success = false
 
     params.require :user
@@ -129,21 +129,21 @@ class Ajax::ModerationController < ApplicationController
 
     if not unban and target.admin?
       @status = :nopriv
-      @message = "You cannot ban an administrator!"
+      @message = I18n.t('messages.moderation.ban.nopriv')
       @success = false
       return
     end
 
     if unban
       target.unban
-      @message = "Unbanned user."
+      @message = I18n.t('messages.moderation.ban.unban')
       @success = true
     elsif perma
       target.ban nil, reason
-      @message = "Permanently banned user."
+      @message = I18n.t('messages.moderation.ban.perma')
     else
       target.ban buntil, reason
-      @message = "Banned user until #{buntil.to_s}"
+      @message = I18n.t('messages.moderation.ban.temp', date: buntil.to_s)
     end
     target.save!
 
@@ -163,12 +163,12 @@ class Ajax::ModerationController < ApplicationController
 
     target_user = User.find_by_screen_name(params[:user])
 
-    @message = "nope!"
+    @message = I18n.t('messages.moderation.privilege.nope')
     return unless %w(blogger supporter moderator admin contributor).include? params[:type].downcase
 
     if %w(supporter moderator admin).include?(params[:type].downcase) and !current_user.admin?
       @status = :nopriv
-      @message = "You'd better check YOUR privileges first!"
+      @message = I18n.t('messages.moderation.privilege.nopriv')
       @success = false
       return
     end
@@ -177,7 +177,7 @@ class Ajax::ModerationController < ApplicationController
     target_user.send("#{params[:type]}=", status)
     target_user.save!
 
-    @message = "Successfully checked this user's #{params[:type]} privilege."
+    @message = I18n.t('messages.moderation.privilege.checked', privilege: params[:type])
 
     @status = :okay
     @success = true

@@ -1,7 +1,7 @@
 class Ajax::AnswerController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |titanic_param|
     @status = :parameter_error
-    @message = "#{titanic_param.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: titanic_param.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -19,7 +19,7 @@ class Ajax::AnswerController < ApplicationController
 
       unless current_user == inbox_entry.user
         @status = :fail
-        @message = "question not in your inbox"
+        @message = I18n.t('messages.answer.create.fail')
         @success = false
         return
       end
@@ -28,7 +28,7 @@ class Ajax::AnswerController < ApplicationController
 
       unless question.user.privacy_allow_stranger_answers
         @status = :privacy_stronk
-        @message = "This user does not want other users to answer their question."
+        @message = I18n.t('messages.answer.create.privacy_stronk')
         @success = false
         return
       end
@@ -37,7 +37,7 @@ class Ajax::AnswerController < ApplicationController
     # this should never trigger because empty params throw ParameterMissing
     unless params[:answer].length > 0
       @status = :peter_dinklage
-      @message = "Answer is too short"
+      @message = I18n.t('messages.answer.create.peter_dinklage')
       @success = false
       return
     end
@@ -52,7 +52,7 @@ class Ajax::AnswerController < ApplicationController
                end
     rescue
       @status = :err
-      @message = "An error occurred"
+      @message = I18n.t('messages.error')
       @success = false
       return
     end
@@ -62,7 +62,7 @@ class Ajax::AnswerController < ApplicationController
 
 
     @status = :okay
-    @message = "Successfully answered question."
+    @message = I18n.t('messages.answer.create.okay')
     @success = true
     unless inbox
       @question = 1
@@ -77,7 +77,7 @@ class Ajax::AnswerController < ApplicationController
 
     unless (current_user == answer.user) or (privileged? answer.user)
       @status = :nopriv
-      @message = "can't delete other people's answers"
+      @message = I18n.t('messages.answer.destroy.nopriv')
       @success = false
       return
     end
@@ -88,7 +88,7 @@ class Ajax::AnswerController < ApplicationController
     answer.destroy
 
     @status = :okay
-    @message = "Successfully deleted answer."
+    @message = I18n.t('messages.answer.destroy.okay')
     @success = true
   end
 end

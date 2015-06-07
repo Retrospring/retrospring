@@ -20,9 +20,116 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  messages:
+    noscript: "Please activate JavaScript."
+    error: "An error occurred."
+    parameter_error: "%{parameter} is required."
+    noauth: "requires authentication"
+    answer:
+      create:
+        fail: "Question is not in your inbox."
+        privacy_stronk: "This user does not want other users to answer their question."
+        peter_dinklage: "Answer is too short."
+        okay: "Successfully answered question."
+      destroy:
+        nopriv: "can't delete other people's answers"
+        okay: "Successfully deleted answer."
+    comment:
+      create:
+        rec_inv: "Your comment is too long."
+        okay: "Comment posted successfully."
+      destroy:
+        nopriv: "can't delete other people's comments"
+        okay: "Successfully deleted comment."
+    friend:
+      create:
+        fail: "You are already following that user."
+        okay: "Successfully followed user."
+      destroy:
+        fail: "You are not following that user."
+        okay: "Successfully unfollowed user."
+    group:
+      create:
+        noname: "Please give that group a name."
+        toolong: "Group name too long (30 characters max.)"
+        notfound: "Could not find user."
+        exists: "Group already exists."
+        okay: "Successfully created group."
+      destroy:
+        notfound: "Could not find group."
+        okay: "Successfully deleted group."
+      membership:
+        notfound: "Group not found."
+        add: "Successfully added user to group."
+        remove: "Successfully removed user from group."
+    inbox:
+      create:
+        okay: "Successfully added new question."
+      remove:
+        fail: "question not in your inbox"
+        okay: "Successfully deleted question."
+      remove_all:
+        okay: "Successfully deleted questions."
+    moderation:
+      vote:
+        fail: "You have already voted on this report."
+        okay: "Successfully voted on report."
+      destroy_vote:
+        fail: "You have not voted on that report."
+        okay: "Successfully removed vote from report."
+      destroy_report:
+        fail: "Something bad happened!"
+        okay: "WHERE DID IT GO??? OH NO!!!"
+      create_comment:
+        rec_inv: "Your comment is too long."
+        okay: "Comment posted successfully."
+      destroy_comment:
+        nopriv: "can't delete other people's comments"
+        okay: "Successfully deleted comment."
+      ban:
+        error: "Weird..."
+        nopriv: "You cannot ban an administrator!"
+        unban: "Unbanned user."
+        perma: "Permanently banned user."
+        temp: "Banned user until %{date}"
+      privilege:
+        nope: "nope!"
+        nopriv: "You'd better check YOUR privileges first!"
+        checked: "Successfully checked this user's %{privilege} privilege."
+    question:
+      destroy:
+        not_found: "Question does not exist"
+        not_authorized: "You are not allowed to delete this question"
+        okay: "Successfully deleted question."
+      create:
+        rec_inv: "Your question is too long."
+        not_found: "Group not found"
+        okay: "Question asked successfully."
+      preview:
+        fail: "Failed to render markdown."
+        okay: "Successfully rendered markdown."
+    report:
+      create:
+        login: "login required"
+        unknown: "unknown type"
+        not_found: "Could not find %{parameter}"
+        okay: "%{parameter} reported.  A moderator will decide what happens with the #{parameter}."
+    smile:
+      create:
+        fail: "You have already smiled that answer."
+        okay: "Successfully smiled answer."
+      destroy:
+        fail: "You have not smiled that answer."
+        okay: "Successfully unsmiled answer."
+      create_comment:
+        fail: "You have already smiled that comment."
+        okay: "Successfully smiled comment."
+      destroy_comment:
+        fail: "You have not smiled that comment."
+        okay: "Successfully unsmiled comment."
+    subscription:
+      torpedo: "418 I'm a torpedo"
   views:
-    messages:
-      noscript: "Please activate JavaScript."
     notifications:
       show: "Show all notifications"
       mark: " and mark them as read"

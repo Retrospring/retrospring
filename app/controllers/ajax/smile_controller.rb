@@ -1,7 +1,7 @@
 class Ajax::SmileController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
-    @message = "#{param_miss_ex.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -15,13 +15,13 @@ class Ajax::SmileController < ApplicationController
       current_user.smile answer
     rescue
       @status = :fail
-      @message = "You have already smiled that answer."
+      @message = I18n.t('messages.smile.create.fail')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "Successfully smiled answer."
+    @message = I18n.t('messages.smile.create.okay')
     @success = true
   end
 
@@ -34,13 +34,13 @@ class Ajax::SmileController < ApplicationController
       current_user.unsmile answer
     rescue
       @status = :fail
-      @message = "You have not smiled that answer."
+      @message = I18n.t('messages.smile.destroy.fail')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "Successfully unsmiled answer."
+    @message = I18n.t('messages.smile.destroy.okay')
     @success = true
   end
 
@@ -53,13 +53,13 @@ class Ajax::SmileController < ApplicationController
       current_user.smile_comment comment
     rescue
       @status = :fail
-      @message = "You have already smiled that comment."
+      @message = I18n.t('messages.smile.create_comment.fail')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "Successfully smiled comment."
+    @message = I18n.t('messages.smile.create_comment.okay')
     @success = true
   end
 
@@ -72,13 +72,13 @@ class Ajax::SmileController < ApplicationController
       current_user.unsmile_comment comment
     rescue
       @status = :fail
-      @message = "You have not smiled that comment."
+      @message = I18n.t('messages.smile.destroy_comment.fail')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "Successfully unsmiled comment."
+    @message = I18n.t('messages.smile.destroy_comment.okay')
     @success = true
   end
 end

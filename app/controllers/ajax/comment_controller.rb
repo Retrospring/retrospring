@@ -1,7 +1,7 @@
 class Ajax::CommentController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
-    @message = "#{param_miss_ex.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -16,13 +16,13 @@ class Ajax::CommentController < ApplicationController
       current_user.comment(answer, params[:comment])
     rescue ActiveRecord::RecordInvalid
       @status = :rec_inv
-      @message = "Your comment is too long."
+      @message = I18n.t('messages.comment.create.rec_inv')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "Comment posted successfully."
+    @message = I18n.t('messages.comment.create.okay')
     @success = true
     @render = render_to_string(partial: 'shared/comments', locals: { a: answer })
     @count = answer.comment_count
@@ -37,7 +37,7 @@ class Ajax::CommentController < ApplicationController
 
     unless (current_user == comment.user) or (current_user == comment.answer.user) or (privileged? comment.user)
       @status = :nopriv
-      @message = "can't delete other people's comments"
+      @message = I18n.t('messages.comment.destroy.nopriv')
       @success = false
       return
     end
@@ -46,7 +46,7 @@ class Ajax::CommentController < ApplicationController
     comment.destroy
 
     @status = :okay
-    @message = "Successfully deleted comment."
+    @message = I18n.t('messages.comment.destroy.okay')
     @success = true
   end
 end
