@@ -20,6 +20,26 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  flash:
+    ban:
+      error: "I'm sorry, %{name}, I'm afraid I can't do that."
+      reason: "Ban reason: %{reason}"
+      until: "Banned until: %{time}"
+    service:
+      create:
+        success: "Successfully added service"
+        error: "Could not add service :("
+      failure: "An error occurred"
+      destroy: "Successfully removed service"
+    user:
+      update:
+        text: "Your profile has been updated!"
+        avatar: " It might take a few minutes until your new profile picture is shown everywhere."
+        header: " It might take a few minutes until your new profile header is shown everywhere."
+        error: "An error occurred. ;_;"
+      update_privacy:
+        success: "Your privacy settings have been updated!"
+        error: "An error occurred. ;_;"
   messages:
     noscript: "Please activate JavaScript."
     error: "An error occurred."
