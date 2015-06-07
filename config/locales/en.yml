@@ -75,6 +75,12 @@ en:
       smile: "Smile"
       follower: "Follower"
       following: "Following"
+      timeline: "Timeline"
+      public: "Public"
+      user: "User"
+    group:
+      title: "Group"
+      members: "Members"
     actions:
       title: "Actions"
       answer: "Answer"
@@ -100,6 +106,13 @@ en:
       destroy: "Logout"
       create: "Sign in"
       new: "Sign up"
+    moderation:
+      tabs:
+        all: "All reports"
+      moderationbox:
+        reported: "%{user} reported a %{content} %{time} ago"
+        reason: "Reason:"
+        view: "View reported %{content}"
     navigation:
       timeline: "Timeline"
       inbox: "Inbox"
@@ -227,6 +240,12 @@ en:
         anonymous: "Allow anonymous questions"
         public: "Show your answers in the public timeline"
         stranger: "Allow other people to answer your questions"
+      service:
+        enabled: "Sharing is enabled for the following services:"
+        none: "You have not connected any services yet."
+        connect: "Connect to %{service}"
+        disconnect: "Disconnect"
+        confirm: "Really disconnect service %{service}?"
     modal:
       bancontrol:
         title: "Ban Control Center"

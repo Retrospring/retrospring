@@ -18,8 +18,8 @@
     .row
       .col-md-6.col-sm-6.col-xs-6
         %h4.entry-text#asked-count= user.asked_count
-        %h6.entry-subtext Questions
+        %h6.entry-subtext= t('views.general.question').pluralize(user.asked_count)
       .col-md-6.col-sm-6.col-xs-6
         %h4.entry-text#answered-count= user.answered_count
-        %h6.entry-subtext Answers
+        %h6.entry-subtext= t('views.general.answer').pluralize(user.answered_count)
     = render 'user/actions', user: user, type: type
