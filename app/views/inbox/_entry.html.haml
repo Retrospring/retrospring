@@ -33,4 +33,4 @@
               %input{type: 'checkbox', name: 'ib-share', checked: :checked, data: { ib_id: i.id, service: service.provider }}
               = raw t('views.inbox.entry.sharing.post', service: service.provider.capitalize)
     - else
-      %p= raw t('views.inbox.entry.sharing.none', settings: link_to(t('views.inbox.entry.sharing.settings', services_path)))
+      %p= raw t('views.inbox.entry.sharing.none', settings: link_to(t('views.inbox.entry.sharing.settings'), services_path))
