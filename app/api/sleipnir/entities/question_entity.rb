@@ -21,10 +21,19 @@ class Sleipnir::Entities::QuestionEntity < Sleipnir::Entities::BaseEntity
 private
 
   def user_id()
-    if object.author_is_anonymous
+    # force identity for moderation reports.
+    if object.author_is_anonymous and not options[:force_identity]
       nil
     else
       object.user_id
+    end
+  end
+
+  def user()
+    if object.author_is_anonymous and not options[:force_identity]
+      nil
+    else
+      object.user
     end
   end
 end
