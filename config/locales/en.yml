@@ -210,6 +210,8 @@ en:
       members: "Members"
     actions:
       title: "Actions"
+      ask: "Ask"
+      ask_question: "Ask a question"
       answer: "Answer"
       options: "Options"
       anonymous: "Hide your name"
@@ -347,7 +349,7 @@ en:
         password_confirm: "Confirm password"
         password_help: "Leave this blank if you don't want to change it"
         password_current: "Current password"
-        password_current_help:
+        password_current_help: "We need your current password to confirm your changes"
         delete: "Delete my account"
         unsatisfied: "Unsatisfied?"
         back: "Back"
@@ -374,6 +376,10 @@ en:
         disconnect: "Disconnect"
         confirm: "Really disconnect service %{service}?"
     modal:
+      ask:
+        title: "Ask your followers"
+        choose: "Choose group:"
+        loading: "Asking..."
       bancontrol:
         title: "Ban Control Center"
         ban: "Ban?"

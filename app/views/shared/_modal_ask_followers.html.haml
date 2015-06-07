@@ -4,18 +4,18 @@
       .modal-header
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-          %span.sr-only Close
-        %h4#modal-ask-followers-label.modal-title Ask your followers
+          %span.sr-only= t 'views.actions.close'
+        %h4#modal-ask-followers-label.modal-title= t 'views.modal.ask.title'
       .modal-body
         %textarea.form-control{:name => "qb-all-question", :placeholder => "Type your question here…"}
       .modal-footer
         - if current_user.groups.count > 0
           %label
-            Choose group:
+            = t 'views.modal.ask.choose'
             %select{name: 'qb-all-rcpt', class: 'form-control', autocomplete: 'off'}
-              %option{value: 'followers', selected: true} Followers
+              %option{value: 'followers', selected: true}= t('views.general.follower').pluralize(2)
               %optgroup{label: 'Groups'}
                 - current_user.groups.each do |group|
                   %option{value: "grp:#{group.name}"}= group.display_name
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
-        %button.btn.btn-primary{name: 'qb-all-ask', :type => "button", data: {loading_text: 'Asking...' }} Ask
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}= t 'views.actions.cancel'
+        %button.btn.btn-primary{name: 'qb-all-ask', :type => "button", data: {loading_text: t('views.modal.ask.loading') }}= t 'views.actions.ask'
