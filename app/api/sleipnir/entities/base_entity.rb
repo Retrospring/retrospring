@@ -38,4 +38,12 @@ private
   def api_collection
     options[:collection]
   end
+
+  def application
+    if object.application.nil?
+      APP_FAKE_OAUTH
+    else
+      object.application
+    end
+  end
 end
