@@ -21,7 +21,7 @@ feature "User profile page", :devise do
 
     expect(page).to have_text("FOLLOWING")
 
-    click_link 'Followers'
+    click_link 'Follower'
     page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_3.png"), full: true
     expect(page).to have_text(me.screen_name)
   end
