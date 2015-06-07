@@ -69,12 +69,12 @@ en:
           none: "You have not connected any services yet. Visit your %{settings} to connect one."
           settings: "service settings"
     general:
-      answer: "answer"
-      question: "question"
-      comment: "comment"
-      smile: "smile"
-      follower: "follower"
-      following: "following"
+      answer: "Answer"
+      question: "Question"
+      comment: "Comment"
+      smile: "Smile"
+      follower: "Follower"
+      following: "Following"
     actions:
       title: "Actions"
       answer: "Answer"
