@@ -13,7 +13,7 @@
 #= require js.cookie
 #= require i18n
 #= require i18n.js
-# #= require i18n/translations
+#= require i18n/translations
 # local requires to be seen by everyone:
 #= require_tree ./answerbox
 #= require_tree ./questionbox
