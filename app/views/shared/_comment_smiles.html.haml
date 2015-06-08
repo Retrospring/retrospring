@@ -5,10 +5,10 @@
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
-        %h4#modal-ask-followers-label.modal-title People who smiled this comment
+        %h4#modal-ask-followers-label.modal-title= t 'views.answerbox.commentsmile'
       .modal-body
         - if comment.smiles.all.count == 0
-          No one smiled this, yet.
+          = t 'views.answerbox.no_smile'
         - else
           %ul.user-list.user-list-smiles
             - comment.smiles.all.each do |smile|

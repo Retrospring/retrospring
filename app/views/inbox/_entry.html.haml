@@ -6,39 +6,31 @@
           %img.img-rounded.answerbox--img{src: gravatar_url(i.question.user)}
       .media-body
         %h6.text-muted.media-heading.answerbox--question-user
-          = user_screen_name i.question.user, i.question.author_is_anonymous
-          asked
-          %span{title: i.question.created_at, data: { toggle: :tooltip, placement: :bottom }}
-            = time_ago_in_words(i.question.created_at)
-          ago
+          = raw t('views.inbox.entry.asked', user: user_screen_name(i.question.user, i.question.author_is_anonymous), time: time_tooltip(i.question))
           - unless i.question.author_is_anonymous
             - if i.question.answer_count > 0
               ·
               %a{href: show_user_question_path(i.question.user.screen_name, i.question.id)}
-                #{i.question.answer_count} response(s)
+                = pluralize(i.question.answer_count, t('views.inbox.entry.response'))
         %p.answerbox--question-text= i.question.content
   .panel-body
-    %textarea.form-control{name: 'ib-answer', placeholder: 'Write your answer here...', data: { id: i.id }}
+    %textarea.form-control{name: 'ib-answer', placeholder: t('views.placeholder.inbox'), data: { id: i.id }}
     %br/
     %button.btn.btn-success{name: 'ib-answer', data: { ib_id: i.id }}
-      Answer
+      = t 'views.actions.answer'
     %button.btn.btn-danger{name: 'ib-destroy', data: { ib_id: i.id }}
-      Delete
+      = t 'views.actions.delete'
     %button.btn.btn-default{name: 'ib-options', data: { ib_id: i.id, state: :hidden }}
       %i.fa.fa-cog
-      %span.sr-only Options
+      %span.sr-only= t 'views.actions.options'
   .panel-footer{id: "ib-options-#{i.id}", style: 'display: none'}
-    %h4 Sharing
+    %h4= t 'views.inbox.entry.sharing.title'
     - if current_user.services.count > 0
       .row
         - current_user.services.each do |service|
           .col-md-3.col-sm-4.col-xs-6
             %label
               %input{type: 'checkbox', name: 'ib-share', checked: :checked, data: { ib_id: i.id, service: service.provider }}
-              Post to
-              = service.provider.capitalize
+              = raw t('views.inbox.entry.sharing.post', service: service.provider.capitalize)
     - else
-      %p
-        You have not connected any services yet. Visit your
-        = link_to "service settings", services_path
-        to connect one.
+      %p= raw t('views.inbox.entry.sharing.none', settings: link_to(t('views.inbox.entry.sharing.settings'), services_path))

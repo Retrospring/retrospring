@@ -1,13 +1,14 @@
 window.reportDialog = (type, target, callback) ->
   swal
-    title: "Really report this #{type}?"
-    text: "A moderator will review your report and decide what happens.\nIf you'd like, you can also specify a reason."
+    title: translate('frontend.report.confirm.title', {type: type})
+    text: translate('frontend.report.confirm.text')
     type: "input"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Report"
+    confirmButtonText: translate('views.actions.report')
+    cancelButtonText: translate('views.actions.cancel')
     closeOnConfirm: true
-    inputPlaceholder: "Specify a reason..."
+    inputPlaceholder: translate('frontend.report.confirm.input')
   , (value) ->
     if typeof value == "boolean" && value == false
       return false
@@ -23,6 +24,6 @@ window.reportDialog = (type, target, callback) ->
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
+        showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->
         callback type, target, jqxhr, status

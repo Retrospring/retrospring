@@ -7,17 +7,17 @@
       .panel-body
         = bootstrap_form_for(current_user, url: {action: "edit"}, :html => { :multipart => true }, method: "patch") do |f|
 
-          = f.text_field :display_name, label: "Your name"
+          = f.text_field :display_name, label: t('views.settings.profile.displayname')
 
           .media#profile-picture-media
             .pull-left
               %img.img-rounded.profile--img{src: current_user.profile_picture.url(:medium)}
             .media-body
-              = f.file_field :profile_picture
+              = f.file_field :profile_picture, label: t('views.settings.profile.avatar')
 
           .row#profile-picture-crop-controls{style: 'display: none;'}
             .col-sm-10.col-md-8
-              %strong Adjust your new avatar
+              %strong= t('views.settings.profile.avatar_adjust')
               %img#profile-picture-cropper{src: current_user.profile_picture.url(:medium)}
             .col-sm-2.col-md-4
               .btn-group
@@ -30,11 +30,11 @@
             .pull-left
               %img.img-rounded.header--img{src: current_user.profile_header.url(:mobile)}
             .media-body
-              = f.file_field :profile_header
+              = f.file_field :profile_header, label: t('views.settings.profile.header')
 
           .row#profile-header-crop-controls{style: 'display: none;'}
             .col-sm-10.col-md-8
-              %strong Adjust your new header
+              %strong= t('views.settings.profile.header_adjust')
               %img#profile-header-cropper{src: current_user.profile_header.url(:web)}
             .col-sm-2.col-md-4
               .btn-group
@@ -43,13 +43,13 @@
                 %button#cropper-header-zoom-in.btn.btn-inverse{type: :button}
                   %i.fa.fa-search-plus
 
-          = f.text_field :motivation_header, label: "Motivation header", placeholder: 'Ask me anything!'
+          = f.text_field :motivation_header, label: t('views.settings.profile.motivation'), placeholder: t('views.settings.profile.placeholder.motivation')
 
-          = f.text_field :website, label: "Website", placeholder: 'http://example.com'
+          = f.text_field :website, label: t('views.settings.profile.website'), placeholder: 'http://example.com'
 
-          = f.text_field :location, label: "Location", placeholder: 'Where are you?'
+          = f.text_field :location, label: t('views.settings.profile.location'), placeholder: t('views.settings.profile.placeholder.location')
 
-          = f.text_area :bio, label: "Bio", placeholder: 'Tell us something nice about you!'
+          = f.text_area :bio, label: t('views.settings.profile.bio'), placeholder: t('views.settings.profile.placeholder.bio')
 
           - for attrib in %i(crop_x crop_y crop_w crop_h)
             = f.hidden_field attrib, id: attrib
@@ -57,4 +57,4 @@
           - for attrib in %i(crop_h_x crop_h_y crop_h_w crop_h_h)
             = f.hidden_field attrib, id: attrib
 
-          = f.submit "Save settings", class: 'btn btn-primary'
+          = f.submit t('views.actions.save'), class: 'btn btn-primary'

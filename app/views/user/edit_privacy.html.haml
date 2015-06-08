@@ -7,8 +7,8 @@
       .panel-body
         = bootstrap_form_for(current_user, url: {action: "edit_privacy"}, method: "patch") do |f|
 
-          = f.check_box :privacy_allow_anonymous_questions, label: "Allow anonymous questions"
-          = f.check_box :privacy_allow_public_timeline, label: "Show your answers in the public timeline"
-          = f.check_box :privacy_allow_stranger_answers, label: "Allow other people to answer your questions"
+          = f.check_box :privacy_allow_anonymous_questions, label: t('views.settings.privacy.anonymous')
+          = f.check_box :privacy_allow_public_timeline, label: t('views.settings.privacy.public')
+          = f.check_box :privacy_allow_stranger_answers, label: t('views.settings.privacy.stranger')
 
-          = f.submit "Save settings", class: 'btn btn-primary'
+          = f.submit t('views.actions.save'), class: 'btn btn-primary'

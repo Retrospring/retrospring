@@ -15,5 +15,5 @@
 
     - if @questions.next_page
       %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @questions.current_page }}
-        Load more
+        = t 'views.actions.load'
   .visible-xs= render 'shared/links'

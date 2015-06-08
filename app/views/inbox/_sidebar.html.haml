@@ -1,20 +1,20 @@
 .panel.panel-default.inbox--panel
   .panel-heading
-    %h3.panel-title Out of questions?
+    %h3.panel-title= t 'views.inbox.sidebar.questions.title'
   .panel-body
-    %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'} Get new question
+    %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'}= t 'views.inbox.sidebar.questions.button'
 .panel.panel-default.inbox--panel
   .panel-heading
-    %h3.panel-title Share
+    %h3.panel-title= t 'views.inbox.sidebar.share.title'
   .panel-body
     %a.btn.btn-block.btn-primary{target: '_blank', href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{show_user_profile_url(current_user.screen_name)}"}
-      %i.fa.fa-twitter
-      Share on Twitter
+      %i.fa.fa-fw.fa-twitter
+      = raw t('views.inbox.sidebar.share.button', service: "Twitter")
     %a.btn.btn-block.btn-primary{target: '_blank', href: "http://www.tumblr.com/share/link?url=#{show_user_profile_url(current_user.screen_name)}&name=Ask%20me%20anything%21"}
-      %i.fa.fa-tumblr
-      Share on Tumblr
+      %i.fa.fa-fw.fa-tumblr
+      = raw t('views.inbox.sidebar.share.button', service: "Tumblr")
 .panel.panel-default.warning--panel
   .panel-heading
-    %h3.panel-title Actions
+    %h3.panel-title= t 'views.inbox.sidebar.actions.title'
   .panel-body
-    %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (Inbox.where(user: current_user).empty? ? 'disabled' : nil), data: { ib_count: Inbox.where(user: current_user).count }} Delete all questions
+    %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (Inbox.where(user: current_user).empty? ? 'disabled' : nil), data: { ib_count: Inbox.where(user: current_user).count }}= t 'views.inbox.sidebar.actions.button'

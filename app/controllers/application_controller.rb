@@ -4,20 +4,44 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :check_locale
   before_filter :banned?
+
+  # check if user wants to read
+  def check_locale
+    return I18n.locale = 'en' if Rails.env.test?
+
+    if params[:hl].nil?
+      if current_user.present?
+        I18n.locale = current_user.locale
+      elsif not cookies[:hl].nil?
+        I18n.locale = cookies[:hl]
+      elsif not http_accept_language.user_preferred_languages.length > 0
+        I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales) or "en"
+      end
+    else
+      I18n.locale = params[:hl]
+      if current_user.present?
+        current_user.locale = I18n.locale
+        current_user.save!
+      end
+    end
+
+    cookies[:hl] = I18n.locale #unless cookies[:allow_cookies].nil? # some EU cookie bullsh-
+  end
 
   # check if user got hit by the banhammer of doom
   def banned?
     if current_user.present? && current_user.banned?
       name = current_user.screen_name
       # obligatory '2001: A Space Odyssey' reference
-      flash[:notice] = "I'm sorry, #{name}, I'm afraid I can't do that."
+      flash[:notice] = t('flash.ban.error', name: name)
       unless current_user.ban_reason.nil?
-        flash[:notice] += "\nBan reason: #{current_user.ban_reason}"
+        flash[:notice] += "\n#{t('flash.ban.reason', reason: current_user.ban_reason)}"
       end
       if not current_user.permanently_banned?
         # TODO format banned_until
-        flash[:notice] += "\nBanned until: #{current_user.banned_until}"
+        flash[:notice] += "\n#{t('flash.ban.until', time: current_user.banned_until)}"
       end
       sign_out current_user
       redirect_to new_user_session_path

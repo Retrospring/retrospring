@@ -27,19 +27,19 @@
           -#                                            fun joke    should subscribe?
           %a{href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: "no" }}
             %i.fa.fa-anchor
-            Unsubscribe
+            = t 'views.actions.unsubscribe'
       - else
         %li
           %a{href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: "yes" }}
             %i.fa.fa-anchor
-            Subscribe
+            = t 'views.actions.subscribe'
       - if privileged? a.user
         %li.text-danger
           %a{href: '#', data: { a_id: a.id, action: 'ab-destroy' }}
             %i.fa.fa-trash-o
-            Return to Inbox
+            = t 'views.actions.return'
       - unless a.user == current_user
         %li
           %a{href: '#', data: { a_id: a.id, action: 'ab-report' }}
             %i.fa.fa-exclamation-triangle
-            Report
+            = t 'views.actions.report'

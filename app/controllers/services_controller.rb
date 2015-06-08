@@ -11,9 +11,9 @@ class ServicesController < ApplicationController
     service = Service.initialize_from_omniauth( omniauth_hash )
 
     if current_user.services << service
-      flash[:success] = 'Successfully added service'
+      flash[:success] = t('flash.service.create.success')
     else
-      flash[:error] = 'Could not add service :('
+      flash[:error] = t('flash.service.create.error')
     end
 
     if origin
@@ -25,14 +25,14 @@ class ServicesController < ApplicationController
 
   def failure
     Rails.logger.info "oauth error: #{params.inspect}"
-    flash[:error] = 'An error occurred'
+    flash[:error] = t('flash.service.failure')
     redirect_to services_path
   end
 
   def destroy
     @service = current_user.services.find(params[:id])
     @service.destroy
-    flash[:success] = 'Successfully removed service'
+    flash[:success] = t('flash.service.destroy')
     redirect_to services_path
   end
 

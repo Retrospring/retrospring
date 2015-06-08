@@ -3,7 +3,7 @@
     %i.fa.fa-smile-o
   .media-body
     - if a.smiles.all.count == 0
-      No one smiled this, yet.
+      = t 'views.answerbox.no_smile'
     - else
       - a.smiles.all.each do |smile|
         %a{href: show_user_profile_path(smile.user.screen_name), title: smile.user.screen_name, data: { toggle: :tooltip, placement: :top, smile_id: smile.id }}

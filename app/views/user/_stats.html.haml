@@ -6,17 +6,17 @@
       %a{href: show_user_followers_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#follower-count= @user.follower_count
-          %h6.entry-subtext Followers
+          %h6.entry-subtext= t('views.general.follower').pluralize(@user.follower_count)
       %a{href: show_user_friends_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= @user.friend_count
-          %h6.entry-subtext Following
+          %h6.entry-subtext= t('views.general.following')
     .row
       %a{href: show_user_questions_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#asked-count= @user.asked_count
-          %h6.entry-subtext Questions
+          %h6.entry-subtext= t('views.general.question').pluralize(@user.asked_count)
       %a{href: show_user_profile_path(@user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#answered-count= @user.answered_count
-          %h6.entry-subtext Answers
+          %h6.entry-subtext= t('views.general.answer').pluralize(@user.answered_count)

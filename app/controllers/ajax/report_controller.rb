@@ -1,7 +1,7 @@
 class Ajax::ReportController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
-    @message = "#{param_miss_ex.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -14,12 +14,12 @@ class Ajax::ReportController < ApplicationController
     @success = false
 
     if current_user.nil?
-      @message = "login required"
+      @message = I18n.t('messages.report.create.login')
       return
     end
 
     unless %w(answer comment question user).include? params[:type]
-      @message = "unknown type"
+      @message = I18n.t('messages.report.create.unknown')
       return
     end
 
@@ -30,14 +30,14 @@ class Ajax::ReportController < ApplicationController
              end
 
     if object.nil?
-      @message = "Could not find #{params[:type]}"
+      @message = I18n.t('messages.report.create.not_found', parameter: params[:type])
       return
     end
 
     current_user.report object, params[:reason]
 
     @status = :okay
-    @message = "#{params[:type].capitalize} reported.  A moderator will decide what happens with the #{params[:type]}."
+    @message = I18n.t('messages.report.create.okay', parameter: params[:type])
     @success = true
   end
 end

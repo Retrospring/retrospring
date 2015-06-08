@@ -8,12 +8,7 @@
           %h6.media-heading.notification--user
             = user_screen_name notification.target.user
           %p.notification--text
-            answered
-            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id), title: "#{notification.target.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-              your question
-            %span{title: notification.target.created_at, data: { toggle: :tooltip, placement: :bottom }}
-              = time_ago_in_words notification.target.created_at
-            ago
+            = raw t('views.notifications.answer.body', question: link_to(t('views.notifications.answer.question'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)), time: time_tooltip(notification.target))
           .notification--icon
             %i.fa.fa-exclamation
       - when "Relationship"
@@ -23,10 +18,7 @@
           %h6.media-heading.notification--user
             = user_screen_name notification.target.source
           %p.notification--text
-            followed you
-            %span{title: notification.target.created_at, data: { toggle: :tooltip, placement: :bottom }}
-              = time_ago_in_words notification.target.created_at
-            ago
+            = raw t('views.notifications.relationship.body', time: time_tooltip(notification.target))
           .notification--icon
             %i.fa.fa-users
       - when "Smile"
@@ -36,12 +28,7 @@
           %h6.media-heading.notification--user
             = user_screen_name notification.target.user
           %p.notification--text
-            smiled at
-            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-              your answer
-            %span{title: notification.target.created_at, data: { toggle: :tooltip, placement: :bottom }}
-              = time_ago_in_words notification.target.created_at
-            ago
+            = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.answer'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
           .notification--icon
             %i.fa.fa-smile-o
       - when "CommentSmile"
@@ -51,12 +38,7 @@
           %h6.media-heading.notification--user
             = user_screen_name notification.target.user
           %p.notification--text
-            smiled at
-            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.comment.answer.id), title: "#{notification.target.comment.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-              your comment
-            %span{title: notification.target.created_at, data: { toggle: :tooltip, placement: :bottom }}
-              = time_ago_in_words notification.target.created_at
-            ago
+            = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.comment'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
           .notification--icon
             %i.fa.fa-smile-o
       - when "Comment"
@@ -66,17 +48,11 @@
           %h6.media-heading.notification--user
             = user_screen_name notification.target.user
           %p.notification--text
-            commented on
-            %a{href: show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), title: "#{notification.target.answer.content[0..40]}...", data: { toggle: :tooltip, placement: :top }}
-              - if notification.target.answer.user == current_user
-                your
-              - elsif notification.target.user == notification.target.answer.user
-                their
-              - else
-                = user_screen_name(notification.target.answer.user, false, false) + "'s"
-              answer
-            %span{title: notification.target.created_at, data: { toggle: :tooltip, placement: :bottom }}
-              = time_ago_in_words notification.target.created_at
-            ago
+            - if notification.target.answer.user == current_user
+              = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.your', user: user_screen_name(current_user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+            - elsif notification.target.user == notification.target.answer.user
+              = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.their', user: user_screen_name(notification.target.answer.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+            - else
+              = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.user', user: user_screen_name(notification.target.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
           .notification--icon
             %i.fa.fa-comments

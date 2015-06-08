@@ -1,7 +1,7 @@
 class Ajax::GroupController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
-    @message = "#{param_miss_ex.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -12,7 +12,7 @@ class Ajax::GroupController < ApplicationController
 
     unless user_signed_in?
       @status = :noauth
-      @message = "requires authentication"
+      @message = I18n.t('messages.noauth')
       return
     end
 
@@ -20,7 +20,7 @@ class Ajax::GroupController < ApplicationController
       params.require :name
     rescue ActionController::ParameterMissing
       @status = :toolong
-      @message = "Please give that group a name."
+      @message = I18n.t('messages.group.create.noname')
       return
     end
     params.require :user
@@ -30,21 +30,21 @@ class Ajax::GroupController < ApplicationController
       group = Group.create! user: current_user, display_name: params[:name]
     rescue ActiveRecord::RecordInvalid
       @status = :toolong
-      @message = "Group name too long (30 characters max.)"
+      @message = I18n.t('messages.group.create.toolong')
       return
     rescue ActiveRecord::RecordNotFound
       @status = :notfound
-      @message = "Could not find user."
+      @message = I18n.t('messages.group.create.notfound')
       return
     rescue ActiveRecord::RecordNotUnique
       @status = :exists
-      @message = "Group already exists."
+      @message = I18n.t('messages.group.create.exists')
       return
     end
 
     @status = :okay
     @success = true
-    @message = "Successfully created group."
+    @message = I18n.t('messages.group.create.okay')
     @render = render_to_string(partial: 'user/modal_group_item', locals: { group: group, user: target_user })
   end
 
@@ -54,7 +54,7 @@ class Ajax::GroupController < ApplicationController
 
     unless user_signed_in?
       @status = :noauth
-      @message = "requires authentication"
+      @message = I18n.t('messages.noauth')
       return
     end
 
@@ -64,13 +64,13 @@ class Ajax::GroupController < ApplicationController
       Group.where(user: current_user, name: params[:group]).first.destroy!
     rescue ActiveRecord::RecordNotFound
       @status = :notfound
-      @message = "Could not find group."
+      @message = I18n.t('messages.group.destroy.notfound')
       return
     end
 
     @status = :okay
     @success = true
-    @message = "Successfully deleted group."
+    @message = I18n.t('messages.group.destroy.okay')
   end
 
   def membership
@@ -79,7 +79,7 @@ class Ajax::GroupController < ApplicationController
 
     unless user_signed_in?
       @status = :noauth
-      @message = "requires authentication"
+      @message = I18n.t('messages.noauth')
       return
     end
 
@@ -93,7 +93,7 @@ class Ajax::GroupController < ApplicationController
       group = current_user.groups.find_by_name(params[:group])
     rescue ActiveRecord::RecordNotFound
       @status = :notfound
-      @message = "Group not found."
+      @message = I18n.t('messages.group.membership.notfound')
       return
     end
 
@@ -102,11 +102,11 @@ class Ajax::GroupController < ApplicationController
     if add
       group.add_member target_user if group.members.find_by_user_id(target_user.id).nil?
       @checked = true
-      @message = "Successfully added user to group."
+      @message = I18n.t('messages.group.membership.add')
     else
       group.remove_member target_user unless group.members.find_by_user_id(target_user.id).nil?
       @checked = false
-      @message = "Successfully removed user from group."
+      @message = I18n.t('messages.group.membership.remove')
     end
 
     @status = :okay
