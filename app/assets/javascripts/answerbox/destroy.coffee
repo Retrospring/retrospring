@@ -8,8 +8,8 @@ $(document).on "click", "a[data-action=ab-destroy]", (ev) ->
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: translate('views.actions.yes')
-    cancelButtonText: translate('views.actions.no')
+    confirmButtonText: translate('views.actions.y')
+    cancelButtonText: translate('views.actions.n')
     closeOnConfirm: true
   , ->
     $.ajax

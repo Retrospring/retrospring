@@ -66,7 +66,6 @@ en:
         title: "Really report this %{type}?"
         text: "A moderator will review your report and decide what happens.\nIf you'd like, you can also specify a reason."
         input: "Specify a reason..."
-
   flash:
     ban:
       error: "I'm sorry, %{name}, I'm afraid I can't do that."
@@ -282,8 +281,8 @@ en:
       cancel: "Cancel"
       close: "Close"
       done: "Done"
-      yes: "Yes"
-      no: "No"
+      y: "Yes"
+      n: "No"
     sessions:
       destroy: "Logout"
       create: "Sign in"
