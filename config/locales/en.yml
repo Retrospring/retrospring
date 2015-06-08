@@ -22,6 +22,7 @@
 en:
   frontend:
     load: "Load more"
+    # is frontend.actions needed? we can use views.actions
     actions:
       delete: "Delete"
       cancel: "Cancel"
@@ -35,6 +36,12 @@ en:
     error:
       title: "Uh-oh..."
       message: "An error occurred, a developer should check the console for details"
+    subscription:
+      subscribe: "Successfully subscribed."
+      unsubscribe: "Successfully unsubscribed."
+      fail:
+        subscribe: "Failed to subscribe to answer."
+        unsubscribe: "Failed to unsubscribe from answer."
     group:
       confirm:
         title: "Really delete this group?"
