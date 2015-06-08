@@ -23,6 +23,8 @@ feature "Inbox", :devise do
     Inbox.create question: question, user: me, new: true
 
     login_as me, scope: :user
+    visit root_path
+
     click_link "Inbox"
     expect(page).to have_text(question.content)
     fill_in "ib-answer", with: Faker::Lorem.sentence
