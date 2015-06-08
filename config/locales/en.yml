@@ -396,7 +396,9 @@ en:
         back: "Back"
       profile:
         displayname: "Your name"
+        avatar: "Profile picture"
         avatar_adjust: "Adjust your new avatar"
+        header: "Profile header"
         header_adjust: "Adjust your new header"
         motivation: "Motivation header"
         website: "Website"

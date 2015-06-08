@@ -13,7 +13,7 @@
             .pull-left
               %img.img-rounded.profile--img{src: current_user.profile_picture.url(:medium)}
             .media-body
-              = f.file_field :profile_picture
+              = f.file_field :profile_picture, label: t('views.settings.profile.avatar')
 
           .row#profile-picture-crop-controls{style: 'display: none;'}
             .col-sm-10.col-md-8
@@ -30,7 +30,7 @@
             .pull-left
               %img.img-rounded.header--img{src: current_user.profile_header.url(:mobile)}
             .media-body
-              = f.file_field :profile_header
+              = f.file_field :profile_header, label: t('views.settings.profile.header')
 
           .row#profile-header-crop-controls{style: 'display: none;'}
             .col-sm-10.col-md-8
