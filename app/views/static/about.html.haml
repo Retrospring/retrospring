@@ -88,16 +88,16 @@
           %p= t('views.about.statistics.desc', app_title: APP_CONFIG['site_name'])
         .col-md-3.col-sm-6.col-xs-6.statistics
           %h2.entry-text#asked-count= Question.count
-          %h4.entry-subtext Questions
+          %h4.entry-subtext= t('views.general.question').pluralize(Question.count)
           %h2.entry-text#answered-count= Answer.count
-          %h4.entry-subtext Answers
+          %h4.entry-subtext= t('views.general.answer').pluralize(Answer.count)
         .col-md-3.col-sm-6.col-xs-6.statistics
           %h2.entry-text#asked-count= Comment.count
-          %h4.entry-subtext Comments
+          %h4.entry-subtext= t('views.general.comment').pluralize(Comment.count)
           %h2.entry-text#answered-count= Smile.count + CommentSmile.count
-          %h4.entry-subtext Smiles
+          %h4.entry-subtext= t('views.general.smile').pluralize(Smile.count)
         .col-md-3.col-sm-12.col-xs-12.users
           .entry-text#follower-count= User.count
-          %h6.entry-subtext Users
+          %h6.entry-subtext= t('views.general.user').pluralize(User.count)
 
 = render "shared/links"

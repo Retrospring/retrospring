@@ -359,15 +359,15 @@ en:
         title: "Popular Content"
         desc: "Answers with most smiles and most answered questions"
         tab:
-          answers: "Answers"
-          questions: "Questions"
-          comments: "Most Comments"
+          answers: "Most Liked"
+          questions: "Most Answers"
+          comments: "Most Controversial"
       people:
         title: "People"
         desc: "Newcomers and people who asked the most questions"
         tab:
           new: "New Users"
-          questions: "Most Asked Questions"
+          questions: "Active Askers"
           answers: "Most Answers"
       userbox:
         new: "registered %{time} ago"
@@ -470,7 +470,3 @@ en:
         contributor: "Contributor"
         blogger: "Blogger"
         banned: "Banned"
-      profile:
-        view: "View profile"
-        settings: "Settings"
-  hello: "Hello world"

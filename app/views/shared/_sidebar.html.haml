@@ -1,9 +1,5 @@
 .panel.panel-default.hidden-xs
   %img.profile--avatar{src: current_user.profile_picture.url(:large)}
-  - unless inbox_count.nil?
-    .profile--panel-badge.panel-badge-info
-      %i.fa.fa-envelope
-      = pluralize(inbox_count, 'new question')
   .panel-body
     - if current_user.display_name.blank?
       .profile--displayname

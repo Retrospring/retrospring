@@ -20,9 +20,9 @@
     #j2-main-navbar-collapse.collapse.navbar-collapse
       - if user_signed_in?
         %ul.nav.navbar-nav
-          = nav_entry "Timeline", root_path
-          = nav_entry "Inbox", "/inbox", badge: inbox_count
-          = nav_entry "Discover", discover_path
+          = nav_entry t('views.navigation.timeline'), root_path
+          = nav_entry t('views.navigation.inbox'), "/inbox", badge: inbox_count
+          = nav_entry t('views.navigation.discover'), discover_path
         %ul.nav.navbar-nav.navbar-right
           - unless @user.nil?
             - unless @user == current_user
@@ -38,7 +38,7 @@
       - else
         %ul.nav.navbar-nav.navbar-right
           = nav_entry t('views.sessions.create'), new_user_session_path
-          = nav_entry t('views.actions.new'), new_user_registration_path
+          = nav_entry t('views.sessions.new'), new_user_registration_path
 
 - if user_signed_in?
   = render 'shared/modal_ask_followers'

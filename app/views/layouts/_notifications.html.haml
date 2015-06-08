@@ -1,4 +1,4 @@
-= nav_entry "Notifications", notifications_path, badge: notification_count, class: 'visible-xs'
+= nav_entry t('views.navigation.notifications'), notifications_path, badge: notification_count, class: 'visible-xs'
 - notifications = Notification.for(current_user).limit(4)
 %li.dropdown.hidden-xs
   %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
