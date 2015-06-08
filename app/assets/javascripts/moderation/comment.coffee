@@ -42,7 +42,7 @@ $(document).on "keyup", "input[name=mod-comment-new]", (evt) ->
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
+        showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->
         input.removeAttr 'disabled'
 
@@ -71,12 +71,13 @@ $(document).on "click", "a[data-action=mod-comment-destroy]", (ev) ->
   btn = $(this)
   cid = btn[0].dataset.id
   swal
-    title: "Really delete?"
-    text: "You will not be able to recover this comment."
+    title: translate('frontend.destroy_comment.confirm.title')
+    text: translate('frontend.destroy_comment.confirm.text')
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Delete"
+    confirmButtonText: translate('views.actions.delete')
+    cancelButtonText: translate('views.actions.cancel')
     closeOnConfirm: true
   , ->
     $.ajax
@@ -90,5 +91,5 @@ $(document).on "click", "a[data-action=mod-comment-destroy]", (ev) ->
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
+        showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->

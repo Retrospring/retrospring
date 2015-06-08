@@ -24,7 +24,7 @@
     error: (jqxhr, status, error) ->
       box[0].checked = false
       console.log jqxhr, status, error
-      showNotification "An error occurred, a developer should check the console for details", false
+      showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       box.removeAttr "disabled"
 
@@ -54,7 +54,7 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      showNotification "An error occurred, a developer should check the console for details", false
+      showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       btn.button "reset"
 
@@ -65,13 +65,13 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
   group = btn[0].dataset.group
 
   swal
-    title: "Really delete this group?"
-    text: "You will not be able to recover this group."
+    title: translate('frontend.group.title')
+    text: translate('frontend.group.text')
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Delete"
-    cancelButtonText: "Cancel"
+    confirmButtonText: translate('views.actions.delete')
+    cancelButtonText: translate('views.actions.cancel')
     closeOnConfirm: true
   , ->
     $.ajax
@@ -86,5 +86,5 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
+        showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->

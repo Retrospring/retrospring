@@ -3,13 +3,13 @@ $(document).on "click", "a[data-action=ab-question-destroy]", (ev) ->
   btn = $(this)
   qid = btn[0].dataset.qId
   swal
-    title: "Are you sure?"
-    text: "The question will be removed."
+    title: translate('frontend.delete_own.confirm.title')
+    text: translate('frontend.delete_own.confirm.text')
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Yes"
-    cancelButtonText: "No"
+    confirmButtonText: translate('views.actions.yes')
+    cancelButtonText: translate('views.actions.no')
     closeOnConfirm: true
   , ->
     $.ajax
@@ -26,5 +26,5 @@ $(document).on "click", "a[data-action=ab-question-destroy]", (ev) ->
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
+        showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->

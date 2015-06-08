@@ -22,15 +22,6 @@
 en:
   frontend:
     load: "Load more"
-    # is frontend.actions needed? we can use views.actions
-    actions:
-      delete: "Delete"
-      cancel: "Cancel"
-      report: "Report"
-      follow: "Follow"
-      unfollow: "Unfollow"
-      yes: "Yes"
-      no: "No"
     success:
       title: "Success!"
     error:
@@ -54,6 +45,14 @@ en:
       confirm:
         title: "Really delete?"
         text: "You will not be able to recover this comment."
+    destroy_report:
+      confirm:
+        title: "Really delete?"
+        text: "You will not be able to recover this report."
+    destroy_own:
+      confirm:
+        title: "Are you sure?"
+        text: "The question will be removed."
     inbox:
       empty: "Nothing to see here."
       confirm_all:
@@ -279,6 +278,8 @@ en:
       cancel: "Cancel"
       close: "Close"
       done: "Done"
+      yes: "Yes"
+      no: "No"
     sessions:
       destroy: "Logout"
       create: "Sign in"
