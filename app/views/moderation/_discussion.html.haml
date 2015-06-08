@@ -24,5 +24,5 @@
                         = t 'views.actions.delete'
             %p.comments--content= comment.content
 .form-group.has-feedback{name: 'mod-comment-new-group', data: { id: report.id }}
-  %input.form-control.comments--box{type: :text, placeholder: 'Comment...', name: 'mod-comment-new', data: { id: report.id }}
+  %input.form-control.comments--box{type: :text, placeholder: t('views.placeholder.comment'), name: 'mod-comment-new', data: { id: report.id }}
   %span.text-muted.form-control-feedback.comments--count{id: "mod-comment-charcount-#{report.id}"} 160

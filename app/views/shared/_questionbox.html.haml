@@ -15,7 +15,7 @@
         #question-box
           .row
             .col-xs-12
-              %textarea.form-control{:name => "qb-question", :placeholder => "Type your question here…"}
+              %textarea.form-control{:name => "qb-question", :placeholder => t('views.placeholder.question')}
           .row{:style => "padding-top: 5px; padding-left: 5px; padding-right: 5px;"}
             .col-xs-6
               - if user_signed_in?
@@ -28,7 +28,7 @@
             .col-xs-6
               %p.pull-right
                 %input{name: 'qb-to', type: 'hidden', :value => @user.id}/
-                %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: 'Asking...', promote: user_signed_in? ? "false" : "true" }} Ask
+                %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: t('views.questionbox.load'), promote: user_signed_in? ? "false" : "true" }} Ask
       - unless user_signed_in?
         - if @user.privacy_allow_anonymous_questions?
           #question-box-promote.row{:style => "display: none;"}

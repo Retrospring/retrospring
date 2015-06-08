@@ -14,7 +14,7 @@
                 = pluralize(i.question.answer_count, t('views.inbox.entry.response'))
         %p.answerbox--question-text= i.question.content
   .panel-body
-    %textarea.form-control{name: 'ib-answer', placeholder: 'Write your answer here...', data: { id: i.id }}
+    %textarea.form-control{name: 'ib-answer', placeholder: t('views.placeholder.inbox'), data: { id: i.id }}
     %br/
     %button.btn.btn-success{name: 'ib-answer', data: { ib_id: i.id }}
       = t 'views.actions.answer'

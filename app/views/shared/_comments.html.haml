@@ -51,5 +51,5 @@
               = markdown comment.content
 - if user_signed_in?
   .form-group.has-feedback{name: 'ab-comment-new-group', data: { a_id: a.id }}
-    %input.form-control.comments--box{type: :text, placeholder: 'Comment...', name: 'ab-comment-new', data: {a_id: a.id }}
+    %input.form-control.comments--box{type: :text, placeholder: t('views.placeholder.comment'), name: 'ab-comment-new', data: {a_id: a.id }}
     %span.text-muted.form-control-feedback.comments--count{id: "ab-comment-charcount-#{a.id}"} 160
