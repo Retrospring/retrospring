@@ -23,10 +23,6 @@ feature "Inbox", :devise do
     Inbox.create question: question, user: me, new: true
 
     login_as me, scope: :user
-    visit root_path
-    expect(page).to have_text('1 new question'.upcase)
-    page.driver.render Rails.root.join("tmp/#{Time.now.to_i}_1.png"), full: true
-
     click_link "Inbox"
     expect(page).to have_text(question.content)
     fill_in "ib-answer", with: Faker::Lorem.sentence
