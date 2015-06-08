@@ -1,4 +1,4 @@
-COLORS = 64.freeze
+COLORS = 32.freeze
 
 module Paperclip
   class Cropper < Thumbnail
@@ -8,9 +8,62 @@ module Paperclip
         x = super
         i = x.index '-crop'
         2.times { x.delete_at i } if i
-        i = x.index '-layers'
-        2.times { x.delete_at i } if i
         crop_command + x
+      else
+        super
+      end
+    end
+
+    def gifsicle_command
+      %W(-k#{COLORS} -U -w -f -O3 --same-delay -l --no-comments --no-names --no-extensions -D asis --resize-method mix)
+    end
+
+    def resize_command
+      w = [0, @target_geometry.width.to_i].max
+      h = [0, @target_geometry.height.to_i].max
+
+
+      if w > 0 and h == 0
+        %W(--resize-width #{w})
+      elsif w == 0 and h > 0
+        %W(--resize-height #{h})
+      else
+        %W(--resize #{w}x#{h})
+      end
+    end
+
+    def gifsicle(arguments = "", local_options = {})
+      Paperclip.run('gifsicle', arguments, local_options)
+    end
+
+    def make
+      if animated?
+        src = @file
+        dst = Tempfile.new([@basename, @format ? ".#{@format}" : ''])
+        dst.binmode
+
+        begin
+          parameters = []
+
+          parameters << gifsicle_command
+          parameters << gifscile_crop_command
+          parameters << resize_command
+
+          parameters << "-o"
+          parameters << ":dest"
+          parameters << ":source"
+
+
+          parameters = parameters.flatten.compact.join(" ").strip.squeeze(" ")
+
+          success = gifsicle(parameters, :source => "#{File.expand_path(src.path)}#{'[0]' unless animated?}", :dest => File.expand_path(dst.path))
+        rescue Cocaine::ExitStatusError => e
+          raise Paperclip::Error, "There was an error processing the thumbnail for #{@basename}" if @whiny
+        rescue Cocaine::CommandNotFoundError => e
+          raise Paperclip::Errors::CommandNotFoundError.new("Could not run the `gifsicle` command. Please install Gifsicle.")
+        end
+
+        dst
       else
         super
       end
@@ -19,27 +72,24 @@ module Paperclip
     def crop_command
       target = @attachment.instance
       if target.cropping?
-        cmd = if animated?
-          ['-coalesce', '-repage', '0x0']
-        else
-          []
-        end
-
-        cmd.push '-crop'
-
         case @attachment.name
         when :profile_picture
-          cmd.push "'#{target.crop_w.to_i}x#{target.crop_h.to_i}+#{target.crop_x.to_i}+#{target.crop_y.to_i}'"
+          ['-crop', "#{target.crop_w.to_i}x#{target.crop_h.to_i}+#{target.crop_x.to_i}+#{target.crop_y.to_i}"]
         when :profile_header
-          cmd.push "'#{target.crop_h_w.to_i}x#{target.crop_h_h.to_i}+#{target.crop_h_x.to_i}+#{target.crop_h_y.to_i}'"
-        else
-          return nil
+          ['-crop', "#{target.crop_h_w.to_i}x#{target.crop_h_h.to_i}+#{target.crop_h_x.to_i}+#{target.crop_h_y.to_i}"]
         end
+      end
+    end
 
-        # optimize
-        cmd.push(%W(+repage -coalesce -layers optimize +dither -deconstruct -depth 8 \\( -clone 0--1 -background none +append -quantize transparent -colors #{COLORS} -unique-colors -write mpr:cmap +delete \\) -map mpr:cmap)).flatten! if animated?
-
-        cmd
+    def gifscile_crop_command
+      target = @attachment.instance
+      if target.cropping?
+        case @attachment.name
+        when :profile_picture
+          ['--crop', "#{target.crop_x.to_i},#{target.crop_y.to_i}+#{target.crop_w.to_i}x#{target.crop_h.to_i}"]
+        when :profile_header
+          ['--crop', "#{target.crop_h_x.to_i},#{target.crop_h_y.to_i}+#{target.crop_h_w.to_i}x#{target.crop_h_h.to_i}"]
+        end
       end
     end
   end
