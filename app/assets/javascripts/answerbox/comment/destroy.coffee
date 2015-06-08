@@ -9,6 +9,7 @@ $(document).on "click", "a[data-action=ab-comment-destroy]", (ev) ->
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
+    cancelButtonText: "Cancel"
     closeOnConfirm: true
   , ->
     $.ajax

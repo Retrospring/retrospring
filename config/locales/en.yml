@@ -20,6 +20,47 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  frontend:
+    load: "Load more"
+    actions:
+      delete: "Delete"
+      cancel: "Cancel"
+      report: "Report"
+      follow: "Follow"
+      unfollow: "Unfollow"
+      yes: "Yes"
+      no: "No"
+    success:
+      title: "Success!"
+    error:
+      title: "Uh-oh..."
+      message: "An error occurred, a developer should check the console for details"
+    group:
+      confirm:
+        title: "Really delete this group?"
+        text: "You will not be able to recover this group."
+    destroy_question:
+      confirm:
+        title: "Are you sure?"
+        text: "The question will be moved back to your inbox, but it won't delete any posts to social media."
+    destroy_comment:
+      confirm:
+        title: "Really delete?"
+        text: "You will not be able to recover this comment."
+    inbox:
+      empty: "Nothing to see here."
+      confirm_all:
+        title: "Really delete %{count} questions?"
+        text: "They will be gone forever."
+      confirm:
+        title: "Really delete?"
+        text: "This question will be gone forever."
+    report:
+      confirm:
+        title: "Really report this %{type}?"
+        text: "A moderator will review your report and decide what happens.\nIf you'd like, you can also specify a reason."
+        input: "Specify a reason..."
+
   flash:
     ban:
       error: "I'm sorry, %{name}, I'm afraid I can't do that."
@@ -409,4 +450,7 @@ en:
         contributor: "Contributor"
         blogger: "Blogger"
         banned: "Banned"
+      profile:
+        view: "View profile"
+        settings: "Settings"
   hello: "Hello world"

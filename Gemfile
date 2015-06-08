@@ -3,6 +3,7 @@ source 'https://rails-assets.org'
 
 gem 'rails', '4.2.1'
 gem 'rails-i18n'
+gem 'i18n-js'
 
 gem 'pg', group: :postgres
 gem 'mysql2', group: :mysql
@@ -65,7 +66,8 @@ gem 'foreman'
 gem 'redis'
 
 group :development do
-  gem 'spring'
+  # require spring 1.3.5 since shit's on fire on my local instance with 1.3.4 (Gem::LoadError)
+  gem 'spring', '~> 1.3.5'
   # ten thousand raises no more!
   gem 'byebug'
   gem 'web-console'

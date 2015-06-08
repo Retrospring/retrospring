@@ -23,6 +23,9 @@ coverage/
 # damn vim backup files
 *~
 
+# dont push generated js translations to repository
+/public/javascripts/i18n/
+
 # every fucking time, dolphin
 .directory
 # lookin' at you, OS trash

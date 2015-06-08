@@ -71,6 +71,7 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
+    cancelButtonText: "Cancel"
     closeOnConfirm: true
   , ->
     $.ajax

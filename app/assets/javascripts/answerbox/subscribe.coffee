@@ -1,4 +1,5 @@
 # the laziest coding known to man
+# TODO: so lazy, I don't know how to localize it properly
 $(document).on "click", "a[data-action=ab-submarine]", (ev) ->
   ev.preventDefault()
   btn = $(this)

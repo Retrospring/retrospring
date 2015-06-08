@@ -10,6 +10,8 @@
 #= require jquery.guillotine
 #= require jquery.particleground
 #= require sweet-alert
+#= require i18n
+#= require i18n/translations
 # local requires to be seen by everyone:
 #= require_tree ./answerbox
 #= require_tree ./questionbox

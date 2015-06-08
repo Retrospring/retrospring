@@ -29,6 +29,7 @@
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
+    cancelButtonText: "Cancel"
     closeOnConfirm: true
   , ->
     btn.button "loading"
@@ -102,6 +103,7 @@ $(document).on "click", "button[name=ib-destroy]", ->
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
     confirmButtonText: "Delete"
+    cancelButtonText: "Cancel"
     closeOnConfirm: true
   , ->
     btn.button "loading"
