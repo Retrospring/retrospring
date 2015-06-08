@@ -86,7 +86,7 @@ class Ajax::QuestionController < ApplicationController
 
     @message = I18n.t('messages.question.preview.fail')
     begin
-      @markdown = markdown(params[:md], Time.new)
+      @markdown = markdown params[:md]
       @message = I18n.t('messages.question.preview.okay')
     rescue
       @status = :fail
