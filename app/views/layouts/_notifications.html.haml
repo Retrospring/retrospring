@@ -60,5 +60,5 @@
                     - elsif notification.target.user == notification.target.answer.user
                       = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.their', user: user_screen_name(notification.target.answer.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
                     - else
-                      = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.user', user: user_screen_name(notification.target.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+                      = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.user', user: user_screen_name(notification.target.answer.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
     %li= link_to "#{t('views.notifications.show')}#{t('views.notifications.mark') if notifications.pluck(:new).any?}", notifications_path
