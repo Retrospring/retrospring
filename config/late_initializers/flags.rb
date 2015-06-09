@@ -16,7 +16,7 @@ I18n.with_locale("") do
       unless flag_map.index(cc).nil?
         begin
           lang = I18n.translate("#{l}.language")
-          lang = '' if lang == "translation missing: #{l}.language"
+          lang = '' if lang.index "translation missing"
           APP_LOCALES[l] = [lang, cc]
         rescue I18n.MissingTranslationData
           APP_LOCALES[l] = ['', cc]
