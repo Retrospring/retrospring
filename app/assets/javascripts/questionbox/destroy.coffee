@@ -3,8 +3,8 @@ $(document).on "click", "a[data-action=ab-question-destroy]", (ev) ->
   btn = $(this)
   qid = btn[0].dataset.qId
   swal
-    title: translate('frontend.delete_own.confirm.title')
-    text: translate('frontend.delete_own.confirm.text')
+    title: translate('frontend.destroy_own.confirm.title')
+    text: translate('frontend.destroy_own.confirm.text')
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
