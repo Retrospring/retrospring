@@ -1,4 +1,4 @@
-- provide(:title, "Viewing #{@application.name}") 
+= provide(:title, t("doorkeeper.applications.title.view", name: @application.name))
 .row.app--secret-details
   .col-md-8.app--details
     = render "doorkeeper/shared/app", application: @application
@@ -17,9 +17,9 @@
         %thead
           %tr
             %td
-              URI
+              =t(".uri")
             %td
-              Actions
+              =t(".actions")
         %tbody
           - @application.redirect_uri.split.each do |uri|
             %tr

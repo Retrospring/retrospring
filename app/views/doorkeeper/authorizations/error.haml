@@ -1,4 +1,4 @@
-- provide(:title, "Error authorizing #{@pre_auth.client.name}")
+- provide(:title, t('doorkeeper.authorizations.title.error', name: @pre_auth.client.name))
 .container.j2-page
   .row
     .col-md-2

@@ -2,12 +2,7 @@
   .panel.panel-default.moderationbox{data: { id: report.id }}
     .panel-heading
       %img.img-rounded.answerbox--img{src: gravatar_url(report.user)}
-      = user_screen_name report.user
-      reported a
-      = report.type.sub('Reports::', '')
-      %span{title: report.created_at, data: { toggle: :tooltip, placement: :bottom }}
-        = time_ago_in_words(report.created_at)
-      ago
+      = raw t('views.moderation.moderationbox.reported', user: user_screen_name(report.user), content: report.type.sub('Reports::', ''), time: time_tooltip(report))
     .panel-body
       %p
         - if report.type == 'Reports::User'
@@ -15,8 +10,7 @@
         - else
           = report.target.content
       %p
-        %b
-          Reason:
+        %b= t 'views.moderation.moderationbox.reason'
         %br
         - (report.reason || "No reason provided.").lines.each do |reason|
           - next unless reason.strip.length > 0
@@ -25,11 +19,10 @@
       .row
         .col-md-6.col-sm-4.col-xs-6.text-left
           %a.btn.btn-primary{href: content_url(report)}
-            View reported
-            = report.type.sub('Reports::', '')
+            = t('views.moderation.moderationbox.view', content: report.type.sub('Reports::', ''))
           - if report.target.respond_to? :user and not report.target.user.nil?
             %a.btn.btn-primary{href: show_user_profile_path(report.target.user.screen_name)}
-              View reported User
+              = t('views.moderation.moderationbox.view', content: t('views.general.user'))
         .col-md-6.col-sm-8.col-xs-6.text-right
           %span.mod-count{id: "mod-count-#{report.id}"}
             = report.votes

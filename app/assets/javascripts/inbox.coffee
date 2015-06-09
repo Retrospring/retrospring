@@ -14,7 +14,7 @@
         del_all_btn[0].dataset.ibCount = (Number del_all_btn[0].dataset.ibCount) + 1
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      showNotification "An error occurred, a developer should check the console for details", false
+      showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       btn.button "reset"
 
@@ -23,12 +23,13 @@
   btn = ($ this)
   count = btn[0].dataset.ibCount
   swal
-    title: "Really delete #{count} questions?"
-    text: "They will be gone forever."
+    title: translate('frontend.inbox.confirm_all.title', {count: count})
+    text: translate('frontend.inbox.confirm_all.text')
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Delete"
+    confirmButtonText: translate('views.actions.delete')
+    cancelButtonText: translate('views.actions.cancel')
     closeOnConfirm: true
   , ->
     btn.button "loading"
@@ -47,7 +48,7 @@
             entries.fadeIn()
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
+        showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->
         if succ
           # and now: a (broken?) re-implementation of Bootstrap's button.js
@@ -87,7 +88,7 @@ $(document).on "click", "button[name=ib-answer]", ->
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      showNotification "An error occurred, a developer should check the console for details", false
+      showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       btn.button "reset"
       $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"
@@ -96,12 +97,13 @@ $(document).on "click", "button[name=ib-answer]", ->
 $(document).on "click", "button[name=ib-destroy]", ->
   btn = $(this)
   swal
-    title: "Really delete?"
-    text: "This question will be gone forever."
+    title: translate('frontend.inbox.confirm.title')
+    text: translate('frontend.inbox.confirm.text')
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
-    confirmButtonText: "Delete"
+    confirmButtonText: translate('views.actions.delete')
+    cancelButtonText: translate('views.actions.cancel')
     closeOnConfirm: true
   , ->
     btn.button "loading"
@@ -118,7 +120,7 @@ $(document).on "click", "button[name=ib-destroy]", ->
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error
-        showNotification "An error occurred, a developer should check the console for details", false
+        showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->
         btn.button "reset"
         $("textarea[name=ib-answer][data-id=#{iid}]").removeAttr "readonly"

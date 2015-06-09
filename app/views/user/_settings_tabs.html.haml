@@ -1,10 +1,10 @@
 .col-md-3.col-xs-12.col-sm-3
   .panel.panel-default
     .list-group
-      = list_group_item "Account", edit_user_registration_path
-      = list_group_item "Profile", edit_user_profile_path
-      = list_group_item "Privacy", edit_user_privacy_path
-      = list_group_item "Sharing", services_path
-      = list_group_item "App Access", oauth_authorized_applications_path
-      = list_group_item "Develop Apps", oauth_applications_path
+      = list_group_item t('views.settings.tabs.account'), edit_user_registration_path
+      = list_group_item t('views.settings.tabs.profile'), edit_user_profile_path
+      = list_group_item t('views.settings.tabs.privacy'), edit_user_privacy_path
+      = list_group_item t('views.settings.tabs.sharing'), services_path
+      = list_group_item t('views.settings.tabs.apps'),    oauth_authorized_applications_path
+      = list_group_item t('views.settings.tabs.develop'), oauth_applications_path
   .hidden-xs= render "shared/links"

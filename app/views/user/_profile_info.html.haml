@@ -3,30 +3,30 @@
   - if @user.admin?
     .profile--panel-badge.panel-badge-danger
       %i.fa.fa-flask
-      Admin
+      = t 'views.user.title.admin'
   - if @user.moderator?
     .profile--panel-badge.panel-badge-success
       %i.fa.fa-users
-      Mod
+      = t 'views.user.title.moderator'
   - if @user.supporter?
     .profile--panel-badge.panel-badge-warning
       %i.fa.fa-star
-      Supporter
+      = t 'views.user.title.supporter'
   - if @user.contributor?
     .profile--panel-badge.panel-badge-primary
       %i.fa.fa-github
-      Contributor
+      = t 'views.user.title.contributor'
   - if @user.blogger?
     .profile--panel-badge.panel-badge-info
       %i.fa.fa-pencil
-      Blogger
+      = t 'views.user.title.blogger'
   - if @user.banned?
     .profile--panel-badge.panel-badge-default
       %i.fa.fa-ban
-      Banned
+      = t 'views.user.title.banned'
   - if @user.following? current_user
     .profile--panel-badge.panel-badge-default
-      Follows you
+      = t 'views.user.follows_you'
   .panel-body
     .profile--panel-name
       - if @user.display_name.blank?

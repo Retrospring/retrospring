@@ -19,6 +19,6 @@
     error: (jqxhr, status, error) ->
       box[0].checked = false
       console.log jqxhr, status, error
-      showNotification "An error occurred, a developer should check the console for details", false
+      showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       box.removeAttr "disabled"

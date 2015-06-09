@@ -1,4 +1,4 @@
-- provide(:title, "Authorization Granted")
+- provide(:title, t("doorkeeper.authorizations.show.title"))
 .container.j2-page
   .row
     .col-md-2
@@ -6,5 +6,5 @@
       .panel
         .panel-body#oautherize
           %h1
-            Authorization granted;
+            = t("doorkeeper.authorizations.show.title")
           %code#authorization_code= params[:code]

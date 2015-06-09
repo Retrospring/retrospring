@@ -6,7 +6,8 @@
       .list-group-item-heading= group.display_name
       .list-group-item-text.text-muted.j2-up
         %span{id: "#{group.name}-members"}= group.members.count
-        members ·
+        = t 'views.modal.group.members'
+        ·
         %a.j2-delete#delete-group{href: "#", data: { group: group.name }}
           %i.fa.fa-close
-          Delete
+          = t 'views.actions.delete'

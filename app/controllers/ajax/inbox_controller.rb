@@ -1,7 +1,7 @@
 class Ajax::InboxController < ApplicationController
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
-    @message = "#{param_miss_ex.param.capitalize} is required"
+    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
     @success = false
     render partial: "ajax/shared/status"
   end
@@ -9,7 +9,7 @@ class Ajax::InboxController < ApplicationController
   def create
     unless user_signed_in?
       @status = :noauth
-      @message = "requires authentication"
+      @message = I18n.t('messages.noauth')
       @success = false
       return
     end
@@ -22,7 +22,7 @@ class Ajax::InboxController < ApplicationController
     inbox = Inbox.create!(user: current_user, question_id: question.id, new: true)
 
     @status = :okay
-    @message = "Successfully added new question."
+    @message = I18n.t('messages.inbox.create.okay')
     @success = true
     @render = render_to_string(partial: 'inbox/entry', locals: { i: inbox })
     inbox.update(new: false)
@@ -35,7 +35,7 @@ class Ajax::InboxController < ApplicationController
 
     unless current_user == inbox.user
       @status = :fail
-      @message = "question not in your inbox"
+      @message = I18n.t('messages.inbox.remove.fail')
       @success = false
       return
     end
@@ -44,13 +44,13 @@ class Ajax::InboxController < ApplicationController
       inbox.remove
     rescue
       @status = :err
-      @message = "An error occurred"
+      @message = I18n.t('messages.error')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "Successfully deleted question."
+    @message = I18n.t('messages.inbox.remove.okay')
     @success = true
   end
 
@@ -59,13 +59,13 @@ class Ajax::InboxController < ApplicationController
       Inbox.where(user: current_user).each { |i| i.remove }
     rescue
       @status = :err
-      @message = "An error occurred"
+      @message = I18n.t('messages.error')
       @success = false
       return
     end
 
     @status = :okay
-    @message = "Successfully deleted questions."
+    @message = I18n.t('messages.inbox.remove_all.okay')
     @success = true
     render 'ajax/inbox/remove'
   end

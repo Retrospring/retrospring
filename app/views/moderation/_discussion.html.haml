@@ -1,5 +1,5 @@
 - if report.moderation_comments.all.count == 0
-  There are no comments yet.
+  = t 'views.answerbox.no_comment'
 - else
   %ul.comments
     - report.moderation_comments.order(:created_at).each do |comment|
@@ -21,8 +21,8 @@
                     %li.text-danger
                       %a{href: '#', tabindex: -1, data: { action: 'mod-comment-destroy', id: comment.id }}
                         %i.fa.fa-trash-o
-                        Delete
+                        = t 'views.actions.delete'
             %p.comments--content= comment.content
 .form-group.has-feedback{name: 'mod-comment-new-group', data: { id: report.id }}
-  %input.form-control.comments--box{type: :text, placeholder: 'Comment...', name: 'mod-comment-new', data: { id: report.id }}
+  %input.form-control.comments--box{type: :text, placeholder: t('views.placeholder.comment'), name: 'mod-comment-new', data: { id: report.id }}
   %span.text-muted.form-control-feedback.comments--count{id: "mod-comment-charcount-#{report.id}"} 160

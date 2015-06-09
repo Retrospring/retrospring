@@ -4,16 +4,16 @@
       .modal-header
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-          %span.sr-only Close
-        %h4#modal-group-memberships-label.modal-title Manage group memberships
+          %span.sr-only= t 'views.actions.close'
+        %h4#modal-group-memberships-label.modal-title= t 'views.modal.group.title'
       %div{role: "tabpanel"}
         %ul.nav.nav-tabs{role: "tablist"}
           %li.active{role: "presentation"}
             %a{href: "#grouplist", aria: {controls: "grouplist"}, data: {toggle: "tab"}, role: "tab"}
-              Groups
+              = t 'views.modal.group.tabs.main'
           %li{role: "presentation"}
             %a{href: "#create", aria: {controls: "create"}, data: {toggle: "tab"}, role: "tab"}
-              Create new group
+              = t 'views.modal.group.tabs.create'
 
         .tab-content
           .tab-pane.active{role:"tabpanel", id: "grouplist"}
@@ -22,7 +22,7 @@
                 = render 'user/modal_group_item', group: group, user: @user
           .tab-pane{role:"tabpanel", id: "create"}
             .modal-body
-              %input#new-group-name.form-control{type: :text, placeholder: 'Group name'}
-              %button#create-group.btn.btn-primary{type: :button, data: { user: @user.screen_name }} Create group
+              %input#new-group-name.form-control{type: :text, placeholder: t('views.modal.group.name')}
+              %button#create-group.btn.btn-primary{type: :button, data: { user: @user.screen_name }}= t('views.modal.group.create')
       .modal-footer
-        %button.btn.btn-primary{name: 'gm-save', type: :button, data: { dismiss: :modal }} Done
+        %button.btn.btn-primary{name: 'gm-save', type: :button, data: { dismiss: :modal }}= t 'views.actions.done'

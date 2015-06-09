@@ -1,9 +1,5 @@
 .panel.panel-default.hidden-xs
   %img.profile--avatar{src: current_user.profile_picture.url(:large)}
-  - unless inbox_count.nil?
-    .profile--panel-badge.panel-badge-info
-      %i.fa.fa-envelope
-      = pluralize(inbox_count, 'new question')
   .panel-body
     - if current_user.display_name.blank?
       .profile--displayname
@@ -17,21 +13,21 @@
       %a{href: show_user_followers_path(current_user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#follower-count= current_user.follower_count
-          %h6.entry-subtext Followers
+          %h6.entry-subtext= t('views.general.follower').pluralize(current_user.follower_count)
       %a{href: show_user_friends_path(current_user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= current_user.friend_count
-          %h6.entry-subtext Following
+          %h6.entry-subtext= t('views.general.following')
 .panel.panel-default.hidden-xs
   %ul.nav.nav-pills.nav-stacked
-    = list_group_item "Timeline", root_path
-    = list_group_item "Public", public_timeline_path
+    = list_group_item t('views.general.timeline'), root_path
+    = list_group_item t('views.general.public'), public_timeline_path
     - current_user.groups.each do |group|
       = list_group_item group.display_name, group_timeline_path(group.name)
 - unless @group.nil?
   .panel.panel-default.profile--panel.hidden-xs
     .panel-heading
-      %h3.panel-title Members
+      %h3.panel-title= t('views.group.members')
     .panel-body
       - @group.members.each do |member|
         %a{href: show_user_profile_path(member.user.screen_name), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top }}

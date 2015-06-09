@@ -9,28 +9,28 @@
     %li
       %a{href: show_user_profile_path(current_user.screen_name)}
         %i.fa.fa-fw.fa-user
-        View profile
+        = t('views.navigation.show')
     %li
       %a{href: edit_user_registration_path}
         %i.fa.fa-fw.fa-cog
-        Settings
+        = t('views.navigation.settings')
     %li.divider
     - if current_user.admin?
       %li
         %a{href: rails_admin_path}
           %i.fa.fa-fw.fa-cogs
-          Kontrollzentrum
+          = t('views.navigation.admin')
       %li
         %a{href: sidekiq_web_path}
           %i.fa.fa-fw.fa-bar-chart
-          Sidekiq
+          = t('views.navigation.sidekiq')
     - if current_user.mod?
       %li
         %a{href: moderation_path}
           %i.fa.fa-fw.fa-gavel
-          Moderation Panel
+          = t('views.navigation.moderation')
       %li.divider
     %li
       %a{href: destroy_user_session_path, data: {method: :delete} }
         %i.fa.fa-fw.fa-sign-out
-        Logout
+        = t 'views.sessions.destroy'

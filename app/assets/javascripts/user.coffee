@@ -30,7 +30,7 @@ $(document).on "click", "button[name=user-action]", ->
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
-      showNotification "An error occurred, a developer should check the console for details", false
+      showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       btn.button "reset"
       if success
@@ -38,11 +38,11 @@ $(document).on "click", "button[name=user-action]", ->
           when 'follow'
             btn[0].dataset.action = 'unfollow'
             btn.attr 'class', 'btn btn-default btn-block profile--follow-btn'
-            btn.html 'Unfollow'
+            btn.html translate('views.actions.unfollow')
           when 'unfollow'
             btn[0].dataset.action = 'follow'
             btn.attr 'class', 'btn btn-primary btn-block profile--follow-btn'
-            btn.html 'Follow'
+            btn.html translate('views.actions.follow')
 
 
 # report user
@@ -79,7 +79,7 @@ if PARALLAX_PREFIX?
   HEADER_PARALLAX = ->
     header = $("#profile--header:not(.profile--no-header) img")[0]
     if header?
-      headerOffset = document.body.scrollTop * HEADER_PARALLAX_INERTIA
+      headerOffset = Math.max(window.pageYOffset, window.scrollY, document.documentElement.scrollTop) * HEADER_PARALLAX_INERTIA
       header.style[PARALLAX_CSS] = "translate3d(0px, #{headerOffset}px, 0px)";
     return # coffee doesn't have !-> to prevent returning like LiveScript has, god I miss livescript ;-;
     # also no := to set global variables :-(

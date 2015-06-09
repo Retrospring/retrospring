@@ -1,4 +1,4 @@
-- provide(:title, "Develop applications")
+- provide(:title, t("doorkeeper.applications.title.develop"))
 %p= link_to t('.new'), new_oauth_application_path, class: 'btn btn-primary btn-expand'
 %ul.list-group.appications--list
   - @applications.each do |application|
@@ -10,10 +10,10 @@
           .row
             .col-md-6.no-pad
               %a.btn.btn-primary.btn-expand{href: oauth_application_path(application)}
-                View
+                = t("doorkeeper.applications.buttons.view")
             .col-md-6.no-pad
               %a.btn.btn-success.btn-expand{href: edit_oauth_application_path(application)}
-                Edit
+                = t("doorkeeper.applications.buttons.edit")
           .row
             .col-md-12
               = render "delete_form", application: application, submit_btn_css: "btn btn-danger btn-expand"

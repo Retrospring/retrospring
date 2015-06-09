@@ -1,7 +1,7 @@
-- provide(:title, "Applications on your account")
+- provide(:title, t("doorkeeper.authorized_applications.index.title"))
 .oauth-panel
   %h1
-    Applications
+     = t("doorkeeper.authorized_applications.index.header")
   %ul.list-group.oautherizations--list
     - @applications.each do |application|
       %li.list-group-item.oautherization

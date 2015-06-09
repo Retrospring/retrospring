@@ -2,56 +2,50 @@
   .panel-heading
     %h3.panel-title
       - if @user.motivation_header.blank?
-        Ask something!
+        = t 'views.questionbox.title'
       - else
         = @user.motivation_header
   .panel-body
     - if @user.banned?
       .row
         .col-xs-12.text-center
-          %strong This user got hit with ye olde banhammer.
+          %strong= t 'views.questionbox.banned'
     - else
       - if user_signed_in? or @user.privacy_allow_anonymous_questions?
         #question-box
           .row
             .col-xs-12
-              %textarea.form-control{:name => "qb-question", :placeholder => "Type your question here…"}
+              %textarea.form-control{:name => "qb-question", :placeholder => t('views.placeholder.question')}
           .row{:style => "padding-top: 5px; padding-left: 5px; padding-right: 5px;"}
             .col-xs-6
               - if user_signed_in?
                 - if @user.privacy_allow_anonymous_questions?
                   %input{:name => "qb-anonymous", :type => "checkbox"}/
-                  Hide your name
+                  = t 'views.actions.anonymous'
                   %br/
                 - else
                   %input{:name => "qb-anonymous", :type => "hidden", :value => "false"}/
             .col-xs-6
               %p.pull-right
                 %input{name: 'qb-to', type: 'hidden', :value => @user.id}/
-                %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: 'Asking...', promote: user_signed_in? ? "false" : "true" }} Ask
+                %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: t('views.questionbox.load'), promote: user_signed_in? ? "false" : "true" }} Ask
       - unless user_signed_in?
         - if @user.privacy_allow_anonymous_questions?
           #question-box-promote.row{:style => "display: none;"}
             .row
               .col-xs-12.text-center
-                %strong Your question has been sent.
+                %strong= t 'views.questionbox.promote.message'
             .row
               .col-sm-1
               .col-sm-5
-                %button#create-account.btn.btn-block.btn-primary Create an account
+                %button#create-account.btn.btn-block.btn-primary= t 'views.questionbox.promote.create'
               .col-sm-5
-                %button#new-question.btn.btn-block.btn-default Ask another question
+                %button#new-question.btn.btn-block.btn-default= t 'views.questionbox.promote.another'
               .col-sm-1
             .row
               .col-sm-1
-              .col-xs-12.col-sm-10
-                %small
-                  Join
-                  = APP_CONFIG['site_name']
-                  today!  You'll be able to follow and ask people you know and a lot more.
+              .col-xs-12.col-sm-10.text-center
+                %small= t('views.questionbox.promote.join', app_title: APP_CONFIG['site_name'])
               .col-sm-1
         - else
-          %p
-            This user does not want to get asked by strangers.  Why don't you
-            = succeed "?" do
-              %a{:href => "{{ url_for('register') }}"} sign up
+          %p= raw t 'views.questionbox.required', signup: link_to(t('views.sessions.new'),new_user_registration_path)

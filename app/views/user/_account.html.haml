@@ -13,34 +13,33 @@
                 .modal-header
                   %button.close{"data-dismiss" => "modal", :type => "button"}
                     %span{"aria-hidden" => "true"} ×
-                    %span.sr-only Close
-                  %h4#modal-passwd-label.modal-title Save account changes
+                    %span.sr-only= t 'views.actions.close'
+                  %h4#modal-passwd-label.modal-title= t 'views.settings.account.modal.title'
                 .modal-body
-                  = f.password_field :current_password, autocomplete: "off", label: "Current password", help: "We need your current password to confirm your changes"
+                  = f.password_field :current_password, autocomplete: "off", label: t('views.settings.account.password_current'), help: t('views.settings.account.password_current_help')
                 .modal-footer
-                  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
-                  %button.btn.btn-primary{:type => "submit"} Save changes
+                  %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"}= t 'views.actions.cancel'
+                  %button.btn.btn-primary{:type => "submit"}= t 'views.actions.save'
 
           = devise_error_messages!
 
-          = f.text_field :screen_name, autofocus: true, label: "User name"
+          = f.text_field :screen_name, autofocus: true, label: t('views.settings.account.username')
 
-          = f.email_field :email, label: "Email address"
+          = f.email_field :email, label: t('views.settings.account.email')
           - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-            %div
-              Currently waiting confirmation for: #{resource.unconfirmed_email}
+            %div= raw t('views.settings.account.email_confirm', resource: resource.unconfirmed_email)
 
-          = f.password_field :password, autocomplete: "off", label: "Password", help: "Leave this blank if you don't want to change it"
-          = f.password_field :password_confirmation, autocomplete: "off", label: "Confirm password"
+          = f.password_field :password, autocomplete: "off", label: t('views.settings.account.password'), help: t('views.settings.account.password_help')
+          = f.password_field :password_confirmation, autocomplete: "off", label: t('views.settings.account.password_confirm')
 
           %button.btn.btn-primary{"data-target" => "#modal-passwd", "data-toggle" => "modal", :type => "button"}
-            Save changes
+            = t 'views.actions.save'
 
           %hr/
         %p
-          Unsatisfied?
-          =button_to "Delete my account", '/settings/account', data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs"
+          = t 'views.settings.account.unsatisfied'
+          =button_to t('views.settings.account.delete'), '/settings/account', data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs"
 
-        = link_to "Back", :back
+        = link_to t('views.settings.account.back'), :back
 
 .visible-xs= render "shared/links"

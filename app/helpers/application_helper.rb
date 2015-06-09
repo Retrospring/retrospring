@@ -39,6 +39,18 @@ module ApplicationHelper
     content_tag(:a, body.html_safe, href: path, class: ("list-group-item #{'active ' if current_page? path}#{options[:class]}"))
   end
 
+  def tooltip(body, tooltip_content, placement = "bottom")
+    content_tag(:span, body, {title: tooltip_content, "data-toggle" => "tooltip", "data-placement" => placement} )
+  end
+
+  def time_tooltip(subject, placement = "bottom")
+    tooltip time_ago_in_words(subject.created_at), localize(subject.created_at), placement
+  end
+
+  def hidespan(body, hide)
+    content_tag(:span, body, class: "hidden-#{hide}")
+  end
+
   ##
   #
   def bootstrap_color c

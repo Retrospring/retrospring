@@ -20,25 +20,25 @@
     #j2-main-navbar-collapse.collapse.navbar-collapse
       - if user_signed_in?
         %ul.nav.navbar-nav
-          = nav_entry "Timeline", root_path
-          = nav_entry "Inbox", "/inbox", badge: inbox_count
-          = nav_entry "Discover", discover_path
+          = nav_entry t('views.navigation.timeline'), root_path
+          = nav_entry t('views.navigation.inbox'), "/inbox", badge: inbox_count
+          = nav_entry t('views.navigation.discover'), discover_path
         %ul.nav.navbar-nav.navbar-right
           - unless @user.nil?
             - unless @user == current_user
-              %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Manage group memberships"}
+              %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: t('views.actions.group')}
                 %a{href: '#', data: { target: "#modal-group-memberships", toggle: :modal }}
                   %i.fa.fa-users.hidden-xs
-                  %span.visible-xs Manage group memberships
+                  %span.visible-xs= t('views.actions.group')
           = render "layouts/notifications"
-          %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: "Ask a question"}
+          %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: t('views.actions.ask_question')}
             .btn.btn-link.navbar-btn{name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
               %i.fa.fa-pencil-square-o
           = render "layouts/profile"
       - else
         %ul.nav.navbar-nav.navbar-right
-          = nav_entry "Sign in", new_user_session_path
-          = nav_entry "Sign up", new_user_registration_path
+          = nav_entry t('views.sessions.create'), new_user_session_path
+          = nav_entry t('views.sessions.new'), new_user_registration_path
 
 - if user_signed_in?
   = render 'shared/modal_ask_followers'

@@ -16,22 +16,17 @@
                   %li.text-danger
                     %a{href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: q.id }}
                       %i.fa.fa-trash-o
-                      Delete Question
+                      = t 'views.actions.delete'
                 - unless q.user == current_user
                   %li
                     %a{href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id }}
                       %i.fa.fa-exclamation-triangle
-                      Report
+                      = t 'views.actions.report'
         %h6.media-heading.text-muted.answerbox--question-user
-          = user_screen_name q.user
-          asked
-          %a{href: show_user_question_path(q.user.screen_name, q.id)}
-            %span{title: q.created_at, data: { toggle: :tooltip, placement: :bottom }}
-            = time_ago_in_words(q.created_at)
-            ago
+          = raw t('views.answerbox.asked', user: user_screen_name(q.user), time: time_tooltip(q))
           - if q.answer_count > 1
             ·
             %a{href: show_user_question_path(q.user.screen_name, q.id)}
-              #{q.answer_count} answers
+              = pluralize(q.answer_count, t('views.general.answer'))
         %p.answerbox--question-text
           = q.content

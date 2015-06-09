@@ -5,16 +5,15 @@
     %img.pull-left{src: application.icon.url(:normal)}
     %h1.app--name
       - if managed_by and not listing
-        Authorize
-      %strong= application.name
+        =t raw t("doorkeeper.authorizations.new.prompt", client_name: content_tag(:strong, application.name))
+      - else
+        %strong= application.name
       %small= application.description
     - if managed_by
       %br
         %h3
           %small
-            Managed by
-            = user_screen_name(application.owner)
+            = raw t('doorkeeper.authorizations.new.managed_by', name: user_screen_name(application.owner))
             - if listing
               %br
-              Created at
-              = application.created_at.strftime(t('doorkeeper.authorized_applications.index.date_format'))
+              = raw t('doorkeeper.authorized_applications.index.created_at', time: time_tooltip(application))

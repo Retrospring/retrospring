@@ -3,14 +3,14 @@
   #particles
   .particle-content
     %h1= APP_CONFIG['site_name']
-    %p About our service, features and other information
+    %p= t 'views.about.subtitle'
 .container
   .panel.panel-default
     .panel-body
       .row
         .col-md-3
-          %h3 Links
-          %p Important pages and social media profiles from the Retrospring team, which are recommended to visit!
+          %h3= t 'views.about.links.title'
+          %p= t('views.about.links.desc', app_title: APP_CONFIG['site_name'])
         .col-md-3.col-sm-4
           %a{href: "https://twitter.com/retro_spring"}
             .icon-showcase
@@ -33,34 +33,20 @@
     .panel-body
       .row
         .col-md-4
-          %h3 Open Source
-          %p
-            = APP_CONFIG['site_name']
-            is running on unfinished code, full of bugs. Caveat emptor.
-          %p
-            Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help
-            = APP_CONFIG['site_name']
-            to get the features everyone wanted by forking our
-            = succeed '.' do
-              = link_to "GitHub repository", 'https://github.com/retrospring/retrospring'
-            If that's not the case, you can still report bugs and request features at our
-            = succeed '.' do
-              = link_to "bug tracker", 'https://github.com/retrospring/bugs'
+          %h3= t 'views.about.opensource.title'
+          %p= t('views.about.opensource.warning', app_title: APP_CONFIG['site_name'])
+          %p= raw t('views.about.opensource.desc', app_title: APP_CONFIG['site_name'], github: link_to(t('views.about.opensource.github'), "https://github.com/Retrospring/retrospring"), bugtracker: link_to(t('views.about.opensource.bugtracker'), "https://github.com/Retrospring/bugs"))
         .col-md-4
           %a{href: "https://github.com/Retrospring/retrospring"}
             .icon-showcase
               %i.fa.fa-github
-          %h4.heading-about.text-center
-            Main Repository
+          %h4.heading-about.text-center= t 'views.about.repository.title'
           %p.text-center
-            %em The place where all the code magic and fixing happens!
+            %em= t 'views.about.repository.desc'
         .col-md-4
-          %h3 Contributors
-          %p These people have contributed to #{APP_CONFIG['site_name']}'s source code.
-          %p
-            Want to get listed here?
-            = link_to "Fork this repo", 'https://github.com/retrospring/retrospring'
-            and create a new pull request with your changes.
+          %h3= t 'views.about.contributors.title'
+          %p= t('views.about.contributors.desc', app_title: APP_CONFIG['site_name'])
+          %p= raw t('views.about.contributors.howto', fork: link_to(t('views.about.contributors.fork'), "https://github.com/retrospring/retrospring"))
           %ul.about--moderator
             - User.where(contributor: true).each do |sup|
               %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
@@ -69,10 +55,8 @@
     .panel-body
       .row
         .col-md-4
-          %h3 The Team
-          The people behind
-          = succeed '!' do
-            = APP_CONFIG['site_name']
+          %h3= t 'views.about.team.title'
+          = t('views.about.team.desc', app_title: APP_CONFIG['site_name'])
           %br/
           - APP_CONFIG['admins'].each do |adm|
             .media
@@ -83,18 +67,15 @@
                 %h4.entry-text.entry-about= adm['about_text']
                 %h6.entry-subtext= adm['subtext']
         .col-md-4
-          %h3 Moderators
-          %p
-            The people on
-            = APP_CONFIG['site_name']
-            that look after you!
+          %h3= t 'views.about.moderators.title'
+          %p= t('views.about.moderators.desc', app_title: APP_CONFIG['site_name'])
           %ul.about--moderator
             - User.where(moderator: true).each do |mod|
               %a{href: show_user_profile_path(mod.screen_name), title: mod.screen_name, data: { toggle: :tooltip, placement: :top }}
                 %img.img-rounded.answerbox--img{src: mod.profile_picture.url(:medium)}
         .col-md-4
-          %h3 Funding
-          %p People which (previously) donated to Retrospring!
+          %h3= t 'views.about.funding.title'
+          %p= t('views.about.funding.desc', app_title: APP_CONFIG['site_name'])
           %ul.about--moderator
             - User.where(supporter: true).each do |sup|
               %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
@@ -103,24 +84,20 @@
     .panel-body
       .row
         .col-md-3.col-sm-12.col-xs-12
-          %h3 Statistics
-          %p
-            All-time statistics for
-            = succeed ',' do
-              = APP_CONFIG['site_name']
-            updated every time you refresh the page!
+          %h3= t 'views.about.statistics.title'
+          %p= t('views.about.statistics.desc', app_title: APP_CONFIG['site_name'])
         .col-md-3.col-sm-6.col-xs-6.statistics
           %h2.entry-text#asked-count= Question.count
-          %h4.entry-subtext Questions
+          %h4.entry-subtext= t('views.general.question').pluralize(Question.count)
           %h2.entry-text#answered-count= Answer.count
-          %h4.entry-subtext Answers
+          %h4.entry-subtext= t('views.general.answer').pluralize(Answer.count)
         .col-md-3.col-sm-6.col-xs-6.statistics
           %h2.entry-text#asked-count= Comment.count
-          %h4.entry-subtext Comments
+          %h4.entry-subtext= t('views.general.comment').pluralize(Comment.count)
           %h2.entry-text#answered-count= Smile.count + CommentSmile.count
-          %h4.entry-subtext Smiles
+          %h4.entry-subtext= t('views.general.smile').pluralize(Smile.count)
         .col-md-3.col-sm-12.col-xs-12.users
           .entry-text#follower-count= User.count
-          %h6.entry-subtext Users
+          %h6.entry-subtext= t('views.general.user').pluralize(User.count)
 
 = render "shared/links"

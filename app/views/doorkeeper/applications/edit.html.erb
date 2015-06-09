@@ -1,2 +1,2 @@
-<% provide(:title, "Edit #{@application.name}") %>
+<% provide(:title, t("doorkeeper.applications.title.edit", name: @application.name)) %>
 <%= render 'form', application: @application %>

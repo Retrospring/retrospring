@@ -10,9 +10,10 @@
   - if Doorkeeper.configuration.native_redirect_uri
     %span.help-block= raw t('doorkeeper.applications.help.native_redirect_uri', native_redirect_uri: "<code>#{ Doorkeeper.configuration.native_redirect_uri }</code>")
   .form-group
-    = f.label "Optional Scopes"
+    = f.label t("doorkeeper.applications.optional_scopes")
     = f.hidden_field :scopes
     .checkbox
+      -# DO NOT LOCALIZE SCOPE NAMES
       %label.doorkeeper_application_scopes
         = check_box_tag 'scopes', :write, !application.scopes.all.index("write").nil?
         Write
@@ -33,7 +34,7 @@
   #app-icon-crop-controls{style: 'display: none;'}
     .row
       .col-12
-        %strong Adjust your app's icon
+        %strong= t("doorkeeper.applications.icon")
         %img#app-icon-cropper{src: application.icon.url(:normal)}
     .row
       .col-12

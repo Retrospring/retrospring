@@ -26,6 +26,11 @@ module Justask
     # Use Sidekiq for background jobs
     config.active_job.queue_adapter = :sidekiq
 
+    config.i18n.default_locale = "en"
+    config.i18n.fallbacks = true
+    config.i18n.enforce_available_locales = false
+
+
     # DEPRECATION WARNING: Currently, Active Record suppresses errors raised
     # within `after_rollback`/`after_commit` callbacks and only print them to the logs.
     # In the next version, these errors will no longer be suppressed.
