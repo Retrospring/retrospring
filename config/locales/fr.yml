@@ -55,15 +55,15 @@ fr:
       until: "Banni jusqu'au : %{time}"
     service:
       create:
-        success: "Service ajouté avec succès"
+        success: "Le service a été ajouté avec succès"
         error: "Le service n'a pas pu être ajouté :("
       failure: "Une erreur est survenue"
-      destroy: "Service supprimé avec succès"
+      destroy: "Le service a été supprimé avec succès"
     user:
       update:
         text: "Votre profil a été mis à jour !"
         avatar: " Plusieurs minutes peuvent être nécessaires pour que votre image de profil soit affichée partout."
-        header: "  Plusieurs minutes peuvent être nécessaires pour que votre nouvelle image d'en-tête soit affichée partout."
+        header: " Plusieurs minutes peuvent être nécessaires pour que votre nouvelle image d'en-tête soit affichée partout."
         error: "Une erreur est survenue. ;_;"
       update_privacy:
         success: "Vos paramètres de confidentialité ont été mis à jour !"
@@ -133,7 +133,7 @@ fr:
         okay: "Votre commentaire a été publié avec succès."
       destroy_comment:
         nopriv: "vous ne pouvez pas supprimer le commentaire de quelqu'un d'autre"
-        okay: "Commentaire supprimé avec succès."
+        okay: "Votre commentaire a été supprimé avec succès."
       ban:
         error: Bizarre...
         nopriv: "Vous ne pouvez pas bannir un administrateur !"
@@ -244,7 +244,7 @@ fr:
       members: "Membres"
     actions:
       title: "Actions"
-      ask: "Demander"
+      ask: "Envoyer"
       ask_question: "Poser une question"
       answer: "Réponse"
       options: "Paramètres"
@@ -288,45 +288,45 @@ fr:
       notifications: "Notifications"
       show: "Voir le profil"
       settings: "Paramètres"
-      admin: "Centre de contrôle"
+      admin: "Panel de contrôle"
       sidekiq: "Sidekiq"
       moderation: "Panneau de modération"
     front:
       subtitle: "Posez des questions, répondez-y, et apprenez-en plus sur vos amis."
       ask:
         title: "Posez et répondez à des questions"
-        desc: "Avec %{app_title} vous pouvez poser des questions à la populace et répondre aux questions d'autres utilisateurs ou d'inconnus. Envie d'en savoir plus ? Continuez la conversation dans les commentaires !"
+        desc: "Avec %{app_title}, vous pouvez poser des questions aux gens et répondre à des questions d'autres utilisateurs où de non-inscrits. Vous voulez en savoir plus ? Continuez la discussion dans les commentaires !"
       follow:
         title: "Suivez des utilisateurs et soyez suivi"
-        desc: "Suivre des utilisateurs vous permet d'avoir un fil personnalisé de tous ceux dont vous voulez savoir plus. Vous pouvez aussi poser une question à tous vos abonnés à la fois !"
+        desc: "Suivre des utilisateurs vous permet d'avoir un fil personnalisé de tous ceux dont vous voulez en savoir plus. Vous pouvez également poser une question à tous vos abonnés à la fois !"
       share:
-        title: "Partage vers d'autres réseaux"
-        desc: "Envie de partager votre réponse à une question pour que plus de monde puisse la lire ? Avec un simple clic sur le bouton \"Répondre\", votre réponse est partagée où que vous vouliez !"
+        title: "Partagez vers d'autres réseaux"
+        desc: "Envie de partager votre réponse à une question pour que plus de monde puisse la lire ? Avec un simple clic sur le bouton \"Répondre\", votre réponse est partagée où que vous le vouliez !"
     about:
-      subtitle: "À propos de notre service, de nos fonctionnalités, et autres informations"
+      subtitle: "À propos de notre service, de nos fonctionnalités, et autres informations."
       links:
         title: "Liens"
         desc: "Pages importantes et profils sur les réseaux sociaux de l'équipe %{app_title}, que nous vous recommandons de visiter !"
       opensource:
         title: "Open Source"
-        warning: "%{app_title} fonctionne sur du code incomplet, plein de bugs. Caveat emptor."
+        warning: "%{app_title} fonctionne grâce à du code incomplet, plein de bugs. Caveat emptor."
         desc: "Envie de nous aider ? Que vous soyez un développeur Ruby, un codeur CoffeeScript ou un designer frontend, vous pouvez dès maintenant aider %{app_title} à obtenir les fonctionnalités longuement désirées par nos utilisateurs en créant un fork sur notre %{github}. Si ce n'est pas le cas, vous pouvez toujours signaler des bugs et suggérer des fonctionnalités sur notre %{bugtracker}."
-        github: "Dépôt GitHub"
-        bugtracker: "tracker des bugs"
+        github: "Repo GitHub"
+        bugtracker: "bug tracker"
       repository:
-        title: "Dépôt principal"
+        title: "Repository principal"
         desc: "Là où la magie du code et les réparations s'effectuent !"
       contributors:
         title: "Contributeurs"
         desc: "Ces personnes ont contribué au code source de %{app_title}."
-        howto: "Vous souhaitez être listé ici ? %{fork} et envoyez une pull request avec vos changements."
-        fork: "Faites un fork de ce repo"
+        howto: "Vous souhaitez être ajouté ici ? %{fork} et envoyez une pull request avec vos changements."
+        fork: "Faites un fork de ce repository"
       team:
-        title: "L'Équipe"
-        desc: "Ceux derrière %{app_title} !"
+        title: "L'équipe"
+        desc: "Les personnes derrière %{app_title} !"
       moderators:
         title: "Modérateurs"
-        desc: "Ceux qui veillent sur vous sur %{app_title} !"
+        desc: "Ceux qui veillent sur vous et sur %{app_title} !"
       funding:
         title: "Financement"
         desc: "Ceux qui ont (précédemment) fait un don à %{app_title} !"
@@ -335,32 +335,32 @@ fr:
         desc: "Statistiques globales pour %{app_title}, mises à jour dès que vous rafraîchissez la page !"
     discover:
       title: "Découvrir"
-      subtitle: "L'endroit idéal pour trouver du contenu digne d'intérêt datant de la dernière semaine sur %{app_title} !"
+      subtitle: "L'endroit idéal pour trouver du contenu digne d'intérêt datant de cette semaine sur %{app_title} !"
       content:
         title: "Contenu populaire"
-        desc: "Réponses les plus souries et questions les plus répondues"
+        desc: "Réponses ayant reçu le plus de sourires et questions les plus répondues."
         tab:
           answers: "Les plus aimées"
           questions: "Les plus répondues"
           comments: "Les plus controversées"
       people:
         title: "Personnes"
-        desc: "Nouveaux arrivants et personnes ayant posé le plus de questions"
+        desc: "Nouveaux arrivants et personnes ayant posé le plus de questions."
         tab:
           new: "Nouveaux utilisateurs"
           questions: "Les plus actifs"
-          answers: "Les plus répondues"
+          answers: "Ayant le plus répondu"
       userbox:
-        new: "enregistré depuis %{time}"
+        new: "inscrit depuis %{time}"
         answers: "a répondu à %{questions}"
         questions: "a posé %{questions}"
     answerbox:
       asked: "%{user} a posé cette question il y a %{time}"
       read: "Lire la réponse entière"
       answered: "%{hide} %{user}"
-      hide: "Répondu par"
+      hide: "Répondue par"
       time: "Il y a %{time}"
-      no_smile: "Personne n'a souri, pour le moment."
+      no_smile: "Personne n'a souri à cette question, pour le moment."
       no_comment: "Il n'y a pas encore de commentaires."
       commentsmile: "Personnes qui ont souri à ce commentaire"
     questionbox:
@@ -419,21 +419,21 @@ fr:
         confirm: "Voulez-vous vraiment révoquer l'accès à %{service} ?"
     modal:
       ask:
-        title: "Demander à vos abonnés"
+        title: "Poser une question à vos abonnés"
         choose: "Choisir un groupe :"
         loading: "Envoi..."
       bancontrol:
-        title: "Centre de contrôle des bannissements"
+        title: "Panel de contrôle des bannissements"
         ban: "Bannir ?"
         permanent: "Définitivement ?"
         reason: "Raison"
-        hammertime: "L'heure du jugement"
+        hammertime: "Que le Marteau s'abatte"
       group:
-        title: "Gérer les adhésions aux groupes"
+        title: "Gérer l'appartenance à un groupe"
         tabs:
           main: "Groupes"
           create: "Créer un nouveau groupe"
-        create: "Créer le groupe"
+        create: "Créer"
         name: "Nom du groupe"
         members: "membres"
       privilege:
