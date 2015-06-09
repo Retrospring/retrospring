@@ -1,0 +1,451 @@
+---
+cs:
+  frontend:
+    load: "Načíst více"
+    success:
+      title: Úspěch!
+    error:
+      title: "Ups..."
+      message: "Došlo k chybě, pokud jste vývojář, zkontrolujte konzoli pro podrobnosti"
+    subscription:
+      subscribe: "Úspěšně odebíráno."
+      unsubscribe: "Odběr úspěšně zrušen."
+      fail:
+        subscribe: "Nepodařilo se přihlásit k odběru na odpovědi."
+        unsubscribe: "Nepodařilo se zrušit odběr na odpovědi."
+    group:
+      confirm:
+        title: "Opravdu chcete smazat tuto skupinu?"
+        text: "Nebudete tuto skupinu moci obnovit."
+    destroy_question:
+      confirm:
+        title: "Jste si jisti?"
+        text: "Otázka bude přesunuta zpět do schránky, ale nesmaže žádné příspěvky na sociálních médiích."
+    destroy_comment:
+      confirm:
+        title: "Skutečně smazat?"
+        text: "Nebudete tento komentář moci obnovit."
+    destroy_report:
+      confirm:
+        title: "Skutečně smazat?"
+        text: "Nebudete toto hlášení moci obnovit."
+    destroy_own:
+      confirm:
+        title: "Jste si jisti?"
+        text: "Tato otázka bude smazána."
+    inbox:
+      empty: "Nic zde není k vidění."
+      confirm_all:
+        title: "Skutečně chcete smazat %{count} otázek?"
+        text: "Budou navždy pryč."
+      confirm:
+        title: "Skutečně smazat?"
+        text: "Tato otázka bude navždy pryč."
+    report:
+      confirm:
+        title: "Skutečně nahlásit tento %{type}?"
+        text: "Moderátor posoudí vaši zprávu a rozhodne, co se stane. Pokud byste chtěli, můžete také určit důvod."
+        input: "Uveďte důvod..."
+  flash:
+    ban:
+      error: "Je mi líto, %{name}, obávám se, že to nemůžu udělat."
+      reason: "Důvod banu: %{reason}"
+      until: "Zabanovaný do: %{time}"
+    service:
+      create:
+        success: "Služba úspěšně přidána"
+        error: "Nelze přidat službu :("
+      failure: "Vyskytla se chyba"
+      destroy: "Služba úspěšně odebrána"
+    user:
+      update:
+        text: "Váš profil byl aktualizován!"
+        avatar: " Může trvat několik minut, než se váš nový profilový obrázek zobrazí všude."
+        header: " Může trvat několik minut, než se váš nová hlavička profilu zobrazí všude."
+        error: "Vyskytla se chyba. ;_;"
+      update_privacy:
+        success: "Vaše nastavení soukromí byly aktualizovány!"
+        error: "Vyskytla se chyba. ;_;"
+  messages:
+    noscript: "Prosím aktivujte JavaScript."
+    error: "Vyskytla se chyba."
+    parameter_error: "%{parameter} je požadovaný."
+    noauth: "vyžaduje autentizaci"
+    answer:
+      create:
+        fail: "Otázka není ve vaší schránce."
+        privacy_stronk: "Tento uživatel nechce aby ostatní uživatelé odpovídali na jeho otázky."
+        peter_dinklage: "Odpověď je příliš krátká."
+        okay: "Otázka úspěšně zodpovězena."
+      destroy:
+        nopriv: "nemůžete mazat odpovědi ostatních lidí"
+        okay: "Odpověď úspěšně smazána."
+    comment:
+      create:
+        rec_inv: "Váš komentář je příliš dlhý."
+        okay: "Komentář úspěšně přidán."
+      destroy:
+        nopriv: "nemůžete mazat komentáře ostatních lidí"
+        okay: "Komentář úspěšně smazán."
+    friend:
+      create:
+        fail: "Již sledujete tohoto uživatele."
+        okay: "Používatel úspěšně sledován."
+      destroy:
+        fail: "Nesledujete tohoto uživatele."
+        okay: "Používatel úspěšně odsledován."
+    group:
+      create:
+        noname: "Prosím pojmenujte tuto skupinu."
+        toolong: "Jméno skupiny příliš dlhé (max. 30 znaků)"
+        notfound: "Nepodařilo se najít uživatele."
+        exists: "Skupina již existuje."
+        okay: "Skupina úspěšně vytvořena."
+      destroy:
+        notfound: "Nepodařilo se najít skupinu."
+        okay: "Skupina úspěšně smazána."
+      membership:
+        notfound: "Skupina nenalezena."
+        add: "Uživatel úspěšně přidán do skupiny."
+        remove: "Uživatel úspěšně smazán ze skupiny."
+    inbox:
+      create:
+        okay: "Úspěšně přidána nová otázka."
+      remove:
+        fail: "otázka není ve vaší schránce"
+        okay: "Otázka úspěšně smazána."
+      remove_all:
+        okay: "Otázky úspěšně smazány."
+    moderation:
+      vote:
+        fail: "Již jste hlasovali o tomto hlášení."
+        okay: "Hlasováno na hlášení úspěšně."
+      destroy_vote:
+        fail: "Ještě jste nehlasovali o tomto hlášení."
+        okay: "Smazán hlas na hlášení úspěšně."
+      destroy_report:
+        fail: "Stalo se něco špatného!"
+        okay: "KAM TO ŠLO??? ALE NE!!!"
+      create_comment:
+        rec_inv: "Váš komentář je příliš dlhý."
+        okay: "Komentář úspěšně přidán."
+      destroy_comment:
+        nopriv: "nemůžete mazat komentáře ostatních lidí"
+        okay: "Komentář úspěšně smazán."
+      ban:
+        error: Divné...
+        nopriv: "Nemůžete zabanovat administrátora!"
+        unban: "Použivatel byl unbanován."
+        perma: "Použivatel byl permanentně zabanovaný."
+        temp: "Použivatel byl zabanovaný do %{date}"
+      privilege:
+        nope: ne!
+        nopriv: "Zkontroluj si SVOJE výsady jako první!"
+        checked: "Bylo úspěšně zkontrolováno %{privilege} oprávnění tohoto uživate."
+    question:
+      destroy:
+        not_found: "Otázka neexistuje"
+        not_authorized: "Nemáte povolení smazat tuto otázku."
+        okay: "Otázka úspěšně smazána."
+      create:
+        rec_inv: "Vaše otázka je příliš dlhá."
+        not_found: "Skupina nebyla nalezena"
+        okay: "Otázka úspěšně zeptána."
+      preview:
+        fail: "Renderování kódu selhalo."
+        okay: "Úspěšně renderováno kód."
+    report:
+      create:
+        login: "přihlášení povinné"
+        unknown: "neznámý typ"
+        not_found: "Nemožno najít %{parameter}"
+        okay: "%{parameter} je vyžadován. Moderátor rozhodne co se stane s {parameter}."
+    smile:
+      create:
+        fail: "Již jste se na tuto odpověď usmáli."
+        okay: "Odpověď úspěšně usmátá."
+      destroy:
+        fail: "Na tuto odpověď jste se ještě neusmáli."
+        okay: "Odpověď úspěšně zamračená."
+      create_comment:
+        fail: "Již jste se na tento komentář usmáli."
+        okay: "Komentář úspěšně usmátý."
+      destroy_comment:
+        fail: "Na tento komentář jste se ještě neusmáli."
+        okay: "Komentář úspěšně zamračený."
+    subscription:
+      torpedo: "418 jsem torpédo"
+  views:
+    placeholder:
+      inbox: "Napište svou odpověď zde..."
+      comment: "Okomentovat..."
+      question: "Napište svou otázku zde..."
+    notifications:
+      show: "Ukázat všechny upozornění"
+      mark: " a označit them jako přečtené"
+      answer:
+        body: "odpověděl na %{question} před %{time}"
+        question: "vaše otázka"
+      relationship:
+        body: "sleduje vás od %{time}"
+      smile:
+        body: "usmáto v %{content} před %{time}"
+        answer: "vaše odpověď"
+        comment: "váš komentář"
+      comment:
+        body: "komentoval na %{content} před %{time}"
+        your: "vaše odpověď"
+        their: "jejich odpověď"
+        user: "%{user} odpověď"
+      tabs:
+        all: "Všechna upozornění"
+        answer: "Odpovědi"
+        smile: "Úsměvy"
+        comment: Komentáře
+        commentsmile: "Úsměvy na Komentáře"
+        relationship: Sledující
+    inbox:
+      empty: "Nic zde není k vidění."
+      sidebar:
+        questions:
+          title: "Došli vám otázky?"
+          button: "Získat novou otázku"
+        share:
+          title: "Sdílet"
+          button: "Sdílet na %{service}u"
+        actions:
+          title: "Akce"
+          button: "Smazat všechny otázky"
+      entry:
+        asked: "%{user} se ptal před %{time}"
+        response: odpověď
+        sharing:
+          title: "Sdílení"
+          post: "Přidat na %{service}"
+          none: "Zatím nemáte váš účet připojený k žádným sociálním sítím. Navštivte vaše %{settings} pro připojení."
+          settings: "nastavení služby"
+    general:
+      answer: "Odpověď"
+      question: "Otázka"
+      comment: "Komentář"
+      smile: "Usmát"
+      follower: "Sledovatel"
+      following: "Sledující"
+      timeline: "Časová os"
+      public: "Veřejné"
+      user: "Uživatel"
+      terms: "Podmínky služby"
+      privacy: "Ochrana osobních údajů"
+      about: "O něm"
+    group:
+      title: "Skupina"
+      members: "Členové"
+    actions:
+      title: "Akce"
+      ask: "Zeptat"
+      ask_question: "Zeptat se"
+      answer: "Odpovědět"
+      options: "Možnosti"
+      anonymous: "Skrýt své jméno"
+      delete: "Smazat"
+      report: "Nahlásit"
+      return: "Zpět do Schránky"
+      subscribe: "Odebírat"
+      unsubscribe: "Zrušit odběr"
+      view: "Zobrazit úsměvy na komentář"
+      load: "Načíst víc"
+      follow: "Sledovat"
+      unfollow: "Nesledovat"
+      group: "Spravovat skupinové členství"
+      ban: "Správa Banů"
+      privilege: "Zkontrolovat výsady %{user}"
+      save: "Uložit změny"
+      cancel: "Zrušit"
+      close: "Zavřít"
+      done: "Hotovo"
+      y: "Ano"
+      n: "Ne"
+    sessions:
+      destroy: "Odhlásit"
+      create: "Přihlásit"
+      new: "Zaregistrovat"
+      info: "Když se registrujete, přijímáte naše %{terms}"
+    moderation:
+      tabs:
+        all: "Všechna hlášení"
+      moderationbox:
+        reported: "%{user} nahlásil %{content} před %{time}"
+        reason: "Důvod:"
+        view: "Zobrazit nahlášený %{content}"
+    question:
+      title: "Tato otázka nebyla ve vaší schránce? Odpovězte na ní zde!"
+    navigation:
+      timeline: "Časová os"
+      inbox: "Schránka"
+      discover: "Objevit"
+      notifications: "Upozornění"
+      show: "Zobrazit profil"
+      settings: "Nastavení"
+      admin: "Kontrolní centrum"
+      sidekiq: "Sidekiq"
+      moderation: "Moderační panel"
+    front:
+      subtitle: "Ptejte se, dávejte odpovědi a zjistěte nové věci o svých přátelích."
+      ask:
+        title: "Ptejte se a odpovídejte na otázky"
+        desc: "S %{app_title} můžete posílat otázky lidem a odpovídat na otázky od uživatelů. Chcete se dozvědět něco více? Povídejte o tom v komentářích!"
+      follow:
+        title: "Sledujte uživatele a buďte sledováni"
+        desc: "Sledování uživatel umožňuje získat personalizovaný zdroj ze všech lidí, o kterých se chcete dozvědět více. Můžete také poslat dotaz na všechny vaše následovníky najednou!"
+      share:
+        title: "Sdílení do jiných sítí"
+        desc: "Chcete se podělit o svou odpověď na otázku tak, že ji více lidí přečte? S jednoduchým kliknutím na tlačítko odpověď, vaše odpověď je sdílena kamkoli budete chtít!"
+    about:
+      subtitle: "O naších službách, funkcích a ostatních informacech"
+      links:
+        title: "Odkazy"
+        desc: "Důležité stránky a profily na sociálních médiích od %{app_title} teamu, které doporučujeme navštívit!"
+      opensource:
+        title: "Open Source"
+        warning: "%{app_title} běží na nedokončeném kódu, který je plný chyb. Bez záruky."
+        desc: "Chcete přispět? Pokud jste Ruby vývojář, CoffeeScript kodér nebo frontend návrhář, nyní můžete pomoci %{app_title} dostat funkce které všichni chtějí když forknete náš %{github}. Pokud to není tento případ, stále můžete hlásit chyby a žádat si o funkce v naším %{bugtracker}u."
+        github: "Github úložiště"
+        bugtracker: "bug tracker"
+      repository:
+        title: "Hlavní Repositórium"
+        desc: "Místo, kde se děje veškeré kódování a opravování!"
+      contributors:
+        title: "Přispěvatelé"
+        desc: "Tito lidé přispěli k %{app_title} zdrojovému kódu."
+        howto: "Chcete být uvedený zde? %{fork} a vytvořte novou žádost o Pull s vašimi změnami."
+        fork: "Forkujte toto úložiště"
+      team:
+        title: "Tým"
+        desc: "Lidé za %{app_title}em!"
+      moderators:
+        title: "Moderátoři"
+        desc: "Lidé na %{app_title}, kteří na vás dohlížejí!"
+      funding:
+        title: "Financování"
+        desc: "Lidé, kteří (dosud), darovali peníze %{app_title}u!"
+      statistics:
+        title: "Statistiky"
+        desc: "Statistiky pro %{app_title}, aktualizovány pokaždé, když obnovíte stránku!"
+    discover:
+      title: "Objevit"
+      subtitle: "Ideální místo, kde najít zajímavý obsah z minulého týdne na %{app_title}!"
+      content:
+        title: "Populární Obsah"
+        desc: "Odpovědi s nejvíc úsměvy a nejvíce zodpovězených dotazů"
+        tab:
+          answers: "Nejvíc Úsměvů"
+          questions: "Nejvíc Odpovědí"
+          comments: "Nejvíc kontroverzní"
+      people:
+        title: "Lidé"
+        desc: "Nováčci a lidé, kteří se zeptali nejvíc otázek"
+        tab:
+          new: "Noví uživatelé"
+          questions: "Aktivní Ptáči"
+          answers: "Nejvíc Odpovědí"
+      userbox:
+        new: "registroval před %{time}"
+        answers: "odpověděl na %{questions}"
+        questions: "zeptal se %{questions}"
+    answerbox:
+      asked: "%{user} se zeptal před %{time}"
+      read: "Zobrazit víc"
+      answered: "%{hide} %{user}"
+      hide: "Odpověděl"
+      time: "před %{time}"
+      no_smile: "Na tuto odpověď se zatím nikdo neusmál."
+      no_comment: "Nejsou tady zatím žádné komentáře."
+      commentsmile: "Lidé, kteří se na tento komentář usmáli"
+    questionbox:
+      title: "Zeptej se něco!"
+      banned: "Tento uživatel byl udeřen banovacím kladivem."
+      required: "Tento uživatel nechce, aby se ho ptali cizinci. %{signup}"
+      load: "Ptám se..."
+      promote:
+        message: "Tvoje otázka byla odeslána."
+        create: "Vytvořit účet"
+        another: "Zeptat se další otázku"
+        join: "Přidejte se k %{app_title} dnes! Budete mít možnost sledovat a ptát se lidí, které znáte a mnohem více."
+    settings:
+      tabs:
+        account: "Účet"
+        profile: "Profil"
+        privacy: "Soukromí"
+        sharing: "Sdílení"
+      account:
+        modal:
+          title: "Uložit změny"
+        username: "Uživatelské jméno"
+        email: "E-mailová adresa"
+        email_confirm: "Aktuálně čekám na potvrzení pro %{resource}"
+        password: "Heslo"
+        password_confirm: "Potvrdit heslo"
+        password_help: "Nechte toto prázdné, pokud to nechcete změnit"
+        password_current: "Aktuální heslo"
+        password_current_help: "Potřebujeme vaši aktuální heslo pro potvrzení změny"
+        delete: "Smazat můj účet"
+        unsatisfied: "Nespokojený?"
+        back: "Zpět"
+      profile:
+        displayname: "Vaše jméno"
+        avatar: "Profilová fotka"
+        avatar_adjust: "Upravte svůj nový avatar"
+        header: "Profilová hlavička"
+        header_adjust: "Upravte svoji novou hlavičku"
+        motivation: "Motivační hlavička"
+        website: "Webstránka"
+        location: "Umístění"
+        bio: "Popis"
+        placeholder:
+          motivation: "Zeptej se mě cokoliv!"
+          location: "Kde jste?"
+          bio: "Řekněte nám něco hezkého o vás!"
+      privacy:
+        anonymous: "Povolit anonymní otázky"
+        public: "Ukázat své odpovědi ve veřejné časové ose"
+        stranger: "Umožnit ostatním lidem odpovídat na vaše dotazy"
+      service:
+        enabled: "Sdílení je povoleno na těchto službách:"
+        none: "Nepřipojili jste ještě žádné služby."
+        connect: "Připojit k %{service}"
+        disconnect: "Odpojit"
+        confirm: "Skutečně odpojit službu %{service}?"
+    modal:
+      ask:
+        title: "Zeptej se svých sledujících:"
+        choose: "Vybrat skupinu:"
+        loading: "Ptám se..."
+      bancontrol:
+        title: "Kontrolní centro banů"
+        ban: "Zabanovat?"
+        permanent: "Permanentně?"
+        reason: "Důvod"
+        hammertime: "Hammer Time"
+      group:
+        title: "Spravovat skupinové členství"
+        tabs:
+          main: "Skupiny"
+          create: "Vytvořit novou skupinu"
+        create: "Vytvořit skupinu"
+        name: "Jméno skupiny"
+        members: "členové"
+      privilege:
+        blogger: "Uživatel dostane tuto výsadu v případě, že napsal na blogu něco hezké o Retrospringu."
+        contributor: "Tento uživatel přispěl k justask (softvér za Retrospringem)."
+        supporter: "Tento uživatel finančně podporuje Retrospring."
+        moderator: "Někdo dostatečně důvěryhodný na pomoc řízení hlášení."
+        admin: "Tento uživatel je členem jádrového týmu."
+    user:
+      follows_you: "Sleduje tě"
+      title:
+        admin: "Administrátor"
+        moderator: "Moderátor"
+        supporter: "Podporovatel"
+        contributor: "Přispěvatel"
+        blogger: "Blogger"
+        banned: "Zabanován"
