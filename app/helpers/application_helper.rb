@@ -43,12 +43,12 @@ module ApplicationHelper
     content_tag(:span, body, {title: tooltip_content, "data-toggle" => "tooltip", "data-placement" => placement} )
   end
 
-  def time_tooltip(subject, placement = "bottom") {
+  def time_tooltip(subject, placement = "bottom")
     tooltip time_ago_in_words(subject.created_at), localize(subject.created_at), placement
-  }
+  end
 
   def timestamp_tooltip(subject, placement = "bottom")
-    t = timestamp_tooltip(subject, placement)
+    t = timestamp_tooltip subject, placement
     unless subject.user.nil? or (subject.respond_to?(:author_is_anonymous) and subject.author_is_anonymous)
       t = content_tag(:a, t, {href: show_user_question_path(subject.user.screen_name, subject.id)})
     end
