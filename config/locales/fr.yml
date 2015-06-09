@@ -1,5 +1,6 @@
 ---
 fr:
+  language: "Français"
   frontend:
     load: "Afficher plus"
     success:
