@@ -9,19 +9,16 @@ I18n.with_locale("") do
     if APP_LOCALES[l].nil?
       cc = l.split("-").last
 
-      if flag_map.index(cc).nil?
+      if flag_map.index(cc).nil? and not locale_map[cc].nil?
         cc = locale_map[cc]
       end
 
-      unless flag_map.index(cc).nil?
-        begin
-          lang = I18n.translate("#{l}.language")
-          lang = '' if lang.index "translation missing"
-          APP_LOCALES[l] = [lang, cc]
-        rescue I18n.MissingTranslationData
-          APP_LOCALES[l] = ['', cc]
-        rescue
-        end
+      begin
+        lang = I18n.translate("#{l}.language")
+        lang = '' if lang.index "translation missing"
+        APP_LOCALES[l] = [lang, cc]
+      rescue
+        APP_LOCALES[l] = ['', cc]
       end
     end
   end
