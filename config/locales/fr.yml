@@ -112,7 +112,7 @@ fr:
         remove: "L'utilisateur a été enlevé avec succès."
     inbox:
       create:
-        okay: "Nouvelle question ajouté avec succès."
+        okay: "Nouvelle question ajoutée avec succès."
       remove:
         fail: "la question n'est pas dans votre boîte aux lettres"
         okay: "La question a été supprimée avec succès."
