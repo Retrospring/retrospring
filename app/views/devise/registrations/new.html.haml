@@ -12,7 +12,6 @@
     = f.password_field :password_confirmation, autocomplete: "off", label: t('views.settings.account.password_confirm')
 
     %p= raw t('views.sessions.info', terms: link_to(t('views.general.terms'), terms_path))
-      = link_to "Terms of Service", terms_path
     = f.submit "Sign up"
 
   = render "devise/shared/links"

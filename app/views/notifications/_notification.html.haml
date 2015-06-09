@@ -38,7 +38,7 @@
           %h6.media-heading.notification--user
             = user_screen_name notification.target.user
           %p.notification--text
-            = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.comment'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+            = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.comment'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.comment.answer.id)), time: time_tooltip(notification.target))
           .notification--icon
             %i.fa.fa-smile-o
       - when "Comment"
