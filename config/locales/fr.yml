@@ -55,15 +55,15 @@ fr:
       until: "Banni jusqu'au : %{time}"
     service:
       create:
-        success: "Le service a été ajouté avec succès"
-        error: "Le service n'a pas pu être ajouté :("
-      failure: "Une erreur est survenue"
-      destroy: "Le service a été supprimé avec succès"
+        success: "Le service a été ajouté avec succès."
+        error: "Le service n'a pas pu être ajouté. :("
+      failure: "Une erreur est survenue."
+      destroy: "Le service a été supprimé avec succès."
     user:
       update:
         text: "Votre profil a été mis à jour !"
-        avatar: " Plusieurs minutes peuvent être nécessaires pour que votre image de profil soit affichée partout."
-        header: " Plusieurs minutes peuvent être nécessaires pour que votre nouvelle image d'en-tête soit affichée partout."
+        avatar: " Plusieurs minutes peuvent être nécessaires pour que votre image de profil soit affichée partout sur le site."
+        header: " Plusieurs minutes peuvent être nécessaires pour que votre nouvelle image d'en-tête soit affichée partout sur le site."
         error: "Une erreur est survenue. ;_;"
       update_privacy:
         success: "Vos paramètres de confidentialité ont été mis à jour !"
@@ -78,17 +78,17 @@ fr:
         fail: "Cette question n'est pas dans votre boîte de réception."
         privacy_stronk: "Cet utilisateur ne veut pas que d'autres utilisateurs répondent à sa question."
         peter_dinklage: "Votre réponse est trop courte."
-        okay: "Vous avez répondu à la question avec succès."
+        okay: "Vous avez bien répondu à la question."
       destroy:
-        nopriv: "vous ne pouvez pas supprimer la réponse de quelqu'un d'autre"
-        okay: "Réponse supprimée avec succès."
+        nopriv: "Vous ne pouvez pas supprimer la réponse de quelqu'un d'autre."
+        okay: "La réponse a été supprimée avec succès."
     comment:
       create:
         rec_inv: "Votre commentaire est trop long."
         okay: "Le commentaire a été publié avec succès."
       destroy:
-        nopriv: "vous ne pouvez pas supprimer le commentaire de quelqu'un d'autre"
-        okay: "Commentaire supprimé avec succès."
+        nopriv: "Vous ne pouvez pas supprimer le commentaire de quelqu'un d'autre."
+        okay: "Le commentaire a été supprimé avec succès."
     friend:
       create:
         fail: "Vous suivez déjà cet utilisateur."
@@ -132,22 +132,22 @@ fr:
         rec_inv: "Votre commentaire est trop long."
         okay: "Votre commentaire a été publié avec succès."
       destroy_comment:
-        nopriv: "vous ne pouvez pas supprimer le commentaire de quelqu'un d'autre"
+        nopriv: "Vous ne pouvez pas supprimer le commentaire de quelqu'un d'autre."
         okay: "Votre commentaire a été supprimé avec succès."
       ban:
         error: Bizarre...
         nopriv: "Vous ne pouvez pas bannir un administrateur !"
         unban: "Bannissement levé avec succès."
         perma: "Utilisateur banni définitivement."
-        temp: "Utilisateur banni jusqu'au %{date}"
+        temp: "Utilisateur banni jusqu'au %{date}."
       privilege:
         nope: "non !"
-        nopriv: "Vérifier d'abord VOS privilèges !"
+        nopriv: "Vérifiez d'abord VOS privilèges !"
         checked: "Privilège %{privilege} de l'utilisateur vérifié avec succès."
     question:
       destroy:
-        not_found: "La question n'existe pas"
-        not_authorized: "Vous n'êtes pas autorisé à supprimer cette question"
+        not_found: "La question n'existe pas."
+        not_authorized: "Vous n'êtes pas autorisé à supprimer cette question."
         okay: "La question a été supprimée avec succès."
       create:
         rec_inv: "Votre question est trop longue."
@@ -160,17 +160,17 @@ fr:
       create:
         login: "connexion requise"
         unknown: "type inconnu"
-        not_found: "%{parameter} est introuvable"
-        okay: "%{parameter} signalé(e). Un modérateur décidera de ce qu'il adviendra avec le/la %{parameter}."
+        not_found: "%{parameter} est introuvable."
+        okay: "%{parameter} signalé(e). Un modérateur en prendra connaissance dans les plus brefs délais."
     smile:
       create:
-        fail: "Vous souriez déjà à cette question."
-        okay: "Vous souriez à la question."
+        fail: "Vous souriez déjà à cette réponse."
+        okay: "Vous souriez à la réponse."
       destroy:
         fail: "Vous n'avez pas souri à cette réponse."
-        okay: "Vous ne souriez plus à la question."
+        okay: "Vous ne souriez plus à la réponse."
       create_comment:
-        fail: "Vous avez déjà souri à ce commentaire."
+        fail: "Vous souriez déjà à ce commentaire."
         okay: "Vous souriez au commentaire."
       destroy_comment:
         fail: "Vous n'avez pas souri à ce commentaire."
@@ -227,7 +227,7 @@ fr:
           none: "Vous n'avez pas connecté de services pour l'instant. Visitez vos %{settings} pour en connecter un."
           settings: "paramètres des services"
     general:
-      answer: "Réponse"
+      answer: "Répondre"
       question: "Question"
       comment: "Commentaire"
       smile: "Sourire"
@@ -288,14 +288,14 @@ fr:
       notifications: "Notifications"
       show: "Voir le profil"
       settings: "Paramètres"
-      admin: "Panel de contrôle"
+      admin: "Centre d'administration"
       sidekiq: "Sidekiq"
-      moderation: "Panneau de modération"
+      moderation: "Centre de modération"
     front:
       subtitle: "Posez des questions, répondez-y, et apprenez-en plus sur vos amis."
       ask:
         title: "Posez et répondez à des questions"
-        desc: "Avec %{app_title}, vous pouvez poser des questions aux gens et répondre à des questions d'autres utilisateurs où de non-inscrits. Vous voulez en savoir plus ? Continuez la discussion dans les commentaires !"
+        desc: "Avec %{app_title}, vous pouvez poser des questions aux gens et répondre à des questions d'autres utilisateurs ou de non-inscrits. Vous voulez en savoir plus ? Continuez la discussion dans les commentaires !"
       follow:
         title: "Suivez des utilisateurs et soyez suivi"
         desc: "Suivre des utilisateurs vous permet d'avoir un fil personnalisé de tous ceux dont vous voulez en savoir plus. Vous pouvez également poser une question à tous vos abonnés à la fois !"
@@ -311,7 +311,7 @@ fr:
         title: "Open Source"
         warning: "%{app_title} fonctionne grâce à du code incomplet, plein de bugs. Caveat emptor."
         desc: "Envie de nous aider ? Que vous soyez un développeur Ruby, un codeur CoffeeScript ou un designer frontend, vous pouvez dès maintenant aider %{app_title} à obtenir les fonctionnalités longuement désirées par nos utilisateurs en créant un fork sur notre %{github}. Si ce n'est pas le cas, vous pouvez toujours signaler des bugs et suggérer des fonctionnalités sur notre %{bugtracker}."
-        github: "Repo GitHub"
+        github: "repository GitHub"
         bugtracker: "bug tracker"
       repository:
         title: "Repository principal"
@@ -360,7 +360,7 @@ fr:
       answered: "%{hide} %{user}"
       hide: "Répondue par"
       time: "Il y a %{time}"
-      no_smile: "Personne n'a souri à cette question, pour le moment."
+      no_smile: "Personne n'a souri à cette réponse, pour le moment."
       no_comment: "Il n'y a pas encore de commentaires."
       commentsmile: "Personnes qui ont souri à ce commentaire"
     questionbox:
@@ -412,8 +412,8 @@ fr:
         public: "Montrer vos réponses dans le fil d'actualité public"
         stranger: "Permettre à d'autres utilisateurs de répondre à vos questions"
       service:
-        enabled: "Partage activé pour les services suivants :"
-        none: "Vous n'avez lié aucun réseau social pour le moment"
+        enabled: "Le partage est activé pour les services suivants :"
+        none: "Vous n'avez lié aucun réseau social pour le moment."
         connect: "Lier à %{service}"
         disconnect: "Révoquer l'accès"
         confirm: "Voulez-vous vraiment révoquer l'accès à %{service} ?"
@@ -423,7 +423,7 @@ fr:
         choose: "Choisir un groupe :"
         loading: "Envoi..."
       bancontrol:
-        title: "Panel de contrôle des bannissements"
+        title: "Centre de contrôle des bannissements"
         ban: "Bannir ?"
         permanent: "Définitivement ?"
         reason: "Raison"
