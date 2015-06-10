@@ -56,9 +56,9 @@ namespace :justask do
     API.routes.each do |route|
       info = route.instance_variable_get :@options
       result = [
-        info[:as] ? info[:as] : '',
-        info[:version] ? info[:version] : '',
-        info[:method] ? info[:method] : 'ALL',
+        info[:as] ? info[:as][0..14] : '',
+        info[:version] ? info[:version][0..9] : '',
+        info[:method] ? info[:method][0..6] : 'ALL',
         info[:path]
       ]
 
