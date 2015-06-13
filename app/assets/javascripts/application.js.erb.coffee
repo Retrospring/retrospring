@@ -3,6 +3,7 @@
 #= require jquery.turbolinks
 #= require turbolinks
 #= require bootstrap
+#= require twemoji
 #= require nprogress
 #= require nprogress-turbolinks
 #= require growl
@@ -63,6 +64,18 @@ _ready = ->
     particleground document.getElementById('particles'),
       dotColor: '#5e35b1'
       lineColor: '#5e35b1'
+
+  if twemoji?
+    twemoji.parse document.body,
+      size: 16
+      callback: (icon, options) ->
+        switch icon
+          # copyright, registered, trademark
+          when 'a9' or 'ae' or '2122'
+            false
+          else
+            ''.concat(options.base, options.size, '/', icon, options.ext)
+
 
 $(document).ready _ready
 $(document).on 'page:load', _ready
