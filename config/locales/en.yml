@@ -20,6 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  doorkeeper:
+    applications:
+      buttons:
+        regen: "Regenerate Secret"
   frontend:
     load: "Load more"
     success:

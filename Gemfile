@@ -82,6 +82,7 @@ group :development do
   # ten thousand raises no more!
   gem 'byebug'
   gem 'web-console'
+  gem 'quiet_assets'
 end
 
 group :production do

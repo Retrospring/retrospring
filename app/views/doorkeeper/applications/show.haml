@@ -19,7 +19,7 @@
             %td
               =t(".uri")
             %td
-              =t(".actions")
+              -# =t(".actions")
         %tbody
           - @application.redirect_uri.split.each do |uri|
             %tr
@@ -31,5 +31,7 @@
     %h1= t('.actions')
     %p
       %a.btn.btn-primary.btn-expand{href: edit_oauth_application_path(@application)}= t('doorkeeper.applications.buttons.edit')
+    %p
+      %a.btn.btn-warning.btn-expand{href: regen_oauth_application_path(@application)}= t('doorkeeper.applications.buttons.regen')
     %p
       =render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger btn-expand'

@@ -20,7 +20,20 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
     end
   end
 
+  def regen
+    application = Doorkeeper::Application.find params["id"]
+    application.secret = nil
+    application.send "generate_secret"
+    application.save!
+    redirect_to oauth_application_url(application)
+  end
+
   def update
+    if application_params["scopes"].length > 0 and Doorkeeper::OAuth::Scopes.from_string(application_params["scopes"]) != @application.scopes
+      @application.secret = nil
+      @application.send "generate_secret"
+    end
+
     if @application.update_attributes(application_params)
       flash[:notice] = I18n.t(:notice, scope: [:doorkeeper, :flash, :applications, :update])
       redirect_to oauth_application_url(@application)

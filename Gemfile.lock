@@ -325,6 +325,8 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -567,6 +569,7 @@ DEPENDENCIES
   pg
   poltergeist
   questiongenerator!
+  quiet_assets
   rails (= 4.2.1)
   rails-assets-growl
   rails-i18n

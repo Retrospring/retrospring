@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   scope "settings", module: "oauth" do
     resources :applications, path: :develop, as: :oauth_applications
-    match 'develop/:id', to: "applications#update", via: :post, as: :update_oauth_application
+    match 'develop/:id/edit', to: "applications#update", via: :post, as: :update_oauth_application
     resources :authorized_applications, path: :applications, only: [:index, :destroy], as: :oauth_authorized_applications
+    match 'develop/:id/regen', to: "applications#regen", via: :get, as: :regen_oauth_application
   end
 
   mount API => "/api"

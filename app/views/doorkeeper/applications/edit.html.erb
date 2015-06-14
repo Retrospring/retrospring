@@ -1,2 +1,2 @@
 <% provide(:title, t("doorkeeper.applications.title.edit", name: @application.name)) %>
-<%= render 'form', application: @application %>
+<%= render 'form', application: @application, path: update_oauth_application_path(@application) %>
