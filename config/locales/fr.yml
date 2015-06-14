@@ -227,7 +227,7 @@ fr:
           none: "Vous n'avez pas connecté de services pour l'instant. Visitez vos %{settings} pour en connecter un."
           settings: "paramètres des services"
     general:
-      answer: "Répondre"
+      answer: "Réponse"
       question: "Question"
       comment: "Commentaire"
       smile: "Sourire"
@@ -246,7 +246,7 @@ fr:
       title: "Actions"
       ask: "Envoyer"
       ask_question: "Poser une question"
-      answer: "Réponse"
+      answer: "Répondre"
       options: "Paramètres"
       anonymous: "Masquer votre nom"
       delete: "Supprimer"
