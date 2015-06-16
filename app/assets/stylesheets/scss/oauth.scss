@@ -52,3 +52,28 @@
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
+.metrics {
+  position: relative;
+}
+
+.metrics-graph, .metrics-slider, .metrics-legend {
+  margin-left: 40px;
+}
+
+.metrics-axis {
+  width: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.metrics-legend {
+  position: absolute;
+  top: 0;
+  right: -109px;
+}
+
+.metrics-slider {
+  margin-top: 15px;
+}

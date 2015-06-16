@@ -27,6 +27,8 @@
                 %code= uri
               %td
                 %a.btn.btn-warning.btn-expand{href: oauth_authorization_path(client_id: @application.uid, redirect_uri: uri, response_type: 'code', scopes: @application.scopes)}= t('doorkeeper.applications.buttons.authorize')
+      %h4= t('.metrics')
+      %div{data: {metrics: metrics_oauth_application_path(id: @application.id)}}
   .col-md-4.app--actions
     %h1= t('.actions')
     %p

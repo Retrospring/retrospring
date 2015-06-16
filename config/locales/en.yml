@@ -20,10 +20,49 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        description: 'Description'
+        homepage: 'Homepage'
+        scopes: 'Scopes'
   doorkeeper:
+    scopes:
+      public: "read your inbox and notifications"
+      write: "post questions, answers and comments on your behalf"
+      rewrite: "edit your settings"
+      moderation: "manage moderation"
     applications:
       buttons:
         regen: "Regenerate Secret"
+        view: 'View'
+      show:
+        callback_urls: 'Callback URLs'
+        uri: 'URI'
+        metrics: 'Metrics'
+      title:
+        edit: "Edit %{name}"
+        develop: "Develop Applications"
+        create: "Create an Application"
+        view: "Viewing %{name}"
+      icon: "Adjust your app's icon"
+      optional_scopes: "Optional Scopes"
+    authorizations:
+      title:
+        error: 'Error authorizing %{name}'
+        authorize: 'Authorize %{name}'
+      new:
+        prompt: 'Authorize %{client_name}'
+        able_to: '%{name} will be able to:'
+        managed_by: 'Managed by %{name}'
+      show:
+        title: 'Authorization granted'
+    authorized_applications:
+      buttons:
+        revoke: 'Remove App'
+      index:
+        header: 'Applications'
+        created_at: 'Created at %{time}'
   frontend:
     load: "Load more"
     success:

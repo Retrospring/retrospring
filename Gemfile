@@ -42,6 +42,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 gem 'twemoji-rails'
 
+gem 'rickshaw-rails'
+
 gem 'ruby-progressbar'
 
 gem 'rails_admin'
@@ -68,6 +70,7 @@ gem 'redis'
 
 # API
 gem 'doorkeeper'
+gem 'doorkeeper-i18n'
 gem 'grape'
 gem 'wine_bouncer'
 gem 'grape-swagger'

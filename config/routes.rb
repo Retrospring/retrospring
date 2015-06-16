@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     match 'develop/:id/edit', to: "applications#update", via: :post, as: :update_oauth_application
     resources :authorized_applications, path: :applications, only: [:index, :destroy], as: :oauth_authorized_applications
     match 'develop/:id/regen', to: "applications#regen", via: :get, as: :regen_oauth_application
+    match 'develop/:id/metrics.json', to: "applications#metrics", via: :get, as: :metrics_oauth_application
+
   end
 
   mount API => "/api"

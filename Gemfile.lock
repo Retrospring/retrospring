@@ -115,6 +115,7 @@ GEM
     docile (1.1.5)
     doorkeeper (2.1.4)
       railties (>= 3.2)
+    doorkeeper-i18n (2.0.0)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.7)
@@ -394,6 +395,8 @@ GEM
     remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rickshaw-rails (1.5.0)
+      rails (>= 3.1.0)
     rouge (1.8.0)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
@@ -542,6 +545,7 @@ DEPENDENCIES
   devise-async
   devise-i18n
   doorkeeper
+  doorkeeper-i18n
   factory_girl_rails
   faker
   fog
@@ -577,6 +581,7 @@ DEPENDENCIES
   rake
   redcarpet
   redis
+  rickshaw-rails
   rouge
   rspec-rails (~> 3.0.0)
   ruby-progressbar

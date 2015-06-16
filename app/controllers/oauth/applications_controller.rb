@@ -1,7 +1,8 @@
 class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
   before_filter :authenticate_user!
-  before_filter :app_owner!, only: %i(show update edit destroy)
-  before_filter :app_deleted!, only: %i(show update edit destroy)
+  before_filter :set_application, only: %i(show update edit destroy regen metrics)
+  before_filter :app_owner!, only: %i(show update edit destroy regen metrics)
+  before_filter :app_deleted!, only: %i(show update edit destroy regen metrics)
 
   layout "oauth"
 
@@ -26,6 +27,11 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
     application.send "generate_secret"
     application.save!
     redirect_to oauth_application_url(application)
+  end
+
+  def metrics
+    payload = ApplicationMetric.request(params["id"])
+    render json: payload
   end
 
   def update

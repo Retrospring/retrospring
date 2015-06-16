@@ -6,25 +6,39 @@ class ApplicationMetric < ActiveRecord::Base
     JSON.parse @req_params
   end
 
-  def has_errored?
-    @res_status != 200
-  end
+  def self.request(application_id, small = nil, large = nil)
+    if small.nil?
+      small = ApplicationMetric.timeseries_a application_id
+    end
 
-  def has_success?
-    @res_status == 200
+    if large.nil?
+      large = ApplicationMetric.large_timeseries_a application_id
+    end
+
+    set = [{name: "Successes", data: []}, {name: "Fails", data: []}]
+    large[0].merge(small[0]).each do |key, value|
+      set[0][:data].push({x: key, y: value})
+    end
+
+    large[1].merge(small[1]).each do |key, value|
+      set[1][:data].push({x: key, y: value})
+    end
+
+    set
   end
 
   # [[success], [error]]
   #  [timestamp, count]
   def self.ts_to_a(timeseries)
-    ts = [[], []]
+    ts = [{}, {}]
     timeseries.each do |series|
       #        nanotime
-      serie = [series.created_at.to_i * 1000, series["calls"]]
-      if series.has_errored?
-        ts[1].push serie
+      if series.res_status != 200
+        ts[1][series.created_at.to_i] = series["calls"]
+        ts[0][series.created_at.to_i] = 0 if ts[0][series.created_at.to_i].nil?
       else
-        ts[0].push serie
+        ts[0][series.created_at.to_i] = series["calls"]
+        ts[1][series.created_at.to_i] = 0 if ts[1][series.created_at.to_i].nil?
       end
     end
     ts
