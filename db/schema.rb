@@ -295,7 +295,7 @@ ActiveRecord::Schema.define(version: 20150619123121) do
     t.string   "socket_key",                        default: ""
     t.datetime "socket_key_expiry",                 default: '0001-01-01 00:00:00'
     t.string   "locale"
-    t.boolean  "translator"
+    t.boolean  "translator",                        default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
