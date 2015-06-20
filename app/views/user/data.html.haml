@@ -24,21 +24,21 @@
 
             %p.data-heading Bio
             %p.text-muted
-              - if current_user.bio.empty?
+              - if current_user.bio.blank?
                 None set!
               - else
                 = current_user.bio
 
             %p.data-heading Location
             %p.text-muted
-              - if current_user.location.empty?
+              - if current_user.location.blank?
                 None set!
               - else
                 = current_user.location
 
             %p.data-heading Website
             %p.text-muted
-              - if current_user.website.empty?
+              - if current_user.website.blank?
                 None set!
               - else
                 = current_user.website
@@ -159,7 +159,7 @@
 
             %p.data-heading Locale
             %p.text-muted
-              - if current_user.locale.empty?
+              - if current_user.locale.blank?
                 None set!
               - else
                 = current_user.locale
