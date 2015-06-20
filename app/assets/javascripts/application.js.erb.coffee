@@ -10,8 +10,8 @@
 #= require cheet
 #= require jquery.guillotine
 #= require jquery.particleground
-#  require sweet-alert
-#= require rickshaw-rails
+#= require sweet-alert
+#  require rickshaw-rails
 #= require js.cookie
 #= require i18n
 #= require i18n/translations
