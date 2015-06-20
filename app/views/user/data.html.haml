@@ -62,13 +62,13 @@
             %p.data-heading Header picture
             %img.data-header-preview{src: current_user.profile_header.url(:mobile)}
             %p
-              %a{href: current_user.profile_picture.url(:mobile)} Mobile
+              %a{href: current_user.profile_header.url(:mobile)} Mobile
               |
-              %a{href: current_user.profile_picture.url(:web)} Web
+              %a{href: current_user.profile_header.url(:web)} Web
               |
-              %a{href: current_user.profile_picture.url(:retina)} Retina
+              %a{href: current_user.profile_header.url(:retina)} Retina
               |
-              %a{href: current_user.profile_picture.url(:original)} Original image
+              %a{href: current_user.profile_header.url(:original)} Original image
         .row
           .col-md-6.col-sm-6.col-xs-12
             %h4 Statistics
