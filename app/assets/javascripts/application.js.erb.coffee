@@ -27,6 +27,7 @@
 #= require settings
 #= require user
 #= require report
+#= require locale-box
 # not required:
 # _tree ./moderation
 

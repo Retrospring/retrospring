@@ -35,5 +35,11 @@ module Justask
     # Instead, the errors will propagate normally just like in other Active Record callbacks.
     # fix for this warning:
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.after_initialize do
+      Dir.glob Rails.root.join('config/late_initializers/*.rb') do |f|
+        require f
+      end
+    end
   end
 end
