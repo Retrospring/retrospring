@@ -164,7 +164,7 @@ class Ajax::ModerationController < ApplicationController
     target_user = User.find_by_screen_name(params[:user])
 
     @message = I18n.t('messages.moderation.privilege.nope')
-    return unless %w(blogger supporter moderator admin contributor).include? params[:type].downcase
+    return unless %w(blogger supporter moderator admin contributor translator).include? params[:type].downcase
 
     if %w(supporter moderator admin).include?(params[:type].downcase) and !current_user.admin?
       @status = :nopriv

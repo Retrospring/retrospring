@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy)
+  before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy data)
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
@@ -87,5 +87,8 @@ class UserController < ApplicationController
     @title = 'Questions'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
     @questions = @user.questions.where(author_is_anonymous: false).reverse_order.paginate(page: params[:page])
+  end
+
+  def data
   end
 end
