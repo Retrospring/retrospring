@@ -7,7 +7,11 @@ I18n.with_locale("") do
   Dir.glob(Rails.root.join("config/locales/*.yml")).each do |locale|
     l = locale.split("/").last.split(".").first.downcase
     if APP_LOCALES[l].nil?
-      cc = l.split("-").last
+      cc = l.split '-'
+      if cc.length == 1
+        cc = cc.first.split '_'
+      end
+      cc = cc.last
 
       if flag_map.index(cc).nil? and not locale_map[cc].nil?
         cc = locale_map[cc]
@@ -15,10 +19,10 @@ I18n.with_locale("") do
 
       begin
         lang = I18n.translate("#{l}.language")
-        lang = '' if lang.index "translation missing"
+        lang = cc if lang.index "translation missing"
         APP_LOCALES[l] = [lang, cc]
       rescue
-        APP_LOCALES[l] = ['', cc]
+        APP_LOCALES[l] = [cc, cc]
       end
     end
   end

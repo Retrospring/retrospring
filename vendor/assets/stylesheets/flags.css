@@ -1,7 +1,9 @@
 .flag {
-  background-image: url("/flags.png");
+  background-image: url("/flags/main.png");
+  background-repeat: no-repeat;
   width: 16px;
   height: 11px;
+  background-position: -0px 16px;
 }
 .flag-kz {
   background-position: -0px -0px;
@@ -745,4 +747,12 @@
 .flag-me {
   background-position: -0px -2706px;
   height: 12px;
+}
+.flag-pirate {
+  background-image: url('/flags/pirate.png');
+  background-position: 0 0;
+}
+.flag-dizzle {
+  background-image: url('/flags/dizzle.png');
+  background-position: 0 0;
 }
