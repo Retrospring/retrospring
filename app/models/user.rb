@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
                     default_url: '/images/header/:style/no_header.jpg', use_timestamp: false,
                     processors: [:cropper]
   validates_attachment_content_type :profile_header, :content_type => /\Aimage\/(png|jpe?g)\Z/
-  validates :profile_header, image_ratio: { height: :crop_h_h, width: :crop_h_w, ratio: 1500.0 / 350.0 }, on: :update
+  validates :profile_header, image_ratio: { height: :crop_h_h, width: :crop_h_w, ratio: 1500.0 / 350.0, throttle: 0.3 }, on: :update
 
   process_in_background :profile_picture
   process_in_background :profile_header
