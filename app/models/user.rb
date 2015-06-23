@@ -49,13 +49,13 @@ class User < ActiveRecord::Base
                     default_url: "/images/:style/no_avatar.png", use_timestamp: false,
                     processors: [:cropper]
   validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/(png|jpe?g|gif)\Z/
-  validates :profile_picture, image_ratio: { height: :crop_h, width: :crop_w, ratio: 500.0 / 500.0, fix: true }, on: :update
+  validates :profile_picture, image_ratio: { height: :crop_h, width: :crop_w, ratio: 500.0 / 500.0 }, on: :update
 
   has_attached_file :profile_header, styles: { web: "1500x350#", mobile: "450x105#", retina: "900x210#" },
                     default_url: '/images/header/:style/no_header.jpg', use_timestamp: false,
                     processors: [:cropper]
   validates_attachment_content_type :profile_header, :content_type => /\Aimage\/(png|jpe?g)\Z/
-  validates :profile_header, image_ratio: { height: :crop_h_h, width: :crop_h_w, ratio: 1500.0 / 350.0, throttle: 0.3, fix: true }, on: :update
+  validates :profile_header, image_ratio: { height: :crop_h_h, width: :crop_h_w, ratio: 1500.0 / 350.0 }, on: :update
 
   process_in_background :profile_picture
   process_in_background :profile_header
