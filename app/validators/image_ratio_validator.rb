@@ -12,7 +12,7 @@ class ImageRatioValidator < ActiveModel::EachValidator
     else
       record[width] = record[width].to_i.abs
       record[height] = record[height].to_i.abs
-      if record[width] == 0 or record[height] == 0 or record[width] == nil or record[height] == nil
+      if record[width].nil? or record[height].nil? or record[width] == 0 or record[height] == 0
         record.errors[attribute] << 'Illegal Image Ratio'
         return nil
       end
