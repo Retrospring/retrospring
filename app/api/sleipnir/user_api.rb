@@ -11,6 +11,22 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       represent current_user, with: Sleipnir::Entities::UserEntity, type: :full
     end
 
+    desc "Current user's inbox"
+    oauth2 'public'
+    throttle hourly: 720
+    get "/inbox", as: :inbox_api do
+      collection = since_id Inbox, "user_id = ?", [1]
+      represent_collection collection, with: Sleipnir::Entities::InboxesEntity
+    end
+
+    desc "Current user's notifications"
+    oauth2 'public'
+    throttle hourly: 720
+    get "/notifications", as: :notification_api do
+      collection = since_id Notification, "recipient_id = ?", [1]
+      represent_collection collection, with: Sleipnir::Entities::NotificationsEntity
+    end
+
     desc "Given user's profile"
     # oauth2 'public'
     throttle hourly: 72

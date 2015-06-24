@@ -6,7 +6,7 @@ class Sleipnir::MountAPI < Grape::API
   mount Sleipnir::UserAPI
 
   add_swagger_documentation base_path: '/api',
-    hide_format: true,
+    hide_format: false,
     hide_documentation_path: true,
     api_version: "sleipnir",
     mount_path: "/develop",

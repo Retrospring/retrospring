@@ -14,6 +14,11 @@ class Sleipnir::Entities::AnswerEntity < Sleipnir::Entities::BaseEntity
 
   expose :question, with: Sleipnir::Entities::QuestionEntity
 
+  expose :comments, if: :expose_comments do |object, options|
+    options[:nested] = true
+    Sleipnir::Entities::CommentEntity.represent object.comments, options
+  end
+
   expose :application, as: :created_with, with: Sleipnir::Entities::ApplicationReferenceEntity
 
   expose :created_at, format_with: :epochtime

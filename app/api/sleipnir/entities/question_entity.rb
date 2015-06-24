@@ -20,7 +20,7 @@ class Sleipnir::Entities::QuestionEntity < Sleipnir::Entities::BaseEntity
 
 private
 
-  def user_id()
+  def user_id
     options[:force_identity] = false if options[:force_identity].nil?
 
     unless object.author_is_anonymous and not options[:force_identity]
@@ -30,7 +30,7 @@ private
     end
   end
 
-  def user()
+  def user
     options[:force_identity] = false if options[:force_identity].nil?
 
     unless object.author_is_anonymous and not options[:force_identity]
