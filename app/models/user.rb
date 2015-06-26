@@ -192,6 +192,7 @@ class User < ActiveRecord::Base
   def app_developer?
     self.applications.count > 0
   end
+  alias_method :app_developer, :app_developer?
 
   # @return [Boolean] is the user a moderator?
   def mod?
