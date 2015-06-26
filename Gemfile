@@ -81,7 +81,8 @@ gem 'grape-throttle'
 
 group :development do
   # require spring 1.3.5 since shit's on fire on my local instance with 1.3.4 (Gem::LoadError)
-  gem 'spring', '~> 1.3.5'
+  # gem 'spring', '~> 1.3.5'
+  # holy shit spring is terrible
   # ten thousand raises no more!
   gem 'byebug'
   gem 'web-console'
