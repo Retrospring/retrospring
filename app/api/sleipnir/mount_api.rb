@@ -4,6 +4,8 @@ class Sleipnir::MountAPI < Grape::API
   default_error_formatter :json
 
   mount Sleipnir::UserAPI
+  mount Sleipnir::QuestionAPI
+  mount Sleipnir::AnswerAPI
 
   add_swagger_documentation base_path: '/api',
     hide_format: false,

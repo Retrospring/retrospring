@@ -15,6 +15,11 @@ module Sleipnir::Concerns
         end
         args.last[:id_to_string] = params[:id_to_string]
         args.last[:nanotime] = params[:nanotime]
+        args.last[:current_user_id] = if current_user.nil?
+          nil
+        else
+          current_user.id
+        end
         args.last[:ENDPOINT] = env["REQUEST_PATH"]
         send("present", *args)
       end

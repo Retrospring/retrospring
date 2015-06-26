@@ -47,8 +47,8 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
       end
 
       services = []
-      SERVICE_FLAGS.each_with_index do |service, index|
-        services.push service if (params[:share_flags] & (2 ** index)) > 0
+      SERVICE_FLAGS.each_with_index do |svc, index|
+        services.push svc if (params[:share_flags] & (2 ** index)) > 0
       end
 
       ShareWorker.perform_async(current_user.id, answer.id, services)
