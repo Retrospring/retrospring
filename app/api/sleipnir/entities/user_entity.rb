@@ -20,6 +20,7 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   expose :supporter
   expose :blogger
   expose :contributor
+  expose :translator
 
   expose :banned do
     expose :banned
@@ -32,7 +33,7 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
     expose :ban_reason, safe: true, as: :reason do |object| object.ban_reason || "" end
   end
 
-  # expose :locale
+  expose :locale
 
   expose :friend_count
   expose :follower_count

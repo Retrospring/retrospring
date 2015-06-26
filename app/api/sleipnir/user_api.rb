@@ -112,10 +112,6 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       optional :size, type: String, default: "medium"
     end
     get "/:id/avatar", as: :user_profile_picture_api do
-      if params[:size] == "original"
-        params[:size] = "small" # no
-      end
-
       if params[:redirect]
         redirect user_avatar_for_id(params[:id], params[:size])
       else
@@ -136,10 +132,6 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       optional :size, type: String, default: "web"
     end
     get "/:id/header", as: :user_profile_picture_api do
-      if params[:size] == "original"
-        params[:size] = "mobile" # no
-      end
-
       if params[:redirect]
         redirect user_header_for_id(params[:id], params[:size])
       else

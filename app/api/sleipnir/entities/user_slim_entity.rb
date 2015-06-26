@@ -12,11 +12,12 @@ class Sleipnir::Entities::UserSlimEntity < Sleipnir::Entities::UserEntity
   unexpose :location
   unexpose :bio
 
-  unexpose :admin
-  unexpose :moderator
-  unexpose :supporter
-  unexpose :blogger
-  unexpose :contributor
+  expose :admin
+  expose :moderator
+  expose :supporter
+  expose :blogger
+  expose :contributor
+  expose :translator
 
   expose :banned do |user, options|
     user.banned?
@@ -33,7 +34,7 @@ class Sleipnir::Entities::UserSlimEntity < Sleipnir::Entities::UserEntity
   unexpose :comment_smiled_count
 
   unexpose :privacy_allow_anonymous_questions
-  unexpose :privacy_allow_stranger_answers
+  expose :privacy_allow_stranger_answers
 
   with_options(if: {type: :full}) do
     unexpose :privacy_allow_public_timeline
