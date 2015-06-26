@@ -12,12 +12,15 @@ class Sleipnir::Entities::AnswerEntity < Sleipnir::Entities::BaseEntity
 
   expose :user, with: Sleipnir::Entities::UserSlimEntity, unless: :no_answer_user
 
-  expose :question, with: Sleipnir::Entities::QuestionEntity
+  # expose :question, if: :expose_question, unless: :nested do |object, options|
+  #   options[:nested] = true
+  #   Sleipnir::Entities::QuestionEntity.represent object.question, options
+  # end
 
-  expose :comments, if: :expose_comments do |object, options|
-    options[:nested] = true
-    Sleipnir::Entities::CommentEntity.represent object.comments, options
-  end
+  # expose :comments, if: :expose_comments, unless: :nested do |object, options|
+  #   options[:nested] = true
+  #   Sleipnir::Entities::CommentEntity.represent object.comments, options
+  # end
 
   expose :application, as: :created_with, with: Sleipnir::Entities::ApplicationReferenceEntity
 

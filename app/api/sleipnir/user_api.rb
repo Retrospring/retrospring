@@ -45,6 +45,39 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       represent_collection collection, with: Sleipnir::Entities::QuestionsEntity, no_question_user: true
     end
 
+    desc "Ask user a question"
+    # oauth2 'write'
+    throttle hourly: 360
+    params do
+      requires :question, type: String
+      optional :anonymous, type: Boolean, default: false
+    end
+    post '/:id/ask', as: :ask_user_question_api do
+      target = User.find params[:id]
+      if target.nil?
+        status 404
+        return present({success: false, code: 404, reason: "Cannot find user"})
+      end
+
+      if params[:anonymous] and not target.privacy_allow_anonymous_questions
+        status 300
+        return present({success: false, code: 300, reason: "User doesn't allow anonymous questions"})
+      end
+
+      question = Question.create!(content: params[:question],
+                                  application: current_application,
+                                  author_is_anonymous: params[:anonymous],
+                                  user: current_user)
+
+      unless current_user.nil?
+        current_user.increment! :asked_count unless params[:anonymous]
+      end
+
+      Inbox.create!(user: target, question: question, new: true)
+
+      present({success: true, code: 200, reason: "Asked user \##{params[:id]} a question"})
+    end
+
     desc "Given user's answers"
     # oauth2 'public'
     throttle hourly: 720
@@ -69,18 +102,43 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       represent_collection collection, with: Sleipnir::Entities::RelationshipsEntity, relationship: :me
     end
 
+    desc "Ask all your followers a question"
+    oauth2 'write'
+    throttle hourly: 360
+    params do
+      requires :question, type: String
+      optional :anonymous, type: Boolean, default: false
+    end
+    post "/me/ask", as: :follower_question_api do
+        question = Question.create!(content: params[:question],
+                                    application: current_application,
+                                    author_is_anonymous: params[:anonymous],
+                                    user: current_user)
+
+        unless current_user.nil?
+          current_user.increment! :asked_count unless params[:anonymous]
+        end
+
+        current_user.followers.each do |f|
+          next if params[:anonymous] and not f.privacy_allow_anonymous_questions
+          Inbox.create!(user: f, question: question, new: true)
+        end
+
+        present({success: true, code: 200, reason: "Asked all your followers a question"})
+    end
+
     desc "Follow given user"
     oauth2 'write'
     throttle hourly: 72
     post "/:id/follow", as: :user_follow_api do
       begin
-        user = User.find(params["id"])
+        user = User.find(params[:id])
         if user.nil?
           status 404
-          return present({success: false, code: 404, reason: "Cannot find user #{params["id"]}"})
+          return present({success: false, code: 404, reason: "Cannot find user #{params[:id]}"})
         end
         current_user.follow(user)
-        present({success: true, code: 200, reason: "Followed user #{params["id"]}"})
+        present({success: true, code: 200, reason: "Followed user #{params[:id]}"})
       rescue
         status 403
         present({success: false, code: 503, reason: "Already following user"})
@@ -92,13 +150,13 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     throttle hourly: 72
     delete "/:id/follow", as: :user_unfollow_api do
       begin
-        user = User.find(params["id"])
+        user = User.find(params[:id])
         if user.nil?
           status 404
-          return present({success: false, code: 404, reason: "Cannot find user #{params["id"]}"})
+          return present({success: false, code: 404, reason: "Cannot find user #{params[:id]}"})
         end
         current_user.unfollow(user)
-        present({success: true, code: 200, reason: "Unfollowed user #{params["id"]}"})
+        present({success: true, code: 200, reason: "Unfollowed user #{params[:id]}"})
       rescue
         status 403
         present({success: false, code: 403, reason: "Not following user"})

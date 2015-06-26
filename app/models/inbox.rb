@@ -6,8 +6,8 @@ class Inbox < ActiveRecord::Base
     raise "User does not want to receive anonymous questions" if self.question.author_is_anonymous and self.question.author_name != 'justask' and !self.user.privacy_allow_anonymous_questions?
   end
 
-  def answer(answer_content, user)
-    answer = user.answer(self.question, answer_content)
+  def answer(answer_content, user, via = nil)
+    answer = user.answer(self.question, answer_content, via)
     self.destroy
     answer
   end

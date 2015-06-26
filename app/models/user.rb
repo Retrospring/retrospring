@@ -134,10 +134,11 @@ class User < ActiveRecord::Base
   # answers a question
   # @param question [Question] the question to answer
   # @param content [String] the answer content
-  def answer(question, content)
+  def answer(question, content, via = nil)
     Answer.create!(content: content,
                    user: self,
-                   question: question)
+                   question: question,
+                   application: via)
   end
 
   # has the user answered +question+ yet?
@@ -148,8 +149,8 @@ class User < ActiveRecord::Base
 
   # smiles an answer
   # @param answer [Answer] the answer to smile
-  def smile(answer)
-    Smile.create!(user: self, answer: answer)
+  def smile(answer, via = nil)
+    Smile.create!(user: self, answer: answer, application: via)
   end
 
   # unsmile an answer
@@ -160,8 +161,8 @@ class User < ActiveRecord::Base
 
   # smiles a comment
   # @param comment [Comment] the comment to smile
-  def smile_comment(comment)
-    CommentSmile.create!(user: self, comment: comment)
+  def smile_comment(comment, via = nil)
+    CommentSmile.create!(user: self, comment: comment, application: via)
   end
 
   # unsmile an comment
@@ -184,8 +185,8 @@ class User < ActiveRecord::Base
     website
   end
 
-  def comment(answer, content)
-    Comment.create!(user: self, answer: answer, content: content)
+  def comment(answer, content, via = nil)
+    Comment.create!(user: self, answer: answer, content: content, application: via)
   end
 
   # @return [Boolean] is the user an app dev?
