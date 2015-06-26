@@ -188,6 +188,11 @@ class User < ActiveRecord::Base
     Comment.create!(user: self, answer: answer, content: content)
   end
 
+  # @return [Boolean] is the user an app dev?
+  def app_developer?
+    self.applications.count > 0
+  end
+
   # @return [Boolean] is the user a moderator?
   def mod?
     self.moderator? || self.admin?

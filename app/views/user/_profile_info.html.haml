@@ -28,6 +28,10 @@
     .profile--panel-badge.panel-badge-default
       %i.fa.fa-ban
       = t 'views.user.title.banned'
+  - if @user.app_developer?
+    .profile--panel-badge.panel-badge-warning
+      %i.fa.fa-rocket
+      = t 'views.user.title.appdev'
   - if @user.following? current_user
     .profile--panel-badge.panel-badge-default
       = t 'views.user.follows_you'

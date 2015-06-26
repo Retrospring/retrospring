@@ -21,6 +21,7 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   expose :blogger
   expose :contributor
   expose :translator
+  expose :app_developer
 
   expose :banned do
     expose :banned

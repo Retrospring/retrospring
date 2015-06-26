@@ -18,6 +18,7 @@ class Sleipnir::Entities::UserSlimEntity < Sleipnir::Entities::UserEntity
   expose :blogger
   expose :contributor
   expose :translator
+  expose :app_developer
 
   expose :banned do |user, options|
     user.banned?
