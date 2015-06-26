@@ -1,4 +1,6 @@
 class API < Grape::API
+  CORS_SCHEME = ['http', 'https'].freeze
+
   format :json
   content_type :json, 'application/json'
   content_type :msgpack, 'application/x-msgpack'
@@ -6,8 +8,9 @@ class API < Grape::API
   use API::ErrorHandler
 
   before do
-    header['Access-Control-Allow-Origin'] = '*'
-    header['Access-Control-Request-Method'] = '*'
+    header['Access-Control-Allow-Origin']   = '*'
+    header['Access-Control-Request-Method'] = 'GET'
+    header['Access-Control-Allow-Headers']  = 'Content-Type'
   end
 
   helpers do
@@ -30,6 +33,49 @@ class API < Grape::API
     end
   end
 
+  before do
+    # adjust CORS headers if application is present
+    unless current_application.nil?
+      unless env['HTTP_ORIGIN'].nil?
+        origin = env['HTTP_ORIGIN'].downcase # origin header present
+        origins = []
+        redirect_uris = current_application.redirect_uri.downcase.split
+        if redirect_uris.index('urn:ietf:wg:oauth:2.0:oob').nil?
+          header['Access-Control-Allow-Origin'] = nil
+
+          redirect_uris.each do |r|
+            begin
+              uri = URI.parse r
+
+              next if CORS_SCHEME.index(uri.scheme).nil?
+
+              local_origin = "#{uri.scheme}://#{uri.host}"
+
+              if uri.port != 80 and uri.port != 443
+                local_origin += ":#{uri.port}"
+              end
+
+              origins.push local_origin
+            rescue
+              next
+            end
+          end
+
+          if origins.index(origin).nil?
+            return false # break route, origin doesn't match.
+          else
+            header['Access-Control-Allow-Origin'] = origin
+          end
+        end
+      end
+
+      # everything is GET only, 'write' actually allos for any method.
+      unless current_scopes.nil? or current_scopes.to_a.index('write').nil?
+        header['Access-Control-Request-Method'] = '*'
+      end
+    end
+  end
+
   use ::WineBouncer::OAuth2
 
   use Grape::Middleware::ThrottleMiddleware, cache: Redis.new(url: APP_CONFIG['redis_url']), user_key: ->(env) do
@@ -46,7 +92,7 @@ class API < Grape::API
   get do
     status 200
     result = {
-      notes: "This page is a list of API entry points, true means they are active, false means they are depricated. You can find their swagger documentation at /api/:entry/swagger_doc.json",
+      notes: "This page is a list of API entry points, true means they are active, false means they are depricated. You can find their basic swagger documentation at /api/:entry/swagger_doc.json",
       apis: {
         sleipnir: true
       }
