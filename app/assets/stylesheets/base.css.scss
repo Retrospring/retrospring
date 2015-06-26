@@ -6,6 +6,7 @@ body {
   background-color: #fafafa;
 }
 
+@import "scss/flags";
 @import "scss/variable";
 @import "scss/generic";
 @import "scss/answerbox";
@@ -16,6 +17,7 @@ body {
 @import "scss/user";
 @import "scss/notifications";
 @import "scss/groups";
+@import "scss/data";
 @import "scss/mobile";
 @import "scss/oauth";
 

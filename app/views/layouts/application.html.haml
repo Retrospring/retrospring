@@ -23,6 +23,7 @@
   %body
     = render 'layouts/header'
     = yield
+    = render 'shared/locales'
     - if Rails.env.development?
       %hr
       .container
@@ -34,7 +35,6 @@
             = `git rev-parse --short HEAD`.strip
         %p.text-danger Debug params:
         = debug params
-
     - if Rails.env.production?
       %noscript
         %p

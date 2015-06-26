@@ -29,6 +29,7 @@
 #= require user
 #= require report
 #= require oauth
+#= require locale-box
 # not required:
 # _tree ./moderation
 

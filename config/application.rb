@@ -39,13 +39,8 @@ module Justask
     config.active_record.raise_in_transactional_callbacks = true
 
     config.after_initialize do
-      Doorkeeper::Application.send :include, Concerns::ApplicationExtension
-
-      begin
-        ::APP_FAKE_OAUTH = Doorkeeper::Application.new(name: "Web", description: "#{APP_CONFIG["site_name"]} on the internets", homepage: "http#{APP_CONFIG["https"] && "s" || ""}://#{APP_CONFIG["hostname"]}#{APP_CONFIG["port"] && APP_CONFIG["port"] != 80 && ":#{APP_CONFIG["port"]}" || ""}", deleted: false, scopes: "-1")
-        ::APP_FAKE_OAUTH.readonly!
-      rescue
-        # wahahahahahaluigi
+      Dir.glob Rails.root.join('config/late_initializers/*.rb') do |f|
+        require f
       end
     end
   end
