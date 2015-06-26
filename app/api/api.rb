@@ -50,11 +50,7 @@ class API < Grape::API
               next if CORS_SCHEME.index(uri.scheme).nil?
 
               local_origin = "#{uri.scheme}://#{uri.host}"
-
-              if uri.port != 80 and uri.port != 443
-                local_origin += ":#{uri.port}"
-              end
-
+              
               origins.push local_origin
             rescue
               next
