@@ -1,14 +1,17 @@
 .panel.panel-default.hidden-xs
-  %img.profile--avatar{src: current_user.profile_picture.url(:large)}
   .panel-body
-    - if current_user.display_name.blank?
-      .profile--displayname
-        = current_user.screen_name
-    - else
-      .profile--displayname
-        = current_user.display_name
-      .profile--username
-        = current_user.screen_name
+    .media
+      .pull-left
+        %img.answerbox--img{src: current_user.profile_picture.url(:small)}
+      .media-body
+        - if current_user.display_name.blank?
+          .profile--displayname
+            = current_user.screen_name
+        - else
+          .profile--displayname
+            = current_user.display_name
+          .profile--username
+            = current_user.screen_name
     .row
       %a{href: show_user_followers_path(current_user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6
