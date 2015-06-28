@@ -50,7 +50,7 @@ class API < Grape::API
               next if CORS_SCHEME.index(uri.scheme).nil?
 
               local_origin = "#{uri.scheme}://#{uri.host}"
-              
+
               origins.push local_origin
             rescue
               next
@@ -65,8 +65,8 @@ class API < Grape::API
         end
       end
 
-      # everything is GET only, 'write' actually allos for any method.
-      unless current_scopes.nil? or current_scopes.to_a.index('write').nil?
+      # everything is GET only, 'write' and 'rewrite' actually allows for any method.
+      unless current_scopes.nil? or (current_scopes.to_a.index('write').nil? and current_scopes.to_a.index('rewrite').nil?)
         header['Access-Control-Request-Method'] = '*'
       end
     end
