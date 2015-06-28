@@ -14,17 +14,7 @@ class Sleipnir::Entities::BaseEntity < Grape::Entity
     end
   end
 
-  expose :success
-
 private
-
-  def success
-    if object.respond_to? :success
-      object.success
-    else
-      true
-    end
-  end
 
   def globalize_paperclip(entity)
     if entity[0] == "/"

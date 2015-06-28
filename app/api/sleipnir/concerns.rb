@@ -21,7 +21,13 @@ module Sleipnir::Concerns
           current_user.id
         end
         args.last[:ENDPOINT] = env["REQUEST_PATH"]
-        send("present", *args)
+
+        klass = args.last[:with]
+        args.last.delete :with
+
+        result = klass.represent *args
+
+        present({success: true, status: 200, result: result})
       end
 
       def represent_collection(*args)

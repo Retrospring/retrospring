@@ -62,7 +62,7 @@ class API < Grape::API
           end
 
           if origins.index(origin).nil?
-            present({success: true, error: 302, reason: "ERR_INVALID_OAUTH_ORIGIN"})
+            present({success: true, error: 302, result: "ERR_INVALID_OAUTH_ORIGIN"})
             return false # break route, origin doesn't match.
           else
             header['Access-Control-Allow-Origin'] = origin
@@ -106,6 +106,6 @@ class API < Grape::API
 
   route :any, '*path' do
     status 404
-    {success: false, status: 404, reason: "ERR_NOT_FOUND"}
+    {success: false, status: 404, result: "ERR_NOT_FOUND"}
   end
 end

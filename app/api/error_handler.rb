@@ -21,13 +21,17 @@ class ErrorHandler < Grape::Middleware::Base
 
       payload = {
         message: message || e.message || options[:default_message] || "Unexpected error",
-        reason: "ERR_UNEXPECTED",
+        result: "ERR_UNEXPECTED",
         status: status,
         success: false
       }
 
       if status == 404
-        payload[:reason] = "ERR_RECORD_NOT_FOUND"
+        payload[:result] = "ERR_RECORD_NOT_FOUND"
+      end
+
+      if status == 418
+        payload[:result] = "ERR_UNIMPLEMENTED"
       end
 
       unless Rails.env.production?

@@ -11,7 +11,7 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
       answer = Answer.find params["id"]
       if answer.nil?
         status 404
-        return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
+        return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
       end
       represent answer, with: Sleipnir::Entities::AnswerEntity
     end
@@ -41,11 +41,11 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
       answer = Answer.find params[:id]
       if answer.nil?
         status 404
-        return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
+        return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
       end
 
       current_user.comment(answer, params[:comment], current_application)
-      present({success: true, code: 200, reason: "SUCCESS_COMMENT"})
+      present({success: true, code: 200, result: "SUCCESS_COMMENT"})
     end
 
     desc "Delete comment"

@@ -7,6 +7,10 @@ class Sleipnir::MountAPI < Grape::API
   mount Sleipnir::QuestionAPI
   mount Sleipnir::AnswerAPI
 
+  get "/dummy" do
+    raise TeapotError.new
+  end
+
   add_swagger_documentation base_path: '/api',
     hide_format: false,
     hide_documentation_path: true,

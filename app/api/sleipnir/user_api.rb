@@ -56,12 +56,12 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       target = User.find params[:id]
       if target.nil?
         status 404
-        return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
+        return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
       end
 
       if params[:anonymous] and not target.privacy_allow_anonymous_questions
         status 403
-        return present({success: false, code: 403, reason: "ERR_USER_NO_ANONY"})
+        return present({success: false, code: 403, result: "ERR_USER_NO_ANONY"})
       end
 
       question = Question.create!(content: params[:question],
@@ -75,7 +75,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
 
       Inbox.create!(user: target, question: question, new: true)
 
-      present({success: true, code: 200, reason: "SUCCESS_ASKED"})
+      present({success: true, code: 200, result: "SUCCESS_ASKED"})
     end
 
     desc "Given user's answers"
@@ -91,7 +91,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     throttle hourly: 72
     get "/:id/followers", as: :user_followers_api do
       collection = since_id Relationship, "target_id = ?", [params[:id]]
-      represent_collection collection, with: Sleipnir::Entities::RelationshipsEntity, relationship: :them
+      represent_collection collection, with: Sleipnir::Entities::FollowersEntity, relationship: :them
     end
 
     desc "Given user's following"
@@ -99,7 +99,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     throttle hourly: 72
     get "/:id/following", as: :user_following_api do
       collection = since_id Relationship, "source_id = ?", [params[:id]]
-      represent_collection collection, with: Sleipnir::Entities::RelationshipsEntity, relationship: :me
+      represent_collection collection, with: Sleipnir::Entities::FollowingsEntity, relationship: :me
     end
 
     desc "Ask all your followers a question"
@@ -122,7 +122,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
           Inbox.create!(user: f, question: question, new: true)
         end
 
-        present({success: true, code: 200, reason: "SUCCESS_ASKED_ALL"})
+        present({success: true, code: 200, result: "SUCCESS_ASKED_ALL"})
     end
 
     desc "Follow given user"
@@ -133,13 +133,13 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
         user = User.find(params[:id])
         if user.nil?
           status 404
-          return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
+          return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
         end
         current_user.follow(user)
-        present({success: true, code: 200, reason: "SUCCESS_FOLLOWED"})
+        present({success: true, code: 200, result: "SUCCESS_FOLLOWED"})
       rescue
         status 403
-        present({success: false, code: 503, reason: "ERR_ALREADY_FOLLOWING"})
+        present({success: false, code: 503, result: "ERR_ALREADY_FOLLOWING"})
       end
     end
 
@@ -151,13 +151,13 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
         user = User.find(params[:id])
         if user.nil?
           status 404
-          return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
+          return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
         end
         current_user.unfollow(user)
-        present({success: true, code: 200, reason: "SUCCESS_UNFOLLOWED"})
+        present({success: true, code: 200, result: "SUCCESS_UNFOLLOWED"})
       rescue
         status 403
-        present({success: false, code: 403, reason: "ERR_NOT_FOLLOWING"})
+        present({success: false, code: 403, result: "ERR_NOT_FOLLOWING"})
       end
     end
 
@@ -174,9 +174,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
         if env['api.format'] == :txt
           user_avatar_for_id(params[:id], params[:size])
         else
-          # doesn't work??
-          # present User.find(params[:id]), with: Sleipnir::Entities::UserEntity, only: [:profile_header, :header]
-          present User.find(params[:id]), with: Sleipnir::Entities::UserEntity::ProfilePictureProxy
+          represent User.find(params[:id]), with: Sleipnir::Entities::UserEntity::ProfilePictureProxy
         end
       end
     end
@@ -194,8 +192,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
         if env['api.format'] == :txt
           user_header_for_id(params[:id], params[:size])
         else
-          # present User.find(params[:id]), with: Sleipnir::Entities::UserEntity, only: [:profile_picture, :avatar]
-          present User.find(params[:id]), with: Sleipnir::Entities::UserEntity::ProfileHeaderProxy
+          represent User.find(params[:id]), with: Sleipnir::Entities::UserEntity::ProfileHeaderProxy
         end
       end
     end
