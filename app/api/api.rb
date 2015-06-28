@@ -50,6 +50,10 @@ class API < Grape::API
               next if CORS_SCHEME.index(uri.scheme).nil?
 
               local_origin = "#{uri.scheme}://#{uri.host}"
+              
+              if (uri.scheme == 'https' and uri.port != 443) or (uri.scheme == 'http' and uri.port != 80) 
+                local_origin += ":#{uri.port}"
+              end
 
               origins.push local_origin
             rescue
@@ -58,6 +62,7 @@ class API < Grape::API
           end
 
           if origins.index(origin).nil?
+            present({success: true, error: 302, reason: "ERR_INVALID_OAUTH_ORIGIN"})
             return false # break route, origin doesn't match.
           else
             header['Access-Control-Allow-Origin'] = origin
