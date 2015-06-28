@@ -1,9 +1,6 @@
 class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   # https://github.com/intridea/grape-entity/issues/56 it was merged, then shortly after reverted
-  # expose :id, unless: :id_to_string
-  # expose :id, if: :id_to_string, format_with: :id_to_string
-  expose :id
-  expose :_id, as: :id, if: :id_to_string do |object, _| object.id.to_s end
+  expose :id, format_with: :strid
 
   expose :screen_name
   expose :display_name
@@ -26,10 +23,7 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   expose :banned do
     expose :banned
 
-    # expose :banned_until, as: :until, format_with: :epochtime
-    # expose :banned_until, as: :until, format_with: :nanotime, if: :nanotime
-    expose :banned_until, as: :until, format_with: :epochtime
-    expose :_banned_until, as: :until, if: :nanotime do |object, _| object.banned_until.to_i * 1000 end
+    expose :banned_until, as: :until, format_with: :nanotime
 
     expose :ban_reason, safe: true, as: :reason do |object| object.ban_reason || "" end
   end
@@ -52,10 +46,7 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
     expose :privacy_show_in_search, as: :show_in_search
   end
 
-  # expose :created_at, as: :member_since, format_with: :epochtime
-  # expose :created_at, as: :member_since, format_with: :nanotime, if: :nanotime
-  expose :created_at, as: :member_since, format_with: :epochtime
-  expose :_created_at, as: :member_since, if: :nanotime do |object, _| object.created_at.to_i * 1000 end
+  expose :created_at, as: :member_since, format_with: :nanotime
 
   class ProfilePictureProxy < Sleipnir::Entities::BaseEntity
     expose_image :profile_picture, :avatar

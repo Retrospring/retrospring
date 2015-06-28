@@ -1,7 +1,6 @@
 class Sleipnir::Entities::BaseEntity < Grape::Entity
-  format_with(:strid) { |id| id.to_s } # ruby has no max int, 99% of other languages do
-  format_with(:nanotime) { |t| t.to_i * 1000 } # javascript
-  format_with(:epochtime) { |t| t.to_i } # non-javascript
+  format_with(:strid) { |id| if options[:id_to_string] then id.to_s else id end } # ruby has no max int, 99% of other languages do
+  format_with(:nanotime) { |t| if options[:nanotime] then t.to_i * 1000 else t.to_i end } # javascript, no javascript
 
   def self.expose_image(tag, as = tag)
     expose tag, as: as do |object|
@@ -15,7 +14,17 @@ class Sleipnir::Entities::BaseEntity < Grape::Entity
     end
   end
 
+  expose :success
+
 private
+
+  def success
+    if object.respond_to? :success
+      object.success
+    else
+      true
+    end
+  end
 
   def globalize_paperclip(entity)
     if entity[0] == "/"

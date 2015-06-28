@@ -1,6 +1,5 @@
 class Sleipnir::Entities::NotificationEntity < Sleipnir::Entities::BaseEntity
-  expose :id
-  expose :_id, as: :id, if: :id_to_string do |object, _| object.id.to_s end
+  expose :id, format_with: :strid
 
   expose :target_type, as: :type
   expose :target do |notification, options|

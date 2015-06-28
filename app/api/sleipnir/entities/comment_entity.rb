@@ -1,6 +1,5 @@
 class Sleipnir::Entities::CommentEntity < Sleipnir::Entities::BaseEntity
-  expose :id
-  expose :_id, as: :id, if: :id_to_string do |object, _| object.id.to_s end
+  expose :id, format_with: :strid
 
   expose :content, as: :comment
 
@@ -10,6 +9,5 @@ class Sleipnir::Entities::CommentEntity < Sleipnir::Entities::BaseEntity
 
   expose :application, as: :created_with, with: Sleipnir::Entities::ApplicationReferenceEntity
 
-  expose :created_at, format_with: :epochtime
-  expose :_created_at, as: :created_at, if: :nanotime do |object, _| object.created_at.to_i * 1000 end
+  expose :created_at, format_with: :nanotime
 end

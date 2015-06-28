@@ -1,14 +1,12 @@
 class Sleipnir::Entities::AnswerEntity < Sleipnir::Entities::BaseEntity
-  expose :id
-  expose :_id, as: :id, if: :id_to_string do |object, _| object.id.to_s end
+  expose :id, format_with: :strid
 
   expose :content, as: :answer
 
   expose :comment_count
   expose :smile_count
 
-  expose :user_id, if: :no_answer_user
-  expose :_user_id, as: :user_id, if: {id_to_string: true, no_answer_user: true} do |object, _| object.user_id.to_s end
+  expose :user_id, format_with: :strid, if: :no_answer_user
 
   expose :user, with: Sleipnir::Entities::UserSlimEntity, unless: :no_answer_user
 
@@ -18,8 +16,7 @@ class Sleipnir::Entities::AnswerEntity < Sleipnir::Entities::BaseEntity
 
   expose :application, as: :created_with, with: Sleipnir::Entities::ApplicationReferenceEntity
 
-  expose :created_at, format_with: :epochtime
-  expose :_created_at, as: :created_at, if: :nanotime do |object, _| object.created_at.to_i * 1000 ends
+  expose :created_at, format_with: :nanotime
 
 private
 
