@@ -50,8 +50,8 @@ class API < Grape::API
               next if CORS_SCHEME.index(uri.scheme).nil?
 
               local_origin = "#{uri.scheme}://#{uri.host}"
-              
-              if (uri.scheme == 'https' and uri.port != 443) or (uri.scheme == 'http' and uri.port != 80) 
+
+              if (uri.scheme == 'https' and uri.port != 443) or (uri.scheme == 'http' and uri.port != 80)
                 local_origin += ":#{uri.port}"
               end
 
@@ -88,7 +88,9 @@ class API < Grape::API
     end
   end
 
-  use API::Metrics
+  if APP_CONFIG["api"]["metrics"]
+    use API::Metrics
+  end
 
   get do
     status 200
@@ -104,6 +106,6 @@ class API < Grape::API
 
   route :any, '*path' do
     status 404
-    {message: "Not found", status: 404}
+    {success: false, status: 404, reason: "ERR_NOT_FOUND"}
   end
 end

@@ -30,7 +30,12 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
   end
 
   def metrics
-    payload = ApplicationMetric.request(params["id"])
+    payload = if APP_CONFIG["api"]["metrics"]
+      ApplicationMetric.request(params["id"])
+    else
+      []
+    end
+    
     render json: payload
   end
 

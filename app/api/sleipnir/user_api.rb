@@ -56,12 +56,12 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       target = User.find params[:id]
       if target.nil?
         status 404
-        return present({success: false, code: 404, reason: "Cannot find user"})
+        return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
       end
 
       if params[:anonymous] and not target.privacy_allow_anonymous_questions
-        status 300
-        return present({success: false, code: 300, reason: "User doesn't allow anonymous questions"})
+        status 403
+        return present({success: false, code: 403, reason: "ERR_USER_NO_ANONY"})
       end
 
       question = Question.create!(content: params[:question],
@@ -75,7 +75,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
 
       Inbox.create!(user: target, question: question, new: true)
 
-      present({success: true, code: 200, reason: "Asked user \##{params[:id]} a question"})
+      present({success: true, code: 200, reason: "SUCCESS_ASKED"})
     end
 
     desc "Given user's answers"
@@ -115,16 +115,14 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
                                     author_is_anonymous: params[:anonymous],
                                     user: current_user)
 
-        unless current_user.nil?
-          current_user.increment! :asked_count unless params[:anonymous]
-        end
+        current_user.increment! :asked_count unless params[:anonymous]
 
         current_user.followers.each do |f|
           next if params[:anonymous] and not f.privacy_allow_anonymous_questions
           Inbox.create!(user: f, question: question, new: true)
         end
 
-        present({success: true, code: 200, reason: "Asked all your followers a question"})
+        present({success: true, code: 200, reason: "SUCCESS_ASKED_ALL"})
     end
 
     desc "Follow given user"
@@ -135,13 +133,13 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
         user = User.find(params[:id])
         if user.nil?
           status 404
-          return present({success: false, code: 404, reason: "Cannot find user #{params[:id]}"})
+          return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
         end
         current_user.follow(user)
-        present({success: true, code: 200, reason: "Followed user #{params[:id]}"})
+        present({success: true, code: 200, reason: "SUCCESS_FOLLOWED"})
       rescue
         status 403
-        present({success: false, code: 503, reason: "Already following user"})
+        present({success: false, code: 503, reason: "ERR_ALREADY_FOLLOWING"})
       end
     end
 
@@ -153,13 +151,13 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
         user = User.find(params[:id])
         if user.nil?
           status 404
-          return present({success: false, code: 404, reason: "Cannot find user #{params[:id]}"})
+          return present({success: false, code: 404, reason: "ERR_USER_NOT_FOUND"})
         end
         current_user.unfollow(user)
-        present({success: true, code: 200, reason: "Unfollowed user #{params[:id]}"})
+        present({success: true, code: 200, reason: "SUCCESS_UNFOLLOWED"})
       rescue
         status 403
-        present({success: false, code: 403, reason: "Not following user"})
+        present({success: false, code: 403, reason: "ERR_NOT_FOLLOWING"})
       end
     end
 

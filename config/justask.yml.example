@@ -55,3 +55,7 @@ fog:
   directory: 'retrospring'
   # URL host, comment out to use default, GENERALLY you don't want to define this
   # host: ''
+
+# api settings
+api:
+  metrics: true # WARNING: might be resource intensive, has complex SQL queries

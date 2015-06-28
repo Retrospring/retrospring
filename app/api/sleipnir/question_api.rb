@@ -11,7 +11,7 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
       question = Question.find params["id"]
       if question.nil?
         status 404
-        return present({success: false, code: 404, reason: "Cannot find question"})
+        return present({success: false, code: 404, reason: "ERR_QUESTION_NOT_FOUND"})
       end
       represent question, with: Sleipnir::Entities::QuestionEntity
     end
@@ -31,13 +31,13 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
       question = Question.find params["id"]
       if question.nil?
         status 404
-        return present({success: false, code: 404, reason: "Cannot find question"})
+        return present({success: false, code: 404, reason: "ERR_QUESTION_NOT_FOUND"})
       end
 
       inbox = Inbox.find_by question: question
       if inbox.nil? and not question.user.privacy_allow_stranger_questions
-        status 300
-        return present({success: false, code: 300, reason: "User doesn't allow strangers to answer their questions"})
+        status 403
+        return present({success: false, code: 403, reason: "ERR_MUST_FOLLOW"})
       end
 
       answer = if inbox.nil?
@@ -53,7 +53,7 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
 
       ShareWorker.perform_async(current_user.id, answer.id, services)
 
-      present({success: true, code: 200, reason: "Answered question ##{params[:id]}"})
+      present({success: true, code: 200, reason: "SUCCESS_ANSWERED"})
     end
 
     desc "Given question's answers"
