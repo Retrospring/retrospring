@@ -25,9 +25,19 @@ module Sleipnir::Concerns
         klass = args.last[:with]
         args.last.delete :with
 
+        code = args.last[:code]
+        if code.nil?
+          code = 200
+        end
+        
+        success = args.last[:success]
+        if success.nil?
+          success = true
+        end
+
         result = klass.represent *args
 
-        present({success: true, status: 200, result: result})
+        present({success: success, status: code, result: result})
       end
 
       def represent_collection(*args)
