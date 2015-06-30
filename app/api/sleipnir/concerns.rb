@@ -20,7 +20,8 @@ module Sleipnir::Concerns
         else
           current_user.id
         end
-        args.last[:ENDPOINT] = env["REQUEST_PATH"]
+        args.last[:ENDPOINT] = "#{request.base_url}#{request.path}"
+        args.last[:HOST] = request.base_url
 
         klass = args.last[:with]
         args.last.delete :with
@@ -29,7 +30,7 @@ module Sleipnir::Concerns
         if code.nil?
           code = 200
         end
-        
+
         success = args.last[:success]
         if success.nil?
           success = true
@@ -50,7 +51,7 @@ module Sleipnir::Concerns
       end
 
       def max_results(key = :max, default = 20, max = 40)
-        n = params[key] || default
+        n = (params[key] || default).to_i
         if n > max
           max
         elsif n <= 0

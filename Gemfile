@@ -73,8 +73,6 @@ gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 gem 'grape'
 gem 'wine_bouncer'
-gem 'grape-swagger'
-gem 'rouge', require: false # grape-swagger requires this
 gem 'grape-entity'
 gem 'grape-msgpack'
 gem 'grape-throttle'

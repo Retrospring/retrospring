@@ -19,7 +19,7 @@ private
   def globalize_paperclip(entity)
     if entity[0] == "/"
       # so dirty
-      "http#{APP_CONFIG["https"] && "s" || ""}://#{APP_CONFIG["hostname"]}#{APP_CONFIG["port"] && APP_CONFIG["port"] != 80 && ":#{APP_CONFIG["port"]}" || ""}#{entity}"
+      "#{options[:HOST]}#{entity}"
     else
       entity
     end

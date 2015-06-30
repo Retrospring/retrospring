@@ -239,9 +239,6 @@ GEM
     grape-msgpack (0.1.2)
       grape (>= 0.6.0)
       msgpack (~> 0.5.6)
-    grape-swagger (0.10.1)
-      grape (>= 0.8.0)
-      grape-entity
     grape-throttle (0.0.1)
       grape (>= 0.10.0)
       redis
@@ -397,7 +394,6 @@ GEM
       railties (>= 4.2.0, < 5)
     rickshaw-rails (1.5.0)
       rails (>= 3.1.0)
-    rouge (1.8.0)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -555,7 +551,6 @@ DEPENDENCIES
   grape
   grape-entity
   grape-msgpack
-  grape-swagger
   grape-throttle
   haml
   i18n-js
@@ -581,7 +576,6 @@ DEPENDENCIES
   redcarpet
   redis
   rickshaw-rails
-  rouge
   rspec-rails (~> 3.0.0)
   ruby-progressbar
   sanitize

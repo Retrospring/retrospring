@@ -95,7 +95,7 @@ class API < Grape::API
   get do
     status 200
     result = {
-      notes: "This page is a list of API entry points, true means they are active, false means they are depricated. You can find their basic swagger documentation at /api/:entry/swagger_doc.json",
+      notes: "This page is a list of API entry points, true means they are active, false means they are depricated.",
       apis: {
         sleipnir: true
       }
