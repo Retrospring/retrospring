@@ -7,11 +7,14 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     desc "Given answer's content"
     # oauth2 'public'
     throttle hourly: 720
+    params do
+      requires :test
+    end
     get "/:id", as: :answer_api do
       answer = Answer.find params["id"]
       if answer.nil?
         status 404
-        return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
+        return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
       end
       represent answer, with: Sleipnir::Entities::AnswerEntity
     end
@@ -20,7 +23,25 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 360
     delete "/:id", as: :delete_answer_api do
-      # TODO
+      answer = Answer.find(params[:id])
+
+      if answer.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
+      end
+
+      unless (current_user == answer.user) or (privileged? answer.user)
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      if answer.user == current_user
+        Inbox.create!(user: answer.user, question: answer.question, new: true)
+      end
+      answer.destroy
+
+      status 204
+      return
     end
 
     desc "Given answer's comments"
@@ -45,34 +66,81 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
       end
 
       current_user.comment(answer, params[:comment], current_application)
-      present({success: true, code: 200, result: "SUCCESS_COMMENT"})
+      status 201
+      present({success: true, code: 201, result: "SUCCESS_COMMENT"})
     end
 
     desc "Delete comment"
     oauth2 'write'
     throttle hourly: 360
     delete "/:id/comments/:comment_id", as: :delete_comment_api do
-      # TODO
+      comment = Comment.find params[:comment_id]
+      if comment.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_COMMENT_NOT_FOUND"})
+      end
+
+      unless (current_user == answer.user) or (privileged? answer.user)
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      comment.answer.decrement! :comment_count
+      comment.destroy
+
+      status 204
+      return
     end
 
     desc "Subscribe to an answer"
     oauth2 'write'
     throttle hourly: 720
     post "/:id/subscribe", as: :new_subscription_api do
-      # TODO
+      answer = Answer.find(params[:id])
+      if answer
+        status 404
+        return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
+      end
+
+      if Subscription.subscribe(current_user, answer).nil?
+        status 412
+        return present({success: false, code: 412, result: "ERR_ALREADY_SUBSCRIBED"})
+      else
+        status 201
+        return present({success: true, code: 201, result: "SUBSCRIBED"})
+      end
     end
 
     desc "Unsubscribe from an answer"
     oauth2 'write'
     throttle hourly: 720
     delete "/:id/subscribe", as: :delete_subscription_api do
-      # TODO
+      answer = Answer.find(params[:id])
+      if answer
+        status 404
+        return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
+      end
+
+      if Subscription.unsubscribe(current_user, answer).nil?
+        status 412
+        return present({success: false, code: 412, result: "ERR_NOT_SUBSCRIBED"})
+      else
+        status 204
+        return
+      end
     end
 
     desc "Smile an answer"
     oauth2 'write'
     throttle hourly: 720
     post "/:id/smile", as: :smile_api do
+      # TODO
+    end
+
+    desc "View answer smiles"
+    # oauth2 'write'
+    throttle hourly: 720
+    get "/:id/smile", as: :view_smile_api do
       # TODO
     end
 
@@ -87,6 +155,13 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 720
     post "/:id/comment/:comment_id", as: :comment_smile_api do
+      # TODO
+    end
+
+    desc "View comment smiles"
+    # oauth2 'write'
+    throttle hourly: 720
+    get "/:id/comment/:comment_id", as: :view_comment_smile_api do
       # TODO
     end
 

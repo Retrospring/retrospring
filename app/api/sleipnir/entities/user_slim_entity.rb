@@ -12,13 +12,7 @@ class Sleipnir::Entities::UserSlimEntity < Sleipnir::Entities::UserEntity
   unexpose :location
   unexpose :bio
 
-  expose :admin
-  expose :moderator
-  expose :supporter
-  expose :blogger
-  expose :contributor
-  expose :translator
-  expose :app_developer
+  expose :flags
 
   expose :banned do |user, options|
     user.banned?

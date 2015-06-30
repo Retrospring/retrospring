@@ -12,13 +12,16 @@ class Sleipnir::Entities::UserEntity < Sleipnir::Entities::BaseEntity
   expose :location
   expose :bio
 
-  expose :admin
-  expose :moderator
-  expose :supporter
-  expose :blogger
-  expose :contributor
-  expose :translator
-  expose :app_developer
+
+  expose :flags do
+    expose :admin
+    expose :moderator
+    expose :supporter
+    expose :blogger
+    expose :contributor
+    expose :translator
+    expose :app_developer
+  end
 
   expose :banned do
     expose :banned

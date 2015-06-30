@@ -11,6 +11,13 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       represent current_user, with: Sleipnir::Entities::UserEntity, type: :full
     end
 
+    desc "Current user's new numbers"
+    oauth2 'public'
+    throttle hourly: 144
+    get "/new", as: :count_api do
+      present({success: true, code: 200, result: {inbox: new_inbox_count, notification: new_notification_count}})
+    end
+
     desc "Current user's inbox"
     oauth2 'public'
     throttle hourly: 720
@@ -75,7 +82,8 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
 
       Inbox.create!(user: target, question: question, new: true)
 
-      present({success: true, code: 200, result: "SUCCESS_ASKED"})
+      status 201
+      present({success: true, code: 201, result: "SUCCESS_ASKED"})
     end
 
     desc "Given user's answers"
@@ -122,7 +130,8 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
           Inbox.create!(user: f, question: question, new: true)
         end
 
-        present({success: true, code: 200, result: "SUCCESS_ASKED_ALL"})
+        status 201
+        present({success: true, code: 201, result: "SUCCESS_ASKED_ALL"})
     end
 
     desc "Follow given user"
@@ -136,10 +145,11 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
           return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
         end
         current_user.follow(user)
-        present({success: true, code: 200, result: "SUCCESS_FOLLOWED"})
+        status 201
+        present({success: true, code: 201, result: "SUCCESS_FOLLOWED"})
       rescue
         status 403
-        present({success: false, code: 503, result: "ERR_ALREADY_FOLLOWING"})
+        present({success: false, code: 403, result: "ERR_ALREADY_FOLLOWING"})
       end
     end
 
@@ -153,8 +163,8 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
           status 404
           return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
         end
-        current_user.unfollow(user)
-        present({success: true, code: 200, result: "SUCCESS_UNFOLLOWED"})
+        status 204
+        return
       rescue
         status 403
         present({success: false, code: 403, result: "ERR_NOT_FOLLOWING"})
@@ -195,6 +205,42 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
           represent User.find(params[:id]), with: Sleipnir::Entities::UserEntity::ProfileHeaderProxy
         end
       end
+    end
+
+    desc "Ban specified user"
+    oauth2 'moderation'
+    params do
+      optional :reason, type: String, default: nil
+      optional :until, type: Fixnum, default: nil
+    end
+    post '/:id/ban', as: :ban_user_api do
+      unless current_user.mod?
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      target = User.find(params[:id])
+
+      target.ban params[:until], params[:reason]
+
+      status 201
+      present({success: true, code: 201, result: "USER_BANNED"})
+    end
+
+    desc "Unban specified user"
+    oauth2 'moderation'
+    delete '/:id/ban', as: :unban_user_api do
+      unless current_user.mod?
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      target = User.find(params[:id])
+
+      target.unban
+
+      status 204
+      return
     end
   end
 end

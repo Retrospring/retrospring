@@ -16,6 +16,27 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
       represent question, with: Sleipnir::Entities::QuestionEntity
     end
 
+    desc "Delete given question"
+    oauth2 'moderation'
+    delete '/:id', as: :delete_question_api do
+      question = Question.find params[:id]
+
+      if question.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_QUESTION_NOT_FOUND"})
+      end
+
+      unless (current_user == question.user) or (privileged? question.user)
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      question.destroy
+
+      status 204
+      return
+    end
+
     # NOTE: For compatability,
     # DO NOT UNDER ANY CIRCUMSTANCE REMOVE ANYTHING FROM THIS VARIABLE, ONLY ADD
     SERVICE_FLAGS = %w(twitter tumblr facebook).freeze
@@ -53,7 +74,13 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
 
       ShareWorker.perform_async(current_user.id, answer.id, services)
 
-      present({success: true, code: 200, result: "SUCCESS_ANSWERED"})
+      code = if services.length > 0
+        202
+      else
+        201
+      end
+      status code
+      present({success: true, code: code, result: "SUCCESS_ANSWERED"})
     end
 
     desc "Given question's answers"
