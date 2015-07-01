@@ -21,17 +21,111 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     desc "Current user's inbox"
     oauth2 'public'
     throttle hourly: 720
+    params do
+      optional :mark_as_read, type: Boolean, default: false
+    end
     get "/inbox", as: :inbox_api do
       collection = since_id Inbox, "user_id = ?", [current_user.id]
       represent_collection collection, with: Sleipnir::Entities::InboxesEntity
+      if params[:mark_as_read] and not current_scopes.index('write').nil?
+        collection.update_all new: false
+      end
     end
 
     desc "Current user's notifications"
     oauth2 'public'
     throttle hourly: 720
+    params do
+      optional :mark_as_read, type: Boolean, default: false
+    end
     get "/notifications", as: :notification_api do
       collection = since_id Notification, "recipient_id = ?", [current_user.id]
       represent_collection collection, with: Sleipnir::Entities::NotificationsEntity
+      if params[:mark_as_read] and not current_scopes.index('write').nil?
+        collection.update_all new: false
+      end
+    end
+
+    desc "Mark notification as read"
+    oauth2 'write'
+    throttle hourly: 14400
+    patch '/notifications/:id', as: :mark_notification_read_api do
+      entry = Notifications.find(params[:id])
+      if entry.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_NOTIF_NOT_FOUND"})
+      end
+
+      if entry.recipient_id != current_user.id
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      entry.update new: false
+      status 205
+      present({success: true, code: 205, result: "NOTIF_READ"})
+    end
+
+    desc "Mark inbox as read"
+    oauth2 'write'
+    throttle hourly: 14400
+    patch '/inbox/:id', as: :mark_inbox_read_api do
+      entry = Inbox.find(params[:id])
+      if entry.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_INBOX_NOT_FOUND"})
+      end
+
+      if entry.user_id != current_user.id
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      entry.update new: false
+      status 205
+      present({success: true, code: 205, result: "INBOX_READ"})
+    end
+
+    desc "Delete entries from a user's inbox"
+    oauth2 'write'
+    throttle hourly: 720
+    params do
+      optional :all, type: Boolean, default: false
+    end
+    delete '/inbox', as: :batch_delete_inbox_api do
+      collection = if params[:all]
+        current_user.inbox.all
+      else
+        current_user.inbox.where new: false
+      end
+
+      collection.delete_all
+
+      status 204
+      return
+    end
+
+    desc "Delete entry from a user's inbox"
+    oauth2 'write'
+    throttle hourly: 720
+    params do
+      optional :all, type: Boolean, default: false
+    end
+    delete '/inbox/:id', as: :delete_inbox_api do
+      entry = Inbox.find(params[:id])
+      if entry.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_INBOX_NOT_FOUND"})
+      end
+
+      if entry.user_id != current_user.id
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
+      entry.destroy
+      status 204
+      return
     end
 
     desc "Given user's profile"
