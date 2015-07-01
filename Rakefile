@@ -102,7 +102,7 @@ namespace :justask do
       url = Rails.application.routes.url_helpers.api_path + url
 
       puts "Route:  #{url}"
-      puts "Desc:   #{info[:desc]}"
+      puts "Desc:   #{info[:description]}"
       unless info[:auth].nil?
         puts "Scopes: #{info[:auth][:scopes].join ', '}"
       end
