@@ -6,7 +6,12 @@ class Sleipnir::MountAPI < Grape::API
   mount Sleipnir::UserAPI
   mount Sleipnir::QuestionAPI
   mount Sleipnir::AnswerAPI
+  mount Sleipnir::ModerationAPI
+  mount Sleipnir::GroupAPI
+  mount Sleipnir::ReportAPI
+  mount Sleipnir::UtilityAPI
 
+  desc "Teapot error test page"
   get "/dummy" do
     raise TeapotError.new
   end

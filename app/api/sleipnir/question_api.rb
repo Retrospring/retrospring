@@ -5,7 +5,6 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
 
   namespace :question do
     desc "Given question's content"
-    # oauth2 'public'
     throttle hourly: 72
     get "/:id", as: :question_api do
       question = Question.find params["id"]
@@ -84,7 +83,6 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
     end
 
     desc "Given question's answers"
-    # oauth2 'public'
     throttle hourly: 72
     get "/:id/answers", as: :question_api do
       collection = since_id Answer, "question_id = ?", params["id"]
