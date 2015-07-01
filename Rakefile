@@ -47,31 +47,42 @@ namespace :justask do
     puts "Routes for API:"
     out = [[
       "Prefix",
-      "Version",
       "Verb",
-      "Path"
+      "Path",
+      "Description"
     ]]
 
-    max = [6, 7, 4]
+    max = [6, 4]
     API.routes.each do |route|
       info = route.instance_variable_get :@options
       result = [
-        info[:as] ? info[:as][0..14] : '',
-        info[:version] ? info[:version][0..9] : '',
+        info[:as] ? info[:as][0..27] : '',
         info[:method] ? info[:method][0..6] : 'ALL',
-        info[:path]
+        info[:path],
+        info[:description]
       ]
 
-      max[0] = [[15, result[0].length].min, max[0]].max
-      max[1] = [[10, result[1].length].min, max[1]].max
-      max[2] = [[ 7, result[2].length].min, max[2]].max
+      version = info[:version]
+      unless version.nil? or version.blank?
+        result[2] = result[2].gsub /^\/:version/, "/#{version}"
+      end
+
+      result[2] = result[2].gsub /\(\.:format\)$/, ''
+
+      max[0] = [[28, result[0].length].min, max[0]].max
+      max[1] = [[ 7, result[1].length].min, max[1]].max
 
       out.push result
     end
 
-    format = "%#{max[0]}s %#{max[1]}s %-#{max[2]}s %s"
+    format = "\e[35m%#{max[0]}s\e[0m %-#{max[1]}s %s"
+
+    spaces = Array.new(max[0] + max[1] + 5).join ' '
+
     out.each do |route|
+      desc = route.last
       puts format % route
+      puts "%s\e[34m%s\e[0m" % [spaces, desc] unless desc.nil? or desc.blank?
     end
   end
 
