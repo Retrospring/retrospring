@@ -129,14 +129,12 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
 
     desc "Given user's profile"
-    # oauth2 'public'
     throttle hourly: 72
     get "/:id/profile", as: :given_user_api do
       represent User.find(params[:id]), with: Sleipnir::Entities::UserEntity
     end
 
     desc "Given user's questions"
-    # oauth2 'public'
     throttle hourly: 720
     params do
       optional :since_id, type: Fixnum
@@ -147,7 +145,6 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
 
     desc "Ask user a question"
-    # oauth2 'write'
     throttle hourly: 360
     params do
       requires :question, type: String
@@ -181,7 +178,6 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
 
     desc "Given user's answers"
-    # oauth2 'public'
     throttle hourly: 720
     get "/:id/answers", as: :user_answers_api do
       collection = since_id Answer, "user_id = ?", [params[:id]]
@@ -189,7 +185,6 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
 
     desc "Given user's followers"
-    # oauth2 'public'
     throttle hourly: 72
     get "/:id/followers", as: :user_followers_api do
       collection = since_id Relationship, "target_id = ?", [params[:id]]
@@ -197,7 +192,6 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
 
     desc "Given user's following"
-    # oauth2 'public'
     throttle hourly: 72
     get "/:id/following", as: :user_following_api do
       collection = since_id Relationship, "source_id = ?", [params[:id]]

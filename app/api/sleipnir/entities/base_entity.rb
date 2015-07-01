@@ -18,7 +18,6 @@ private
 
   def globalize_paperclip(entity)
     if entity[0] == "/"
-      # so dirty
       "#{options[:HOST]}#{entity}"
     else
       entity

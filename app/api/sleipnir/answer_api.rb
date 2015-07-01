@@ -5,11 +5,7 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
 
   namespace :answer do
     desc "Given answer's content"
-    # oauth2 'public'
     throttle hourly: 720
-    params do
-      requires :test
-    end
     get "/:id", as: :answer_api do
       answer = Answer.find params["id"]
       if answer.nil?
@@ -45,7 +41,6 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     end
 
     desc "Given answer's comments"
-    # oauth2 'public'
     throttle hourly: 720
     get "/:id/comments", as: :comment_api do
       collection = since_id Comment, "answer_id = ?", [params[:id]]
@@ -151,7 +146,6 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     end
 
     desc "View answer smiles"
-    # oauth2 'write'
     throttle hourly: 720
     get "/:id/smile", as: :view_smile_api do
       collection = since_id Smile, "answer_id = ?", [params[:id]]
@@ -198,7 +192,6 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     end
 
     desc "View comment smiles"
-    # oauth2 'write'
     throttle hourly: 720
     get "/:id/comment/:comment_id", as: :view_comment_smile_api do
       collection = since_id CommentSmile, "answer_id = ?", [params[:id]]
