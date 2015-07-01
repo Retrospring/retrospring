@@ -86,40 +86,6 @@ namespace :justask do
     end
   end
 
-  desc "API dump"
-  task gungnir: :environment do
-    puts API.routes.count.to_s + " Routes"
-    API.routes.each do |route|
-      info = route.instance_variable_get :@options
-
-      puts "Method:  #{info[:method]}"
-      puts "Alias:   #{info[:as]}"
-      puts "Version: #{info[:version]}"
-      puts "Route:   #{info[:path]}"
-      puts "Desc:    #{info[:description]}"
-      unless info[:auth].nil?
-        puts "Scopes:  #{info[:auth][:scopes].join ', '}"
-      end
-      unless info[:settings][:throttle].nil?
-        puts "Limit:   #{info[:settings][:throttle][:hourly]} requests per hour" unless info[:settings][:throttle][:hourly].nil?
-        puts "Limit:   #{info[:settings][:throttle][:daily]} requests per day" unless info[:settings][:throttle][:daily].nil?
-      end
-      puts "Params: "
-      info[:params].each do |key, value|
-        next if key == "nanotime" or key == "id_to_string"
-        puts "  #{key}"
-        if value.is_a? String
-          puts "    type: PATH"
-          next
-        end
-        value.each do |a, b|
-          puts "    #{a}: #{b.to_s}"
-        end
-      end
-      puts ""
-    end
-  end
-
   desc "Recount everything!"
   task recount: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
