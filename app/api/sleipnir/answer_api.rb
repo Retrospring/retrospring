@@ -97,7 +97,7 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     throttle hourly: 720
     post "/:id/subscribe", as: :new_subscription_api do
       answer = Answer.find(params[:id])
-      if answer
+      if answer.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
       end
@@ -116,7 +116,7 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     throttle hourly: 720
     delete "/:id/subscribe", as: :delete_subscription_api do
       answer = Answer.find(params[:id])
-      if answer
+      if answer.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
       end
@@ -134,42 +134,94 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 720
     post "/:id/smile", as: :smile_api do
-      # TODO
+      answer = Answer.find(params[:id])
+      if answer.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
+      end
+
+      begin
+        current_user.smile answer
+        status 205
+        return present({success: true, code: 205, result: "COMMENT_SMILED"})
+      rescue
+        status 412
+        return present({success: false, code: 412, result: "ERR_ANSWER_ALREADY_SMILED"})
+      end
     end
 
     desc "View answer smiles"
     # oauth2 'write'
     throttle hourly: 720
     get "/:id/smile", as: :view_smile_api do
-      # TODO
+      collection = since_id Smile, "answer_id = ?", [params[:id]]
+      represent_collection collection, with: Sleipnir::Entities::SmilesEntity
     end
 
     desc "Frown an answer"
     oauth2 'write'
     throttle hourly: 720
     delete "/:id/smile", as: :frown_api do
-      # TODO
+      answer = Answer.find(params[:id])
+      if answer.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
+      end
+
+      begin
+        current_user.unsmile answer
+        status 204
+      rescue
+        status 412
+        return present({success: false, code: 412, result: "ERR_ANSWER_NOT_SMILED"})
+      end
     end
 
     desc "Smile a comment"
     oauth2 'write'
     throttle hourly: 720
     post "/:id/comment/:comment_id", as: :comment_smile_api do
-      # TODO
+      comment = CommentSmile.find(params[:comment_id])
+      if comment
+        status 404
+        return present({success: false, code: 404, result: "ERR_COMMENT_NOT_FOUND"})
+      end
+
+      begin
+        current_user.smile_comment answer
+        status 205
+        return present({success: true, code: 205, result: "COMMENT_SMILED"})
+      rescue
+        status 412
+        return present({success: false, code: 412, result: "ERR_COMMENT_SMILED"})
+      end
     end
 
     desc "View comment smiles"
     # oauth2 'write'
     throttle hourly: 720
     get "/:id/comment/:comment_id", as: :view_comment_smile_api do
-      # TODO
+      collection = since_id CommentSmile, "answer_id = ?", [params[:id]]
+      represent_collection collection, with: Sleipnir::Entities::SmilesEntity
     end
 
     desc "Frown a comment"
     oauth2 'write'
     throttle hourly: 720
     delete "/:id/comment/:comment_id", as: :comment_frown_api do
-      # TODO
+      comment = CommentSmile.find(params[:comment_id])
+      if comment
+        status 404
+        return present({success: false, code: 404, result: "ERR_COMMENT_NOT_FOUND"})
+      end
+
+      begin
+        current_user.unsmile_comment answer
+        status 204
+      rescue
+        status 412
+        return present({success: false, code: 412, result: "ERR_COMMENT_NOT_SMILED"})
+      end
     end
   end
 end

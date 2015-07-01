@@ -19,6 +19,10 @@ Record not Found     = 404 - Not Found
 Sanity Check fail    = 412 - Precondition Failed
 ```
 
+### 204 - No Content
+
+Under NO CIRCUMSTANCE is a response body allowed, see [RFC 2616#9.7](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.7)
+
 ### 410 - Gone
 
 We *could* check the MAX auto increment value with
@@ -32,6 +36,10 @@ and return `410 - Gone` if the requested ID is below that value and not found.
 ### 412 - Precondition Failed
 
 Example: Subscriptions (`sleipnir/answer_api.rb`)
+
+### PUT requests
+
+It MUST redirect and respond with the resulting entity(s)
 
 ## FLAGS variable
 
