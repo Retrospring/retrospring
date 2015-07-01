@@ -92,23 +92,17 @@ namespace :justask do
     API.routes.each do |route|
       info = route.instance_variable_get :@options
 
-      puts "Method: #{info[:method]}"
-      puts "Alias:  #{info[:as]}"
-
-      url = info[:path]
-      unless info[:version].nil? or info[:version].blank?
-        url = url.gsub /^\/:version/, "/#{info[:version]}"
-      end
-      url = Rails.application.routes.url_helpers.api_path + url
-
-      puts "Route:  #{url}"
-      puts "Desc:   #{info[:description]}"
+      puts "Method:  #{info[:method]}"
+      puts "Alias:   #{info[:as]}"
+      puts "Version: #{info[:version]}"
+      puts "Route:   #{info[:path]}"
+      puts "Desc:    #{info[:description]}"
       unless info[:auth].nil?
-        puts "Scopes: #{info[:auth][:scopes].join ', '}"
+        puts "Scopes:  #{info[:auth][:scopes].join ', '}"
       end
       unless info[:settings][:throttle].nil?
-        puts "Limit:  #{info[:settings][:throttle][:hourly]} requests per hour" unless info[:settings][:throttle][:hourly].nil?
-        puts "Limit:  #{info[:settings][:throttle][:daily]} requests per day" unless info[:settings][:throttle][:daily].nil?
+        puts "Limit:   #{info[:settings][:throttle][:hourly]} requests per hour" unless info[:settings][:throttle][:hourly].nil?
+        puts "Limit:   #{info[:settings][:throttle][:daily]} requests per day" unless info[:settings][:throttle][:daily].nil?
       end
       puts "Params: "
       info[:params].each do |key, value|
