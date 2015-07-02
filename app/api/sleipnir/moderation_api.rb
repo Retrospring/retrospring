@@ -16,7 +16,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 72
     params do
-      required :comment, type: String
+      requires :comment, type: String
     end
     post '/:id/comment' do
       unless privileged?

@@ -8,7 +8,8 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     oauth2 'moderation'
     throttle hourly: 72
     get '/' do
-      # TODO:
+      collection = since_id Report, "deleted = ?", [false]
+      present_collection collection, with: Sleipnir::Entities::ReportsEntity
     end
 
     desc 'Report a user'
@@ -59,10 +60,12 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     end
 
     desc 'Delete report'
-    oauth2 'moderation'
+    oauth2 'write'
     throttle hourly: 72
     delete '/:id' do
-      # TODO:
+      unless privileged?
+
+      end
     end
   end
 end
