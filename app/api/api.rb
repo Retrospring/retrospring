@@ -19,15 +19,21 @@ class API < Grape::API
     end
 
     def current_user
+      return User.first if Rails.env == 'test'
+
       resource_owner
     end
 
     def current_application
+      return Doorkeeper::Application.first if Rails.env == 'test'
+
       return nil if current_token.nil?
       current_token.application
     end
 
     def current_scopes
+      return Doorkeeper::Application.first.scopes if Rails.env == 'test'
+
       return nil if current_token.nil?
       current_token.scopes
     end
@@ -106,6 +112,6 @@ class API < Grape::API
 
   route :any, '*path' do
     status 404
-    {success: false, status: 404, result: "ERR_NOT_FOUND"}
+    {success: false, code: 404, result: "ERR_NOT_FOUND"}
   end
 end

@@ -18,7 +18,7 @@ class Sleipnir::Entities::NotificationEntity < Sleipnir::Entities::BaseEntity
       when 'Relationship'
         Sleipnir::Entities::RelationshipEntity.represent notification.target, options
       else
-        { id: notification.target_id, error: "Unknown type #{notification.target_type}", payload: nil, user: nil}
+        { id: notification.target_id, error: "ERR_UNKNOWN_TYPE", type: notification.target_type, payload: nil, user: nil}
       end
     end
   end

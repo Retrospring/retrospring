@@ -38,7 +38,7 @@ module Sleipnir::Concerns
 
         result = klass.represent *args
 
-        present({success: success, status: code, result: result})
+        present({success: success, code: code, result: result})
       end
 
       def represent_collection(*args)

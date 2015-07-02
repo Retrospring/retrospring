@@ -22,7 +22,7 @@ class ErrorHandler < Grape::Middleware::Base
       payload = {
         message: message || e.message || options[:default_message] || "Unexpected error",
         result: "ERR_UNEXPECTED",
-        status: status,
+        code: status,
         success: false
       }
 

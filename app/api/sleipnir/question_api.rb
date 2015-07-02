@@ -16,7 +16,7 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
     end
 
     desc "Delete given question"
-    oauth2 'moderation'
+    oauth2 'write'
     delete '/:id', as: :delete_question_api do
       question = Question.find params[:id]
 
@@ -52,6 +52,11 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
       if question.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_QUESTION_NOT_FOUND"})
+      end
+
+      if current_user.answered? question
+        status 400
+        return present({success: false, code: 400, result: "ERR_ALREADY_ANSWERED"})
       end
 
       inbox = Inbox.find_by question: question

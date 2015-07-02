@@ -11,6 +11,21 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       represent current_user, with: Sleipnir::Entities::UserEntity, type: :full
     end
 
+    desc "Current user's timeline"
+    oauth2 'public'
+    throttle hourly: 72
+    get "/timeline", as: :timeline_api do
+      collcetion = since_id Answer, 'user_id in (?) OR user_id = ?', [current_user.friend_ids, current_user.id]
+      represent_collection collection, with: Sleipnir::Entities::AnswersEntity
+    end
+
+    desc "Public timeline"
+    throttle hourly: 72
+    get "/public", as: :timeline_api do
+      collcetion = since_id Answer.joins(:user), '"users"."privacy_allow_public_timeline" = ?', [true]
+      represent_collection collection, with: Sleipnir::Entities::AnswersEntity
+    end
+
     desc "Current user's new numbers"
     oauth2 'public'
     throttle hourly: 144

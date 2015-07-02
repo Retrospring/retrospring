@@ -136,9 +136,9 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
       end
 
       begin
-        current_user.smile answer
-        status 205
-        return present({success: true, code: 205, result: "COMMENT_SMILED"})
+        current_user.smile answer, current_application
+        status 201
+        return present({success: true, code: 201, result: "COMMENT_SMILED"})
       rescue
         status 412
         return present({success: false, code: 412, result: "ERR_ANSWER_ALREADY_SMILED"})
@@ -182,9 +182,9 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
       end
 
       begin
-        current_user.smile_comment answer
-        status 205
-        return present({success: true, code: 205, result: "COMMENT_SMILED"})
+        current_user.smile_comment answer, current_application
+        status 201
+        return present({success: true, code: 201, result: "COMMENT_SMILED"})
       rescue
         status 412
         return present({success: false, code: 412, result: "ERR_COMMENT_SMILED"})

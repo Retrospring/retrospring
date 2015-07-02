@@ -1,9 +1,9 @@
 module Sleipnir::Helpers
   include Sleipnir::Helpers::User
 
-  def privileged? (user)
+  def privileged? (user = nil)
     false if current_user.nil?
-    true if current_user == user
+    true if not user.nil? and current_user == user
     true if current_user.mod? and not current_scopes.index('moderation').nil?
     false
   end
