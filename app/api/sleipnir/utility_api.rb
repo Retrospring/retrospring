@@ -18,29 +18,29 @@ class Sleipnir::UtilityAPI < Sleipnir::MountAPI
     desc 'List admins'
     get '/admins', as: :list_admins_api do
       # collection = User.where('flags & ?', 2 ** FLAGS.index('admin'))
-      collection = User.where(admin: true).select(:id).map { |e| e.id }
+      collection = User.where(admin: true).pluck(:id)
       present({success: true, code: 200, result: {admins: collection}})
     end
 
     desc 'List moderators'
     get '/moderators', as: :list_mods_api do
       # collection = User.where('flags & ? OR flags & ?', 2 ** FLAGS.index('admin'), 2 ** FLAGS.index('moderator'))
-      collection = User.where('admin = ? OR moderator = ?', true, true).select(:id).map { |e| e.id }
+      collection = User.where('admin = ? OR moderator = ?', true, true).pluck(:id)
       present({success: true, code: 200, result: {moderators: collection}})
     end
 
     desc 'List contributors'
     get '/contributors', as: :list_contrib_api do
       # collection = User.where('flags & ? OR flags & ?', 2 ** FLAGS.index('contributor'), 2 ** FLAGS.index('translator'))
-      collection = User.where('contributor = ? OR translator = ?', true, true).select(:id).map { |e| e.id }
-      present({success: true, code: 200, result: {moderators: collection}})
+      collection = User.where('contributor = ? OR translator = ?', true, true).pluck(:id)
+      present({success: true, code: 200, result: {contributors: collection}})
     end
 
     desc 'List supporters'
     get '/supporters', as: :list_supporter_api do
       # collection = User.where('flags & ?', 2 ** FLAGS.index('supporter'))
-      collection = User.where(supporter: true).select(:id).map { |e| e.id }
-      present({success: true, code: 200, result: {moderators: collection}})
+      collection = User.where(supporter: true).pluck(:id)
+      present({success: true, code: 200, result: {supporters: collection}})
     end
 
     desc 'List numbers'
