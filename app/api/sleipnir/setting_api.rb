@@ -8,11 +8,11 @@ class Sleipnir::SettingAPI < Sleipnir::MountAPI
     oauth2 'rewrite'
     throttle hourly: 72
     params do
-      required :profile_picture, type: Hashie::Mash
-      required :crop_x, type: Fixnum
-      required :crop_y, type: Fixnum
-      required :crop_w, type: Fixnum
-      required :crop_h, type: Fixnum
+      requires :profile_picture, type: Hashie::Mash
+      requires :crop_x,          type: Fixnum
+      requires :crop_y,          type: Fixnum
+      requires :crop_w,          type: Fixnum
+      requires :crop_h,          type: Fixnum
     end
     patch '/avatar' do
       if current_user.update_attributes(params)
@@ -27,11 +27,11 @@ class Sleipnir::SettingAPI < Sleipnir::MountAPI
     oauth2 'rewrite'
     throttle hourly: 72
     params do
-      required :header, type: Hashie::Mash
-      required :crop_h_x, type: Fixnum
-      required :crop_h_y, type: Fixnum
-      required :crop_h_w, type: Fixnum
-      required :crop_h_h, type: Fixnum
+      requires :profile_header, type: Hashie::Mash
+      requires :crop_h_x,       type: Fixnum
+      requires :crop_h_y,       type: Fixnum
+      requires :crop_h_w,       type: Fixnum
+      requires :crop_h_h,       type: Fixnum
     end
     patch '/header' do
       if current_user.update_attributes(params)
@@ -46,11 +46,11 @@ class Sleipnir::SettingAPI < Sleipnir::MountAPI
     oauth2 'rewrite'
     throttle hourly: 72
     params do
-      optional :display_name, type: String, default: nil
+      optional :display_name,      type: String, default: nil
       optional :motivation_header, type: String, default: nil
-      optional :website, type: String, default: nil
-      optional :location, type: String, default: nil
-      optional :bio, type: String, default: nil
+      optional :website,           type: String, default: nil
+      optional :location,          type: String, default: nil
+      optional :bio,               type: String, default: nil
     end
     patch '/basic' do
       if current_user.update_attributes(params)
