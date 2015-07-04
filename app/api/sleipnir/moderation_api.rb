@@ -7,7 +7,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     desc 'Get report comments'
     oauth2 'moderation'
     throttle hourly: 72
-    get '/:id/comment' do
+    get '/:id/comment', as: :mod_comments_api do
       collection = since_id ModerationComment, 'report_id = ?', [params[:id]]
       present_collection collection, with: Sleipnir::Entities::ReportCommentsEntity
     end
@@ -18,7 +18,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     params do
       requires :comment, type: String
     end
-    post '/:id/comment' do
+    post '/:id/comment', as: :mod_comment_api do
       unless privileged?
         status 403
         return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
@@ -39,7 +39,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     desc 'Delete report comment'
     oauth2 'write'
     throttle hourly: 72
-    delete '/:id/comment/:comment_id' do
+    delete '/:id/comment/:comment_id', as: :delete_mod_comment_api do
       comment = ModerationComment.find(params[:comment_id])
       if comment.nil?
         status 404
@@ -59,7 +59,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     desc 'Vote a report up'
     oauth2 'write'
     throttle hourly: 72
-    post '/:id/vote' do
+    post '/:id/vote', as: :mov_voteup_api do
       unless privileged?
         status 403
         return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
@@ -80,7 +80,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     desc 'Vote a report down'
     oauth2 'write'
     throttle hourly: 72
-    delete '/:id/vote' do
+    delete '/:id/vote', as: :mod_votedown_api do
       unless privileged?
         status 403
         return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})

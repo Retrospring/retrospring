@@ -67,7 +67,7 @@ namespace :justask do
         result[2] = result[2].gsub /^\/:version/, "/#{version}"
       end
 
-      result[2] = Rails.application.routes.url_helpers.api_path + result[2].gsub(/\(\.:format\)$/, '')
+      result[2] = Rails.application.routes.url_helpers.api_path + result[2].gsub(/\(\/?\.:format\)$/, '')
 
       max[0] = [[28, result[0].length].min, max[0]].max
       max[1] = [[ 7, result[1].length].min, max[1]].max

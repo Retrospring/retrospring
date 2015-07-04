@@ -4,10 +4,17 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
   helpers Sleipnir::Helpers
 
   namespace :group do
+    desc "List group IDs"
+    oauth2 'public'
+    throttle hourly: 72
+    get '/', as: :groups_api do
+      # TODO: WHOOPS FORGOT THIS ONE
+    end
+
     desc "View group timeline"
     oauth2 'public'
     throttle hourly: 72
-    get '/:id' do
+    get '/:id', as: :group_api do
       group = current_user.groups.find params[:id]
       if group.nil?
         status 404
@@ -24,7 +31,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
     params do
       requires :name, type: String
     end
-    post '/create' do
+    post '/create', as: :create_group_api do
       group = Group.create user: current_user, display_name: params[:name]
       if group.nil?
         status 400
@@ -38,7 +45,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
     desc "Add a user to group"
     oauth2 'write'
     throttle hourly: 72
-    post '/:id/user/:user_id' do
+    post '/:id/user/:user_id', as: :mov_group_api do
       group = current_user.groups.find params[:id]
       if group.nil?
         status 404
@@ -60,7 +67,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
     desc "Remove a user from group"
     oauth2 'write'
     throttle hourly: 72
-    delete '/:id/user/:user_id' do
+    delete '/:id/user/:user_id', as: :pop_group_api do
       group = current_user.groups.find params[:id]
       if group.nil?
         status 404

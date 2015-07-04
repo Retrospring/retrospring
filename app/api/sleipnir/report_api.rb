@@ -7,7 +7,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     desc 'Get reports'
     oauth2 'moderation'
     throttle hourly: 72
-    get '/' do
+    get '/', as: :reports_api do
       collection = since_id Report, "deleted = ?", [false]
       present_collection collection, with: Sleipnir::Entities::ReportsEntity
     end
@@ -18,7 +18,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     params do
       optional :reason, type: String, default: ''
     end
-    post '/user/:id' do
+    post '/user/:id', as: :report_user_api do
       # TODO:
     end
 
@@ -28,7 +28,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     params do
       optional :reason, type: String, default: ''
     end
-    post '/question/:id' do
+    post '/question/:id', as: :report_question_api do
       # TODO:
     end
 
@@ -38,7 +38,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     params do
       optional :reason, type: String, default: ''
     end
-    post '/comment/:id' do
+    post '/comment/:id', as: :report_comment_api do
       # TODO:
     end
 
@@ -48,21 +48,21 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     params do
       optional :reason, type: String, default: ''
     end
-    post '/answer/:id' do
+    post '/answer/:id', as: :report_answer_api do
       # TODO:
     end
 
     desc 'Get a report'
     oauth2 'moderation'
     throttle hourly: 72
-    get '/:id' do
+    get '/:id', as: :report_api do
       # TODO:
     end
 
     desc 'Delete report'
     oauth2 'write'
     throttle hourly: 72
-    delete '/:id' do
+    delete '/:id', as: :delete_report_api do
       unless privileged?
 
       end

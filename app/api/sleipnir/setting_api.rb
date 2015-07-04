@@ -14,7 +14,7 @@ class Sleipnir::SettingAPI < Sleipnir::MountAPI
       requires :crop_w,          type: Fixnum
       requires :crop_h,          type: Fixnum
     end
-    patch '/avatar' do
+    patch '/avatar', as: :update_avatar_api do
       if current_user.update_attributes(params)
         status 202
         return present({success: true, code: 202, result: "AVATAR_UPDATE"})
@@ -33,7 +33,7 @@ class Sleipnir::SettingAPI < Sleipnir::MountAPI
       requires :crop_h_w,       type: Fixnum
       requires :crop_h_h,       type: Fixnum
     end
-    patch '/header' do
+    patch '/header', as: :update_header_api do
       if current_user.update_attributes(params)
         status 202
         return present({success: true, code: 202, result: "HEADER_UPDATE"})
@@ -52,7 +52,7 @@ class Sleipnir::SettingAPI < Sleipnir::MountAPI
       optional :location,          type: String, default: nil
       optional :bio,               type: String, default: nil
     end
-    patch '/basic' do
+    patch '/basic', as: :update_info_api do
       if current_user.update_attributes(params)
         status 202
         return present({success: true, code: 202, result: "BASIC_HEADER"})

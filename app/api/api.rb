@@ -98,7 +98,8 @@ class API < Grape::API
     use API::Metrics
   end
 
-  get do
+  desc "simple info"
+  get as: :root_api do
     status 200
     result = {
       notes: "This page is a list of API entry points, true means they are active, false means they are depricated.",
@@ -110,7 +111,8 @@ class API < Grape::API
 
   mount Sleipnir::MountAPI
 
-  route :any, '*path' do
+  desc "Fallback 404"
+  route :any, '*path', as: :fallback_fourohfour_api do
     status 404
     {success: false, code: 404, result: "ERR_NOT_FOUND"}
   end

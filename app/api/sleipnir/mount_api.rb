@@ -3,6 +3,11 @@ class Sleipnir::MountAPI < Grape::API
   version :sleipnir, cascade: false
   default_error_formatter :json
 
+  desc "Sleipnir (1.0) API"
+  get as: :sleipnir_api do
+    return present({success: true, code: 200, result: "API_ACTIVE"})
+  end
+
   mount Sleipnir::UserAPI
   mount Sleipnir::QuestionAPI
   mount Sleipnir::AnswerAPI
@@ -13,7 +18,7 @@ class Sleipnir::MountAPI < Grape::API
   mount Sleipnir::SettingAPI
 
   desc "Teapot error test page"
-  get "/dummy" do
+  get "/dummy", as: :heres_my_spout_api do
     raise TeapotError.new
   end
 end
