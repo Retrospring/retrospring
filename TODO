@@ -2,23 +2,15 @@ Not done:
 [001|  0%] user blocking (prohibits blocked user from asking question to that person and seeing their answers)
 [007| 20%] (?) keyboard shortcuts
     |----- Open "Ask your followers" with Ctrl/Meta+M
-[010|  0%] locales (these can wait for now)
-    |----- (somewhat) working in justask/feature-semantic
 [015|  0%] make a public accessible API (maybe even as an oauth provider?)
 [016|  5%] WRYYYYte more specs
-[020|  0%] helper function for profile headings to resize on certain string length
 [022|  0%] recommended follows
+    |----- Solved with Discover (?)
 [023|  0%] disabling group-questions
 [024|  0%] disabling questions from certain users
-[025|  0%] answering options (sharing/nsfw/private) in inbox panels
-[026|  0%] profile headers
-[027| 66%] moderation
-    |----- moderator user group √
-    |----- moderation panel √
-    |----- ability to report questions ×
 
 In Progress:
-[003| 50%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
+[003| 75%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
 [011| 75%] auto-posting to other services (twatter, fakelook)
 
 Finished:
@@ -36,3 +28,15 @@ Finished:
     |----- restructure comment design
 [012|100%] (?) open source the entire thing – in late 2015 or 2016 maybe, after we got bought by fakelook.
 [017|100%] write "terms of service" and a privacy policy.
+[025|100%] answering options (sharing/nsfw/private) in inbox panels
+[026|100%] profile headers
+[027| 66%] moderation
+    |----- moderator user group √
+    |----- moderation panel √
+    |----- ability to report questions √
+
+Needs rewrite:
+[010|100%] locales (these can wait for now)
+
+Stalled:
+[020|  0%] helper function for profile headings to resize on certain string length
