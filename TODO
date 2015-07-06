@@ -4,7 +4,6 @@ Not done:
     |----- Open "Ask your followers" with Ctrl/Meta+M
 [010|  0%] locales (these can wait for now)
     |----- (somewhat) working in justask/feature-semantic
-[015|  0%] make a public accessible API (maybe even as an oauth provider?)
 [016|  5%] WRYYYYte more specs
 [020|  0%] helper function for profile headings to resize on certain string length
 [022|  0%] recommended follows
@@ -20,6 +19,7 @@ Not done:
 In Progress:
 [003| 50%] file uploads (for now only avatars, file uploads for embedding images in questions MAYBE LATER)
 [011| 75%] auto-posting to other services (twatter, fakelook)
+[015| 80%] make a public accessible API (maybe even as an oauth provider?)
 
 Finished:
 [002|100%] asking modal (ask all followers/one person a question with a modal you can open over the navbar)
