@@ -29,7 +29,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
     desc "Delete group"
     oauth2 'write'
     throttle hourly: 72
-    get '/:id', as: :delete_group_api do
+    delete '/:id', as: :delete_group_api do
       group = current_user.groups.find params[:id]
       if group.nil?
         status 404
