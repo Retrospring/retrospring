@@ -1,9 +1,0 @@
-client_id:     ''
-client_secret: ''
-redirect:      'urn:ietf:wg:oauth:2.0:oob'
-access_code:   ''
-access_token:  false
-site_host:     'http://127.0.0.1:3000'
-scopes:
-  - public
-  - write
