@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for reading this! This document has some notes on contributing to the development of Hummingbird.
+Thank you for reading this! This document has some notes on contributing to the development of Retrospring.
 
 ## Reporting bugs
 
