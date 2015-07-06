@@ -8,7 +8,8 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
     oauth2 'public'
     throttle hourly: 72
     get '/', as: :groups_api do
-      # TODO: WHOOPS FORGOT THIS ONE
+      collection = since_id Group, 'user_id = ?', [current_user.id]
+      present_collection collection, with: Sleipnir::Entities::GroupEntity
     end
 
     desc "View group timeline"
@@ -23,6 +24,34 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
 
       collection = since_id Answer, 'user_id in (?)', [group.members.pluck(:user_id)]
       present_collection collection, with: Sleipnir::Entities::AnswersEntity
+    end
+
+    desc "Delete group"
+    oauth2 'write'
+    throttle hourly: 72
+    get '/:id', as: :delete_group_api do
+      group = current_user.groups.find params[:id]
+      if group.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_GROUP_NOT_FOUND"})
+      end
+
+      group.destroy
+      status 204
+    end
+
+    desc "View group members"
+    oauth2 'public'
+    throttle hourly: 72
+    get '/:id/members', as: :group_members_api do
+      group = current_user.groups.find params[:id]
+      if group.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_GROUP_NOT_FOUND"})
+      end
+
+      collection = since_id GroupMember, 'group_id = ?', [group.id]
+      present_collection collection, with: Sleipnir::Entities::GroupMemberEntity
     end
 
     desc 'Create a group'
