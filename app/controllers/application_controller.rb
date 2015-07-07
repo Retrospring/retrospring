@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   def check_locale
     return I18n.locale = 'en' if Rails.env.test?
 
+    I18n.locale = 'en'
+
     if params[:hl].nil?
       if current_user.present?
         I18n.locale = current_user.locale
@@ -27,16 +29,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    # Pirate English is not Puerto Rican English, you've doomed Puerto Rican English, Pixel.
-    if I18n.locale == 'en_pr'
-      I18n.locale = 'en_pirate'
-      if current_user.present?
-        current_user.locale = I18n.locale
-        current_user.save!
-      end
-    end
-
-    cookies[:lang] = I18n.locale #unless cookies[:allow_cookies].nil? # some EU cookie bullsh-
+    cookies[:lang] = I18n.locale
   end
 
   # check if user got hit by the banhammer of doom
