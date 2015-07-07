@@ -194,7 +194,7 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     desc "View comment smiles"
     throttle hourly: 720
     get "/:id/comment/:comment_id", as: :view_comment_smile_api do
-      collection = since_id CommentSmile, "answer_id = ?", [params[:id]]
+      collection = since_id CommentSmile, "comment_id = ?", [params[:comment_id]]
       represent_collection collection, with: Sleipnir::Entities::SmilesEntity
     end
 
