@@ -35,7 +35,31 @@ require 'factory_girl_rails'
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+# HTTP_PORT = 99998
+#
+# test_instance_pid = fork do
+#   exec 'unicorn_rails -E test -p %d' % HTTP_PORT
+# end
+#
+# at_exit do
+#   Process.kill "INT", test_instance_pid
+#   Process.wait
+# end
+
+HTTP_PORT = 34462
+
+test_instance_pid = fork do
+  exec 'unicorn_rails -E test -c config/unitest.rb -p %d' % HTTP_PORT
+end
+
+at_exit do
+  Process.kill "INT", test_instance_pid
+  Process.wait
+end
+
+require 'support/helpers/api_helpers'
 RSpec.configure do |config|
+  config.include ApiHelpers
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

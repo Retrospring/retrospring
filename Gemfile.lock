@@ -269,6 +269,7 @@ GEM
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
     json (1.8.2)
+    jwt (1.5.0)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -300,6 +301,12 @@ GEM
       nokogiri
     nprogress-rails (0.1.6.6)
     oauth (0.4.7)
+    oauth2 (1.0.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -560,6 +567,7 @@ DEPENDENCIES
   momentjs-rails (>= 2.9.0)
   mysql2
   nprogress-rails
+  oauth2
   omniauth
   omniauth-tumblr
   omniauth-twitter

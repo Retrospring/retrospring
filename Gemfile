@@ -87,11 +87,12 @@ group :development do
   gem 'quiet_assets'
 end
 
-group :production do
-  gem 'unicorn', group: :production
+group :production, :test do
+  gem 'unicorn'
 end
 
 group :development, :test do
+  gem 'oauth2'
   gem 'rake'
   gem 'thin'
   gem 'rspec-rails', '~> 3.0.0'
