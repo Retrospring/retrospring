@@ -63,7 +63,7 @@ module Sleipnir::Concerns
 
       def since_id(collection, query, query_params, order = :desc, max = max_results)
         unless params[:since_id].nil?
-          query = "#{query} AND id < ?"
+          query = "#{query} AND \"#{collection.table_name}\".\"id\" < ?"
           query_params.push params[:since_id]
         end
         query_params.unshift query
