@@ -21,7 +21,7 @@ private
     options[:force_identity] = false if options[:force_identity].nil?
 
     unless object.author_is_anonymous and not options[:force_identity]
-      object.user
+      object.user_id
     else
       nil
     end
