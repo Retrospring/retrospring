@@ -79,4 +79,12 @@ module ApiHelpers
     File.open(file, 'w') { |file| file.write oa_dump("GET", path, res) }
     res
   end
+
+  def oa_basic_test(body)
+    expect(body["success"]).not_to be_nil
+    expect(body["success"]).to eq(true)
+    expect(body["code"]).not_to be_nil
+    expect(body["code"]).to eq(200)
+    expect(body["result"]).not_to be_nil
+  end
 end
