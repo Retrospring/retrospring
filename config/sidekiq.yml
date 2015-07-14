@@ -9,3 +9,4 @@ production:
   - share
   - paperclip
   - mailer
+  - deletion

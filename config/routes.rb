@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     get '/settings/account' => 'devise/registrations#edit', as: :edit_user_registration
     patch '/settings/account' => 'devise/registrations#update', as: :update_user_registration
     put '/settings/account' => 'devise/registrations#update'
-    delete '/settings/account' => 'devise/registrations#destroy'
+    delete '/settings/account' => 'user/registrations#destroy'
   end
 
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
