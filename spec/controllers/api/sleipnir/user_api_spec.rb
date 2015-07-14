@@ -1,9 +1,11 @@
 RSpec.describe "API::Sleipnir::UserAPI" do
-  it 'GET /user/me.json should return 200 with authentication' do
-    me = FactoryGirl.create :user
-    token = gen_oa_b me
+  before(:all) do
+    @me = FactoryGirl.create :user
+    @token = gen_oa_b @me
+  end
 
-    res = oa_get token, '/api/sleipnir/user/me.json'
+  it 'GET /user/me.json should return 200 with authentication' do
+    res = oa_get @token, '/api/sleipnir/user/me.json'
 
     expect(res.status).to eq(200)
 
@@ -12,12 +14,42 @@ RSpec.describe "API::Sleipnir::UserAPI" do
     oa_basic_test body
   end
 
-
   it 'GET /user/timeline.json should return 200 with authentication' do
-    me = FactoryGirl.create :user
-    token = gen_oa_b me
+    res = oa_get @token, '/api/sleipnir/user/timeline.json'
 
-    res = oa_get token, '/api/sleipnir/user/timeline.json'
+    expect(res.status).to eq(200)
+
+    body = JSON.parse res.body
+
+    oa_basic_test body
+  end
+
+  it 'GET /user/public.json should return 200 with authentication' do
+    res = oa_get @token, '/api/sleipnir/user/public.json'
+
+    expect(res.status).to eq(200)
+
+    body = JSON.parse res.body
+
+    oa_basic_test body
+  end
+
+  it 'GET /user/public.json should have a post' do
+    # TODO: create answer
+
+    res = oa_get @token, '/api/sleipnir/user/public.json'
+
+    expect(res.status).to eq(200)
+
+    body = JSON.parse res.body
+
+    oa_basic_test body
+
+    # expect(body["result"]["api_collection_count"]).to be > 0
+  end
+
+  it 'GET /user/1/profile.json should return 200 with authentication' do
+    res = oa_get @token, '/api/sleipnir/user/1/profile.json'
 
     expect(res.status).to eq(200)
 
