@@ -88,9 +88,9 @@ class API < Grape::API
   use Grape::Middleware::ThrottleMiddleware, cache: Redis.new(url: APP_CONFIG['redis_url']), user_key: ->(env) do
     context = env['api.endpoint']
     user = unless context.current_token.nil?
-      "#{context.current_application.id}-#{context.current_user.id}"
+      "app:#{context.current_application.id}user:#{context.current_user.id}"
     else
-      "#{env['REMOTE_ADDR']}"
+      nil
     end
   end
 

@@ -27,7 +27,7 @@ module ApiHelpers
     app = gen_oa_application
     token = gen_oa_token app, user
     oa = gen_oa app
-    gen_oa_pair oa, token
+    [app, oa, gen_oa_pair(oa, token)]
   end
 
   def oa_dump(verb, path, res)

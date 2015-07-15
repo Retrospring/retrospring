@@ -17,8 +17,25 @@ class Sleipnir::MountAPI < Grape::API
   mount Sleipnir::UtilityAPI
   mount Sleipnir::SettingAPI
 
-  desc "Teapot error test page"
-  get "/dummy", as: :heres_my_spout_api do
+  desc "Error test, designed to test the exception net"
+  get "/teapot_test", as: :heres_my_spout_api do
     raise TeapotError.new
+  end
+
+  include Sleipnir::Concerns
+
+  desc "Auxiliary test, designed to test formatters and global options"
+  get "/aux_test", as: :aux_test_api do
+    aux = {
+      number: 1,
+      time: DateTime.now,
+      string: "aux",
+      float: Math::PI,
+      map: [1,"string",Math::PI],
+      dictionary: {a: 1, b: "string", c: Math::PI},
+      void: nil
+    }
+    
+    represent aux, with: Sleipnir::Entities::AuxiliaryTestEntity
   end
 end

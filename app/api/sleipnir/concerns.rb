@@ -28,12 +28,12 @@ module Sleipnir::Concerns
 
         code = args.last[:code]
         if code.nil?
-          code = 200
+          code = env["api.endpoint"].status || 200
         end
 
         success = args.last[:success]
         if success.nil?
-          success = true
+          success = code < 400
         end
 
         result = klass.represent *args
