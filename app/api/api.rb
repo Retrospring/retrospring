@@ -19,21 +19,15 @@ class API < Grape::API
     end
 
     def current_user
-      return User.first if Rails.env == 'test'
-
       resource_owner
     end
 
     def current_application
-      return Doorkeeper::Application.first if Rails.env == 'test'
-
       return nil if current_token.nil?
       current_token.application
     end
 
     def current_scopes
-      return Doorkeeper::Application.first.scopes if Rails.env == 'test'
-
       return nil if current_token.nil?
       current_token.scopes
     end

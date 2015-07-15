@@ -4,7 +4,7 @@ module ApiHelpers
   end
 
   def gen_oa_token(application, user, scopes = application.scopes)
-    Doorkeeper::AccessToken.find_or_create_for application, user, scopes, DateTime.tomorrow, false
+    Doorkeeper::AccessToken.find_or_create_for application, user.id, scopes, DateTime.tomorrow, false
   end
 
   def gen_oa_scopes(scopes)

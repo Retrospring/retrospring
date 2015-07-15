@@ -2,6 +2,7 @@ RSpec.describe "API::Sleipnir::UserAPI" do
   before :all do
     @me = FactoryGirl.create :user
     @app, @oa, @token = gen_oa_b @me
+    
     @other = FactoryGirl.create :user
     @other_token = gen_oa_pair @oa, gen_oa_token(@app, @other)
   end
