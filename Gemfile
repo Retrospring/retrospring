@@ -75,13 +75,11 @@ gem 'grape'
 gem 'wine_bouncer'
 gem 'grape-entity'
 gem 'grape-msgpack'
-gem 'grape-throttle'
+gem 'grape-throttle', git: 'https://github.com/Retrospring/grape-throttle.git'
 
 group :development do
   # require spring 1.3.5 since shit's on fire on my local instance with 1.3.4 (Gem::LoadError)
   # gem 'spring', '~> 1.3.5'
-  # holy shit spring is terrible
-  # ten thousand raises no more!
   gem 'byebug'
   gem 'web-console'
   gem 'quiet_assets'

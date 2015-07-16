@@ -79,7 +79,7 @@ class API < Grape::API
 
   use ::WineBouncer::OAuth2
 
-  use Grape::Middleware::ThrottleMiddleware, cache: Redis.new(url: APP_CONFIG['redis_url']), user_key: ->(env) do
+  use Grape::Middleware::ThrottleMiddleware, expires_header: 'X-Rate-Limit-Reset', limit_header: 'X-Rate-Limit-Limit', remaining_header: 'X-Rate-Limit-Remaining', cache: Redis.new(url: APP_CONFIG['redis_url']), user_key: ->(env) do
     context = env['api.endpoint']
     user = unless context.current_token.nil?
       "app:#{context.current_application.id}user:#{context.current_user.id}"
