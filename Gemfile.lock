@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Retrospring/grape-throttle.git
-  revision: fc7b997990b2d04c31e97a4b458fde996aa63253
+  revision: 79d1ea3be9e07088f7c55f162c2748bca907e282
   specs:
     grape-throttle (0.0.4)
       grape (>= 0.10.0)
@@ -249,7 +249,7 @@ GEM
       msgpack (~> 0.5.6)
     haml (4.0.6)
       tilt
-    hashie (3.4.1)
+    hashie (3.4.2)
     hike (1.2.3)
     hitimes (1.2.2)
     http (0.6.4)
@@ -273,7 +273,7 @@ GEM
       turbolinks
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
-    json (1.8.2)
+    json (1.8.3)
     jwt (1.5.0)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -287,11 +287,11 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     mime-types (2.4.3)
     mini_portile (0.6.2)
-    minitest (5.6.0)
+    minitest (5.7.0)
     momentjs-rails (2.9.0)
       railties (>= 3.1)
     msgpack (0.5.12)
-    multi_json (1.11.0)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.18)
@@ -337,7 +337,7 @@ GEM
       websocket-driver (>= 0.2.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
-    rack (1.6.0)
+    rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-mount (0.8.3)
