@@ -57,7 +57,7 @@ module ApiHelpers
   end
 
   def oa_delete(token, path, data = {})
-    res = token.post path, :params => data
+    res = token.delete path, :params => data
     file = Rails.root.join 'log', "test/api/DELETE_#{DateTime.now.to_i}_#{Digest::SHA1.hexdigest path}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("DELETE", path, res) }
@@ -84,7 +84,7 @@ module ApiHelpers
     expect(body["success"]).not_to be_nil
     expect(body["success"]).to eq(true)
     expect(body["code"]).not_to be_nil
-    expect(body["code"]).to eq(200)
+    expect(body["code"]).to be < 400
     expect(body["result"]).not_to be_nil
   end
 end

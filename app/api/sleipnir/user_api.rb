@@ -65,7 +65,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 14400
     patch '/notifications/:id', as: :mark_notification_read_api do
-      entry = Notifications.find(params[:id])
+      entry = Notification.find(params[:id])
       if entry.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_NOTIF_NOT_FOUND"})
@@ -109,9 +109,9 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
     delete '/inbox', as: :batch_delete_inbox_api do
       collection = if params[:all]
-        current_user.inbox.all
+        current_user.inboxes.all
       else
-        current_user.inbox.where new: false
+        current_user.inboxes.where new: false
       end
 
       collection.delete_all
@@ -159,39 +159,6 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
       represent_collection collection, with: Sleipnir::Entities::QuestionsEntity, no_question_user: true
     end
 
-    desc "Ask user a question"
-    throttle hourly: 360
-    params do
-      requires :question, type: String
-      optional :anonymous, type: Boolean, default: false
-    end
-    post '/:id/ask', as: :ask_user_question_api do
-      target = User.find params[:id]
-      if target.nil?
-        status 404
-        return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
-      end
-
-      if params[:anonymous] and not target.privacy_allow_anonymous_questions
-        status 403
-        return present({success: false, code: 403, result: "ERR_USER_NO_ANONY"})
-      end
-
-      question = Question.create!(content: params[:question],
-                                  application: current_application,
-                                  author_is_anonymous: params[:anonymous],
-                                  user: current_user)
-
-      unless current_user.nil?
-        current_user.increment! :asked_count unless params[:anonymous]
-      end
-
-      Inbox.create!(user: target, question: question, new: true)
-
-      status 201
-      present({success: true, code: 201, result: "SUCCESS_ASKED"})
-    end
-
     desc "Given user's answers"
     throttle hourly: 720
     get "/:id/answers", as: :user_answers_api do
@@ -235,6 +202,39 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
 
         status 201
         present({success: true, code: 201, result: "SUCCESS_ASKED_ALL"})
+    end
+
+    desc "Ask user a question"
+    throttle hourly: 360
+    params do
+      requires :question, type: String
+      optional :anonymous, type: Boolean, default: false
+    end
+    post '/:id/ask', as: :ask_user_question_api do
+      target = User.find params[:id]
+      if target.nil?
+        status 404
+        return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
+      end
+
+      if params[:anonymous] and not target.privacy_allow_anonymous_questions
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_ANONY"})
+      end
+
+      question = Question.create!(content: params[:question],
+                                  application: current_application,
+                                  author_is_anonymous: params[:anonymous],
+                                  user: current_user)
+
+      unless current_user.nil?
+        current_user.increment! :asked_count unless params[:anonymous]
+      end
+
+      Inbox.create!(user: target, question: question, new: true)
+
+      status 201
+      present({success: true, code: 201, result: "SUCCESS_ASKED"})
     end
 
     desc "Follow given user"
