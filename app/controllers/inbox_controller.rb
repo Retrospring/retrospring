@@ -26,10 +26,13 @@ class InboxController < ApplicationController
         end
       rescue
         flash.now[:error] = "No user with the name @#{params[:author]} found, showing default entries instead!"
+        @not_found = true
         @inbox
         @inbox_count
       end
     end
+
+    @disabled = true if @inbox.empty? or @not_found
     respond_to do |format|
       format.html
       format.js

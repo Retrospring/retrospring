@@ -9,10 +9,10 @@
       if data.success
         ($ "div#entries").prepend(data.render) # TODO: slideDown or something
         # GitHub issue #26:
-        if document.getElementById('ib-delete-all') == undefined
-          del_all_btn = ($ "button#ib-delete-all-author")
-        else
+        if document.getElementById('ib-delete-all')?
           del_all_btn = ($ "button#ib-delete-all")
+        else
+          del_all_btn = ($ "button#ib-delete-all-author")
         del_all_btn.removeAttr 'disabled'
         del_all_btn[0].dataset.ibCount = (Number del_all_btn[0].dataset.ibCount) + 1
     error: (jqxhr, status, error) ->
@@ -163,10 +163,10 @@ $(document).on "click", "button[name=ib-destroy]", ->
       success: (data, status, jqxhr) ->
         if data.success
           $("div.inbox-box[data-id=#{iid}]").slideUp()
-          if document.getElementById('ib-delete-all') == undefined
-            del_all_btn = ($ "button#ib-delete-all-author")
-          else
+          if document.getElementById('ib-delete-all')?
             del_all_btn = ($ "button#ib-delete-all")
+          else
+            del_all_btn = ($ "button#ib-delete-all-author")
           del_all_btn.removeAttr 'disabled'
           del_all_btn[0].dataset.ibCount = (Number del_all_btn[0].dataset.ibCount) - 1
         showNotification data.message, data.success

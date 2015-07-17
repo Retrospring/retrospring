@@ -25,5 +25,5 @@
   .panel-heading
     %h3.panel-title= t 'views.inbox.sidebar.actions.title'
   .panel-body
-    %button.btn.btn-block.btn-danger{type: :button, id: @author ? 'ib-delete-all-author' : 'ib-delete-all', disabled: (Inbox.where(user: current_user).empty? ? 'disabled' : nil), data: { ib_count: @inbox_count }}= t 'views.inbox.sidebar.actions.button'
+    %button.btn.btn-block.btn-danger{type: :button, id: @author ? 'ib-delete-all-author' : 'ib-delete-all', disabled: (@disabled ? 'disabled' : nil), data: { ib_count: @inbox_count }}= t 'views.inbox.sidebar.actions.button'
 
