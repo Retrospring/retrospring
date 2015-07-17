@@ -18,8 +18,6 @@ class InboxController < ApplicationController
                                                   .count
         if @inbox_author.empty?
           flash.now[:info] = "No questions from @#{params[:author]} found, showing default entries instead!"
-          @inbox
-          @inbox_count
         else
           @inbox = @inbox_author
           @inbox_count = @inbox_author_count
@@ -27,8 +25,6 @@ class InboxController < ApplicationController
       rescue
         flash.now[:error] = "No user with the name @#{params[:author]} found, showing default entries instead!"
         @not_found = true
-        @inbox
-        @inbox_count
       end
     end
 
