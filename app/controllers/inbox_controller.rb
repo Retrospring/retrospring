@@ -11,8 +11,8 @@ class InboxController < ApplicationController
         @author = true
         @target_user = User.find_by_screen_name params[:author]
         @inbox_author = current_user.inboxes.joins(:question)
-                                     .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
-                                     .paginate(page: params[:page])
+                                            .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
+                                            .paginate(page: params[:page])
         @inbox_author_count = current_user.inboxes.joins(:question)
                                                   .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
                                                   .count
