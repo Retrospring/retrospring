@@ -9,7 +9,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
     throttle hourly: 72
     get '/', as: :groups_api do
       collection = since_id Group, 'user_id = ?', [current_user.id]
-      present_collection collection, with: Sleipnir::Entities::GroupEntity
+      represent_collection collection, with: Sleipnir::Entities::GroupEntity
     end
 
     desc "View group timeline"
@@ -23,7 +23,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
       end
 
       collection = since_id Answer, 'user_id in (?)', [group.members.pluck(:user_id)]
-      present_collection collection, with: Sleipnir::Entities::AnswersEntity
+      represent_collection collection, with: Sleipnir::Entities::AnswersEntity
     end
 
     desc "Delete group"
@@ -51,7 +51,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
       end
 
       collection = since_id GroupMember, 'group_id = ?', [group.id]
-      present_collection collection, with: Sleipnir::Entities::GroupMemberEntity
+      represent_collection collection, with: Sleipnir::Entities::GroupMemberEntity
     end
 
     desc 'Create a group'

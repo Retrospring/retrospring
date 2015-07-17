@@ -9,7 +9,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     throttle hourly: 72
     get '/', as: :reports_api do
       collection = since_id Report, "deleted = ?", [false]
-      present_collection collection, with: Sleipnir::Entities::ReportsEntity
+      represent_collection collection, with: Sleipnir::Entities::ReportsEntity
     end
 
     desc 'Report a user'

@@ -1,9 +1,9 @@
 module ApiHelpers
   def gen_oa_application(owner = FactoryGirl.create(:user))
-    Doorkeeper::Application.create name: "api_#{DateTime.now.to_i}", owner: owner, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: gen_oa_scopes(['write', 'public', 'moderate', 'rewrite'])
+    Doorkeeper::Application.create name: "api_#{DateTime.now.to_i}", owner: owner, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: gen_oa_scopes(['write', 'public', 'moderation', 'rewrite'])
   end
 
-  def gen_oa_token(application, user, scopes = application.scopes)
+  def gen_oa_token(application, user, scopes = "public write moderation rewrite")
     Doorkeeper::AccessToken.find_or_create_for application, user.id, scopes, DateTime.tomorrow, false
   end
 

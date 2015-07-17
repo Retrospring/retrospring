@@ -5,6 +5,8 @@ class Sleipnir::Entities::NotificationEntity < Sleipnir::Entities::BaseEntity
   expose :target do |notification, options|
     if options[:payload_id]
       notification.target_id
+    elsif notification.target.nil?
+      { id: notification.target_id, error: "ERR_MALFORMED_TARGET", type: notification.target_type, payload: nil, user: nil} # test?
     else
       case notification.target_type
       when 'Comment'

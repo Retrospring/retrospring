@@ -9,7 +9,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     throttle hourly: 72
     get '/:id/comment', as: :mod_comments_api do
       collection = since_id ModerationComment, 'report_id = ?', [params[:id]]
-      present_collection collection, with: Sleipnir::Entities::ReportCommentsEntity
+      represent_collection collection, with: Sleipnir::Entities::ReportCommentsEntity
     end
 
     desc 'Comment on report'
