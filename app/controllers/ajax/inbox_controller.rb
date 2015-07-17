@@ -69,4 +69,23 @@ class Ajax::InboxController < ApplicationController
     @success = true
     render 'ajax/inbox/remove'
   end
+
+  def remove_all_author
+    begin
+      @target_user = User.find_by_screen_name params[:author]
+      @inbox = current_user.inboxes.joins(:question)
+                   .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
+      @inbox.each { |i| i.remove }
+    rescue
+      @status = :err
+      @message = I18n.t('messages.error')
+      @success = false
+      return
+    end
+
+    @status = :okay
+    @message = I18n.t('messages.inbox.remove_all.okay')
+    @success = true
+    render 'ajax/inbox/remove'
+  end
 end

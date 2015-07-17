@@ -18,6 +18,12 @@
     complete: (jqxhr, status) ->
       btn.button "reset"
 
+($ document).on "click", "button#ib-author", ->
+  $('#author_form').submit ->
+    query = $('#author').val()
+    window.location.href = '/inbox/' + query
+    false
+
 
 ($ document).on "click", "button#ib-delete-all", ->
   btn = ($ this)
@@ -52,6 +58,43 @@
       complete: (jqxhr, status) ->
         if succ
           # and now: a (broken?) re-implementation of Bootstrap's button.js
+          btn.html btn.data('resetText')
+          btn.removeClass 'disabled'
+          btn[0].dataset.ibCount = 0
+
+($ document).on "click", "button#ib-delete-all-author", ->
+  btn = ($ this)
+  count = btn[0].dataset.ibCount
+  swal
+    title: translate('frontend.inbox.confirm_all.title', {count: count})
+    text: translate('frontend.inbox.confirm_all.text')
+    type: "warning"
+    showCancelButton: true
+    confirmButtonColor: "#DD6B55"
+    confirmButtonText: translate('views.actions.delete')
+    cancelButtonText: translate('views.actions.cancel')
+    closeOnConfirm: true
+  , ->
+    btn.button "loading"
+    succ = no
+    $.ajax
+      url: "/ajax/delete_all_inbox/#{location.pathname.split('/')[2]}"
+      type: 'POST'
+      dataType: 'json'
+      success: (data, status, jqxhr) ->
+        if data.success
+          succ = yes
+          ($ "div#pagination, button#load-more-btn").slideUp()
+          entries = ($ "div#entries")
+          entries.slideUp 400, ->
+            entries.html("Nothing to see here.")
+            entries.fadeIn()
+      error: (jqxhr, status, error) ->
+        console.log jqxhr, status, error
+        showNotification translate('frontend.error.message'), false
+      complete: (jqxhr, status) ->
+        if succ
+# and now: a (broken?) re-implementation of Bootstrap's button.js
           btn.html btn.data('resetText')
           btn.removeClass 'disabled'
           btn[0].dataset.ibCount = 0

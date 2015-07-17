@@ -13,8 +13,17 @@
     %a.btn.btn-block.btn-primary{target: '_blank', href: "http://www.tumblr.com/share/link?url=#{show_user_profile_url(current_user.screen_name)}&name=Ask%20me%20anything%21"}
       %i.fa.fa-fw.fa-tumblr
       = raw t('views.inbox.sidebar.share.button', service: "Tumblr")
+.panel.panel-default.inbox--panel
+  .panel-heading
+    %h3.panel-title Show author
+  .panel-body
+    %form#author_form
+      = bootstrap_form_tag url: inbox_path, method: :get do |f|
+        = f.text_field :author, value: params[:author], placeholder: "username", prepend: "@" , hide_label: true
+        = f.button "Show", name: nil, class: "btn btn-default btn-block btn-sm", id: "ib-author"
 .panel.panel-default.warning--panel
   .panel-heading
     %h3.panel-title= t 'views.inbox.sidebar.actions.title'
   .panel-body
-    %button.btn.btn-block.btn-danger{type: :button, id: 'ib-delete-all', disabled: (Inbox.where(user: current_user).empty? ? 'disabled' : nil), data: { ib_count: Inbox.where(user: current_user).count }}= t 'views.inbox.sidebar.actions.button'
+    %button.btn.btn-block.btn-danger{type: :button, id: @author ? 'ib-delete-all-author' : 'ib-delete-all', disabled: (Inbox.where(user: current_user).empty? ? 'disabled' : nil), data: { ib_count: Inbox.where(user: current_user).count }}= t 'views.inbox.sidebar.actions.button'
+
