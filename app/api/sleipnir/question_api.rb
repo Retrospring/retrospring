@@ -60,9 +60,9 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
       end
 
       inbox = Inbox.find_by question: question
-      if inbox.nil? and not question.user.privacy_allow_stranger_questions
+      if inbox.nil? and not question.user.privacy_allow_stranger_answers
         status 403
-        return present({success: false, code: 403, result: "ERR_MUST_FOLLOW"})
+        return present({success: false, code: 403, result: "ERR_MUST_INBOX"})
       end
 
       answer = if inbox.nil?

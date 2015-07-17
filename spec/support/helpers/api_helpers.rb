@@ -1,6 +1,6 @@
 module ApiHelpers
   def gen_oa_application(owner = FactoryGirl.create(:user))
-    Doorkeeper::Application.create name: "api_#{DateTime.now.to_i}", owner: owner, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: gen_oa_scopes(['write', 'public', 'moderation', 'rewrite'])
+    Doorkeeper::Application.create name: "api_#{DateTime.now.to_i}_#{owner.id}_#{owner.screen_name}", owner: owner, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: gen_oa_scopes(['write', 'public', 'moderation', 'rewrite'])
   end
 
   def gen_oa_token(application, user, scopes = "public write moderation rewrite")
@@ -34,23 +34,31 @@ module ApiHelpers
     body = begin
       JSON.pretty_generate(JSON.parse(res.body))
     rescue
-      res.body
+      Base64.encode64(res.body).strip
     end
 
     ["#{verb} #{path} #{res.status}", "#{JSON.pretty_generate(res.headers)}", "#{body}"].join("\n\n")
   end
 
+  def oa_faraday(oa, path)
+    res = oa.connection.get path
+    file = Rails.root.join 'log', "test/api/GET_#{Digest::SHA1.hexdigest path}.resp"
+    FileUtils.mkdir_p Rails.root.join 'log', "test/api"
+    File.open(file, 'w') { |file| file.write oa_dump("GET", path, res) }
+    res
+  end
+
   def oa_post(token, path, data = {})
     res = token.post path, :params => data
-    file = Rails.root.join 'log', "test/api/POST_#{DateTime.now.to_i}_#{Digest::SHA1.hexdigest path}.resp"
+    file = Rails.root.join 'log', "test/api/POST_#{Digest::SHA1.hexdigest path}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
-    File.open(file, 'w') { |file| file.write oa_dump("PATCH", path, res) }
+    File.open(file, 'w') { |file| file.write oa_dump("POST", path, res) }
     res
   end
 
   def oa_patch(token, path, data = {})
     res = token.patch path, :params => data
-    file = Rails.root.join 'log', "test/api/PATCH_#{DateTime.now.to_i}_#{Digest::SHA1.hexdigest path}.resp"
+    file = Rails.root.join 'log', "test/api/PATCH_#{Digest::SHA1.hexdigest path}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("PATCH", path, res) }
     res
@@ -58,7 +66,7 @@ module ApiHelpers
 
   def oa_delete(token, path, data = {})
     res = token.delete path, :params => data
-    file = Rails.root.join 'log', "test/api/DELETE_#{DateTime.now.to_i}_#{Digest::SHA1.hexdigest path}.resp"
+    file = Rails.root.join 'log', "test/api/DELETE_#{Digest::SHA1.hexdigest path}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("DELETE", path, res) }
     res
@@ -66,7 +74,7 @@ module ApiHelpers
 
   def oa_put(token, path, data = {})
     res = token.put path, :params => data
-    file = Rails.root.join 'log', "test/api/PUT_#{DateTime.now.to_i}_#{Digest::SHA1.hexdigest path}.resp"
+    file = Rails.root.join 'log', "test/api/PUT_#{Digest::SHA1.hexdigest path}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("PUT", path, res) }
     res
@@ -74,7 +82,7 @@ module ApiHelpers
 
   def oa_get(token, path, data = {})
     res = token.get path, :params => data
-    file = Rails.root.join 'log', "test/api/GET_#{DateTime.now.to_i}_#{Digest::SHA1.hexdigest path}.resp"
+    file = Rails.root.join 'log', "test/api/GET_#{Digest::SHA1.hexdigest path}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("GET", path, res) }
     res

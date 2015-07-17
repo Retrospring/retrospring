@@ -1,7 +1,3 @@
-       delete_question_api DELETE /api/sleipnir/question/:id
-                                    Delete given question
-       answer_question_api POST   /api/sleipnir/question/:id
-                                    Answer a question
          delete_answer_api DELETE /api/sleipnir/answer/:id
                                     Delete given answer
          write_comment_api POST   /api/sleipnir/answer/:id/comments
@@ -20,6 +16,7 @@
                                     Smile a comment
          comment_frown_api DELETE /api/sleipnir/answer/:id/comment/:comment_id
                                     Frown a comment
+
            mod_comment_api POST   /api/sleipnir/report/:id/comment
                                     Comment on report
     delete_mod_comment_api DELETE /api/sleipnir/report/:id/comment/:comment_id
@@ -28,16 +25,6 @@
                                     Vote a report up
           mod_votedown_api DELETE /api/sleipnir/report/:id/vote
                                     Vote a report down
-          delete_group_api DELETE /api/sleipnir/group/:id
-                                    Delete group
-         group_members_api GET    /api/sleipnir/group/:id/members
-                                    View group members
-          create_group_api POST   /api/sleipnir/group/create
-                                    Create a group
-             mov_group_api POST   /api/sleipnir/group/:id/user/:user_id
-                                    Add a user to group
-             pop_group_api DELETE /api/sleipnir/group/:id/user/:user_id
-                                    Remove a user from group
            report_user_api POST   /api/sleipnir/report/user/:id
                                     Report a user
        report_question_api POST   /api/sleipnir/report/question/:id
@@ -48,6 +35,18 @@
                                     Report an answer
          delete_report_api DELETE /api/sleipnir/report/:id
                                     Delete report
+
+          delete_group_api DELETE /api/sleipnir/group/:id
+                                    Delete group
+         group_members_api GET    /api/sleipnir/group/:id/members
+                                    View group members
+          create_group_api POST   /api/sleipnir/group/create
+                                    Create a group
+             mov_group_api POST   /api/sleipnir/group/:id/user/:user_id
+                                    Add a user to group
+             pop_group_api DELETE /api/sleipnir/group/:id/user/:user_id
+                                    Remove a user from group
+
          update_avatar_api PATCH  /api/sleipnir/setting/avatar
                                     Update user's avatar
          update_header_api PATCH  /api/sleipnir/setting/header

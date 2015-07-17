@@ -350,4 +350,10 @@ RSpec.describe 'API::Sleipnir' do
 
     oa_basic_test body
   end
+
+  it 'GET /sleipnir/aux_test.msgpack should status less than 400 with authentication' do
+    res = oa_get @token, "/api/sleipnir/aux_test.msgpack"
+
+    expect(res.status).to be < 400
+  end
 end
