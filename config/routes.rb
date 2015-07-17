@@ -100,7 +100,7 @@ Rails.application.routes.draw do
   match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'all'}
 
   match '/inbox', to: 'inbox#show', via: 'get'
-  match '/inbox/:author(/:page)', to: 'inbox#show', via: 'get'
+  match '/inbox/:author', to: 'inbox#show', via: 'get'
 
   match '/user/:username(/p/:page)', to: 'user#show', via: 'get', defaults: {page: 1}
   match '/@:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
