@@ -9,7 +9,7 @@ class InboxController < ApplicationController
     if params[:author].present?
       begin
         @author = true
-        @target_user = User.find_by_screen_name params[:author]
+        @target_user = User.where('LOWER(screen_name) = ?', params[:author].downcase).first!
         @inbox_author = current_user.inboxes.joins(:question)
                                             .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
                                             .paginate(page: params[:page])
