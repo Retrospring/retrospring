@@ -42,6 +42,73 @@ namespace :justask do
     puts "hopefully uploaded #{files.length} files"
   end
 
+  desc "generate GET tests"
+  task teapot_man: :environment do
+    str = "RSpec.describe 'API::Sleipnir' do
+  before :all do
+    @me                         = FactoryGirl.create :user
+    @other                      = FactoryGirl.create :user
+    @question                   = Question.create(content: 'This is a question.', user: @me)
+    @answer                     = Answer.create(content: 'This is an answer.', user: @me, question: @question)
+    @comment                    = Comment.create(content: 'This is a comment.', user: @me, answer: @answer)
+    @inbox                      = Inbox.create(user: @me, question: @question)
+    @smile                      = Smile.create(user: @me, answer: @answer)
+    @comment_smile              = CommentSmile.create(user: @me, comment: @commnent)
+    @report_answer              = Report.create(type: 'Reports::Answer', target_id: @answer.id, user: @me)
+    @report_user                = Report.create(type: 'Reports::User', target_id: @me.id, user: @me)
+    @report_question            = Report.create(type: 'Reports::Question', target_id: @question.id, user: @me)
+    @report_comment             = Report.create(type: 'Reports::Comment', target_id: @comment.id, user: @me)
+    @notification_comment       = Notification.create(recipient: @me, target: @comment)
+    @notification_answer        = Notification.create(recipient: @me, target: @answer)
+    @notification_question      = Notification.create(recipient: @me, target: @question)
+    @notification_smile         = Notification.create(recipient: @me, target: @smile)
+    @notification_comment_smile = Notification.create(recipient: @me, target: @comment_smile)
+    @follow_me                  = Relationship.create(source: @me, target: @other)
+    @follow_other               = Relationship.create(source: @other, target: @me)
+    @moderation_comment         = ModerationComment.create(report: @report_answer, user: @me, content: 'This is a moderation comment')
+    @moderation_vote            = ModerationVote.create(report: @report_answer, user: @me, upvote: true)
+    @group                      = Group.create(user: @me, name: 'Group', display_name: 'This is a group')
+    @group_member               = GroupMember.create(user: @other, group: @group)
+
+    @app, @oa, @token = gen_oa_b @me
+  end
+
+  after :all do
+    Warden.test_reset!
+  end\n"
+
+    API.routes.each do |route|
+      info = route.instance_variable_get :@options
+      next if info[:method] != 'GET'
+
+      path    = info[:path]
+      version = info[:version]
+      unless version.nil? or version.blank?
+        path = path.gsub /^\/:version/, "/#{version}"
+      end
+
+      path = path.gsub(/\(\/?\.:format\)$/, '.json')
+
+      opath = path
+
+      path = path.gsub(/\/:([a-zA-Z_]*)?id/, "/1")
+      path = path.gsub(/\/:screen_name/, "/#\{@me.screen_name\}")
+
+      str += "\n  it 'GET #{opath} should status less than 400 with authentication' do
+    res = oa_get @token, \"#{Rails.application.routes.url_helpers.api_path}#{path}\"
+
+    expect(res.status).to be < 400
+
+    body = JSON.parse res.body
+
+    oa_basic_test body
+  end\n"
+    end
+    str += "end\n"
+
+    File.open(Rails.root.join("spec/controllers/api/sleipnir/_base_api_spec.rb"), 'w') { |file| file.write(str) }
+  end
+
   desc "API Routes"
   task einherjar: :environment do
     puts "Routes for API:"

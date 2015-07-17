@@ -1,0 +1,146 @@
+                  root_api GET    /api/
+                                    simple info
+              sleipnir_api GET    /api/sleipnir
+                                    Sleipnir (1.0) API
+                  user_api GET    /api/sleipnir/user/me
+                                    Current user's profile
+              timeline_api GET    /api/sleipnir/user/timeline
+                                    Current user's timeline
+              timeline_api GET    /api/sleipnir/user/public
+                                    Public timeline
+                 count_api GET    /api/sleipnir/user/new
+                                    Current user's new numbers
+                 inbox_api GET    /api/sleipnir/user/inbox
+                                    Current user's inbox
+          notification_api GET    /api/sleipnir/user/notifications
+                                    Current user's notifications
+mark_notification_read_api PATCH  /api/sleipnir/user/notifications/:id
+                                    Mark notification as read
+       mark_inbox_read_api PATCH  /api/sleipnir/user/inbox/:id
+                                    Mark inbox as read
+    batch_delete_inbox_api DELETE /api/sleipnir/user/inbox
+                                    Delete entries from a user's inbox
+          delete_inbox_api DELETE /api/sleipnir/user/inbox/:id
+                                    Delete entry from a user's inbox
+            given_user_api GET    /api/sleipnir/user/:id/profile
+                                    Given user's profile
+        user_questions_api GET    /api/sleipnir/user/:id/questions
+                                    Given user's questions
+     ask_user_question_api POST   /api/sleipnir/user/:id/ask
+                                    Ask user a question
+          user_answers_api GET    /api/sleipnir/user/:id/answers
+                                    Given user's answers
+        user_followers_api GET    /api/sleipnir/user/:id/followers
+                                    Given user's followers
+        user_following_api GET    /api/sleipnir/user/:id/following
+                                    Given user's following
+     follower_question_api POST   /api/sleipnir/user/me/ask
+                                    Ask all your followers a question
+           user_follow_api POST   /api/sleipnir/user/:id/follow
+                                    Follow given user
+         user_unfollow_api DELETE /api/sleipnir/user/:id/follow
+                                    Unfollow given user
+  user_profile_picture_api GET    /api/sleipnir/user/:id/avatar
+                                    Specified user's profile picture
+  user_profile_picture_api GET    /api/sleipnir/user/:id/header
+                                    Specified user's profile header
+              ban_user_api POST   /api/sleipnir/user/:id/ban
+                                    Ban specified user
+            unban_user_api DELETE /api/sleipnir/user/:id/ban
+                                    Unban specified user
+              question_api GET    /api/sleipnir/question/:id
+                                    Given question's content
+       delete_question_api DELETE /api/sleipnir/question/:id
+                                    Delete given question
+       answer_question_api POST   /api/sleipnir/question/:id
+                                    Answer a question
+              question_api GET    /api/sleipnir/question/:id/answers
+                                    Given question's answers
+                answer_api GET    /api/sleipnir/answer/:id
+                                    Given answer's content
+         delete_answer_api DELETE /api/sleipnir/answer/:id
+                                    Delete given answer
+               comment_api GET    /api/sleipnir/answer/:id/comments
+                                    Given answer's comments
+         write_comment_api POST   /api/sleipnir/answer/:id/comments
+                                    Comment on given answer
+        delete_comment_api DELETE /api/sleipnir/answer/:id/comments/:comment_id
+                                    Delete comment
+      new_subscription_api POST   /api/sleipnir/answer/:id/subscribe
+                                    Subscribe to an answer
+   delete_subscription_api DELETE /api/sleipnir/answer/:id/subscribe
+                                    Unsubscribe from an answer
+                 smile_api POST   /api/sleipnir/answer/:id/smile
+                                    Smile an answer
+            view_smile_api GET    /api/sleipnir/answer/:id/smile
+                                    View answer smiles
+                 frown_api DELETE /api/sleipnir/answer/:id/smile
+                                    Frown an answer
+         comment_smile_api POST   /api/sleipnir/answer/:id/comment/:comment_id
+                                    Smile a comment
+    view_comment_smile_api GET    /api/sleipnir/answer/:id/comment/:comment_id
+                                    View comment smiles
+         comment_frown_api DELETE /api/sleipnir/answer/:id/comment/:comment_id
+                                    Frown a comment
+          mod_comments_api GET    /api/sleipnir/report/:id/comment
+                                    Get report comments
+           mod_comment_api POST   /api/sleipnir/report/:id/comment
+                                    Comment on report
+    delete_mod_comment_api DELETE /api/sleipnir/report/:id/comment/:comment_id
+                                    Delete report comment
+            mov_voteup_api POST   /api/sleipnir/report/:id/vote
+                                    Vote a report up
+          mod_votedown_api DELETE /api/sleipnir/report/:id/vote
+                                    Vote a report down
+                groups_api GET    /api/sleipnir/group
+                                    List group IDs
+                 group_api GET    /api/sleipnir/group/:id
+                                    View group timeline
+          delete_group_api DELETE /api/sleipnir/group/:id
+                                    Delete group
+         group_members_api GET    /api/sleipnir/group/:id/members
+                                    View group members
+          create_group_api POST   /api/sleipnir/group/create
+                                    Create a group
+             mov_group_api POST   /api/sleipnir/group/:id/user/:user_id
+                                    Add a user to group
+             pop_group_api DELETE /api/sleipnir/group/:id/user/:user_id
+                                    Remove a user from group
+               reports_api GET    /api/sleipnir/report
+                                    Get reports
+           report_user_api POST   /api/sleipnir/report/user/:id
+                                    Report a user
+       report_question_api POST   /api/sleipnir/report/question/:id
+                                    Report a question
+        report_comment_api POST   /api/sleipnir/report/comment/:id
+                                    Report a comment
+         report_answer_api POST   /api/sleipnir/report/answer/:id
+                                    Report an answer
+                report_api GET    /api/sleipnir/report/:id
+                                    Get a report
+         delete_report_api DELETE /api/sleipnir/report/:id
+                                    Delete report
+       resolve_profile_api GET    /api/sleipnir/util/resolve/:screen_name
+                                    Resolve screen name into user profile
+           list_admins_api GET    /api/sleipnir/util/admins
+                                    List admins
+             list_mods_api GET    /api/sleipnir/util/moderators
+                                    List moderators
+          list_contrib_api GET    /api/sleipnir/util/contributors
+                                    List contributors
+        list_supporter_api GET    /api/sleipnir/util/supporters
+                                    List supporters
+             list_stat_api GET    /api/sleipnir/util/stats
+                                    List numbers
+         update_avatar_api PATCH  /api/sleipnir/setting/avatar
+                                    Update user's avatar
+         update_header_api PATCH  /api/sleipnir/setting/header
+                                    Update user's header
+           update_info_api PATCH  /api/sleipnir/setting/basic
+                                    Update user's basic info
+        heres_my_spout_api GET    /api/sleipnir/error_test
+                                    Error test, designed to test the exception net
+        heres_my_spout_api GET    /api/sleipnir/aux_test
+                                    Auxiliary test, designed to test formatters and global options
+   fallback_fourohfour_api ALL    /api/*path
+                                    Fallback 404

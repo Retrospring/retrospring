@@ -589,6 +589,7 @@ DEPENDENCIES
   redcarpet
   redis
   rickshaw-rails
+  rspec-expectations
   rspec-rails (~> 3.0.0)
   ruby-progressbar
   sanitize

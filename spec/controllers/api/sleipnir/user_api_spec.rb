@@ -2,7 +2,7 @@ RSpec.describe "API::Sleipnir::UserAPI" do
   before :all do
     @me = FactoryGirl.create :user
     @app, @oa, @token = gen_oa_b @me
-    
+
     @other = FactoryGirl.create :user
     @other_token = gen_oa_pair @oa, gen_oa_token(@app, @other)
   end
@@ -42,7 +42,11 @@ RSpec.describe "API::Sleipnir::UserAPI" do
   end
 
   it 'GET /user/public.json should have a post' do
-    # TODO: create answer
+    # Answer.new(
+    #     content: 'This is an answer.',
+    #     user: @me,
+    #     question: FactoryGirl.create(:question)
+    # )
 
     res = oa_get @token, '/api/sleipnir/user/public.json'
 

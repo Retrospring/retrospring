@@ -94,6 +94,7 @@ group :development, :test do
   gem 'rake'
   gem 'thin'
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-expectations'
   gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'capybara'
