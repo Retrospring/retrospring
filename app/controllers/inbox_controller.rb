@@ -17,6 +17,7 @@ class InboxController < ApplicationController
                                                   .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
                                                   .count
         if @inbox_author.empty?
+          @empty = true
           flash.now[:info] = "No questions from @#{params[:author]} found, showing default entries instead!"
         else
           @inbox = @inbox_author
@@ -28,7 +29,15 @@ class InboxController < ApplicationController
       end
     end
 
-    @disabled = true if @inbox.empty? or @not_found
+    if @empty or @not_found
+      @delete_id = "ib-delete-all"
+    elsif @author
+      @delete_id = "ib-delete-all-author"
+    else
+      @delete_id = "ib-delete-all"
+    end
+
+    @disabled = true if @inbox.empty?
     respond_to do |format|
       format.html
       format.js
