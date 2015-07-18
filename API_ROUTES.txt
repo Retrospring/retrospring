@@ -1,6 +1,0 @@
-         update_avatar_api PATCH  /api/sleipnir/setting/avatar
-                                    Update user's avatar
-         update_header_api PATCH  /api/sleipnir/setting/header
-                                    Update user's header
-           update_info_api PATCH  /api/sleipnir/setting/basic
-                                    Update user's basic info
