@@ -7,7 +7,7 @@ end
 
 RailsAdmin.config do |config|
 
-  config.main_app_name = ['justask', 'Kontrollzentrum']
+  config.main_app_name = [APP_CONFIG["site_name"], 'Kontrollzentrum']
 
   ## == Authentication ==
   config.authenticate_with do
@@ -48,8 +48,8 @@ RailsAdmin.config do |config|
     CommentSmile
     Subscription
     User
-    Doorkeeper::Application
-    Doorkeeper::AccessGrant
-    Doorkeeper::AccessToken
+    Application
+    AccessGrant
+    AccessToken
   ]
 end
