@@ -1,4 +1,4 @@
-RSpec.describe "API::Sleipnir::UserAPI" do
+RSpec.describe "API::Sleipnir::QuestionAPI" do
   before :all do
     @me               = FactoryGirl.create :user
     @other            = FactoryGirl.create :user

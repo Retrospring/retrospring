@@ -96,7 +96,7 @@ class API < Grape::API
   get as: :root_api do
     status 200
     result = {
-      notes: "This page is a list of API entry points, true means they are active, false means they are depricated.",
+      notes: "This page is a list of API entry points, true means they are active, false means they are deprecated.",
       apis: {
         sleipnir: true
       }

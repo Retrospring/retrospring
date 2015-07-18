@@ -75,7 +75,7 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
         return present({success: false, code: 404, result: "ERR_COMMENT_NOT_FOUND"})
       end
 
-      unless (current_user == answer.user) or (privileged? answer.user)
+      unless (current_user == comment.user) or (privileged? comment.user)
         status 403
         return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
       end
@@ -175,14 +175,14 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 720
     post "/:id/comment/:comment_id", as: :comment_smile_api do
-      comment = CommentSmile.find(params[:comment_id])
-      if comment
+      comment = Comment.find(params[:comment_id])
+      if comment.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_COMMENT_NOT_FOUND"})
       end
 
       begin
-        current_user.smile_comment answer, current_application
+        current_user.smile_comment comment, current_application
         status 201
         return present({success: true, code: 201, result: "COMMENT_SMILED"})
       rescue
@@ -202,14 +202,14 @@ class Sleipnir::AnswerAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 720
     delete "/:id/comment/:comment_id", as: :comment_frown_api do
-      comment = CommentSmile.find(params[:comment_id])
-      if comment
+      comment = Comment.find(params[:comment_id])
+      if comment.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_COMMENT_NOT_FOUND"})
       end
 
       begin
-        current_user.unsmile_comment answer
+        current_user.unsmile_comment comment
         status 204
       rescue
         status 412

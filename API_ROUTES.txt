@@ -1,22 +1,3 @@
-         delete_answer_api DELETE /api/sleipnir/answer/:id
-                                    Delete given answer
-         write_comment_api POST   /api/sleipnir/answer/:id/comments
-                                    Comment on given answer
-        delete_comment_api DELETE /api/sleipnir/answer/:id/comments/:comment_id
-                                    Delete comment
-      new_subscription_api POST   /api/sleipnir/answer/:id/subscribe
-                                    Subscribe to an answer
-   delete_subscription_api DELETE /api/sleipnir/answer/:id/subscribe
-                                    Unsubscribe from an answer
-                 smile_api POST   /api/sleipnir/answer/:id/smile
-                                    Smile an answer
-                 frown_api DELETE /api/sleipnir/answer/:id/smile
-                                    Frown an answer
-         comment_smile_api POST   /api/sleipnir/answer/:id/comment/:comment_id
-                                    Smile a comment
-         comment_frown_api DELETE /api/sleipnir/answer/:id/comment/:comment_id
-                                    Frown a comment
-
            mod_comment_api POST   /api/sleipnir/report/:id/comment
                                     Comment on report
     delete_mod_comment_api DELETE /api/sleipnir/report/:id/comment/:comment_id
