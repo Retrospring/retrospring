@@ -45,6 +45,11 @@ RailsAdmin.config do |config|
     Services::Twitter
     Services::Tumblr
     Smile
+    CommentSmile
+    Subscription
     User
+    Doorkeeper::Application
+    Doorkeeper::AccessGrant
+    Doorkeeper::AccessToken
   ]
 end
