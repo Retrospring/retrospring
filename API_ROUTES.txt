@@ -1,14 +1,3 @@
-          delete_group_api DELETE /api/sleipnir/group/:id
-                                    Delete group
-         group_members_api GET    /api/sleipnir/group/:id/members
-                                    View group members
-          create_group_api POST   /api/sleipnir/group/create
-                                    Create a group
-             mov_group_api POST   /api/sleipnir/group/:id/user/:user_id
-                                    Add a user to group
-             pop_group_api DELETE /api/sleipnir/group/:id/user/:user_id
-                                    Remove a user from group
-
          update_avatar_api PATCH  /api/sleipnir/setting/avatar
                                     Update user's avatar
          update_header_api PATCH  /api/sleipnir/setting/header

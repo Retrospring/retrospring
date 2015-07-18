@@ -36,7 +36,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
         return present({success: false, code: 404, result: "ERR_GROUP_NOT_FOUND"})
       end
 
-      group.destroy
+      group.destroy!
       status 204
     end
 
@@ -59,9 +59,10 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
     throttle hourly: 72
     params do
       requires :name, type: String
+      requires :display_name, type: String
     end
-    post '/create', as: :create_group_api do
-      group = Group.create user: current_user, display_name: params[:name]
+    post '/', as: :create_group_api do
+      group = Group.create user: current_user, name: params[:name], display_name: params[:display_name]
       if group.nil?
         status 400
         return present({success: false, code: 400, result: "ERR_GROUP_CREATE_FAIL"})
@@ -87,7 +88,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
         return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
       end
 
-      group.add_member user if group.members.find_by_user_id(target_user.id).nil?
+      group.add_member user if group.members.find_by_user_id(user.id).nil?
 
       status 201
       return present({success: true, code: 201, result: "GROUP_USER_ADDED"})
@@ -109,7 +110,7 @@ class Sleipnir::GroupAPI < Sleipnir::MountAPI
         return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
       end
 
-      group.remove_member user unless group.members.find_by_user_id(target_user.id).nil?
+      group.remove_member user unless group.members.find_by_user_id(user.id).nil?
 
       status 204
       return
