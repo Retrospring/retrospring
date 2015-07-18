@@ -76,7 +76,7 @@ class Sleipnir::QuestionAPI < Sleipnir::MountAPI
         services.push svc if (params[:share_flags] & (2 ** index)) > 0
       end
 
-      ShareWorker.perform_async(current_user.id, answer.id, services)
+      ShareWorker.perform_async(current_user.id, answer.id, services) if services.count > 0
 
       code = if services.length > 0
         202

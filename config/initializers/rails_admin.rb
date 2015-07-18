@@ -51,5 +51,6 @@ RailsAdmin.config do |config|
     Application
     AccessGrant
     AccessToken
+    ApplicationMetric
   ]
 end
