@@ -16,7 +16,11 @@ module ApiHelpers
   end
 
   def gen_oa(application)
-    OAuth2::Client.new(application.uid, application.secret, :site => "http://127.0.0.1:#{HTTP_PORT}")
+    OAuth2::Client.new application.uid, application.secret, site: "http://127.0.0.1:#{HTTP_PORT}" do |stack|
+      stack.request :multipart
+      stack.request :url_encoded
+      stack.adapter  Faraday.default_adapter
+    end
   end
 
   def gen_oa_pair(oa, token)
