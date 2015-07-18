@@ -90,8 +90,8 @@ class Sleipnir::SettingAPI < Sleipnir::MountAPI
       obj["bio"] = params["bio"] unless params["bio"].nil?
 
       if current_user.update_attributes(obj)
-        status 202
-        return present({success: true, code: 202, result: "BASIC_HEADER"})
+        status 205
+        return present({success: true, code: 202, result: "BASIC_UPDATE"})
       end
       status 400
       return present({success: false, code: 400, result: "ERR_BASIC_QQ"})

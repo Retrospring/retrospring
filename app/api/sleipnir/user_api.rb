@@ -78,7 +78,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
 
       entry.update new: false
       status 205
-      present({success: true, code: 205, result: "NOTIF_READ"})
+      return present({success: true, code: 205, result: "NOTIF_READ"})
     end
 
     desc "Mark inbox as read"
@@ -98,7 +98,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
 
       entry.update new: false
       status 205
-      present({success: true, code: 205, result: "INBOX_READ"})
+      return present({success: true, code: 205, result: "INBOX_READ"})
     end
 
     desc "Delete entries from a user's inbox"
