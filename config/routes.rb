@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     get '/settings/account' => 'devise/registrations#edit', as: :edit_user_registration
     patch '/settings/account' => 'devise/registrations#update', as: :update_user_registration
     put '/settings/account' => 'devise/registrations#update'
-    delete '/settings/account' => 'devise/registrations#destroy'
+    delete '/settings/account' => 'user/registrations#destroy'
   end
 
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
@@ -89,6 +89,7 @@ Rails.application.routes.draw do
     match '/generate_question', to: 'inbox#create', via: :post, as: :generate_question
     match '/delete_inbox', to: 'inbox#remove', via: :post, as: :delete_inbox
     match '/delete_all_inbox', to: 'inbox#remove_all', via: :post, as: :delete_all_inbox
+    match '/delete_all_inbox/:author', to: 'inbox#remove_all_author', via: :post, as: :delete_all_author
     match '/answer', to: 'answer#create', via: :post, as: :answer
     match '/destroy_answer', to: 'answer#destroy', via: :post, as: :destroy_answer
     match '/create_friend', to: 'friend#create', via: :post, as: :create_friend
@@ -115,6 +116,7 @@ Rails.application.routes.draw do
   match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'all'}
 
   match '/inbox', to: 'inbox#show', via: 'get'
+  match '/inbox/:author', to: 'inbox#show', via: 'get'
 
   match '/user/:username(/p/:page)', to: 'user#show', via: 'get', defaults: {page: 1}
   match '/@:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile_alt, defaults: {page: 1}
