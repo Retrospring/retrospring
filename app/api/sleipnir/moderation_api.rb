@@ -8,6 +8,11 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
     oauth2 'moderation'
     throttle hourly: 72
     get '/:id/comment', as: :mod_comments_api do
+      unless current_user.mod?
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
       collection = since_id ModerationComment, 'report_id = ?', [params[:id]]
       represent_collection collection, with: Sleipnir::Entities::ReportCommentsEntity
     end
@@ -46,7 +51,7 @@ class Sleipnir::ModerationAPI < Sleipnir::MountAPI
         return present({success: false, code: 404, result: "ERR_COMMENT_NOT_FOUND"})
       end
 
-      if current_scopes.index('moderation').nil? or comment.user != current_user
+      if !current_scopes.has_scopes?(['moderation']) or comment.user != current_user
         status 403
         return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
       end

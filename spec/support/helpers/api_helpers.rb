@@ -48,40 +48,40 @@ module ApiHelpers
     res
   end
 
-  def oa_post(token, path, data = {})
-    res = token.post path, :params => data
+  def oa_post(token, path, data = {}, body = {})
+    res = token.post path, :params => data, :body => body
     file = Rails.root.join 'log', "test/api/POST_#{path[1..path.length].gsub(/\d+/, "id").gsub("/", "_")}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("POST", path, res) }
     res
   end
 
-  def oa_patch(token, path, data = {})
-    res = token.patch path, :params => data
+  def oa_patch(token, path, data = {}, body = {})
+    res = token.patch path, :params => data, :body => body
     file = Rails.root.join 'log', "test/api/PATCH_#{path[1..path.length].gsub(/\d+/, "id").gsub("/", "_")}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("PATCH", path, res) }
     res
   end
 
-  def oa_delete(token, path, data = {})
-    res = token.delete path, :params => data
+  def oa_delete(token, path, data = {}, body = {})
+    res = token.delete path, :params => data, :body => body
     file = Rails.root.join 'log', "test/api/DELETE_#{path[1..path.length].gsub(/\d+/, "id").gsub("/", "_")}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("DELETE", path, res) }
     res
   end
 
-  def oa_put(token, path, data = {})
-    res = token.put path, :params => data
+  def oa_put(token, path, data = {}, body = {})
+    res = token.put path, :params => data, :body => body
     file = Rails.root.join 'log', "test/api/PUT_#{path[1..path.length].gsub(/\d+/, "id").gsub("/", "_")}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("PUT", path, res) }
     res
   end
 
-  def oa_get(token, path, data = {})
-    res = token.get path, :params => data
+  def oa_get(token, path, data = {}, body = {})
+    res = token.get path, :params => data, :body => body
     file = Rails.root.join 'log', "test/api/GET_#{path[1..path.length].gsub(/\d+/, "id").gsub("/", "_")}.resp"
     FileUtils.mkdir_p Rails.root.join 'log', "test/api"
     File.open(file, 'w') { |file| file.write oa_dump("GET", path, res) }

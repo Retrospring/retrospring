@@ -1,22 +1,3 @@
-           mod_comment_api POST   /api/sleipnir/report/:id/comment
-                                    Comment on report
-    delete_mod_comment_api DELETE /api/sleipnir/report/:id/comment/:comment_id
-                                    Delete report comment
-            mov_voteup_api POST   /api/sleipnir/report/:id/vote
-                                    Vote a report up
-          mod_votedown_api DELETE /api/sleipnir/report/:id/vote
-                                    Vote a report down
-           report_user_api POST   /api/sleipnir/report/user/:id
-                                    Report a user
-       report_question_api POST   /api/sleipnir/report/question/:id
-                                    Report a question
-        report_comment_api POST   /api/sleipnir/report/comment/:id
-                                    Report a comment
-         report_answer_api POST   /api/sleipnir/report/answer/:id
-                                    Report an answer
-         delete_report_api DELETE /api/sleipnir/report/:id
-                                    Delete report
-
           delete_group_api DELETE /api/sleipnir/group/:id
                                     Delete group
          group_members_api GET    /api/sleipnir/group/:id/members

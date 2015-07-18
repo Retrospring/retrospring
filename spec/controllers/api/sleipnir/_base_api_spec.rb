@@ -24,6 +24,12 @@ RSpec.describe 'API::Sleipnir' do
     @group                      = Group.create(user: @me, name: 'Group', display_name: 'This is a group')
     @group_member               = GroupMember.create(user: @other, group: @group)
 
+    @me.admin = true
+    @me.save!
+
+    @other.admin = true
+    @other.save!
+
     @app, @oa, @token = gen_oa_b @me
   end
 

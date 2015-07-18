@@ -2,19 +2,22 @@ module Sleipnir::Helpers
   include Sleipnir::Helpers::User
 
   def privileged? (user = nil)
-    false if current_user.nil?
-    true if not user.nil? and current_user == user
-    true if current_user.mod? and not current_scopes.index('moderation').nil?
-    false
-  end
+    if current_user.nil?
+      return false
+    end
 
-  def new_inbox_count
-    return 0 if current_user.nil?
-    current_user.inboxes.where(new: true).count
-  end
+    unless user.nil?
+      if current_user == user
+        return true
+      end
+    end
 
-  def new_notification_count
-    return 0 if current_user.nil?
-    current_user.notifications.where(new: true).count
+    if current_user.mod?
+      if current_scopes.has_scopes?(['moderation'])
+        return true
+      end
+    end
+
+    return false
   end
 end

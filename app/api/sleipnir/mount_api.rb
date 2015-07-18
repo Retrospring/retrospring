@@ -11,9 +11,9 @@ class Sleipnir::MountAPI < Grape::API
   mount Sleipnir::UserAPI
   mount Sleipnir::QuestionAPI
   mount Sleipnir::AnswerAPI
+  mount Sleipnir::ReportAPI
   mount Sleipnir::ModerationAPI
   mount Sleipnir::GroupAPI
-  mount Sleipnir::ReportAPI
   mount Sleipnir::UtilityAPI
   mount Sleipnir::SettingAPI
 
@@ -35,7 +35,7 @@ class Sleipnir::MountAPI < Grape::API
       dictionary: {a: 1, b: "string", c: Math::PI},
       void: nil
     }
-    
+
     represent aux, with: Sleipnir::Entities::AuxiliaryTestEntity
   end
 end

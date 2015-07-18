@@ -8,6 +8,11 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     oauth2 'moderation'
     throttle hourly: 72
     get '/', as: :reports_api do
+      unless current_user.mod?
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
       collection = since_id Report, "deleted = ?", [false]
       represent_collection collection, with: Sleipnir::Entities::ReportsEntity
     end
@@ -19,7 +24,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
       optional :reason, type: String, default: ''
     end
     post '/user/:id', as: :report_user_api do
-      object = Comment.find_by_id params[:id]
+      object = User.find_by_id params[:id]
       if object.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_USER_NOT_FOUND"})
@@ -45,7 +50,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
 
       current_user.report object, params[:reason]
       status 201
-      return present({success: true, code: 201, result: "SUCCESS_REPORTED_QUESTIONS"})
+      return present({success: true, code: 201, result: "SUCCESS_REPORTED_QUESTION"})
     end
 
     desc 'Report a comment'
@@ -73,7 +78,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
       optional :reason, type: String, default: ''
     end
     post '/answer/:id', as: :report_answer_api do
-      object = Comment.find_by_id params[:id]
+      object = Answer.find_by_id params[:id]
       if object.nil?
         status 404
         return present({success: false, code: 404, result: "ERR_ANSWER_NOT_FOUND"})
@@ -88,6 +93,11 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     oauth2 'moderation'
     throttle hourly: 72
     get '/:id', as: :report_api do
+      unless current_user.mod?
+        status 403
+        return present({success: false, code: 403, result: "ERR_USER_NO_PRIV"})
+      end
+
       report = Report.find_by_id params[:id]
       if report.nil?
         status 404
@@ -101,7 +111,7 @@ class Sleipnir::ReportAPI < Sleipnir::MountAPI
     oauth2 'write'
     throttle hourly: 72
     delete '/:id', as: :delete_report_api do
-      if privileged?
+      unless privileged?
         status 403
         return present({success: true, code: 403, result: "ERR_USER_NO_PRIV"})
       else

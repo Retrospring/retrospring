@@ -24,4 +24,14 @@ module Sleipnir::Helpers::User
       globalize_paperclip user.profile_header.url(size)
     end
   end
+  
+  def new_inbox_count
+    return 0 if current_user.nil?
+    current_user.inboxes.where(new: true).count
+  end
+
+  def new_notification_count
+    return 0 if current_user.nil?
+    current_user.notifications.where(new: true).count
+  end
 end

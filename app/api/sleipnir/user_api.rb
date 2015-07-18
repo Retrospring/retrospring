@@ -42,7 +42,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     get "/inbox", as: :inbox_api do
       collection = since_id Inbox, "user_id = ?", [current_user.id]
       represent_collection collection, with: Sleipnir::Entities::InboxesEntity
-      if params[:mark_as_read] and not current_scopes.index('write').nil?
+      if params[:mark_as_read] and current_scopes.has_scopes?(['write'])
         collection.update_all new: false
       end
     end
@@ -56,7 +56,7 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     get "/notifications", as: :notification_api do
       collection = since_id Notification, "recipient_id = ?", [current_user.id]
       represent_collection collection, with: Sleipnir::Entities::NotificationsEntity
-      if params[:mark_as_read] and not current_scopes.index('write').nil?
+      if params[:mark_as_read] and current_scopes.has_scopes?(['write'])
         collection.update_all new: false
       end
     end
