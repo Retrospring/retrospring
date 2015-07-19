@@ -283,9 +283,9 @@ namespace :justask do
               if value.is_a? String
                 params_txt += "\n  - required\n  - type: TODO\n  - CAVEAT: This is a REQUEST PATH variable."
               else
-                params_txt += "\n  - #{if value["required"] == true then "required" else "optional" end}" unless value["required"].nil?
-                params_txt += "\n  - type: #{value["type"].split("::").last}" unless value["type"].nil?
-                params_txt += "\n  - default: #{value["default"]}" unless value["default"].nil?
+                params_txt += "\n  - #{if value[:required] == true then "required" else "optional" end}" unless value[:required].nil?
+                params_txt += "\n  - type: #{value[:type].split("::").last}" unless value[:type].nil?
+                params_txt += "\n  - default: #{value[:default]}" unless value[:default].nil?
               end
             end
 
