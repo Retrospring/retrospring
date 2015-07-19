@@ -48,12 +48,20 @@ class User < ActiveRecord::Base
   has_attached_file :profile_picture, styles: { large: "500x500#", medium: "256x256#", small: "80x80#" },
                     default_url: "/images/:style/no_avatar.png", use_timestamp: false,
                     processors: [:cropper]
-  validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/(png|jpe?g|gif)\Z/
+  validates_attachment_content_type :profile_picture, :content_type => if APP_CONFIG["gif"]["avatar"]
+    /\Aimage\/(png|jpe?g|gif)\Z/
+  else
+    /\Aimage\/(png|jpe?g)\Z/
+  end
 
   has_attached_file :profile_header, styles: { web: "1500x350#", mobile: "450x105#", retina: "900x210#" },
                     default_url: '/images/header/:style/no_header.jpg', use_timestamp: false,
                     processors: [:cropper]
-  validates_attachment_content_type :profile_header, :content_type => /\Aimage\/(png|jpe?g)\Z/
+  validates_attachment_content_type :profile_header, :content_type => if APP_CONFIG["gif"]["header"]
+    /\Aimage\/(png|jpe?g|gif)\Z/
+  else
+    /\Aimage\/(png|jpe?g)\Z/
+  end
 
   process_in_background :profile_picture
   process_in_background :profile_header
