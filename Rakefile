@@ -297,7 +297,7 @@ namespace :justask do
             caveats_txt = "\n## caveats\n"
 
             unless info[:auth].nil?
-              caveats_txt += "\n# oauth scopes\n\n- #{info[:auth][:scopes].join '\n- '}\n"
+              caveats_txt += "\n### oauth scopes\n\n- #{info[:auth][:scopes].join '\n- '}\n"
             end
 
             unless info[:settings][:throttle].nil?
@@ -315,7 +315,7 @@ namespace :justask do
                 end
               end
 
-              caveats_txt += "\n# rate limit\n\nMax #{limit} requests every #{period}\n"
+              caveats_txt += "\n### rate limit\n\nMax #{limit} requests every #{period}\n"
             end
 
             if caveats_txt != "\n## request parameters\n"
@@ -333,6 +333,15 @@ namespace :justask do
         namespace_txt += "\n##### last revised on: #{Time.now.strftime "%Y/%m/%d %H:%M"}\n"
 
         File.open(version_path.join("#{namespace}.md"), "w") { |f| f.write(namespace_txt) }
+      end
+    end
+
+    payloads.each do |version, version_data|
+      version_path = root_path.join version, "payload"
+      FileUtils.mkdir_p version_path
+      version_data.each do |payload|
+        filename = version_path.join(payload.to_s.underscore + ".md")
+        File.open(filename, "w") { |f| f.write("# #{payload}\n\nTODO\n\n## example\n\nTODO\n\n##### last revised on: #{Time.now.strftime "%Y/%m/%d %H:%M"}\n")}
       end
     end
   end
