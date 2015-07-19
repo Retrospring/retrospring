@@ -1,9 +1,9 @@
 [submodule "service-docs"]
 	path = service-docs
 	url = https://github.com/Retrospring/service-docs.git
-[submodule "api-docs"]
-	path = api-docs
-	url = https://github.com/Retrospring/api-docs.git
 [submodule "config/locales"]
 	path = config/locales
 	url = https://github.com/Retrospring/locales.git
+[submodule "api"]
+	path = docs/api
+	url = https://github.com/Retrospring/api-docs.git

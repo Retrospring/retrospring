@@ -193,6 +193,150 @@ namespace :justask do
     end
   end
 
+  desc "generate API docs in english"
+  task api_doc: :environment do
+    root_path = Rails.root.join "docs/api/en"
+    api_path  = Rails.root.join "app/api"
+    loaded    = {}
+    data      = {}
+    payloads  = {}
+    API.routes.each do |route|
+      info = route.instance_variable_get :@options
+
+      version = info[:version]
+      next if version.nil? or version.blank?
+
+      url = info[:path].gsub(/^\/:version/, "/#{version}").gsub(/\(\/?\.:format\)$/, '.json')
+      namespace = if info[:namespace].blank?
+        ''
+      else
+        info[:namespace][1..info[:namespace].length]
+      end
+      url = url[2 + namespace.length + version.length..url.length]
+
+      data[version] ||= {}
+      data[version][namespace] ||= {}
+      data[version][namespace][url] ||= {}
+      data[version][namespace][url][info[:method]] = info
+
+      if loaded[info[:version]].nil?
+        loaded[info[:version]] = true
+        Dir[api_path.join version, 'entities/*.rb'].each { |file| load file }
+
+        m = "#{version.capitalize}::Entities".constantize
+
+        payloads[version] = m.constants
+      end
+    end
+
+    data.each do |version, version_data|
+      version_path = root_path.join version
+      FileUtils.mkdir_p version_path
+      version_data.each do |namespace, endpoints|
+        next if namespace == ''
+        puts namespace
+        namespace_path = version_path.join namespace
+        FileUtils.mkdir_p namespace_path
+
+        namespace_txt = "# /#{version}/#{namespace}\n\n## Formats\n\n- `json`\n- `msgpack`\n\n## Endpoints\n"
+        endpoints.each do |endpoint, methods|
+          chunks = endpoint.split('/')
+          chunks = chunks[1, chunks.length - 2]
+          endpoint_path = if chunks.nil? or chunks.length < 1
+            namespace_path
+          else
+            namespace_path.join chunks.join '/'
+          end
+
+          FileUtils.mkdir_p endpoint_path
+
+          endpoint_file = "#{namespace}#{endpoint.gsub(".json", '')}.md"
+          endpoint_name = "#{namespace}#{endpoint}"
+
+          if endpoint == '.json'
+            endpoint      = "#{namespace}.json"
+            endpoint_name = endpoint
+            endpoint_file = "root/#{namespace}.md"
+            FileUtils.mkdir_p version_path.join "root"
+          end
+
+          endpoint_txt = ""
+
+          methods.each do |method, info|
+            namespace_txt += "\n### [#{method} #{endpoint}](#{endpoint_file})\n\n`#{method} https://retrospring.net/api/#{version}/#{endpoint_name}`\n\n#{info[:settings][:description][:description]}\n"
+
+            endpoint_txt = if endpoint_txt.blank?
+              "# #{method} /#{version}/#{endpoint_name}\n"
+            else
+              endpoint_txt + "\n# #{method} /#{version}/#{endpoint_name}\n"
+            end
+
+            endpoint_txt += "\n#{info[:settings][:description][:description]}\n"
+
+            params_txt = "\n## request parameters\n"
+
+            info[:params].each do |key, value|
+              next if key == "nanotime" or key == "id_to_string"
+
+              params_txt += "\n- `#{key}`\n  - TODO: Write description"
+
+              if value.is_a? String
+                params_txt += "\n  - required\n  - type: TODO\n  - CAVEAT: This is a REQUEST PATH variable."
+              else
+                params_txt += "\n  - #{if value["required"] == true then "required" else "optional" end}" unless value["required"].nil?
+                params_txt += "\n  - type: #{value["type"].split("::").last}" unless value["type"].nil?
+                params_txt += "\n  - default: #{value["default"]}" unless value["default"].nil?
+              end
+            end
+
+            if params_txt != "\n## request parameters\n"
+              endpoint_txt += params_txt
+              endpoint_txt += "\n"
+            end
+
+            caveats_txt = "\n## caveats\n"
+
+            unless info[:auth].nil?
+              caveats_txt += "\n# oauth scopes\n\n- #{info[:auth][:scopes].join '\n- '}\n"
+            end
+
+            unless info[:settings][:throttle].nil?
+              period = info[:settings][:throttle][:period]
+              limit = unless info[:settings][:throttle][:hourly].nil?
+                period = "hour"
+                info[:settings][:throttle][:hourly]
+              else
+                unless info[:settings][:throttle][:daily].nil?
+                  period = "day"
+                  info[:settings][:throttle][:daily]
+                else
+                  period = "#{period} seconds"
+                  info[:settings][:throttle][:limit]
+                end
+              end
+
+              caveats_txt += "\n# rate limit\n\nMax #{limit} requests every #{period}\n"
+            end
+
+            if caveats_txt != "\n## request parameters\n"
+              endpoint_txt += caveats_txt
+            end
+
+            endpoint_txt += "\n## responses\n\nTODO\n\n## error codes\n\nTODO\n"
+          end
+
+          endpoint_txt += "\n##### last revised on: #{Time.now.strftime "%Y/%m/%d %H:%M"}\n"
+
+          File.open(version_path.join(endpoint_file), "w") { |f| f.write(endpoint_txt) }
+        end
+
+        namespace_txt += "\n##### last revised on: #{Time.now.strftime "%Y/%m/%d %H:%M"}\n"
+
+        File.open(version_path.join("#{namespace}.md"), "w") { |f| f.write(namespace_txt) }
+      end
+    end
+  end
+
   desc "Recount everything!"
   task recount: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
