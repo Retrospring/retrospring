@@ -20,7 +20,7 @@ Doorkeeper.configure do
     else
       request.params[:user] = { login: request.params[:username], password: request.params[:password] }
       request.env["devise.allow_params_authentication"] = true
-      request.env["warden"].authenticate!(scope: :user)
+      request.env["warden"].authenticate(scope: :user)
     end
   end
 
