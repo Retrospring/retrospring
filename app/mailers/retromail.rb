@@ -7,7 +7,7 @@ class Retromail < Devise::Mailer
   def devise_mail(record, action, opts={})
     initialize_from_record(record)
     mail(headers_for(action, opts)) do |format|
-      format.txt
+      format.text
       format.html
     end
   end
