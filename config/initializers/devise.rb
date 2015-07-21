@@ -13,7 +13,7 @@ Devise.setup do |config|
   config.mailer_sender = "#{APP_CONFIG['site_name']} <#{APP_CONFIG['email_from']}>"
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'Retromail'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

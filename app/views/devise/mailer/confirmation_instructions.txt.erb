@@ -1,0 +1,6 @@
+Welcome to <%= APP_CONFIG['site_name'] %>, <%= @resource.screen_name %>!
+
+You can confirm your account email by copying link below,
+and entering it into your browser.
+
+<%= confirmation_url(@resource, confirmation_token: @token, protocol: (APP_CONFIG['https'] ? :https : :http)) %>
