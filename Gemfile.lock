@@ -242,6 +242,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -503,6 +507,7 @@ DEPENDENCIES
   jbuilder (~> 2.2.4)
   jquery-rails
   jquery-turbolinks
+  letter_opener
   momentjs-rails (>= 2.9.0)
   mysql2
   nprogress-rails
