@@ -17,9 +17,9 @@ module Paperclip
         case @attachment.name
         when :icon
         when :profile_picture
-          ['-crop', "'#{target.crop_w.to_i}x#{target.crop_h.to_i}+#{target.crop_x.to_i}+#{target.crop_y.to_i}'"]
+          ['-auto-orient', '-strip', '+repage', '-crop', "'#{target.crop_w.to_i}x#{target.crop_h.to_i}+#{target.crop_x.to_i}+#{target.crop_y.to_i}'"]
         when :profile_header
-          ['-crop', "'#{target.crop_h_w.to_i}x#{target.crop_h_h.to_i}+#{target.crop_h_x.to_i}+#{target.crop_h_y.to_i}'"]
+          ['-auto-orient', '-strip', '+repage', '-crop', "'#{target.crop_h_w.to_i}x#{target.crop_h_h.to_i}+#{target.crop_h_x.to_i}+#{target.crop_h_y.to_i}'"]
         end
       end
     end
