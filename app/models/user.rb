@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
     screen_name.strip!
   end
 
+  validates :email, fake_email: true
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }, screen_name: true
 
   validates :display_name, length: { maximum: 50 }

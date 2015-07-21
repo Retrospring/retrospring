@@ -115,6 +115,9 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    fake_email_validator (1.0.11)
+      activemodel
+      mail
     faker (1.4.3)
       i18n (~> 0.5)
     faraday (0.9.1)
@@ -496,6 +499,7 @@ DEPENDENCIES
   devise-async
   devise-i18n
   factory_girl_rails
+  fake_email_validator
   faker
   fog
   fog-aws
