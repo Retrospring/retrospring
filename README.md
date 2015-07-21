@@ -18,4 +18,4 @@ Guidelines for Pull Requests and general information about how you can help us i
 
 ## License
 
-AGPLv3.  
+[AGPLv3](https://github.com/Retrospring/retrospring/blob/master/LICENSE).  
