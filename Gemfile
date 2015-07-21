@@ -91,4 +91,5 @@ group :development, :test do
   gem 'simplecov-rcov', require: false
   gem 'database_cleaner'
   gem 'better_errors'
+  gem "letter_opener" # Use this just in local test environments
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150704072402) do
+ActiveRecord::Schema.define(version: 20150721154255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(version: 20150704072402) do
   create_table "answers", force: :cascade do |t|
     t.text     "content"
     t.integer  "question_id"
-    t.integer  "comment_count", default: 0, null: false
+    t.integer  "comment_count", default: 0,     null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "smile_count",   default: 0, null: false
+    t.integer  "smile_count",   default: 0,     null: false
+    t.boolean  "nsfw",          default: false
   end
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
@@ -113,6 +114,60 @@ ActiveRecord::Schema.define(version: 20150704072402) do
     t.datetime "updated_at"
   end
 
+  create_table "oauth_access_grants", force: :cascade do |t|
+    t.integer  "resource_owner_id", null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.integer  "expires_in",        null: false
+    t.text     "redirect_uri",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "revoked_at"
+    t.string   "scopes"
+  end
+
+  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
+
+  create_table "oauth_access_tokens", force: :cascade do |t|
+    t.integer  "resource_owner_id"
+    t.integer  "application_id"
+    t.string   "token",             null: false
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at",        null: false
+    t.string   "scopes"
+  end
+
+  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
+  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
+  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
+
+  create_table "oauth_applications", force: :cascade do |t|
+    t.string   "name",                           null: false
+    t.string   "uid",                            null: false
+    t.string   "secret",                         null: false
+    t.text     "redirect_uri",                   null: false
+    t.string   "scopes",            default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "description"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.integer  "crop_x"
+    t.integer  "crop_y"
+    t.integer  "crop_w"
+    t.integer  "crop_h"
+    t.boolean  "icon_processing"
+  end
+
+  add_index "oauth_applications", ["name"], name: "index_oauth_applications_on_name", unique: true, using: :btree
+  add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
+  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+
   create_table "questions", force: :cascade do |t|
     t.string   "content"
     t.boolean  "author_is_anonymous"
@@ -121,7 +176,8 @@ ActiveRecord::Schema.define(version: 20150704072402) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "answer_count",        default: 0, null: false
+    t.integer  "answer_count",        default: 0,     null: false
+    t.boolean  "nsfw",                default: false
   end
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
@@ -178,12 +234,12 @@ ActiveRecord::Schema.define(version: 20150704072402) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                             default: "",    null: false
-    t.string   "encrypted_password",                default: "",    null: false
+    t.string   "email",                             default: "",                    null: false
+    t.string   "encrypted_password",                default: "",                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,     null: false
+    t.integer  "sign_in_count",                     default: 0,                     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -191,19 +247,19 @@ ActiveRecord::Schema.define(version: 20150704072402) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "screen_name"
-    t.integer  "friend_count",                      default: 0,     null: false
-    t.integer  "follower_count",                    default: 0,     null: false
-    t.integer  "asked_count",                       default: 0,     null: false
-    t.integer  "answered_count",                    default: 0,     null: false
-    t.integer  "commented_count",                   default: 0,     null: false
+    t.integer  "friend_count",                      default: 0,                     null: false
+    t.integer  "follower_count",                    default: 0,                     null: false
+    t.integer  "asked_count",                       default: 0,                     null: false
+    t.integer  "answered_count",                    default: 0,                     null: false
+    t.integer  "commented_count",                   default: 0,                     null: false
     t.string   "display_name"
-    t.integer  "smiled_count",                      default: 0,     null: false
-    t.boolean  "admin",                             default: false, null: false
-    t.string   "motivation_header",                 default: "",    null: false
-    t.string   "website",                           default: "",    null: false
-    t.string   "location",                          default: "",    null: false
-    t.text     "bio",                               default: "",    null: false
-    t.boolean  "moderator",                         default: false, null: false
+    t.integer  "smiled_count",                      default: 0,                     null: false
+    t.boolean  "admin",                             default: false,                 null: false
+    t.string   "motivation_header",                 default: "",                    null: false
+    t.string   "website",                           default: "",                    null: false
+    t.string   "location",                          default: "",                    null: false
+    t.text     "bio",                               default: "",                    null: false
+    t.boolean  "moderator",                         default: false,                 null: false
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
@@ -220,10 +276,13 @@ ActiveRecord::Schema.define(version: 20150704072402) do
     t.boolean  "privacy_show_in_search",            default: true
     t.boolean  "permanently_banned",                default: false
     t.boolean  "blogger",                           default: false
+    t.boolean  "nsfw",                              default: false
+    t.boolean  "show_nsfw",                         default: false
+    t.boolean  "privacy_allow_nsfw_questions",      default: true
     t.boolean  "contributor",                       default: false
     t.string   "ban_reason"
     t.datetime "banned_until"
-    t.integer  "comment_smiled_count",              default: 0,     null: false
+    t.integer  "comment_smiled_count",              default: 0,                     null: false
     t.string   "profile_header_file_name"
     t.string   "profile_header_content_type"
     t.integer  "profile_header_file_size"
@@ -233,10 +292,17 @@ ActiveRecord::Schema.define(version: 20150704072402) do
     t.integer  "crop_h_y"
     t.integer  "crop_h_w"
     t.integer  "crop_h_h"
+    t.string   "socket_key",                        default: ""
+    t.datetime "socket_key_expiry",                 default: '0001-01-01 00:00:00'
     t.string   "locale",                            default: "en"
-    t.boolean  "translator",                        default: false
+    t.boolean  "translator"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["screen_name"], name: "index_users_on_screen_name", unique: true, using: :btree
