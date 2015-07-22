@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :async, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, :authentication_keys => [:login]
+         :validatable, :confirmable, :authentication_keys => [:login]
 
 #   attr_accessor :login
 
@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
     screen_name.strip!
   end
 
+  validates :email, fake_email: true
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }, screen_name: true
 
   validates :display_name, length: { maximum: 50 }

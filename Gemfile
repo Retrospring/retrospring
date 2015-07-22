@@ -77,6 +77,8 @@ gem 'grape-entity'
 gem 'grape-msgpack'
 gem 'grape-throttle', git: 'https://github.com/Retrospring/grape-throttle.git'
 
+gem 'fake_email_validator'
+
 group :development do
   # require spring 1.3.5 since shit's on fire on my local instance with 1.3.4 (Gem::LoadError)
   # gem 'spring', '~> 1.3.5'
@@ -104,4 +106,5 @@ group :development, :test do
   gem 'simplecov-rcov', require: false
   gem 'database_cleaner'
   gem 'better_errors'
+  gem "letter_opener" # Use this just in local test environments
 end

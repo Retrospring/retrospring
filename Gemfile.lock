@@ -134,6 +134,9 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    fake_email_validator (1.0.11)
+      activemodel
+      mail
     faker (1.4.3)
       i18n (~> 0.5)
     faraday (0.9.1)
@@ -279,6 +282,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.3)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -554,6 +561,7 @@ DEPENDENCIES
   doorkeeper
   doorkeeper-i18n
   factory_girl_rails
+  fake_email_validator
   faker
   fog
   fog-aws
@@ -569,6 +577,7 @@ DEPENDENCIES
   jbuilder (~> 2.2.4)
   jquery-rails
   jquery-turbolinks
+  letter_opener
   momentjs-rails (>= 2.9.0)
   mysql2
   nprogress-rails
