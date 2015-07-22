@@ -5,7 +5,7 @@ class Sleipnir::Entities::CommentEntity < Sleipnir::Entities::BaseEntity
 
   expose :smile_count, as: :smiles
 
-  expose :answer_id
+  expose :answer, with: Sleipnir::Entities::AnswerEntity
 
   expose :application, as: :created_with, with: Sleipnir::Entities::ApplicationReferenceEntity
 

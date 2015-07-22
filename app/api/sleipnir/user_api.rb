@@ -156,14 +156,14 @@ class Sleipnir::UserAPI < Sleipnir::MountAPI
     end
     get "/:id/questions", as: :user_questions_api do
       collection = since_id Question, "author_is_anonymous = FALSE AND user_id = ?", [params[:id]]
-      represent_collection collection, with: Sleipnir::Entities::QuestionsEntity, no_question_user: true
+      represent_collection collection, with: Sleipnir::Entities::QuestionsEntity
     end
 
     desc "Given user's answers"
     throttle hourly: 720
     get "/:id/answers", as: :user_answers_api do
       collection = since_id Answer, "user_id = ?", [params[:id]]
-      represent_collection collection, with: Sleipnir::Entities::AnswersEntity, no_answer_user: true
+      represent_collection collection, with: Sleipnir::Entities::AnswersEntity
     end
 
     desc "Given user's followers"

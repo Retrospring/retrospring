@@ -10,7 +10,7 @@ class Sleipnir::Entities::AnswerEntity < Sleipnir::Entities::BaseEntity
 
   expose :user, with: Sleipnir::Entities::UserSlimEntity, unless: :no_answer_user
 
-  expose :question_id
+  expose :question, with: Sleipnir::Entities::QuestionEntity
 
   expose :subscribed, if: :current_user_id
 
