@@ -555,7 +555,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   delayed_paperclip
-  devise
+  devise (~> 3.4.1)
   devise-async
   devise-i18n
   doorkeeper
