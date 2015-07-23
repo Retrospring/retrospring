@@ -17,10 +17,13 @@ class ModerationController < ApplicationController
       Report.where(deleted: false).each do |report|
         target = if report.target.is_a? User
           report.target
-        else
-          next if report.target.user.nil?
+        elsif report.target.respond_to? :user
           report.target.user
+        else
+          nil
         end
+
+        next if target.nil?
 
         @users[target] ||= 0
         @users[target] += 1
@@ -28,7 +31,9 @@ class ModerationController < ApplicationController
 
       @users = @users.sort_by do |k, v|
         v
-      end.reverse.to_h
+      end.reverse
+
+      Hash[@users]
     else
       @user_id = @user_id.to_i
       @type = 'all'
