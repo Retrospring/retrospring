@@ -70,6 +70,13 @@ class User < ActiveRecord::Base
                    end unless website.blank?
   end
 
+  BLACKLIST_FOR_SERIALIZATION = [
+    :email, :profile_picture_content_type, :profile_picture_file_size,
+    :profile_header_content_type, :profile_header_file_size, :encrypted_password,
+    :confirmation_token, :unconfirmed_email, :current_sign_in_ip, :last_sign_in_ip,
+    :reset_password_token, :unlock_token
+  ].freeze
+
   # when a user deleted himself, all reports relating to the user are invalid
   before_destroy do
     rep = Report.where(target_id: self.id, type: 'Reports::User')
@@ -87,6 +94,19 @@ class User < ActiveRecord::Base
       application.owner_id = -1
       application.save validate: false
     end
+  end
+
+  def serializable_hash(options)
+    options ||= {}
+    options[:except] = Array(options[:except])
+
+    if options[:force_except]
+      options[:except].concat Array(options[:force_except])
+    else
+      options[:except].concat BLACKLIST_FOR_SERIALIZATION
+    end
+
+    super(options)
   end
 
   def login=(login)
