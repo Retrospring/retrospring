@@ -12,18 +12,24 @@
       %p
         %b= t 'views.moderation.moderationbox.reason'
         %br
-        - (report.reason || "No reason provided.").lines.each do |reason|
-          - next unless reason.strip.length > 0
-          = reason.strip
-          %br
+          - if report.reason.nil? or report.reason.strip.blank?
+            No reason provided
+          - else
+            - report.reason.lines.each do |reason|
+              - next if reason.strip.blank?
+              = reason.strip
       .row
-        .col-md-6.col-sm-4.col-xs-6.text-left
+        .col-md-8.col-sm-8.col-xs-8.text-left
           %a.btn.btn-primary{href: content_url(report)}
             = t('views.moderation.moderationbox.view', content: report.type.sub('Reports::', ''))
           - if report.target.respond_to? :user and not report.target.user.nil?
             %a.btn.btn-primary{href: show_user_profile_path(report.target.user.screen_name)}
               = t('views.moderation.moderationbox.view', content: t('views.general.user'))
-        .col-md-6.col-sm-8.col-xs-6.text-right
+            %a.btn.btn-primary{href: moderation_priority_path(report.target.user.id)}
+              Reports
+            %a.btn.btn-primary{href: moderation_ip_path(report.target.user.id)}
+              IP
+        .col-md-4.col-sm-4.col-xs-4.text-right
           %span.mod-count{id: "mod-count-#{report.id}"}
             = report.votes
           .btn-group
