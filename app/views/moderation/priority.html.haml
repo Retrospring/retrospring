@@ -1,0 +1,16 @@
+- provide(:title, generate_title("Moderation"))
+= render 'moderation/moderation_nav'
+.container.j2-page
+  .row
+    = render 'moderation/moderation_tabs'
+    .col-md-9.col-sm-9.col-xs-12
+      %h2
+        - if @host.nil?
+          Users sorted by reports
+        - else
+          Users with the same IP
+      #users
+        .row
+          - @users.each do |u, c|
+            .col-md-4.col-sm-12col-xs-12
+              = render 'moderation/userbox', user: u, count: c
