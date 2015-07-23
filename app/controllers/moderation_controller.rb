@@ -33,7 +33,7 @@ class ModerationController < ApplicationController
         v
       end.reverse
 
-      Hash[@users]
+      @users = Hash[@users]
     else
       @user_id = @user_id.to_i
       @type = 'all'
