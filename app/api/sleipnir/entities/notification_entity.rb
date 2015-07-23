@@ -6,21 +6,23 @@ class Sleipnir::Entities::NotificationEntity < Sleipnir::Entities::BaseEntity
     if options[:payload_id]
       notification.target_id
     elsif notification.target.nil?
-      { id: notification.target_id, error: "ERR_MALFORMED_TARGET", type: notification.target_type, payload: nil, user: nil} # test?
+      { id: notification.target_id, error: "ERR_MALFORMED_TARGET" } # test?
     else
       case notification.target_type
       when 'Comment'
-        Sleipnir::Entities::CommentEntity.represent notification.target, options
+        { comment: Sleipnir::Entities::CommentEntity.represent(notification.target, options) }
       when 'CommentSmile'
         { user: Sleipnir::Entities::UserSlimEntity.represent(notification.target.user, options), comment: Sleipnir::Entities::CommentEntity.represent(notification.target.comment, options) }
       when 'Smile'
         { user: Sleipnir::Entities::UserSlimEntity.represent(notification.target.user, options), answer: Sleipnir::Entities::AnswerEntity.represent(notification.target.answer, options) }
       when 'Answer'
-        Sleipnir::Entities::AnswerEntity.represent notification.target, options
+        { answer: Sleipnir::Entities::AnswerEntity.represent(notification.target, options) }
       when 'Relationship'
-        Sleipnir::Entities::RelationshipEntity.represent notification.target, options
+        { relationship: Sleipnir::Entities::RelationshipEntity.represent(notification.target, options) }
+      when 'Question'
+        { question: Sleipnir::Entities::QuestionEntity.represent(notification.target, options) }
       else
-        { id: notification.target_id, error: "ERR_UNKNOWN_TYPE", type: notification.target_type, payload: nil, user: nil}
+        { id: notification.target_id, error: "ERR_UNKNOWN_TYPE" }
       end
     end
   end

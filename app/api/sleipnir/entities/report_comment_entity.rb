@@ -3,6 +3,8 @@ class Sleipnir::Entities::ReportCommentEntity < Sleipnir::Entities::BaseEntity
 
   expose :content, as: :comment
 
+  expose :report, with: Sleipnir::Entities::ReportEntity
+
   expose :user, with: Sleipnir::Entities::UserSlimEntity
 
   expose :created_at, format_with: :nanotime

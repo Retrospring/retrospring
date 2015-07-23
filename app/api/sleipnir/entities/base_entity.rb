@@ -1,7 +1,7 @@
 class Sleipnir::Entities::BaseEntity < Grape::Entity
   format_with(:strid) { |id| if options[:id_to_string] then id.to_s else id end } # ruby has no max int, 99% of other languages do
   format_with(:nanotime) { |t| if options[:nanotime] then t.to_i * 1000 else t.to_i end } # javascript, no javascript
-
+  
   def self.expose_image(tag, as = tag)
     expose tag, as: as do |object|
       attachment = object.send(tag)

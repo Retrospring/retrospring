@@ -7,6 +7,8 @@ class Sleipnir::Entities::CommentEntity < Sleipnir::Entities::BaseEntity
 
   expose :answer, with: Sleipnir::Entities::AnswerEntity
 
+  expose :user, with: Sleipnir::Entities::UserSlimEntity
+
   expose :application, as: :created_with, with: Sleipnir::Entities::ApplicationReferenceEntity
 
   expose :created_at, format_with: :nanotime
