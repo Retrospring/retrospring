@@ -1,22 +1,14 @@
 .panel.panel-default
+  %img.userbox--header{src: user.profile_header.url(:mobile)}
   .panel-body
-    .media
-      .pull-left
-        %img.img-rounded.profile--img{src: gravatar_url(user)}
-      .media-body
-        - if user.display_name.blank?
-          %h2
-            %a{href: show_user_profile_path(user.screen_name)}
-              = user.screen_name
-        - else
-          %h2.profile--displayname
-            %a{href: show_user_profile_path(user.screen_name)}
-              = user.display_name
-          %h4.text-muted.profile--username= user.screen_name
+    %img.userbox--avatar{src: user.profile_picture.url(:small)}
+    %p.userbox--username
+      %a.profile--displayname{href: show_user_profile_path(user.screen_name)}
+        = user.screen_name
     .row
       .col-md-12.col-sm-12.col-xs-12
         - unless count.nil?
-          %h4.entry-text#asked-count
+          %h4.entry-text.text-center#asked-count
             = count
             = 'Report'.pluralize(count)
             %br
