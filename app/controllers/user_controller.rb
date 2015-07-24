@@ -91,4 +91,8 @@ class UserController < ApplicationController
 
   def data
   end
+
+  def theme
+    render 'user/theme', formats: [:css], handlers: [:scss, :erb]
+  end
 end

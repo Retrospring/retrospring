@@ -1,0 +1,95 @@
+<% @primary_color ||= "#222" %>
+<% @primary_border ||= "#151515" %>
+<% @primary_text ||= "#eee" %>
+<% @primary_link ||= "#666" %>
+<% @primary_hover ||= "#222" %>
+<% @secondary_color ||= "#333" %>
+<% @secondary_border ||= "#111" %>
+<% @secondary_text ||= "#eee" %>
+<% @secondary_link ||= "#fff" %>
+<% @background_color ||= "#555" %>
+body#version1 {
+  background-color: <%= @background_color %>;
+}
+
+body#version1 nav.navbar, body#version1 nav.navbar .dropdown-menu  {
+  background-color: <%= @primary_color %>;
+  border-color:     <%= @primary_border %>;
+}
+
+body#version1 nav.navbar * {
+  color: <%= @primary_text %>;
+}
+
+body#version1 .nav > li:not(.profile--image-dropdown):before {
+  background-color: <%= @primary_text %>;
+}
+
+body#version1 a, body#version1 .dropdown-menu a {
+  color: <%= @primary_link %>;
+}
+
+body#version1 .dropdown-menu .list-group-item-warning {
+  background-color: <%= @primary_border %>;
+}
+
+body#version1 .dropdown-menu > li > a:hover,
+body#version1 .dropdown-menu > li > a:focus,
+body#version1 .list-group > a:hover,
+body#version1 .list-group > a:focus,
+body#version1 .list-group > a.active {
+  background-color: <%= @primary_border %>;
+  border-color:     <%= @primary_border %>;
+  color:            <%= @primary_text %>;
+}
+
+body#version1 .btn {
+  color: <%= @primary_text %>;
+}
+
+body#version1 .panel {
+  border-color:     <%= @primary_border %>;
+  background-color: <%= @secondary_color %>;
+  color:            <%= @primary_text %>;
+  box-shadow:       none;
+}
+
+body#version1 .list-group > a {
+  background-color: <%= @secondary_color %>;
+  border-color:     <%= @secondary_border %>;
+}
+
+body#version1 .locales, body .locales a {
+  color: <%= @primary_text %> !important;
+}
+
+body#version1 .text-muted {
+  color: <%= @secondary_text %>;
+}
+
+body#version1 .text-muted a {
+  color: <%= @secondary_link %>;
+}
+
+body#version1 #profile--header.profile--no-header::before, body#version1 .userbox--no-header::before {
+  content:    "";
+  position:   absolute;
+  top:        0;
+  left:       0;
+  right:      0;
+  bottom:     0;
+  background: <%= @primary_border %>;
+}
+
+body#version1 .userbox--no-header, body#version1 .panel-body {
+  position: relative;
+}
+
+body#version1 #profile--header.profile--no-header img, body#version1 .userbox--no-header img  {
+  opacity: 0;
+}
+
+body#version1 #debug {
+  background: white;
+  color:      black;
+}

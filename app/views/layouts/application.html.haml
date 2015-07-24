@@ -19,22 +19,24 @@
     - if user_signed_in?
       - if current_user.mod?
         = javascript_include_tag 'moderation', 'data-turbolinks-track' => true
+    %link{rel: 'stylesheet', href: '/yuki/theme.css', media: :all, 'data-turbolinks-track' => true}
     = csrf_meta_tags
-  %body
+  %body#version1
     = render 'layouts/header'
     = yield
     = render 'shared/locales'
     - if Rails.env.development?
-      %hr
-      .container
-        %p
-          Current branch:
-          %code= `git rev-parse --abbrev-ref HEAD`
-          (commit
-          = succeed ')' do
-            = `git rev-parse --short HEAD`.strip
-        %p.text-danger Debug params:
-        = debug params
+      #debug
+        %hr
+        .container
+          %p
+            Current branch:
+            %code= `git rev-parse --abbrev-ref HEAD`
+            (commit
+            = succeed ')' do
+              = `git rev-parse --short HEAD`.strip
+          %p.text-danger Debug params:
+          = debug params
     - if Rails.env.production?
       %noscript
         %p
