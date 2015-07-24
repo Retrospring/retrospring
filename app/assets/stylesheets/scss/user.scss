@@ -120,3 +120,22 @@ $colours: danger $brand-danger,
     margin-top: -30px;
   }
 }
+
+.userbox--header {
+  width: 100%;
+  height: auto;
+}
+
+.userbox--avatar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -60px;
+  border-radius: 5px;
+}
+
+.userbox--username {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
