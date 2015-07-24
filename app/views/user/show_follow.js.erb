@@ -1,5 +1,5 @@
 $('#users').append('<% @users.each do |user|
-  %><div class="col-sm-6"><%= j render 'shared/userbox', user: user
+  %><div class="col-md-4 col-sm-6 col-xs-12"><%= j render 'shared/userbox', user: user
 %></div><% end %>');
 <% if @users.next_page %>
   $('#pagination').html('<%= j will_paginate @users, renderer: BootstrapPagination::Rails, page_links: false %>');
