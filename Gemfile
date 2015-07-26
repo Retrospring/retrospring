@@ -68,6 +68,8 @@ gem 'redis'
 
 gem 'fake_email_validator'
 
+gem 'rollbar', '~> 1.5.3'
+
 group :development do
   # require spring 1.3.5 since shit's on fire on my local instance with 1.3.4 (Gem::LoadError)
   gem 'spring', '~> 1.3.5'
