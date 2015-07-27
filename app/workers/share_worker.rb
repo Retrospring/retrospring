@@ -1,7 +1,7 @@
 class ShareWorker
   include Sidekiq::Worker
 
-  sidekiq_options queue: :share
+  sidekiq_options queue: :share, retry: false
 
   # @param user_id [Integer] the user id
   # @param answer_id [Integer] the user id
@@ -11,7 +11,7 @@ class ShareWorker
       begin
         service.post(Answer.find(answer_id)) if services.include? service.provider
       rescue => e
-        Rails.logger.error "failed to post answer #{answer_id} to #{service.provider} for user #{user_id}: #{e.message}"
+        logger.info "failed to post answer #{answer_id} to #{service.provider} for user #{user_id}: #{e.message}"
       end
     end
   end
