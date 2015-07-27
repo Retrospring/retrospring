@@ -11,7 +11,7 @@ class ShareWorker
       begin
         service.post(Answer.find(answer_id)) if services.include? service.provider
       rescue => e
-        Rails.logger.error "failed to post answer #{answer_id} to #{service.provider} for user #{user_id}: #{e.message}"
+        logger.error "failed to post answer #{answer_id} to #{service.provider} for user #{user_id}: #{e.message}"
       end
     end
   end
