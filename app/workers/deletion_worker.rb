@@ -8,7 +8,7 @@ class DeletionWorker
     begin
       User.find(resource_id).destroy!
     rescue => e
-      logger.error "failed to delete user: #{e.message}"
+      logger.info "failed to delete user: #{e.message}"
     end
   end
 end

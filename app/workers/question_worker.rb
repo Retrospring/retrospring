@@ -19,7 +19,7 @@ class QuestionWorker
         end
       end
     rescue => e
-      logger.error "failed to ask question: #{e.message}"
+      logger.info "failed to ask question: #{e.message}"
     end
   end
 end
