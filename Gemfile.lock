@@ -435,6 +435,8 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
+    tiny-color-rails (0.0.2)
+      railties (>= 3.0)
     tumblr_client (0.8.5)
       faraday (~> 0.9.0)
       faraday_middleware (~> 0.9.0)
@@ -545,6 +547,7 @@ DEPENDENCIES
   spring (~> 1.3.5)
   sweetalert-rails
   thin
+  tiny-color-rails
   tumblr_client
   turbolinks
   twemoji-rails
