@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  include ThemeHelper
+
   before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy data)
 
   def show
@@ -92,15 +94,7 @@ class UserController < ApplicationController
   def data
   end
 
-  SCSS_STYLE = if Rails.env == 'production'
-    :compressed
-  else
-    :compact
-  end.freeze
-
   def theme
-    txt = render_to_string 'user/theme.css.scss', formats: [:erb]
-    sass = Sass::Engine.new txt, style: SCSS_STYLE, cache: false, load_paths: [], syntax: :scss
-    render body: sass.render.to_s, content_type: 'text/css'
+    render body: render_theme_with_context, content_type: 'text/css'
   end
 end
