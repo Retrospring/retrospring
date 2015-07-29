@@ -10,3 +10,5 @@ production:
   - paperclip
   - mailer
   - deletion
+  - rollbar
+  - question

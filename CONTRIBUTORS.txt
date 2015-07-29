@@ -1,0 +1,10 @@
+List of contributors, format is "Name @github <email>"
+
+Andreas N. @pixeldesu
+Georg G. @nilsding
+Yuki @yukimono
+Adel D.-K.
+Howl
+Iain D.
+Jona H. @schisma @ix
+Robin B.
