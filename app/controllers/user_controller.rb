@@ -92,7 +92,15 @@ class UserController < ApplicationController
   def data
   end
 
+  SCSS_STYLE = if Rails.env == 'production'
+    :compressed
+  else
+    :compact
+  end.freeze
+
   def theme
-    render 'user/theme', formats: [:css], handlers: [:scss, :erb]
+    txt = render_to_string 'user/theme.css.scss', formats: [:erb]
+    sass = Sass::Engine.new txt, style: SCSS_STYLE, cache: false, load_paths: [], syntax: :scss
+    render body: sass.render.to_s, content_type: 'text/css'
   end
 end

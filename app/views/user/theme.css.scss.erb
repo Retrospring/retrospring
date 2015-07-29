@@ -1,0 +1,106 @@
+// PRIMARY COLOR
+$primary_color:  <%= @primary_color  || "#222222" %>;
+$primary_border: <%= @primary_border || "#151515" %>;
+$primary_text:   <%= @primary_text   || "#eeeeee" %>;
+
+// DANGER COLOR
+$danger_color:  <%= @danger_color  || "#222222" %>;
+$danger_border: <%= @danger_border || "#151515" %>;
+$danger_text:   <%= @danger_text   || "#eeeeee" %>;
+
+// SUCCESS COLOR
+$success_color:  <%= @success_color  || "#222222" %>;
+$success_border: <%= @success_border || "#151515" %>;
+$success_text:   <%= @success_text   || "#eeeeee" %>;
+
+// WARNING COLOR
+$warning_color:  <%= @warning_color  || "#222222" %>;
+$warning_border: <%= @warning_border || "#151515" %>;
+$warning_text:   <%= @warning_text   || "#eeeeee" %>;
+
+// INFO COLOR
+$info_color:  <%= @info_color  || "#222222" %>;
+$info_border: <%= @info_border || "#151515" %>;
+$info_text:   <%= @info_text   || "#eeeeee" %>;
+
+// COLOR COLOR (DEFAULT)
+$color_color:  <%= @color_color  || "#222222" %>;
+$color_border: <%= @color_border || "#151515" %>;
+$color_text:   <%= @color_text   || "#eeeeee" %>;
+
+
+// AUXILIARY COLOR
+$link_color:       <%= @link_color       || "#111111" %>;
+$background_color: <%= @background_color || "#555555" %>;
+$background_text:  <%= @background_text  || "#eeeeee" %>;
+$background_muted: <%= @background_muted || "#bbbbbb" %>;
+
+body#version1 {
+  .links a {
+    &, :hover, :active {
+      color: $link_color;
+    }
+  }
+
+  background-color: $background_color;
+  color:            $background_text;
+
+  nav.navbar {
+    &, .dropdown-menu {
+      background-color: $primary_color;
+      border-color:     $primary_border;
+    }
+
+    a {
+      &, :hover, :active {
+        color: $primary_text;
+      }
+    }
+
+    > li:not(.profile--image-dropdown):before {
+      background-color: $primary_border;
+    }
+  }
+
+  .j2-jumbo {
+    background-color: $primary_color;
+    border-color:     $primary_border;
+  }
+
+  #profile--header.profile--no-header:before, .userbox--no-header:before {
+    content:    "";
+    position:   absolute;
+    top:        0;
+    left:       0;
+    right:      0;
+    bottom:     0;
+    background: $primary_border;
+
+    img {
+      opacity: 0;
+    }
+  }
+
+  .userbox--no-header, .panel-body {
+    position: relative;
+  }
+
+  .btn-primary {
+    background-color: $primary_color;
+    border-color:     $primary_border;
+    color:            $primary_text;
+
+    &:hover {
+      background-color: $primary_border;
+    }
+  }
+
+  .text-muted {
+    color: $background_muted;
+  }
+
+  #debug {
+    background: white;
+    color:      black;
+  }
+}
