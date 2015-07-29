@@ -20,7 +20,13 @@ module ThemeHelper
           :compact
         end.freeze
 
-        erb = ERB.new File.read Rails.root.join 'app/views/user/theme.css.scss.erb'
+        css = if __THEME_CSS_CACHE.nil?
+          File.read Rails.root.join 'app/views/user/theme.css.scss.erb'
+        else
+          __THEME_CSS_CACHE
+        end
+
+        erb = ERB.new css
         sass = Sass::Engine.new erb.result(binding), style: style, cache: false, load_paths: [], syntax: :scss
         return sass.render.to_s
       end
