@@ -20,10 +20,10 @@ module ThemeHelper
           :compact
         end.freeze
 
-        css = if __THEME_CSS_CACHE.nil?
+        css = if $__THEME_CSS_CACHE_V1.nil?
           File.read Rails.root.join 'app/views/user/theme.css.scss.erb'
         else
-          __THEME_CSS_CACHE
+          $__THEME_CSS_CACHE_V1
         end
 
         erb = ERB.new css

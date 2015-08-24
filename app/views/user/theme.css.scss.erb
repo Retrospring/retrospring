@@ -1,5 +1,15 @@
 // TODO: Use canonical colours rather than this test midnight scheme.
 
+// TODO: "new" notifications
+// TODO: notification page
+// TODO: tabs
+// TODO: pill lists
+
+// LEGEND
+// TYPE_COLOR:  BACKGROUND COLOR
+// TYPE_BORDER: BORDER COLOR
+// TYPE_TEXT:   TEXT COLOR
+
 // PRIMARY COLOR
 $primary_color:  <%= @primary_color  || "#222222" %>;
 $primary_border: <%= @primary_border || "#151515" %>;
@@ -25,10 +35,10 @@ $info_color:  <%= @info_color  || "#222222" %>;
 $info_border: <%= @info_border || "#151515" %>;
 $info_text:   <%= @info_text   || "#eeeeee" %>;
 
-// COLOR COLOR (DEFAULT)
-$color_color:  <%= @color_color  || "#222222" %>;
-$color_border: <%= @color_border || "#151515" %>;
-$color_text:   <%= @color_text   || "#eeeeee" %>;
+// DEFAULT COLOR
+$default_color:  <%= @default_color  || "#222222" %>;
+$default_border: <%= @default_border || "#151515" %>;
+$default_text:   <%= @default_text   || "#eeeeee" %>;
 
 // PANEL COLORS
 
@@ -39,10 +49,14 @@ $background_text:  <%= @background_text  || "#eeeeee" %>;
 $background_muted: <%= @background_muted || "#bbbbbb" %>;
 
 body#version1 {
-  .links a {
-    &, :hover, :active {
+  a, {
+    &, &:hover, &:active {
       color: $link_color;
     }
+  }
+
+  hr, .locales #locales-panel ul {
+    border-color: $link_color;
   }
 
   background-color: $background_color;
@@ -52,10 +66,31 @@ body#version1 {
     &, .dropdown-menu {
       background-color: $primary_color;
       border-color:     $primary_border;
+      color:            $primary_color;
+
+      .media {
+        color: $primary_text;
+      }
+
+      > li.divider {
+        background-color: $primary_border;
+      }
+
+      > li {
+        > a:hover {
+          background-color: mix($primary_color, $primary_text, 90%);
+        }
+
+        a {
+          &, &:hover, &:active {
+            color: $primary_text;
+          }
+        }
+      }
     }
 
     a {
-      &, :hover, :active {
+      &, &:hover, &:active {
         color: $primary_text;
       }
     }
@@ -68,6 +103,10 @@ body#version1 {
   .j2-jumbo {
     background-color: $primary_color;
     border-color:     $primary_border;
+  }
+
+  .media {
+    color: $default_text;
   }
 
   #profile--header.profile--no-header:before, .userbox--no-header:before {
@@ -88,6 +127,57 @@ body#version1 {
     position: relative;
   }
 
+  .panel, .modal-dialog {
+    border-color: $default_border;
+
+    .panel-heading, .panel-footer, .panel-body, .modal-header, .modal-footer, .modal-body, .modal-content {
+      &, *:not(input), a, a:hover, a:active {
+        color: $default_text;
+      }
+
+      select {
+        background-color: $default_color;
+        border-color:     $default_border;
+      }
+
+      .input-group-addon {
+        background: $default_color;
+        border:     $default_color;
+      }
+    }
+
+    &, .panel-heading, .panel-footer, .modal-header, .modal-footer {
+      background-color: mix($default_color, $default_text, 90%);
+      border-color:     mix($default_color, $default_text, 85%);
+    }
+
+    .panel-body, .modal-body, .modal-content {
+      background-color: $default_color;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: $default_color;
+    border-color:     $default_border;
+    color:            $default_text;
+
+    > li.divider {
+      background-color: $default_border;
+    }
+
+    > li {
+      > a:hover {
+        background-color: mix($default_color, $default_text, 90%);
+      }
+
+      a {
+        &, &:hover, &:active {
+          color: $default_text;
+        }
+      }
+    }
+  }
+
   .btn-primary {
     background-color: $primary_color;
     border-color:     $primary_border;
@@ -102,8 +192,43 @@ body#version1 {
     color: $background_muted;
   }
 
+  // ERB magic because i'm lazy.
+<%
+for color in %W(primary danger success warning info default)
+%>
+  .btn-<%= color %>, .alert-<%= color %>, .label-<%= color %> {
+    color:            $<%= color %>_text;
+    background-color: $<%= color %>_color;
+    border-color:     $<%= color %>_border;
+  }
+
+  .btn-<%= color %>:hover {
+    background-color: mix($<%= color %>_color, $<%= color %>_text, 90%);
+  }
+<%
+end
+%>
+
   #debug {
     background: white;
     color:      black;
+  }
+}
+
+/* nprogress */
+$nprogress-color: lighten($primary_color, 25%);
+
+#nprogress {
+  .bar {
+    background: $nprogress-color;
+  }
+
+  .peg {
+    box-shadow: 0 0 10px $nprogress-color, 0 0 5px $nprogress-color;
+  }
+
+  .spinner-icon {
+    border-top-color:  $nprogress-color;
+    border-left-color: $nprogress-color;
   }
 }
