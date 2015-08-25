@@ -15,8 +15,12 @@ class Theme < ActiveRecord::Base
     greater_than_or_equal_to: 0, less_than_or_equal_to: 0xFFFFFF,
     allow_nil: true, only_integer: true
 
-  has_attached_file :css, use_timestamp: false
-  validates_attachment_content_type :css, content_type: 'text/x-c'
+  has_attached_file :css, use_timestamp: false, s3_metadata: {
+    content_type: 'text/stylesheet'
+  }, fog_file: {
+    content_type: 'text/stylesheet'
+  }
+  validates_attachment_content_type :css, content_type: /text\/(x-c|stylesheet)/
 
   before_save do
     self.css = nil
@@ -27,7 +31,7 @@ class Theme < ActiveRecord::Base
       attr_accessor :original_filename, :content_type
     }
 
-    style.content_type = 'text/x-c'
+    style.content_type = 'text/stylesheet'
     style.original_filename = 'theme.css'
 
     self.css = style
