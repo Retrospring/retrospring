@@ -1,5 +1,7 @@
+- header_class = if user.profile_header.exists? then "userbox--header-container" else "userbox--no-header" end
 .panel.panel-default
-  %img.userbox--header{src: user.profile_header.url(:mobile)}
+  %div{class: header_class}
+    %img.userbox--header{src: user.profile_header.url(:mobile)}
   .panel-body
     %img.userbox--avatar{src: user.profile_picture.url(:small)}
     %p.userbox--username

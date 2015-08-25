@@ -14,6 +14,8 @@
 #= require js.cookie
 #= require i18n
 #= require i18n/translations
+#= require tinycolor-min
+#= require jquery.minicolors
 # local requires to be seen by everyone:
 #= require_tree ./answerbox
 #= require_tree ./questionbox
@@ -28,6 +30,7 @@
 #= require user
 #= require report
 #= require locale-box
+#= require util
 # not required:
 # _tree ./moderation
 
@@ -62,9 +65,13 @@ _ready = ->
     sweetAlertInitialize()
 
   if document.getElementById('particles')?
+    jumbo         = $ '.j2-jumbo'
+    bodyColorOrig = jumbo.css 'background-color'
+    bodyColor     = doppler 0.25, bodyColorOrig
+    console.log bodyColor, bodyColorOrig
     particleground document.getElementById('particles'),
-      dotColor: '#5e35b1'
-      lineColor: '#5e35b1'
+      dotColor: bodyColor
+      lineColor: bodyColor
 
   if twemoji?
     twemoji.parse document.body,

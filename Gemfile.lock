@@ -231,6 +231,9 @@ GEM
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-minicolors-rails (2.1.4.0)
+      jquery-rails
+      rails (>= 3.2.8)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -435,6 +438,8 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
+    tiny-color-rails (0.0.2)
+      railties (>= 3.0)
     tumblr_client (0.8.5)
       faraday (~> 0.9.0)
       faraday_middleware (~> 0.9.0)
@@ -511,6 +516,7 @@ DEPENDENCIES
   haml
   i18n-js
   jbuilder (~> 2.2.4)
+  jquery-minicolors-rails
   jquery-rails
   jquery-turbolinks
   letter_opener
@@ -545,6 +551,7 @@ DEPENDENCIES
   spring (~> 1.3.5)
   sweetalert-rails
   thin
+  tiny-color-rails
   tumblr_client
   turbolinks
   twemoji-rails

@@ -54,6 +54,10 @@ Rails.application.routes.draw do
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
 
+  match '/settings/theme', to: 'user#edit_theme', via: 'get', as: :edit_user_theme
+  match '/settings/theme', to: 'user#update_theme', via: 'patch', as: :update_user_theme
+  match '/settings/theme/preview.css', to: 'user#preview_theme', via: 'post', as: :preview_user_theme
+
   # resources :services, only: [:index, :destroy]
   match '/settings/services', to: 'services#index', via: 'get', as: :services
   match '/settings/services/:id', to: 'services#destroy', via: 'delete', as: :service

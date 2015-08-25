@@ -1,0 +1,59 @@
+- provide(:title, generate_title("Theme Settings"))
+.container.j2-page
+  = render 'settings_tabs'
+  .col-md-9.col-xs-12.col-sm-9
+    = render 'layouts/messages'
+    .panel.panel-default
+      .panel-body
+        %b Presets:
+        %a{href: '#', class: 'theme_preset', data: {preset: 'rs'}} Retrospring Purple,
+        %a{href: '#', class: 'theme_preset', data: {preset: 'dc'}} Dark Copycat,
+        %a{href: '#', class: 'theme_preset', data: {preset: 'lc'}} Light Copycat
+        = bootstrap_form_for(current_user.theme || Theme.new, url: {action: "update_theme"}, html: {id: 'update_theme'}, method: "patch") do |f|
+          .row
+            .col-md-6
+              = f.text_field :primary_color, class: 'color', data: {default: 0x5E35B1}
+            .col-md-6
+              = f.text_field :primary_text, class: 'color', data: {default: 0xFFFFFF}
+          .row
+            .col-md-6
+              = f.text_field :danger_color, class: 'color', data: {default: 0xFF0039}
+            .col-md-6
+              = f.text_field :danger_text, class: 'color', data: {default: 0xFFFFFF}
+          .row
+            .col-md-6
+              = f.text_field :success_color, class: 'color', data: {default: 0x3FB618}
+            .col-md-6
+              = f.text_field :success_text, class: 'color', data: {default: 0xFFFFFF}
+          .row
+            .col-md-6
+              = f.text_field :warning_color, class: 'color', data: {default: 0xFF7518}
+            .col-md-6
+              = f.text_field :warning_text, class: 'color', data: {default: 0xFFFFFF}
+          .row
+            .col-md-6
+              = f.text_field :info_color, class: 'color', data: {default: 0x9954BB}
+            .col-md-6
+              = f.text_field :info_text, class: 'color', data: {default: 0xFFFFFF}
+          .row
+            .col-md-6
+              = f.text_field :default_color, class: 'color', data: {default: 0x222222}
+            .col-md-6
+              = f.text_field :default_text, class: 'color', data: {default: 0xEEEEEE}
+          .row
+            .col-md-6
+              = f.text_field :panel_color, class: 'color', data: {default: 0xF9F9F9}
+            .col-md-6
+              = f.text_field :panel_text, class: 'color', data: {default: 0x151515}
+          .row
+            .col-md-6
+              = f.text_field :link_color, class: 'color', data: {default: 0x5E35B1}
+            .col-md-6
+              = f.text_field :background_color, class: 'color', data: {default: 0xFFFFFF}
+          .row
+            .col-md-6
+              = f.text_field :background_text, class: 'color', data: {default: 0x222222}
+            .col-md-6
+              = f.text_field :background_muted, class: 'color', data: {default: 0xBBBBBB}
+
+          = f.submit t('views.actions.save'), class: 'btn btn-primary'
