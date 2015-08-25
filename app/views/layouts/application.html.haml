@@ -13,9 +13,9 @@
     = javascript_include_tag 'i18n', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     - if user_signed_in? and not current_user.theme.nil?
-      %link{rel: 'stylesheet', href: current_user.theme.css.url, media: :all, 'data-turbolinks-track' => true}
+      %link{rel: 'stylesheet', href: current_user.theme.css.url, media: :all, 'data-turbolinks-track' => "true"}
     - if (not @user.nil?) and (not @user.theme.nil?) and (if user_signed_in? then current_user.show_foreign_themes? else true end)
-      %link{rel: 'stylesheet', href: @user.theme.css.url, media: :all, 'data-turbolinks-track' => true}
+      %link{rel: 'stylesheet', href: @user.theme.css.url, media: :all, 'data-turbolinks-track' => "true"}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     - if user_signed_in?
       - if current_user.mod?

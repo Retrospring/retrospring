@@ -25,13 +25,13 @@ class Theme < ActiveRecord::Base
   before_save do
     self.css = nil
 
-    style = ThemeIO.new(render_theme_with_context(self))
+    style = StringIO.new(render_theme_with_context(self))
 
-    style.instance_variable_set '@content_type', 'text/css'
+    style.class.class_eval { attr_accessor :original_filename, :content_type }
+
+    style.content_type = 'text/css'
+    style.original_filename = 'theme.css'
 
     self.css = style
-
-    self.css.instance_write :content_type, 'text/css'
-    self.css_content_type = 'text/css'
   end
 end
