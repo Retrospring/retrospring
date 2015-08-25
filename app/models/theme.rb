@@ -34,6 +34,6 @@ class Theme < ActiveRecord::Base
     self.css = style
 
     self.css.instance_write :content_type, 'text/css'
-    self.css_content_Type = 'text/css'
+    self.css_content_type = 'text/css'
   end
 end
