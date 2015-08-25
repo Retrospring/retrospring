@@ -16,24 +16,24 @@ class Theme < ActiveRecord::Base
     allow_nil: true, only_integer: true
 
   has_attached_file :css, use_timestamp: false, s3_headers: {
-    'Content-Type' => 'text/css'
+    'Content-Type' => 'text/css',
+    'Content-Disposition' => 'attachment; filename=theme.css'
   }, fog_file: {
-    content_type: 'text/css'
+    content_type: 'text/css',
+    content_disposition: "attachment; filename=theme.css"
   }
   validates_attachment_content_type :css, content_type: /^text\//
 
   before_save do
     self.css = nil
 
-    style = StringIO.new(render_theme_with_context(self))
+    style = ThemeIO.new(render_theme_with_context(self))
 
-    style.class.class_eval {
-      attr_accessor :original_filename, :content_type
-    }
-
-    style.content_type = 'text/css'
-    style.original_filename = 'theme.css'
+    style.instance_variable_set '@content_type', 'text/css'
 
     self.css = style
+
+    self.css.instance_write :content_type, 'text/css'
+    self.css_content_Type = 'text/css'
   end
 end
