@@ -45,6 +45,7 @@ RailsAdmin.config do |config|
     Services::Twitter
     Services::Tumblr
     Smile
+    Theme
     User
   ]
 end
