@@ -16,7 +16,7 @@ class Theme < ActiveRecord::Base
     allow_nil: true, only_integer: true
 
   has_attached_file :css, use_timestamp: false, s3_headers: {
-    'Content-Type': 'text/css'
+    'Content-Type' => 'text/css'
   }, fog_file: {
     content_type: 'text/css'
   }
