@@ -23,7 +23,7 @@
           %h4.entry-text#friend-count= current_user.friend_count
           %h6.entry-subtext= t('views.general.following')
 .panel.panel-default.hidden-xs
-  %ul.nav.nav-pills.nav-stacked
+  .list-group
     = list_group_item t('views.general.timeline'), root_path
     = list_group_item t('views.general.public'), public_timeline_path
     - current_user.groups.each do |group|
