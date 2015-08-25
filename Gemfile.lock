@@ -531,7 +531,7 @@ DEPENDENCIES
   rake
   redcarpet
   redis
-  rollbar (~> 1.5.3)
+  rollbar
   rspec-rails (~> 3.0.0)
   ruby-progressbar
   sanitize
@@ -554,3 +554,6 @@ DEPENDENCIES
   web-console
   will_paginate
   will_paginate-bootstrap
+
+BUNDLED WITH
+   1.10.6
