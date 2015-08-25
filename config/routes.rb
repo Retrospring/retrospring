@@ -54,6 +54,9 @@ Rails.application.routes.draw do
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
 
+  match '/settings/theme', to: 'user#edit_theme', via: 'get', as: :edit_user_theme
+  match '/settings/theme', to: 'user#update_theme', via: 'patch', as: :update_user_theme
+
   # resources :services, only: [:index, :destroy]
   match '/settings/services', to: 'services#index', via: 'get', as: :services
   match '/settings/services/:id', to: 'services#destroy', via: 'delete', as: :service
@@ -113,7 +116,6 @@ Rails.application.routes.draw do
   match '/:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile, defaults: {page: 1}
   match '/:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer
   match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question
-  match '/:username/theme.css', to: 'user#theme', via: 'get', as: :show_user_theme
   match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers, defaults: {page: 1}
   match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends, defaults: {page: 1}
   match '/:username/groups(/p/:page)', to: 'user#groups', via: 'get', as: :show_user_groups, defaults: {page: 1}

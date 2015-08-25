@@ -7,47 +7,47 @@
 // PRIMARY COLOR
 
 $primary_color:  <%= @primary_color  || "#5e35b1" %>;
-$primary_border: <%= @primary_border || "darken(adjust-hue(#5e35b1, -10), 5%)" %>;
+$primary_border: darken(adjust-hue($primary_color, -10), 5%);
 $primary_text:   <%= @primary_text   || "white" %>;
 
 // DANGER COLOR
 $danger_color:  <%= @danger_color  || "#FF0039" %>;
-$danger_border: <%= @danger_border || "darken(adjust-hue(#FF0039, -10), 5%)" %>;
+$danger_border: darken(adjust-hue($danger_color, -10), 5%);
 $danger_text:   <%= @danger_text   || "white" %>;
 
 // SUCCESS COLOR
 
 $success_color:  <%= @success_color  || "#3FB618" %>;
-$success_border: <%= @success_border || "darken(adjust-hue(#3FB618, -10), 5%)" %>;
+$success_border: darken(adjust-hue($success_color, -10), 5%);
 $success_text:   <%= @success_text   || "white" %>;
 
 // WARNING COLOR
 
 $warning_color:  <%= @warning_color  || "#FF7518" %>;
-$warning_border: <%= @warning_border || "darken(adjust-hue(#FF7518, -10), 5%)" %>;
+$warning_border: darken(adjust-hue($warning_color, -10), 5%);
 $warning_text:   <%= @warning_text   || "white" %>;
 
 // INFO COLOR
 
 $info_color:  <%= @info_color  || "#9954BB" %>;
-$info_border: <%= @info_border || "darken(adjust-hue(#9954BB, -10), 5%)" %>;
+$info_border: darken(adjust-hue($info_color, -10), 5%);
 $info_text:   <%= @info_text   || "white" %>;
 
 // DEFAULT COLOR
 
 $default_color:  <%= @default_color  || "#222222" %>;
-$default_border: <%= @default_border || "darken(adjust-hue(#222222, -10), 5%)" %>;
+$default_border: darken(adjust-hue($default_color, -10), 5%);
 $default_text:   <%= @default_text   || "#eeeeee" %>;
 
 // PANEL COLOR
 
 $panel_color:  <%= @panel_color  || "#F9F9F9" %>;
-$panel_border: <%= @panel_border || "darken(adjust-hue(#F9F9F9, -10), 5%)" %>;
+$panel_border: darken(adjust-hue($panel_color, -10), 5%);
 $panel_text:   <%= @panel_text   || "#151515" %>;
 
 // AUXILIARY COLOR
 
-$link_color:       <%= @link_color       || "#5e35b1" %>;
+$link_color:       <%= @link_color       || "#5E35B1" %>;
 $background_color: <%= @background_color || "#ffffff" %>;
 $background_text:  <%= @background_text  || "#222222" %>;
 $background_muted: <%= @background_muted || "#bbbbbb" %>;
@@ -76,6 +76,7 @@ body#version1 {
       background-color: $primary_color;
       border-color:     $primary_border;
       border-top:       none;
+
       color:            $primary_text;
 
       .media, .dropdown-header {

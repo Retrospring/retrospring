@@ -94,7 +94,36 @@ class UserController < ApplicationController
   def data
   end
 
-  def theme
-    render body: render_theme_with_context, content_type: 'text/css'
+  def edit_theme
+  end
+
+  def update_theme
+    update_attributes = params.require(:theme).permit([
+      :primary_color, :primary_text,
+      :danger_color, :danger_text,
+      :success_color, :success_text,
+      :warning_color, :warning_text,
+      :info_color, :info_text,
+      :default_color, :default_text,
+      :panel_color, :panel_text,
+      :link_color, :background_color,
+      :background_text, :background_muted
+    ])
+
+    if current_user.theme.nil?
+      current_user.theme = Theme.new update_attributes
+      current_user.theme.user_id = current_user.id
+
+      if current_user.theme.save
+        flash[:success] = t('flash.user.update_theme.success')
+      else
+        flash[:error] = t('flash.user.update_theme.error')
+      end
+    elsif current_user.theme.update_attributes(user_attributes)
+      flash[:success] = t('flash.user.update_theme.success')
+    else
+      flash[:error] = t('flash.user.update_theme.error')
+    end
+    redirect_to edit_user_theme_path
   end
 end
