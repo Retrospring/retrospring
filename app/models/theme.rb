@@ -20,7 +20,7 @@ class Theme < ActiveRecord::Base
   }, fog_file: {
     content_type: 'text/css'
   }
-  validates_attachment_content_type :css, content_type: /text\/(x-c|css)/
+  validates_attachment_content_type :css, content_type: /^Atext/
 
   before_save do
     self.css = nil
