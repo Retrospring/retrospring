@@ -1,48 +1,49 @@
 // TODO: Use canonical colours rather than this test midnight scheme.
 
-// TODO: "new" notifications
-// TODO: notification page
-// TODO: tabs
-// TODO: pill lists
-
 // LEGEND
+
 // TYPE_COLOR:  BACKGROUND COLOR
 // TYPE_BORDER: BORDER COLOR
 // TYPE_TEXT:   TEXT COLOR
 
 // PRIMARY COLOR
+
 $primary_color:  <%= @primary_color  || "#222222" %>;
 $primary_border: <%= @primary_border || "#151515" %>;
 $primary_text:   <%= @primary_text   || "#eeeeee" %>;
 
 // DANGER COLOR
+
 $danger_color:  <%= @danger_color  || "#222222" %>;
 $danger_border: <%= @danger_border || "#151515" %>;
 $danger_text:   <%= @danger_text   || "#eeeeee" %>;
 
 // SUCCESS COLOR
+
 $success_color:  <%= @success_color  || "#222222" %>;
 $success_border: <%= @success_border || "#151515" %>;
 $success_text:   <%= @success_text   || "#eeeeee" %>;
 
 // WARNING COLOR
+
 $warning_color:  <%= @warning_color  || "#222222" %>;
 $warning_border: <%= @warning_border || "#151515" %>;
 $warning_text:   <%= @warning_text   || "#eeeeee" %>;
 
 // INFO COLOR
+
 $info_color:  <%= @info_color  || "#222222" %>;
 $info_border: <%= @info_border || "#151515" %>;
 $info_text:   <%= @info_text   || "#eeeeee" %>;
 
 // DEFAULT COLOR
+
 $default_color:  <%= @default_color  || "#222222" %>;
 $default_border: <%= @default_border || "#151515" %>;
 $default_text:   <%= @default_text   || "#eeeeee" %>;
 
-// PANEL COLORS
-
 // AUXILIARY COLOR
+
 $link_color:       <%= @link_color       || "#111111" %>;
 $background_color: <%= @background_color || "#555555" %>;
 $background_text:  <%= @background_text  || "#eeeeee" %>;
@@ -62,7 +63,12 @@ body#version1 {
   background-color: $background_color;
   color:            $background_text;
 
+  // Navigation
+
   nav.navbar {
+
+    // Nav Dropdown
+
     &, .dropdown-menu {
       background-color: $primary_color;
       border-color:     $primary_border;
@@ -89,24 +95,31 @@ body#version1 {
       }
     }
 
+    // Nav Links
+
     a {
       &, &:hover, &:active {
         color: $primary_text;
       }
     }
 
-    > li:not(.profile--image-dropdown):before {
-      background-color: $primary_border;
+    li:not(.profile--image-dropdown):before {
+      background-color: $primary_text;
     }
   }
+
+  // Notifications
+
+  .media, #notifications .list-group-item {
+    color:      $default_text;
+    background: $default_color;
+  }
+
+  // Headers
 
   .j2-jumbo {
     background-color: $primary_color;
     border-color:     $primary_border;
-  }
-
-  .media {
-    color: $default_text;
   }
 
   #profile--header.profile--no-header:before, .userbox--no-header:before {
@@ -127,23 +140,27 @@ body#version1 {
     position: relative;
   }
 
+  // Panels, and modals
+
   .panel, .modal-dialog {
     border-color: $default_border;
 
     .panel-heading, .panel-footer, .panel-body, .modal-header, .modal-footer, .modal-body, .modal-content {
-      &, *:not(input), a, a:hover, a:active {
-        color: $default_text;
-      }
+      color: $default_text;
+    }
 
-      select {
-        background-color: $default_color;
-        border-color:     $default_border;
-      }
+    *:not(input), a, a:hover, a:active {
+      color: $default_text;
+    }
 
-      .input-group-addon {
-        background: $default_color;
-        border:     $default_color;
-      }
+    select {
+      background-color: $default_color;
+      border-color:     $default_border;
+    }
+
+    .input-group-addon {
+      background: $default_color;
+      border:     $default_color;
     }
 
     &, .panel-heading, .panel-footer, .modal-header, .modal-footer {
@@ -155,6 +172,8 @@ body#version1 {
       background-color: $default_color;
     }
   }
+
+  // Non-navigation dropdowns
 
   .dropdown-menu {
     background-color: $default_color;
@@ -178,37 +197,71 @@ body#version1 {
     }
   }
 
-  .btn-primary {
-    background-color: $primary_color;
-    border-color:     $primary_border;
-    color:            $primary_text;
-
-    &:hover {
-      background-color: $primary_border;
-    }
-  }
-
   .text-muted {
     color: $background_muted;
   }
 
-  // ERB magic because i'm lazy.
+  // Tabs
+  .nav-tabs {
+    border-color: transparent;
+    margin-top: -1px;
+
+    li.active a, li:active a, li:hover a {
+      background: mix($default_color, $default_text, 90%);
+      color:      mix($default_text, $default_color, 90%);
+    }
+  }
+
+  // Lists
+
+  .list-group .list-group-item {
+    background-color: $default_color;
+    color:            $default_text;
+    border-color:     $default_border;
+
+    .badge {
+      background-color: $default_text;
+      border-color:     $default_border;
+      color:            $default_color;
+    }
+
+    .active, &:hover {
+      background-color: $primary_color;
+      color:            $primary_text;
+      border-color:     $primary_border;
+
+      .badge {
+        background-color: $primary_text;
+        border-color:     $primary_border;
+        color:            $primary_color;
+      }
+    }
+  }
+
+  // ERB magic for generics because i'm lazy.
 <%
 for color in %W(primary danger success warning info default)
 %>
-  .btn-<%= color %>, .alert-<%= color %>, .label-<%= color %> {
-    color:            $<%= color %>_text;
-    background-color: $<%= color %>_color;
-    border-color:     $<%= color %>_border;
+  .btn-<%= color %>, .alert-<%= color %>, .label-<%= color %>, .panel-badge-<%= color %>, .badge-<%= color %>, .list-group-item-<%= color %> {
+    color:            $<%= color %>_text !important;
+    background-color: $<%= color %>_color !important;
+    border-color:     $<%= color %>_border !important;
+
+    .badge {
+      color:            $<%= color %>_color !important;
+      background-color: $<%= color %>_text !important;
+      border-color:     $<%= color %>_border !important;
+    }
   }
 
   .btn-<%= color %>:hover {
-    background-color: mix($<%= color %>_color, $<%= color %>_text, 90%);
+    background-color: mix($<%= color %>_color, $<%= color %>_text, 90%) !important;
   }
 <%
 end
 %>
 
+  // Reset debug
   #debug {
     background: white;
     color:      black;
