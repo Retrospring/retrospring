@@ -1,14 +1,4 @@
 module ThemeHelper
-  class ThemeIO < StringIO
-    def content_type
-      'text/css'
-    end
-
-    def original_filename
-      'theme.css'
-    end
-  end
-
   def render_theme_with_context(context = {})
     klass = Class.new do
       def initialize(hash = {})
