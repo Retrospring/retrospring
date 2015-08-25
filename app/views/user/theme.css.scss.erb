@@ -259,28 +259,103 @@ body#version1 {
     }
   }
 
-  // ERB magic for generics because i'm lazy.
-<%
-for color in %W(primary danger success warning info default)
-%>
-  .btn-<%= color %>, .alert-<%= color %>, .label-<%= color %>, .panel-badge-<%= color %>, .badge-<%= color %>, .list-group-item-<%= color %> {
-    color:            $<%= color %>_text !important;
-    background-color: $<%= color %>_color !important;
-    border-color:     $<%= color %>_border !important;
+  // Buttons, Alerts, Labels, Panel Badges, Badges, List Items
+
+  .btn-primary, .alert-primary, .label-primary, .panel-badge-primary, .badge-primary, .list-group-item-primary {
+    color:            $primary_text !important;
+    background-color: $primary_color !important;
+    border-color:     $primary_border !important;
 
     .badge {
-      color:            $<%= color %>_color !important;
-      background-color: $<%= color %>_text !important;
-      border-color:     $<%= color %>_border !important;
+      color:            $primary_color !important;
+      background-color: $primary_text !important;
+      border-color:     $primary_border !important;
     }
   }
 
-  .btn-<%= color %>:hover {
-    background-color: mix($<%= color %>_color, $<%= color %>_text, 90%) !important;
+  .btn-primary:hover {
+    background-color: mix($primary_color, $primary_text, 90%) !important;
   }
-<%
-end
-%>
+
+  .btn-danger, .alert-danger, .label-danger, .panel-badge-danger, .badge-danger, .list-group-item-danger {
+    color:            $danger_text !important;
+    background-color: $danger_color !important;
+    border-color:     $danger_border !important;
+
+    .badge {
+      color:            $danger_color !important;
+      background-color: $danger_text !important;
+      border-color:     $danger_border !important;
+    }
+  }
+
+  .btn-danger:hover {
+    background-color: mix($danger_color, $danger_text, 90%) !important;
+  }
+
+  .btn-success, .alert-success, .label-success, .panel-badge-success, .badge-success, .list-group-item-success {
+    color:            $success_text !important;
+    background-color: $success_color !important;
+    border-color:     $success_border !important;
+
+    .badge {
+      color:            $success_color !important;
+      background-color: $success_text !important;
+      border-color:     $success_border !important;
+    }
+  }
+
+  .btn-success:hover {
+    background-color: mix($success_color, $success_text, 90%) !important;
+  }
+
+  .btn-warning, .alert-warning, .label-warning, .panel-badge-warning, .badge-warning, .list-group-item-warning {
+    color:            $warning_text !important;
+    background-color: $warning_color !important;
+    border-color:     $warning_border !important;
+
+    .badge {
+      color:            $warning_color !important;
+      background-color: $warning_text !important;
+      border-color:     $warning_border !important;
+    }
+  }
+
+  .btn-warning:hover {
+    background-color: mix($warning_color, $warning_text, 90%) !important;
+  }
+
+  .btn-info, .alert-info, .label-info, .panel-badge-info, .badge-info, .list-group-item-info {
+    color:            $info_text !important;
+    background-color: $info_color !important;
+    border-color:     $info_border !important;
+
+    .badge {
+      color:            $info_color !important;
+      background-color: $info_text !important;
+      border-color:     $info_border !important;
+    }
+  }
+
+  .btn-info:hover {
+    background-color: mix($info_color, $info_text, 90%) !important;
+  }
+
+  .btn-default, .alert-default, .label-default, .panel-badge-default, .badge-default, .list-group-item-default {
+    color:            $default_text !important;
+    background-color: $default_color !important;
+    border-color:     $default_border !important;
+
+    .badge {
+      color:            $default_color !important;
+      background-color: $default_text !important;
+      border-color:     $default_border !important;
+    }
+  }
+
+  .btn-default:hover {
+    background-color: mix($default_color, $default_text, 90%) !important;
+  }
 
   // Reset debug
   #debug {
