@@ -1,6 +1,6 @@
 .col-md-3.col-sm-3.col-xs-12
   .panel.panel-default.hidden-xs
-    %ul.nav.nav-pills.nav-stacked
+    .list-group
       = list_group_item t('views.moderation.tabs.all'), moderation_path
       = list_group_item t('views.general.answer').pluralize(2),     moderation_path('answer')
       = list_group_item t('views.general.comment').pluralize(2),    moderation_path('comment')
