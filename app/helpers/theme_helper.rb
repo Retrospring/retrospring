@@ -15,13 +15,13 @@ module ThemeHelper
 
           x.each do |v|
             next if hash[v].nil?
-            self.instance_variable_set "@#{v}", hash[v].to_s(16)[-6, 6]
+            self.instance_variable_set "@#{v}", ('#' + ('0000000' + hash[v].to_s(16))[-6, 6])
           end
         elsif hash.is_a? Hash
           hash.each do |k, v|
             next unless v.is_a? Fixnum
 
-            self.instance_variable_set "@#{k}", v.to_s(16)[-6, 6]
+            self.instance_variable_set "@#{k}", ('#' + ('0000000' + hash[k].to_s(16))[-6, 6])
           end
         end
       end

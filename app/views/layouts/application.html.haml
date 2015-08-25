@@ -12,10 +12,10 @@
     %title= yield(:title)
     = javascript_include_tag 'i18n', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    - if user_signed_in? and current_user.theme.present?
-      %link{rel: 'stylesheet', href: current_user.theme.css.url, media: :all, 'data-turbolinks-track' => true}
-    - elsif @user.present? and @user.theme.present?
+    - if @user.present? and @user.theme.present? and (user_signed_in? and current_user.show_foreign_themes?)
       %link{rel: 'stylesheet', href: @user.theme.css.url, media: :all, 'data-turbolinks-track' => true}
+    - elsif user_signed_in? and current_user.theme.present?
+      %link{rel: 'stylesheet', href: current_user.theme.css.url, media: :all, 'data-turbolinks-track' => true}
     - else
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     - if user_signed_in?

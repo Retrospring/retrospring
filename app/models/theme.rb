@@ -15,14 +15,19 @@ class Theme < ActiveRecord::Base
     greater_than_or_equal_to: 0, less_than_or_equal_to: 0xFFFFFF,
     allow_nil: true, only_integer: true
 
+  has_attached_file :css, use_timestamp: false
+  validates_attachment_content_type :css, content_type: 'text/x-c'
+
   before_save do
-    style = StringIO.new(render_theme_with_context(self).render)
-    
+    self.css = nil
+
+    style = StringIO.new(render_theme_with_context(self))
+
     style.class.class_eval {
       attr_accessor :original_filename, :content_type
     }
 
-    style.content_type = 'text/stylesheet'
+    style.content_type = 'text/x-c'
     style.original_filename = 'theme.css'
 
     self.css = style

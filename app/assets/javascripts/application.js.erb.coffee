@@ -15,6 +15,7 @@
 #= require i18n
 #= require i18n/translations
 #= require tinycolor-min
+#= require jquery.minicolors
 # local requires to be seen by everyone:
 #= require_tree ./answerbox
 #= require_tree ./questionbox
