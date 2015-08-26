@@ -4,6 +4,7 @@
  *= require jquery.guillotine
  *= require sweet-alert
  *  require rickshaw-rails
+ *= require jquery.minicolors
  *= require flags
  *= require_self
  */
@@ -64,3 +65,11 @@ body { padding-top: $navbar-height; }
 $nprogress-color: lighten($navbar-inverse-bg, 25%);
 @import 'nprogress';
 @import 'nprogress-bootstrap';
+
+.minicolors-theme-bootstrap .minicolors-swatch {
+  top:           0;
+  left:          0;
+  width:         42px;
+  height:        42px;
+  border-radius: 0;
+}

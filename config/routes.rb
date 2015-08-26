@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   # Moderation panel
   constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
                        (req.env['warden'].user.mod?) } do
+    match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
+    match '/moderation/ip/:user_id', to: 'moderation#ip', via: :get, as: :moderation_ip
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}
     namespace :ajax do
       match '/mod/destroy_report', to: 'moderation#destroy_report', via: :post, as: :mod_destroy_report
@@ -67,6 +69,10 @@ Rails.application.routes.draw do
 
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
+
+  match '/settings/theme', to: 'user#edit_theme', via: 'get', as: :edit_user_theme
+  match '/settings/theme', to: 'user#update_theme', via: 'patch', as: :update_user_theme
+  match '/settings/theme/preview.css', to: 'user#preview_theme', via: 'post', as: :preview_user_theme
 
   # resources :services, only: [:index, :destroy]
   match '/settings/services', to: 'services#index', via: 'get', as: :services

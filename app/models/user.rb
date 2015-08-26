@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
 
+  has_one :theme, dependent: :destroy
+
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 

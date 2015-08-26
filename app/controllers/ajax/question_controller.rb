@@ -55,16 +55,13 @@ class Ajax::QuestionController < ApplicationController
 
     if params[:rcpt] == 'followers'
       unless current_user.nil?
-        current_user.followers.each do |f|
-          Inbox.create!(user_id: f.id, question_id: question.id, new: true)
-        end
+        QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
       end
     elsif params[:rcpt].start_with? 'grp:'
       unless current_user.nil?
         begin
-          current_user.groups.find_by_name!(params[:rcpt].sub 'grp:', '').members.each do |m|
-            Inbox.create!(user_id: m.user.id, question_id: question.id, new: true)
-          end
+          current_user.groups.find_by_name!(params[:rcpt].sub 'grp:', '')
+          QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
         rescue ActiveRecord::RecordNotFound
           @status = :not_found
           @message = I18n.t('messages.question.create.not_found')
@@ -73,6 +70,13 @@ class Ajax::QuestionController < ApplicationController
         end
       end
     else
+      if User.find(params[:rcpt]).nil?
+        @status = :not_found
+        @message = I18n.t('messages.question.create.not_found')
+        @success = false
+        return
+      end
+
       Inbox.create!(user_id: params[:rcpt], question_id: question.id, new: true)
     end
 

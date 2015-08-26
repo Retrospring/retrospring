@@ -1,0 +1,20 @@
+- header_class = if user.profile_header.exists? then "userbox--header-container" else "userbox--no-header" end
+.panel.panel-default
+  %div{class: header_class}
+    %img.userbox--header{src: user.profile_header.url(:mobile)}
+  .panel-body
+    %img.userbox--avatar{src: user.profile_picture.url(:small)}
+    %p.userbox--username
+      %a.profile--displayname{href: show_user_profile_path(user.screen_name)}
+        = user.screen_name
+    .row
+      .col-md-12.col-sm-12.col-xs-12
+        - unless count.nil?
+          %h4.entry-text.text-center#asked-count
+            = count
+            = 'Report'.pluralize(count)
+            %br
+            %br
+        - else
+          %br
+    = render 'actions', user: user

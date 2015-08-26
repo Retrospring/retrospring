@@ -19,35 +19,20 @@ ActiveRecord::Schema.define(version: 20150721154255) do
   create_table "answers", force: :cascade do |t|
     t.text     "content"
     t.integer  "question_id"
-    t.integer  "comment_count",  default: 0, null: false
+    t.integer  "comment_count", default: 0, null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "smile_count",    default: 0, null: false
-    t.integer  "application_id"
+    t.integer  "smile_count",   default: 0, null: false
   end
 
   add_index "answers", ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at", using: :btree
 
-  create_table "application_metrics", force: :cascade do |t|
-    t.integer  "application_id"
-    t.string   "req_path"
-    t.string   "req_params"
-    t.string   "req_method"
-    t.integer  "res_timespent"
-    t.integer  "db_time"
-    t.integer  "db_calls"
-    t.integer  "res_status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "comment_smiles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "application_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "comment_smiles", ["comment_id"], name: "index_comment_smiles_on_comment_id", using: :btree
@@ -60,8 +45,7 @@ ActiveRecord::Schema.define(version: 20150721154255) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "smile_count",    default: 0, null: false
-    t.integer  "application_id"
+    t.integer  "smile_count", default: 0, null: false
   end
 
   add_index "comments", ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at", using: :btree
@@ -129,63 +113,6 @@ ActiveRecord::Schema.define(version: 20150721154255) do
     t.datetime "updated_at"
   end
 
-  create_table "oauth_access_grants", force: :cascade do |t|
-    t.integer  "resource_owner_id", null: false
-    t.integer  "application_id",    null: false
-    t.string   "token",             null: false
-    t.integer  "expires_in",        null: false
-    t.text     "redirect_uri",      null: false
-    t.datetime "created_at",        null: false
-    t.datetime "revoked_at"
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
-
-  create_table "oauth_access_tokens", force: :cascade do |t|
-    t.integer  "resource_owner_id"
-    t.integer  "application_id"
-    t.string   "token",             null: false
-    t.string   "refresh_token"
-    t.integer  "expires_in"
-    t.datetime "revoked_at"
-    t.datetime "created_at",        null: false
-    t.string   "scopes"
-  end
-
-  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
-  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
-  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
-
-  create_table "oauth_applications", force: :cascade do |t|
-    t.string   "name",                              null: false
-    t.string   "uid",                               null: false
-    t.string   "secret",                            null: false
-    t.text     "redirect_uri",                      null: false
-    t.string   "scopes",            default: "",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "description"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
-    t.integer  "crop_x"
-    t.integer  "crop_y"
-    t.integer  "crop_w"
-    t.integer  "crop_h"
-    t.boolean  "icon_processing"
-    t.string   "homepage",          default: ""
-    t.boolean  "deleted",           default: false
-    t.boolean  "superapp",          default: false, null: false
-  end
-
-  add_index "oauth_applications", ["name"], name: "index_oauth_applications_on_name", unique: true, using: :btree
-  add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
-  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
-
   create_table "questions", force: :cascade do |t|
     t.string   "content"
     t.boolean  "author_is_anonymous"
@@ -195,7 +122,6 @@ ActiveRecord::Schema.define(version: 20150721154255) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "answer_count",        default: 0, null: false
-    t.integer  "application_id"
   end
 
   add_index "questions", ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at", using: :btree
@@ -237,7 +163,6 @@ ActiveRecord::Schema.define(version: 20150721154255) do
     t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "application_id"
   end
 
   add_index "smiles", ["answer_id"], name: "index_smiles_on_answer_id", using: :btree

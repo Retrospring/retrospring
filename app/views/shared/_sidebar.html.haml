@@ -1,17 +1,18 @@
+- header_class = if current_user.profile_header.exists? then "userbox--header-container" else "userbox--no-header" end
 .panel.panel-default.hidden-xs
+  %div{class: header_class}
+    %img.userbox--header{src: current_user.profile_header.url(:mobile)}
   .panel-body
-    .media
-      .pull-left
-        %img.answerbox--img{src: current_user.profile_picture.url(:small)}
-      .media-body
-        - if current_user.display_name.blank?
-          .profile--displayname
-            = current_user.screen_name
-        - else
-          .profile--displayname
-            = current_user.display_name
-          .profile--username
-            = current_user.screen_name
+    %img.userbox--avatar{src: current_user.profile_picture.url(:small)}
+    %p.userbox--username
+      - if current_user.display_name.blank?
+        %span.profile--displayname
+          = current_user.screen_name
+      - else
+        %span.profile--displayname
+          = current_user.display_name
+        %span.profile--username
+          = current_user.screen_name
     .row
       %a{href: show_user_followers_path(current_user.screen_name)}
         .col-md-6.col-sm-6.col-xs-6

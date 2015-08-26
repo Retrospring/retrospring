@@ -47,6 +47,7 @@ RailsAdmin.config do |config|
     Smile
     CommentSmile
     Subscription
+    Theme
     User
     Application
     AccessGrant

@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/Retrospring/grape-throttle.git
-  revision: 79d1ea3be9e07088f7c55f162c2748bca907e282
-  specs:
-    grape-throttle (0.0.4)
-      grape (>= 0.10.0)
-      redis
-
-GIT
   remote: https://github.com/retrospring/questiongenerator.git
   revision: 902de3d7f930a4f67bbbbc414cc3556cc7114839
   specs:
@@ -54,10 +46,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.0)
-    axiom-types (0.1.1)
-      descendants_tracker (~> 0.0.4)
-      ice_nine (~> 0.11.0)
-      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -90,8 +78,6 @@ GEM
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
-    coercible (1.0.0)
-      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -107,8 +93,6 @@ GEM
     debug_inspector (0.0.2)
     delayed_paperclip (2.9.1)
       paperclip (>= 3.3)
-    descendants_tracker (0.0.4)
-      thread_safe (~> 0.3, >= 0.3.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -121,9 +105,6 @@ GEM
     devise-i18n (0.12.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    doorkeeper (2.1.4)
-      railties (>= 3.2)
-    doorkeeper-i18n (2.0.0)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.7)
@@ -234,25 +215,9 @@ GEM
     formatador (0.2.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    grape (0.11.0)
-      activesupport
-      builder
-      hashie (>= 2.1.0)
-      multi_json (>= 1.3.2)
-      multi_xml (>= 0.5.2)
-      rack (>= 1.3.0)
-      rack-accept
-      rack-mount
-      virtus (>= 1.0.0)
-    grape-entity (0.4.5)
-      activesupport
-      multi_json (>= 1.3.2)
-    grape-msgpack (0.1.2)
-      grape (>= 0.6.0)
-      msgpack (~> 0.5.6)
     haml (4.0.6)
       tilt
-    hashie (3.4.2)
+    hashie (3.4.1)
     hike (1.2.3)
     hitimes (1.2.2)
     http (0.6.4)
@@ -261,12 +226,14 @@ GEM
     i18n (0.7.0)
     i18n-js (3.0.0.rc10)
       i18n (~> 0.6)
-    ice_nine (0.11.1)
     inflecto (0.0.2)
     ipaddress (0.8.0)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-minicolors-rails (2.1.4.0)
+      jquery-rails
+      rails (>= 3.2.8)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -276,8 +243,7 @@ GEM
       turbolinks
     jquery-ui-rails (5.0.3)
       railties (>= 3.2.16)
-    json (1.8.3)
-    jwt (1.5.0)
+    json (1.8.2)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -294,12 +260,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     mime-types (2.4.3)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.6.0)
     momentjs-rails (2.9.0)
       railties (>= 3.1)
-    msgpack (0.5.12)
-    multi_json (1.11.2)
-    multi_xml (0.5.5)
+    multi_json (1.11.0)
     multipart-post (2.0.0)
     mysql2 (0.3.18)
     naught (1.0.0)
@@ -313,12 +277,6 @@ GEM
       nokogiri
     nprogress-rails (0.1.6.6)
     oauth (0.4.7)
-    oauth2 (1.0.0)
-      faraday (>= 0.8, < 0.10)
-      jwt (~> 1.0)
-      multi_json (~> 1.3)
-      multi_xml (~> 0.5)
-      rack (~> 1.2)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -342,13 +300,7 @@ GEM
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
-    quiet_assets (1.1.0)
-      railties (>= 3.1, < 5.0)
-    rack (1.6.4)
-    rack-accept (0.4.5)
-      rack (>= 0.4)
-    rack-mount (0.8.3)
-      rack (>= 1.0.0)
+    rack (1.6.0)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
       rack (~> 1.1)
@@ -411,8 +363,8 @@ GEM
     remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    rickshaw-rails (1.5.0)
-      rails (>= 3.1.0)
+    rollbar (1.5.3)
+      multi_json (~> 1.3)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -465,6 +417,7 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    spring (1.3.5)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -485,6 +438,8 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
+    tiny-color-rails (0.0.2)
+      railties (>= 3.0)
     tumblr_client (0.8.5)
       faraday (~> 0.9.0)
       faraday_middleware (~> 0.9.0)
@@ -516,11 +471,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    virtus (1.0.5)
-      axiom-types (~> 0.1)
-      coercible (~> 1.0)
-      descendants_tracker (~> 0.0, >= 0.0.3)
-      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.1.2)
@@ -534,9 +484,6 @@ GEM
     will_paginate (3.0.7)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
-    wine_bouncer (0.3.1)
-      doorkeeper (>= 1.4, < 2.2)
-      grape (~> 0.8, < 0.12)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -555,11 +502,9 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   delayed_paperclip
-  devise (~> 3.4.1)
+  devise
   devise-async
   devise-i18n
-  doorkeeper
-  doorkeeper-i18n
   factory_girl_rails
   fake_email_validator
   faker
@@ -568,20 +513,16 @@ DEPENDENCIES
   font-awesome-rails (~> 4.3.0.0)
   font-kit-rails
   foreman
-  grape
-  grape-entity
-  grape-msgpack
-  grape-throttle!
   haml
   i18n-js
   jbuilder (~> 2.2.4)
+  jquery-minicolors-rails
   jquery-rails
   jquery-turbolinks
   letter_opener
   momentjs-rails (>= 2.9.0)
   mysql2
   nprogress-rails
-  oauth2
   omniauth
   omniauth-tumblr
   omniauth-twitter
@@ -589,7 +530,6 @@ DEPENDENCIES
   pg
   poltergeist
   questiongenerator!
-  quiet_assets
   rails (= 4.2.1)
   rails-assets-growl
   rails-i18n
@@ -597,8 +537,7 @@ DEPENDENCIES
   rake
   redcarpet
   redis
-  rickshaw-rails
-  rspec-expectations
+  rollbar
   rspec-rails (~> 3.0.0)
   ruby-progressbar
   sanitize
@@ -609,8 +548,10 @@ DEPENDENCIES
   simplecov-json
   simplecov-rcov
   sinatra
+  spring (~> 1.3.5)
   sweetalert-rails
   thin
+  tiny-color-rails
   tumblr_client
   turbolinks
   twemoji-rails
@@ -620,4 +561,3 @@ DEPENDENCIES
   web-console
   will_paginate
   will_paginate-bootstrap
-  wine_bouncer

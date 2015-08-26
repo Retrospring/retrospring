@@ -9,7 +9,7 @@
     %h1.visible-xs= @title
     #users
       - @users.each do |user|
-        .col-sm-6
+        .col-md-4.col-sm-6.col-xs-12
           = render 'shared/userbox', user: user
 
     #pagination= will_paginate @users, renderer: BootstrapPagination::Rails, page_links: false

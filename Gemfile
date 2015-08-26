@@ -39,6 +39,8 @@ gem 'fog'
 gem 'fog-aws'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+gem 'tiny-color-rails'
+gem 'jquery-minicolors-rails'
 
 gem 'twemoji-rails'
 
@@ -78,6 +80,8 @@ gem 'grape-msgpack'
 gem 'grape-throttle', git: 'https://github.com/Retrospring/grape-throttle.git'
 
 gem 'fake_email_validator'
+
+gem 'rollbar'
 
 group :development do
   # require spring 1.3.5 since shit's on fire on my local instance with 1.3.4 (Gem::LoadError)

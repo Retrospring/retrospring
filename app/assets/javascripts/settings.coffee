@@ -99,3 +99,57 @@ if window.URL? or window.webkitURL?
           ($ '#profile-header-crop-controls').slideDown()
 
         cropper.attr 'src', src
+
+# theming
+
+previewStyle = document.createElement 'style'
+document.head.appendChild previewStyle
+
+previewTimeout = null
+
+previewTheme = ->
+  payload = {}
+
+  $('#update_theme').find('.color').each ->
+    n = this.name.substr 6, this.name.length - 7
+    payload[n] = parseInt this.value.substr(1, 6), 16
+
+  $.post '/settings/theme/preview.css', payload, (data) ->
+    previewStyle.innerHTML = data
+  , 'text'
+
+  null
+
+themePresets = {
+  rs: [0x5E35B1, 0xFFFFFF, 0xFF0039, 0xFFFFFF, 0x3FB618, 0xFFFFFF, 0xFF7518, 0xFFFFFF, 0x9954BB, 0xFFFFFF, 0x222222, 0xEEEEEE, 0xF9F9F9, 0x151515, 0x5E35B1, 0xFFFFFF, 0x222222, 0xbbbbbb],
+  dc: [0x222222, 0xeeeeee, 0x222222, 0xeeeeee, 0x222222, 0xeeeeee, 0x222222, 0xeeeeee, 0x222222, 0xeeeeee, 0x222222, 0xeeeeee, 0x222222, 0xeeeeee, 0x111111, 0x555555, 0xeeeeee, 0xbbbbbb],
+  lc: [0xdddddd, 0x111111, 0xdddddd, 0x111111, 0xdddddd, 0x111111, 0xdddddd, 0x111111, 0xdddddd, 0x111111, 0xdddddd, 0x111111, 0xdddddd, 0x111111, 0xeeeeee, 0xaaaaaa, 0x111111, 0x444444]
+}
+
+$(document).on 'submit', '#update_theme', (event) ->
+  $this = $ this
+  $this.find('.color').each ->
+    this.value = parseInt this.value.substr(1, 6), 16
+  true
+
+$(document).ready ->
+  $('#update_theme .color').each ->
+    $this = $ this
+    this.value = '#' + ('000000' + parseInt(this.value).toString(16)).substr(-6, 6)
+
+    $this.minicolors
+      control:      'hue'
+      defaultValue: this.value
+      letterCase:   'lowercase'
+      position:     'bottom left'
+      theme:        'bootstrap'
+      inline:       false
+      change:       ->
+        clearTimeout previewTimeout
+        previewTimeout = setTimeout(previewTheme, 1000)
+  true
+
+$(document).on 'click', 'a.theme_preset', (event) ->
+  preset = [].concat themePresets[this.dataset.preset]
+  $('#update_theme .color').each ->
+    $(this).minicolors 'value', '#' + ('000000' + parseInt(preset.shift()).toString(16)).substr(-6, 6)

@@ -51,6 +51,8 @@
 
           = f.text_area :bio, label: t('views.settings.profile.bio'), placeholder: t('views.settings.profile.placeholder.bio')
 
+          = f.check_box :show_foreign_themes, label: 'Render other user themes when visiting their profile'
+
           - for attrib in %i(crop_x crop_y crop_w crop_h)
             = f.hidden_field attrib, id: attrib
 
