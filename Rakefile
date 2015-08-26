@@ -6,6 +6,23 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 namespace :justask do
+  desc "Regenerate themes"
+  task themes: :environment do
+    format = '%t (%c/%C) [%b>%i] %e'
+
+    all = Theme.all
+
+    progress = ProgressBar.create title: 'Processing themes', format: format, starting_at: 0, total: all.count
+
+    all.each do |theme|
+      theme.touch
+      theme.save!
+      progress.increment
+    end
+
+    puts "regenerated #{all.count} themes"
+  end
+
   desc "Upload to AWS"
   task paperclaws: :environment do
     if APP_CONFIG["fog"]["credentials"].nil? or APP_CONFIG["fog"]["credentials"]["provider"] != "AWS"

@@ -48,15 +48,32 @@ $panel_text:   <%= @panel_text   || "#151515" %>;
 // AUXILIARY COLOR
 
 $link_color:       <%= @link_color       || "#5E35B1" %>;
+
 $background_color: <%= @background_color || "#ffffff" %>;
 $background_text:  <%= @background_text  || "#222222" %>;
 $background_muted: <%= @background_muted || "#bbbbbb" %>;
+
+$input_color:  <%= @input_color || "#ffffff" %>;
+$input_border: darken(adjust-hue($input_color, -10), 5%);
+$input_text:   <%= @input_text   || "#000000" %>;
+
+$outline_color: <%= @outline_color || "#5E35B1" %>;
 
 body#version1 {
   a, {
     &, &:hover, &:active {
       color: $link_color;
     }
+  }
+
+  :not(.sweet-alert) {
+    h1, h2, h3, h4, h5, h6 {
+      color: $background_text;
+    }
+  }
+
+  &, * {
+    outline-color: $outline_color;
   }
 
   hr, .locales #locales-panel ul {
@@ -70,7 +87,36 @@ body#version1 {
 
   nav.navbar {
 
+    .active, li:hover {
+      background: transparent;
+    }
+
+    .navbar-toggle {
+      &, &:hover, &:active {
+        border-color:     $primary_border;
+        background-color: $primary_color;
+
+        .icon-bar {
+          background-color: mix($primary_color, $primary_text, 70%);
+        }
+      }
+
+      &:hover {
+        background-color: mix($primary_color, $primary_text, 90%);
+      }
+    }
+
+    .navbar-collapse {
+      border-color: $primary_border;
+    }
+
     // Nav Dropdown
+
+    .dropdown.open .dropdown-toggle .badge {
+      color:            $primary_text;
+      background-color: $primary_color;
+      border-color:     $primary_border;
+    }
 
     &, .dropdown-menu {
       background-color: $primary_color;
@@ -120,8 +166,13 @@ body#version1 {
   // Notifications
 
   .media, #notifications .list-group-item {
-    color:      $panel_text;
-    background: $panel_color;
+    color:        $panel_text;
+    background:   $panel_color;
+    border-color: $panel_border;
+  }
+
+  #notifications .list-group-item:hover {
+    border-color: $panel_border !important;
   }
 
   .media {
@@ -163,7 +214,7 @@ body#version1 {
     }
 
     a, a:hover, a:active {
-      color: $panel_text;
+      color: $link_color;
     }
 
     .answerbox--question-user, .answerbox--question-text, .answerbox--answer-user, .answerbox--answer-text {
@@ -172,6 +223,12 @@ body#version1 {
       &.text-muted {
         color: mix($panel_text, $background_muted, 70%);
       }
+    }
+
+    input, textarea {
+      background-color: $input_color;
+      border-color:     $input_border;
+      color:            $input_text;
     }
 
     select {
@@ -273,6 +330,16 @@ body#version1 {
     }
   }
 
+  .btn-link {
+    color: $primary_text !important;
+  }
+
+  .panel-primary > .panel-heading {
+    background-color: mix($primary_color, $primary_text, 90%) !important;
+    border-color:     mix($primary_color, $primary_text, 85%) !important;
+    color:            mix($primary_text, $primary_color, 90%) !important;
+  }
+
   .btn-primary:hover {
     background-color: mix($primary_color, $primary_text, 90%) !important;
   }
@@ -287,6 +354,12 @@ body#version1 {
       background-color: $danger_text !important;
       border-color:     $danger_border !important;
     }
+  }
+
+  .panel-danger > .panel-heading {
+    background-color: mix($danger_color, $danger_text, 90%) !important;
+    border-color:     mix($danger_color, $danger_text, 85%) !important;
+    color:            mix($danger_text, $danger_color, 90%) !important;
   }
 
   .btn-danger:hover {
@@ -305,6 +378,12 @@ body#version1 {
     }
   }
 
+  .panel-success > .panel-heading {
+    background-color: mix($success_color, $success_text, 90%);
+    border-color:     mix($success_color, $success_text, 85%) !important;
+    color:            mix($success_text, $success_color, 90%) !important;
+  }
+
   .btn-success:hover {
     background-color: mix($success_color, $success_text, 90%) !important;
   }
@@ -319,6 +398,12 @@ body#version1 {
       background-color: $warning_text !important;
       border-color:     $warning_border !important;
     }
+  }
+
+  .panel-warning > .panel-heading {
+    background-color: mix($warning_color, $warning_text, 90%) !important;
+    border-color:     mix($warning_color, $warning_text, 85%) !important;
+    color:            mix($warning_text, $warning_color, 90%) !important;
   }
 
   .btn-warning:hover {
@@ -337,6 +422,12 @@ body#version1 {
     }
   }
 
+  .panel-info > .panel-heading {
+    background-color: mix($info_color, $info_text, 90%) !important;
+    border-color:     mix($info_color, $info_text, 85%) !important;
+    color:            mix($info_text, $info_color, 90%) !important;
+  }
+
   .btn-info:hover {
     background-color: mix($info_color, $info_text, 90%) !important;
   }
@@ -351,6 +442,12 @@ body#version1 {
       background-color: $default_text !important;
       border-color:     $default_border !important;
     }
+  }
+
+  .panel-default > .panel-heading {
+    background-color: mix($default_color, $default_text, 90%) !important;
+    border-color:     mix($default_color, $default_text, 85%) !important;
+    color:            mix($default_text, $default_color, 90%) !important;
   }
 
   .btn-default:hover {
@@ -370,24 +467,24 @@ body#version1 {
 
   // Entry subtext
   .entry-subtext {
-    color: darken($primary_color, 10%);
-  }
-}
-
-/* nprogress */
-$nprogress-color: lighten($primary_color, 25%);
-
-#nprogress {
-  .bar {
-    background: $nprogress-color;
+    color: mix($primary_color, $panel_text, 80%);
   }
 
-  .peg {
-    box-shadow: 0 0 10px $nprogress-color, 0 0 5px $nprogress-color;
-  }
+  /* nprogress */
+  $nprogress-color: lighten($primary_color, 25%);
 
-  .spinner-icon {
-    border-top-color:  $nprogress-color;
-    border-left-color: $nprogress-color;
+  #nprogress {
+    .bar {
+      background: $nprogress-color;
+    }
+
+    .peg {
+      box-shadow: 0 0 10px $nprogress-color, 0 0 5px $nprogress-color;
+    }
+
+    .spinner-icon {
+      border-top-color:  $nprogress-color;
+      border-left-color: $nprogress-color;
+    }
   }
 }

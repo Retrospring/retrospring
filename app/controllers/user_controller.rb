@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   include ThemeHelper
 
-  before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy edit_theme update_theme preview_theme data)
+  before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy edit_theme update_theme preview_theme delete_theme data)
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
@@ -97,6 +97,11 @@ class UserController < ApplicationController
   def edit_theme
   end
 
+  def delete_theme
+    current_user.theme.destroy!
+    redirect_to edit_user_profile_path
+  end
+
   # NOTE: Yes, I am storing and transmitting values as 3 byte numbers because false sense of security.
   def preview_theme
     attrib = params.permit([
@@ -108,7 +113,9 @@ class UserController < ApplicationController
       :default_color, :default_text,
       :panel_color, :panel_text,
       :link_color, :background_color,
-      :background_text, :background_muted
+      :background_text, :background_muted,
+      :input_color, :input_text,
+      :outline_color
     ])
 
     attrib.each do |k ,v|
@@ -128,7 +135,9 @@ class UserController < ApplicationController
       :default_color, :default_text,
       :panel_color, :panel_text,
       :link_color, :background_color,
-      :background_text, :background_muted
+      :background_text, :background_muted,
+      :input_color, :input_text,
+      :outline_color
     ])
 
     if current_user.theme.nil?

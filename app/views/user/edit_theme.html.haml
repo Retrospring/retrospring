@@ -55,5 +55,18 @@
               = f.text_field :background_text, class: 'color', data: {default: 0x222222}
             .col-md-6
               = f.text_field :background_muted, class: 'color', data: {default: 0xBBBBBB}
+          .row
+            .col-md-6
+              = f.text_field :input_color, class: 'color', data: {default: 0xFFFFFF}
+            .col-md-6
+              = f.text_field :input_text, class: 'color', data: {default: 0x000000}
+          .row
+            .col-md-6
+              = f.text_field :outline_color, class: 'color', data: {default: 0x5E35B1}
+            .col-md-6
 
-          = f.submit t('views.actions.save'), class: 'btn btn-primary'
+          .pull-left
+            = f.submit t('views.actions.save'), class: 'btn btn-primary'
+
+        .pull-right
+          =button_to 'Delete Theme', delete_user_theme_path, data: { confirm: "Are you sure?" }, tabindex: -1, method: :delete, class: "btn btn-danger"

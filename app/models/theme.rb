@@ -12,6 +12,8 @@ class Theme < ActiveRecord::Base
     :panel_color, :panel_text,
     :link_color, :background_color,
     :background_text, :background_muted,
+    :input_color, :input_text,
+    :outline_color,
     greater_than_or_equal_to: 0, less_than_or_equal_to: 0xFFFFFF,
     allow_nil: true, only_integer: true
 
@@ -33,5 +35,9 @@ class Theme < ActiveRecord::Base
     style.original_filename = 'theme.css'
 
     self.css = style
+  end
+
+  def theme_color
+    ('#' + ('0000000' + primary_color.to_s(16))[-6, 6])
   end
 end

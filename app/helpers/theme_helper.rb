@@ -3,7 +3,8 @@ module ThemeHelper
     klass = Class.new do
       def initialize(hash = {})
         if hash.is_a? ActiveRecord::Base
-          x = [:primary_color, :primary_text,
+          x = [
+            :primary_color, :primary_text,
             :danger_color, :danger_text,
             :success_color, :success_text,
             :warning_color, :warning_text,
@@ -11,7 +12,10 @@ module ThemeHelper
             :default_color, :default_text,
             :panel_color, :panel_text,
             :link_color, :background_color,
-            :background_text, :background_muted]
+            :background_text, :background_muted,
+            :input_color, :input_text,
+            :outline_color
+          ]
 
           x.each do |v|
             next if hash[v].nil?
