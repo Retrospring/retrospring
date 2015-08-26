@@ -24,6 +24,11 @@
         %a{href: sidekiq_web_path}
           %i.fa.fa-fw.fa-bar-chart
           = t('views.navigation.sidekiq')
+      %li
+        %a{href: pghero_path}
+          %i.fa.fa-fw.fa-database
+          Database Monitor
+      %li.divider
     - if current_user.mod?
       %li
         %a{href: moderation_path}

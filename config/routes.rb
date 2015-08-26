@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
                         req.env['warden'].user.admin? } do
     mount Sidekiq::Web, at: "/sidekiq"
+    mount PgHero::Engine, at: "/pghero", as: 'pghero'
   end
 
   # Moderation panel

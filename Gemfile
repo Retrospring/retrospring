@@ -47,6 +47,7 @@ gem 'twemoji-rails'
 gem 'ruby-progressbar'
 
 gem 'rails_admin'
+gem 'pghero'
 
 gem 'sidekiq'
 gem 'sinatra', require: false
