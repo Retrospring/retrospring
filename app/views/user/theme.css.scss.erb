@@ -338,6 +338,14 @@ body#version1 {
     background-color: mix($primary_color, $primary_text, 90%) !important;
     border-color:     mix($primary_color, $primary_text, 85%) !important;
     color:            mix($primary_text, $primary_color, 90%) !important;
+
+    &, .media * {
+      color: mix($primary_text, $primary_color, 90%) !important;
+    }
+
+    .media a {
+      color: mix(mix($primary_text, $primary_color, 90%), $link_color, 80%) !important;
+    }
   }
 
   .btn-primary:hover {
@@ -359,7 +367,14 @@ body#version1 {
   .panel-danger > .panel-heading {
     background-color: mix($danger_color, $danger_text, 90%) !important;
     border-color:     mix($danger_color, $danger_text, 85%) !important;
-    color:            mix($danger_text, $danger_color, 90%) !important;
+
+    &, .media * {
+      color: mix($danger_text, $danger_color, 90%) !important;
+    }
+
+    .media a {
+      color: mix(mix($danger_text, $danger_color, 90%), $link_color, 80%) !important;
+    }
   }
 
   .btn-danger:hover {
@@ -379,9 +394,17 @@ body#version1 {
   }
 
   .panel-success > .panel-heading {
-    background-color: mix($success_color, $success_text, 90%);
+    background-color: mix($success_color, $success_text, 90%) !important;
     border-color:     mix($success_color, $success_text, 85%) !important;
     color:            mix($success_text, $success_color, 90%) !important;
+
+    &, .media * {
+      color: mix($success_text, $success_color, 90%) !important;
+    }
+
+    .media a {
+      color: mix(mix($success_text, $success_color, 90%), $link_color, 80%) !important;
+    }
   }
 
   .btn-success:hover {
@@ -404,6 +427,14 @@ body#version1 {
     background-color: mix($warning_color, $warning_text, 90%) !important;
     border-color:     mix($warning_color, $warning_text, 85%) !important;
     color:            mix($warning_text, $warning_color, 90%) !important;
+
+    &, .media * {
+      color: mix($warning_text, $warning_color, 90%) !important;
+    }
+
+    .media a {
+      color: mix(mix($warning_text, $warning_color, 90%), $link_color, 80%) !important;
+    }
   }
 
   .btn-warning:hover {
@@ -426,6 +457,14 @@ body#version1 {
     background-color: mix($info_color, $info_text, 90%) !important;
     border-color:     mix($info_color, $info_text, 85%) !important;
     color:            mix($info_text, $info_color, 90%) !important;
+
+    &, .media * {
+      color: mix($info_text, $info_color, 90%) !important;
+    }
+
+    .media a {
+      color: mix(mix($info_text, $info_color, 90%), $link_color, 80%) !important;
+    }
   }
 
   .btn-info:hover {
