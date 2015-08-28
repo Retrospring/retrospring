@@ -1,4 +1,4 @@
-.col-md-3.col-xs-12.col-sm-3
+.col-md-3.col-xs-12.col-sm-4
   .panel.panel-default.hidden-xs
     .list-group
       = list_group_item t('views.notifications.tabs.all'), notifications_path, badge: Notification.for(current_user).where(new: true).count
