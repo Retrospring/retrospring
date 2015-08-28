@@ -6,6 +6,8 @@ class StaticController < ApplicationController
         format.html
         format.js
       end
+    else
+      return render 'static/front'
     end
   end
 
