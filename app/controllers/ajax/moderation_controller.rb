@@ -5,7 +5,7 @@ class Ajax::ModerationController < ApplicationController
     @success = false
     render partial: "ajax/shared/status"
   end
-  
+
   def vote
     params.require :id
     params.require :upvote
@@ -174,7 +174,19 @@ class Ajax::ModerationController < ApplicationController
     end
 
     @checked = status
-    target_user.send("#{params[:type]}=", status)
+    case params[:type].downcase
+      when 'blogger'
+        target_user.blogger = status
+      when 'contributor'
+        target_user.contributor = status
+      when 'translator'
+        target_user.translator = status
+      when 'supporter'
+        target_user.translator = status
+      when 'moderator'
+        target_user.translator = status
+      when 'admin'
+        target_user.translator = status
     target_user.save!
 
     @message = I18n.t('messages.moderation.privilege.checked', privilege: params[:type])
