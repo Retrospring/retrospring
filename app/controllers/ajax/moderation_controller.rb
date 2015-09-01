@@ -175,18 +175,19 @@ class Ajax::ModerationController < ApplicationController
 
     @checked = status
     case params[:type].downcase
-      when 'blogger'
-        target_user.blogger = status
-      when 'contributor'
-        target_user.contributor = status
-      when 'translator'
-        target_user.translator = status
-      when 'supporter'
-        target_user.translator = status
-      when 'moderator'
-        target_user.translator = status
-      when 'admin'
-        target_user.translator = status
+    when 'blogger'
+      target_user.blogger = status
+    when 'contributor'
+      target_user.contributor = status
+    when 'translator'
+      target_user.translator = status
+    when 'supporter'
+      target_user.supporter = status
+    when 'moderator'
+      target_user.moderator = status
+    when 'admin'
+      target_user.admin = status
+    end
     target_user.save!
 
     @message = I18n.t('messages.moderation.privilege.checked', privilege: params[:type])
