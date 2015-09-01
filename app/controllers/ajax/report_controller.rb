@@ -5,7 +5,7 @@ class Ajax::ReportController < ApplicationController
     @success = false
     render partial: "ajax/shared/status"
   end
-  
+
   def create
     params.require :id
     params.require :type
@@ -23,11 +23,20 @@ class Ajax::ReportController < ApplicationController
       return
     end
 
-    object = if params[:type] == 'user'
-               User.find_by_screen_name params[:id]
-             else
-               params[:type].strip.capitalize.constantize.find params[:id]
-             end
+    obj = params[:type].strip.capitalize
+
+    object = case params[:type].strip.capitalize
+      when 'User'
+        User.find_by_screen_name params[:id]
+      when 'Question'
+        Question
+      when 'Answer'
+        Answer
+      when 'Comment'
+        Comment
+      else
+        Answer
+      end
 
     if object.nil?
       @message = I18n.t('messages.report.create.not_found', parameter: params[:type])

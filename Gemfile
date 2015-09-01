@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.2'
 gem 'rails-i18n'
 gem 'i18n-js'
 
