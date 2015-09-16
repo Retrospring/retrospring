@@ -17,12 +17,12 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading question
-                  .notification--list-content= notification.target.question.content
+                  .notification--list-content= markdown notification.target.question.content
             .list-group-item
               .media.question-media
                 .media-body
                   %h6.notification--list-heading answer
-                  .notification--list-content= notification.target.content
+                  .notification--list-content= markdown notification.target.content
       - when "Relationship"
         .pull-left
           %img.img-rounded.notification--dropdown-img{src: notification.target.source.profile_picture.url(:small)}
@@ -47,7 +47,7 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading answer
-                  .notification--list-content= notification.target.answer.content
+                  .notification--list-content= markdown notification.target.answer.content
       - when "CommentSmile"
         .pull-left
           %i.fa.fa-2x.fa-fw.fa-smile-o
@@ -64,7 +64,7 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading comment
-                  .notification--list-content= notification.target.comment.content
+                  .notification--list-content= markdown notification.target.comment.content
       - when "Comment"
         .pull-left
           %i.fa.fa-2x.fa-fw.fa-comments
@@ -78,7 +78,7 @@
             - elsif notification.target.user == notification.target.answer.user
               = link_to "their answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
             - else
-              = link_to "#{notification.target.user.screen_name}'s answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
+              = link_to "#{notification.target.answer.user.screen_name}'s answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
             = time_tooltip(notification.target)
             ago
           .list-group.notification--list
@@ -86,9 +86,9 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading answer
-                  .notification--list-content= notification.target.answer.content
+                  .notification--list-content= markdown notification.target.answer.content
             .list-group-item
               .media.question-media
                 .media-body
                   %h6.notification--list-heading comment
-                  .notification--list-content= notification.target.content
+                  .notification--list-content= markdown notification.target.content
