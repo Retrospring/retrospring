@@ -105,7 +105,7 @@ Rails.application.routes.draw do
   match '/public', to: 'public#index', via: :get, as: :public_timeline
   match '/group/:group_name', to: 'group#index', via: :get, as: :group_timeline
 
-  match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'all'}
+  match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'new'}
 
   match '/inbox', to: 'inbox#show', via: 'get'
   match '/inbox/:author', to: 'inbox#show', via: 'get'

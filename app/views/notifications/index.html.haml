@@ -5,8 +5,18 @@
   .col-md-9.col-xs-12.col-sm-8
     .panel.panel-default
       %ul#notifications.list-group
-        - @notifications.each do |notification|
-          = render 'notifications/notification', notification: notification
+        - if @notifications.count == 0
+          %li.list-group-item.text-center
+            .notifications--none
+              %i.fa.fa-bell-o.no-notifications
+            %p
+              - if params[:type] != "all"
+                No new notifications.
+              - else
+                No notifications.
+        - else
+          - @notifications.each do |notification|
+            = render 'notifications/notification', notification: notification
 
     #pagination= will_paginate @notifications, renderer: BootstrapPagination::Rails, page_links: false
 

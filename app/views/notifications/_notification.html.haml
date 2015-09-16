@@ -1,58 +1,94 @@
-%li.list-group-item{class: (notification.new? ? 'list-group-item-warning' : '')}
+%li.list-group-item
   .media
     - case notification.target_type
       - when "Answer"
         .pull-left
-          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+          %i.fa.fa-2x.fa-fw.fa-exclamation
         .media-body
-          %h6.media-heading.notification--user
+          .notification--heading
+            %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
             = user_screen_name notification.target.user
-          %p.notification--text
-            = raw t('views.notifications.answer.body', question: link_to(t('views.notifications.answer.question'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)), time: time_tooltip(notification.target))
-          .notification--icon
-            %i.fa.fa-exclamation
+            answered
+            = link_to "your question", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)
+            = time_tooltip(notification.target)
+            ago
+          .list-group.notification--list
+            .list-group-item
+              .media.question-media
+                .media-body
+                  %h6.notification--list-heading question
+                  .notification--list-content= notification.target.question.content
+            .list-group-item
+              .media.question-media
+                .media-body
+                  %h6.notification--list-heading answer
+                  .notification--list-content= notification.target.content
       - when "Relationship"
         .pull-left
-          %img.img-rounded.notification--img{src: gravatar_url(notification.target.source)}
+          %img.img-rounded.notification--dropdown-img{src: notification.target.source.profile_picture.url(:small)}
         .media-body
-          %h6.media-heading.notification--user
+          %h6.media-heading.notification--dropdown-user
             = user_screen_name notification.target.source
-          %p.notification--text
-            = raw t('views.notifications.relationship.body', time: time_tooltip(notification.target))
-          .notification--icon
-            %i.fa.fa-users
+          .notification--dropdown-text
+            = raw t('views.notifications.relationship.body', time: time_ago_in_words(notification.target.created_at))
       - when "Smile"
         .pull-left
-          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+          %i.fa.fa-2x.fa-fw.fa-smile-o
         .media-body
-          %h6.media-heading.notification--user
+          .notification--heading
+            %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
             = user_screen_name notification.target.user
-          %p.notification--text
-            = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.answer'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
-          .notification--icon
-            %i.fa.fa-smile-o
+            smiled
+            = link_to "your answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
+            = time_tooltip(notification.target)
+            ago
+          .list-group.notification--list
+            .list-group-item
+              .media.question-media
+                .media-body
+                  %h6.notification--list-heading answer
+                  .notification--list-content= notification.target.answer.content
       - when "CommentSmile"
         .pull-left
-          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+          %i.fa.fa-2x.fa-fw.fa-smile-o
         .media-body
-          %h6.media-heading.notification--user
+          .notification--heading
+            %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
             = user_screen_name notification.target.user
-          %p.notification--text
-            = raw t('views.notifications.smile.body', content: link_to(t('views.notifications.smile.comment'), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.comment.answer.id)), time: time_tooltip(notification.target))
-          .notification--icon
-            %i.fa.fa-smile-o
+            smiled
+            = link_to "your comment", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.comment.answer.id)
+            = time_tooltip(notification.target)
+            ago
+          .list-group.notification--list
+            .list-group-item
+              .media.question-media
+                .media-body
+                  %h6.notification--list-heading comment
+                  .notification--list-content= notification.target.comment.content
       - when "Comment"
         .pull-left
-          %img.img-rounded.notification--img{src: gravatar_url(notification.target.user)}
+          %i.fa.fa-2x.fa-fw.fa-comments
         .media-body
-          %h6.media-heading.notification--user
+          .notification--heading
+            %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
             = user_screen_name notification.target.user
-          %p.notification--text
+            commented on
             - if notification.target.answer.user == current_user
-              = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.your', user: user_screen_name(current_user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+              = link_to "your answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
             - elsif notification.target.user == notification.target.answer.user
-              = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.their', user: user_screen_name(notification.target.answer.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
+              = link_to "their answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
             - else
-              = raw t('views.notifications.comment.body', content: link_to(t('views.notifications.comment.user', user: user_screen_name(notification.target.answer.user, false, false)), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)), time: time_tooltip(notification.target))
-          .notification--icon
-            %i.fa.fa-comments
+              = link_to "#{notification.target.user.screen_name}'s answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
+            = time_tooltip(notification.target)
+            ago
+          .list-group.notification--list
+            .list-group-item
+              .media.question-media
+                .media-body
+                  %h6.notification--list-heading answer
+                  .notification--list-content= notification.target.answer.content
+            .list-group-item
+              .media.question-media
+                .media-body
+                  %h6.notification--list-heading comment
+                  .notification--list-content= notification.target.content
