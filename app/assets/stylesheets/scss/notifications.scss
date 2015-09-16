@@ -61,7 +61,7 @@
 }
 
 .notification-center {
-  min-width: 500px;
+  min-width: 400px;
   margin-top: 0px !important;
 }
 
@@ -74,6 +74,10 @@
 
 .notification--heading {
   margin-bottom: 4px;
+
+  a {
+    border-bottom: 1px dotted $link-color;
+  }
 }
 
 .notification--list-heading {

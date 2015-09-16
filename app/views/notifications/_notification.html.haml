@@ -17,12 +17,14 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading question
-                  .notification--list-content= markdown notification.target.question.content
+                  .notification--list-content
+                    = markdown notification.target.question.content
             .list-group-item
               .media.question-media
                 .media-body
                   %h6.notification--list-heading answer
-                  .notification--list-content= markdown notification.target.content
+                  .notification--list-content
+                    = markdown notification.target.content[0..255] + "#{notification.target.content.length > 255 ? '[...]' : ''}"
       - when "Relationship"
         .pull-left
           %img.img-rounded.notification--dropdown-img{src: notification.target.source.profile_picture.url(:small)}
@@ -47,7 +49,8 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading answer
-                  .notification--list-content= markdown notification.target.answer.content
+                  .notification--list-content
+                    = markdown notification.target.answer.content[0..255] + "#{notification.target.answer.content.length > 255 ? '[...]' : ''}"
       - when "CommentSmile"
         .pull-left
           %i.fa.fa-2x.fa-fw.fa-smile-o
@@ -64,7 +67,8 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading comment
-                  .notification--list-content= markdown notification.target.comment.content
+                  .notification--list-content
+                    = markdown notification.target.comment.content
       - when "Comment"
         .pull-left
           %i.fa.fa-2x.fa-fw.fa-comments
@@ -86,9 +90,11 @@
               .media.question-media
                 .media-body
                   %h6.notification--list-heading answer
-                  .notification--list-content= markdown notification.target.answer.content
+                  .notification--list-content
+                    = markdown notification.target.answer.content[0..255] + "#{notification.target.answer.content.length > 255 ? '[...]' : ''}"
             .list-group-item
               .media.question-media
                 .media-body
                   %h6.notification--list-heading comment
-                  .notification--list-content= markdown notification.target.content
+                  .notification--list-content
+                    = markdown notification.target.content

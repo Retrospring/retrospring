@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721154255) do
+ActiveRecord::Schema.define(version: 20150826224857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,39 @@ ActiveRecord::Schema.define(version: 20150721154255) do
     t.boolean  "is_active",  default: true
   end
 
+  create_table "themes", force: :cascade do |t|
+    t.integer  "user_id",                             null: false
+    t.integer  "primary_color",    default: 6174129
+    t.integer  "primary_text",     default: 16777215
+    t.integer  "danger_color",     default: 16711737
+    t.integer  "danger_text",      default: 16777215
+    t.integer  "success_color",    default: 4175384
+    t.integer  "success_text",     default: 16777215
+    t.integer  "warning_color",    default: 16741656
+    t.integer  "warning_text",     default: 16777215
+    t.integer  "info_color",       default: 10048699
+    t.integer  "info_text",        default: 16777215
+    t.integer  "default_color",    default: 2236962
+    t.integer  "default_text",     default: 15658734
+    t.integer  "panel_color",      default: 16382457
+    t.integer  "panel_text",       default: 1381653
+    t.integer  "link_color",       default: 6174129
+    t.integer  "background_color", default: 16777215
+    t.integer  "background_text",  default: 2236962
+    t.integer  "background_muted", default: 12303291
+    t.string   "css_file_name"
+    t.string   "css_content_type"
+    t.integer  "css_file_size"
+    t.datetime "css_updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "input_color",      default: 16777215, null: false
+    t.integer  "input_text",       default: 0,        null: false
+    t.integer  "outline_color",    default: 6174129,  null: false
+  end
+
+  add_index "themes", ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                             default: "",    null: false
     t.string   "encrypted_password",                default: "",    null: false
@@ -239,6 +272,7 @@ ActiveRecord::Schema.define(version: 20150721154255) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.boolean  "show_foreign_themes",               default: true,  null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
