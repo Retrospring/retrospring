@@ -43,7 +43,7 @@ class Ajax::ReportController < ApplicationController
       return
     end
 
-    current_user.report object, params[:reason]
+    current_user.report object.find(params[:id]), params[:reason]
 
     @status = :okay
     @message = I18n.t('messages.report.create.okay', parameter: params[:type])
