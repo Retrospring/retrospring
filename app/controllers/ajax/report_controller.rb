@@ -25,7 +25,7 @@ class Ajax::ReportController < ApplicationController
 
     obj = params[:type].strip.capitalize
 
-    object = case params[:type].strip.capitalize
+    object = case obj
       when 'User'
         User.find_by_screen_name params[:id]
       when 'Question'
@@ -43,7 +43,11 @@ class Ajax::ReportController < ApplicationController
       return
     end
 
-    current_user.report object.find(params[:id]), params[:reason]
+    if obj == 'User'
+      current_user.report object, params[:reason]
+    else
+      current_user.report object.find(params[:id]), params[:reason]
+    end
 
     @status = :okay
     @message = I18n.t('messages.report.create.okay', parameter: params[:type])
