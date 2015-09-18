@@ -29,13 +29,13 @@ class Ajax::ReportController < ApplicationController
       when 'User'
         User.find_by_screen_name params[:id]
       when 'Question'
-        Question
+        Question.find params[:id]
       when 'Answer'
-        Answer
+        Answer.find params[:id]
       when 'Comment'
-        Comment
+        Comment.find params[:id]
       else
-        Answer
+        Answer.find params[:id]
       end
 
     if object.nil?
@@ -43,11 +43,7 @@ class Ajax::ReportController < ApplicationController
       return
     end
 
-    if obj == 'User'
-      current_user.report object, params[:reason]
-    else
-      current_user.report object.find(params[:id]), params[:reason]
-    end
+    current_user.report object, params[:reason]
 
     @status = :okay
     @message = I18n.t('messages.report.create.okay', parameter: params[:type])
