@@ -162,6 +162,92 @@ body {
   border-bottom-right-radius: 2px;
 }
 
+.frontpage {
+  margin-top: -50px;
+  height: 100vh;
+  display: table;
+}
+
+.frontpage-scroll {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  z-index: 1000;
+  font-size: 32px;
+  width: 100%;
+}
+
+.frontpage-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.frontpage-features {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.features-heading {
+  margin-bottom: 20px;
+}
+
+.frontpage-fluid {
+  background-color: darken($navbar-inverse-bg, 10%);
+  color: #fff;
+
+  a {
+    color: #fff;
+    font-weight: bold;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  p {
+    margin: 20px;
+    text-align: center;
+  }
+}
+
+.frontpage-heading {
+  margin-top: 0px;
+}
+
+#content {
+  padding-bottom: 30px;
+}
+
+#register {
+  padding: 20px;
+}
+
+.register-now {
+  margin: 10px;
+}
+
+.btn-register {
+  opacity: 1 !important;
+  background: transparent;
+  color: #fff;
+  border: 4px #fff solid;
+  border-radius: 4px;
+  transition: background-color .25s ease-in-out;
+
+  &:hover {
+    background-color: #fff;
+    color: darken($navbar-inverse-bg, 10%) !important;
+    transition: background-color .25s ease-in-out;
+  }
+}
+
+.lead {
+  margin-bottom: 3px;
+}
+
 .particle-jumbotron {
   padding: 0px;
   overflow: hidden;
@@ -190,6 +276,15 @@ body {
   display: block;
 }
 
+.colored-icon:before {
+  color: $brand-primary;
+}
+
+.colored-icon {
+  padding-left: 3px;
+  padding-right: 5px;
+}
+
 .heading-showcase {
   margin-top: 5px;
 }
@@ -200,4 +295,11 @@ body {
 
 .discover {
   padding-top: 20px;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
 }

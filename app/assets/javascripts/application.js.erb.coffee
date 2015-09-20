@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.turbolinks
+#= require jquery.arctic_scroll
 #= require turbolinks
 #= require bootstrap
 #= require twemoji
@@ -72,6 +73,7 @@ _ready = ->
     particleground document.getElementById('particles'),
       dotColor: bodyColor
       lineColor: bodyColor
+      density: 23000
 
   if twemoji?
     twemoji.parse document.body,
@@ -83,6 +85,8 @@ _ready = ->
             false
           else
             ''.concat(options.base, options.size, '/', icon, options.ext)
+
+  $('.arctic_scroll').arctic_scroll speed: 500
 
 
 $(document).ready _ready
