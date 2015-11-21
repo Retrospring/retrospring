@@ -1,5 +1,7 @@
 # Retrospring [![Build Status](https://travis-ci.org/Retrospring/retrospring.svg)](https://travis-ci.org/Retrospring/retrospring) [![Bugs](https://badge.waffle.io/retrospring/bugs.svg?label=in+progress&title=In+Progress)](http://waffle.io/retrospring/bugs)
 
+## THIS REPO ISN'T ACTIVELY MAINTAINED ANYMORE! ALL FURTHER DEVELOPMENT HAPPENS AT [Retrospring/next](http://github.com/retrospring/next)!
+
 This is the source code that powers Retrospring. This is a detached fork of [nilsding/justask](https://github.com/nilsding/justask), where we continue development.
 
 <!--
