@@ -7,7 +7,7 @@ class Exporter
   def initialize(user)
     @user = user
     @obj = {}
-    @export_dirname = "export_#{@user.screen_name}_#{Time.now.to_i}#{SecureRandom.base64.gsub(/[+=\/]/, '')}"
+    @export_dirname = "export_#{@user.screen_name}_#{Time.now.to_i}_#{SecureRandom.base64.gsub(/[+=\/]/, '')}"
     @export_filename = @user.screen_name
   end
 
