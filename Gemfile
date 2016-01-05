@@ -3,7 +3,7 @@ source 'https://rails-assets.org'
 
 gem 'rails', '4.2.2'
 gem 'rails-i18n'
-gem 'i18n-js'
+gem 'i18n-js', '= 3.0.0.rc10'
 
 gem 'pg'
 
