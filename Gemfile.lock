@@ -283,6 +283,9 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.1)
     http_parser.rb (0.6.0)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n-js (2.1.2)
       i18n
@@ -330,6 +333,7 @@ GEM
     momentjs-rails (2.10.6)
       railties (>= 3.1)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     naught (1.1.0)
     nenv (0.2.0)
@@ -610,6 +614,7 @@ DEPENDENCIES
   foreman
   guard-brakeman
   haml
+  httparty
   i18n-js
   jbuilder (~> 2.2.4)
   jquery-minicolors-rails

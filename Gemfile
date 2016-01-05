@@ -55,6 +55,7 @@ gem 'questiongenerator', git: 'https://github.com/retrospring/questiongenerator.
 
 gem 'sanitize'
 gem 'redcarpet'
+gem 'httparty'
 
 # OmniAuth and providers
 gem 'omniauth'
