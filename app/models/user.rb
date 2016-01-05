@@ -251,4 +251,8 @@ class User < ActiveRecord::Base
       self.update(permanently_banned: false, banned_until: buntil, ban_reason: reason)
     end
   end
+
+  def can_export?
+    !self.export_processing? && !self.export_created_at.nil? && Time.now > self.export_created_at.in(1.week)
+  end
 end
