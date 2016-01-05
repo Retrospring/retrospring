@@ -253,10 +253,6 @@ class User < ActiveRecord::Base
   end
 
   def can_export?
-    if self.export_processing?
-      false
-    else
-      !self.export_created_at.nil? && Time.now > self.export_created_at.in(1.week)
-    end
+    !self.export_processing || !self.export_created_at.nil? || (Time.now > self.export_created_at.in(1.week))
   end
 end
