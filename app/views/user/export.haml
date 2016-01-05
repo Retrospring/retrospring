@@ -7,11 +7,13 @@
       .panel-body
         %h2 Export your data
         %p
-          Blah blah blah introduction text because of announced
-          = succeed "," do
-            %a{href: "http://blog.retrospring.net/saying-goodbye/"} shutdown and everything
-          and also some more text to fill this. Oh well, just push that
-          button below.
+          With the announcement of
+          = succeed ',' do
+            %a{href: 'http://blog.retrospring.net/saying-goodbye/'} shutting down Retrospring on June 8 2016
+          we promised you one last feature: exporting all your data.  The data is inside a
+          %code= ".tar.gz"
+          archive and available in three formats: YAML, JSON, and XML.  The archive also contains a copy of your
+          profile picture and header picture in all sizes.
         %p
           Please note that you can only export your data once a week.  Exporting your data
           will take a while, so please be patient.  You will receive a question once exporting
