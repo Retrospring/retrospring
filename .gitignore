@@ -31,3 +31,8 @@ coverage/
 # lookin' at you, OS trash
 .DS_Store
 Thumbs.DB
+desktop.ini
+
+# ignore exports
+/public/export
+
