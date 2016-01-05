@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826224857) do
+ActiveRecord::Schema.define(version: 20160105165913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,6 +273,9 @@ ActiveRecord::Schema.define(version: 20150826224857) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.boolean  "show_foreign_themes",               default: true,  null: false
+    t.string   "export_url"
+    t.boolean  "export_processing",                 default: false, null: false
+    t.datetime "export_created_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
