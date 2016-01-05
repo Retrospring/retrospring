@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   include ThemeHelper
 
-  before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy edit_theme update_theme preview_theme delete_theme data)
+  before_filter :authenticate_user!, only: %w(edit update edit_privacy update_privacy edit_theme update_theme preview_theme delete_theme data export begin_export)
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
@@ -155,5 +155,22 @@ class UserController < ApplicationController
       flash[:error] = 'Theme saving failed. ' + current_user.theme.errors.messages.flatten.join(' ')
     end
     redirect_to edit_user_theme_path
+  end
+
+  def export
+    if current_user.export_processing
+      flash[:info] = 'An export is currently in progress for this account.'
+    end
+  end
+
+  def begin_export
+    if current_user.can_export?
+      ExportWorker.perform_async(current_user.id)
+      flash[:success] = 'Your account is currently being exported.  This will take a little while.'
+    else
+      flash[:error] = 'Nice try, kid.'
+    end
+
+    redirect_to user_export_path
   end
 end

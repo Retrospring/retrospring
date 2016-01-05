@@ -74,6 +74,8 @@ Rails.application.routes.draw do
   match '/settings/privacy', to: 'user#update_privacy', via: :patch, as: :update_user_privacy
 
   match '/settings/data', to: 'user#data', via: :get, as: :user_data
+  match '/settings/export', to: 'user#export', via: :get, as: :user_export
+  match '/settings/export', to: 'user#begin_export', via: :post, as: :begin_user_export
 
   namespace :ajax do
     match '/ask', to: 'question#create', via: :post, as: :ask

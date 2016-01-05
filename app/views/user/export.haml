@@ -1,0 +1,35 @@
+- provide(:title, generate_title("Export"))
+.container.j2-page
+  = render 'settings_tabs'
+  .col-md-9.col-xs-12.col-sm-8
+    = render 'layouts/messages'
+    .panel.panel-default
+      .panel-body
+        %h2 Export your data
+        %p
+          Blah blah blah introduction text because of announced
+          = succeed "," do
+            %a{href: "http://blog.retrospring.net/saying-goodbye/"} shutdown and everything
+          and also some more text to fill this. Oh well, just push that
+          button below.
+        %p
+          Please note that you can only export your data once a week.  Exporting your data
+          will take a while, so please be patient.  You will receive a question once exporting
+          is done.
+        - if current_user.can_export?
+          %form{action: begin_user_export_path, method: 'POST'}
+            %p.centre
+              %button#export-btn.btn.btn-lg.btn-primary{type: :submit} Export
+            = hidden_field_tag :authenticity_token, form_authenticity_token
+        - else
+          %p.centre
+            %button.btn.btn-lg.btn-primary.disabled{disabled: :disabled} Export
+        %p
+          - if current_user.export_url.nil?
+            Once exporting your account is done, a download link will appear here.
+          - else
+            Here is your export from
+            = succeed ':' do
+              = current_user.export_created_at
+            %a{href: current_user.export_url}
+              = File.basename current_user.export_url
