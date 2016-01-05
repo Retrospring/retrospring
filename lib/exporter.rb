@@ -200,10 +200,10 @@ class Exporter
     sobj = {}
 
     %i(id created_at).each do |f|
-      sobj[f] = s.send f
+      sobj[f] = smile.send f
     end
 
-    sobj[:answer] = process_answer(comment.answer, include_comments: false)
+    sobj[:answer] = process_answer(smile.answer, include_comments: false)
 
     sobj
   end
