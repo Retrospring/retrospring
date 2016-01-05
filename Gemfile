@@ -5,8 +5,7 @@ gem 'rails', '4.2.2'
 gem 'rails-i18n'
 gem 'i18n-js'
 
-gem 'pg', group: :postgres
-gem 'mysql2', group: :mysql
+gem 'pg'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -78,7 +77,7 @@ group :development do
   gem 'spring', '~> 1.3.5'
   # ten thousand raises no more!
   gem 'byebug'
-  gem 'web-console'
+  gem 'web-console', '< 3.0.0'
 end
 
 group :production do
