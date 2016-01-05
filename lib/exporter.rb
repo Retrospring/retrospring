@@ -12,7 +12,6 @@ class Exporter
   end
 
   def export
-    fail "An export is already in progress." if @user.export_processing
     @user.export_processing = true
     @user.save validate: false
     collect_user_info
@@ -128,12 +127,12 @@ class Exporter
 
     qobj = {}
     %i(answer_count author_is_anonymous content created_at id).each do |f|
-      qobj[f] = q.send f
+      qobj[f] = question.send f
     end
 
     if opts[:include_answers]
       qobj[:answers] = []
-      qobj.answers.each do |a|
+      question.answers.each do |a|
         qobj[:answers] << process_answer(a, include_question: false)
       end
     end
