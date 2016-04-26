@@ -1,10 +1,8 @@
-# Retrospring [![Build Status](https://travis-ci.org/Retrospring/retrospring.svg)](https://travis-ci.org/Retrospring/retrospring) [![Bugs](https://badge.waffle.io/retrospring/bugs.svg?label=in+progress&title=In+Progress)](http://waffle.io/retrospring/bugs)
-
-## THIS REPO ISN'T ACTIVELY MAINTAINED ANYMORE! ALL FURTHER DEVELOPMENT HAPPENS AT [Retrospring/next](http://github.com/retrospring/next)!
-
-(the previous statement was a lie, lol)
+# Retrospring [![Build Status](https://travis-ci.org/Retrospring/retrospring.svg)](https://travis-ci.org/Retrospring/retrospring)
 
 This is the source code that powers Retrospring. This is a detached fork of [nilsding/justask](https://github.com/nilsding/justask), where we continue development.
+
+Retrospring is going to shut down on June 8, 2016. The source code will continue to be hosted here, as though no further updates will be made to it (there weren't any to begin with, though).
 
 <!--
 Except for the memes that happened 4 hours before the shutdown.  I've edited
