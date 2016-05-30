@@ -100,5 +100,4 @@ group :development, :test do
   gem 'better_errors'
   gem 'letter_opener' # Use this just in local test environments
   gem 'brakeman'
-  gem 'guard-brakeman'
 end
