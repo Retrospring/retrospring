@@ -19,6 +19,7 @@
       %link{rel: 'stylesheet', href: @user.theme.css.url, media: :all, 'data-turbolinks-track' => "false"}
       %meta{name: 'theme-color', content: @user.theme.theme_color}
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'xue', 'data-turbolinks-track' => true
     - if user_signed_in?
       - if current_user.mod?
         = javascript_include_tag 'moderation', 'data-turbolinks-track' => true
