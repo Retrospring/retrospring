@@ -10,7 +10,7 @@ var tower = new DataTower();
 
 var self = (_self = {
   defaults: {
-    respack: encodeURIComponent("music"),
+    respack: encodeURIComponent("lol"),
     song: 0,
     hues: "colors"
   },
