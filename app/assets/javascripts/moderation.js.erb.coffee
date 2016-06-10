@@ -1,3 +1,3 @@
 #= require moment
-#= require bootstrap-datetimepicker
-#= require_tree ./moderation
+# require bootstrap-datetimepicker
+# require_tree ./moderation

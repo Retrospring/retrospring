@@ -22,6 +22,12 @@
     - if user_signed_in?
       - if current_user.mod?
         = javascript_include_tag 'moderation', 'data-turbolinks-track' => true
+    = javascript_include_tag 'hues-config', 'data-turbolinks-track' => true
+    = javascript_include_tag 'fetch', 'data-turbolinks-track' => true
+    = javascript_include_tag 'webkit-webaudio-hack', 'data-turbolinks-track' => true
+    = javascript_include_tag 'datafaucet', 'data-turbolinks-track' => true
+    = javascript_include_tag 'hues', 'data-turbolinks-track' => true
+    = javascript_include_tag 'hues-init', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body#version1
     = render 'layouts/header'
