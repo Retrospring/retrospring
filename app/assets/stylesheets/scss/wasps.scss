@@ -1,0 +1,65 @@
+/* Oh no! The wasps have invaded Retrospring!  Quick, smile at answers to wave them away! */
+
+@keyframes wasp{
+        0%{margin-left:0px}
+        20%{ margin-left:100px; transform:scale(1.0)rotate(90deg);  }
+        40%{ margin-left:100px; margin-top:100px; transform:scale(1.0) rotate(20deg); }
+        60%{ margin-top:100px }
+        100%{  }
+}
+
+
+@keyframes waspaway{
+  0%{margin-left:0px; margin-top: 0px;}
+  20%{ margin-left:50px; transform:scale(0.9); }
+  40%{ margin-left:100px; margin-top:100px; transform:scale(1.0); }
+  99%{ margin-top:100px; margin-left: -200px }
+  100%{  margin-left: -200px; transform:scale(0.0); }
+}
+
+  
+.answerbox [name="ab-smile"] {
+  overflow: visible;
+}  
+.answerbox [data-action=smile]::before {
+  content:url("https://retrospring.net/wasp.png");
+  display:block;
+  position:absolute;
+  transform: scale(0.5);
+  z-index: 100;
+}
+
+.answerbox [data-action=smile]:hover:before {
+    animation:wasp 2s infinite ease-in-out alternate;
+}
+
+.answerbox:nth-child(3n) [data-action=smile]:before {
+  transform: rotate(60deg) scale(0.6);
+  margin-left:-10px;
+}
+
+.answerbox:nth-child(5n) [data-action=smile]:before {
+  transform: rotate(20deg) scale(0.4);
+}
+
+.answerbox:nth-child(7n) [data-action=smile]:before {
+  transform: rotate(170deg) scale(0.5);
+  margin-left:-40px;
+}
+
+.answerbox [data-action=unsmile]:before {
+  animation:waspaway 2s forwards;
+  margin-left: -200px;
+  transform:scale(0.0);
+}
+
+.answerbox:nth-child(3n) [data-action=unsmile]:before {
+animation-delay: 400ms
+}
+.answerbox:nth-child(5n) [data-action=unsmile]:before {
+animation-delay: 100ms
+}
+.answerbox:nth-child(7n) [data-action=unsmile]:before {
+animation-delay: 200ms
+}
+
