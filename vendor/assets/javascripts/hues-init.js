@@ -22,7 +22,7 @@ $(function(){
   if(!HuesHasAlreadyLoadedOhMyGodTurbolinksIsHorrible){
     Hues.tower.bind("log", HuesLogFunc)
     Hues.tower.bind("progressend", function(){
-      Hues.setVolume(-15)
+      Hues.setVolume(-5)
       console.log("loading finished")
       Hues.playSong()
     })
