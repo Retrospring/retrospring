@@ -106,4 +106,3 @@ function __ShowSnow(settings)
   }
 
 })(jQuery);
-$(document).snow({ SnowImage: "/images/sure_fam.png" });
