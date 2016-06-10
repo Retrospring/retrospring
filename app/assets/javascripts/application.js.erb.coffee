@@ -32,6 +32,12 @@
 #= require report
 #= require locale-box
 #= require util
+#= require hues-config
+#= require fetch
+#= require webkit-webaudio-hack
+#= require datafaucet
+#= require hues
+#= require hues-init
 # not required:
 # _tree ./moderation
 
