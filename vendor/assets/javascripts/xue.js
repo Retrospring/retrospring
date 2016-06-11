@@ -10,7 +10,7 @@
 function __ShowSnow(settings)
 {
 
-    var snowsrc = settings.SnowImage;
+    var snowsrc = settings.SnowImages;
     var no = settings.Quantity;
 
     var dx, xp, yp;    // coordinate and position variables
@@ -48,7 +48,7 @@ function __ShowSnow(settings)
                     left: "15px"
                 });
 
-        flake.append("<img src='" + snowsrc + "'>");
+        flake.append("<img class='degenerate' src='" + getRandomSnowImage(snowsrc) + "'>");
         flake.appendTo("body");
 
         flakes[i] = $("#" + id);
@@ -89,13 +89,17 @@ function __ShowSnow(settings)
     animateSnow();
 	if (settings.HideSnowTime > 0)
     	setTimeout(hidesnow, settings.HideSnowTime * 1000)
+
+    function getRandomSnowImage(imgs) {
+        return imgs[Math.floor(Math.random()*imgs.length)];
+    }
 }
 
 (function($) {
     $.fn.snow = function(options) {
   
     var settings = $.extend({
-            SnowImage:      undefined,
+            SnowImages:     [],
             Quantity:       7,
             HideSnowTime:   0
         }, options);
@@ -106,3 +110,25 @@ function __ShowSnow(settings)
   }
 
 })(jQuery);
+
+function makeItSnow() {
+    $(function(){
+        var HuesHasAlreadyLoadedOhMyGodTurbolinksIsHorrible = false
+        for(var streamnum in window.Hues.tower.streams){
+            var stream = window.Hues.tower.streams[streamnum]
+            if(stream.name == "log"){
+                for(var fnum in stream.faucets){
+                    var ffunc = stream.faucets[fnum]
+                    if(ffunc == HuesLogFunc)
+                        HuesHasAlreadyLoadedOhMyGodTurbolinksIsHorrible = true
+                }
+            }
+        }
+        if(!HuesHasAlreadyLoadedOhMyGodTurbolinksIsHorrible) {
+            $(document).snow({SnowImages: ["/images/sure_fam.png", "/images/ok.png"]})
+            $('.degenerate').click(function () {
+                Hues.nextSong()
+            })
+        }
+    });
+}
