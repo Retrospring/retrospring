@@ -33,8 +33,8 @@
 #= require report
 #= require locale-box
 #= require util
-#= require moment
-#= require moment-timezone
+# require moment
+# require moment-timezone
 # require hues-config
 # require fetch
 # require webkit-webaudio-hack
@@ -100,9 +100,7 @@ _ready = ->
 
   $('.arctic_scroll').arctic_scroll speed: 500
 
-  end = moment.tz("2016-06-12 00:00", "Europe/Berlin");
-
-  $('#countdown').countdown end, (event) ->
+  $('#countdown').countdown 1465682400000, (event) ->
     $(this).html event.strftime('%H:%M:%S')
 
 $(document).on 'click', 'a', ->
