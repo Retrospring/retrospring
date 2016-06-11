@@ -1,0 +1,10 @@
+.img-rounded, .userbox--avatar, .profile--avatar, .profile--image-avatar, .degenerate {
+  transform-origin:50% 65% 0;
+  transition-duration: 0.33s;
+  -webkit-transform-origin:50% 65% 0;
+  -webkit-transition-duration: 0.33s;
+  &:hover {
+    -webkit-transform:rotate(-360deg);
+    transform:rotate(-360deg);
+  }
+}
