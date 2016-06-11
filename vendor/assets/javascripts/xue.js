@@ -99,7 +99,7 @@ function __ShowSnow(settings)
     $.fn.snow = function(options) {
   
     var settings = $.extend({
-            SnowImages:     [],
+            SnowImages:     ["/images/sure_fam.png", "/images/ok.png"],
             Quantity:       7,
             HideSnowTime:   0
         }, options);
@@ -125,7 +125,7 @@ function makeItSnow() {
             }
         }
         if(!HuesHasAlreadyLoadedOhMyGodTurbolinksIsHorrible) {
-            $(document).snow({SnowImages: ["/images/sure_fam.png", "/images/ok.png"]})
+            $(document).snow()
             $('.degenerate').click(function () {
                 Hues.nextSong()
             })

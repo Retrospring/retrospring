@@ -39,6 +39,7 @@
 # require datafaucet
 # require hues
 # require hues-init
+#= require xue
 # not required:
 # _tree ./moderation
 
