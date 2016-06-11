@@ -73,7 +73,7 @@ $(document).on "click", "button#create-account", ->
   Turbolinks.visit "/sign_up"
 
 _ready = ->
-  (new Audio('/HYPER.mp3')).play
+  (new Audio('/HYPER.mp3')).play()
   makeItSnow()
   if typeof sweetAlertInitialize != "undefined"
     sweetAlertInitialize()
