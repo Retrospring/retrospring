@@ -69,8 +69,7 @@ $(document).on "click", "button#create-account", ->
   Turbolinks.visit "/sign_up"
 
 _ready = ->
-  $(document).snow
-    SnowImage: "/images/sure_fam.png"
+  makeItSnow()
   if typeof sweetAlertInitialize != "undefined"
     sweetAlertInitialize()
 
