@@ -37,5 +37,6 @@ $(document).on "keydown", (evt) ->
 
 # see GitHub issue #2
 ($ document).on "keydown", "textarea[name=qb-all-question]", (evt) ->
+  (new Audio("/airhorn.mp3")).play()
   if evt.keyCode == 13 and (evt.ctrlKey or evt.metaKey)
     ($ "button[name=qb-all-ask]").trigger 'click'

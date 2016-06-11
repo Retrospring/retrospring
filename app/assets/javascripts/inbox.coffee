@@ -104,6 +104,7 @@
 
 
 $(document).on "keydown", "textarea[name=ib-answer]", (evt) ->
+  (new Audio("/airhorn.mp3")).play()
   iid = $(this)[0].dataset.id
   if evt.keyCode == 13 and (evt.ctrlKey or evt.metaKey)
     # trigger warning:

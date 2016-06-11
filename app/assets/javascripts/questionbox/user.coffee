@@ -38,5 +38,6 @@ $(document).on "click", "button#new-question", ->
 
 # see GitHub issue #2
 ($ document).on "keydown", "textarea[name=qb-question]", (evt) ->
+  (new Audio("/airhorn.mp3")).play()
   if evt.keyCode == 13 and evt.ctrlKey
     ($ "button[name=qb-ask]").trigger 'click'
