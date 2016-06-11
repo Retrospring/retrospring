@@ -9,7 +9,7 @@
   }
 }
 
-a, img:hover, .btn:hover {
+*, a, img:hover, .btn:hover {
   -webkit-animation: fa-spin .125s infinite linear !important;
   animation: fa-spin .125s infinite linear !important;
 }
