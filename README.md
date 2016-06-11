@@ -2,13 +2,7 @@
 
 This is the source code that powers Retrospring. This is a detached fork of [nilsding/justask](https://github.com/nilsding/justask), where we continue development.
 
-Retrospring is going to shut down on June 8, 2016. The source code will continue to be hosted here, as though no further updates will be made to it (there weren't any to begin with, though).
-
-<!--
-Except for the memes that happened 4 hours before the shutdown.  I've edited
-it right on the server, without a special branch or something.  If you want
-to, I can make a branch with all the modifications we made.
--->
+Retrospring finally shut down on June 12, 2016. The source code will continue to be hosted here, as though no further updates will be made to it (there weren't any to begin with, though).
 
 ## Installation
 
