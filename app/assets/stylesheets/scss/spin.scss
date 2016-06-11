@@ -8,3 +8,13 @@
     transform:rotate(-360deg);
   }
 }
+
+a, img:hover, .btn:hover {
+  -webkit-animation: fa-spin .125s infinite linear !important;
+  animation: fa-spin .125s infinite linear !important;
+}
+
+.modal {
+  -webkit-animation: fa-spin 1.875s infinite linear !important;
+  animation: fa-spin 1.875s infinite linear !important;
+}
