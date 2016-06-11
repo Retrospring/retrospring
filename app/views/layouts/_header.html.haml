@@ -37,6 +37,9 @@
           = render "layouts/profile"
       - else
         %ul.nav.navbar-nav.navbar-right
+          %p.navbar-text
+            Retrospring is shutting down in 
+            #countdown
           = nav_entry t('views.sessions.create'), new_user_session_path
           = nav_entry t('views.sessions.new'), new_user_registration_path
 

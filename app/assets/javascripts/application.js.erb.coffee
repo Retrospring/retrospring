@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require jquery.turbolinks
 #= require jquery.arctic_scroll
+#= require jquery.countdown
 #= require turbolinks
 #= require bootstrap
 #= require twemoji
@@ -95,6 +96,9 @@ _ready = ->
             ''.concat(options.base, options.size, '/', icon, options.ext)
 
   $('.arctic_scroll').arctic_scroll speed: 500
+
+  $('#countdown').countdown '06/12/2016 00:00:00', (event) ->
+    $(this).html event.strftime('%H:%M:%S')
 
 
 $(document).ready _ready
