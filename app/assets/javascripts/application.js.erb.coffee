@@ -99,7 +99,7 @@ _ready = ->
 
   $('.arctic_scroll').arctic_scroll speed: 500
 
-  var end = moment.tz("2016-06-12 00:00", "Europe/Berlin");
+  end = moment.tz("2016-06-12 00:00", "Europe/Berlin");
 
   $('#countdown').countdown end, (event) ->
     $(this).html event.strftime('%H:%M:%S')
