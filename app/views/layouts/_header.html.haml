@@ -24,6 +24,9 @@
           = nav_entry t('views.navigation.inbox'), "/inbox", badge: inbox_count
           = nav_entry t('views.navigation.discover'), discover_path
         %ul.nav.navbar-nav.navbar-right
+          %p.navbar-text
+            Retrospring is shutting down in 
+            %span#countdown
           - unless @user.nil?
             - unless @user == current_user
               %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: t('views.actions.group')}
@@ -39,7 +42,7 @@
         %ul.nav.navbar-nav.navbar-right
           %p.navbar-text
             Retrospring is shutting down in 
-            #countdown
+            %span#countdown
           = nav_entry t('views.sessions.create'), new_user_session_path
           = nav_entry t('views.sessions.new'), new_user_registration_path
 
