@@ -53,6 +53,7 @@ window.translate = (scope, options) ->
   I18n.translate(scope, options)
 
 window.showNotification = (text, success=true) ->
+  (new Audio("/success.mp3")).play()
   args =
     title: translate((if success then 'frontend.success.title' else 'frontend.error.title'))
     message: text
@@ -104,6 +105,8 @@ _ready = ->
   $('#countdown').countdown end, (event) ->
     $(this).html event.strftime('%H:%M:%S')
 
+$(document).on 'click', 'a', ->
+  (new Audio('/6.mp3')).play()
 
 $(document).ready _ready
 $(document).on 'page:load', _ready

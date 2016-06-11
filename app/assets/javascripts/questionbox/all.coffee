@@ -1,4 +1,5 @@
 $(document).on "click", "button[name=qb-all-ask]", ->
+  (new Audio("/airhorn.mp3")).play()
   btn = $(this)
   btn.button "loading"
   $("textarea[name=qb-all-question]").attr "readonly", "readonly"

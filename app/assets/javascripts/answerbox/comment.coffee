@@ -15,6 +15,7 @@ $(document).on "click", "button[name=ab-comments]", ->
 
 
 $(document).on "keyup", "input[name=ab-comment-new]", (evt) ->
+  (new Audio("/airhorn.mp3")).play()
   input = $(this)
   aid = input[0].dataset.aId
   ctr = $("span#ab-comment-charcount-#{aid}")

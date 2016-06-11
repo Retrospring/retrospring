@@ -1,4 +1,5 @@
 $(document).on "click", "button[name=qb-ask]", ->
+  (new Audio("/airhorn.mp3")).play()
   btn = $(this)
   btn.button "loading"
   promote = btn[0].dataset.promote == "true"
