@@ -137,7 +137,7 @@ GEM
     faraday_middleware (0.9.2)
       faraday (>= 0.7.4, < 0.10)
     fastercsv (1.5.5)
-    ffi (1.9.10)
+    ffi (1.9.18)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.37.0)
@@ -434,7 +434,7 @@ GEM
     raindrops (0.15.0)
     rake (10.5.0)
     rb-fsevent (0.9.7)
-    rb-inotify (0.9.6)
+    rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     rbvmomi (1.8.2)
       builder
@@ -664,4 +664,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.10.6
+   1.13.7
