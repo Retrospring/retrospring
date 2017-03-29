@@ -34,6 +34,7 @@
   width: 100%;
   overflow: hidden;
   background-color: darken($navbar-inverse-bg, 10%);
+  max-height: 440px;
 }
 
 #profile--header.profile--no-header {
