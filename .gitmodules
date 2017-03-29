@@ -1,6 +1,0 @@
-[submodule "service-docs"]
-	path = service-docs
-	url = https://github.com/Retrospring/service-docs.git
-[submodule "config/locales"]
-	path = config/locales
-	url = https://github.com/Retrospring/locales.git
