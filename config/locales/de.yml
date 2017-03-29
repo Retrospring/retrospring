@@ -1,0 +1,458 @@
+---
+de:
+  language: Deutsch
+  frontend:
+    load: Mehr...
+    success:
+      title: Erfolg!
+    error:
+      title: Oh-oh...
+      message: "Es ist ein Fehler aufgetreten, ein Entwickler sollte die Konsole nach Details überprüfen"
+    subscription:
+      subscribe: "Erfolgreich abonniert."
+      unsubscribe: "Erfolgreich deabonniert."
+      fail:
+        subscribe: "Das Abonnieren der Antwort schlug fehl."
+        unsubscribe: "Das Deabonnieren der Antwort schlug fehl."
+    group:
+      confirm:
+        title: "Diese Gruppe wirklich löschen?"
+        text: "Es wird nicht möglich sein, diese Gruppe wieder zu erhalten."
+    destroy_question:
+      confirm:
+        title: "Bist du sicher?"
+        text: "Die Frage wird wieder in dein Postfach verschoben, aber dabei werden keine Posts auf sozialen Netzwerken gelöscht!"
+    destroy_comment:
+      confirm:
+        title: "Wirklich löschen?"
+        text: "Du wirst diesen Kommentar nicht wiederherstellen können."
+    destroy_report:
+      confirm:
+        title: "Wirklich löschen?"
+        text: "Es wird nicht möglich sein diesen Report wiederherzustellen."
+    destroy_own:
+      confirm:
+        title: "Bist du sicher?"
+        text: "Diese Frage wird entfernt."
+    inbox:
+      empty: "Hier gibt es nichts zu sehen."
+      confirm_all:
+        title: "Wirklich %{count} Fragen löschen?"
+        text: "Sie werden für immer verloren sein."
+      confirm:
+        title: "Wirklich löschen?"
+        text: "Diese Frage wird für immer verloren sein."
+    report:
+      confirm:
+        title: "Willst du wirklich diese %{type} melden?"
+        text: |-
+            Ein Moderator wird diese Meldung überprüfen und entscheiden was passieren wird.
+            Wenn du möchtest, kannst du auch einen Grund angeben.
+        input: "Gib hier einen Grund an..."
+  flash:
+    ban:
+      error: "Es tut mir Leid, %{name}, aber ich kann das nicht tun."
+      reason: "Grund des Banns: %{reason}"
+      until: "Gebannt bis: %{time}"
+    service:
+      create:
+        success: "Erfolgreich Dienst hinzugefügt"
+        error: "Konnte Dienst nicht hinzufügen :("
+      failure: "Es ist ein Fehler aufgetreten"
+      destroy: "Erfolgreich Dienst entfernt"
+    user:
+      update:
+        text: "Dein Profil wurde aktualisiert!"
+        avatar: " Es kann einige Minuten dauern bis dein neues Profilbild überall angezeigt wird."
+        header: " Es kann einige Minuten dauern bis dein neues Kopfzeilenbild überall angezeigt wird."
+        error: "Es ist ein Fehler aufgetreten. ;_;"
+      update_privacy:
+        success: "Deine Privatsphäreeinstellungen wurden aktualisiert!"
+        error: "Es ist ein Fehler aufgetreten. ;_;"
+  messages:
+    noscript: "Bitte aktiviere JavaScript."
+    error: "Es ist ein Fehler aufgetreten."
+    parameter_error: "%{parameter} wird benötigt."
+    noauth: "benötigt Authentifizierung"
+    answer:
+      create:
+        fail: "Frage ist nicht in deinem Posteingang."
+        privacy_stronk: "Dieser Benutzer will nicht, dass andere Benutzer seine Fragen beantworten."
+        peter_dinklage: "Antwort ist zu kurz."
+        okay: "Frage erfolgreich beantwortet."
+      destroy:
+        nopriv: "Du kannst die Antworten von anderen Benutzern nicht löschen"
+        okay: "Frage erfolgreich gelöscht."
+    comment:
+      create:
+        rec_inv: "Dein Kommentar ist zu lang."
+        okay: "Kommentar erfolgreich abgesendet."
+      destroy:
+        nopriv: "Du kannst nicht die Kommentare von anderen Benutzern löschen"
+        okay: "Kommentar erfolgreich entfernt."
+    friend:
+      create:
+        fail: "Du folgst diesem Benutzer schon."
+        okay: "Erfolgreich Benutzer gefolgt."
+      destroy:
+        fail: "Du folgst diesem Benutzer nicht."
+        okay: "Erfolgreich Benutzer entfolgt."
+    group:
+      create:
+        noname: "Bitte gib dieser Gruppe einen Namen."
+        toolong: "Gruppenname zu lang (maximal 30 Zeichen)"
+        notfound: "Konnte Benutzer nicht finden."
+        exists: "Gruppe existiert bereits."
+        okay: "Gruppe erfolgreich erstellt."
+      destroy:
+        notfound: "Konnte Gruppe nicht finden."
+        okay: "Gruppe erfolgreich gelöscht."
+      membership:
+        notfound: "Gruppe nicht gefunden."
+        add: "Benutzer erfolgreich zur Gruppe hinzugefügt."
+        remove: "Benutzer erfolgreich aus Gruppe entfernt."
+    inbox:
+      create:
+        okay: "Erfolgreich neue Frage hinzugefügt."
+      remove:
+        fail: "Frage ist nicht in deinem Posteingang."
+        okay: "Frage erfolgreich gelöscht."
+      remove_all:
+        okay: "Fragen erfolgreich gelöscht."
+    moderation:
+      vote:
+        fail: "Du hast bereits für diese Meldung abgestimmt."
+        okay: "Erfolgreich für Meldung abgestimmt."
+      destroy_vote:
+        fail: "Du hast noch nicht für diese Meldung abgestimmt."
+        okay: "Stimme erfolgreich von Meldung entfernt."
+      destroy_report:
+        fail: "Etwas schlechtes ist passiert!"
+        okay: "WO IST ES HINVERSCHWUNDEN??? OH NEIN!!!"
+      create_comment:
+        rec_inv: "Dein Kommentar ist zu lang."
+        okay: "Kommentar erfolgreich abgesendet."
+      destroy_comment:
+        nopriv: "Du kannst nicht die Kommentare anderer Leute löschen"
+        okay: "Kommentar erfolgreich gelöscht."
+      ban:
+        error: Seltsam...
+        nopriv: "Du kannst keinen Administrator bannen!"
+        unban: "Benutzer entbannt."
+        perma: "Benutzer permanent gebannt."
+        temp: "User bis zum %{date} gebannt."
+      privilege:
+        nope: nope!
+        nopriv: "Überprüfe lieber DEINE Privilegien zuerst!"
+        checked: "Erfolgreich das %{privilege}-Privileg des Benutzers gecheckt."
+    question:
+      destroy:
+        not_found: "Frage existiert nicht."
+        not_authorized: "Es ist dir nicht erlaubt diese Frage zu löschen"
+        okay: "Frage erfolgreich gelöscht."
+      create:
+        rec_inv: "Deine Frage ist zu lang."
+        not_found: "Gruppe nicht gefunden"
+        okay: "Frage erfolgreich gestellt."
+      preview:
+        fail: "Das Markdownrendern ist fehlgeschlagen."
+        okay: "Markdown erfolgreich gerendert."
+    report:
+      create:
+        login: "Login benötigt"
+        unknown: "unbekannter Typ"
+        not_found: "Konnte %{parameter} nicht finden"
+        okay: "%{parameter} gemeldet. Ein Moderator wird entscheiden, was mit {parameter} passiert."
+    smile:
+      create:
+        fail: "Du hast diese Antwort bereits gesmiled."
+        okay: "Die Antwort wurde erfolgreich gesmiled."
+      destroy:
+        fail: "Du hast diese Antwort nicht gesmiled."
+        okay: "Du hast erfolgreich diese Frage entsmiled."
+      create_comment:
+        fail: "Du hast diesen Kommentar bereits gesmiled."
+        okay: "Kommentar erfolgreich gesmiled."
+      destroy_comment:
+        fail: "Du hast diesen Kommentar nicht gesmiled."
+        okay: "Kommentar nicht mehr gesmiled."
+    subscription:
+      torpedo: "418 Ich bin ein Torpedo"
+  views:
+    placeholder:
+      inbox: "Schreibe deine Antwort hier..."
+      comment: Kommentar...
+      question: "Tippe deine Frage hier ein..."
+    notifications:
+      show: "Zeige alle Benachrichtigungen"
+      mark: " und markiere sie als 'gelesen'"
+      answer:
+        body: "beantwortete %{question} vor %{time}"
+        question: "deine Frage"
+      relationship:
+        body: "folgte dir vor %{time}"
+      smile:
+        body: "lächelt %{content} vor %{time} an"
+        answer: "deine Antwort"
+        comment: "deinen Kommentar"
+      comment:
+        body: "kommentierte %{content} vor %{time}"
+        your: "deine Antwort"
+        their: "ihre Antwort"
+        user: "%{user}'s Antwort"
+      tabs:
+        all: "Alle Benachrichtigungen"
+        answer: Antworten
+        smile: Smiles
+        comment: Kommentare
+        commentsmile: Kommentar-Smiles
+        relationship: Follower
+    inbox:
+      empty: "Es gibt hier nichts zu sehen."
+      sidebar:
+        questions:
+          title: "Keine Fragen mehr?"
+          button: "Bekomme neue Fragen"
+        share:
+          title: Teile
+          button: "Teile mit %{service}"
+        actions:
+          title: Aktionen
+          button: "Lösche alle Fragen"
+      entry:
+        asked: "%{user} fragte vor %{time}"
+        response: Antwort
+        sharing:
+          title: Teilen
+          post: "Poste zu %{service}"
+          none: "Du bist mit keinem Service bisher verbunden. Rufe deine %{settings} auf und verbinde dich zu einem."
+          settings: Service-Einstellungen
+    general:
+      answer: Antwort
+      question: Frage
+      comment: Kommentar
+      smile: Smile
+      follower: Follower
+      following: Folgt
+      timeline: Timeline
+      public: Öffentlich
+      user: Benutzer
+      terms: "Allgemeine Nutzungsbedingungen"
+      privacy: Datenschutz
+      about: Über
+    group:
+      title: Gruppe
+      members: Mitglieder
+    actions:
+      title: Aktionen
+      ask: Frag
+      ask_question: "Frage eine Frage"
+      answer: Antwort
+      options: Optionen
+      anonymous: "Verstecke deinen Namen"
+      delete: Löschen
+      report: Melden
+      return: "Zurück zum Eingang"
+      subscribe: Abonnieren
+      unsubscribe: Abbestellen
+      view: "Zeige Kommentar-Smiles"
+      load: Mehr...
+      follow: Folgen
+      unfollow: Entfolgen
+      group: "Verwalten von Gruppenmitgliedschaften"
+      ban: Bann-Steuerung
+      privilege: "Prüfe %{user}'s Privilegien"
+      save: "Änderungen speichern"
+      cancel: Abbrechen
+      close: Schließen
+      done: Fertig
+      ? "y"
+      : Ja
+      ? "n"
+      : Nein
+    sessions:
+      destroy: Abmelden
+      create: Anmelden
+      new: Registrieren
+      info: "Mit der Anmeldung akzeptierst du unsere %{terms}"
+    moderation:
+      tabs:
+        all: "Alle Meldungen"
+      moderationbox:
+        reported: "%{user} meldete %{content} vor %{time}"
+        reason: "Grund:"
+        view: "Zeige gemeldeten %{content}"
+    question:
+      title: "Diese Frage war nicht in deinem Eingang? Beantworte sie hier!"
+    navigation:
+      timeline: Timeline
+      inbox: Eingang
+      discover: Entdecke
+      notifications: Benachrichtigungen
+      show: "Zeige Profil"
+      settings: Einstellungen
+      admin: Kontrollzentrum
+      sidekiq: Sidekiq
+      moderation: Moderationspanel
+    front:
+      subtitle: "Stelle Fragen, gib Antworten und lerne deine Freunde besser kennen."
+      ask:
+        title: "Stelle und beantworte Fragen"
+        desc: "Mit %{app_title} kannst du Leuten Fragen stellen und Fragen von anderen beantworten. Egal, ob sie bei %{app_title} registriert sind oder nicht. Du möchtest mehr erfahren? Führe die Diskussion in den Kommentaren fort!"
+      follow:
+        title: "Folge Benutzern und werde gefolgt"
+        desc: "Durch das Folgen von Benutzer erhälst du einen personalisierten Feed von Menschen, von denen du mehr erfahren möchtest. Du kannst sogar eine Frage an alle deine Follower stellen!"
+      share:
+        title: "Austausch mit anderen Netzwerken"
+        desc: "Möchtest du deine Antwort auf eine Frage mit anderen teilen, so dass sie mehr Leute lesen? Mit einem einfachen Klick auf den Antwort Knopf wird deine Antwort geteilt wo du willst!"
+    about:
+      subtitle: "Zu unserem Service, Features und andere Informationen"
+      links:
+        title: Links
+        desc: "Wichtige Seiten und Social Media Profile aus dem %{app_title}-Team, die empfohlen werden, zu besuchen!"
+      opensource:
+        title: Open-Source
+        warning: "%{app_title} läuft mit unfertigen Code, voll mit Bugs. Caveat emptor."
+        desc: "Möchtest du beitragen?  Wenn du ein Ruby-, CoffeeScript oder Frontend-Entwickler bist, kannst du %{app_title} dabei helfen, fehlende Features einzubauen oder vorhandene zu verbessen, indem du das %{github} forkst.  Falls nicht, kannst du in unserem %{bugtracker} Bugs reporten oder neue Features vorschlagen."
+        github: "Github Repository"
+        bugtracker: Bugtracker
+      repository:
+        title: Haupt-Repository
+        desc: "Der Ort, an dem alle Code-Zaubereien stattfinden."
+      contributors:
+        title: Beitragende
+        desc: "Diese Personen haben zum Sourcecode von %{app_title} beigetragen."
+        howto: "Möchtest du hier aufgelistet werden? %{fork} und erstelle einen neuen Pull Request mit deinen Änderungen"
+        fork: "Forke dieses Repo"
+      team:
+        title: "Das Team"
+        desc: "Die Leute hinter %{app_title}!"
+      moderators:
+        title: Moderatoren
+        desc: "Leute auf %{app_title}, die dich überwachen 8)"
+      funding:
+        title: Finanzierung
+        desc: "Leute, die an %{app_title} gespendet haben!"
+      statistics:
+        title: Statistiken
+        desc: "Statistiken für %{app_title}, die bei jedem Seiten Aufruf neu generiert wird."
+    discover:
+      title: Entdecke
+      subtitle: "Der beste Ort, um interessante Inhalte der vergangenen Woche auf %{app_title} zu finden."
+      content:
+        title: "Populäre Fragen"
+        desc: "Antworten mit den meisten Smiles und am meisten beantwortete Fragen"
+        tab:
+          answers: "Am meisten gemocht"
+          questions: "Die meisten Antworten"
+          comments: "Am häufigsten diskutiert"
+      people:
+        title: Leute
+        desc: "Newcomer und Menschen, die die meisten Fragen gestellt haben"
+        tab:
+          new: "Neue Nutzer"
+          questions: "Aktive Frager"
+          answers: "Die meisten Antworten"
+      userbox:
+        new: "registrierte vor %{time}"
+        answers: "beantwortete %{questions}"
+        questions: "stellte %{questions}"
+    answerbox:
+      asked: "%{user} fragte vor %{time}"
+      read: Weiterlesen
+      answered: "%{hide} %{user}"
+      hide: "Beantwortet von"
+      time: "vor %{time}"
+      no_smile: "Noch keine Smiles."
+      no_comment: "Noch keine Kommentare."
+      commentsmile: "Leute, die diesen Kommentar smilen"
+    questionbox:
+      title: "Frag etwas!"
+      banned: "Der Bannhammer hat diesen Benutzer getroffen."
+      required: "Dieser Benutzer möchte nicht von fremden Leuten Fragen gestellt bekommen.  %{signup} dich!"
+      load: Fragen...
+      promote:
+        message: "Deine Frage wurde gesendet."
+        create: "Erstelle einen Account"
+        another: "Stelle eine andere Frage"
+        join: "Melde dich bei %{app_title} an! Du kannst Menschen, die du kennst, folgen, ihnen Fragen stellen und mehr!"
+    settings:
+      tabs:
+        account: Konto
+        profile: Profil
+        privacy: Privatsphäre
+        sharing: Teilen
+      account:
+        modal:
+          title: "Kontoänderungen speichern"
+        username: Benutzername
+        email: E-Mailadresse
+        email_confirm: "Warte auf Bestätigung für %{resource}"
+        password: Passwort
+        password_confirm: "Passwort bestätigen"
+        password_help: "Lass diese Felder leer, wenn du es nicht ändern willst."
+        password_current: "Aktuelles Passwort"
+        password_current_help: "Wir brauchen dein aktuelles Passwort um die Änderungen zu bestätigen"
+        delete: "Mein Konto löschen"
+        unsatisfied: "Nicht zufrieden?"
+        back: Zurück
+      profile:
+        displayname: "Dein Name"
+        avatar: Profilbild
+        avatar_adjust: "Passe dein neues Profilbild an"
+        header: "Profil Header"
+        header_adjust: "Passe den neuen Header an"
+        motivation: Motivationszeile
+        website: Webseite
+        location: Ort
+        bio: Bio
+        placeholder:
+          motivation: "Frag mich irgendwas!"
+          location: "Wo bist du?"
+          bio: "Erzähl uns etwas über dich!"
+      privacy:
+        anonymous: "Anonyme Fragen erlauben"
+        public: "Zeige deine Antworten in der öffentlichen Timeline"
+        stranger: "Erlaube anderen Benutzern deine Fragen zu beantworten"
+      service:
+        enabled: "Deine Antworten werden auf die folgenden Netwerke geteilt:"
+        none: "Du hast bisher noch kein Netzwerk mit deinem Konto verbunden."
+        connect: "Verbinde mit %{service}"
+        disconnect: Trennen
+        confirm: "Wirklich vom Dienst %{service} trennen?"
+    modal:
+      ask:
+        title: "Frage deine Follower"
+        choose: "Gruppe:"
+        loading: Fragen…
+      bancontrol:
+        title: Bannkontrollzentrum
+        ban: Bannen?
+        permanent: "Für immer?"
+        reason: Grund
+        hammertime: Hammerzeit!
+      group:
+        title: "Gruppenzugehörigkeit verwalten"
+        tabs:
+          main: Gruppen
+          create: "Neue Gruppe erstellen"
+        create: "Gruppe erstellen"
+        name: Gruppenname
+        members: Mitglieder
+      privilege:
+        blogger: "Der Benutzer erhält dieses Privileg wenn er etwas (nettes) über Retrospring gebloggt hat."
+        contributor: "Dieser Benutzer hat zu justask (die Software hinter Retrospring) beigetragen."
+        supporter: "Dieser Benutzer unterstützt die Seite mit Geld."
+        moderator: "Jemand, der vertrauenswürdig genug ist, bei der Verwaltung von Reports zu helfen."
+        admin: "Dieser Benutzer ist Teil des Kernteams."
+        translator: "Diese Nutzer haben dabei geholfen, Retrospring in ihre Sprache zu übersetzen."
+    user:
+      follows_you: "Folgt dir"
+      title:
+        admin: Admin
+        moderator: Moderator
+        supporter: Unterstützer
+        contributor: Contributor
+        blogger: Blogger
+        banned: Gebannt
+        translator: Übersetzer
