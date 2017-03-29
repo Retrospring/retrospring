@@ -1,29 +1,14 @@
 .panel.panel-default#profile
   %img.profile--avatar{src: @user.profile_picture.url(:large)}
-  - if @user.admin?
-    .profile--panel-badge.panel-badge-danger
-      %i.fa.fa-flask
-      = t 'views.user.title.admin'
-  - if @user.moderator?
-    .profile--panel-badge.panel-badge-success
-      %i.fa.fa-users
-      = t 'views.user.title.moderator'
-  - if @user.supporter?
-    .profile--panel-badge.panel-badge-warning
-      %i.fa.fa-star
-      = t 'views.user.title.supporter'
-  - if @user.contributor?
-    .profile--panel-badge.panel-badge-primary
-      %i.fa.fa-github
-      = t 'views.user.title.contributor'
-  - if @user.blogger?
-    .profile--panel-badge.panel-badge-info
-      %i.fa.fa-pencil
-      = t 'views.user.title.blogger'
-  - if @user.translator?
-    .profile--panel-badge.panel-badge-info
-      %i.fa.fa-globe
-      = t 'views.user.title.translator'
+  - if user_signed_in? && current_user.admin?
+    - if @user.admin?
+      .profile--panel-badge.panel-badge-danger
+        %i.fa.fa-flask
+        = t 'views.user.title.admin'
+    - if @user.moderator?
+      .profile--panel-badge.panel-badge-success
+        %i.fa.fa-users
+        = t 'views.user.title.moderator'
   - if @user.banned?
     .profile--panel-badge.panel-badge-default
       %i.fa.fa-ban
