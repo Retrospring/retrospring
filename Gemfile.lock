@@ -45,6 +45,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.4.0)
+    airbrussh (1.1.2)
+      sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
     bcrypt (3.1.10)
     better_errors (2.1.1)
@@ -75,6 +77,17 @@ GEM
     buftok (0.2.0)
     builder (3.2.2)
     byebug (8.2.2)
+    capistrano (3.8.0)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (1.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-rails (1.2.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
     capybara (2.6.2)
       addressable
       mime-types (>= 1.16)
@@ -339,6 +352,9 @@ GEM
     naught (1.1.0)
     nenv (0.2.0)
     nested_form (0.3.2)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (4.1.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nokogumbo (1.4.7)
@@ -471,6 +487,9 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.7.3)
       sexp_processor (~> 4.1)
+    rvm1-capistrano3 (1.4.0)
+      capistrano (~> 3.0)
+      sshkit (>= 1.2)
     safe_yaml (1.0.4)
     sanitize (4.0.1)
       crass (~> 1.0.2)
@@ -520,6 +539,9 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sshkit (1.13.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     sweetalert-rails (0.5.0)
       railties (>= 3.1.0)
     temple (0.7.6)
@@ -597,6 +619,8 @@ DEPENDENCIES
   bootswatch-rails
   brakeman
   byebug
+  capistrano (~> 3.7)
+  capistrano-rails
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
@@ -641,6 +665,7 @@ DEPENDENCIES
   rollbar
   rspec-rails (~> 3.0.0)
   ruby-progressbar
+  rvm1-capistrano3
   sanitize
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.1)

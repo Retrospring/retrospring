@@ -81,6 +81,13 @@ group :development do
   gem 'web-console', '< 3.0.0'
 end
 
+# Deployment
+group :development do
+  gem 'capistrano', '~> 3.7', require: false
+  gem 'capistrano-rails', require: false
+  gem 'rvm1-capistrano3', require: false
+end
+
 group :production do
   gem 'unicorn', group: :production
 end
