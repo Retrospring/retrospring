@@ -1,0 +1,456 @@
+en:
+  language: 'English (US)'
+  frontend:
+    load: "Load more"
+    success:
+      title: "Success!"
+    error:
+      title: "Uh-oh..."
+      message: "An error occurred, a developer should check the console for details"
+    subscription:
+      subscribe: "Successfully subscribed."
+      unsubscribe: "Successfully unsubscribed."
+      fail:
+        subscribe: "Failed to subscribe to answer."
+        unsubscribe: "Failed to unsubscribe from answer."
+    group:
+      confirm:
+        title: "Really delete this group?"
+        text: "You will not be able to recover this group."
+    destroy_question:
+      confirm:
+        title: "Are you sure?"
+        text: "The question will be moved back to your inbox, but it won't delete any posts to social media."
+    destroy_comment:
+      confirm:
+        title: "Really delete?"
+        text: "You will not be able to recover this comment."
+    destroy_report:
+      confirm:
+        title: "Really delete?"
+        text: "You will not be able to recover this report."
+    destroy_own:
+      confirm:
+        title: "Are you sure?"
+        text: "The question will be removed."
+    inbox:
+      empty: "Nothing to see here."
+      confirm_all:
+        title: "Really delete %{count} questions?"
+        text: "They will be gone forever."
+      confirm:
+        title: "Really delete?"
+        text: "This question will be gone forever."
+    report:
+      confirm:
+        title: "Really report this %{type}?"
+        text: "A moderator will review your report and decide what happens.\nIf you'd like, you can also specify a reason."
+        input: "Specify a reason..."
+  flash:
+    ban:
+      error: "I'm sorry, %{name}, I'm afraid I can't do that."
+      reason: "Ban reason: %{reason}"
+      until: "Banned until: %{time}"
+    service:
+      create:
+        success: "Successfully added service"
+        error: "Could not add service :("
+      failure: "An error occurred"
+      destroy: "Successfully removed service"
+    user:
+      update:
+        text: "Your profile has been updated!"
+        avatar: " It might take a few minutes until your new profile picture is shown everywhere."
+        header: " It might take a few minutes until your new profile header is shown everywhere."
+        error: "An error occurred. ;_;"
+      update_privacy:
+        success: "Your privacy settings have been updated!"
+        error: "An error occurred. ;_;"
+  messages:
+    noscript: "Please activate JavaScript."
+    error: "An error occurred."
+    parameter_error: "%{parameter} is required."
+    noauth: "requires authentication"
+    answer:
+      create:
+        fail: "Question is not in your inbox."
+        privacy_stronk: "This user does not want other users to answer their question."
+        peter_dinklage: "Answer is too short."
+        okay: "Successfully answered question."
+      destroy:
+        nopriv: "can't delete other people's answers"
+        okay: "Successfully deleted answer."
+    comment:
+      create:
+        rec_inv: "Your comment is too long."
+        okay: "Comment posted successfully."
+      destroy:
+        nopriv: "can't delete other people's comments"
+        okay: "Successfully deleted comment."
+    friend:
+      create:
+        fail: "You are already following that user."
+        okay: "Successfully followed user."
+      destroy:
+        fail: "You are not following that user."
+        okay: "Successfully unfollowed user."
+    group:
+      create:
+        noname: "Please give that group a name."
+        toolong: "Group name too long (30 characters max.)"
+        notfound: "Could not find user."
+        exists: "Group already exists."
+        okay: "Successfully created group."
+      destroy:
+        notfound: "Could not find group."
+        okay: "Successfully deleted group."
+      membership:
+        notfound: "Group not found."
+        add: "Successfully added user to group."
+        remove: "Successfully removed user from group."
+    inbox:
+      create:
+        okay: "Successfully added new question."
+      remove:
+        fail: "question not in your inbox"
+        okay: "Successfully deleted question."
+      remove_all:
+        okay: "Successfully deleted questions."
+    moderation:
+      vote:
+        fail: "You have already voted on this report."
+        okay: "Successfully voted on report."
+      destroy_vote:
+        fail: "You have not voted on that report."
+        okay: "Successfully removed vote from report."
+      destroy_report:
+        fail: "Something bad happened!"
+        okay: "WHERE DID IT GO??? OH NO!!!"
+      create_comment:
+        rec_inv: "Your comment is too long."
+        okay: "Comment posted successfully."
+      destroy_comment:
+        nopriv: "can't delete other people's comments"
+        okay: "Successfully deleted comment."
+      ban:
+        error: "Weird..."
+        nopriv: "You cannot ban an administrator!"
+        unban: "Unbanned user."
+        perma: "Permanently banned user."
+        temp: "Banned user until %{date}"
+      privilege:
+        nope: "nope!"
+        nopriv: "You'd better check YOUR privileges first!"
+        checked: "Successfully checked this user's %{privilege} privilege."
+    question:
+      destroy:
+        not_found: "Question does not exist"
+        not_authorized: "You are not allowed to delete this question"
+        okay: "Successfully deleted question."
+      create:
+        rec_inv: "Your question is too long."
+        not_found: "Group not found"
+        okay: "Question asked successfully."
+      preview:
+        fail: "Failed to render markdown."
+        okay: "Successfully rendered markdown."
+    report:
+      create:
+        login: "login required"
+        unknown: "unknown type"
+        not_found: "Could not find %{parameter}"
+        okay: "%{parameter} reported.  A moderator will decide what happens with the %{parameter}."
+    smile:
+      create:
+        fail: "You have already smiled that answer."
+        okay: "Successfully smiled answer."
+      destroy:
+        fail: "You have not smiled that answer."
+        okay: "Successfully unsmiled answer."
+      create_comment:
+        fail: "You have already smiled that comment."
+        okay: "Successfully smiled comment."
+      destroy_comment:
+        fail: "You have not smiled that comment."
+        okay: "Successfully unsmiled comment."
+    subscription:
+      torpedo: "418 I'm a torpedo"
+  views:
+    locale:
+      languages: "Languages"
+    placeholder:
+      inbox: "Write your answer here..."
+      comment: "Comment..."
+      question: "Type your question here…"
+    notifications:
+      show: "Show all notifications"
+      mark: " and mark them as read"
+      answer:
+        body: "answered %{question} %{time} ago"
+        question: "your question"
+      relationship:
+        body: "followed you %{time} ago"
+      smile:
+        body: "smiled at %{content} %{time} ago" # see below for 'content' vvvv
+        answer: "your answer" # content if smile, 'smiled at your answer'
+        comment: "your comment" # content if commentsmile, 'smiled at your comment'
+      comment:
+        body: "commented on %{content} %{time} ago" # see below for 'content' vvvv
+        your: "your answer" # 'commented on your answer'
+        their: "their answer" # 'commented on their answer'
+        user: "%{user}'s answer" # 'commented on user's asnwer'
+        # all three have the 'user' variable
+      tabs:
+        all: "All notifications"
+        answer: "Answers"
+        smile: "Smiles"
+        comment: "Comments"
+        commentsmile: "Comment Smiles"
+        relationship: "Followers"
+    inbox:
+      empty: "Nothing to see here."
+      sidebar:
+        questions:
+          title: "Out of questions?"
+          button: "Get new question"
+        share:
+          title: "Share"
+          button: "Share on %{service}"
+        actions:
+          title: "Actions"
+          button: "Delete all questions"
+      entry:
+        asked: "%{user} asked %{time} ago"
+        response: "response"
+        sharing:
+          title: "Sharing"
+          post: "Post to %{service}"
+          none: "You have not connected any services yet. Visit your %{settings} to connect one."
+          settings: "service settings"
+    general:
+      answer: "Answer"
+      question: "Question"
+      comment: "Comment"
+      smile: "Smile"
+      follower: "Follower"
+      following: "Following"
+      timeline: "Timeline"
+      public: "Public"
+      user: "User"
+      terms: "Terms of Service"
+      privacy: "Privacy Policy"
+      about: "About"
+    group:
+      title: "Group"
+      members: "Members"
+    actions:
+      title: "Actions"
+      ask: "Ask"
+      ask_question: "Ask a question"
+      answer: "Answer"
+      options: "Options"
+      anonymous: "Hide your name"
+      delete: "Delete"
+      report: "Report"
+      return: "Return to Inbox"
+      subscribe: "Subscribe"
+      unsubscribe: "Unsubscribe"
+      view: "View comment smiles"
+      load: "Load more"
+      follow: "Follow"
+      unfollow: "Unfollow"
+      group: "Manage group memberships"
+      ban: "Ban Control"
+      privilege: "Check %{user}'s privileges"
+      save: "Save changes"
+      cancel: "Cancel"
+      close: "Close"
+      done: "Done"
+      y: "Yes"
+      n: "No"
+    sessions:
+      destroy: "Logout"
+      create: "Sign in"
+      new: "Sign up"
+      info: "With signing up you accept our %{terms}"
+    moderation:
+      tabs:
+        all: "All reports"
+      moderationbox:
+        reported: "%{user} reported a %{content} %{time} ago"
+        reason: "Reason:"
+        view: "View reported %{content}"
+    question:
+      title: "This question was not in your inbox? Answer it here!"
+    navigation:
+      timeline: "Timeline"
+      inbox: "Inbox"
+      discover: "Discover"
+      notifications: "Notifications"
+      show: "View profile"
+      settings: "Settings"
+      admin: "Kontrollzentrum"
+      sidekiq: "Sidekiq"
+      moderation: "Moderation Panel"
+    front:
+      subtitle: "Ask questions, give answers and learn more about your friends."
+      ask:
+        title: "Ask and answer questions"
+        desc: "With %{app_title} you can ask people questions and answer questions from other users or unregistered people. Want to know something more? Keep the discussion ongoing in the comments!"
+      follow:
+        title: "Follow users and get followed"
+        desc: "Following users allows you to get a personalized feed of all people you want to know more about. You can also send a question to all your followers at once!"
+      share:
+        title: "Sharing to other networks"
+        desc: "Want to share your answer to a question so that more people read it? With a simple click on the answer button, your answer is shared wherever you want!"
+    about:
+      subtitle: "About our service, features and other information"
+      links:
+        title: "Links"
+        desc: "Important pages and social media profiles from the %{app_title} team, which are recommended to visit!"
+      opensource:
+        title: "Open Source"
+        warning: "%{app_title} is running on unfinished code, full of bugs. Caveat emptor."
+        desc: "Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help %{app_title} to get the features everyone wanted by forking our %{github}. If that's not the case, you can still report bugs and request features at our %{bugtracker}."
+        github: "Github repository"
+        bugtracker: "bug tracker"
+      repository:
+        title: "Main Repository"
+        desc: "The place where all the code magic and fixing happens!"
+      contributors:
+        title: "Contributors"
+        desc: "These people have contributed to %{app_title}'s source code."
+        howto: "Want to get listed here? %{fork} and create a new pull request with your changes."
+        fork: "Fork this repo"
+      team:
+        title: "The Team"
+        desc: "The people behind %{app_title}!"
+      moderators:
+        title: "Moderators"
+        desc: "The people on %{app_title} that look after you!"
+      funding:
+        title: "Funding"
+        desc: "People which (previously) donated to %{app_title}!"
+      statistics:
+        title: "Statistics"
+        desc: "All-time statistics for %{app_title}, updated every time you refresh the page!"
+    discover:
+      title: "Discover"
+      subtitle: "The perfect place to find interesting content from the last week on %{app_title}!"
+      content:
+        title: "Popular Content"
+        desc: "Answers with most smiles and most answered questions"
+        tab:
+          answers: "Most Liked"
+          questions: "Most Answers"
+          comments: "Most Controversial"
+      people:
+        title: "People"
+        desc: "Newcomers and people who asked the most questions"
+        tab:
+          new: "New Users"
+          questions: "Active Askers"
+          answers: "Most Answers"
+      userbox:
+        new: "registered %{time} ago"
+        answers: "answered %{questions}"
+        questions: "asked %{questions}"
+    answerbox:
+      asked: "%{user} asked %{time} ago"
+      read: "Read the entire answer"
+      answered: "%{hide} %{user}" # resolves into "Answered by %{user}"
+      hide: "Answered by" # ^
+      time: "%{time} ago"
+      no_smile: "No one smiled this, yet."
+      no_comment: "There are no comments yet."
+      commentsmile: "People who smiled this comment"
+    questionbox:
+      title: "Ask something!"
+      banned: "This user got hit with ye olde banhammer."
+      required: "This user does not want to get asked by strangers.  Why don't you %{signup}?"
+      load: "Asking..."
+      promote:
+        message: "Your question has been sent."
+        create: "Create an account"
+        another: "Ask another question"
+        join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
+    settings:
+      tabs:
+        account: "Account"
+        profile: "Profile"
+        privacy: "Privacy"
+        sharing: "Sharing"
+      account:
+        modal:
+          title: "Save account changes"
+        username: "User name"
+        email: "Email address"
+        email_confirm: "Currently awaiting confirmation for %{resource}"
+        password: "Password"
+        password_confirm: "Confirm password"
+        password_help: "Leave this blank if you don't want to change it"
+        password_current: "Current password"
+        password_current_help: "We need your current password to confirm your changes"
+        delete: "Delete my account"
+        unsatisfied: "Unsatisfied?"
+        back: "Back"
+      profile:
+        displayname: "Your name"
+        avatar: "Profile picture"
+        avatar_adjust: "Adjust your new avatar"
+        header: "Profile header"
+        header_adjust: "Adjust your new header"
+        motivation: "Motivation header"
+        website: "Website"
+        location: "Location"
+        bio: "Bio"
+        placeholder:
+          motivation: "Ask me anything!"
+          location: "Where are you?"
+          bio: "Tell us something nice about you!"
+      privacy:
+        anonymous: "Allow anonymous questions"
+        public: "Show your answers in the public timeline"
+        stranger: "Allow other people to answer your questions"
+      service:
+        enabled: "Sharing is enabled for the following services:"
+        none: "You have not connected any services yet."
+        connect: "Connect to %{service}"
+        disconnect: "Disconnect"
+        confirm: "Really disconnect service %{service}?"
+    modal:
+      ask:
+        title: "Ask your followers"
+        choose: "Choose group:"
+        loading: "Asking..."
+      bancontrol:
+        title: "Ban Control Center"
+        ban: "Ban?"
+        permanent: "Permanently?"
+        reason: "Reason"
+        hammertime: "Hammer Time"
+      group:
+        title: "Manage group memberships"
+        tabs:
+          main: "Groups"
+          create: "Create new group"
+        create: "Create group"
+        name: "Group name"
+        members: "members"
+      privilege:
+        blogger: "The user gets that privilege if they blogged something (nice) about Retrospring."
+        contributor: "This user has contributed to justask (the software behind Retrospring)."
+        supporter: "This user monetarily supports the site."
+        moderator: "Someone trustworthy enough to help managing reports."
+        admin: "This user is part of the core team."
+        translator: "This user helped translating Retrospring into their language."
+    user:
+      follows_you: "Follows you"
+      title:
+        admin: "Admin"
+        moderator: "Moderator"
+        supporter: "Supporter"
+        contributor: "Contributor"
+        blogger: "Blogger"
+        banned: "Banned"
+        translator: "Translator"

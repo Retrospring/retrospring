@@ -1,0 +1,454 @@
+en_pirate:
+  language: 'English (Pirate)'
+  frontend:
+    load: "Peer into the depths"
+    success:
+      title: "Yarr!"
+    error:
+      title: "Arrgh!"
+      message: "An error occured, a developer check th' console fer details"
+    subscription:
+      subscribe: "Successfully subscribed."
+      unsubscribe: "Successfully unsubscribed."
+      fail:
+        subscribe: "Failed to subscribe to answer."
+        unsubscribe: "Failed to unsubscribe from answer."
+    group:
+      confirm:
+        title: "D' ye wish to send this crew t' Davy Jones' Locker?"
+        text: "Ye gunna not be able to recover 'tis crew."
+    destroy_question:
+      confirm:
+        title: "Be ye sure?"
+        text: "Th' inquiry gunna be moved back to ye inbox, but it won't delete any messages to social media."
+    destroy_comment:
+      confirm:
+        title: "D' ye wish to send this scrawlin' t' Davy Jones' Locker?"
+        text: "Ye gunna not be able to recover 'tis scrawlin'."
+    destroy_report:
+      confirm:
+        title: "D' ye wish to send this scrawlin' t' Davy Jones' Locker?"
+        text: "Ye gunna not be able to recover 'tis report."
+    destroy_own:
+      confirm:
+        title: "Be ye sure?"
+        text: "Th' inquiry gunna be removed."
+    inbox:
+      empty: "Nothin' to spy wit' ye eye here"
+      confirm_all:
+        title: "Really delete %{count} inquirys?"
+        text: "Th'y gunna be gone forever."
+      confirm:
+        title: "D' ye wish to send this scrawlin' t' Davy Jones' Locker?"
+        text: "'tis inquiry gunna be gone forever."
+    report:
+      confirm:
+        title: "Really report 'tis %{type}?"
+        text: "A moderator gunna review ye report 'n decide what happens.\nIf ye'd like, ye can also specify a reason."
+        input: "Specify a reason..."
+  flash:
+    ban:
+      error: "I be sorry, %{name}, I be a-feared I ain't do that."
+      reason: "Ban reason: %{reason}"
+      until: "Banned 'til: %{time}"
+    service:
+      create:
+        success: "Successfully added service"
+        error: "Could not add service :("
+      failure: "An error occurred"
+      destroy: "Successfully removed service"
+    user:
+      update:
+        text: "Ye profile has be updated!"
+        avatar: " It might take a few minutes 'til ye new profile portrait be shown everywhere."
+        header: " It might take a few minutes 'til ye new profile header be shown everywhere."
+        error: "An error occurred. ;_;"
+      update_privacy:
+        success: "Ye privacy settin's have be updated!"
+        error: "An error occurred. ;_;"
+  messages:
+    noscript: "Please activate JavaScript."
+    error: "An error occurred."
+    parameter_error: "%{parameter} be required."
+    noauth: "requires authentication"
+    answer:
+      create:
+        fail: "Inquiry be not in ye inbox."
+        privacy_stronk: "'tis user does not want other pirates to answer their inquirys."
+        peter_dinklage: "Answer be too short."
+        okay: "Successfully answered inquiry."
+      destroy:
+        nopriv: "can't delete other people's answers"
+        okay: "Successfully deleted answer."
+    comment:
+      create:
+        rec_inv: "Ye scrawlin' be too long."
+        okay: "Scrawlin' posted successfully."
+      destroy:
+        nopriv: "can't delete other people's scrawlin's"
+        okay: "Successfully deleted scrawlin'."
+    friend:
+      create:
+        fail: "Ye be already spyin' on that user."
+        okay: "Startin' to spy on user."
+      destroy:
+        fail: "Ye not be spyin' on that user."
+        okay: "No longer spyin' on user."
+    group:
+      create:
+        noname: "Please gift that crew a moniker."
+        toolong: "Crew moniker too long (30 characters max.)"
+        notfound: "Could not find user."
+        exists: "'tis crew already be existing."
+        okay: "Successfully created crew."
+      destroy:
+        notfound: "Could not find crew."
+        okay: "Successfully deleted crew."
+      membership:
+        notfound: "Crew not found."
+        add: "Successfully added user to crew."
+        remove: "Successfully removed user from crew."
+    inbox:
+      create:
+        okay: "Successfully added new inquiry."
+      remove:
+        fail: "inquiry not in ye inbox"
+        okay: "Successfully deleted inquiry."
+      remove_all:
+        okay: "Successfully deleted inquirys."
+    moderation:
+      vote:
+        fail: "You have already voted on 'tis report."
+        okay: "Successfully voted on report."
+      destroy_vote:
+        fail: "You have not voted on that report."
+        okay: "Successfully removed vote from report."
+      destroy_report:
+        fail: "Something bad happened!"
+        okay: "WHERE DID IT GO??? OH NO!!!"
+      create_comment:
+        rec_inv: "Your scrawlin' is too long."
+        okay: "Scrawlin' posted successfully."
+      destroy_comment:
+        nopriv: "can't delete other people's comments"
+        okay: "Successfully deleted scrawlin'."
+      ban:
+        error: "Weird..."
+        nopriv: "You cannot ban an administrator!"
+        unban: "Unbanned user."
+        perma: "Permanently banned user."
+        temp: "Banned user until %{date}"
+      privilege:
+        nope: "nope!"
+        nopriv: "You'd better check YOUR privileges first!"
+        checked: "Successfully checked 'tis user's %{privilege} privilege."
+    question:
+      destroy:
+        not_found: "Inquiry does not exist"
+        not_authorized: "You are not allowed to delete 'tis inquiry"
+        okay: "Successfully deleted inquiry."
+      create:
+        rec_inv: "Your inquiry is too long."
+        not_found: "Crew not found"
+        okay: "Inquiry asked successfully."
+      preview:
+        fail: "Failed to render markdown."
+        okay: "Successfully rendered markdown."
+    report:
+      create:
+        login: "login required"
+        unknown: "unknown type"
+        not_found: "Could not find %{parameter}"
+        okay: "%{parameter} reported. A moderator will decide what happens with the #{parameter}."
+    smile:
+      create:
+        fail: "You have already smiled that answer."
+        okay: "Successfully smiled answer."
+      destroy:
+        fail: "You have not smiled that answer."
+        okay: "Successfully unsmiled answer."
+      create_comment:
+        fail: "You have already smiled that scrawlin'."
+        okay: "Successfully smiled scrawlin'."
+      destroy_comment:
+        fail: "You have not smiled that scrawlin'."
+        okay: "Successfully unsmiled scrawlin'."
+    subscription:
+      torpedo: "418 You are a pirate!"
+  views:
+    placeholder:
+      inbox: "Write ye answer here..."
+      comment: "Scrawlin'..."
+      question: "Type ye inquiry here…"
+    notifications:
+      show: "Show all notifications"
+      mark: " and mark them as read"
+      answer:
+        body: "answered %{question} %{time} ago"
+        question: "ye inquiry"
+      relationship:
+        body: "been spyin' on you since %{time}"
+      smile:
+        body: "arr'd at %{content} %{time} ago" # see below for 'content' vvvv
+        answer: "ye answer" # content if smile, 'smiled at ye answer'
+        comment: "ye scrawlin" # content if commentsmile, 'smiled at ye comment'
+      comment:
+        body: "commented on %{content} %{time} ago" # see below for 'content' vvvv
+        your: "ye answer" # 'commented on ye answer'
+        their: "their answer" # 'commented on their answer'
+        user: "%{user}'s answer" # 'commented on user's asnwer'
+        # all three have the 'user' variable
+      tabs:
+        all: "All hail-shots"
+        answer: "Answers"
+        smile: "Arr's"
+        comment: "Scrawlin's"
+        commentsmile: "Scrawlin' Smiles"
+        relationship: "Followers"
+    inbox:
+      empty: "Nottin' to see here, matey."
+      sidebar:
+        questions:
+          title: "Out of inquirys?"
+          button: "Get new inquiry"
+        share:
+          title: "Share"
+          button: "Share on %{service}"
+        actions:
+          title: "Actions"
+          button: "Delete all inquirys"
+      entry:
+        asked: "%{user} asked %{time} ago"
+        response: "response"
+        sharing:
+          title: "Sharing"
+          post: "Post to %{service}"
+          none: "You have not connected any services yet. Visit ye %{settings} to connect one."
+          settings: "service settings"
+    general:
+      answer: "Answer"
+      question: "Inquiry"
+      comment: "Scrawlin'"
+      smile: "Arr!"
+      follower: "Spy"
+      following: "Spyin'"
+      timeline: "Cap'n's Log"
+      public: "Public"
+      user: "Pirate"
+      terms: "Terms of ye Service"
+      privacy: "Pirat-y Policy"
+      about: "About"
+    group:
+      title: "Crew"
+      members: "Members"
+    actions:
+      title: "Actions"
+      ask: "Ask"
+      ask_question: "Ask a inquiry"
+      answer: "Answer"
+      options: "Options"
+      anonymous: "Hide ye moniker"
+      delete: "Delete"
+      report: "Report"
+      return: "Return to Bottle o' Messages"
+      subscribe: "Subscribe"
+      unsubscribe: "Unsubscribe"
+      view: "View scrawlin' smiles"
+      load: "Load more"
+      follow: "Spy"
+      unfollow: "Un-Spy"
+      group: "Manage Crew memberships"
+      ban: "Ban Control"
+      privilege: "Check %{user}'s privileges"
+      save: "Save changes"
+      cancel: "Abort!"
+      close: "Close"
+      done: "Arr!"
+      y: "Arr!"
+      n: "No"
+    sessions:
+      destroy: "Over the plank!"
+      create: "Go Sailin'"
+      new: "Create your ship"
+      info: "With signing up you accept our %{terms}"
+    moderation:
+      tabs:
+        all: "All reports"
+      moderationbox:
+        reported: "%{user} reported a %{content} %{time} ago"
+        reason: "Reason:"
+        view: "View reported %{content}"
+    question:
+      title: "Tis' inquiry was not in ye inbox? Answer it here!"
+    navigation:
+      timeline: "Cap'n's Log"
+      inbox: "Bottle o' Messages"
+      discover: "Scour"
+      notifications: "Hail-shots"
+      show: "Home Port"
+      settings: "Adjust ye riggin's"
+      admin: "Kommandobrücke"
+      sidekiq: "Sidekiq"
+      moderation: "Moderation Panel"
+    front:
+      subtitle: "Ask inquirys, give answers and learn more about ye mateys."
+      ask:
+        title: "Ask and answer inquirys"
+        desc: "With %{app_title} you can ask pirates inquirys and answer inquirys from other pirates or unregistered people. Want to know something more? Keep the discussion ongoing in the comments!"
+      follow:
+        title: "Be spyin' pirates and get spied on"
+        desc: "Following pirates allows you to get a personalized feed of all pirates you want to know more about. You can also send a inquiry to all ye hearties at once!"
+      share:
+        title: "Sharing overseas"
+        desc: "Want to share ye answer to a inquiry so that more pirates read it? With a simple click on the answer button, ye answer is shared wherever you want!"
+    about:
+      subtitle: "About our service, features and other information"
+      links:
+        title: "Links"
+        desc: "Important pages and social media profiles from the %{app_title} team, which are recommended to visit!"
+      opensource:
+        title: "Open Ship"
+        warning: "%{app_title} is running on unfinished code, full of bugs. Caveat emptor."
+        desc: "Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help %{app_title} to get the features everyone wanted by forking our %{github}. If that's not the case, you can still report bugs and request features at our %{bugtracker}."
+        github: "Github tavern"
+        bugtracker: "bug tracker"
+      repository:
+        title: "Main Tavern"
+        desc: "Th' place where all the code witchery and fixing happens!"
+      contributors:
+        title: "Contributors"
+        desc: "Th'se pirates have contributed to %{app_title}'s ship code."
+        howto: "Want to get listed here? %{fork} and create a new pull request with ye changes."
+        fork: "Fork 'tis repo"
+      team:
+        title: "Th' Crew"
+        desc: "Th' pirates behind %{app_title}!"
+      moderators:
+        title: "Moderators"
+        desc: "Th' pirates on %{app_title} that look after you!"
+      funding:
+        title: "Fundin'"
+        desc: "People which (previously) donated to %{app_title}!"
+      statistics:
+        title: "Stats"
+        desc: "All-time statistics for %{app_title}, updated every time you go sailing!"
+    discover:
+      title: "Discover"
+      subtitle: "Th' perfect place to find interesting content from the last week on %{app_title}!"
+      content:
+        title: "Popular Content"
+        desc: "Answers with most arrs and most answered inquirys"
+        tab:
+          answers: "Most Liked"
+          questions: "Most Answers"
+          comments: "Most Controversial"
+      people:
+        title: "People"
+        desc: "Newcomers and pirates who asked the most inquirys"
+        tab:
+          new: "New Pirates"
+          questions: "Active Askers"
+          answers: "Most Answers"
+      userbox:
+        new: "registered %{time} ago"
+        answers: "answered %{questions}"
+        questions: "asked %{questions}"
+    answerbox:
+      asked: "%{user} asked %{time} ago"
+      read: "Peer into the depths"
+      answered: "%{hide} %{user}" # resolves into "Answered by %{user}"
+      hide: "Answered by" # ^
+      time: "%{time} ago"
+      no_smile: "No one arr-ed 'tis, yet."
+      no_comment: "Th're are no scrwalins yet."
+      commentsmile: "People who arr-ed 'tis scrawlin"
+    questionbox:
+      title: "Arrrsk something!"
+      banned: "Tis' user got hit with ye olde banhammer."
+      required: "Tis' user does not want to get asked by strangers.  Why don't you %{signup}?"
+      load: "Throwing Bottle o' Messages into the sea..."
+      promote:
+        message: "Your inquiry has been sent."
+        create: "Create a ship"
+        another: "Write another inquiry"
+        join: "Join %{app_title} today! Ye'll be able to spy on and ask pirates you know and a lot more."
+    settings:
+      tabs:
+        account: "Home Port"
+        profile: "Your Ship"
+        privacy: "Pirats-y"
+        sharing: "Sharing"
+      account:
+        modal:
+          title: "Save account changes"
+        username: "Pirate moniker"
+        email: "Email address"
+        email_confirm: "Currently awaiting confirmation for %{resource}"
+        password: "Password"
+        password_confirm: "Confirm password"
+        password_help: "Leave 'tis blank if you don't want to change it"
+        password_current: "Current password"
+        password_current_help: "We need ye current password to confirm ye changes"
+        delete: "Send my account to Davy Jones' Locker"
+        unsatisfied: "Unsatisfied?"
+        back: "Arr, go back!"
+      profile:
+        displayname: "Yer moniker"
+        avatar: "Profile portrait"
+        avatar_adjust: "Adjust ye new avatar"
+        header: "Profile header"
+        header_adjust: "Adjust ye new header"
+        motivation: "Motivation header"
+        website: "Web island"
+        location: "Yer' Ship"
+        bio: "Bio"
+        placeholder:
+          motivation: "Arrrsk me anything!"
+          location: "Where are you?"
+          bio: "Tell us something nice about you!"
+      privacy:
+        anonymous: "Allow anonymous inquirys"
+        public: "Show ye answers in the public timeline"
+        stranger: "Allow other pirates to answer ye inquirys"
+      service:
+        enabled: "Sharing is enabled for the following services:"
+        none: "You have not connected any services yet."
+        connect: "Connect to %{service}"
+        disconnect: "Disconnect"
+        confirm: "Really disconnect service %{service}?"
+    modal:
+      ask:
+        title: "Ask ye hearties"
+        choose: "Choose crew:"
+        loading: "Bottling message..."
+      bancontrol:
+        title: "The Plank"
+        ban: "Push off ye plank?"
+        permanent: "Permanently?"
+        reason: "Reason"
+        hammertime: "Ye olde Hammer Time!"
+      group:
+        title: "Manage crew memberships"
+        tabs:
+          main: "Crews"
+          create: "Create new crew"
+        create: "Create crew"
+        name: "Crew moniker"
+        members: "members"
+      privilege:
+        blogger: "Th' user gets that privilege if they blogged something (nice) about Retrospring."
+        contributor: "Tis' user has contributed to justask (the software behind Retrospring)."
+        supporter: "Tis' user monetarily supports the site."
+        moderator: "Someone trustworthy enough to help managing reports."
+        admin: "Tis' user is part of the core team."
+        translator: "Tis' user helped translating Retrospring into their language."
+    user:
+      follows_you: "Be spyin on you"
+      title:
+        admin: "Cap'n"
+        moderator: "Chief Officer"
+        supporter: "Supporter"
+        contributor: "Contributor"
+        blogger: "Blogger"
+        banned: "Jailed in Davy Jones' Locker"
+        translator: "Translator"

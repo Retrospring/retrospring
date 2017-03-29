@@ -1,0 +1,455 @@
+ja:
+  language: 日本語
+  frontend:
+    load: つづきを読み込む...
+    success:
+      title: 成功しました！
+    error:
+      title: おっと...
+      message: エラーが発生しました。開発者は詳細をコンソールで確認すべきです
+    subscription:
+      subscribe: 購読に成功しました。
+      unsubscribe: 購読の解除に成功しました。
+      fail:
+        subscribe: 回答の購読に失敗しました。
+        unsubscribe: 回答の購読の解除に失敗しました。
+    group:
+      confirm:
+        title: このグループを削除してもよろしいですか？
+        text: このグループを復元することはできなくなります。
+    destroy_question:
+      confirm:
+        title: よろしいですか？
+        text: この質問は受信トレイに戻されますが、ソーシャルメディアへの投稿は削除されません。
+    destroy_comment:
+      confirm:
+        title: 削除してもよろしいですか？
+        text: このコメントを復元することはできなくなります。
+    destroy_report:
+      confirm:
+        title: 削除してもよろしいですか？
+        text: この報告を復元することはできなくなります。
+    destroy_own:
+      confirm:
+        title: よろしいですか？
+        text: 質問は削除されます。
+    inbox:
+      empty: 何もありません。
+      confirm_all:
+        title: "%{count}件の質問を削除してもよろしいですか？"
+        text: これらを復元することはできなくなります。
+      confirm:
+        title: 削除してもよろしいですか？
+        text: この質問を復元することはできなくなります。
+    report:
+      confirm:
+        title: "この%{type}を報告してもよろしいですか？"
+        text: |-
+            モデレーターがあなたの報告を審査し、判断を下します。
+            良ければ理由を書いてください。
+        input: 理由を書く...
+  flash:
+    ban:
+      error: "%{name}さん、申し訳ありませんが残念ながらそれはできません。"
+      reason: "規制理由: %{reason}"
+      until: "規制期間: %{time}まで"
+    service:
+      create:
+        success: サービスの追加に成功しました
+        error: "サービスを追加できませんでした :("
+      failure: エラーが発生しました
+      destroy: サービスの削除に成功しました。
+    user:
+      update:
+        text: プロフィールを更新しました！
+        avatar: 新しいプロフィール画像がすべての場所で表示されるようになるまで数分かかることがあります。
+        header: 新しいヘッダー画像がすべての場所で表示されるようになるまで数分かかることがあります。
+        error: "エラーが発生しました。 ;_;"
+      update_privacy:
+        success: プライバシーの設定を更新しました！
+        error: "エラーが発生しました。 ;_;"
+  messages:
+    noscript: JavaScriptを有効にしてください。
+    error: エラーが発生しました。
+    parameter_error: "%{parameter}は必須項目です。"
+    noauth: 認証が必要です
+    answer:
+      create:
+        fail: 受信トレイに質問はありません。
+        privacy_stronk: このユーザーは他のユーザーに質問を見られたくないようです。
+        peter_dinklage: 回答が短すぎます。
+        okay: 質問への回答に成功しました。
+      destroy:
+        nopriv: 他のユーザーの回答は削除できません
+        okay: 回答の削除に成功しました。
+    comment:
+      create:
+        rec_inv: コメントが長過ぎます。
+        okay: コメントの投稿に成功しました。
+      destroy:
+        nopriv: 他のユーザーのコメントは削除できません
+        okay: コメントの削除に成功しました。
+    friend:
+      create:
+        fail: 既にこのユーザーをフォローしています。
+        okay: フォローに成功しました。
+      destroy:
+        fail: このユーザーをフォローしていません。
+        okay: フォローの解除に成功しました。
+    group:
+      create:
+        noname: グループに名前をつけてください。
+        toolong: グループ名が長過ぎます(最大30文字)
+        notfound: ユーザーが見つかりませんでした。
+        exists: 既にグループが存在します。
+        okay: グループの作成に成功しました。
+      destroy:
+        notfound: グループが見つかりませんでした。
+        okay: グループの削除に成功しました。
+      membership:
+        notfound: グループが見つかりません。
+        add: グループへのユーザーの追加に成功しました。
+        remove: グループからのユーザーの削除に成功しました。
+    inbox:
+      create:
+        okay: 新しい質問の追加に成功しました。
+      remove:
+        fail: 受信トレイに質問はありません
+        okay: 質問の削除に成功しました。
+      remove_all:
+        okay: 質問の削除に成功しました。
+    moderation:
+      vote:
+        fail: 既にこの報告に投票しています。
+        okay: 報告への投票に成功しました。
+      destroy_vote:
+        fail: この報告に投票していません。
+        okay: 報告への投票の取り消しに成功しました。
+      destroy_report:
+        fail: 何か良くないことが起きました！
+        okay: どこいったの？？？もういや！！！
+      create_comment:
+        rec_inv: コメントが長過ぎます。
+        okay: コメントの投稿に成功しました。
+      destroy_comment:
+        nopriv: 他のユーザーのコメントは削除できません
+        okay: コメントの削除に成功しました。
+      ban:
+        error: おかしい...
+        nopriv: 管理者は利用停止にできません！
+        unban: ユーザーの利用停止処分を取り消しました。
+        perma: 永久的にユーザーを追放しました。
+        temp: "ユーザーを%{date}まで利用停止処分にしました"
+      privilege:
+        nope: なにも！
+        nopriv: まずあなたの権限を確認しましょう！
+        checked: "このユーザーの%{privilege}権限の確認に成功しました。"
+    question:
+      destroy:
+        not_found: 質問は存在しません
+        not_authorized: この質問を削除する権限がありません
+        okay: 質問の削除に成功しました。
+      create:
+        rec_inv: 質問が長過ぎます。
+        not_found: グループが見つかりません
+        okay: 質問の投稿に成功しました。
+      preview:
+        fail: 書式処理に失敗しました。
+        okay: 書式処理に成功しました。
+    report:
+      create:
+        login: ログインが必要です
+        unknown: 不明な形式
+        not_found: "%{parameter}は見つかりませんでした"
+        okay: "%{parameter}を報告しました。#{parameter}についての判断はモデレーターが行います。"
+    smile:
+      create:
+        fail: 既にこの回答をスマイルしています。
+        okay: 回答のスマイルに成功しました。
+      destroy:
+        fail: この回答にスマイルしていません。
+        okay: 回答のアンスマイルに成功しました。
+      create_comment:
+        fail: 既にこのコメントをスマイルしています。
+        okay: コメントのスマイルに成功しました。
+      destroy_comment:
+        fail: このコメントにスマイルしていません。
+        okay: コメントのアンスマイルに成功しました。
+    subscription:
+      torpedo: "418 I'm a torpedo"
+  views:
+    placeholder:
+      inbox: ここに回答を書く...
+      comment: コメントを書く...
+      question: ここに質問を書く…
+    notifications:
+      show: すべての通知を表示する
+      mark: ＆既読にする
+      answer:
+        body: "は%{time}前に%{question}に回答しました"
+        question: あなたの質問
+      relationship:
+        body: "は%{time}前にあなたをフォローしました"
+      smile:
+        body: "は%{time}前に%{content}をスマイルしました"
+        answer: あなたの回答
+        comment: あなたのコメント
+      comment:
+        body: "は%{time}前に%{content}にコメントしました"
+        your: あなたの回答
+        their: 自分自身の回答
+        user: "%{user}の回答"
+      tabs:
+        all: すべての通知
+        answer: 回答
+        smile: スマイル
+        comment: コメント
+        commentsmile: コメントへのスマイル
+        relationship: フォロワー
+    inbox:
+      empty: 何もありません。
+      sidebar:
+        questions:
+          title: 質問はありませんか？
+          button: 新しい質問を受ける
+        share:
+          title: 共有
+          button: "%{service}で共有"
+        actions:
+          title: 操作
+          button: すべての質問を削除
+      entry:
+        asked: "%{user}さんは%{time}前に質問しました"
+        response: 反応
+        sharing:
+          title: 共有
+          post: "%{service}に投稿する"
+          none: "連携されたサービスがまだ一つもありません。%{settings}で連携しましょう。"
+          settings: サービス設定
+    general:
+      answer: 回答
+      question: 質問
+      comment: コメント
+      smile: スマイル
+      follower: フォロワー
+      following: フォロー
+      timeline: タイムライン
+      public: パブリック
+      user: ユーザー
+      terms: 利用規約
+      privacy: プライバシーポリシー
+      about: Retrospringについて
+    group:
+      title: グループ
+      members: メンバー
+    actions:
+      title: アクション
+      ask: 質問
+      ask_question: 質問する
+      answer: 回答
+      options: オプション
+      anonymous: 名前を隠す
+      delete: 削除
+      report: 報告
+      return: 受信トレイに戻す
+      subscribe: 購読
+      unsubscribe: 購読解除
+      view: コメントへのスマイルを見る
+      load: つづきを読み込む
+      follow: フォロー
+      unfollow: フォロー解除
+      group: グループのメンバーを管理
+      ban: 利用停止管理
+      privilege: "%{user}の権限を確認する"
+      save: 変更を保存する
+      cancel: キャンセル
+      close: 閉じる
+      done: 完了
+      y: はい
+      n: いいえ
+    sessions:
+      destroy: ログアウト
+      create: サインイン
+      new: 登録
+      info: "登録には%{terms}への同意が必要です"
+    moderation:
+      tabs:
+        all: すべての報告
+      moderationbox:
+        reported: "%{user}は%{time}前に%{content}を報告しました"
+        reason: "理由:"
+        view: "報告された%{content}を見る"
+    question:
+      title: この質問は受信箱にありませんか？ここで回答しましょう！
+    navigation:
+      timeline: タイムライン
+      inbox: 受信トレイ
+      discover: みつける
+      notifications: 通知
+      show: プロフィールを見る
+      settings: 設定
+      admin: 設定
+      sidekiq: Sidekiq
+      moderation: モデレーションパネル
+    front:
+      subtitle: 質問をしたり回答したりして友だちのことをもっと知ろう。
+      ask:
+        title: 質問や回答をしよう
+        desc: "%{app_title}では人に質問したり他のユーザーや登録していない人からの質問に答えることができます。もっと知りたいのであれば、コメント欄で継続的に議論することができます。"
+      follow:
+        title: フォローしてフォローされよう
+        desc: ユーザーをフォローすれば、あなたがもっと知りたいと思っている人の最新情報をあなた向けにカスタマイズすることができます。あなたのフォロワーに質問を一度に送ることもできます！
+      share:
+        title: 他のネットワークへ共有しよう
+        desc: もっと多くの人に質問への回答を読めるように共有したければ、回答ボタンの一回の簡単なクリックであなたの回答をお好きなところに共有できます！
+    about:
+      subtitle: サービスについてや機能・その他のインフォメーション
+      links:
+        title: リンク
+        desc: "%{app_title}の重要なページやソーシャルメディアのプロフィールは見てみると良いでしょう！"
+      opensource:
+        title: オープンソース
+        warning: "%{app_title}は完成されたコードで動いておらず、バグで満ちています。動く保証はありません。"
+        desc: "貢献したいですか？Rubyデベロッパー、CoffeeScriptコーダーかフロントエンドデザイナーならば、私たちの%{github}をフォークすることによってみんなが欲しい機能をつけて%{app_title}を助けることができます。そうでなければ、バグを報告して私たちの%{bugtracker}で機能をリクエストすることができます。"
+        github: Githubレポジトリ
+        bugtracker: バグトラッカー
+      repository:
+        title: メインレポジトリ
+        desc: すべてのコードの抽象化と修復が行われているところです！
+      contributors:
+        title: コントリビューター
+        desc: "これらの人々は%{app_title}のソースコードに貢献しました。"
+        howto: "ここに載りたければ、%{fork}して変更をプルリクエストしてください。"
+        fork: このレポジトリをフォーク
+      team:
+        title: チーム
+        desc: "%{app_title}の中の人です！"
+      moderators:
+        title: モデレーター
+        desc: "%{app_title}であなたの面倒を見れくれる人です！"
+      funding:
+        title: 経済的支援
+        desc: "%{app_title}に(かつて)寄付してくれた人です！"
+      statistics:
+        title: 統計
+        desc: "%{app_title}の全期間の統計です。ページを更新すると最新状態になります！"
+    discover:
+      title: みつける
+      subtitle: "%{app_title}で先週からのおもしろいものを見つけるのにぴったりなところです！"
+      content:
+        title: 人気なもの
+        desc: たくさんのスマイルのある回答やたくさんの回答のある質問
+        tab:
+          answers: スマイルが多い
+          questions: 回答が多い
+          comments: 議論が活発
+      people:
+        title: ユーザー
+        desc: 新規ユーザーや多くの質問をしているユーザー
+        tab:
+          new: 新規ユーザー
+          questions: 活発な質問
+          answers: 活発な回答
+      userbox:
+        new: "は%{time}前に登録しました"
+        answers: "は%{questions}しました"
+        questions: "は%{questions}しました。"
+    answerbox:
+      asked: "%{user}は%{time}前に質問しました"
+      read: 回答の全文を読む
+      answered: "%{user}%{hide}"
+      hide: "回答した人:"
+      time: "%{time}前"
+      no_smile: まだ誰もスマイルしていません。
+      no_comment: コメントはまだありません。
+      commentsmile: このコメントをスマイルした人
+    questionbox:
+      title: 何でも聞いてください！
+      banned: このユーザーは正義の利用停止の鉄槌を喰らいました。
+      required: "このユーザーは知らない人に質問されたくないようです。%{signup}しましょう。"
+      load: 質問する...
+      promote:
+        message: 質問は送信されました。
+        create: アカウントを作成する
+        another: 他の質問をする
+        join: "いますぐ%{app_title}に登録しましょう！あなたがもっと知りたいと思っている人をフォローして質問することができるようになります。"
+    settings:
+      tabs:
+        account: アカウント
+        profile: プロフィール
+        privacy: プライバシー
+        sharing: 共有
+      account:
+        modal:
+          title: アカウントの変更を保存する
+        username: ユーザー名
+        email: メールアドレス
+        email_confirm: "現在%{resource}の確認待ちです"
+        password: パスワード
+        password_confirm: パスワードの確認
+        password_help: 変更しない場合は空欄のままにしてください
+        password_current: 現在のパスワード
+        password_current_help: 変更を確認するために現在のパスワードを入力が必要です
+        delete: アカウントを削除する
+        unsatisfied: 満足できませんでしたか？
+        back: 戻る
+      profile:
+        displayname: 名前
+        avatar: プロフィール画像
+        avatar_adjust: 新しいアバターを調整してください
+        header: プロフィールヘッダー
+        header_adjust: 新しいヘッダーを調整してください
+        motivation: モチベーションヘッダー
+        website: ウェブサイト
+        location: 場所
+        bio: 自己紹介
+        placeholder:
+          motivation: なんでも聞いてください！
+          location: どこに住んでいますか？
+          bio: あなたについて教えてください！
+      privacy:
+        anonymous: 匿名での質問を許可する
+        public: あなたの回答をパブリックタイムラインで表示する
+        stranger: 他の人があなたの質問に回答することを許可する
+      service:
+        enabled: "共有を以下のサービスで許可する:"
+        none: 連携されたサービスがまだ一つもありません。
+        connect: "%{service}と連携する"
+        disconnect: 連携を解除する
+        confirm: "%{service}との連携を解除してもよろしいですか？"
+    modal:
+      ask:
+        title: フォロワーに質問する
+        choose: "グループを選んでください:"
+        loading: 質問する...
+      bancontrol:
+        title: 利用停止管理センター
+        ban: 利用停止処分しますか？
+        permanent: 永久的に追放しますか？
+        reason: 理由
+        hammertime: 利用停止時間
+      group:
+        title: グループのメンバーを管理
+        tabs:
+          main: グループ
+          create: 新しいグループを作成する
+        create: グループを作成
+        name: グループ名
+        members: メンバー
+      privilege:
+        blogger: Retrospringについてなにか(良いことを)ブログに書くと権限を得られます。
+        contributor: このユーザーはjustask(Retrospringが使用しているソフトウェア)に貢献しました。
+        supporter: このユーザーは金銭的にこのサイトを支援しています。
+        moderator: 報告の管理を助けるのに十分に信頼を置ける人
+        admin: このユーザーはコアチームのメンバーです。
+        translator: このユーザーはRetrospringを翻訳することを助けてくれました。
+    user:
+      follows_you: あなたをフォローしています
+      title:
+        admin: 管理者
+        moderator: モデレーター
+        supporter: サポーター
+        contributor: コントリビューター
+        blogger: ブロガー
+        banned: 利用停止処分された人
+        translator: 翻訳者
