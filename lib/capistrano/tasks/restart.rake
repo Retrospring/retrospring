@@ -13,7 +13,7 @@ namespace :deploy do
 
   task :stop do
     on roles(:all) do
-      execute :sh, '-c', '\'tmux list-panes -t justask -F "#{pane_pid}" | xargs kill\''
+      execute :sh, '-c', '\'tmux list-panes -t retrospring -F "#{pane_pid}" | xargs kill\''
     end
   end
 
