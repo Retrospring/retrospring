@@ -1,5 +1,7 @@
 - provide(:title, user_title(@user, "friends and followers"))
-.profile--header
+- no_header = unless @user.profile_header.exists? then "profile--no-header" else "" end
+#profile--header{class: no_header}
+  %img.profile--header-img{src: @user.profile_header.url(:web)}
 .container.j2-page
   .col-md-3.col-xs-12.col-sm-4.j2-col-reset
     = render 'user/profile_info'
