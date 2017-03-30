@@ -132,17 +132,17 @@ module ApplicationHelper
   end
 
   def question_title(question)
-    name = user_screen_name question.user, question.author_is_anonymous, false
+    name = user_screen_name question.user, anonymous: question.author_is_anonymous, url: false
     generate_title name, "asked", question.content
   end
 
   def answer_title(answer)
-    name = user_screen_name answer.user, false, false
+    name = user_screen_name answer.user, anonymous: false, url: false
     generate_title name, "answered", answer.question.content
   end
 
   def user_title(user, junction = nil)
-    name = user_screen_name user, false, false
+    name = user_screen_name user, anonymous: false, url: false
     generate_title name, junction, nil, !junction.nil?
   end
 

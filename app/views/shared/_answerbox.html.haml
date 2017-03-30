@@ -23,7 +23,7 @@
                         %i.fa.fa-exclamation-triangle
                         = t 'views.actions.report'
           %h6.text-muted.media-heading.answerbox--question-user
-            = raw t('views.answerbox.asked', user: user_screen_name(a.question.user, a.question.author_is_anonymous), time: time_tooltip(a.question))
+            = raw t('views.answerbox.asked', user: user_screen_name(a.question.user, anonymous: a.question.author_is_anonymous), time: time_tooltip(a.question))
             - unless a.question.author_is_anonymous
               - if a.question.answer_count > 1
                 ·
