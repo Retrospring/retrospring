@@ -22,6 +22,7 @@ class QuestionWorker
       end
     rescue => e
       logger.info "failed to ask question: #{e.message}"
+      Rollbar.error(e)
     end
   end
 end

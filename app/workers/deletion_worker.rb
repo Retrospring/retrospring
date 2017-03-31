@@ -9,6 +9,7 @@ class DeletionWorker
       User.find(resource_id).destroy!
     rescue => e
       logger.info "failed to delete user: #{e.message}"
+      Rollbar.error(e)
     end
   end
 end

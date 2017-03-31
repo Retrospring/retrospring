@@ -21,7 +21,8 @@ class Exporter
     collect_smiles
     finalize
     publish
-  rescue => _
+  rescue => e
+    Rollbar.error(e)
     @user.export_processing = false
     @user.save validate: false
   end
