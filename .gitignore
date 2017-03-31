@@ -35,6 +35,3 @@ desktop.ini
 
 # ignore exports
 /public/export
-
-# fucking binstubs
-/bin/*
