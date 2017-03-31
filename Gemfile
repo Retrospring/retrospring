@@ -32,6 +32,7 @@ gem 'font-kit-rails'
 gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.3.0.0'
 gem 'rails-assets-growl'
+gem 'rails-assets-jquery', '~> 2.2.0'
 gem "paperclip", "~> 4.2"
 gem 'delayed_paperclip'
 gem 'fog'
