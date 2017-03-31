@@ -15,14 +15,14 @@
 # If you're going to use the Rails 3.1 asset pipeline, change
 # the following configuration to something like this:
 #
-translations:
-  - file: "app/assets/javascripts/i18n/translations.js"
-    only: ['*.frontend.*', '*.views.actions.*']
+# translations:
+#   - file: "app/assets/javascripts/i18n/translations.js"
 #
 # If you're running an old version, you can use something
 # like this:
 #
 fallbacks: :default_locale
 
-#translations:
-#  - file: 'public/javascripts/i18n/%{locale}.js'
+translations:
+  - file: 'public/javascripts/i18n/%{locale}.js'
+    only: ['*.frontend.*', '*.views.actions.*']
