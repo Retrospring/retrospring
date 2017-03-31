@@ -82,7 +82,7 @@ class Exporter
         File.open target_file, 'wb' do |f|
           f.binmode
           data = if url.start_with?('/system')
-                   File.read(Rails.root.join('public', url))
+                   File.read(Rails.root.join('public', url.sub(%r(\A/+), '')))
                  else
                    HTTParty.get(url).parsed_response
                  end
@@ -98,7 +98,7 @@ class Exporter
         File.open target_file, 'wb' do |f|
           f.binmode
           data = if url.start_with?('/system')
-                   File.read(Rails.root.join('public', url))
+                   File.read(Rails.root.join('public', url.sub(%r(\A/+), '')))
                  else
                    HTTParty.get(url).parsed_response
                  end
