@@ -40,6 +40,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
+gem 'colorize'
 
 gem 'twemoji-rails'
 
@@ -83,7 +84,7 @@ end
 
 # Deployment
 group :development do
-  gem 'capistrano', '~> 3.7', require: false
+  gem 'capistrano', '~> 3.8', require: false
   gem 'capistrano-rails', require: false
   gem 'rvm1-capistrano3', require: false
 end
@@ -95,7 +96,7 @@ end
 group :development, :test do
   gem 'rake'
   gem 'thin'
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'capybara'
