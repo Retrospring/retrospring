@@ -40,8 +40,8 @@ set :rollbar_token, '35f65946f562414da66d0d48073f5290' # TODO: before publishing
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
 
-# Create JS i18n files after precompiling assets
-after 'deploy:assets:precompile', 'deploy:i18n_js'
+# Create JS i18n files before precompiling assets
+before 'deploy:assets:precompile', 'deploy:i18n_js'
 
 # Restart the app server after successful deploy
 after 'deploy:cleanup', 'deploy:restart'
