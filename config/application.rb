@@ -4,7 +4,9 @@ require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
+start = Time.now
 Bundler.require(*Rails.groups)
+puts 'processing time of bundler require: ' + "#{(Time.now - start).round(3).to_s.ljust(5, '0')}s".light_green
 
 module Justask
   class Application < Rails::Application

@@ -1,5 +1,6 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  start = Time.now
 
   # Admin panel
   mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'
@@ -125,4 +126,6 @@ Rails.application.routes.draw do
   match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends, defaults: {page: 1}
   match '/:username/groups(/p/:page)', to: 'user#groups', via: 'get', as: :show_user_groups, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
+
+  puts 'processing time of routes.rb: ' + "#{(Time.now - start).round(3).to_s.ljust(5, '0')}s".light_green
 end
