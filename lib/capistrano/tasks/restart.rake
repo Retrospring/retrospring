@@ -23,8 +23,8 @@ namespace :deploy do
       info 'Restarting application server'
       invoke('deploy:stop')
 
-      info 'Waiting 2 seconds'
-      sleep 2
+      info 'Waiting 5 seconds'
+      sleep 5
 
       invoke('deploy:start')
     end
