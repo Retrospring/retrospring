@@ -41,7 +41,7 @@ set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
 
 # Create JS i18n files after precompiling assets
-after 'assets:precompile', 'i18n:js_assets'
+after 'deploy:assets:precompile', 'deploy:i18n_assets'
 
 # Restart the app server after successful deploy
 after 'deploy:cleanup', 'deploy:restart'
