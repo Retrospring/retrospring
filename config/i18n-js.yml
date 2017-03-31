@@ -24,5 +24,5 @@
 fallbacks: :default_locale
 
 translations:
-  - file: 'public/javascripts/i18n/%{locale}.js'
+  - file: 'public/javascripts/translations.js'
     only: ['*.frontend.*', '*.views.actions.*']
