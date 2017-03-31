@@ -81,7 +81,12 @@ class Exporter
         target_file = "/tmp/rs_export/#{@export_dirname}/pictures/picture_#{s}_#{@user.profile_picture_file_name}"
         File.open target_file, 'wb' do |f|
           f.binmode
-          f.write HTTParty.get(url).parsed_response
+          data = if url.start_with?('/system')
+                   File.read(Rails.root.join('public', url)
+                 else
+                   HTTParty.get(url).parsed_response
+                 end
+          f.write data
         end
       end
     end
@@ -92,7 +97,12 @@ class Exporter
         target_file = "/tmp/rs_export/#{@export_dirname}/pictures/header_#{s}_#{@user.profile_header_file_name}"
         File.open target_file, 'wb' do |f|
           f.binmode
-          f.write HTTParty.get(url).parsed_response
+          data = if url.start_with?('/system')
+                   File.read(Rails.root.join('public', url)
+                 else
+                   HTTParty.get(url).parsed_response
+                 end
+          f.write data
         end
       end
     end
