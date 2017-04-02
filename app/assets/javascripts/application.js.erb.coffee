@@ -14,7 +14,7 @@
 #= require sweetalert
 #= require js.cookie
 #= require i18n
-#= require i18n/translations
+#= require_tree ./i18n
 #= require tinycolor-min
 #= require jquery.minicolors
 # local requires to be seen by everyone:
