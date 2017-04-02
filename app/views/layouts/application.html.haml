@@ -11,8 +11,6 @@
     %link{rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32'}
     %title= yield(:title)
     = javascript_include_tag 'i18n', 'data-turbolinks-track' => true
-    - # Evil hack on production:  manually require /javascripts/translations.js; this used to work before though :(
-    %script{src: '/javascripts/translations.js', 'data-turbolinks-track' => false}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     - if user_signed_in? and not current_user.theme.nil? and (@user.nil? || @user.theme.nil?)
       %link{rel: 'stylesheet', href: current_user.theme.css.url, media: :all, 'data-turbolinks-track' => "false"}
