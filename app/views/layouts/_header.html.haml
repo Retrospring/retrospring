@@ -27,7 +27,7 @@
           - unless @user.nil?
             - unless @user == current_user
               %li.hidden-xs{"data-toggle" => "tooltip", "data-placement" => "bottom", title: t('views.actions.group')}
-                %a{href: '#', data: { target: "#modal-group-memberships", toggle: :modal }}
+                %a{href: show_user_profile_path(current_user.screen_name), data: { target: "#modal-group-memberships", toggle: :modal }}
                   %i.fa.fa-users.hidden-xs
                   %span.visible-xs= t('views.actions.group')
           = render "layouts/notifications"
