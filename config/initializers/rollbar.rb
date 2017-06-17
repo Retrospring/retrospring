@@ -8,6 +8,8 @@ Rollbar.configure do |config|
   if Rails.env.test?
     config.enabled = false
   end
+  # Here we'll disable it anywhere else:
+  config.enabled = false
 
   # scrub out the "confirmation_token" field
   config.scrub_fields |= [:confirmation_token]
