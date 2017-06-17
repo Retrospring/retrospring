@@ -372,6 +372,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
+    newrelic_rpm (4.2.0.334)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     nokogumbo (1.4.10)
@@ -651,6 +652,7 @@ DEPENDENCIES
   jquery-turbolinks
   letter_opener
   momentjs-rails (>= 2.9.0)
+  newrelic_rpm
   nprogress-rails
   omniauth
   omniauth-tumblr

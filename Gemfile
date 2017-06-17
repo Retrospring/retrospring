@@ -49,6 +49,7 @@ gem 'ruby-progressbar'
 
 gem 'rails_admin'
 gem 'pghero'
+gem 'newrelic_rpm'
 
 gem 'sidekiq'
 gem 'sinatra', require: false

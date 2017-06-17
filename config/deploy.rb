@@ -21,7 +21,8 @@ set :deploy_to, "/usr/home/justask/apps/retrospring"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/justask.yml", "config/secrets.yml", "config/unicorn.rb", "config/initializers/devise.rb"
+append :linked_files, "config/database.yml", "config/justask.yml", "config/secrets.yml", "config/unicorn.rb",
+                      "config/newrelic.yml", "config/initializers/devise.rb"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/uploads", "public/system", "public/exports"
