@@ -1,6 +1,8 @@
 namespace :deploy do
   task :start do
     on roles(:all) do
+puts "------- skip start"
+next
       rvm_prefix = "#{fetch(:rvm1_auto_script_path)}/rvm-auto.sh #{fetch(:rvm1_ruby_version)}"
       execute :tmux, 'new-session',
               '-d',
@@ -13,6 +15,8 @@ namespace :deploy do
 
   task :stop do
     on roles(:all) do
+puts "------- skip stop"
+next
       execute :sh, '-c', '\'tmux list-panes -t retrospring -F "#{pane_pid}" | xargs kill\''
     end
   end
@@ -20,6 +24,8 @@ namespace :deploy do
   desc 'Restart the server'
   task :restart do
     on roles(:all) do
+puts "------- skip restart"
+next
       info 'Restarting application server'
       invoke('deploy:stop')
 
