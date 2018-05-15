@@ -8,22 +8,16 @@
   .panel.panel-default
     .panel-body
       .row
-        .col-md-3
+        .col-md-4
           %h3= t 'views.about.links.title'
           %p= t('views.about.links.desc', app_title: APP_CONFIG['site_name'])
-        .col-md-3.col-sm-4
+        .col-md-4.col-sm-6
           %a{href: "https://twitter.com/retrospring"}
             .icon-showcase
               %i.fa.fa-twitter
           %h4.heading-about.text-center
             Twitter
-        .col-md-3.col-sm-4
-          %a{href: "https://github.com/Retrospring/bugs"}
-            .icon-showcase
-              %i.fa.fa-bug
-          %h4.heading-about.text-center
-            Bug Tracker
-        .col-md-3.col-sm-4
+        .col-md-4.col-sm-6
           %a{href: help_faq_path}
             .icon-showcase
               %i.fa.fa-question
