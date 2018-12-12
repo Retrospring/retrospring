@@ -1,0 +1,63 @@
+#!/bin/sh
+
+. /etc/rc.subr
+
+name=justask
+rcvar=justask_enable
+
+extra_commands="status"
+start_precmd="${name}_prestart"
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+status_cmd="${name}_status"
+
+load_rc_config $name
+: ${justask_enable:=no}
+: ${justask_user=justask}
+: ${justask_tmux_session_name=justask}
+: ${justask_tmux_window_name=justask}
+
+justask_prestart()
+{
+  su -l "$justask_user" -c "exec sh -c 'tmux list-panes -st $justask_tmux_session_name -F \"#{pane_pid}\" >/dev/null 2>&1'"
+  if [ $? -eq 0 ]; then
+    echo "justask already running? pane $justask_tmux_session_name exists"
+    return 1
+  fi
+  return 0
+}
+
+justask_status()
+{
+  su -l "$justask_user" -c "exec sh -c 'tmux list-panes -st $justask_tmux_session_name -F \"#{pane_pid}\" >/dev/null 2>&1'"
+  if [ $? -eq 0 ]; then
+    echo "justask is running"
+    return 0
+  fi
+  echo "justask is not running"
+  return 1
+}
+
+justask_start()
+{
+  echo -n "Starting justask: "
+  su -l "$justask_user" -c "exec tmux new-session -d -s $justask_tmux_session_name -n $justask_tmux_window_name -c /home/justask '/usr/local/bin/bash /usr/home/justask/start.sh'"
+  if [ $? -eq 0 ]; then
+    printf "\033[32;1mok\033[0m\n"
+  else
+    printf "\033[31;1mfailed\033[0m\n"
+  fi
+}
+
+justask_stop()
+{
+  echo -n "Stopping justask: "
+  su -l "$justask_user" -c "exec sh -c 'tmux list-panes -st $justask_tmux_session_name -F \"#{pane_pid}\"' | xargs -t kill"
+  if [ $? -eq 0 ]; then
+    printf "\033[32;1mok\033[0m\n"
+  else
+    printf "\033[31;1mfailed\033[0m\n"
+  fi
+}
+
+run_rc_command $1
