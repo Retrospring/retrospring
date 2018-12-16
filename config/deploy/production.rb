@@ -1,5 +1,5 @@
 # Defines a single server with a list of roles and multiple properties.
-server "dragon.nilsding.org", user: "justask", roles: %w{app db web}
+server "retrospring-001.aws.infra.retrospring.net", user: "justask", roles: %w{app db web}
 
 # Configuration
 # =============

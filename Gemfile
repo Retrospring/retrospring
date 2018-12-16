@@ -88,7 +88,6 @@ end
 group :development do
   gem 'capistrano', '~> 3.8', require: false
   gem 'capistrano-rails', require: false
-  gem 'rvm1-capistrano3', require: false
 end
 
 group :production do

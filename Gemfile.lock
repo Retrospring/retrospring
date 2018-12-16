@@ -501,9 +501,6 @@ GEM
     rspec-support (3.5.0)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
-    rvm1-capistrano3 (1.4.0)
-      capistrano (~> 3.0)
-      sshkit (>= 1.2)
     sanitize (4.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -673,7 +670,6 @@ DEPENDENCIES
   rollbar
   rspec-rails (~> 3.5)
   ruby-progressbar
-  rvm1-capistrano3
   sanitize
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.1)
@@ -697,4 +693,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.14.6
+   1.16.3
