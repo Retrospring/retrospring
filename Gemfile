@@ -26,7 +26,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'devise', '~> 4.0'
 gem 'devise-i18n'
-gem 'devise-async' # TODO: bring this to 1.0 after rails5 upgrade
+gem 'devise-async', git: "https://github.com/mhfs/devise-async.git", ref: "devise-4.x" # TODO: bring this to 1.0 after rails5 upgrade
 gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
