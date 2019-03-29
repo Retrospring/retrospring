@@ -19,14 +19,14 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
-gem 'bootstrap-sass', '~> 3.2.0.1'
+gem 'bootstrap-sass', '~> 3.4.0'
 gem 'bootswatch-rails'
 gem 'sweetalert-rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'devise'
+gem 'devise', '~> 4.0'
 gem 'devise-i18n'
-gem 'devise-async'
+gem 'devise-async' # TODO: bring this to 1.0 after rails5 upgrade
 gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
