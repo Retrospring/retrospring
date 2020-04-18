@@ -18,7 +18,7 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'haml'
+gem 'haml', '~> 4.0'
 gem 'bootstrap-sass', '~> 3.4.0'
 gem 'bootswatch-rails'
 gem 'sweetalert-rails'
