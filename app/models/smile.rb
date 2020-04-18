@@ -1,4 +1,4 @@
-class Smile < ActiveRecord::Base
+class Smile < ApplicationRecord
   belongs_to :user
   belongs_to :answer
   validates :user_id, presence: true, uniqueness: { scope: :answer_id, message: "already smiled answer" }

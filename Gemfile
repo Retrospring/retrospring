@@ -1,24 +1,24 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-gem 'rails', '~> 4.2.11', '>= 4.2.11.1'
-gem 'rails-i18n'
+gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
+gem 'rails-i18n', '~> 5.0'
 gem 'i18n-js', '= 3.0.0.rc10'
 
 gem 'pg'
 
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.1'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks'
-gem 'jbuilder', '~> 2.2.4'
+gem 'jbuilder', '~> 2.10'
 gem 'sdoc', '~> 0.4.1', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'haml', '~> 4.0'
+gem 'haml', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.4.0'
 gem 'bootswatch-rails'
 gem 'sweetalert-rails'
@@ -30,7 +30,7 @@ gem 'devise-async', git: "https://github.com/mhfs/devise-async.git", ref: "devis
 gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
-gem 'font-awesome-rails', '~> 4.3.0.0'
+gem 'font-awesome-rails', '~> 4.7.0'
 gem 'rails-assets-growl'
 gem 'rails-assets-jquery', '~> 2.2.0'
 gem "paperclip", "~> 4.2"
@@ -51,8 +51,7 @@ gem 'rails_admin'
 gem 'pghero'
 gem 'newrelic_rpm'
 
-gem 'sidekiq'
-gem 'sinatra', require: false
+gem 'sidekiq', "< 6" # remove version constraint once we have redis 5
 
 gem 'questiongenerator', git: 'https://github.com/retrospring/questiongenerator.git'
 
@@ -97,7 +96,7 @@ end
 group :development, :test do
   gem 'rake'
   gem 'puma'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.9'
   gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'capybara'

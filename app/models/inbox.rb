@@ -1,4 +1,4 @@
-class Inbox < ActiveRecord::Base
+class Inbox < ApplicationRecord
   belongs_to :user
   belongs_to :question
 

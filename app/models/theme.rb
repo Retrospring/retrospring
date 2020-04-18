@@ -1,4 +1,4 @@
-class Theme < ActiveRecord::Base
+class Theme < ApplicationRecord
   include ThemeHelper
 
   belongs_to :user

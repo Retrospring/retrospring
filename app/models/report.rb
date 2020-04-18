@@ -1,4 +1,4 @@
-class Report < ActiveRecord::Base
+class Report < ApplicationRecord
   belongs_to :user
   has_many :moderation_votes, dependent: :destroy
   has_many :moderation_comments, dependent: :destroy
