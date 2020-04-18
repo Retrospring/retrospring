@@ -17,7 +17,7 @@
 
             %p.data-heading Display name
             %p.text-muted
-              - if current_user.display_name.empty?
+              - if current_user.display_name.blank?
                 None set!
               - else
                 = current_user.display_name
