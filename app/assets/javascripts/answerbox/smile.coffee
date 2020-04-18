@@ -31,11 +31,13 @@ $(document).on "click", "button[name=ab-smile]", ->
       showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       btn.button "reset"
-      if success
-        switch action
-          when 'smile'
-            btn[0].dataset.action = 'unsmile'
-            btn.html "<i class=\"fa fa-frown-o\"></i> <span id=\"ab-smile-count-#{aid}\">#{count}</span>"
-          when 'unsmile'
-            btn[0].dataset.action = 'smile'
-            btn.html "<i class=\"fa fa-smile-o\"></i> <span id=\"ab-smile-count-#{aid}\">#{count}</span>"
+      window.setTimeout ->
+        if success
+          switch action
+            when 'smile'
+              btn[0].dataset.action = 'unsmile'
+              btn.html "<i class=\"fa fa-frown-o\"></i> <span id=\"ab-smile-count-#{aid}\">#{count}</span>"
+            when 'unsmile'
+              btn[0].dataset.action = 'smile'
+              btn.html "<i class=\"fa fa-smile-o\"></i> <span id=\"ab-smile-count-#{aid}\">#{count}</span>"
+      , 20
