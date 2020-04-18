@@ -96,7 +96,7 @@ end
 
 group :development, :test do
   gem 'rake'
-  gem 'thin'
+  gem 'puma'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', require: false
   gem 'faker'
