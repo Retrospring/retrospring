@@ -1,5 +1,5 @@
 class DiscoverController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     top_x = 10  # only display the top X items
