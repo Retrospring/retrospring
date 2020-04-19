@@ -1,4 +1,4 @@
-.card.card-default#profile
+.card#profile
   %img.profile--avatar{src: @user.profile_picture.url(:large)}
   - if user_signed_in? && current_user.admin?
     - if @user.admin?

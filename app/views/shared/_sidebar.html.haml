@@ -1,5 +1,5 @@
 - header_class = if current_user.profile_header.exists? then "userbox--header-container" else "userbox--no-header" end
-.card.card-default.hidden-xs
+.card.hidden-xs
   %div{class: header_class}
     %img.userbox--header{src: current_user.profile_header.url(:mobile)}
   .card-body
@@ -22,7 +22,7 @@
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= current_user.friend_count
           %h6.entry-subtext= t('views.general.following')
-.card.card-default.hidden-xs
+.card.hidden-xs
   .list-group
     = list_group_item t('views.general.timeline'), root_path
     - if APP_CONFIG.dig(:features, :public, :enabled)
@@ -30,7 +30,7 @@
     - current_user.groups.each do |group|
       = list_group_item group.display_name, group_timeline_path(group.name)
 - unless @group.nil?
-  .card.card-default.profile--panel.hidden-xs
+  .card.profile--panel.hidden-xs
     .card-header
       %h3.card-title= t('views.group.members')
     .card-body

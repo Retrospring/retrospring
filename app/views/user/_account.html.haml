@@ -4,7 +4,7 @@
     = render 'user/settings_tabs'
     .col-md-9.col-xs-12.col-sm-8
       = render 'layouts/messages'
-      .card.card-default
+      .card
         .card-body
           = bootstrap_form_for(resource, as: resource_name, url: '/settings/account', html: { method: :put }) do |f|
             / Password field modal

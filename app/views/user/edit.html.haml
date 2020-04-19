@@ -4,7 +4,7 @@
     = render 'settings_tabs'
     .col-md-9.col-xs-12.col-sm-9
       = render 'layouts/messages'
-      .card.card-default
+      .card
         .card-body
           = bootstrap_form_for(current_user, url: {action: "edit"}, :html => { :multipart => true }, method: "patch") do |f|
 

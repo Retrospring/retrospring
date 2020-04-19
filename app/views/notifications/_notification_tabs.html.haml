@@ -1,10 +1,10 @@
 .col-md-3.col-xs-12.col-sm-4
-  .card.card-default.hidden-xs
+  .card.hidden-xs
     .list-group
       = list_group_item "New Notifications", notifications_path, badge: Notification.for(current_user).where(new: true).count
       = list_group_item "All Notifications", notifications_path('all')
 
-  .card.card-default.hidden-xs
+  .card.hidden-xs
     .card-header
       Filter by Type
     .list-group
