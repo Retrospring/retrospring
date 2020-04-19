@@ -1,8 +1,8 @@
 - header_class = if current_user.profile_header.exists? then "userbox--header-container" else "userbox--no-header" end
-.panel.panel-default.hidden-xs
+.card.card-default.hidden-xs
   %div{class: header_class}
     %img.userbox--header{src: current_user.profile_header.url(:mobile)}
-  .panel-body
+  .card-body
     %img.userbox--avatar{src: current_user.profile_picture.url(:small)}
     %p.userbox--username
       - if current_user.display_name.blank?
@@ -22,7 +22,7 @@
         .col-md-6.col-sm-6.col-xs-6
           %h4.entry-text#friend-count= current_user.friend_count
           %h6.entry-subtext= t('views.general.following')
-.panel.panel-default.hidden-xs
+.card.card-default.hidden-xs
   .list-group
     = list_group_item t('views.general.timeline'), root_path
     - if APP_CONFIG.dig(:features, :public, :enabled)
@@ -30,10 +30,10 @@
     - current_user.groups.each do |group|
       = list_group_item group.display_name, group_timeline_path(group.name)
 - unless @group.nil?
-  .panel.panel-default.profile--panel.hidden-xs
-    .panel-heading
-      %h3.panel-title= t('views.group.members')
-    .panel-body
+  .card.card-default.profile--panel.hidden-xs
+    .card-header
+      %h3.card-title= t('views.group.members')
+    .card-body
       - @group.members.each do |member|
         %a{href: show_user_profile_path(member.user.screen_name), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top }}
           %img.img-rounded.answerbox--img-small{src: member.user.profile_picture.url(:medium)}

@@ -5,8 +5,8 @@
     %h1= APP_CONFIG['site_name']
     %p= t 'views.about.subtitle'
 .container
-  .panel.panel-default
-    .panel-body
+  .card.card-default
+    .card-body
       .row
         .col-md-4
           %h3= t 'views.about.links.title'
@@ -23,8 +23,8 @@
               %i.fa.fa-question
           %h4.heading-about.text-center
             FAQ
-  .panel.panel-default
-    .panel-body
+  .card.card-default
+    .card-body
       .row
         .col-md-4
           %h3= t 'views.about.opensource.title'
@@ -45,8 +45,8 @@
             - User.where(contributor: true).each do |sup|
               %a{href: show_user_profile_path(sup.screen_name), title: sup.screen_name, data: { toggle: :tooltip, placement: :top }}
                 %img.img-rounded.answerbox--img-small{src: sup.profile_picture.url(:medium)}
-  .panel.panel-default
-    .panel-body
+  .card.card-default
+    .card-body
       .row
         .col-md-3.col-sm-12.col-xs-12
           %h3= t 'views.about.statistics.title'

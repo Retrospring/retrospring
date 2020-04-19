@@ -1,4 +1,4 @@
-.panel.panel-default#profile
+.card.card-default#profile
   %img.profile--avatar{src: @user.profile_picture.url(:large)}
   - if user_signed_in? && current_user.admin?
     - if @user.admin?
@@ -16,7 +16,7 @@
   - if @user.following? current_user
     .profile--panel-badge.panel-badge-default
       = t 'views.user.follows_you'
-  .panel-body
+  .card-body
     .profile--panel-name
       - if @user.display_name.blank?
         .profile--displayname

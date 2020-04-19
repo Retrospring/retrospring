@@ -3,7 +3,7 @@
 .container.j2-page
   = render 'notification_tabs'
   .col-md-9.col-xs-12.col-sm-8
-    .panel.panel-default
+    .card.card-default
       %ul#notifications.list-group
         - if @notifications.count == 0
           %li.list-group-item.text-center

@@ -1,9 +1,9 @@
 - unless report.nil? or report.target.nil? or report.user.nil? or report.type.nil?
-  .panel.panel-default.moderationbox{data: { id: report.id }}
-    .panel-heading
+  .card.card-default.moderationbox{data: { id: report.id }}
+    .card-header
       %img.img-rounded.answerbox--img{src: gravatar_url(report.user)}
       = raw t('views.moderation.moderationbox.reported', user: user_screen_name(report.user), content: report.type.sub('Reports::', ''), time: time_tooltip(report))
-    .panel-body
+    .card-body
       %p
         - if report.type == 'Reports::User'
           = user_screen_name report.target
@@ -42,5 +42,5 @@
             %span{id: "mod-comment-count-#{report.id}"}= report.moderation_comments.all.count
           %button.btn.btn-default.btn-sm{type: :button, name: "mod-delete-report", data: { id: report.id }}
             %i.fa.fa-trash-o
-    .panel-footer{id: "mod-comments-section-#{report.id}", style: 'display: none'}
+    .card-footer{id: "mod-comments-section-#{report.id}", style: 'display: none'}
       %div{id: "mod-comments-#{report.id}"}= render 'moderation/discussion', report: report

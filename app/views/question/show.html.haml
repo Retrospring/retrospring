@@ -15,10 +15,10 @@
       Load more
 
   - if user_signed_in? and !current_user.answered? @question and current_user != @question.user and @question.user.privacy_allow_stranger_answers
-    .panel.panel-default#q-answer-box
-      .panel-heading
-        %h3.panel-title= t('views.question.title')
-      .panel-body
+    .card.card-default#q-answer-box
+      .card-header
+        %h3.card-title= t('views.question.title')
+      .card-body
         %textarea#q-answer.form-control{placeholder: t('views.placeholder.inbox'), data: { id: @question.id }}
         %br/
         %button#q-answer.btn.btn-success{data: { q_id: @question.id }}

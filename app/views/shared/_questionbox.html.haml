@@ -1,11 +1,11 @@
-.panel.panel-default
-  .panel-heading
-    %h3.panel-title
+.card.card-default
+  .card-header
+    %h3.card-title
       - if @user.motivation_header.blank?
         = t 'views.questionbox.title'
       - else
         = @user.motivation_header
-  .panel-body
+  .card-body
     - if @user.banned?
       .row
         .col-xs-12.text-center

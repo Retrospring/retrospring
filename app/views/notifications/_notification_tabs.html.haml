@@ -1,11 +1,11 @@
 .col-md-3.col-xs-12.col-sm-4
-  .panel.panel-default.hidden-xs
+  .card.card-default.hidden-xs
     .list-group
       = list_group_item "New Notifications", notifications_path, badge: Notification.for(current_user).where(new: true).count
       = list_group_item "All Notifications", notifications_path('all')
 
-  .panel.panel-default.hidden-xs
-    .panel-heading
+  .card.card-default.hidden-xs
+    .card-header
       Filter by Type
     .list-group
       = list_group_item t('views.notifications.tabs.answer'), notifications_path('answer'), badge: Notification.for(current_user).where(target_type: "Answer", new: true).count
