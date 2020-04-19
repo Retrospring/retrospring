@@ -36,11 +36,6 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/uplo
 # Ruby version / RVM
 set :rvm1_ruby_version, '2.3.3@retrospring'
 
-# Rollbar
-set :rollbar_token, '35f65946f562414da66d0d48073f5290' # TODO: before publishing this repo (again) remove this token
-set :rollbar_env, Proc.new { fetch :stage }
-set :rollbar_role, Proc.new { :app }
-
 # Create JS i18n files before precompiling assets
 before 'deploy:assets:precompile', 'deploy:i18n_js'
 

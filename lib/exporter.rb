@@ -22,7 +22,7 @@ class Exporter
     finalize
     publish
   rescue => e
-    Rollbar.error(e)
+    NewRelic::Agent.notice_error(e)
     @user.export_processing = false
     @user.save validate: false
   end

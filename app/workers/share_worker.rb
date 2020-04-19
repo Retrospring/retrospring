@@ -12,7 +12,7 @@ class ShareWorker
         service.post(Answer.find(answer_id)) if services.include? service.provider
       rescue => e
         logger.info "failed to post answer #{answer_id} to #{service.provider} for user #{user_id}: #{e.message}"
-        Rollbar.error(e)
+        NewRelic::Agent.notice_error(e)
       end
     end
   end

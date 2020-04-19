@@ -22,7 +22,7 @@ class QuestionWorker
       end
     rescue => e
       logger.info "failed to ask question: #{e.message}"
-      Rollbar.error(e)
+      NewRelic::Agent.notice_error(e)
     end
   end
 end
