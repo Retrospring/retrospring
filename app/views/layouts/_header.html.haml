@@ -22,7 +22,7 @@
         %ul.nav.navbar-nav
           = nav_entry t('views.navigation.timeline'), root_path
           = nav_entry t('views.navigation.inbox'), "/inbox", badge: inbox_count
-          - if APP_CONFIG.dig(:features, :discover, :enabled)
+          - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
             = nav_entry t('views.navigation.discover'), discover_path
         %ul.nav.navbar-nav.navbar-right
           - unless @user.nil?
