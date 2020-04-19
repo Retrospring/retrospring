@@ -123,47 +123,15 @@
 }
 
 .profile--image-avatar {
-  min-height: 50px;
-  min-width: 50px;
-  height: 50px;
-  width: 50px;
+  min-height: 40px;
+  min-width: 40px;
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
 }
 
 .navbar-inverse {
   border: none;
-}
-
-@media (min-width: 769px) {
-  nav.navbar .nav > li:not(.profile--image-dropdown) {
-    -moz-osx-font-smoothing: grayscale;
-    position: relative;
-
-    &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: $navbar-inverse-link-color;
-        height: 0px;
-        -webkit-transition-property: height;
-        transition-property: height;
-        -webkit-transition-duration: 0.3s;
-        transition-duration: 0.3s;
-        -webkit-transition-timing-function: ease-out;
-        transition-timing-function: ease-out;
-    }
-
-    &:hover, &:focus, &:active {
-      &:before {
-        height: 4px
-      }
-    }
-
-    &.active:before {
-      height: 4px;
-    }
-  }
 }
 
 @media (max-width: 768px) {
