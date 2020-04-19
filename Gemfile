@@ -105,4 +105,5 @@ group :development, :test do
   gem 'brakeman'
   gem 'guard-brakeman'
   gem 'timecop'
+  gem 'rails-controller-testing'
 end
