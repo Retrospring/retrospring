@@ -8,8 +8,8 @@ feature "User profile page", :devise do
   end
 
   scenario "user gets followed", js: true do
-    me = FactoryGirl.create(:user)
-    other = FactoryGirl.create(:user)
+    me = FactoryBot.create(:user)
+    other = FactoryBot.create(:user)
 
     login_as me, scope: :user
     visit show_user_profile_path(other.screen_name)

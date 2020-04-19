@@ -102,7 +102,7 @@ group :development, :test do
   gem 'rake'
   gem 'puma'
   gem 'rspec-rails', '~> 3.9'
-  gem 'factory_girl_rails', require: false
+  gem 'factory_bot_rails', require: false
   gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
