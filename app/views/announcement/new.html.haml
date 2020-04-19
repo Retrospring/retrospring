@@ -1,2 +1,19 @@
-<h1>Announcement#new</h1>
-<p>Find me in app/views/announcement/new.html.erb</p>
+- provide(:title, generate_title("Add new announcement"))
+.container.j2-page
+  = bootstrap_form_for(@announcement, url: {action: "create"}) do |f|
+    .row
+      .col-md-12
+        = f.text_area :content, label: "Content"
+    .row
+      .col-md-6
+        = f.url_field :link_href, label: "Link URL"
+      .col-md-6
+        = f.datetime_field :link_text, label: "Link text"
+    .row
+      .col-md-6
+        = f.datetime_field :starts_at, label: "Start time"
+      .col-md-6
+        = f.datetime_field :ends_at, label: "End time"
+    .row
+      .col-md-12.text-right
+        = f.submit class: "btn btn-primary"
