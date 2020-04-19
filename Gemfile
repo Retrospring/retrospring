@@ -43,8 +43,6 @@ gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
 gem 'colorize'
 
-gem 'twemoji-rails'
-
 gem 'ruby-progressbar'
 
 gem 'rails_admin'

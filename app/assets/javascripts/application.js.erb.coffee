@@ -4,7 +4,6 @@
 #= require jquery.arctic_scroll
 #= require turbolinks
 #= require bootstrap
-#= require twemoji
 #= require nprogress
 #= require nprogress-turbolinks
 #= require growl
@@ -74,17 +73,6 @@ _ready = ->
       dotColor: bodyColor
       lineColor: bodyColor
       density: 23000
-
-  if twemoji?
-    twemoji.parse document.body,
-      size: 16
-      callback: (icon, options) ->
-        switch icon
-          # copyright, registered, trademark
-          when 'a9' or 'ae' or '2122'
-            false
-          else
-            ''.concat(options.base, options.size, '/', icon, options.ext)
 
   $('.arctic_scroll').arctic_scroll speed: 500
 
