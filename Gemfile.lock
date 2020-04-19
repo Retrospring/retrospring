@@ -113,8 +113,6 @@ GEM
       xpath (~> 3.2)
     climate_control (0.2.0)
     cliver (0.3.2)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -320,11 +318,12 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     orm_adapter (0.5.0)
-    paperclip (4.2.4)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      cocaine (~> 0.5.5)
+    paperclip (5.3.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
       mime-types
+      mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     pg (1.2.3)
     pghero (2.4.2)
       activerecord (>= 5)
@@ -475,6 +474,8 @@ GEM
     sweetalert-rails (1.1.3)
       railties (>= 3.1.0)
     temple (0.8.2)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -567,7 +568,7 @@ DEPENDENCIES
   omniauth
   omniauth-tumblr
   omniauth-twitter
-  paperclip (~> 4.2)
+  paperclip (~> 5.2)
   pg
   pghero
   poltergeist

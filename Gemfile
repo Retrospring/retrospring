@@ -31,7 +31,7 @@ gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.7.0'
-gem "paperclip", "~> 4.2"
+gem "paperclip", "~> 5.2"
 gem 'delayed_paperclip'
 gem 'fog-core'
 gem 'fog-aws'
