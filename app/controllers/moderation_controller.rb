@@ -57,7 +57,7 @@ class ModerationController < ApplicationController
     @host = User.find(@user_id)
     @users = []
     return if @host.nil?
-    @users = User.where('(current_sign_in_ip = ? OR last_sign_in_ip = ?) AND id != ?', @host.current_sign_in_ip, @host.last_sign_in_ip, @user_id)
+    @users = User.where('(current_sign_in_ip = ? OR last_sign_in_ip = ?) AND id != ?', @host.current_sign_in_ip, @host.last_sign_in_ip, @user_id).to_a
     @users.unshift @host
 
     render template: 'moderation/priority'
