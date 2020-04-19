@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class Group < ApplicationRecord
   belongs_to :user
   has_many :group_members, dependent: :destroy
 
+  validates :name, length: { minimum: 1 }
   validates :display_name, length: { maximum: 30 }
 
   before_validation do
