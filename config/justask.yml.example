@@ -62,6 +62,3 @@ fog:
   directory: 'retrospring'
   # URL host, comment out to use default, GENERALLY you don't want to define this
   # host: ''
-
-rollbar:
-  access_token: 'sdklgfnaldkfg'

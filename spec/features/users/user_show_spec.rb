@@ -16,7 +16,7 @@ feature "User profile page", :devise do
   #   When I visit the user profile page
   #   Then I see my own screen name and follower count
   scenario 'user sees own profile', js: true do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
 
     login_as(user, :scope => :user)
 
@@ -31,8 +31,8 @@ feature "User profile page", :devise do
   #   When I visit another user's profile
   #   Then I see that user's screen name and follower count
   scenario "user sees another user's profile", js: true do
-    me = FactoryGirl.create(:user)
-    other = FactoryGirl.create(:user)
+    me = FactoryBot.create(:user)
+    other = FactoryBot.create(:user)
 
     login_as me, scope: :user
 
@@ -49,8 +49,8 @@ feature "User profile page", :devise do
   #    And I click on "Ask"
   #   Then I see "Question asked successfully."
   scenario "user gets asked a question", js: true do
-    me = FactoryGirl.create(:user)
-    other = FactoryGirl.create(:user)
+    me = FactoryBot.create(:user)
+    other = FactoryBot.create(:user)
 
     login_as me, scope: :user
     visit show_user_profile_path(other.screen_name)

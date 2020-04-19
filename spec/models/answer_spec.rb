@@ -4,8 +4,8 @@ RSpec.describe Answer, :type => :model do
   before :each do
     @answer = Answer.new(
         content: 'This is an answer.',
-        user: FactoryGirl.create(:user),
-        question: FactoryGirl.create(:question)
+        user: FactoryBot.create(:user),
+        question: FactoryBot.create(:question)
     )
   end
 

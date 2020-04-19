@@ -17,7 +17,7 @@ feature "Ban users", :devise do
   #   And I am banned
   #   Then I see the sign in page
   scenario "user gets banned", js: true do
-    me = FactoryGirl.create :user
+    me = FactoryBot.create :user
 
     login_as me, scope: :user
     visit root_path
@@ -34,7 +34,7 @@ feature "Ban users", :devise do
   end
 
   scenario 'user visits banned user profiles', js: true do
-    evil_user = FactoryGirl.create :user
+    evil_user = FactoryBot.create :user
     evil_user.permanently_banned = true
     evil_user.save
 

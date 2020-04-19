@@ -18,8 +18,8 @@ feature "Inbox", :devise do
   #   Then I can answer my question
   #   And see the answer on my user profile
   scenario "user answers a question", js: true do
-    me = FactoryGirl.create :user
-    question = FactoryGirl.create :question
+    me = FactoryBot.create :user
+    question = FactoryBot.create :question
     Inbox.create question: question, user: me, new: true
 
     login_as me, scope: :user
@@ -46,7 +46,7 @@ feature "Inbox", :devise do
   #   And I click "Get new question"
   #   Then I get a new question
   scenario 'user generates new question', js: true do
-    me = FactoryGirl.create :user
+    me = FactoryBot.create :user
 
     login_as me, scope: :user
     visit inbox_path
@@ -65,7 +65,7 @@ feature "Inbox", :devise do
   #   And I don't want to receive questions by anonymous users
   #   Then I get a new question
   scenario 'user with privacy options generates new question', js: true do
-    me = FactoryGirl.create :user
+    me = FactoryBot.create :user
     me.privacy_allow_anonymous_questions = false
     me.save
 
@@ -87,8 +87,8 @@ feature "Inbox", :devise do
   #   And I delete the question
   #   Then don't see it anymore in my inbox
   scenario "user deletes a question", js: true do
-    me = FactoryGirl.create :user
-    question = FactoryGirl.create :question
+    me = FactoryBot.create :user
+    question = FactoryBot.create :question
     Inbox.create question: question, user: me
 
     login_as me, scope: :user
@@ -116,9 +116,9 @@ feature "Inbox", :devise do
   #   And I click on "Delete all questions"
   #   Then don't see them anymore in my inbox
   scenario "user deletes all questions", js: true do
-    me = FactoryGirl.create :user
+    me = FactoryBot.create :user
     5.times do
-      question = FactoryGirl.create :question
+      question = FactoryBot.create :question
       Inbox.create question: question, user: me
     end
 
