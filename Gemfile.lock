@@ -382,6 +382,7 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rolify (5.2.0)
     rspec-core (3.9.1)
       rspec-support (~> 3.9.1)
     rspec-expectations (3.9.1)
@@ -554,6 +555,7 @@ DEPENDENCIES
   rake
   redcarpet
   redis
+  rolify (~> 5.2)
   rspec-rails (~> 3.9)
   ruby-progressbar
   sanitize

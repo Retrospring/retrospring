@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable, :authentication_keys => [:login]
 
+  rolify
+
 #   attr_accessor :login
 
   has_many :questions, dependent: :destroy
@@ -183,7 +185,7 @@ class User < ApplicationRecord
 
   # @return [Boolean] is the user a moderator?
   def mod?
-    self.moderator? || self.admin?
+    has_role?(:moderator) || has_role?(:administrator)
   end
 
   # region stuff used for reporting/moderation
@@ -258,4 +260,10 @@ class User < ApplicationRecord
     end
     !self.export_processing
   end
+
+  # %w[admin moderator].each do |m|
+  #   define_method(m) { raise "not allowed: #{m}" }
+  #   define_method(m+??) { raise "not allowed: #{m}?"}
+  #   define_method(m+?=) { |*a| raise "not allowed: #{m}="}
+  # end
 end

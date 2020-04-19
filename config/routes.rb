@@ -2,19 +2,19 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   start = Time.now
 
-  # Admin panel
-  mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'
-
   # Sidekiq
   constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
-                        req.env['warden'].user.admin? } do
+                        req.env["warden"].user.has_role?(:administrator) } do
+    # Admin panel
+    mount RailsAdmin::Engine => "/justask_admin", as: "rails_admin"
+
     mount Sidekiq::Web, at: "/sidekiq"
-    mount PgHero::Engine, at: "/pghero", as: 'pghero'
+    mount PgHero::Engine, at: "/pghero", as: "pghero"
   end
 
   # Moderation panel
-  constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
-                       (req.env['warden'].user.mod?) } do
+  constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
+                        req.env["warden"].user.mod? } do
     match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
     match '/moderation/ip/:user_id', to: 'moderation#ip', via: :get, as: :moderation_ip
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}

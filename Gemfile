@@ -42,6 +42,8 @@ gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
 gem 'colorize'
 
+gem "rolify", "~> 5.2"
+
 source "https://rails-assets.org" do
   gem 'rails-assets-growl'
   gem 'rails-assets-jquery', '~> 2.2.0'
