@@ -77,11 +77,9 @@ gem 'redis'
 gem 'fake_email_validator'
 
 group :development do
-  # require spring 1.3.5 since shit's on fire on my local instance with 1.3.4 (Gem::LoadError)
-  gem 'spring', '~> 1.3.5'
-  # ten thousand raises no more!
+  gem 'spring', '~> 2.0'
   gem 'byebug'
-  gem 'web-console', '< 3.0.0'
+  gem 'web-console', '< 4.0.0'
 end
 
 # Deployment

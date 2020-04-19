@@ -78,8 +78,7 @@ GEM
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
-    binding_of_caller (0.8.0)
-      debug_inspector (>= 0.0.1)
+    bindex (0.8.1)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -129,7 +128,6 @@ GEM
     connection_pool (2.2.2)
     crass (1.0.6)
     database_cleaner (1.8.4)
-    debug_inspector (0.0.3)
     delayed_paperclip (3.0.1)
       activejob (>= 4.2)
       paperclip (>= 3.3)
@@ -463,7 +461,7 @@ GEM
       simplecov
     simplecov-rcov (0.2.3)
       simplecov (>= 0.4.1)
-    spring (1.3.6)
+    spring (2.1.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -507,11 +505,11 @@ GEM
       raindrops (~> 0.7)
     warden (1.2.8)
       rack (>= 2.0.6)
-    web-console (2.3.0)
-      activemodel (>= 4.0)
-      binding_of_caller (>= 0.7.2)
-      railties (>= 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
+    web-console (3.7.0)
+      actionview (>= 5.0)
+      activemodel (>= 5.0)
+      bindex (>= 0.4.0)
+      railties (>= 5.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -593,7 +591,7 @@ DEPENDENCIES
   simplecov
   simplecov-json
   simplecov-rcov
-  spring (~> 1.3.5)
+  spring (~> 2.0)
   sweetalert-rails
   tiny-color-rails
   tumblr_client!
@@ -601,7 +599,7 @@ DEPENDENCIES
   twitter
   uglifier (>= 1.3.0)
   unicorn
-  web-console (< 3.0.0)
+  web-console (< 4.0.0)
   will_paginate
   will_paginate-bootstrap
 
