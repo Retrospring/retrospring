@@ -128,7 +128,7 @@ Rails.application.routes.draw do
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 
   constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
-    (req.env['warden'].user.admin?) } do
+    (req.env['warden'].user.has_role?(:administrator)) } do
     match "/admin/announcements", to: "announcement#index", via: :get, as: :announcement_index
     match "/admin/announcements", to: "announcement#create", via: :post, as: :announcement_create
     match "/admin/announcements/new", to: "announcement#new", via: :get, as: :announcement_new
