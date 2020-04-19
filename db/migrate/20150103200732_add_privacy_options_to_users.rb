@@ -1,4 +1,4 @@
-class AddPrivacyOptionsToUsers < ActiveRecord::Migration
+class AddPrivacyOptionsToUsers < ActiveRecord::Migration[4.2]
   def change
     %i{
       privacy_allow_anonymous_questions

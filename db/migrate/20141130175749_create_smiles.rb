@@ -1,4 +1,4 @@
-class CreateSmiles < ActiveRecord::Migration
+class CreateSmiles < ActiveRecord::Migration[4.2]
   def change
     create_table :smiles do |t|
       t.integer :user_id

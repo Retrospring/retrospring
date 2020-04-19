@@ -1,4 +1,4 @@
-class CreateThemes < ActiveRecord::Migration
+class CreateThemes < ActiveRecord::Migration[4.2]
   def change
     create_table :themes do |t|
       t.integer :user_id, null: false

@@ -1,4 +1,4 @@
-class CreateCommentSmiles < ActiveRecord::Migration
+class CreateCommentSmiles < ActiveRecord::Migration[4.2]
   def change
     create_table :comment_smiles do |t|
       t.integer :user_id

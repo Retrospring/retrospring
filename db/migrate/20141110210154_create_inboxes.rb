@@ -1,4 +1,4 @@
-class CreateInboxes < ActiveRecord::Migration
+class CreateInboxes < ActiveRecord::Migration[4.2]
   def change
     create_table :inboxes do |t|
       t.integer :user_id

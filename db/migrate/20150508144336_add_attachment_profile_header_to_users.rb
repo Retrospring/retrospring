@@ -1,4 +1,4 @@
-class AddAttachmentProfileHeaderToUsers < ActiveRecord::Migration
+class AddAttachmentProfileHeaderToUsers < ActiveRecord::Migration[4.2]
   def change
     change_table :users do |t|
       t.attachment :profile_header

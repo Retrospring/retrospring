@@ -1,4 +1,4 @@
-class RenameColumnsInAnswers < ActiveRecord::Migration
+class RenameColumnsInAnswers < ActiveRecord::Migration[4.2]
   def change
     rename_column :answers, :comments, :comment_count
     remove_column :answers, :likes
