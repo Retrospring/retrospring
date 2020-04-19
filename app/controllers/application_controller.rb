@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :check_locale
-  before_filter :banned?
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_locale
+  before_action :banned?
 
   # check if user wants to read
   def check_locale

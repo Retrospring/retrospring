@@ -1,5 +1,5 @@
 class Ajax::SubscriptionController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
     @status = :parameter_error
     @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
