@@ -18,15 +18,15 @@ gem 'sdoc', '~> 0.4.1', group: :doc
 
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'haml'
-gem 'bootstrap-sass', '~> 3.2.0.1'
+gem 'haml', '~> 4.0'
+gem 'bootstrap-sass', '~> 3.4.0'
 gem 'bootswatch-rails'
 gem 'sweetalert-rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'devise'
+gem 'devise', '~> 4.0'
 gem 'devise-i18n'
-gem 'devise-async'
+gem 'devise-async', git: "https://github.com/mhfs/devise-async.git", ref: "devise-4.x" # TODO: bring this to 1.0 after rails5 upgrade
 gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
@@ -96,7 +96,7 @@ end
 
 group :development, :test do
   gem 'rake'
-  gem 'thin'
+  gem 'puma'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', require: false
   gem 'faker'
