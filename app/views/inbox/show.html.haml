@@ -1,7 +1,7 @@
 - provide(:title, generate_title("Inbox"))
 .container.j2-page
   .row
-    .col-md-3.col-xs-12.col-sm-4.hidden-xs
+    .col-md-3.col-xs-12.col-sm-4.d-none.d-sm-block
       = render 'inbox/sidebar'
     .col-md-9.col-xs-12.col-sm-8
       = render 'layouts/messages'
@@ -18,7 +18,7 @@
         %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @inbox.current_page }}
           = t 'views.actions.load'
 
-    .col-md-9.col-xs-12.col-sm-8.visible-xs
+    .col-md-9.col-xs-12.col-sm-8.d-block.d-sm-none
       = render 'inbox/sidebar'
 
 = render "shared/links"
