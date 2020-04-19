@@ -1,26 +1,27 @@
 - provide(:title, generate_title("Notifications"))
 = render 'notifications/notification_nav'
 .container.j2-page
-  = render 'notification_tabs'
-  .col-md-9.col-xs-12.col-sm-8
-    .card
-      %ul#notifications.list-group
-        - if @notifications.count == 0
-          %li.list-group-item.text-center
-            .notifications--none
-              %i.fa.fa-bell-o.no-notifications
-            %p
-              - if params[:type] != "all"
-                No new notifications.
-              - else
-                No notifications.
-        - else
-          - @notifications.each do |notification|
-            = render 'notifications/notification', notification: notification
+  .row
+    = render 'notification_tabs'
+    .col-md-9.col-xs-12.col-sm-8
+      .card
+        %ul#notifications.list-group
+          - if @notifications.count == 0
+            %li.list-group-item.text-center
+              .notifications--none
+                %i.fa.fa-bell-o.no-notifications
+              %p
+                - if params[:type] != "all"
+                  No new notifications.
+                - else
+                  No notifications.
+          - else
+            - @notifications.each do |notification|
+              = render 'notifications/notification', notification: notification
 
-    #pagination= will_paginate @notifications, renderer: BootstrapPagination::Rails, page_links: false
+      #pagination= will_paginate @notifications, renderer: BootstrapPagination::Rails, page_links: false
 
-    - if @notifications.next_page
-      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @notifications.current_page }}
-        Load more
+      - if @notifications.next_page
+        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @notifications.current_page }}
+          Load more
 - Notification.for(current_user).update_all(new: false)
