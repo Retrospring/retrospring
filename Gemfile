@@ -68,7 +68,8 @@ gem 'omniauth-tumblr'
 
 # OAuth clients
 gem 'twitter'
-gem 'tumblr_client'
+# To use a more recent Faraday version, a fork of this gem is required.
+gem 'tumblr_client', git: 'https://github.com/amplifr/tumblr_client'
 
 gem 'foreman'
 gem 'redis'
