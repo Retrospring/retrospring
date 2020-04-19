@@ -10,6 +10,13 @@ Rails.application.routes.draw do
 
     mount Sidekiq::Web, at: "/sidekiq"
     mount PgHero::Engine, at: "/pghero", as: "pghero"
+
+    match "/admin/announcements", to: "announcement#index", via: :get, as: :announcement_index
+    match "/admin/announcements", to: "announcement#create", via: :post, as: :announcement_create
+    match "/admin/announcements/new", to: "announcement#new", via: :get, as: :announcement_new
+    match "/admin/announcements/:id/edit", to: "announcement#edit", via: :get, as: :announcement_edit
+    match "/admin/announcements/:id", to: "announcement#update", via: :patch, as: :announcement_update
+    match "/admin/announcements/:id", to: "announcement#destroy", via: :delete, as: :announcement_destroy
   end
 
   # Moderation panel
@@ -126,16 +133,6 @@ Rails.application.routes.draw do
   match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends, defaults: {page: 1}
   match '/:username/groups(/p/:page)', to: 'user#groups', via: 'get', as: :show_user_groups, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
-
-  constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
-    (req.env['warden'].user.has_role?(:administrator)) } do
-    match "/admin/announcements", to: "announcement#index", via: :get, as: :announcement_index
-    match "/admin/announcements", to: "announcement#create", via: :post, as: :announcement_create
-    match "/admin/announcements/new", to: "announcement#new", via: :get, as: :announcement_new
-    match "/admin/announcements/:id/edit", to: "announcement#edit", via: :get, as: :announcement_edit
-    match "/admin/announcements/:id", to: "announcement#update", via: :patch, as: :announcement_update
-    match "/admin/announcements/:id", to: "announcement#destroy", via: :delete, as: :announcement_destroy
-  end
 
   puts 'processing time of routes.rb: ' + "#{(Time.now - start).round(3).to_s.ljust(5, '0')}s".light_green
 end
