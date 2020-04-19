@@ -62,6 +62,7 @@ GEM
     autoprefixer-rails (9.7.6)
       execjs
     bcrypt (3.1.13)
+    bcrypt_pbkdf (1.0.1)
     better_errors (2.6.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -137,6 +138,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dry-inflector (0.2.0)
+    ed25519 (1.2.4)
     equalizer (0.0.11)
     erubi (1.9.0)
     excon (0.73.0)
@@ -515,6 +517,10 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rbnacl (4.0.2)
+      ffi
+    rbnacl-libsodium (1.0.16)
+      rbnacl (>= 3.0.1)
     rbvmomi (2.4.1)
       builder (~> 3.0)
       json (>= 1.8)
@@ -663,6 +669,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
+  bcrypt_pbkdf (>= 1.0, < 2.0)
   better_errors
   bootstrap-sass (~> 3.4.0)
   bootstrap3-datetimepicker-rails (~> 4.7.14)
@@ -680,6 +687,7 @@ DEPENDENCIES
   devise (~> 4.0)
   devise-async
   devise-i18n
+  ed25519
   factory_girl_rails
   fake_email_validator
   faker
@@ -715,6 +723,8 @@ DEPENDENCIES
   rails-i18n (~> 5.0)
   rails_admin
   rake
+  rbnacl (>= 3.2, < 5.0)
+  rbnacl-libsodium
   redcarpet
   redis
   rollbar
