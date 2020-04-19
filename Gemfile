@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 gem 'rails', '~> 5.2'
 gem 'rails-i18n', '~> 5.0'
@@ -30,8 +31,6 @@ gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.7.0'
-gem 'rails-assets-growl'
-gem 'rails-assets-jquery', '~> 2.2.0'
 gem "paperclip", "~> 4.2"
 gem 'delayed_paperclip'
 gem 'fog-core'
@@ -42,6 +41,11 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
 gem 'colorize'
+
+source "https://rails-assets.org" do
+  gem 'rails-assets-growl'
+  gem 'rails-assets-jquery', '~> 2.2.0'
+end
 
 gem 'ruby-progressbar'
 

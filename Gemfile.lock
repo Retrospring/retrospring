@@ -571,8 +571,8 @@ DEPENDENCIES
   puma
   questiongenerator!
   rails (~> 5.2)
-  rails-assets-growl
-  rails-assets-jquery (~> 2.2.0)
+  rails-assets-growl!
+  rails-assets-jquery (~> 2.2.0)!
   rails-i18n (~> 5.0)
   rails_admin
   rake
