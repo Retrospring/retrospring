@@ -1,8 +1,9 @@
-#= require jquery
+#= require jquery3
 #= require jquery_ujs
 #= require jquery.turbolinks
 #= require jquery.arctic_scroll
 #= require turbolinks
+#= require popper
 #= require bootstrap
 #= require nprogress
 #= require nprogress-turbolinks

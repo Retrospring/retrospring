@@ -16,7 +16,7 @@ $font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, ser
 $font-family-monospace:   "PragmataPro", Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
 $font-family-base:        $font-family-sans-serif;
 
-$font-size-base:          14px;
+$font-size-base:          1rem;
 $font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
 
@@ -27,6 +27,7 @@ $font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
 $font-size-h5:            $font-size-base;
 $font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
 
+$gray: #e2e2e2;
 $brand-primary: #5e35b1;
 $navbar-inverse-bg: #5e35b1;
 $navbar-inverse-link-color: #ffffff;
@@ -44,18 +45,14 @@ $navbar-inverse-toggle-hover-bg: #512da8;
 $navbar-inverse-toggle-icon-bar-bg: #7e57c2;
 $navbar-inverse-toggle-border-color: #512da8;
 
-@import "bootswatch/cosmo/variables";
-
 @import "bootstrap";
 
-body { padding-top: $navbar-height; }
+body { padding-top: 50px; }
 
 @import 'bootstrap-datetimepicker';
 .remove-native-picker::-webkit-calendar-picker-indicator{
   display: none
 }
-
-@import "bootswatch/cosmo/bootswatch";
 
 @import "base";
 

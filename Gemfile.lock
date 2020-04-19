@@ -79,16 +79,15 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.8.1)
-    bootstrap-sass (3.4.1)
-      autoprefixer-rails (>= 5.2.1)
-      sassc (>= 2.0.0)
+    bootstrap (4.4.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     bootstrap3-datetimepicker-rails (4.7.14)
       momentjs-rails (>= 2.8.1)
     bootstrap_form (4.4.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
-    bootswatch-rails (3.3.5)
-      railties (>= 3.1)
     brakeman (4.8.1)
     buftok (0.2.0)
     builder (3.2.4)
@@ -331,6 +330,7 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    popper_js (1.16.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -527,10 +527,9 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bcrypt_pbkdf (>= 1.0, < 2.0)
   better_errors
-  bootstrap-sass (~> 3.4.0)
+  bootstrap (~> 4.4, >= 4.4.1)
   bootstrap3-datetimepicker-rails (~> 4.7.14)
   bootstrap_form
-  bootswatch-rails
   brakeman
   byebug
   capistrano (~> 3.8)

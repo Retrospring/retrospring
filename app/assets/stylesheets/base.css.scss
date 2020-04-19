@@ -107,7 +107,7 @@ body {
 }
 
 .j2-delete {
-  color: $brand-danger;
+  color: theme-color('danger');
   text-decoration: none;
 }
 
@@ -115,7 +115,7 @@ body {
   margin-bottom: 0px;
 }
 
-@media (max-width: $screen-xs-max) {
+@include media-breakpoint-down(xs) {
   .j2-col-reset {
     padding-left: 0px;
     padding-right: 0px;
@@ -277,7 +277,7 @@ body {
 }
 
 .colored-icon:before {
-  color: $brand-primary;
+  color: theme-color('primary');
 }
 
 .colored-icon {

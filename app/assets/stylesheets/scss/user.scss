@@ -42,8 +42,8 @@
 }
 
 .profile--panel .panel-heading {
-  color: $brand-primary;
-  border-bottom: 2px solid $brand-primary;
+  color: theme-color('primary');
+  border-bottom: 2px solid theme-color('primary');
   background-color: #fff;
   text-transform: uppercase;
 }
@@ -53,15 +53,15 @@
 }
 
 .inbox--panel .panel-heading {
-  color: $brand-info;
-  border-bottom: 2px solid $brand-info;
+  color: theme-color('info');
+  border-bottom: 2px solid theme-color('info');
   background-color: #fff;
   text-transform: uppercase;
 }
 
 .warning--panel .panel-heading {
-  color: $brand-danger;
-  border-bottom: 2px solid $brand-danger;
+  color: theme-color('danger');
+  border-bottom: 2px solid theme-color('danger');
   background-color: #fff;
   text-transform: uppercase;
 }
@@ -87,11 +87,11 @@
   color: #fff;
 }
 
-$colours: danger $brand-danger,
+$colours: danger theme-color('danger'),
           default #BBB,
-          success $brand-success,
-          warning $brand-warning,
-          primary $brand-primary,
+          success theme-color('success'),
+          warning theme-color('warning'),
+          primary theme-color('primary'),
           info #2980b9;
 
 @each $colour in $colours {
