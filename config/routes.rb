@@ -10,6 +10,13 @@ Rails.application.routes.draw do
 
     mount Sidekiq::Web, at: "/sidekiq"
     mount PgHero::Engine, at: "/pghero", as: "pghero"
+
+    match "/admin/announcements", to: "announcement#index", via: :get, as: :announcement_index
+    match "/admin/announcements", to: "announcement#create", via: :post, as: :announcement_create
+    match "/admin/announcements/new", to: "announcement#new", via: :get, as: :announcement_new
+    match "/admin/announcements/:id/edit", to: "announcement#edit", via: :get, as: :announcement_edit
+    match "/admin/announcements/:id", to: "announcement#update", via: :patch, as: :announcement_update
+    match "/admin/announcements/:id", to: "announcement#destroy", via: :delete, as: :announcement_destroy
   end
 
   # Moderation panel

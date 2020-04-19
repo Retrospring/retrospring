@@ -344,6 +344,10 @@ GEM
     rails-assets-growl (1.3.5)
       rails-assets-jquery
     rails-assets-jquery (2.2.4)
+    rails-controller-testing (1.0.4)
+      actionpack (>= 5.0.1.x)
+      actionview (>= 5.0.1.x)
+      activesupport (>= 5.0.1.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -459,6 +463,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timecop (0.9.1)
     tiny-color-rails (0.0.2)
       railties (>= 3.0)
     turbolinks (2.5.4)
@@ -553,6 +558,7 @@ DEPENDENCIES
   rails (~> 5.2)
   rails-assets-growl!
   rails-assets-jquery (~> 2.2.0)!
+  rails-controller-testing
   rails-i18n (~> 5.0)
   rails_admin
   rake
@@ -570,6 +576,7 @@ DEPENDENCIES
   simplecov-rcov
   spring (~> 2.0)
   sweetalert-rails
+  timecop
   tiny-color-rails
   tumblr_client!
   turbolinks (~> 2.5.3)

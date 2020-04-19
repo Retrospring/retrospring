@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_locale
   before_action :banned?
+  before_action :find_active_announcements
 
   # check if user wants to read
   def check_locale
@@ -48,6 +49,10 @@ class ApplicationController < ActionController::Base
       sign_out current_user
       redirect_to new_user_session_path
     end
+  end
+
+  def find_active_announcements
+    @active_announcements ||= Announcement.find_active
   end
 
   include ApplicationHelper

@@ -105,4 +105,6 @@ group :development, :test do
   gem 'letter_opener' # Use this just in local test environments
   gem 'brakeman'
   gem 'guard-brakeman'
+  gem 'timecop'
+  gem 'rails-controller-testing'
 end
