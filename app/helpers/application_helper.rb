@@ -18,7 +18,7 @@ module ApplicationHelper
         }"))}"
     end
 
-    content_tag(:li, link_to(body.html_safe, path), class: ("#{'active ' if current_page? path}#{options[:class]}"))
+    content_tag(:li, link_to(body.html_safe, path, class: "nav-link"), class: ("#{'nav-item active ' if current_page? path}#{options[:class]}"))
   end
 
   def list_group_item(body, path, options = {})
