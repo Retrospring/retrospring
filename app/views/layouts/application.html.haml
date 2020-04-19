@@ -25,6 +25,7 @@
     = csrf_meta_tags
   %body#version1
     = render 'layouts/header'
+    = render 'shared/announcements'
     = yield
     = render 'shared/locales'
     - if Rails.env.development?

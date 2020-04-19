@@ -6,6 +6,16 @@ class Announcement < ApplicationRecord
   validates :link_href, presence: true, if: -> { link_text.present? }
   validate :starts_at, :validate_date_range
 
+  def self.find_active
+    Rails.cache.fetch "announcement_active", expires_in: 1.minute do
+      where "starts_at <= :now AND ends_at > :now", now: Time.current
+    end
+  end
+
+  def active?
+    Time.now.utc >= starts_at && Time.now.utc < ends_at
+  end
+
   def link_present?
     link_text.present?
   end
