@@ -2,6 +2,10 @@ class DiscoverController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    unless APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
+      return redirect_to root_path
+    end
+
     top_x = 10  # only display the top X items
 
     @popular_answers = Answer.where("created_at > ?", Time.now.ago(1.week)).order(:smile_count).reverse_order.limit(top_x)

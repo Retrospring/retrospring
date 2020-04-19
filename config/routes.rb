@@ -104,7 +104,7 @@ Rails.application.routes.draw do
     match '/unsubscribe', to: 'subscription#unsubscribe', via: :post, as: :unsubscribe_answer
   end
 
-  match '/discover', to: 'discover#index', via: :get, as: :discover if APP_CONFIG.dig(:features, :discover, :enabled)
+  match '/discover', to: 'discover#index', via: :get, as: :discover
   match '/public', to: 'public#index', via: :get, as: :public_timeline if APP_CONFIG.dig(:features, :public, :enabled)
   match '/group/:group_name', to: 'group#index', via: :get, as: :group_timeline
 
