@@ -19,12 +19,19 @@ class AnnouncementController < ApplicationController
   end
 
   def edit
+    @announcement = Announcement.find(params[:id])
   end
 
   def update
   end
 
   def destroy
+    if Announcement.destroy(params[:id])
+      flash[:success] = "Announcement deleted successfully."
+    else
+      flash[:error] = "Failed to delete announcement."
+    end
+    redirect_to announcement_index_path
   end
 
   private

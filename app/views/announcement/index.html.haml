@@ -5,4 +5,10 @@
       = link_to "Add new", :announcement_new, class: "btn btn-default"
   - @announcements.each do |announcement|
     .panel.panel-default
-      = announcement.content
+      .panel-heading
+        = announcement.starts_at
+      .panel-body
+        = announcement.content
+      .panel-footer
+        = button_to "Edit", announcement_edit_path(id: announcement.id), class: 'btn btn-link'
+        = button_to "Delete", announcement_destroy_path(id: announcement.id), method: :delete, class: 'btn btn-link', confirm: 'Are you sure you want to delete this announcement?'
