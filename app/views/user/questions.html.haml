@@ -3,19 +3,20 @@
 #profile--header{class: no_header}
   %img.profile--header-img{src: @user.profile_header.url(:web)}
 .container.j2-page.headerable{class: no_header}
-  .col-md-3.col-xs-12.col-sm-4.j2-col-reset
-    = render 'user/profile_info'
-    .hidden-xs= render 'shared/links'
-  .col-md-9.col-xs-12.col-sm-8.j2-col-reset
-    %h1.j2-lh.hidden-xs= @title
-    %h1.visible-xs= @title
-    #questions
-      - @questions.each do |q|
-        = render 'shared/question', q: q, type: nil
+  .row
+    .col-md-3.col-xs-12.col-sm-4.j2-col-reset
+      = render 'user/profile_info'
+      .hidden-xs= render 'shared/links'
+    .col-md-9.col-xs-12.col-sm-8.j2-col-reset
+      %h1.j2-lh.hidden-xs= @title
+      %h1.visible-xs= @title
+      #questions
+        - @questions.each do |q|
+          = render 'shared/question', q: q, type: nil
 
-    #pagination= will_paginate @questions, renderer: BootstrapPagination::Rails, page_links: false
+      #pagination= will_paginate @questions, renderer: BootstrapPagination::Rails, page_links: false
 
-    - if @questions.next_page
-      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @questions.current_page }}
-        = t 'views.actions.load'
+      - if @questions.next_page
+        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @questions.current_page }}
+          = t 'views.actions.load'
   .visible-xs= render 'shared/links'

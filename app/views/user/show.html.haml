@@ -3,22 +3,23 @@
 #profile--header{class: no_header}
   %img.profile--header-img{src: @user.profile_header.url(:web)}
 .container.j2-page.headerable{class: no_header}
-  #profile-info.col-md-3.col-xs-12.col-sm-4.j2-col-reset
-    = render 'user/profile_info'
-    .hidden-xs= render 'shared/links'
-  .col-md-9.col-xs-12.col-sm-8.j2-col-reset
-    .profile--panel-push-inner.hidden-xs{class: no_header}
-    = render 'shared/questionbox'
-    - unless @user.banned?
-      #answers
-        - @answers.each do |a|
-          = render 'shared/answerbox', a: a
+  .row
+    #profile-info.col-md-3.col-xs-12.col-sm-4.j2-col-reset
+      = render 'user/profile_info'
+      .hidden-xs= render 'shared/links'
+    .col-md-9.col-xs-12.col-sm-8.j2-col-reset
+      .profile--panel-push-inner.hidden-xs{class: no_header}
+      = render 'shared/questionbox'
+      - unless @user.banned?
+        #answers
+          - @answers.each do |a|
+            = render 'shared/answerbox', a: a
 
-      #pagination= will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false
+        #pagination= will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false
 
-      - if @answers.next_page
-        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
-          = t 'views.actions.load'
+        - if @answers.next_page
+          %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @answers.current_page }}
+            = t 'views.actions.load'
   .visible-xs= render 'shared/links'
 - if user_signed_in?
   = render 'user/modal_group_memberships'
