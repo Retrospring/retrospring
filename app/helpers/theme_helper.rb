@@ -23,7 +23,7 @@ module ThemeHelper
           end
         elsif hash.is_a? Hash
           hash.each do |k, v|
-            next unless v.is_a? Fixnum
+            next unless v.is_a? Integer
 
             self.instance_variable_set "@#{k}", ('#' + ('0000000' + hash[k].to_s(16))[-6, 6])
           end
