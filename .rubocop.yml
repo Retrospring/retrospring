@@ -1,5 +1,6 @@
 AllCops:
-  RunRailsCops: true
+  Rails:
+    Enabled: true
   Exclude:
     - 'vendor/**/*'
     - 'db/schema.rb'
@@ -7,16 +8,13 @@ AllCops:
 Metrics/ClassLength:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
   Enabled: false
 
 Metrics/ModuleLength:
-  Enabled: false
-
-Style/BracesAroundHashParameters:
   Enabled: false
 
 Style/ClassAndModuleChildren:

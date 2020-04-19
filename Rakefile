@@ -105,44 +105,48 @@ namespace :justask do
     end
   end
 
-  desc "Gives admin status to an user."
+  desc "Gives admin status to a user."
   task :admin, [:screen_name] => :environment do |t, args|
-    fail "screen name required" if args[:screen_name].nil?
+    abort "screen name required" if args[:screen_name].nil?
+
     user = User.find_by_screen_name(args[:screen_name])
-    fail "user #{args[:screen_name]} not found" if user.nil?
-    user.admin = true
-    user.save!
-    puts "#{user.screen_name} is now an admin."
+    abort "user #{args[:screen_name]} not found" if user.nil?
+
+    user.add_role :administrator
+    puts "#{user.screen_name} is now an administrator."
   end
 
-  desc "Removes admin status from an user."
+  desc "Removes admin status from a user."
   task :deadmin, [:screen_name] => :environment do |t, args|
-    fail "screen name required" if args[:screen_name].nil?
+    abort "screen name required" if args[:screen_name].nil?
+
     user = User.find_by_screen_name(args[:screen_name])
-    fail "user #{args[:screen_name]} not found" if user.nil?
-    user.admin = false
-    user.save!
-    puts "#{user.screen_name} is no longer an admin."
+    abort "user #{args[:screen_name]} not found" if user.nil?
+
+    user.remove_role :administrator
+    puts "#{user.screen_name} is no longer an administrator."
   end
 
-  desc "Gives moderator status to an user."
+  desc "Gives moderator status to a user."
   task :mod, [:screen_name] => :environment do |t, args|
-    fail "screen name required" if args[:screen_name].nil?
+    abort "screen name required" if args[:screen_name].nil?
+
     user = User.find_by_screen_name(args[:screen_name])
-    fail "user #{args[:screen_name]} not found" if user.nil?
-    user.moderator = true
-    user.save!
-    puts "#{user.screen_name} is now an moderator."
+    abort "user #{args[:screen_name]} not found" if user.nil?
+
+    user.add_role :moderator
+    puts "#{user.screen_name} is now a moderator."
   end
 
-  desc "Removes moderator status from an user."
+  desc "Removes moderator status from a user."
   task :demod, [:screen_name] => :environment do |t, args|
-    fail "screen name required" if args[:screen_name].nil?
+    abort "screen name required" if args[:screen_name].nil?
+
     user = User.find_by_screen_name(args[:screen_name])
-    fail "user #{args[:screen_name]} not found" if user.nil?
-    user.moderator = false
-    user.save!
-    puts "#{user.screen_name} is no longer an moderator."
+    abort "user #{args[:screen_name]} not found" if user.nil?
+
+    user.remove_role :moderator
+    puts "#{user.screen_name} is no longer a moderator."
   end
 
   desc "Hits an user with the banhammer."

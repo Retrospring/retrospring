@@ -15,7 +15,7 @@
         %i.fa.fa-fw.fa-cog
         = t('views.navigation.settings')
     %li.divider
-    - if current_user.admin?
+    - if current_user.has_role?(:administrator)
       %li
         %a{href: rails_admin_path}
           %i.fa.fa-fw.fa-cogs

@@ -95,7 +95,7 @@
 
             %p.data-heading Admin
             %p
-              - if current_user.admin?
+              - if current_user.has_role?(:administrator)
                 %span.label.label-success
                   %i.fa.fa-fw.fa-check
               - else
