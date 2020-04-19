@@ -23,6 +23,12 @@ class AnnouncementController < ApplicationController
   end
 
   def update
+    if Announcement.update(params[:id], announcement_params)
+      flash[:success] = "Announcement updated successfully."
+      redirect_to announcement_index_path
+    else
+      render 'announcement/edit'
+    end
   end
 
   def destroy
