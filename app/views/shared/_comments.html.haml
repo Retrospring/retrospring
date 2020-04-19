@@ -32,21 +32,18 @@
                 .btn-group
                   %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                     %span.caret
-                  %ul.dropdown-menu.dropdown-menu-right{role: :menu}
-                    %li
-                      %a{href: '#', type: :button, data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal}}
-                        %i.fa.fa-smile-o
-                        = t 'views.actions.view'
+                  .dropdown-menu.dropdown-menu-right{role: :menu}
+                    %a.dropdown-item{href: '#', type: :button, data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal}}
+                      %i.fa.fa-smile-o
+                      = t 'views.actions.view'
                     - if privileged?(comment.user) or privileged?(a.user)
-                      %li.text-danger
-                        %a{href: '#', data: { action: 'ab-comment-destroy', c_id: comment.id }}
-                          %i.fa.fa-trash-o
-                          = t 'views.actions.delete'
+                      %a.dropdown-item.text-danger{href: '#', data: { action: 'ab-comment-destroy', c_id: comment.id }}
+                        %i.fa.fa-trash-o
+                        = t 'views.actions.delete'
                     - unless comment.user == current_user
-                      %li
-                        %a{href: '#', data: { action: 'ab-comment-report', c_id: comment.id }}
-                          %i.fa.fa-exclamation-triangle
-                          = t 'views.acions.report'
+                      %a.dropdown-item{href: '#', data: { action: 'ab-comment-report', c_id: comment.id }}
+                        %i.fa.fa-exclamation-triangle
+                        = t 'views.acions.report'
             .comments--content
               = markdown comment.content
 - if user_signed_in?

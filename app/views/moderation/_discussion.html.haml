@@ -17,11 +17,10 @@
                 .btn-group
                   %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                     %span.caret
-                  %ul.dropdown-menu.dropdown-menu-right{role: :menu}
-                    %li.text-danger
-                      %a{href: '#', tabindex: -1, data: { action: 'mod-comment-destroy', id: comment.id }}
-                        %i.fa.fa-trash-o
-                        = t 'views.actions.delete'
+                  .dropdown-menu.dropdown-menu-right{role: :menu}
+                    %a.dropdown-item.text-danger{href: '#', tabindex: -1, data: { action: 'mod-comment-destroy', id: comment.id }}
+                      %i.fa.fa-trash-o
+                      = t 'views.actions.delete'
             %p.comments--content= comment.content
 .form-group.has-feedback{name: 'mod-comment-new-group', data: { id: report.id }}
   %input.form-control.comments--box{type: :text, placeholder: t('views.placeholder.comment'), name: 'mod-comment-new', data: { id: report.id }}

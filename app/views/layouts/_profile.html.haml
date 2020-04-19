@@ -1,41 +1,34 @@
 %li.dropdown.profile--image-dropdown
   %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
     %img.profile--image-avatar.hidden-xs{src: current_user.profile_picture.url(:small)}
-    %span.visible-xs
+    %span.d-none.d-sm-inline.d-md-none
       = current_user.screen_name
       %b.caret
-  %ul.dropdown-menu
-    %li.dropdown-header.hidden-xs= current_user.screen_name
-    %li
-      %a{href: show_user_profile_path(current_user.screen_name)}
-        %i.fa.fa-fw.fa-user
-        = t('views.navigation.show')
-    %li
-      %a{href: edit_user_registration_path}
-        %i.fa.fa-fw.fa-cog
-        = t('views.navigation.settings')
-    %li.divider
+  .dropdown-menu
+    %h6.dropdown-header.hidden-xs= current_user.screen_name
+    %a.dropdown-item{href: show_user_profile_path(current_user.screen_name)}
+      %i.fa.fa-fw.fa-user
+      = t('views.navigation.show')
+    %a.dropdown-item{href: edit_user_registration_path}
+      %i.fa.fa-fw.fa-cog
+      = t('views.navigation.settings')
+    .dropdown-divider
     - if current_user.admin?
-      %li
-        %a{href: rails_admin_path}
-          %i.fa.fa-fw.fa-cogs
-          = t('views.navigation.admin')
-      %li
-        %a{href: sidekiq_web_path}
-          %i.fa.fa-fw.fa-bar-chart
-          = t('views.navigation.sidekiq')
-      %li
-        %a{href: pghero_path}
-          %i.fa.fa-fw.fa-database
-          Database Monitor
-      %li.divider
+      %a.dropdown-item{href: rails_admin_path}
+        %i.fa.fa-fw.fa-cogs
+        = t('views.navigation.admin')
+      %a.dropdown-item{href: sidekiq_web_path}
+        %i.fa.fa-fw.fa-bar-chart
+        = t('views.navigation.sidekiq')
+      %a.dropdown-item{href: pghero_path}
+        %i.fa.fa-fw.fa-database
+        Database Monitor
+      .dropdown-divider
     - if current_user.mod?
-      %li
-        %a{href: moderation_path}
-          %i.fa.fa-fw.fa-gavel
-          = t('views.navigation.moderation')
-      %li.divider
-    %li
-      %a{href: destroy_user_session_path, data: {method: :delete} }
-        %i.fa.fa-fw.fa-sign-out
-        = t 'views.sessions.destroy'
+      %a.dropdown-item{href: moderation_path}
+        %i.fa.fa-fw.fa-gavel
+        = t('views.navigation.moderation')
+      .dropdown-divider
+    %a.dropdown-item{href: destroy_user_session_path, data: {method: :delete} }
+      %i.fa.fa-fw.fa-sign-out
+      = t 'views.sessions.destroy'
