@@ -456,6 +456,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timecop (0.9.1)
     tiny-color-rails (0.0.2)
       railties (>= 3.0)
     turbolinks (2.5.4)
@@ -566,6 +567,7 @@ DEPENDENCIES
   simplecov-rcov
   spring (~> 2.0)
   sweetalert-rails
+  timecop
   tiny-color-rails
   tumblr_client!
   turbolinks (~> 2.5.3)
