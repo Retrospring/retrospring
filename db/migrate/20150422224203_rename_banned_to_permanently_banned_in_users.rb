@@ -1,4 +1,4 @@
-class RenameBannedToPermanentlyBannedInUsers < ActiveRecord::Migration
+class RenameBannedToPermanentlyBannedInUsers < ActiveRecord::Migration[4.2]
   def up
     rename_column :users, :banned, :permanently_banned
   end

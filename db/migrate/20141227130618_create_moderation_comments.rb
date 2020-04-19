@@ -1,4 +1,4 @@
-class CreateModerationComments < ActiveRecord::Migration
+class CreateModerationComments < ActiveRecord::Migration[4.2]
   def change
     create_table :moderation_comments do |t|
       t.integer :report_id

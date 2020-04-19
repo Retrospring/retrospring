@@ -1,4 +1,4 @@
-class AddCropValuesToUsers < ActiveRecord::Migration
+class AddCropValuesToUsers < ActiveRecord::Migration[4.2]
   def change
     # this is a ugly hack and will stay until I find a way to pass parameters
     # to the paperclip Sidekiq worker.  oh well.
