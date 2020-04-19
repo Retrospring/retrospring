@@ -3,8 +3,7 @@
 require "rails_helper"
 
 describe AnnouncementController, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
-  before(:each) { user.add_role :administrator }
+  let(:user) { FactoryBot.create(:user, roles: [:administrator]) }
 
   describe "#index" do
     subject { get :index }
