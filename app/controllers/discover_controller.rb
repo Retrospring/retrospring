@@ -1,5 +1,5 @@
 class DiscoverController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     unless APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?

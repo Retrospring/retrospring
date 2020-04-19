@@ -1,4 +1,4 @@
-class Service < ActiveRecord::Base
+class Service < ApplicationRecord
   attr_accessor :provider, :info
 
   belongs_to :user

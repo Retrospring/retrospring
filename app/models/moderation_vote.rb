@@ -1,4 +1,4 @@
-class ModerationVote < ActiveRecord::Base
+class ModerationVote < ApplicationRecord
   belongs_to :user
   belongs_to :report
   validates :user_id, presence: true

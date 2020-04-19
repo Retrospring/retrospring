@@ -22,4 +22,4 @@
       = render 'inbox/sidebar'
 
 = render "shared/links"
-- @inbox.update_all(new: false)
+- Inbox.where(id: @inbox.ids).update_all(new: false)

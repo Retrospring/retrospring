@@ -8,9 +8,8 @@ production:
 :queues:
   - share
   - paperclip
-  - mailer
+  - mailers
   - deletion
-  - rollbar
   - question
   - export
 

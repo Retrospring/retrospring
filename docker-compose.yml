@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  web:
+    build:       
+      context: .      
+      dockerfile: .docker/ruby/Dockerfile
+    command:
+      ruby bin/rails server --port 3000 --binding 0.0.0.0
+    links:
+      - postgres
+      - redis
+    volumes:
+      - ./:/app
+    ports:
+      - 3000:3000
+
+  redis:
+    image: redis:3.2.11-alpine
+    ports: 
+      - 6379:6379
+
+  postgres:
+    image: postgres:10.12
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: justask
+      POSTGRES_DB: justask_development

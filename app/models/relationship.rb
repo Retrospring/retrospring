@@ -1,4 +1,4 @@
-class Relationship < ActiveRecord::Base
+class Relationship < ApplicationRecord
   belongs_to :source, class_name: 'User'
   belongs_to :target, class_name: 'User'
   validates :source_id, presence: true

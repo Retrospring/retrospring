@@ -2,7 +2,7 @@ module ThemeHelper
   def render_theme_with_context(context = {})
     klass = Class.new do
       def initialize(hash = {})
-        if hash.is_a? ActiveRecord::Base
+        if hash.is_a? ApplicationRecord
           x = [
             :primary_color, :primary_text,
             :danger_color, :danger_text,
@@ -23,7 +23,7 @@ module ThemeHelper
           end
         elsif hash.is_a? Hash
           hash.each do |k, v|
-            next unless v.is_a? Fixnum
+            next unless v.is_a? Integer
 
             self.instance_variable_set "@#{k}", ('#' + ('0000000' + hash[k].to_s(16))[-6, 6])
           end

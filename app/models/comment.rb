@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :answer
   validates :user_id, presence: true
