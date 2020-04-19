@@ -23,7 +23,9 @@ class AnnouncementController < ApplicationController
   end
 
   def update
-    if Announcement.update(params[:id], announcement_params)
+    @announcement = Announcement.find(params[:id])
+    @announcement.update(announcement_params)
+    if @announcement.save
       flash[:success] = "Announcement updated successfully."
       redirect_to announcement_index_path
     else
