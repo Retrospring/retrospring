@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2016_01_05_165913) do
+ActiveRecord::Schema.define(version: 2020_04_19_183714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.text "content", null: false
+    t.string "link_text"
+    t.string "link_href"
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_announcements_on_user_id"
+  end
 
   create_table "answers", id: :serial, force: :cascade do |t|
     t.text "content"

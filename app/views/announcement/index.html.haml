@@ -1,0 +1,8 @@
+- provide(:title, generate_title("Announcements"))
+.container.j2-page
+  .row
+    .col-md-12
+      = link_to "Add new", :announcement_new, class: "btn btn-default"
+  - @announcements.each do |announcement|
+    .panel.panel-default
+      = announcement.content
