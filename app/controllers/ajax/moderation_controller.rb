@@ -125,9 +125,9 @@ class Ajax::ModerationController < ApplicationController
     unban  = params[:ban] == "0"
     perma  = params[:permaban] == "1"
 
-    buntil = DateTime.strptime params[:until], "%m/%d/%Y %I:%M %p" unless unban or perma
+    buntil = DateTime.strptime params[:until], "%m/%d/%Y %I:%M %p" unless unban || perma
 
-    if not unban and target.admin?
+    if !unban && target.has_role?(:administrator)
       @status = :nopriv
       @message = I18n.t('messages.moderation.ban.nopriv')
       @success = false
@@ -166,7 +166,7 @@ class Ajax::ModerationController < ApplicationController
     @message = I18n.t('messages.moderation.privilege.nope')
     return unless %w(blogger supporter moderator admin contributor translator).include? params[:type].downcase
 
-    if %w(supporter moderator admin).include?(params[:type].downcase) and !current_user.admin?
+    if %w(supporter moderator admin).include?(params[:type].downcase) && !current_user.has_role?(:administrator)
       @status = :nopriv
       @message = I18n.t('messages.moderation.privilege.nopriv')
       @success = false
@@ -174,7 +174,9 @@ class Ajax::ModerationController < ApplicationController
     end
 
     @checked = status
-    case params[:type].downcase
+    type = params[:type].downcase
+    target_role = {"admin" => "administrator"}.fetch(type, type).to_sym
+    case type
     when 'blogger'
       target_user.blogger = status
     when 'contributor'
@@ -183,10 +185,12 @@ class Ajax::ModerationController < ApplicationController
       target_user.translator = status
     when 'supporter'
       target_user.supporter = status
-    when 'moderator'
-      target_user.moderator = status
-    when 'admin'
-      target_user.admin = status
+    when 'moderator', 'admin'
+      if status
+        target_user.add_role target_role
+      else
+        target_user.remove_role target_role
+      end
     end
     target_user.save!
 

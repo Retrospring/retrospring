@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+%w[Administrator Moderator].each do |role|
+  Role.where(name: role.parameterize).first_or_create
+end

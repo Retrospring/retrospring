@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # workaround to get pagination right
 if defined? WillPaginate
   Kaminari.configure do |config|
@@ -6,12 +8,11 @@ if defined? WillPaginate
 end
 
 RailsAdmin.config do |config|
-
   config.main_app_name = ['justask', 'Kontrollzentrum']
 
   ## == Authentication ==
   config.authenticate_with do
-    redirect_to main_app.root_path unless current_user.try :admin?
+    redirect_to main_app.root_path unless current_user&.has_role?(:administrator)
   end
   config.current_user_method(&:current_user)
 
