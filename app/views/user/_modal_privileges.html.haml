@@ -2,11 +2,11 @@
   .modal-dialog
     .modal-content
       .modal-header
+        %h5#modal-privileges-label.modal-title
+          = raw t('views.actions.privilege', user: @user.screen_name)
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
           %span.sr-only= t 'views.actions.close'
-        %h4#modal-privileges-label.modal-title
-          = raw t('views.actions.privilege', user: @user.screen_name)
       %ul.list-group.groups--list
         = render 'user/modal_privileges_item', privilege: 'blogger', description: t('views.modal.privilege.blogger'), user: @user
         = render 'user/modal_privileges_item', privilege: 'contributor', description: t('views.modal.privilege.contributor'), user: @user

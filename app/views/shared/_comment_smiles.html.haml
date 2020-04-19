@@ -2,10 +2,10 @@
   .modal-dialog
     .modal-content
       .modal-header
+        %h5#modal-ask-followers-label.modal-title= t 'views.answerbox.commentsmile'
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
-        %h4#modal-ask-followers-label.modal-title= t 'views.answerbox.commentsmile'
       .modal-body
         - if comment.smiles.all.count == 0
           = t 'views.answerbox.no_smile'

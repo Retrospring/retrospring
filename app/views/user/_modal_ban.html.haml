@@ -2,11 +2,11 @@
   .modal-dialog
     .modal-content
       .modal-header
+        %h5#modal-ban-label.modal-title
+          = t 'views.modal.bancontrol.title'
         %button.close{"data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
           %span.sr-only Close
-        %h4#modal-ban-label.modal-title
-          = t 'views.modal.bancontrol.title'
       = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: "novalidate" }) do |f|
         = f.hidden_field :user, value: @user.screen_name
         #ban-control-super.modal-body
