@@ -1,4 +1,5 @@
 # Retrospring
+![Retrospring](https://github.com/Retrospring/retrospring/workflows/Retrospring/badge.svg)
 
 This is the source code that powers Retrospring. This is a detached fork of
 [nilsding/justask](https://github.com/nilsding/justask), where we continue
