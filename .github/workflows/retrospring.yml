@@ -11,12 +11,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env:
-      RAILS_ENV: test
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: justask_test
-
     services:
       postgres:
         image: postgres:10.12
@@ -55,11 +49,20 @@ jobs:
         run: |
           gem install bundler
           bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundle install --jobs 4 --retry 3 --without production
+      - name: Set up database
+        run: |
+          bundle exec rake db:setup
+        env:
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: justask_test
       - name: Run tests
         run: |
           bundle exec rake db:setup
           bundle exec rake spec
         env:
+          RAILS_ENV: test
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
           REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
