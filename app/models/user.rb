@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+  include User::AnswerMethods
+  include User::InboxMethods
+  include User::QuestionMethods
+  include User::RelationshipMethods
+  include User::TimelineMethods
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :async, :registerable,
@@ -98,11 +104,6 @@ class User < ApplicationRecord
     else
       where(conditions).first
     end
-  end
-
-  # @return [Array] the users' timeline
-  def timeline
-    Answer.where("user_id in (?) OR user_id = ?", friend_ids, id).order(:created_at).reverse_order
   end
 
   # follows an user.

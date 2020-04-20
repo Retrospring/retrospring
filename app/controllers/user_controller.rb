@@ -5,7 +5,9 @@ class UserController < ApplicationController
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @answers = @user.answers.reverse_order.paginate(page: params[:page])
+    @answers = @user.cursored_answers(last_id: params[:last_id])
+    @answers_last_id = @answers.map(&:id).min
+    @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
 
     if user_signed_in?
       notif = Notification.where(target_type: "Relationship", target_id: @user.active_relationships.where(target_id: current_user.id).pluck(:id), recipient_id: current_user.id, new: true).first
@@ -72,7 +74,9 @@ class UserController < ApplicationController
   def followers
     @title = 'Followers'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @users = @user.followers.reverse_order.paginate(page: params[:page])
+    @users = @user.cursored_followers(last_id: params[:last_id])
+    @users_last_id = @users.map(&:id).min
+    @more_data_available = !@user.cursored_followers(last_id: @users_last_id, size: 1).count.zero?
     @type = :friend
     render 'show_follow'
   end
@@ -80,7 +84,9 @@ class UserController < ApplicationController
   def friends
     @title = 'Following'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @users = @user.friends.reverse_order.paginate(page: params[:page])
+    @users = @user.cursored_friends(last_id: params[:last_id])
+    @users_last_id = @users.map(&:id).min
+    @more_data_available = !@user.cursored_friends(last_id: @users_last_id, size: 1).count.zero?
     @type = :friend
     render 'show_follow'
   end
@@ -88,7 +94,9 @@ class UserController < ApplicationController
   def questions
     @title = 'Questions'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @questions = @user.questions.where(author_is_anonymous: false).reverse_order.paginate(page: params[:page])
+    @questions = @user.cursored_questions(last_id: params[:last_id])
+    @questions_last_id = @questions.map(&:id).min
+    @more_data_available = !@user.cursored_questions(last_id: @questions_last_id, size: 1).count.zero?
   end
 
   def data

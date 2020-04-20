@@ -1,0 +1,11 @@
+-# this renders a pagination html to keep compatibility with the current pagination js
+-# it _should_ be replaced with something else entirely later on.
+- permitted_params ||= []
+#pagination
+  %ul.pagination
+    %li.next{class: more_data_available ? nil : "disabled"}
+      - if more_data_available
+        %a{rel: :next, href: url_for(params.permit(*permitted_params).merge(last_id: last_id))}
+          Next page
+      - else
+        Next page

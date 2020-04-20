@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 # workaround to get pagination right
-if defined? WillPaginate
-  Kaminari.configure do |config|
-    config.page_method_name = :per_page_kaminari
-  end
-end
-
 RailsAdmin.config do |config|
   config.main_app_name = ['justask', 'Kontrollzentrum']
 
