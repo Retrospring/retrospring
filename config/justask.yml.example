@@ -36,7 +36,7 @@ sharing:
     consumer_secret: ''
 
 # Redis
-redis_url: "redis://localhost:6379"
+redis_url: <%= "redis://localhost:#{ENV.fetch('REDIS_URL', "redis://localhost:6379")}" %>
 
 # Site admins
 admins:
