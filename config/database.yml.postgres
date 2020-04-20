@@ -29,6 +29,7 @@ test: &test
   adapter: postgresql
   encoding: unicode
   database: justask_test
+  host: localhost
   pool: 5
   username: postgres
   password:
