@@ -27,6 +27,15 @@ jobs:
           - 6379:6379
         options: --entrypoint redis-server
 
+    env:
+      RAILS_ENV: test
+      POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: justask_test
+      REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v1
@@ -52,24 +61,6 @@ jobs:
           bundle config set without 'production'
           bundle install --jobs 4 --retry 3
       - name: Set up database
-        run: |
-          bundle exec rake db:setup
-        env:
-          RAILS_ENV: test
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_HOST: localhost
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: justask_test
+        run: bundle exec rake db:setup
       - name: Run tests
-        run: |
-          bundle exec rake db:setup
-          bundle exec rake spec
-        env:
-          RAILS_ENV: test
-          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_HOST: localhost
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: justask_test
-          REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
+        run: bundle exec rake spec
