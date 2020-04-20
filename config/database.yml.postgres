@@ -28,9 +28,9 @@ development:
 test: &test
   adapter: postgresql
   encoding: unicode
-  database: justask_test
-  host: 127.0.0.1
+  database: <%= ENV['POSTGRES_DB'] %>
+  host: <%= ENV.fetch('POSTGRES_HOST', 'localhost') %>
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
   port: <%= ENV.fetch('POSTGRES_PORT', 5432) %>

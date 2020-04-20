@@ -56,6 +56,7 @@ jobs:
           bundle exec rake db:setup
         env:
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_HOST: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: justask_test
@@ -66,4 +67,8 @@ jobs:
         env:
           RAILS_ENV: test
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          POSTGRES_HOST: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: justask_test
           REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
