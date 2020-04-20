@@ -13,14 +13,13 @@ jobs:
 
     env:
       RAILS_ENV: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: justask_test
 
     services:
       postgres:
         image: postgres:10.12
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ""
-          POSTGRES_DB: justask_test
         ports:
           - 5432/tcp
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -36,8 +35,8 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7.x
-      - name: Install PostgreSQL client library
-        run: sudo apt-get install libpq-dev
+      - name: Install dependencies
+        run: sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick
       - name: Copy default configuration
         run: |
           cp config/database.yml.postgres config/database.yml
