@@ -32,3 +32,4 @@ test: &test
   pool: 5
   username: postgres
   password:
+  port: <%= ENV.fetch('POSTGRES_PORT', 5432) %>
