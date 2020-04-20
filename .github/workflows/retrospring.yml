@@ -2,7 +2,7 @@ name: Retrospring
 
 on:
   push:
-    branches: [ master, github-actions ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -57,7 +57,7 @@ jobs:
         env:
           RAILS_ENV: test
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_HOST: postgres
+          POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: justask_test
@@ -68,7 +68,7 @@ jobs:
         env:
           RAILS_ENV: test
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-          POSTGRES_HOST: postgres
+          POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: justask_test
