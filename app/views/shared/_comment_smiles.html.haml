@@ -14,5 +14,5 @@
             - comment.smiles.all.each do |smile|
               %li.user-list-entry.user-list-entry-smiles
                 %a{href: show_user_profile_path(smile.user.screen_name)}
-                  %img.img-rounded{src: gravatar_url(smile.user), alt: user_screen_name(smile.user, url: false)}
+                  %img.img-rounded{src: smile.user), alt: user_screen_name(smile.user, url: false.profile_picture.url(:medium)}
                   %span= user_screen_name(smile.user, url: false)

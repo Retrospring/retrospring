@@ -6,7 +6,7 @@
       %li{data: { comment_id: comment.id }}
         .media.comments--media
           .pull-left
-            %img.img-rounded.answerbox--img{src: gravatar_url(comment.user)}
+            %img.img-rounded.answerbox--img{src: comment.user.profile_picture.url(:medium)}
           .media-body.comments--body
             %h6.media-heading.answerbox--question-user
               = user_screen_name comment.user
