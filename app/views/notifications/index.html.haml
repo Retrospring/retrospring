@@ -18,9 +18,9 @@
           - @notifications.each do |notification|
             = render 'notifications/notification', notification: notification
 
-    #pagination= will_paginate @notifications, renderer: BootstrapPagination::Rails, page_links: false
+    = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @notifications_last_id, permitted_params: %i[type]
 
-    - if @notifications.next_page
-      %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @notifications.current_page }}
+    - if @more_data_available
+      %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @notifications_last_id }}
         Load more
 - Notification.for(current_user).update_all(new: false)

@@ -1,8 +1,8 @@
 $('#timeline').append('<% @timeline.each do |answer|
   %><%= j render 'shared/answerbox', a: answer
 %><% end %>');
-<% if @timeline.next_page %>
-  $('#pagination').html('<%= j will_paginate @timeline, renderer: BootstrapPagination::Rails, page_links: false %>');
+<% if @more_data_available %>
+  $('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @timeline_last_id %>');
 <% else %>
   $('#pagination, #load-more-btn').remove();
 <% end %>
