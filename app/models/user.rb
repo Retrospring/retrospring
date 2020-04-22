@@ -64,7 +64,6 @@ class User < ApplicationRecord
   process_in_background :profile_header
 
   before_save do
-    self.display_name = 'WRYYYYYYYY' if display_name == 'Dio Brando'
     self.website = if website.match %r{\Ahttps?://}
                      website
                    else
