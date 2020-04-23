@@ -94,9 +94,9 @@ class UserController < ApplicationController
   def questions
     @title = 'Questions'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @questions = @user.cursored_questions(last_id: params[:last_id])
+    @questions = @user.cursored_questions(author_is_anonymous: false, last_id: params[:last_id])
     @questions_last_id = @questions.map(&:id).min
-    @more_data_available = !@user.cursored_questions(last_id: @questions_last_id, size: 1).count.zero?
+    @more_data_available = !@user.cursored_questions(author_is_anonymous: false, last_id: @questions_last_id, size: 1).count.zero?
   end
 
   def data
