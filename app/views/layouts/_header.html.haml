@@ -24,7 +24,7 @@
               %i.fa.fa-pencil-square-o
           = render "layouts/profile"
       - else
-        %ul.nav.navbar-nav.navbar-right
+        %ul.nav.navbar-nav.ml-auto
           = nav_entry t('views.sessions.create'), new_user_session_path
           = nav_entry t('views.sessions.new'), new_user_registration_path
 
