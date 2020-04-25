@@ -1,9 +1,9 @@
-.card.hidden-xs
+.card.d-none.d-sm-block
   .list-group
     = list_group_item "New Notifications", notifications_path, badge: Notification.for(current_user).where(new: true).count
     = list_group_item "All Notifications", notifications_path('all')
 
-.card.hidden-xs
+.card.d-none.d-sm-block
   .card-header
     Filter by Type
   .list-group
