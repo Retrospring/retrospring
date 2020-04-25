@@ -13,8 +13,14 @@ $(document).on "click", "button[name=ab-comments]", ->
       commentBox.slideUp()
       btn[0].dataset.state = 'hidden'
 
+isComposing = false
+compositionHasJustEnded = false
 
 $(document).on "keyup", "input[name=ab-comment-new]", (evt) ->
+  if isComposing or compositionHasJustEnded
+    compositionHasJustEnded = false
+    return
+
   input = $(this)
   aid = input[0].dataset.aId
   ctr = $("span#ab-comment-charcount-#{aid}")
@@ -49,6 +55,18 @@ $(document).on "keyup", "input[name=ab-comment-new]", (evt) ->
       complete: (jqxhr, status) ->
         input.removeAttr 'disabled'
 
+# IME Return key handling
+$(document).on "compositionstart", "input[name=ab-comment-new]", (evt) ->
+  isComposing = true
+
+$(document).on "compositionend", "input[name=ab-comment-new]", (evt) ->
+  isComposing = false
+  compositionHasJustEnded = true
+
+$(document).on "keydown", "input[name=ab-comment-new]", (evt) ->
+  # 229 is a special keyCode for events processed by an IME
+  # https://developer.mozilla.org/en-US/docs/Web/API/Document/keyup_event
+  compositionHasJustEnded = false unless event.which == 229
 
 # character count
 $(document).on "input", "input[name=ab-comment-new]", (evt) ->
