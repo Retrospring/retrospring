@@ -42,8 +42,8 @@ load = ->
         "0"
 
     data = {
-      ban: checktostr modalForm.elements["ban"][1]  # jank alert
-      permaban: checktostr modalForm.elements["permaban"]
+      ban: checktostr modalForm.querySelector('[name="ban"][type="checkbox"]')
+      permaban: checktostr modalForm.querySelector('[name="permaban"][type="checkbox"]')
       until: modalForm.elements["until"].value.trim()
       reason: modalForm.elements["reason"].value.trim()
       user: modalForm.elements["user"].value
