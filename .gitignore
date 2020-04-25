@@ -20,6 +20,9 @@ coverage/
 /public/assets
 /public/system
 
+# Rails Active Storage
+/storage/
+
 # damn vim backup files
 *~
 

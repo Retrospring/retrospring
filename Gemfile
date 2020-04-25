@@ -39,6 +39,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
 gem 'colorize'
+gem 'mini_magick'
 
 gem "rolify", "~> 5.2"
 
