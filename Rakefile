@@ -441,7 +441,7 @@ namespace :justask do
     export_dirname = "export_#{u.screen_name}_#{Time.now.to_i}"
     export_filename = u.screen_name
 
-    %i(id screen_name display_name created_at sign_in_count last_sign_in_at friend_count follower_count asked_count answered_count commented_count smiled_count motivation_header bio website location moderator admin supporter banned blogger).each do |f|
+    %i(id screen_name display_name created_at sign_in_count last_sign_in_at friend_count follower_count asked_count answered_count commented_count smiled_count motivation_header bio website location moderator admin banned).each do |f|
       obj[f] = u.send f
     end
 
