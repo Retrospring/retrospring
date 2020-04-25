@@ -8,11 +8,7 @@
         %h4#modal-privileges-label.modal-title
           = raw t('views.actions.privilege', user: @user.screen_name)
       %ul.list-group.groups--list
-        = render 'user/modal_privileges_item', privilege: 'blogger', description: t('views.modal.privilege.blogger'), user: @user
-        = render 'user/modal_privileges_item', privilege: 'contributor', description: t('views.modal.privilege.contributor'), user: @user
-        = render 'user/modal_privileges_item', privilege: 'translator', description: t('views.modal.privilege.translator'), user: @user
         - if current_user.has_role?(:administrator)
-          = render 'user/modal_privileges_item', privilege: 'supporter', description: t('views.modal.privilege.supporter'), user: @user
           = render 'user/modal_privileges_item', privilege: 'moderator', description: t('views.modal.privilege.moderator'),user: @user
           = render 'user/modal_privileges_item', privilege: 'admin', description: t('views.modal.privilege.admin'), user: @user
       .modal-footer
