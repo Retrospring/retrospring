@@ -12,7 +12,7 @@ load = ->
       $("#ban-controls").show()
     else
       $("#ban-controls").hide()
-  permabanCheckbox.addEventListener() "change", (event) ->
+  permabanCheckbox.addEventListener "change", (event) ->
     $t = $ this
     if $t.is(":checked")
       $("#ban-controls-time").hide()
