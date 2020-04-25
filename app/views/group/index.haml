@@ -1,0 +1,12 @@
+#timeline
+  - @timeline.each do |answer|
+    = render 'shared/answerbox', a: answer
+
+  = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @timeline_last_id
+
+  - if @more_data_available
+    %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @timeline_last_id }}
+      = t 'views.actions.load'
+
+- provide(:title, group_title(@group))
+- parent_layout "feed"
