@@ -1,9 +1,17 @@
 class User < ApplicationRecord
+  include User::AnswerMethods
+  include User::InboxMethods
+  include User::QuestionMethods
+  include User::RelationshipMethods
+  include User::TimelineMethods
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :async, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable, :authentication_keys => [:login]
+
+  rolify
 
 #   attr_accessor :login
 
@@ -98,11 +106,6 @@ class User < ApplicationRecord
     end
   end
 
-  # @return [Array] the users' timeline
-  def timeline
-    Answer.where("user_id in (?) OR user_id = ?", friend_ids, id).order(:created_at).reverse_order
-  end
-
   # follows an user.
   def follow(target_user)
     active_relationships.create(target: target_user)
@@ -183,7 +186,7 @@ class User < ApplicationRecord
 
   # @return [Boolean] is the user a moderator?
   def mod?
-    self.moderator? || self.admin?
+    has_role?(:moderator) || has_role?(:administrator)
   end
 
   # region stuff used for reporting/moderation
@@ -258,4 +261,10 @@ class User < ApplicationRecord
     end
     !self.export_processing
   end
+
+  # %w[admin moderator].each do |m|
+  #   define_method(m) { raise "not allowed: #{m}" }
+  #   define_method(m+??) { raise "not allowed: #{m}?"}
+  #   define_method(m+?=) { |*a| raise "not allowed: #{m}="}
+  # end
 end

@@ -1,1 +1,0 @@
-WillPaginate.per_page = APP_CONFIG['items_per_page']

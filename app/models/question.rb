@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  include Question::AnswerMethods
+
   belongs_to :user
   has_many :answers, dependent: :destroy
   has_many :inboxes, dependent: :destroy

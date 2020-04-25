@@ -1,8 +1,8 @@
 $('#answers').append('<% @answers.each do |answer|
   %><%= j render 'shared/answerbox', a: answer, show_question: false
 %><% end %>');
-<% if @answers.next_page %>
-  $('#pagination').html('<%= j will_paginate @answers, renderer: BootstrapPagination::Rails, page_links: false %>');
+<% if @more_data_available %>
+  $('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @answers_last_id %>');
 <% else %>
   $('#pagination, #load-more-btn').remove();
 <% end %>

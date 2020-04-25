@@ -33,7 +33,7 @@
             %a{href: '#', data: { target: "#modal-privileges", toggle: :modal }}
               %i.fa.fa-wrench
               = raw t('views.actions.privilege', user: user.screen_name)
-          - unless user.admin?
+          - unless user.has_role?(:administrator)
             %li
               %a{href: '#', data: { target: "#modal-ban", toggle: :modal }}
                 %i.fa.fa-ban

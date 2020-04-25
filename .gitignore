@@ -35,3 +35,5 @@ desktop.ini
 
 # ignore exports
 /public/export
+
+/spec/examples.txt

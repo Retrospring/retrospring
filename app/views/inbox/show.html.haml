@@ -12,10 +12,10 @@
         - if @inbox.empty?
           = t 'views.inbox.empty'
 
-      #pagination= will_paginate @inbox, renderer: BootstrapPagination::Rails, page_links: false
+      = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @inbox_last_id
 
-      - if @inbox.next_page
-        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @inbox.current_page }}
+      - if @more_data_available
+        %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @inbox_last_id }}
           = t 'views.actions.load'
 
     .col-md-9.col-xs-12.col-sm-8.d-block.d-sm-none

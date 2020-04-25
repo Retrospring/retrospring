@@ -21,8 +21,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'haml', '~> 5.0'
 gem 'bootstrap', '~> 4.4', '>= 4.4.1'
 gem 'sweetalert-rails'
-gem 'will_paginate'
-gem 'will_paginate-bootstrap'
 gem 'devise', '~> 4.0'
 gem 'devise-i18n'
 gem 'devise-async'
@@ -40,6 +38,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
 gem 'colorize'
+
+gem "rolify", "~> 5.2"
 
 source "https://rails-assets.org" do
   gem 'rails-assets-growl'
@@ -81,17 +81,6 @@ group :development do
   gem 'web-console', '< 4.0.0'
 end
 
-# Deployment
-group :development do
-  gem 'capistrano', '~> 3.8', require: false
-  gem 'capistrano-rails', require: false
-
-  gem 'rbnacl', '>= 3.2', '< 5.0', require: false
-  gem 'rbnacl-libsodium', require: false
-  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0', require: false
-  gem 'ed25519', require: false
-end
-
 group :production do
   gem 'unicorn', group: :production
 end
@@ -100,6 +89,7 @@ group :development, :test do
   gem 'rake'
   gem 'puma'
   gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-its', '~> 1.3'
   gem 'factory_bot_rails', require: false
   gem 'faker'
   gem 'capybara'
@@ -112,4 +102,6 @@ group :development, :test do
   gem 'letter_opener' # Use this just in local test environments
   gem 'brakeman'
   gem 'guard-brakeman'
+  gem 'timecop'
+  gem 'rails-controller-testing'
 end

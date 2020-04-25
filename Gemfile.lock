@@ -67,13 +67,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    airbrussh (1.4.0)
-      sshkit (>= 1.6.1, != 1.7.0)
     arel (9.0.0)
     autoprefixer-rails (9.7.6)
       execjs
     bcrypt (3.1.13)
-    bcrypt_pbkdf (1.0.1)
     better_errors (2.6.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -92,16 +89,6 @@ GEM
     buftok (0.2.0)
     builder (3.2.4)
     byebug (11.1.2)
-    capistrano (3.13.0)
-      airbrussh (>= 1.0.0)
-      i18n
-      rake (>= 10.0.0)
-      sshkit (>= 1.9.0)
-    capistrano-bundler (1.6.0)
-      capistrano (~> 3.1)
-    capistrano-rails (1.4.0)
-      capistrano (~> 3.1)
-      capistrano-bundler (~> 1.1)
     capybara (3.32.1)
       addressable
       mini_mime (>= 0.1.3)
@@ -143,7 +130,6 @@ GEM
     docile (1.3.2)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    ed25519 (1.2.4)
     equalizer (0.0.11)
     erubi (1.9.0)
     excon (0.73.0)
@@ -290,9 +276,6 @@ GEM
     naught (1.1.0)
     nenv (0.3.0)
     nested_form (0.3.2)
-    net-scp (2.0.0)
-      net-ssh (>= 2.6.5, < 6.0.0)
-    net-ssh (5.2.0)
     newrelic_rpm (6.10.0.364)
     nio4r (2.5.2)
     nokogiri (1.10.9)
@@ -361,6 +344,10 @@ GEM
     rails-assets-growl (1.3.5)
       rails-assets-jquery
     rails-assets-jquery (2.2.4)
+    rails-controller-testing (1.0.4)
+      actionpack (>= 5.0.1.x)
+      actionview (>= 5.0.1.x)
+      activesupport (>= 5.0.1.x)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -392,10 +379,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rbnacl (4.0.2)
-      ffi
-    rbnacl-libsodium (1.0.16)
-      rbnacl (>= 3.0.1)
     redcarpet (3.5.0)
     redis (4.1.3)
     regexp_parser (1.7.0)
@@ -403,11 +386,15 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rolify (5.2.0)
     rspec-core (3.9.1)
       rspec-support (~> 3.9.1)
     rspec-expectations (3.9.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
+    rspec-its (1.3.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
     rspec-mocks (3.9.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
@@ -468,9 +455,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.21.0)
-      net-scp (>= 1.1.2)
-      net-ssh (>= 2.8.0)
     sweetalert-rails (1.1.3)
       railties (>= 3.1.0)
     temple (0.8.2)
@@ -479,6 +463,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timecop (0.9.1)
     tiny-color-rails (0.0.2)
       railties (>= 3.0)
     turbolinks (2.5.4)
@@ -514,9 +499,6 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
-    will_paginate (3.3.0)
-    will_paginate-bootstrap (1.0.2)
-      will_paginate (>= 3.0.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -525,15 +507,12 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (~> 3.1.7)
-  bcrypt_pbkdf (>= 1.0, < 2.0)
   better_errors
   bootstrap (~> 4.4, >= 4.4.1)
   bootstrap3-datetimepicker-rails (~> 4.7.14)
   bootstrap_form
   brakeman
   byebug
-  capistrano (~> 3.8)
-  capistrano-rails
   capybara
   coffee-rails (~> 4.1)
   colorize
@@ -542,7 +521,6 @@ DEPENDENCIES
   devise (~> 4.0)
   devise-async
   devise-i18n
-  ed25519
   factory_bot_rails
   fake_email_validator
   faker
@@ -576,13 +554,14 @@ DEPENDENCIES
   rails (~> 5.2)
   rails-assets-growl!
   rails-assets-jquery (~> 2.2.0)!
+  rails-controller-testing
   rails-i18n (~> 5.0)
   rails_admin
   rake
-  rbnacl (>= 3.2, < 5.0)
-  rbnacl-libsodium
   redcarpet
   redis
+  rolify (~> 5.2)
+  rspec-its (~> 1.3)
   rspec-rails (~> 3.9)
   ruby-progressbar
   sanitize
@@ -593,6 +572,7 @@ DEPENDENCIES
   simplecov-rcov
   spring (~> 2.0)
   sweetalert-rails
+  timecop
   tiny-color-rails
   tumblr_client!
   turbolinks (~> 2.5.3)
@@ -600,8 +580,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (< 4.0.0)
-  will_paginate
-  will_paginate-bootstrap
 
 BUNDLED WITH
    2.1.4

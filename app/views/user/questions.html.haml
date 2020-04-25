@@ -14,9 +14,9 @@
         - @questions.each do |q|
           = render 'shared/question', q: q, type: nil
 
-      #pagination= will_paginate @questions, renderer: BootstrapPagination::Rails, page_links: false
+    = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @questions_last_id
 
-      - if @questions.next_page
-        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @questions.current_page }}
-          = t 'views.actions.load'
+    - if @more_data_available
+      %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @questions_last_id }}
+        = t 'views.actions.load'
   .visible-xs= render 'shared/links'

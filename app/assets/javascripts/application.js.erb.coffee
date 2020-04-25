@@ -75,6 +75,16 @@ _ready = ->
       lineColor: bodyColor
       density: 23000
 
+  $(".alert-announcement").each ->
+    aId = $(this)[0].dataset.announcementId
+    unless (window.localStorage.getItem("announcement#{aId}"))
+      $(this).toggleClass("hidden")
+
+  $(document).on "click", ".alert-announcement button.close", (evt) ->
+    announcement = event.target.closest(".alert-announcement")
+    aId = announcement.dataset.announcementId
+    window.localStorage.setItem("announcement#{aId}", true)
+
   $('.arctic_scroll').arctic_scroll speed: 500
 
 

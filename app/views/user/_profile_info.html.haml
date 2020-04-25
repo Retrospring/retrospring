@@ -1,11 +1,11 @@
 .card#profile
   %img.profile--avatar{src: @user.profile_picture.url(:large)}
-  - if user_signed_in? && current_user.admin?
-    - if @user.admin?
+  - if user_signed_in? && current_user.has_role?(:administrator)
+    - if @user.has_role?(:administrator)
       .profile--panel-badge.panel-badge-danger
         %i.fa.fa-flask
         = t 'views.user.title.admin'
-    - if @user.moderator?
+    - if @user.has_role?(:moderator)
       .profile--panel-badge.panel-badge-success
         %i.fa.fa-users
         = t 'views.user.title.moderator'

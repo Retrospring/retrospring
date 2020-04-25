@@ -10,9 +10,9 @@
         - @timeline.each do |answer|
           = render 'shared/answerbox', a: answer
 
-      #pagination= will_paginate @timeline, renderer: BootstrapPagination::Rails, page_links: false
+    = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @timeline_last_id
 
-      - if @timeline.next_page
-        %button#load-more-btn.btn.btn-default{type: :button, data: { current_page: @timeline.current_page }}
-          Load more
+    - if @more_data_available
+      %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @timeline_last_id }}
+        Load more
   .visible-xs= render 'shared/links'

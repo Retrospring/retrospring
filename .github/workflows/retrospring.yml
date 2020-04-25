@@ -1,0 +1,69 @@
+name: Retrospring
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:10.12
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: justask_test
+        ports:
+          - 5432/tcp
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+
+    env:
+      RAILS_ENV: test
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: justask_test
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+      - name: Install dependencies
+        run: sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick
+      - name: Copy default configuration
+        run: |
+          cp config/database.yml.postgres config/database.yml
+          cp config/justask.yml.example config/justask.yml
+      - name: Install gems
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle config set without 'production'
+          bundle install --jobs 4 --retry 3
+      - name: Set up database
+        run: bundle exec rake db:setup
+        env:
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+      - name: Run tests
+        run: bundle exec rake spec
+        env:
+          POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+          REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"

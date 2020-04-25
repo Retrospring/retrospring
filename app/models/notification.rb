@@ -3,8 +3,17 @@ class Notification < ApplicationRecord
   belongs_to :target, polymorphic: true
 
   class << self
+    include CursorPaginatable
+
+    define_cursor_paginator :cursored_for, :for
+    define_cursor_paginator :cursored_for_type, :for_type
+
     def for(recipient, options={})
       self.where(options.merge!(recipient: recipient)).order(:created_at).reverse_order
+    end
+
+    def for_type(recipient, type, options={})
+      self.where(options.merge!(recipient: recipient)).where('LOWER(target_type) = ?', type).order(:created_at).reverse_order
     end
 
     def notify(recipient, target)

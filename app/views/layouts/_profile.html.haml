@@ -13,7 +13,7 @@
       %i.fa.fa-fw.fa-cog
       = t('views.navigation.settings')
     .dropdown-divider
-    - if current_user.admin?
+    - if current_user.has_role?(:administrator)
       %a.dropdown-item{href: rails_admin_path}
         %i.fa.fa-fw.fa-cogs
         = t('views.navigation.admin')
@@ -23,6 +23,9 @@
       %a.dropdown-item{href: pghero_path}
         %i.fa.fa-fw.fa-database
         Database Monitor
+      %a.dropdown-item{href: announcement_index_path}
+        %i.fa.fa-fw.fa-info
+        Announcements
       .dropdown-divider
     - if current_user.mod?
       %a.dropdown-item{href: moderation_path}

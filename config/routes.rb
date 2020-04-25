@@ -2,19 +2,26 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   start = Time.now
 
-  # Admin panel
-  mount RailsAdmin::Engine => '/justask_admin', as: 'rails_admin'
-
   # Sidekiq
   constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
-                        req.env['warden'].user.admin? } do
+                        req.env["warden"].user.has_role?(:administrator) } do
+    # Admin panel
+    mount RailsAdmin::Engine => "/justask_admin", as: "rails_admin"
+
     mount Sidekiq::Web, at: "/sidekiq"
-    mount PgHero::Engine, at: "/pghero", as: 'pghero'
+    mount PgHero::Engine, at: "/pghero", as: "pghero"
+
+    match "/admin/announcements", to: "announcement#index", via: :get, as: :announcement_index
+    match "/admin/announcements", to: "announcement#create", via: :post, as: :announcement_create
+    match "/admin/announcements/new", to: "announcement#new", via: :get, as: :announcement_new
+    match "/admin/announcements/:id/edit", to: "announcement#edit", via: :get, as: :announcement_edit
+    match "/admin/announcements/:id", to: "announcement#update", via: :patch, as: :announcement_update
+    match "/admin/announcements/:id", to: "announcement#destroy", via: :delete, as: :announcement_destroy
   end
 
   # Moderation panel
-  constraints ->(req) { req.env['warden'].authenticate?(scope: :user) &&
-                       (req.env['warden'].user.mod?) } do
+  constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
+                        req.env["warden"].user.mod? } do
     match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
     match '/moderation/ip/:user_id', to: 'moderation#ip', via: :get, as: :moderation_ip
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}
