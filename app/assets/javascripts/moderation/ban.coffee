@@ -1,8 +1,8 @@
 load = ->
+  return unless document.getElementById('ban-control-super') != null
   modalEl = $("#modal-ban")
   modalEl.modal "hide"
   modalForm = modalEl.find("form")[0]
-  return unless document.getElementById('ban-control-super') != null
   banCheckbox = modalForm.querySelector('[name="ban"][type="checkbox"]')
   permabanCheckbox = modalForm.querySelector('[name="permaban"][type="checkbox"]')
 
