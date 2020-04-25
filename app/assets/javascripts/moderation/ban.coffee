@@ -3,14 +3,16 @@ load = ->
   modalEl.modal "hide"
   modalForm = modalEl.find("form")[0]
   return unless document.getElementById('ban-control-super') != null
+  banCheckbox = modalForm.querySelector('[name="ban"][type="checkbox"]')
+  permabanCheckbox = modalForm.querySelector('[name="permaban"][type="checkbox"]')
 
-  ($ modalForm.elements["ban"]).on "change", (event) ->
+  banCheckbox.addEventListener "change", (event) ->
     $t = $ this
     if $t.is(":checked")
       $("#ban-controls").show()
     else
       $("#ban-controls").hide()
-  ($ modalForm.elements["permaban"]).on "change", (event) ->
+  permabanCheckbox.addEventListener() "change", (event) ->
     $t = $ this
     if $t.is(":checked")
       $("#ban-controls-time").hide()
@@ -42,8 +44,8 @@ load = ->
         "0"
 
     data = {
-      ban: checktostr modalForm.querySelector('[name="ban"][type="checkbox"]')
-      permaban: checktostr modalForm.querySelector('[name="permaban"][type="checkbox"]')
+      ban: checktostr banCheckbox
+      permaban: checktostr permabanCheckbox
       until: modalForm.elements["until"].value.trim()
       reason: modalForm.elements["reason"].value.trim()
       user: modalForm.elements["user"].value
