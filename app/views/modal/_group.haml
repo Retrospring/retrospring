@@ -8,11 +8,11 @@
           %span.sr-only= t 'views.actions.close'
       %div{role: "tabpanel"}
         %ul.nav.nav-tabs{role: "tablist"}
-          %li.active{role: "presentation"}
-            %a{href: "#grouplist", aria: {controls: "grouplist"}, data: {toggle: "tab"}, role: "tab"}
+          %li.nav-item{role: "presentation"}
+            %a.nav-link.active{href: "#grouplist", aria: {controls: "grouplist"}, data: {toggle: "tab"}, role: "tab"}
               = t 'views.modal.group.tabs.main'
-          %li{role: "presentation"}
-            %a{href: "#create", aria: {controls: "create"}, data: {toggle: "tab"}, role: "tab"}
+          %li.nav-item{role: "presentation"}
+            %a.nav-link{href: "#create", aria: {controls: "create"}, data: {toggle: "tab"}, role: "tab"}
               = t 'views.modal.group.tabs.create'
 
         .tab-content
