@@ -1,0 +1,15 @@
+%h1.j2-lh.hidden-xs= @title
+%h1.visible-xs= @title
+#users
+  - @users.each do |user|
+    .col-md-4.col-sm-6.col-xs-12
+      = render 'shared/userbox', user: user
+
+= render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @users_last_id
+
+- if @more_data_available
+  %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @users_last_id }}
+    = t 'views.actions.load'
+
+- provide(:title, user_title(@user, "friends and followers"))
+- parent_layout "user/profile"

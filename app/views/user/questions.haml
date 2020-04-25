@@ -1,0 +1,14 @@
+%h1.j2-lh.hidden-xs= @title
+%h1.visible-xs= @title
+#questions
+  - @questions.each do |q|
+    = render 'shared/question', q: q, type: nil
+
+= render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @questions_last_id
+
+- if @more_data_available
+  %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @questions_last_id }}
+    = t 'views.actions.load'
+
+- provide(:title, questions_title(@user))
+- parent_layout "user/profile"
