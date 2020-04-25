@@ -34,15 +34,14 @@ class Exporter
   private
 
   def collect_user_info
-    %i(answered_count asked_count ban_reason banned_until bio blogger comment_smiled_count commented_count
-       confirmation_sent_at confirmed_at contributor created_at crop_h crop_h_h crop_h_w crop_h_x crop_h_y
+    %i(answered_count asked_count ban_reason banned_until bio comment_smiled_count commented_count
+       confirmation_sent_at confirmed_at created_at crop_h crop_h_h crop_h_w crop_h_x crop_h_y
        crop_w crop_x crop_y current_sign_in_at current_sign_in_ip display_name email follower_count friend_count
        id last_sign_in_at last_sign_in_ip locale location motivation_header permanently_banned
        privacy_allow_anonymous_questions privacy_allow_public_timeline privacy_allow_stranger_answers
        privacy_show_in_search profile_header_content_type profile_header_file_name profile_header_file_size
        profile_header_updated_at profile_picture_content_type profile_picture_file_name profile_picture_file_size
-       profile_picture_updated_at screen_name show_foreign_themes sign_in_count smiled_count supporter translator
-       updated_at website).each do |f|
+       profile_picture_updated_at screen_name show_foreign_themes sign_in_count smiled_count updated_at website).each do |f|
       @obj[f] = @user.send f
     end
 
@@ -229,9 +228,8 @@ class Exporter
 
   def user_stub(user)
     uobj = {}
-    %i(answered_count asked_count bio blogger comment_smiled_count commented_count contributor created_at
-       display_name follower_count friend_count id location motivation_header permanently_banned screen_name
-       smiled_count supporter translator website).each do |f|
+    %i(answered_count asked_count bio comment_smiled_count commented_count created_at display_name follower_count
+       friend_count id location motivation_header permanently_banned screen_name smiled_count website).each do |f|
       uobj[f] = user.send f
     end
 
