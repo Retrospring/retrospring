@@ -25,7 +25,6 @@
 #= require memes
 #= require notifications
 #= require pagination
-#= require piwik
 #= require question
 #= require settings
 #= require user

@@ -40,7 +40,3 @@
               = `git rev-parse --short HEAD`.strip
           %p.text-danger Debug params:
           = debug params
-    - if Rails.env.production?
-      %noscript
-        %p
-          %img{:alt => "", :src => "//stat.rrerr.net/piwik.php?idsite=9", :style => "border:0;"}/
