@@ -10,9 +10,11 @@ services:
     links:
       - postgres
       - redis
+    environment:
+      - SPROCKETS_CACHE=/cache
     volumes:
       - ./:/app
-      - cache:/app/tmp/cache
+      - cache:/cache
     ports:
       - 3000:3000
 
