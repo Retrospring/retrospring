@@ -4,7 +4,7 @@
   %ul.comments
     - a.comments.order(:created_at).each do |comment|
       %li{data: { comment_id: comment.id }}
-        %div{class: "ab-comment-smile-list", style: "height: 0; width: 0"}= render "shared/comment_smiles", comment: comment
+        %div{class: "ab-comment-smile-list", style: "height: 0; width: 0"}= render "modal/comment_smiles", comment: comment
         .media.comments--media
           .pull-left
             %img.img-rounded.answerbox--img{src: gravatar_url(comment.user)}

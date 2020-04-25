@@ -19,7 +19,7 @@
           .tab-pane.active{role:"tabpanel", id: "grouplist"}
             %ul.list-group.groups--list
               - current_user.groups.each do |group|
-                = render 'user/modal_group_item', group: group, user: @user
+                = render 'modal/group/item', group: group, user: @user
           .tab-pane{role:"tabpanel", id: "create"}
             .modal-body
               %input#new-group-name.form-control{type: :text, placeholder: t('views.modal.group.name')}

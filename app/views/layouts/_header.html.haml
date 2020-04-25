@@ -29,6 +29,6 @@
           = nav_entry t('views.sessions.new'), new_user_registration_path
 
 - if user_signed_in?
-  = render 'shared/modal_ask_followers'
+  = render 'modal/ask'
   %button.btn.btn-primary.btn-fab.d-block.d-sm-none{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
     %i.fa.fa-pencil-square-o

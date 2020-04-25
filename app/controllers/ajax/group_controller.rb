@@ -45,7 +45,7 @@ class Ajax::GroupController < ApplicationController
     @status = :okay
     @success = true
     @message = I18n.t('messages.group.create.okay')
-    @render = render_to_string(partial: 'user/modal_group_item', locals: { group: group, user: target_user })
+    @render = render_to_string(partial: 'modal/group/item', locals: { group: group, user: target_user })
   end
 
   def destroy
