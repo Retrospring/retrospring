@@ -1,11 +1,9 @@
-.card.inbox--panel
-  .card-header
-    %h3.card-title= t 'views.inbox.sidebar.questions.title'
+.card.mb-3.inbox--panel
+  .card-header= t 'views.inbox.sidebar.questions.title'
   .card-body
     %button.btn.btn-block.btn-info{type: :button, id: 'ib-generate-question'}= t 'views.inbox.sidebar.questions.button'
-.card.inbox--panel
-  .card-header
-    %h3.card-title= t 'views.inbox.sidebar.share.title'
+.card.mb-3.inbox--panel
+  .card-header= t 'views.inbox.sidebar.share.title'
   .card-body
     %a.btn.btn-block.btn-primary{target: '_blank', href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{show_user_profile_url(current_user.screen_name)}"}
       %i.fa.fa-fw.fa-twitter
@@ -13,17 +11,15 @@
     %a.btn.btn-block.btn-primary{target: '_blank', href: "http://www.tumblr.com/share/link?url=#{show_user_profile_url(current_user.screen_name)}&name=Ask%20me%20anything%21"}
       %i.fa.fa-fw.fa-tumblr
       = raw t('views.inbox.sidebar.share.button', service: "Tumblr")
-.card.inbox--panel
-  .card-header
-    %h3.card-title Show author
+.card.mb-3.inbox--panel
+  .card-header Show author
   .card-body
     %form#author_form
       = bootstrap_form_tag url: inbox_path, method: :get do |f|
         = f.text_field :author, value: params[:author], placeholder: "username", prepend: "@" , hide_label: true
-        = f.button "Show", name: nil, class: "btn btn-default btn-block btn-sm", id: "ib-author"
-.card.warning--panel
-  .card-header
-    %h3.card-title= t 'views.inbox.sidebar.actions.title'
+        = f.button "Show", name: nil, class: "btn btn-light btn-block btn-sm", id: "ib-author"
+.card.mb-3.warning--panel
+  .card-header= t 'views.inbox.sidebar.actions.title'
   .card-body
     %button.btn.btn-block.btn-danger{type: :button, id: @delete_id , disabled: (@disabled ? 'disabled' : nil), data: { ib_count: @inbox_count }}= t 'views.inbox.sidebar.actions.button'
 

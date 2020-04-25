@@ -1,13 +1,10 @@
 .container.j2-page
   .row
-    .col-md-3.col-xs-12.col-sm-4.d-none.d-sm-block
+    .col-md-3.col-xs-12.col-sm-4.order-2.order-sm-1
       = render 'inbox/sidebar'
-    .col-md-9.col-xs-12.col-sm-8
+    .col-md-9.col-xs-12.col-sm-8.order-1.order-sm-2
       = render 'layouts/messages'
       = yield
-
-    .col-md-9.col-xs-12.col-sm-8.d-block.d-sm-none
-      = render 'inbox/sidebar'
 
 = render "shared/links"
 
