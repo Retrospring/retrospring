@@ -1,9 +1,9 @@
 /* TEAM */
 
   Georg G. (nilsding [at] nilsding [dot] org)
-  Site: http://nilsding.org
-  Location: Austria
+  Site: https://nilsding.org
+  Location: Linz, Austria
 
   Andreas N. (pixeldesu [at] outlook [dot] com)
-  Site: http://pixelde.su
+  Site: https://pixelde.su
   Location: Germany
