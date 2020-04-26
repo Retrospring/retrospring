@@ -3,7 +3,7 @@
 body {
   overflow-y: scroll;
   word-wrap: break-word;
-  background-color: $gray-100;
+  background-color: var(--background);
 }
 
 @import "scss/flags";
