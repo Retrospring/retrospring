@@ -17,7 +17,7 @@
             %a.nav-link{href: "#questions", role: "tab", aria: {controls: "questions"}, data: {toggle: "tab"}}= t 'views.discover.content.tab.questions'
           %li.nav-item{role: "presentation"}
             %a.nav-link{href: "#comments", role: "tab", aria: {controls: "comments"}, data: {toggle: "tab"}}= t 'views.discover.content.tab.comments'
-        .tab-content.discover
+        .tab-content.mt-3
           = render 'discover/tab_answers', answers: @popular_answers
           = render 'discover/tab_questions', questions: @popular_questions
           = render 'discover/tab_discussed', comments: @most_discussed
@@ -32,7 +32,7 @@
             %a.nav-link{href: "#asked", role: "tab", aria: {controls: "asked"}, data: {toggle: "tab"}}= t 'views.discover.people.tab.questions'
           %li.nav-item{role: "presentation"}
             %a.nav-link{href: "#answered", role: "tab", aria: {controls: "answered"}, data: {toggle: "tab"}}= t 'views.discover.people.tab.answers'
-        .tab-content.discover
+        .tab-content.mt-3
           = render 'discover/tab_new', new: @new_users
           = render 'discover/tab_asked', asked: @users_with_most_questions
           = render 'discover/tab_most', answered: @users_with_most_answers
