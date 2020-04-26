@@ -36,7 +36,7 @@ module ApplicationHelper
         }"))}"
     end
 
-    content_tag(:a, body.html_safe, href: path, class: ("list-group-item #{'active ' if current_page? path}#{options[:class]}"))
+    content_tag(:a, body.html_safe, href: path, class: ("list-group-item list-group-item-action #{'active ' if current_page? path}#{options[:class]}"))
   end
 
   def tooltip(body, tooltip_content, placement = "bottom")
