@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_163011) do
+ActiveRecord::Schema.define(version: 2020_04_25_194536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -262,12 +262,10 @@ ActiveRecord::Schema.define(version: 2020_04_25_163011) do
     t.integer "commented_count", default: 0, null: false
     t.string "display_name"
     t.integer "smiled_count", default: 0, null: false
-    t.boolean "admin", default: false, null: false
     t.string "motivation_header", default: "", null: false
     t.string "website", default: "", null: false
     t.string "location", default: "", null: false
     t.text "bio", default: "", null: false
-    t.boolean "moderator", default: false, null: false
     t.string "profile_picture_file_name"
     t.string "profile_picture_content_type"
     t.integer "profile_picture_file_size"
@@ -277,14 +275,11 @@ ActiveRecord::Schema.define(version: 2020_04_25_163011) do
     t.integer "crop_y"
     t.integer "crop_w"
     t.integer "crop_h"
-    t.boolean "supporter", default: false
     t.boolean "privacy_allow_anonymous_questions", default: true
     t.boolean "privacy_allow_public_timeline", default: true
     t.boolean "privacy_allow_stranger_answers", default: true
     t.boolean "privacy_show_in_search", default: true
     t.boolean "permanently_banned", default: false
-    t.boolean "blogger", default: false
-    t.boolean "contributor", default: false
     t.string "ban_reason"
     t.datetime "banned_until"
     t.integer "comment_smiled_count", default: 0, null: false
@@ -298,7 +293,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_163011) do
     t.integer "crop_h_w"
     t.integer "crop_h_h"
     t.string "locale", default: "en"
-    t.boolean "translator", default: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

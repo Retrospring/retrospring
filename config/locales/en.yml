@@ -438,19 +438,11 @@ en:
         name: "Group name"
         members: "members"
       privilege:
-        blogger: "The user gets that privilege if they blogged something (nice) about Retrospring."
-        contributor: "This user has contributed to justask (the software behind Retrospring)."
-        supporter: "This user monetarily supports the site."
         moderator: "Someone trustworthy enough to help managing reports."
         admin: "This user is part of the core team."
-        translator: "This user helped translating Retrospring into their language."
     user:
       follows_you: "Follows you"
       title:
         admin: "Admin"
         moderator: "Moderator"
-        supporter: "Supporter"
-        contributor: "Contributor"
-        blogger: "Blogger"
         banned: "Banned"
-        translator: "Translator"

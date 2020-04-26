@@ -164,9 +164,9 @@ class Ajax::ModerationController < ApplicationController
     target_user = User.find_by_screen_name(params[:user])
 
     @message = I18n.t('messages.moderation.privilege.nope')
-    return unless %w(blogger supporter moderator admin contributor translator).include? params[:type].downcase
+    return unless %w(moderator admin).include? params[:type].downcase
 
-    if %w(supporter moderator admin).include?(params[:type].downcase) && !current_user.has_role?(:administrator)
+    unless current_user.has_role?(:administrator)
       @status = :nopriv
       @message = I18n.t('messages.moderation.privilege.nopriv')
       @success = false
@@ -176,21 +176,11 @@ class Ajax::ModerationController < ApplicationController
     @checked = status
     type = params[:type].downcase
     target_role = {"admin" => "administrator"}.fetch(type, type).to_sym
-    case type
-    when 'blogger'
-      target_user.blogger = status
-    when 'contributor'
-      target_user.contributor = status
-    when 'translator'
-      target_user.translator = status
-    when 'supporter'
-      target_user.supporter = status
-    when 'moderator', 'admin'
-      if status
-        target_user.add_role target_role
-      else
-        target_user.remove_role target_role
-      end
+
+    if status
+      target_user.add_role target_role
+    else
+      target_user.remove_role target_role
     end
     target_user.save!
 
