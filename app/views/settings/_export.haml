@@ -15,11 +15,11 @@
       is done.
     - if current_user.can_export?
       %form{action: begin_user_export_path, method: 'POST'}
-        %p.centre
+        %p.text-center
           %button#export-btn.btn.btn-lg.btn-primary{type: :submit} Export
         = hidden_field_tag :authenticity_token, form_authenticity_token
     - else
-      %p.centre
+      %p.text-center
         %button.btn.btn-lg.btn-primary.disabled{disabled: :disabled} Export
     %p
       - if current_user.export_url.nil?
