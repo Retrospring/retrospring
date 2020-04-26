@@ -81,9 +81,11 @@ group :development do
   gem 'spring', '~> 2.0'
   gem 'byebug'
   gem 'web-console', '< 4.0.0'
+  gem 'binding_of_caller'
 end
 
 group :production do
+  gem "aws-sdk-s3", require: false
   gem 'unicorn', group: :production
 end
 

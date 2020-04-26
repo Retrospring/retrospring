@@ -1,6 +1,6 @@
 %li.dropdown.profile--image-dropdown
   %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
-    %img.profile--image-avatar.hidden-xs{src: current_user.profile_picture.url(:small)}
+    = image_tag current_user.avatar_url(:small), class: 'profile--image-avatar hidden-xs'
     %span.visible-xs
       = current_user.screen_name
       %b.caret

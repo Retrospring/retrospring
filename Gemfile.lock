@@ -70,12 +70,30 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.7.6)
       execjs
+    aws-eventstream (1.1.0)
+    aws-partitions (1.303.0)
+    aws-sdk-core (3.94.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.30.0)
+      aws-sdk-core (~> 3, >= 3.71.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.63.0)
+      aws-sdk-core (~> 3, >= 3.83.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.1.2)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
     better_errors (2.6.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.8.1)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -113,6 +131,7 @@ GEM
     connection_pool (2.2.2)
     crass (1.0.6)
     database_cleaner (1.8.4)
+    debug_inspector (0.0.3)
     delayed_paperclip (3.0.1)
       activejob (>= 4.2)
       paperclip (>= 3.3)
@@ -218,6 +237,7 @@ GEM
     ipaddress (0.8.3)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
+    jmespath (1.4.0)
     jquery-minicolors-rails (2.2.6.2)
       jquery-rails
       rails (>= 3.2.8)
@@ -507,8 +527,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-s3
   bcrypt (~> 3.1.7)
   better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.4.0)
   bootstrap3-datetimepicker-rails (~> 4.7.14)
   bootstrap_form

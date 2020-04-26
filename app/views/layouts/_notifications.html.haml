@@ -28,7 +28,7 @@
                   %i.fa.fa-2x.fa-fw.fa-exclamation
                 .media-body
                   .notification--heading
-                    %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
+                    = image_tag notification.target.user.avatar_url(:small), class: 'notification--img-sm'
                     = user_screen_name notification.target.user
                     answered
                     = link_to "your question", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)
@@ -49,7 +49,7 @@
                             = markdown notification.target.content[0..60] + "#{notification.target.content.length > 60 ? '[...]' : ''}"
               - when "Relationship"
                 .pull-left
-                  %img.img-rounded.notification--dropdown-img{src: notification.target.source.profile_picture.url(:small)}
+                  = image_tag notification.target.source.avatar_url(:small), class: 'img-rounded notification--dropdown-img'
                 .media-body
                   %h6.media-heading.notification--dropdown-user
                     = user_screen_name notification.target.source
@@ -60,7 +60,7 @@
                   %i.fa.fa-2x.fa-fw.fa-smile-o
                 .media-body
                   .notification--heading
-                    %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
+                    = image_tag notification.target.user.avatar_url(:small), class: 'notification--img-sm'
                     = user_screen_name notification.target.user
                     smiled
                     = link_to "your answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
@@ -78,7 +78,7 @@
                   %i.fa.fa-2x.fa-fw.fa-smile-o
                 .media-body
                   .notification--heading
-                    %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
+                    = image_tag notification.target.user.avatar_url(:small), class: 'notification--img-sm'
                     = user_screen_name notification.target.user
                     smiled
                     = link_to "your comment", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.comment.answer.id)
@@ -96,7 +96,7 @@
                   %i.fa.fa-2x.fa-fw.fa-comments
                 .media-body
                   .notification--heading
-                    %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
+                    = image_tag notification.target.user.avatar_url(:small), class: 'notification--img-sm'
                     = user_screen_name notification.target.user
                     commented on
                     - if notification.target.answer.user == current_user

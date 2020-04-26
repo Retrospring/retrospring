@@ -1,4 +1,16 @@
 class User < ApplicationRecord
+  AVATAR_SIZES = {
+    :small => "80x80",
+    :medium => "256x256",
+    :large => "500x500"
+  }
+
+  HEADER_SIZES = {
+    :web => "1500x350",
+    :mobile => "450x105",
+    :retina => "900x210"
+  }
+
   include User::AnswerMethods
   include User::InboxMethods
   include User::QuestionMethods
@@ -56,18 +68,8 @@ class User < ApplicationRecord
 
   # validates :website, format: { with: WEBSITE_REGEX }
 
-  has_attached_file :profile_picture, styles: { large: "500x500#", medium: "256x256#", small: "80x80#" },
-                    default_url: "/images/:style/no_avatar.png", use_timestamp: false,
-                    processors: [:cropper]
-  validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/(png|jpe?g|gif)\Z/
-
-  has_attached_file :profile_header, styles: { web: "1500x350#", mobile: "450x105#", retina: "900x210#" },
-                    default_url: '/images/header/:style/no_header.jpg', use_timestamp: false,
-                    processors: [:cropper]
-  validates_attachment_content_type :profile_header, :content_type => /\Aimage\/(png|jpe?g)\Z/
-
-  process_in_background :profile_picture
-  process_in_background :profile_header
+  has_one_attached :profile_picture
+  has_one_attached :profile_header
 
   before_save do
     self.website = if website.match %r{\Ahttps?://}
@@ -233,10 +235,6 @@ class User < ApplicationRecord
   end
   # endregion
 
-  def cropping?
-    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
-  end
-
   # forwards fill
   def banned?
     self.permanently_banned? or ((not self.banned_until.nil?) and self.banned_until >= DateTime.current)
@@ -259,6 +257,30 @@ class User < ApplicationRecord
       return (Time.now > self.export_created_at.in(1.week)) && !self.export_processing
     end
     !self.export_processing
+  end
+
+  def avatar_url(size = :medium)
+    if profile_picture.attached?
+      if size == :original
+        url_for profile_picture
+      else
+        profile_picture.variant(resize: AVATAR_SIZES[size])
+      end
+    else
+      "/images/#{size}/no_avatar.png"
+    end
+  end
+
+  def header_url(size = :original)
+    if profile_header.attached?
+      if size == :original
+        url_for profile_header
+      else
+        profile_header.variant(resize: HEADER_SIZES[size])
+      end
+    else
+      "/images/header/#{size}/no_header.jpg"
+    end
   end
 
   # %w[admin moderator].each do |m|

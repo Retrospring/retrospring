@@ -5,7 +5,7 @@
       - if type == "discover"
         .pull-left
           %a{href: user_screen_name(q.user, link_only: true)}
-            %img.answerbox--img{src: q.user&.profile_picture&.url(:medium)}
+            = image_tag q.user&.avatar_url(:medium), class: 'answerbox--img'
       .media-body
         - if user_signed_in?
           .pull-right

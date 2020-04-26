@@ -1,7 +1,7 @@
 - provide(:title, user_title(@user))
-- no_header = unless @user.profile_header.exists? then "profile--no-header" else "" end
+- no_header = unless @user.profile_header.attached? then "profile--no-header" else "" end
 #profile--header{class: no_header}
-  %img.profile--header-img{src: @user.profile_header.url(:web)}
+  = image_tag @user.header_url(:web), class: 'profile--header-img'
 .container.j2-page.headerable{class: no_header}
   #profile-info.col-md-3.col-xs-12.col-sm-4.j2-col-reset
     = render 'user/profile_info'

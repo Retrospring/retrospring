@@ -1,7 +1,7 @@
 - unless report.nil? or report.target.nil? or report.user.nil? or report.type.nil?
   .panel.panel-default.moderationbox{data: { id: report.id }}
     .panel-heading
-      %img.img-rounded.answerbox--img{src: report.user.profile_picture.url(:medium)}
+      = image_tag report.user.avatar_url(:medium), class: 'img-rounded answerbox--img'
       = raw t('views.moderation.moderationbox.reported', user: user_screen_name(report.user), content: report.type.sub('Reports::', ''), time: time_tooltip(report))
     .panel-body
       %p

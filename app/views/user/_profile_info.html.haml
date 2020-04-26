@@ -1,5 +1,5 @@
 .panel.panel-default#profile
-  %img.profile--avatar{src: @user.profile_picture.url(:large)}
+  = image_tag @user.avatar_url(:large), class: 'profile--avatar'
   - if user_signed_in? && current_user.has_role?(:administrator)
     - if @user.has_role?(:administrator)
       .profile--panel-badge.panel-badge-danger
