@@ -45,7 +45,13 @@ $navbar-inverse-toggle-hover-bg: #512da8;
 $navbar-inverse-toggle-icon-bar-bg: #7e57c2;
 $navbar-inverse-toggle-border-color: #512da8;
 
+
+
+@import "overrides/variables";
+
 @import "bootstrap";
+
+@import "overrides/card";
 
 body { padding-top: 50px; }
 
