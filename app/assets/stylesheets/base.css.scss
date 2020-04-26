@@ -36,28 +36,6 @@ body {
   margin-bottom: 1.5em;
 }
 
-.j2-jumbo {
-  background-color: darken($navbar-inverse-bg, 10%);
-  color: #fff;
-}
-
-.j2-jumbo h1, .j2-jumbo h2, .j2-jumbo h3, .j2-jumbo h4, .j2-jumbo h5, .j2-jumbo h6 {
-  color: #fff;
-}
-
-.j2-jumbo a, .j2-jumbo a:hover {
-  color: #fff;
-  opacity: 0.6;
-}
-
-.j2-jumbo a:hover {
-  opacity: 1;
-}
-
-.j2-jumbo a .btn {
-  opacity: 1;
-}
-
 .smiles {
   margin-bottom: 7px;
 }
@@ -162,29 +140,6 @@ body {
   border-bottom-right-radius: 2px;
 }
 
-.frontpage {
-  margin-top: -50px;
-  height: 100vh;
-  display: table;
-}
-
-.frontpage-scroll {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-  z-index: 1000;
-  font-size: 32px;
-  width: 100%;
-}
-
-.frontpage-content {
-  display: table-cell;
-  vertical-align: middle;
-}
-
 .frontpage-features {
   padding-top: 20px;
   padding-bottom: 10px;
@@ -229,45 +184,8 @@ body {
   margin: 10px;
 }
 
-.btn-register {
-  opacity: 1 !important;
-  background: transparent;
-  color: #fff;
-  border: 4px #fff solid;
-  border-radius: 4px;
-  transition: background-color .25s ease-in-out;
-
-  &:hover {
-    background-color: #fff;
-    color: darken($navbar-inverse-bg, 10%) !important;
-    transition: background-color .25s ease-in-out;
-  }
-}
-
 .lead {
   margin-bottom: 3px;
-}
-
-.particle-jumbotron {
-  padding: 0px;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-
-.particle-content {
-  position: relative;
-  top: 0;
-  padding-top: 48px;
-  padding-bottom: 48px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-#particles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
 }
 
 .icon-showcase {

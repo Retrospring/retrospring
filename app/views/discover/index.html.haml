@@ -1,7 +1,7 @@
 - provide(:title, generate_title("Discover"))
-.jumbotron.j2-jumbo.text-center.particle-jumbotron
-  #particles
-  .particle-content
+.jumbotron.jumbotron--particles
+  #particles.jumbotron__particles
+  .jumbotron__content
     %h1= t 'views.discover.title'
     %p= t('views.discover.subtitle', app_title: APP_CONFIG['site_name'])
 .container

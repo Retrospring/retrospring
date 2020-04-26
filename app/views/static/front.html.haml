@@ -1,16 +1,16 @@
 - provide(:title, "#{APP_CONFIG['site_name']}")
-.jumbotron.j2-jumbo.text-center.particle-jumbotron.frontpage
-  .frontpage-scroll
+.jumbotron.jumbotron--particles.jumbotron--frontpage
+  .jumbotron__scroller
     %a.arctic_scroll{href: "#content", data: {offset: "-80"} }
       %i.fa.fa-chevron-down
-  #particles
-  .particle-content.frontpage-content
+  #particles.jumbotron__particles
+  .jumbotron__content
     .container
       = render 'layouts/messages'
       %h1= APP_CONFIG['site_name']
       %p= t 'views.front.subtitle'
       %p
-        %a.btn.btn-register.btn-lg{href: url_for(new_user_registration_path)}
+        %a.btn.btn-outline-light.btn-lg{href: url_for(new_user_registration_path)}
           Register now
       %small
         Already a member?
