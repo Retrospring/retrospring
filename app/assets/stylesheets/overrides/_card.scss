@@ -1,4 +1,8 @@
 .card {
   margin-bottom: map-get($spacers, 3);
   box-shadow: $box-shadow-sm;
+
+  p:only-child {
+    margin-bottom: 0;
+  }
 }
