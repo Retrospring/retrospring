@@ -1,10 +1,9 @@
 .card
   .card-header
-    %h3.card-title
-      - if @user.motivation_header.blank?
-        = t 'views.questionbox.title'
-      - else
-        = @user.motivation_header
+    - if @user.motivation_header.blank?
+      = t 'views.questionbox.title'
+    - else
+      = @user.motivation_header
   .card-body
     - if @user.banned?
       .row
