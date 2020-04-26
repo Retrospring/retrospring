@@ -4,7 +4,7 @@
 - unless @user.banned?
   #answers
     - @answers.each do |a|
-      = render 'shared/answerbox', a: a
+      = render 'answerbox', a: a
 
 = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @answers_last_id
 

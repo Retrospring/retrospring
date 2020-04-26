@@ -1,6 +1,6 @@
 #timeline
   - @timeline.each do |answer|
-    = render 'shared/answerbox', a: answer
+    = render 'answerbox', a: answer
 
   = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @timeline_last_id
 
