@@ -24,7 +24,10 @@
         = javascript_include_tag 'moderation', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body#version1
-    = render 'layouts/header'
+    - if user_signed_in?
+      = render 'navigation/main'
+    - else
+      = render 'navigation/guest'
     = render 'shared/announcements'
     = yield
     = render 'shared/locales'

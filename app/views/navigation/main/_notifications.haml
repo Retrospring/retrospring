@@ -1,7 +1,7 @@
-= nav_entry t('views.navigation.notifications'), notifications_path, badge: notification_count, class: 'visible-xs'
+= nav_entry t('views.navigation.notifications'), notifications_path, badge: notification_count, class: 'd-block d-sm-none'
 - notifications = Notification.for(current_user).where(new: true).limit(4)
-%li.dropdown.hidden-xs
-  %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+%li.nav-item.dropdown.d-none.d-sm-block
+  %a.nav-link.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
     - if notification_count.nil?
       %i.fa.fa-bell-o
     - else

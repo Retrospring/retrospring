@@ -1,0 +1,10 @@
+%nav.navbar.navbar-dark.navbar-expand-lg.bg-primary.fixed-top{role: "navigation"}
+  .container{class: ios_web_app? ? "ios-web-app" : ''}
+    %a.navbar-brand{href: "/"}= APP_CONFIG['site_name']
+    %button.navbar-toggler{"data-target" => "#j2-main-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+      %span.sr-only Toggle navigation
+      %span.navbar-toggler-icon
+    #j2-main-navbar-collapse.collapse.navbar-collapse
+      %ul.nav.navbar-nav.ml-auto
+        = nav_entry t('views.sessions.create'), new_user_session_path
+        = nav_entry t('views.sessions.new'), new_user_registration_path
