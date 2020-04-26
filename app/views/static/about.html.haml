@@ -29,7 +29,7 @@
         .col-md-4
           %h3= t 'views.about.opensource.title'
           %p= t('views.about.opensource.warning', app_title: APP_CONFIG['site_name'])
-          %p= raw t('views.about.opensource.desc', app_title: APP_CONFIG['site_name'], github: link_to(t('views.about.opensource.github'), "https://github.com/Retrospring/retrospring"), bugtracker: link_to(t('views.about.opensource.bugtracker'), "https://github.com/Retrospring/bugs"))
+          %p= raw t('views.about.opensource.desc', app_title: APP_CONFIG['site_name'], github: link_to(t('views.about.opensource.github'), "https://github.com/Retrospring/retrospring"), bugtracker: link_to(t('views.about.opensource.bugtracker'), "https://github.com/Retrospring/retrospring/issues"))
         .col-md-4
           %a{href: "https://github.com/Retrospring/retrospring"}
             .icon-showcase

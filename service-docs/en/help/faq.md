@@ -7,7 +7,7 @@ No, Retrospring will always remain free. You can however, if you want to support
 ## 3. Do you do anything with our data?
 No. We don't sell it to any third parties. Your data doesn't leave our servers, because we need it if any user does something illegal we have to provide the data or at least check it up and validate the cases ourselves. But anything other than that is not going to happen, such as us selling your precious data to big bad evil companies.
 ## 4. Can I contribute to the random question pool?
-You are more than welcome too, over on [Github](https://github.com/retrospring/questiongenerator)!
+You are more than welcome too, over on [Github](https://github.com/Retrospring/questiongenerator)!
 ## 5. What are **motivation headers**?
 The motivation header is the short text shown in the top of the questionbox on your profile, motivating another user to ask you a question. You can write anything you want, but the best way using it would be including something like "Ask me anything!" or if you want questions about a special thing you did "Ask me anything about my project X!" so people know what they should ask you.
 ## 6. Will Retrospring be available in different languages?
@@ -30,4 +30,4 @@ Quotes? Here you go!:
 
 Don't like the formatting? You can escape it with prepending a `\` before the `*`, `_` or `>`
 ## 8. Is this open-source software?
-Yep! Retrospring runs [justask](https://github.com/nilsding/justask) an open source (AGPLv3) question and answer platform. If you want to contribute or report bugs you find in Retrospring, please look at our [Github repository!](https://github.com/retrospring/retrospring)!
+Yep! Retrospring runs [justask](https://github.com/nilsding/justask) an open source (AGPLv3) question and answer platform. If you want to contribute or report bugs you find in Retrospring, please look at our [Github repository!](https://github.com/Retrospring/retrospring)!
