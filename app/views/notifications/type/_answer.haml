@@ -1,0 +1,23 @@
+.pull-left
+  %i.fa.fa-2x.fa-fw.fa-exclamation
+.media-body
+  .notification--heading
+    %img.notification--img-sm{src: notification.target.user.profile_picture.url(:small)}
+    = user_screen_name notification.target.user
+    answered
+    = link_to "your question", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.id)
+    = time_tooltip(notification.target)
+    ago
+  .list-group.notification--list
+    .list-group-item
+      .media.question-media
+        .media-body
+          %h6.notification--list-heading question
+          .notification--list-content
+            = markdown notification.target.question.content[0..60] + "#{notification.target.question.content.length > 60 ? '[...]' : ''}"
+    .list-group-item
+      .media.question-media
+        .media-body
+          %h6.notification--list-heading answer
+          .notification--list-content
+            = markdown notification.target.content[0..60] + "#{notification.target.content.length > 60 ? '[...]' : ''}"

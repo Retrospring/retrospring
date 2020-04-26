@@ -1,0 +1,7 @@
+.pull-left
+  %img.img-rounded.notification--dropdown-img{src: notification.target.source.profile_picture.url(:small)}
+.media-body
+  %h6.media-heading.notification--dropdown-user
+    = user_screen_name notification.target.source
+  .notification--dropdown-text
+    = raw t('views.notifications.relationship.body', time: time_ago_in_words(notification.target.created_at))
