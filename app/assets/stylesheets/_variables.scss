@@ -7,7 +7,32 @@ $card-border-width: 0;
 // List Groups
 $list-group-border-width: 0;
 
+// nProgress
+$nprogress-color: lighten($navbar-inverse-bg, 25%);
+
 :root {
   --background: #f0edf4;
-  --primary-text: #ffffff;
+  --card-bg: #ffffff;
+  --card-cap-bg: #f7f7f7;
+
+  /**
+   NOTE for all *-text variables
+   ----------------------------------------------
+   The text-variables are present as triplets
+   because in some places it's required to adjust
+   their transparency.
+
+   So, for general usage, use:
+   color: RGB(var(--*-text));
+
+   And for transparent usage, use:
+   color: rgba(var(--*-text), .7); 
+
+   The uppercase RGB is required because internally
+   SassC wants more than one argument for rgb(),
+   hence writing RGB() bypasses that check, but
+   browsers interpret it correctly.
+   */
+
+  --primary-text: 255, 255, 255;
 }

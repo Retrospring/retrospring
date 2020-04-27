@@ -1,0 +1,50 @@
+.navbar-themed {
+  .navbar-brand {
+    color: RGB(var(--primary-text));
+
+    &:hover,
+    &:focus {
+      color: RGB(var(--primary-text));
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: rgba(var(--primary-text), .5);
+
+      &:hover,
+      &:focus {
+        color: rgba(var(--primary-text), .75);
+      }
+
+      &.disabled {
+        color: rgba(var(--primary-text), .25);
+      }
+    }
+
+    .show > .nav-link,
+    .active > .nav-link,
+    .nav-link.show,
+    .nav-link.active {
+      color: RGB(var(--primary-text));
+    }
+  }
+
+  .navbar-toggler {
+    color: RGB(var(--primary-text));
+    border-color: RGB(var(--primary-text));
+  }
+
+  .navbar-toggler-icon {
+    background-image: escape-svg($navbar-dark-toggler-icon-bg);
+  }
+
+  .navbar-text {
+    color: RGB(var(--primary-text));
+    a,
+    a:hover,
+    a:focus {
+      color: RGB(var(--primary-text));
+    }
+  }
+}
