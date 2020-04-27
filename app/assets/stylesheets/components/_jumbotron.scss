@@ -2,7 +2,7 @@
   $this: &;
   display: flex;
   background-color: var(--primary);
-  color: var(--primary-text);
+  color: RGB(var(--primary-text));
   text-align: center;
 
   h1,
@@ -11,11 +11,11 @@
   h4,
   h5,
   h6 {
-    color: var(--primary-text);
+    color: RGB(var(--primary-text));
   }
 
   a:not(.btn) {
-    color: var(--primary-text);
+    color: RGB(var(--primary-text));
     opacity: 0.6;
 
     &:hover {
