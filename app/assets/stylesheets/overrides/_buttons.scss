@@ -10,5 +10,13 @@ $colors: (
   .btn-#{$color} {
     background-color: var(--#{$color});
     border-color: var(--#{$color});
+
+    &:hover {
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.10),
+        rgba(0, 0, 0, 0.10)
+      ) var(--#{$color});
+    }
   }
 }
