@@ -1,0 +1,14 @@
+$colors: (
+  "primary", 
+  "danger",
+  "warning",
+  "info",
+  "success"
+);
+
+@each $color in $colors {
+  .btn-#{$color} {
+    background-color: var(--#{$color});
+    border-color: var(--#{$color});
+  }
+}

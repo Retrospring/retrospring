@@ -1,8 +1,14 @@
 .card {
   margin-bottom: map-get($spacers, 3);
   box-shadow: $box-shadow-sm;
+  background-color: var(--card-bg);
 
   p:only-child {
     margin-bottom: 0;
   }
+}
+
+.card-header,
+.card-footer {
+  background-color: var(--card-cap-bg);
 }

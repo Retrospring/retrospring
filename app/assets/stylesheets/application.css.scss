@@ -45,13 +45,57 @@ $navbar-inverse-toggle-hover-bg: #512da8;
 $navbar-inverse-toggle-icon-bar-bg: #7e57c2;
 $navbar-inverse-toggle-border-color: #512da8;
 
+/**
+ SETTINGS
+ ----------------------------------------------
+ Variable definitions, tools and mixins used
+ across all styling definitions.
+ */
 
+@import
+"variables";
 
-@import "variables";
+/**
+ VENDOR
+ ----------------------------------------------
+ Imported vendor assets used by Retrospring.
+ */
 
-@import "bootstrap";
+@import
+"bootstrap",
+"font-awesome",
+"nprogress",
+"nprogress-bootstrap";
 
-@import "overrides/card";
+/**
+ OVERRIDES
+ ----------------------------------------------
+ The imports from "overrides/" define almost barely
+ any style adjustments but rather override default
+ Bootstrap behaviour.
+
+ The largest change to regular bootstrap is the switch
+ to using the available CSS variables for most elements
+ used on the site, so theming can be done with changing
+ only those.
+ */
+
+@import
+"overrides/buttons",
+"overrides/colors",
+"overrides/card",
+"overrides/links",
+"overrides/list-group",
+"overrides/navbar";
+
+/**
+ COMPONENTS
+ ----------------------------------------------
+ Custom components defined for Retrospring.
+ */
+
+@import
+"components/jumbotron";
 
 body { padding-top: 50px; }
 
@@ -60,15 +104,7 @@ body { padding-top: 50px; }
   display: none
 }
 
-@import "components/jumbotron";
-
 @import "base";
-
-@import "font-awesome";
-
-$nprogress-color: lighten($navbar-inverse-bg, 25%);
-@import 'nprogress';
-@import 'nprogress-bootstrap';
 
 .minicolors-theme-bootstrap .minicolors-swatch {
   top:           0;
