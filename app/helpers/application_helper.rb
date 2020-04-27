@@ -89,15 +89,6 @@ module ApplicationHelper
     ((!current_user.nil?) && ((current_user == user) || current_user.mod?)) ? true : false
   end
 
-  # @deprecated Use {User#profile_picture.url} instead.
-  def gravatar_url(user)
-    return user.profile_picture.url :medium
-    # return '/cage.png'
-    #return '//www.gravatar.com/avatar' if user.nil?
-    #return "//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user)}" if user.is_a? String
-    #"//www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email)}"
-  end
-
   def ios_web_app?
     user_agent = request.env['HTTP_USER_AGENT'] || 'Mozilla/5.0'
     # normal MobileSafari.app UA: Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B435 Safari/600.1.4

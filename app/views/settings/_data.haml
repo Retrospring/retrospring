@@ -106,42 +106,6 @@
           - else
             %span.label.label-danger
               %i.fa.fa-fw.fa-close
-
-        %p.data-heading Supporter
-        %p
-          - if current_user.supporter?
-            %span.label.label-success
-              %i.fa.fa-fw.fa-check
-          - else
-            %span.label.label-danger
-              %i.fa.fa-fw.fa-close
-
-        %p.data-heading Contributor
-        %p
-          - if current_user.contributor?
-            %span.label.label-success
-              %i.fa.fa-fw.fa-check
-          - else
-            %span.label.label-danger
-              %i.fa.fa-fw.fa-close
-
-        %p.data-heading Blogger
-        %p
-          - if current_user.blogger?
-            %span.label.label-success
-              %i.fa.fa-fw.fa-check
-          - else
-            %span.label.label-danger
-              %i.fa.fa-fw.fa-close
-
-        %p.data-heading Translator
-        %p
-          - if current_user.translator?
-            %span.label.label-success
-              %i.fa.fa-fw.fa-check
-          - else
-            %span.label.label-danger
-              %i.fa.fa-fw.fa-close
     .row
       .col-md-6.col-sm-6.col-xs-12
         %h3 IP

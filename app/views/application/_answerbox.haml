@@ -19,7 +19,7 @@
           .media
             .pull-left
               %a{href: show_user_profile_path(a.user.screen_name)}
-                %img.img-rounded.answerbox--img{src: gravatar_url(a.user)}
+                %img.img-rounded.answerbox--img{src: a.user.profile_picture.url(:medium)}
             .media-body
               %h6.media-heading.answerbox--answer-user
                 = raw t('views.answerbox.answered', hide: hidespan(t('views.answerbox.hide'), "xs"), user: user_screen_name(a.user))

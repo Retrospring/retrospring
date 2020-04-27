@@ -17,7 +17,7 @@ class StaticController < ApplicationController
   end
 
   def about
-    @admins = User.where(admin: true).order(:id)
+
   end
 
   def faq

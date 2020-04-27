@@ -1,22 +1,27 @@
 load = ->
-  parent = $ "#ban-control-super"
-  return unless parent.length > 0
+  return unless document.getElementById('ban-control-super') != null
+  modalEl = $("#modal-ban")
+  modalEl.modal "hide"
+  modalForm = modalEl.find("form")[0]
+  banCheckbox = modalForm.querySelector('[name="ban"][type="checkbox"]')
+  permabanCheckbox = modalForm.querySelector('[name="permaban"][type="checkbox"]')
 
-  parent.find('#_ban').on "change", (event) ->
+  banCheckbox.addEventListener "change", (event) ->
     $t = $ this
     if $t.is(":checked")
       $("#ban-controls").show()
     else
       $("#ban-controls").hide()
-  parent.find('#_permaban').on "change", (event) ->
+  permabanCheckbox.addEventListener "change", (event) ->
     $t = $ this
     if $t.is(":checked")
       $("#ban-controls-time").hide()
     else
       $("#ban-controls-time").show()
 
-  parent.find("#until").datetimepicker
-    defaultDate: parent.find("#until").val()
+  untilInput = $ modalForm.elements["until"]
+  untilInput.datetimepicker
+    defaultDate: untilInput.val()
     sideBySide: true
     icons:
       time: "fa fa-clock-o"
@@ -29,23 +34,21 @@ load = ->
       clear: "fa fa-trash-o"
       close: "fa fa-times"
 
-  parent.parent()[0].addEventListener "submit", (event) ->
+  modalForm.addEventListener "submit", (event) ->
     event.preventDefault();
 
-    $("#modal-ban").modal "hide"
-
-    checktostr = (selector) ->
-      if $(selector)[0].checked
+    checktostr = (el) ->
+      if el.checked
         "1"
       else
         "0"
 
     data = {
-      ban: checktostr "#_ban"
-      permaban: checktostr "#_permaban"
-      until: $("#until")[0].value.trim()
-      reason: $("#reason")[0].value.trim()
-      user: $("#_user")[0].value
+      ban: checktostr banCheckbox
+      permaban: checktostr permabanCheckbox
+      until: modalForm.elements["until"].value.trim()
+      reason: modalForm.elements["reason"].value.trim()
+      user: modalForm.elements["user"].value
     }
 
     $.ajax
