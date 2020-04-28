@@ -152,9 +152,6 @@ cs:
         rec_inv: "Vaše otázka je příliš dlhá."
         not_found: "Skupina nebyla nalezena"
         okay: "Otázka úspěšně zeptána."
-      preview:
-        fail: "Renderování kódu selhalo."
-        okay: "Úspěšně renderováno kód."
     report:
       create:
         login: "přihlášení povinné"

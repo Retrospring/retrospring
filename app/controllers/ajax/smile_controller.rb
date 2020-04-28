@@ -1,11 +1,4 @@
-class Ajax::SmileController < ApplicationController
-  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
-    @status = :parameter_error
-    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
-    @success = false
-    render partial: "ajax/shared/status"
-  end
-  
+class Ajax::SmileController < AjaxController
   def create
     params.require :id
 
@@ -14,15 +7,14 @@ class Ajax::SmileController < ApplicationController
     begin
       current_user.smile answer
     rescue
-      @status = :fail
-      @message = I18n.t('messages.smile.create.fail')
-      @success = false
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.smile.create.fail')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.smile.create.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.smile.create.okay')
+    @response[:success] = true
   end
 
   def destroy
@@ -33,15 +25,14 @@ class Ajax::SmileController < ApplicationController
     begin
       current_user.unsmile answer
     rescue
-      @status = :fail
-      @message = I18n.t('messages.smile.destroy.fail')
-      @success = false
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.smile.destroy.fail')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.smile.destroy.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.smile.destroy.okay')
+    @response[:success] = true
   end
 
   def create_comment
@@ -52,15 +43,14 @@ class Ajax::SmileController < ApplicationController
     begin
       current_user.smile_comment comment
     rescue
-      @status = :fail
-      @message = I18n.t('messages.smile.create_comment.fail')
-      @success = false
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.smile.create_comment.fail')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.smile.create_comment.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.smile.create_comment.okay')
+    @response[:success] = true
   end
 
   def destroy_comment
@@ -71,14 +61,13 @@ class Ajax::SmileController < ApplicationController
     begin
       current_user.unsmile_comment comment
     rescue
-      @status = :fail
-      @message = I18n.t('messages.smile.destroy_comment.fail')
-      @success = false
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.smile.destroy_comment.fail')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.smile.destroy_comment.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.smile.destroy_comment.okay')
+    @response[:success] = true
   end
 end
