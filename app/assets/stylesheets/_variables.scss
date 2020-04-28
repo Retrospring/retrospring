@@ -1,4 +1,4 @@
-// Colors
+// Color overrides for Bootstrap
 $primary: #5e35b1;
 
 // Cards
@@ -9,6 +9,15 @@ $list-group-border-width: 0;
 
 // nProgress
 $nprogress-color: lighten($navbar-inverse-bg, 25%);
+
+// Color names for theme generation
+$colorNames: (
+  "primary", 
+  "danger",
+  "warning",
+  "info",
+  "success"
+);
 
 :root {
   --background: #f0edf4;

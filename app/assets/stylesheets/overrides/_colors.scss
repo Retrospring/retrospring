@@ -1,12 +1,4 @@
-$colors: (
-  "primary", 
-  "danger",
-  "warning",
-  "info",
-  "success"
-);
-
-@each $color in $colors {
+@each $color in $colorNames {
   .bg-#{$color} {
     background-color: var(--#{$color}) !important;
   }
