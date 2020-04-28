@@ -23,7 +23,7 @@ class AjaxController < ApplicationController
 
     @response = {
       success: false,
-      message: I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize),
+      message: I18n.t('messages.parameter_error', parameter: e.param.capitalize),
       status: :parameter_error
     }
 
