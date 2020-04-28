@@ -1,0 +1,7 @@
+@each $color in $colorNames {
+  .alert-#{$color} {
+    color: RGB(var(--#{$color}-text));
+    background-color: var(--#{$color});
+    border-color: var(--#{$color});
+  }
+}
