@@ -31,7 +31,8 @@ class Ajax::QuestionController < AjaxController
       question = Question.create!(content: params[:question],
                                   author_is_anonymous: params[:anonymousQuestion],
                                   user: current_user)
-    rescue ActiveRecord::RecordInvalid
+    rescue ActiveRecord::RecordInvalid => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :rec_inv
       @response[:message] = I18n.t('messages.question.create.rec_inv')
       return
@@ -50,7 +51,8 @@ class Ajax::QuestionController < AjaxController
         begin
           current_user.groups.find_by_name!(params[:rcpt].sub 'grp:', '')
           QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
-        rescue ActiveRecord::RecordNotFound
+        rescue ActiveRecord::RecordNotFound => e
+          NewRelic::Agent.notice_error(e)
           @response[:status] = :not_found
           @response[:message] = I18n.t('messages.question.create.not_found')
           return

@@ -10,7 +10,8 @@ class Ajax::GroupController < AjaxController
 
     begin
       params.require :name
-    rescue ActionController::ParameterMissing
+    rescue ActionController::ParameterMissing => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :toolong
       @response[:message] = I18n.t('messages.group.create.noname')
       return
@@ -20,15 +21,18 @@ class Ajax::GroupController < AjaxController
     begin
       target_user = User.find_by_screen_name(params[:user])
       group = Group.create! user: current_user, display_name: params[:name]
-    rescue ActiveRecord::RecordInvalid
+    rescue ActiveRecord::RecordInvalid => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :toolong
       @response[:message] = I18n.t('messages.group.create.toolong')
       return
-    rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :notfound
       @response[:message] = I18n.t('messages.group.create.notfound')
       return
-    rescue ActiveRecord::RecordNotUnique
+    rescue ActiveRecord::RecordNotUnique => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :exists
       @response[:message] = I18n.t('messages.group.create.exists')
       return
@@ -53,7 +57,8 @@ class Ajax::GroupController < AjaxController
 
     begin
       Group.where(user: current_user, name: params[:group]).first.destroy!
-    rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :notfound
       @response[:message] = I18n.t('messages.group.destroy.notfound')
       return
@@ -81,7 +86,8 @@ class Ajax::GroupController < AjaxController
 
     begin
       group = current_user.groups.find_by_name(params[:group])
-    rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :notfound
       @response[:message] = I18n.t('messages.group.membership.notfound')
       return

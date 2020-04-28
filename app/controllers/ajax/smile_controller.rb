@@ -6,7 +6,8 @@ class Ajax::SmileController < AjaxController
 
     begin
       current_user.smile answer
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.smile.create.fail')
       return
@@ -24,7 +25,8 @@ class Ajax::SmileController < AjaxController
 
     begin
       current_user.unsmile answer
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.smile.destroy.fail')
       return
@@ -42,7 +44,8 @@ class Ajax::SmileController < AjaxController
 
     begin
       current_user.smile_comment comment
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.smile.create_comment.fail')
       return
@@ -60,7 +63,8 @@ class Ajax::SmileController < AjaxController
 
     begin
       current_user.unsmile_comment comment
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.smile.destroy_comment.fail')
       return

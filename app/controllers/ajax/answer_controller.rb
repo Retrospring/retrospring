@@ -40,7 +40,8 @@ class Ajax::AnswerController < AjaxController
                else
                  current_user.answer question, params[:answer]
                end
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return

@@ -33,7 +33,8 @@ class Ajax::InboxController < AjaxController
 
     begin
       inbox.remove
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return
@@ -47,7 +48,8 @@ class Ajax::InboxController < AjaxController
   def remove_all
     begin
       Inbox.where(user: current_user).each { |i| i.remove }
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return
@@ -64,7 +66,8 @@ class Ajax::InboxController < AjaxController
       @inbox = current_user.inboxes.joins(:question)
                                    .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
       @inbox.each { |i| i.remove }
-    rescue
+    rescue => e
+      NewRelic::Agent.notice_error(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return
