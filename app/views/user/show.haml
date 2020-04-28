@@ -1,5 +1,4 @@
-- no_header = unless @user.profile_header.exists? then "profile--no-header" else "" end
-.profile--panel-push-inner.hidden-xs{class: no_header}
+.profile--panel-push-inner.hidden-xs
 - unless @user.banned?
   #answers
     - @answers.each do |a|
