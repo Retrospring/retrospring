@@ -23,6 +23,7 @@ $colorNames: (
   --background: #f0edf4;
   --card-bg: #ffffff;
   --card-cap-bg: #f7f7f7;
+  --input-bg: #ffffff;
 
   /**
    NOTE for all *-text variables
@@ -50,4 +51,6 @@ $colorNames: (
   --success-text: 255, 255, 255;
 
   --muted-text: 108, 117, 125;
+
+  --input-text: 0, 0, 0;
 }
