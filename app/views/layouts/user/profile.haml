@@ -5,10 +5,11 @@
   .row
     #profile-info.col-md-3.col-xs-12.col-sm-4.j2-col-reset
       = render 'user/profile_info'
-      .hidden-xs= render 'shared/links'
+      .d-none.d-sm-block= render 'shared/links'
     .col-md-9.col-xs-12.col-sm-8.j2-col-reset
+      = render "questionbox"
+      = render "tabs/profile"
       = yield
-  .visible-xs= render 'shared/links'
 - if user_signed_in?
   = render 'modal/group'
   - if current_user.mod? and @user != current_user
