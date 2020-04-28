@@ -151,9 +151,6 @@ en_dizzle:
         rec_inv: "Yo crazy-ass question is too long."
         not_found: "Group not found"
         okay: "Question asked successfully."
-      preview:
-        fail: "Failed ta render markdown."
-        okay: "Successfully rendered markdown."
     report:
       create:
         login: "login required"

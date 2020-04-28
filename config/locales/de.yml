@@ -154,9 +154,6 @@ de:
         rec_inv: "Deine Frage ist zu lang."
         not_found: "Gruppe nicht gefunden"
         okay: "Frage erfolgreich gestellt."
-      preview:
-        fail: "Das Markdownrendern ist fehlgeschlagen."
-        okay: "Markdown erfolgreich gerendert."
     report:
       create:
         login: "Login benötigt"

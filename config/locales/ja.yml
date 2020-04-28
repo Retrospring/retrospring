@@ -153,9 +153,6 @@ ja:
         rec_inv: 質問が長過ぎます。
         not_found: グループが見つかりません
         okay: 質問の投稿に成功しました。
-      preview:
-        fail: 書式処理に失敗しました。
-        okay: 書式処理に成功しました。
     report:
       create:
         login: ログインが必要です

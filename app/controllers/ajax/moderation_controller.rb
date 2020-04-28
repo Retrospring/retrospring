@@ -1,11 +1,4 @@
-class Ajax::ModerationController < ApplicationController
-  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
-    @status = :parameter_error
-    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
-    @success = false
-    render partial: "ajax/shared/status"
-  end
-
+class Ajax::ModerationController < AjaxController
   def vote
     params.require :id
     params.require :upvote
@@ -14,17 +7,17 @@ class Ajax::ModerationController < ApplicationController
 
     begin
       current_user.report_vote(report, params[:upvote])
-    rescue
-      @status = :fail
-      @message = I18n.t('messages.moderation.vote.fail')
-      @success = false
+    rescue => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.moderation.vote.fail')
       return
     end
 
-    @count = report.votes
-    @status = :okay
-    @message = I18n.t('messages.moderation.vote.okay')
-    @success = true
+    @response[:count] = report.votes
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.moderation.vote.okay')
+    @response[:success] = true
   end
 
   def destroy_vote
@@ -34,17 +27,17 @@ class Ajax::ModerationController < ApplicationController
 
     begin
       current_user.report_unvote report
-    rescue
-      @status = :fail
-      @message = I18n.t('messages.moderation.destroy_vote.fail')
-      @success = false
+    rescue => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.moderation.destroy_vote.fail')
       return
     end
 
-    @count = report.votes
-    @status = :okay
-    @message = I18n.t('messages.moderation.destroy_vote.okay')
-    @success = true
+    @response[:count] = report.votes
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.moderation.destroy_vote.okay')
+    @response[:success] = true
   end
 
   def destroy_report
@@ -55,16 +48,16 @@ class Ajax::ModerationController < ApplicationController
     begin
       report.deleted = true
       report.save
-    rescue
-      @status = :fail
-      @message = I18n.t('messages.moderation.destroy_report.fail')
-      @success = false
+    rescue => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.moderation.destroy_report.fail')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.moderation.destroy_report.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.moderation.destroy_report.okay')
+    @response[:success] = true
   end
 
   def create_comment
@@ -73,48 +66,45 @@ class Ajax::ModerationController < ApplicationController
 
     report = Report.find(params[:id])
 
-    @success = false
 
     begin
       current_user.report_comment(report, params[:comment])
-    rescue ActiveRecord::RecordInvalid
-      @status = :rec_inv
-      @message = I18n.t('messages.moderation.create_comment.rec_inv')
+    rescue ActiveRecord::RecordInvalid => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :rec_inv
+      @response[:message] = I18n.t('messages.moderation.create_comment.rec_inv')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.moderation.create_comment.okay')
-    @success = true
-    @render = render_to_string(partial: 'moderation/discussion', locals: { report: report })
-    @count = report.moderation_comments.all.count
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.moderation.create_comment.okay')
+    @response[:success] = true
+    @response[:render] = render_to_string(partial: 'moderation/discussion', locals: { report: report })
+    @response[:count] = report.moderation_comments.all.count
   end
 
   def destroy_comment
     params.require :comment
 
-    @status = :err
-    @success = false
+    @response[:status] = :err
     comment = ModerationComment.find(params[:comment])
 
     unless current_user == comment.user
-      @status = :nopriv
-      @message = I18n.t('messages.moderation.destroy_comment.nopriv')
-      @success = false
+      @response[:status] = :nopriv
+      @response[:message] = I18n.t('messages.moderation.destroy_comment.nopriv')
       return
     end
 
     comment.destroy
 
-    @status = :okay
-    @message = I18n.t('messages.moderation.destroy_comment.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.moderation.destroy_comment.okay')
+    @response[:success] = true
   end
 
   def ban
-    @status = :err
-    @message = I18n.t('messages.moderation.ban.error')
-    @success = false
+    @response[:status] = :err
+    @response[:message] = I18n.t('messages.moderation.ban.error')
 
     params.require :user
     params.require :ban
@@ -128,32 +118,30 @@ class Ajax::ModerationController < ApplicationController
     buntil = DateTime.strptime params[:until], "%m/%d/%Y %I:%M %p" unless unban || perma
 
     if !unban && target.has_role?(:administrator)
-      @status = :nopriv
-      @message = I18n.t('messages.moderation.ban.nopriv')
-      @success = false
+      @response[:status] = :nopriv
+      @response[:message] = I18n.t('messages.moderation.ban.nopriv')
       return
     end
 
     if unban
       target.unban
-      @message = I18n.t('messages.moderation.ban.unban')
-      @success = true
+      @response[:message] = I18n.t('messages.moderation.ban.unban')
+      @response[:success] = true
     elsif perma
       target.ban nil, reason
-      @message = I18n.t('messages.moderation.ban.perma')
+      @response[:message] = I18n.t('messages.moderation.ban.perma')
     else
       target.ban buntil, reason
-      @message = I18n.t('messages.moderation.ban.temp', date: buntil.to_s)
+      @response[:message] = I18n.t('messages.moderation.ban.temp', date: buntil.to_s)
     end
     target.save!
 
-    @status = :okay
-    @success = target.banned? == !unban
+    @response[:status] = :okay
+    @response[:success] = target.banned? == !unban
   end
 
   def privilege
-    @status = :err
-    @success = false
+    @response[:status] = :err
 
     params.require :user
     params.require :type
@@ -163,17 +151,16 @@ class Ajax::ModerationController < ApplicationController
 
     target_user = User.find_by_screen_name(params[:user])
 
-    @message = I18n.t('messages.moderation.privilege.nope')
+    @response[:message] = I18n.t('messages.moderation.privilege.nope')
     return unless %w(moderator admin).include? params[:type].downcase
 
     unless current_user.has_role?(:administrator)
-      @status = :nopriv
-      @message = I18n.t('messages.moderation.privilege.nopriv')
-      @success = false
+      @response[:status] = :nopriv
+      @response[:message] = I18n.t('messages.moderation.privilege.nopriv')
       return
     end
 
-    @checked = status
+    @response[:checked] = status
     type = params[:type].downcase
     target_role = {"admin" => "administrator"}.fetch(type, type).to_sym
 
@@ -184,9 +171,9 @@ class Ajax::ModerationController < ApplicationController
     end
     target_user.save!
 
-    @message = I18n.t('messages.moderation.privilege.checked', privilege: params[:type])
+    @response[:message] = I18n.t('messages.moderation.privilege.checked', privilege: params[:type])
 
-    @status = :okay
-    @success = true
+    @response[:status] = :okay
+    @response[:success] = true
   end
 end

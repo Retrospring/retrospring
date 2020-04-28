@@ -1,36 +1,25 @@
-class Ajax::QuestionController < ApplicationController
-  include MarkdownHelper
-
-  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
-    @status = :parameter_error
-    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
-    @success = false
-    render partial: "ajax/shared/status"
-  end
-
+class Ajax::QuestionController < AjaxController
   def destroy
     params.require :question
 
     question = Question.find params[:question]
     if question.nil?
-      @status = :not_found
-      @message = I18n.t('messages.question.destroy.not_found')
-      @success = false
+      @response[:status] = :not_found
+      @response[:message] = I18n.t('messages.question.destroy.not_found')
       return
     end
 
     if not (current_user.mod? or question.user == current_user)
-      @status = :not_authorized
-      @message = I18n.t('messages.question.destroy.not_authorized')
-      @success = false
+      @response[:status] = :not_authorized
+      @response[:message] = I18n.t('messages.question.destroy.not_authorized')
       return
     end
 
     question.destroy!
 
-    @status = :okay
-    @message = I18n.t('messages.question.destroy.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.question.destroy.okay')
+    @response[:success] = true
   end
 
   def create
@@ -42,10 +31,10 @@ class Ajax::QuestionController < ApplicationController
       question = Question.create!(content: params[:question],
                                   author_is_anonymous: params[:anonymousQuestion],
                                   user: current_user)
-    rescue ActiveRecord::RecordInvalid
-      @status = :rec_inv
-      @message = I18n.t('messages.question.create.rec_inv')
-      @success = false
+    rescue ActiveRecord::RecordInvalid => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :rec_inv
+      @response[:message] = I18n.t('messages.question.create.rec_inv')
       return
     end
 
@@ -62,42 +51,25 @@ class Ajax::QuestionController < ApplicationController
         begin
           current_user.groups.find_by_name!(params[:rcpt].sub 'grp:', '')
           QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
-        rescue ActiveRecord::RecordNotFound
-          @status = :not_found
-          @message = I18n.t('messages.question.create.not_found')
-          @success = false
+        rescue ActiveRecord::RecordNotFound => e
+          NewRelic::Agent.notice_error(e)
+          @response[:status] = :not_found
+          @response[:message] = I18n.t('messages.question.create.not_found')
           return
         end
       end
     else
       if User.find(params[:rcpt]).nil?
-        @status = :not_found
-        @message = I18n.t('messages.question.create.not_found')
-        @success = false
+        @response[:status] = :not_found
+        @response[:message] = I18n.t('messages.question.create.not_found')
         return
       end
 
       Inbox.create!(user_id: params[:rcpt], question_id: question.id, new: true)
     end
 
-    @status = :okay
-    @message = I18n.t('messages.question.create.okay')
-    @success = true
-  end
-
-  def preview
-    params.require :md
-
-    @message = I18n.t('messages.question.preview.fail')
-    begin
-      @markdown = markdown params[:md]
-      @message = I18n.t('messages.question.preview.okay')
-    rescue
-      @status = :fail
-      @success = false
-      return
-    end
-    @status = :okay
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.question.create.okay')
+    @response[:success] = true
   end
 end
