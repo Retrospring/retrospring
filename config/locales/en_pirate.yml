@@ -151,9 +151,6 @@ en_pirate:
         rec_inv: "Your inquiry is too long."
         not_found: "Crew not found"
         okay: "Inquiry asked successfully."
-      preview:
-        fail: "Failed to render markdown."
-        okay: "Successfully rendered markdown."
     report:
       create:
         login: "login required"

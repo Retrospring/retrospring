@@ -1,25 +1,17 @@
-class Ajax::ReportController < ApplicationController
-  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
-    @status = :parameter_error
-    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
-    @success = false
-    render partial: "ajax/shared/status"
-  end
-
+class Ajax::ReportController < AjaxController
   def create
     params.require :id
     params.require :type
 
-    @status = :err
-    @success = false
+    @response[:status] = :err
 
     if current_user.nil?
-      @message = I18n.t('messages.report.create.login')
+      @response[:message] = I18n.t('messages.report.create.login')
       return
     end
 
     unless %w(answer comment question user).include? params[:type]
-      @message = I18n.t('messages.report.create.unknown')
+      @response[:message] = I18n.t('messages.report.create.unknown')
       return
     end
 
@@ -39,14 +31,14 @@ class Ajax::ReportController < ApplicationController
       end
 
     if object.nil?
-      @message = I18n.t('messages.report.create.not_found', parameter: params[:type])
+      @response[:message] = I18n.t('messages.report.create.not_found', parameter: params[:type])
       return
     end
 
     current_user.report object, params[:reason]
 
-    @status = :okay
-    @message = I18n.t('messages.report.create.okay', parameter: params[:type])
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.report.create.okay', parameter: params[:type])
+    @response[:success] = true
   end
 end

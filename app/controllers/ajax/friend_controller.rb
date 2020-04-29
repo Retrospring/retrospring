@@ -1,11 +1,4 @@
-class Ajax::FriendController < ApplicationController
-  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
-    @status = :parameter_error
-    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
-    @success = false
-    render partial: "ajax/shared/status"
-  end
-  
+class Ajax::FriendController < AjaxController
   def create
     params.require :screen_name
 
@@ -13,16 +6,16 @@ class Ajax::FriendController < ApplicationController
 
     begin
       current_user.follow target_user
-    rescue
-      @status = :fail
-      @message = I18n.t('messages.friend.create.fail')
-      @success = false
+    rescue => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.friend.create.fail')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.friend.create.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.friend.create.okay')
+    @response[:success] = true
   end
 
   def destroy
@@ -32,15 +25,15 @@ class Ajax::FriendController < ApplicationController
 
     begin
       current_user.unfollow target_user
-    rescue
-      @status = :fail
-      @message = I18n.t('messages.friend.destroy.fail')
-      @success = false
+    rescue => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :fail
+      @response[:message] = I18n.t('messages.friend.destroy.fail')
       return
     end
 
-    @status = :okay
-    @message = I18n.t('messages.friend.destroy.okay')
-    @success = true
+    @response[:status] = :okay
+    @response[:message] = I18n.t('messages.friend.destroy.okay')
+    @response[:success] = true
   end
 end

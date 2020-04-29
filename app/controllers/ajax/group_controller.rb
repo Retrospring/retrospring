@@ -1,26 +1,19 @@
-class Ajax::GroupController < ApplicationController
-  rescue_from(ActionController::ParameterMissing) do |param_miss_ex|
-    @status = :parameter_error
-    @message = I18n.t('messages.parameter_error', parameter: param_miss_ex.param.capitalize)
-    @success = false
-    render partial: "ajax/shared/status"
-  end
-  
+class Ajax::GroupController < AjaxController
   def create
-    @status = :err
-    @success = false
+    @response[:status] = :err
 
     unless user_signed_in?
-      @status = :noauth
-      @message = I18n.t('messages.noauth')
+      @response[:status] = :noauth
+      @response[:message] = I18n.t('messages.noauth')
       return
     end
 
     begin
       params.require :name
-    rescue ActionController::ParameterMissing
-      @status = :toolong
-      @message = I18n.t('messages.group.create.noname')
+    rescue ActionController::ParameterMissing => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :toolong
+      @response[:message] = I18n.t('messages.group.create.noname')
       return
     end
     params.require :user
@@ -28,33 +21,35 @@ class Ajax::GroupController < ApplicationController
     begin
       target_user = User.find_by_screen_name(params[:user])
       group = Group.create! user: current_user, display_name: params[:name]
-    rescue ActiveRecord::RecordInvalid
-      @status = :toolong
-      @message = I18n.t('messages.group.create.toolong')
+    rescue ActiveRecord::RecordInvalid => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :toolong
+      @response[:message] = I18n.t('messages.group.create.toolong')
       return
-    rescue ActiveRecord::RecordNotFound
-      @status = :notfound
-      @message = I18n.t('messages.group.create.notfound')
+    rescue ActiveRecord::RecordNotFound => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :notfound
+      @response[:message] = I18n.t('messages.group.create.notfound')
       return
-    rescue ActiveRecord::RecordNotUnique
-      @status = :exists
-      @message = I18n.t('messages.group.create.exists')
+    rescue ActiveRecord::RecordNotUnique => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :exists
+      @response[:message] = I18n.t('messages.group.create.exists')
       return
     end
 
-    @status = :okay
-    @success = true
-    @message = I18n.t('messages.group.create.okay')
-    @render = render_to_string(partial: 'modal/group/item', locals: { group: group, user: target_user })
+    @response[:status] = :okay
+    @response[:success] = true
+    @response[:message] = I18n.t('messages.group.create.okay')
+    @response[:render] = render_to_string(partial: 'modal/group/item', locals: { group: group, user: target_user })
   end
 
   def destroy
-    @status = :err
-    @success = false
+    @response[:status] = :err
 
     unless user_signed_in?
-      @status = :noauth
-      @message = I18n.t('messages.noauth')
+      @response[:status] = :noauth
+      @response[:message] = I18n.t('messages.noauth')
       return
     end
 
@@ -62,24 +57,24 @@ class Ajax::GroupController < ApplicationController
 
     begin
       Group.where(user: current_user, name: params[:group]).first.destroy!
-    rescue ActiveRecord::RecordNotFound
-      @status = :notfound
-      @message = I18n.t('messages.group.destroy.notfound')
+    rescue ActiveRecord::RecordNotFound => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :notfound
+      @response[:message] = I18n.t('messages.group.destroy.notfound')
       return
     end
 
-    @status = :okay
-    @success = true
-    @message = I18n.t('messages.group.destroy.okay')
+    @response[:status] = :okay
+    @response[:success] = true
+    @response[:message] = I18n.t('messages.group.destroy.okay')
   end
 
   def membership
-    @status = :err
-    @success = false
+    @response[:status] = :err
 
     unless user_signed_in?
-      @status = :noauth
-      @message = I18n.t('messages.noauth')
+      @response[:status] = :noauth
+      @response[:message] = I18n.t('messages.noauth')
       return
     end
 
@@ -91,9 +86,10 @@ class Ajax::GroupController < ApplicationController
 
     begin
       group = current_user.groups.find_by_name(params[:group])
-    rescue ActiveRecord::RecordNotFound
-      @status = :notfound
-      @message = I18n.t('messages.group.membership.notfound')
+    rescue ActiveRecord::RecordNotFound => e
+      NewRelic::Agent.notice_error(e)
+      @response[:status] = :notfound
+      @response[:message] = I18n.t('messages.group.membership.notfound')
       return
     end
 
@@ -101,15 +97,15 @@ class Ajax::GroupController < ApplicationController
 
     if add
       group.add_member target_user if group.members.find_by_user_id(target_user.id).nil?
-      @checked = true
-      @message = I18n.t('messages.group.membership.add')
+      @response[:checked] = true
+      @response[:message] = I18n.t('messages.group.membership.add')
     else
       group.remove_member target_user unless group.members.find_by_user_id(target_user.id).nil?
-      @checked = false
-      @message = I18n.t('messages.group.membership.remove')
+      @response[:checked] = false
+      @response[:message] = I18n.t('messages.group.membership.remove')
     end
 
-    @status = :okay
-    @success = true
+    @response[:status] = :okay
+    @response[:success] = true
   end
 end

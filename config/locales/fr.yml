@@ -154,9 +154,6 @@ fr:
         rec_inv: "Votre question est trop longue."
         not_found: "Le groupe est introuvable."
         okay: "La question a été posée avec succès."
-      preview:
-        fail: "Échec de rendu du markdown."
-        okay: "Markdown rendu avec succès."
     report:
       create:
         login: "connexion requise"

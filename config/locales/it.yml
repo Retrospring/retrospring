@@ -151,9 +151,6 @@ it:
         rec_inv: "La tua domanda è troppo lunga."
         not_found: "Gruppo non trovato"
         okay: "Domanda chiesta."
-      preview:
-        fail: "Impossibile renderizzare markdown."
-        okay: "Markdown renderizzato."
     report:
       create:
         login: "devi prima fare il login"
