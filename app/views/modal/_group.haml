@@ -7,7 +7,7 @@
           %span{"aria-hidden" => "true"} ×
           %span.sr-only= t 'views.actions.close'
       %div{role: "tabpanel"}
-        %ul.nav.nav-tabs{role: "tablist"}
+        %ul.nav.nav-tabs.mt-1{role: "tablist"}
           %li.nav-item{role: "presentation"}
             %a.nav-link.active{href: "#grouplist", aria: {controls: "grouplist"}, data: {toggle: "tab"}, role: "tab"}
               = t 'views.modal.group.tabs.main'
@@ -17,7 +17,7 @@
 
         .tab-content
           .tab-pane.active{role:"tabpanel", id: "grouplist"}
-            %ul.list-group.groups--list
+            %ul.list-group
               - current_user.groups.each do |group|
                 = render 'modal/group/item', group: group, user: @user
           .tab-pane{role:"tabpanel", id: "create"}

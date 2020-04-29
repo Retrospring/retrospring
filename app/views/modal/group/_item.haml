@@ -1,10 +1,12 @@
 %li.list-group-item{id: "group-#{group.name}"}
   .media
-    .pull-left.j2-table
-      %input.input--center{type: :checkbox, name: 'gm-group-check', data: { group: group.name, user: user.screen_name }, checked: user.member_of?(group), autocomplete: 'off'}
+    .pull-left
+      .custom-control.custom-checkbox
+        %input.custom-control-input{type: :checkbox, id: "groupCheck#{group.id}", name: 'gm-group-check', data: { group: group.name, user: user.screen_name }, checked: user.member_of?(group), autocomplete: 'off'}
+        %label.custom-control-label{for: "groupCheck#{group.id}"}
     .media-body
       .list-group-item-heading= group.display_name
-      .list-group-item-text.text-muted.j2-up
+      .list-group-item-text.text-muted
         %span{id: "#{group.name}-members"}= group.members.count
         = t 'views.modal.group.members'
         ·
