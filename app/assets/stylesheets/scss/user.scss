@@ -37,10 +37,6 @@
   max-height: 440px;
 }
 
-#profile--header.profile--no-header {
-  position: absolute;
-}
-
 .profile--panel .panel-heading {
   color: theme-color('primary');
   border-bottom: 2px solid theme-color('primary');
@@ -104,11 +100,6 @@ $colours: danger theme-color('danger'),
   text-decoration: line-through !important;
 }
 
-.profile--panel-push-inner:not(.profile--no-header) {
-  display: block;
-  height: 60px;
-}
-
 .profile--header-img {
   display: block;
   min-width: 900px;
@@ -116,7 +107,7 @@ $colours: danger theme-color('danger'),
 }
 
 @media(min-width: 767px) {
-  .container.headerable:not(.profile--no-header) {
+  .container.headerable {
     padding-top: 0;
     margin-top: -30px;
   }
