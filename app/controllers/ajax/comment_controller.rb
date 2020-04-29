@@ -17,7 +17,7 @@ class Ajax::CommentController < AjaxController
     @response[:status] = :okay
     @response[:message] = I18n.t('messages.comment.create.okay')
     @response[:success] = true
-    @response[:render] = render_to_string(partial: 'shared/comments', locals: { a: answer })
+    @response[:render] = render_to_string(partial: 'answerbox/comments', locals: { a: answer })
     @response[:count] = answer.comment_count
   end
 
