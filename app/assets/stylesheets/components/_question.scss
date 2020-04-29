@@ -1,0 +1,14 @@
+.question {
+  &--fixed {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+  }
+
+  &--hidden {
+    visibility: hidden;
+    position: relative;
+    box-shadow: none;
+    z-index: -1;
+  }
+}
