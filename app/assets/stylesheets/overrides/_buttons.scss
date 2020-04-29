@@ -1,4 +1,4 @@
-@each $color in $colorNames {
+@each $color in $color-names {
   .btn-#{$color} {
     background-color: var(--#{$color});
     border-color: var(--#{$color});
