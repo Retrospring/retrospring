@@ -19,6 +19,16 @@ $colorNames: (
   "success"
 );
 
+// Avatar variables
+$avatar-border-radius: 4px;
+
+$avatar-sizes: (
+  "xs": 20px,
+  "sm": 30px,
+  "md": 40px,
+  "lg": 80px
+);
+
 :root {
   --background: #f0edf4;
   --card-bg: #ffffff;

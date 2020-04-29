@@ -1,0 +1,12 @@
+[class^="avatar-"] {
+  border-radius: $avatar-border-radius;
+}
+
+@each $name, $size in $avatar-sizes {
+  .avatar-#{$name} {
+    min-height: $size;
+    min-width: $size;
+    height: $size;
+    width: $size;
+  }
+}

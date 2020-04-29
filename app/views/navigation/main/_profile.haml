@@ -1,7 +1,7 @@
 %li.nav-item.dropdown.profile--image-dropdown
-  %a.nav-link.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
-    %img.profile--image-avatar.d-none.d-sm-inline{src: current_user.profile_picture.url(:small)}
-    %span.d-none.d-sm-inline.d-md-none
+  %a.nav-link.dropdown-toggle.p-sm-0{href: "#", "data-toggle" => "dropdown"}
+    %img.avatar-md.d-none.d-sm-inline{src: current_user.profile_picture.url(:small)}
+    %span.d-inline.d-sm-none
       = current_user.screen_name
       %b.caret
   .dropdown-menu
