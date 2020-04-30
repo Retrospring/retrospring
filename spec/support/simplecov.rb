@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require "simplecov"
-# require "simplecov-rcov"
-# SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 SimpleCov.start "rails"
+
+if ENV.key?("CODECOV_TOKEN")
+  require "codecov"
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end

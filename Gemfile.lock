@@ -100,6 +100,10 @@ GEM
       xpath (~> 3.2)
     climate_control (0.2.0)
     cliver (0.3.2)
+    codecov (0.1.16)
+      json
+      simplecov
+      url
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -448,8 +452,6 @@ GEM
     simplecov-json (0.2.1)
       json
       simplecov
-    simplecov-rcov (0.2.3)
-      simplecov (>= 0.4.1)
     spring (2.1.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -492,6 +494,7 @@ GEM
     unicorn (5.5.4)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    url (0.3.2)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -518,6 +521,7 @@ DEPENDENCIES
   brakeman
   byebug
   capybara
+  codecov
   coffee-rails (~> 4.1)
   colorize
   database_cleaner
@@ -574,7 +578,6 @@ DEPENDENCIES
   sidekiq (< 6)
   simplecov
   simplecov-json
-  simplecov-rcov
   spring (~> 2.0)
   sweetalert-rails
   timecop
