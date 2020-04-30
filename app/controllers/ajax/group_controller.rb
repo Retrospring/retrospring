@@ -19,7 +19,7 @@ class Ajax::GroupController < AjaxController
     params.require :user
 
     begin
-      target_user = User.find_by_screen_name(params[:user])
+      target_user = User.find_by_screen_name!(params[:user])
       group = Group.create! user: current_user, display_name: params[:name]
     rescue ActiveRecord::RecordInvalid => e
       NewRelic::Agent.notice_error(e)
@@ -85,7 +85,7 @@ class Ajax::GroupController < AjaxController
     add = params[:add] == 'true'
 
     begin
-      group = current_user.groups.find_by_name(params[:group])
+      group = current_user.groups.find_by_name!(params[:group])
     rescue ActiveRecord::RecordNotFound => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :notfound
@@ -93,7 +93,7 @@ class Ajax::GroupController < AjaxController
       return
     end
 
-    target_user = User.find_by_screen_name(params[:user])
+    target_user = User.find_by_screen_name!(params[:user])
 
     if add
       group.add_member target_user if group.members.find_by_user_id(target_user.id).nil?
