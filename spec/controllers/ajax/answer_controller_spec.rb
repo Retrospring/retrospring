@@ -186,7 +186,7 @@ describe Ajax::AnswerController, type: :controller do
 
   describe "#destroy" do
     let(:answer_user) { user }
-    let(:question) { FactoryBot.create(:question, user: FactoryBot.create(:user)) }
+    let(:question) { FactoryBot.create(:question) }
     let(:answer) { FactoryBot.create(:answer, user: answer_user, question: question) }
     let(:answer_id) { answer.id }
 
