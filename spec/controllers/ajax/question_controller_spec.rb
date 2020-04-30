@@ -3,8 +3,6 @@
 require "rails_helper"
 
 describe Ajax::QuestionController, :ajax_controller, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
-
   describe "#create" do
     shared_examples "creates the question" do |check_for_inbox = true|
       it "creates the question" do

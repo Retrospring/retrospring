@@ -4,7 +4,6 @@
 require "rails_helper"
 
 describe Ajax::CommentController, :ajax_controller, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
   let(:answer) { FactoryBot.create(:answer, user: FactoryBot.create(:user)) }
 
   describe "#create" do

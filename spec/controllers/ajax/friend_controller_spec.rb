@@ -3,8 +3,6 @@
 require "rails_helper"
 
 describe Ajax::FriendController, :ajax_controller, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
-
   describe "#create" do
     let(:params) do
       {
