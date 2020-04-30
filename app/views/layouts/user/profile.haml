@@ -1,11 +1,11 @@
-#profile--header
-  %img.profile--header-img{src: @user.profile_header.url(:web)}
-.container.j2-page.headerable
+.profile__header-container
+  %img.profile__header-image{src: @user.profile_header.url(:web)}
+.container
   .row
-    #profile-info.col-md-3.col-xs-12.col-sm-4.j2-col-reset
-      = render 'user/profile_info'
+    .col-md-3.col-xs-12.col-sm-4
+      = render 'user/profile'
       .d-none.d-sm-block= render 'shared/links'
-    .col-md-9.col-xs-12.col-sm-8.j2-col-reset
+    .col-md-9.col-xs-12.col-sm-8
       = render "questionbox"
       = render "tabs/profile"
       = yield
