@@ -46,6 +46,8 @@ class Ajax::InboxController < AjaxController
   end
 
   def remove_all
+    raise unless user_signed_in?
+
     begin
       Inbox.where(user: current_user).each { |i| i.remove }
     rescue => e
