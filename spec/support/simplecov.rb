@@ -3,7 +3,7 @@
 require "simplecov"
 SimpleCov.start "rails"
 
-if ENV.key?("CODECOV_TOKEN")
-  require "codecov"
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+if ENV.key?("GITHUB_ACTIONS")
+  require "simplecov-cobertura"
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end

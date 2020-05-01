@@ -65,6 +65,9 @@ jobs:
       - name: Run tests
         run: bundle exec rake spec
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
           REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/coverage.xml

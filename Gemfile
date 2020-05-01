@@ -98,7 +98,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'simplecov', require: false
   gem 'simplecov-json', require: false
-  gem 'codecov', require: false, git: "https://github.com/timoschilling/codecov-ruby", ref: "add-github-action-support" # watch this space: https://github.com/codecov/codecov-ruby/pull/52
+  gem 'simplecov-cobertura', require: false
   gem 'database_cleaner'
   gem 'better_errors'
   gem 'letter_opener' # Use this just in local test environments
