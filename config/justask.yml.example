@@ -58,7 +58,7 @@ fog:
     aws_access_key_id: 'ACCESS KEY'
     aws_secret_access_key: 'SECRET KEY'
     region: 'space-pluto-1'
+    # URL host, comment out to use default, GENERALLY you don't want to define this
     host: 's3.wherever.com'
   # bucket name, required
   directory: 'retrospring'
-  # URL host, comment out to use default, GENERALLY you don't want to define this
