@@ -16,6 +16,16 @@ GIT
   specs:
     questiongenerator (0.1.0)
 
+GIT
+  remote: https://github.com/timoschilling/codecov-ruby
+  revision: d98380b89acfe4c014aafc50c5ec0b075c32ef7a
+  ref: add-github-action-support
+  specs:
+    codecov (0.1.16)
+      json
+      simplecov
+      url
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -100,10 +110,6 @@ GEM
       xpath (~> 3.2)
     climate_control (0.2.0)
     cliver (0.3.2)
-    codecov (0.1.16)
-      json
-      simplecov
-      url
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -521,7 +527,7 @@ DEPENDENCIES
   brakeman
   byebug
   capybara
-  codecov
+  codecov!
   coffee-rails (~> 4.1)
   colorize
   database_cleaner
