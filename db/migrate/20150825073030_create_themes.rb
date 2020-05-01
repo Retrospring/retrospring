@@ -30,7 +30,10 @@ class CreateThemes < ActiveRecord::Migration[4.2]
       t.integer :background_text, limit: 4, default: 0x222222
       t.integer :background_muted, limit: 4, default: 0xBBBBBB
 
-      t.attachment :css
+      t.string :css_file_name
+      t.string :css_content_type
+      t.bigint :css_file_size
+      t.datetime :css_updated_at
 
       t.timestamps null: false
     end

@@ -28,8 +28,6 @@ gem 'bootstrap_form'
 gem 'font-kit-rails'
 gem 'nprogress-rails'
 gem 'font-awesome-rails', '~> 4.7.0'
-gem "paperclip", "~> 5.2"
-gem 'delayed_paperclip'
 gem 'fog-core'
 gem 'fog-aws'
 gem 'fog-local'
@@ -39,6 +37,8 @@ gem 'bootstrap4-datetime-picker-rails'
 gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
 gem 'colorize'
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
 
 gem "rolify", "~> 5.2"
 
@@ -79,6 +79,7 @@ group :development do
   gem 'spring', '~> 2.0'
   gem 'byebug'
   gem 'web-console', '< 4.0.0'
+  gem 'binding_of_caller'
 end
 
 gem 'puma'

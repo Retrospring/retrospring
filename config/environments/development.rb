@@ -29,14 +29,8 @@ Rails.application.configure do
   # Action Mailer Setup
   # if you want to test sending mails locally, uncomment the line below and comment the :sendmail line
   # config.action_mailer.delivery_method = :letter_opener
-  if ENV["mailcatcher"] == "yes"
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
-  elsif ENV["letteropener"] == "yes"
-    config.action_mailer.delivery_method = :letter_opener
-  else
-    config.action_mailer.delivery_method = :sendmail
-  end
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
