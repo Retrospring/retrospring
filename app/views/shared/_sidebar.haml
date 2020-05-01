@@ -5,18 +5,9 @@
     .profile__name
       - unless current_user.display_name.blank?
         .profile__display-name
-          = current_user.screen_name
+          = current_user.display_name
       .profile__screen-name
         = current_user.screen_name
-    .row
-      .col-md-6.col-sm-6.col-xs-6
-        %a{href: show_user_followers_path(current_user.screen_name)}
-          %h4.entry-text#follower-count= current_user.follower_count
-          %h6.entry-subtext= t('views.general.follower').pluralize(current_user.follower_count)
-      .col-md-6.col-sm-6.col-xs-6
-        %a{href: show_user_friends_path(current_user.screen_name)}
-          %h4.entry-text#friend-count= current_user.friend_count
-          %h6.entry-subtext= t('views.general.following')
 .card
   .list-group
     = list_group_item t('views.general.timeline'), root_path
