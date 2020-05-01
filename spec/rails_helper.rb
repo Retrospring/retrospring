@@ -12,6 +12,7 @@ require "rspec/its"
 require "devise"
 require "capybara/rails"
 require "capybara/rspec"
+require "rspec-sidekiq"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
