@@ -1,6 +1,6 @@
-#users
+#users.row.row-cols-1.row-cols-sm-2.row-cols-md-3
   - @users.each do |user|
-    .col-md-4.col-sm-6.col-xs-12
+    .col
       = render 'shared/userbox', user: user
 
 = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @users_last_id

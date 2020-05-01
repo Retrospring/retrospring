@@ -63,6 +63,7 @@ $navbar-inverse-toggle-border-color: #512da8;
 
 @import
 "bootstrap",
+"bootstrap-datetimepicker",
 "font-awesome",
 "nprogress",
 "nprogress-bootstrap";
@@ -82,6 +83,7 @@ $navbar-inverse-toggle-border-color: #512da8;
 
 @import
 "overrides/alerts",
+"overrides/bootstrap-datetimepicker",
 "overrides/buttons",
 "overrides/colors",
 "overrides/card",
@@ -89,6 +91,7 @@ $navbar-inverse-toggle-border-color: #512da8;
 "overrides/inputs",
 "overrides/links",
 "overrides/list-group",
+"overrides/minicolors",
 "overrides/navbar";
 
 /**
@@ -102,21 +105,7 @@ $navbar-inverse-toggle-border-color: #512da8;
 "components/buttons",
 "components/jumbotron",
 "components/profile",
-"components/question";
-
-body { padding-top: 50px; }
-
-@import 'bootstrap-datetimepicker';
-.remove-native-picker::-webkit-calendar-picker-indicator{
-  display: none
-}
+"components/question",
+"components/userbox";
 
 @import "base";
-
-.minicolors-theme-bootstrap .minicolors-swatch {
-  top:           0;
-  left:          0;
-  width:         42px;
-  height:        42px;
-  border-radius: 0;
-}

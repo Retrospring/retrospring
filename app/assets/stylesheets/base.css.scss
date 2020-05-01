@@ -4,6 +4,7 @@ body {
   overflow-y: scroll;
   word-wrap: break-word;
   background-color: var(--background);
+  padding-top: 50px;
 }
 
 @import "scss/flags";
@@ -13,7 +14,6 @@ body {
 @import "scss/comments";
 @import "scss/entry";
 @import "scss/panel";
-@import "scss/user";
 @import "scss/notifications";
 
 .j2-page {
