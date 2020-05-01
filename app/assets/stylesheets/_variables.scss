@@ -1,3 +1,22 @@
+// Font settings
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+$font-family-sans-serif:  "Lato","Open Sans", "Helvetica Neue", Helvetica, "DejaVu Sans", Arial, sans-serif;
+$font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
+$font-family-monospace:   "PragmataPro", Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
+$font-family-base:        $font-family-sans-serif;
+
+$font-size-base:          1rem;
+$font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
+
+$font-size-h1:            floor(($font-size-base * 2.6)); // ~36px
+$font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.7)); // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
+$font-size-h5:            $font-size-base;
+$font-size-h6:            ceil(($font-size-base * 0.85)); // ~12px
+
 // Color overrides for Bootstrap
 $primary: #5e35b1;
 
@@ -8,7 +27,7 @@ $card-border-width: 0;
 $list-group-border-width: 0;
 
 // nProgress
-$nprogress-color: lighten($navbar-inverse-bg, 25%);
+$nprogress-color: lighten($primary, 25%);
 
 // Color names for theme generation
 $color-names: (
@@ -65,3 +84,5 @@ $avatar-sizes: (
 
   --input-text: 0, 0, 0;
 }
+
+$gray: #e2e2e2;
