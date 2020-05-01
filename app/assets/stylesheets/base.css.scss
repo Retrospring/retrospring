@@ -13,7 +13,6 @@ body {
 @import "scss/answerbox";
 @import "scss/comments";
 @import "scss/panel";
-@import "scss/notifications";
 
 .j2-page {
   padding-top: 30px;
@@ -92,11 +91,4 @@ body {
 
 .heading-about {
   margin-top: 0px;
-}
-
-.row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
 }
