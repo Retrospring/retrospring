@@ -111,7 +111,7 @@ class Ajax::ModerationController < AjaxController
     params.require :permaban
 
     reason = params[:reason]
-    target = User.find_by_screen_name(params[:user])
+    target = User.find_by_screen_name!(params[:user])
     unban  = params[:ban] == "0"
     perma  = params[:permaban] == "1"
 
@@ -149,7 +149,7 @@ class Ajax::ModerationController < AjaxController
 
     status = params[:status] == 'true'
 
-    target_user = User.find_by_screen_name(params[:user])
+    target_user = User.find_by_screen_name!(params[:user])
 
     @response[:message] = I18n.t('messages.moderation.privilege.nope')
     return unless %w(moderator admin).include? params[:type].downcase

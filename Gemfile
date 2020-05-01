@@ -91,7 +91,7 @@ group :development, :test do
   gem 'puma'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec-its', '~> 1.3'
-  gem "rspec-sidekiq", "~> 3.0"
+  gem "rspec-sidekiq", "~> 3.0", require: false
   gem 'factory_bot_rails', require: false
   gem 'faker'
   gem 'capybara'
