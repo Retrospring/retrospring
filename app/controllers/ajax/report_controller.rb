@@ -19,7 +19,7 @@ class Ajax::ReportController < AjaxController
 
     object = case obj
       when 'User'
-        User.find_by_screen_name params[:id]
+        User.find_by_screen_name! params[:id]
       when 'Question'
         Question.find params[:id]
       when 'Answer'
