@@ -11,13 +11,16 @@ class ProfilePictureUploader < CarrierWave::Uploader::Base
     "/system/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def paperclip_path
+    "users/:attachment/:id_partition/:style/:basename.:extension"
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url(*args)
     # For Rails 3.1+ asset pipeline compatibility:
     # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
 
-    "/images/
-" + [version_name, "no_avatar.png"].compact.join('/')
+    "/images/" + [version_name, "no_avatar.png"].compact.join('/')
   end
 
   version :large do
