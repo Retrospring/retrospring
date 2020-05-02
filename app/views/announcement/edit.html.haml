@@ -1,5 +1,5 @@
 - provide(:title, generate_title("Edit announcement"))
-.container.j2-page
+.container.container--main
   = bootstrap_form_for(@announcement, url: {action: "update"}, method: "PATCH") do |f|
     - if @announcement.errors.any?
       .row

@@ -10,6 +10,6 @@
         %span{id: "#{group.name}-members"}= group.members.count
         = t 'views.modal.group.members'
         ·
-        %a.j2-delete#delete-group{href: "#", data: { group: group.name }}
+        %a.text-danger#delete-group{href: "#", data: { group: group.name }}
           %i.fa.fa-close
           = t 'views.actions.delete'
