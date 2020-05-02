@@ -41,6 +41,9 @@ class User < ApplicationRecord
 
   has_one :theme, dependent: :destroy
 
+  attr_accessor :profile_picture_x, :profile_picture_y, :profile_picture_w, :profile_picture_h,
+                :profile_header_x, :profile_header_y, :profile_header_w, :profile_header_h
+
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 
@@ -65,7 +68,7 @@ class User < ApplicationRecord
                    end unless website.blank?
   end
 
-  # when a user deleted himself, all reports relating to the user are invalid
+  # when a user has been deleted, all reports relating to the user become invalid
   before_destroy do
     rep = Report.where(target_id: self.id, type: 'Reports::User')
     rep.each do |r|
@@ -220,10 +223,6 @@ class User < ApplicationRecord
     ModerationComment.create!(user: self, report: report, content: content)
   end
   # endregion
-
-  def cropping?
-    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
-  end
 
   # forwards fill
   def banned?
