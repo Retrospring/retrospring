@@ -51,11 +51,22 @@
 "overrides/colors",
 "overrides/card",
 "overrides/dropdown",
+"overrides/growls",
 "overrides/inputs",
 "overrides/links",
 "overrides/list-group",
 "overrides/minicolors",
-"overrides/navbar";
+"overrides/navbar",
+"overrides/sweet-alert";
+
+/**
+ ELEMENTS
+ ----------------------------------------------
+ Styles directly applied to HTML elements
+ */
+
+@import
+"elements/body";
 
 /**
  COMPONENTS
@@ -66,11 +77,23 @@
 @import
 "components/avatars",
 "components/buttons",
+"components/container",
 "components/entry",
 "components/jumbotron",
 "components/notifications",
 "components/profile",
 "components/question",
+"components/smiles",
 "components/userbox";
+
+/**
+ UTILITIES
+ ----------------------------------------------
+ Classes used for very specific cases
+ */
+
+@import
+"utilities";
+
 
 @import "base";
