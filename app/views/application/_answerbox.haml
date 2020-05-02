@@ -3,7 +3,7 @@
     = render "answerbox/header", a: a
   .card-body
     - if @display_all.nil?
-      .answerbox--answer-text
+      .answerbox__answer-text
         = markdown a.content[0..255]
         - if a.content.length > 255
           [...]
@@ -11,7 +11,7 @@
             %a.btn.btn-primary{href: show_user_answer_path(a.user.screen_name, a.id)}
               = t 'views.answerbox.read'
     - else
-      .answerbox--answer-text
+      .answerbox__answer-text
         = markdown a.content
     - if @user.nil?
       .row
@@ -19,11 +19,11 @@
           .media
             .pull-left
               %a{href: show_user_profile_path(a.user.screen_name)}
-                %img.img-rounded.answerbox--img{src: a.user.profile_picture.url(:medium)}
+                %img.answerbox__answer-user-avatar.avatar-sm{src: a.user.profile_picture.url(:medium)}
             .media-body
-              %h6.media-heading.answerbox--answer-user
+              %h6.media-heading.answerbox__answer-user
                 = raw t('views.answerbox.answered', hide: hidespan(t('views.answerbox.hide'), "xs"), user: user_screen_name(a.user))
-              .answerbox--answer-date
+              .answerbox__answer-date
                 = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))), show_user_answer_path(a.user.screen_name, a.id))
         .col-md-6.col-sm-8.col-xs-6.text-right
           = render 'answerbox/actions', a: a

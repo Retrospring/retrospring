@@ -1,0 +1,63 @@
+.answerbox {
+  &__question-text, 
+  &__question-user, 
+  &__answer-user, 
+  &__answer-date {
+    margin-bottom: 0px;
+    overflow: hidden;
+  }
+  
+  &__answer-date {
+    font-size: .8rem;
+    line-height: .8;
+    overflow: visible;
+  }
+
+  &__answer-text {
+    margin-bottom: map-get($spacers, 3);
+  }
+
+  &__question-user-avatar,
+  &__answer-user-avatar {
+    margin-right: map-get($spacers, 2);
+    border-radius: $avatar-border-radius;
+  }
+
+  & .text-muted a, 
+  & .text-muted a:hover {
+    color: var(--muted-text);
+    text-decoration: none;
+  }
+
+  &__action {
+    padding-left: map-get($spacers, 1);
+    padding-right: map-get($spacers, 1);
+
+    & i {
+      font-size: 1.4rem;
+      vertical-align: top;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+    &[name="ab-smile"] {
+      color: var(--primary);
+
+      &:hover {
+        color: var(--success);
+      }
+
+      &[data-action="unsmile"] {
+        color: var(--success);
+        
+        &:hover {
+          color: var(--danger);
+        }
+      }
+    }
+  }
+}
