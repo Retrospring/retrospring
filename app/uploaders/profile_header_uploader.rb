@@ -23,6 +23,8 @@ class ProfileHeaderUploader < CarrierWave::Uploader::Base
     "/images/header/" + [version_name, "no_header.jpg"].compact.join('/')
   end
 
+  version :original
+
   version :web do
     process resize_to_fit: [1500, 350]
   end

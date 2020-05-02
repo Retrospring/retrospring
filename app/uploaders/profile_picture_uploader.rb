@@ -23,6 +23,8 @@ class ProfilePictureUploader < CarrierWave::Uploader::Base
     "/images/" + [version_name, "no_avatar.png"].compact.join('/')
   end
 
+  version :original
+
   version :large do
     process resize_to_fit: [500, 500]
   end
