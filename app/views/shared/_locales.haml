@@ -4,7 +4,7 @@
       %a{href: '#', id: 'locale-switch'}
         %i.fa.fa-globe
         = t('views.locale.languages')
-    #locales-panel
+    #locales-panel.locales__panel
       %ul
         - APP_LOCALES.each do |key, value|
           %li

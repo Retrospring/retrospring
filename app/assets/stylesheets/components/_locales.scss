@@ -1,16 +1,15 @@
 .locales {
   text-align: center;
 
-  #locales-panel {
+  &__panel {
     position: relative;
     display:  none;
     padding:  5px;
 
     ul {
-      border-top:      1px solid #aaa;
       margin:          0;
       padding:         0;
-      padding-top:     5px;
+      padding-top:     map-get($spacers, 3);
       width:           100%;
       list-style:      none;
       display:         inline-flex;
@@ -18,9 +17,9 @@
       flex-wrap:       wrap;
       align-items:     center;
       justify-content: center;
+      
       li {
-        margin:     5px 10px;
-        margin-top: 0;
+        margin:     0 5px 10px 5px;
         flex:       0 0 auto;
 
         * {
