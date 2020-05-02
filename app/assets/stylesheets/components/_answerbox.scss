@@ -44,7 +44,8 @@
       text-decoration: none;
     }
 
-    &[name="ab-smile"] {
+    &[name="ab-smile"],
+    &[name="ab-smile-comment"] {
       color: var(--primary);
 
       &:hover {
