@@ -29,5 +29,5 @@
             ·
             %a{href: show_user_question_path(q.user.screen_name, q.id)}
               = pluralize(q.answer_count, t('views.general.answer'))
-        %p.answerbox--question-text
+        %p.answerbox__question-text
           = q.content

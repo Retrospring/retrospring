@@ -4,7 +4,7 @@
       .media.question-media
         - unless question.author_is_anonymous
           %a.pull-left{href: unless hidden then show_user_profile_path(question.user.screen_name) end}
-            %img.img-rounded.answerbox--img{src: question.user.profile_picture.url(:medium)}
+            %img.avatar-sm{src: question.user.profile_picture.url(:medium)}
         .media-body.question-body
           - if user_signed_in?
             .pull-right
@@ -28,4 +28,4 @@
               = user_screen_name question.user, anonymous: question.author_is_anonymous, url: false
             - else
               = raw t('views.answerbox.asked', user: user_screen_name(question.user, anonymous: question.author_is_anonymous), time: time_tooltip(question))
-          %p.answerbox--question-text= question.content
+          %p.answerbox__question-text= question.content

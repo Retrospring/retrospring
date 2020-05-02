@@ -13,7 +13,7 @@
             %a{href: show_user_profile_path(u.screen_name)}
               %span= u.display_name
             %span.text-muted= "@#{u.screen_name}"
-        %p.answerbox--question-text
+        %p.answerbox__question-text
           - if type == "new"
             = t('views.discover.userbox.new', time: time_ago_in_words(u.created_at))
           - elsif type == "most"
