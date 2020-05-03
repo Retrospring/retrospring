@@ -1,6 +1,7 @@
 body {
   overflow-y: scroll;
   word-wrap: break-word;
+  color: RGB(var(--body-text));
   background-color: var(--background);
   padding-top: $navbar-height;
 }
