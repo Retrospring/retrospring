@@ -1,5 +1,10 @@
+.btn {
+  color: RGB(var(--body-text));
+}
+
 @each $color in $color-names {
   .btn-#{$color} {
+    color: RGB(var(--#{$color}-text));
     background-color: var(--#{$color});
     border-color: var(--#{$color});
 
