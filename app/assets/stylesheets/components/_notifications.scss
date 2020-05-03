@@ -41,7 +41,7 @@
 
   .list-group-item {
     margin-top: map-get($spacers, 2);
-    background-color: var(--card-cap-bg);
+    background-color: var(--raised-accent);
 
     p {
       margin-bottom: 0;
