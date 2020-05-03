@@ -54,7 +54,7 @@ $avatar-sizes: (
 
 :root {
   --background: #f0edf4;
-  --input-bg: #ffffff;
+  --input-bg: var(--background);
   --raised-bg: #ffffff;
   --raised-accent: #f7f7f7;
 
