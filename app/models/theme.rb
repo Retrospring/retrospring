@@ -17,26 +17,6 @@ class Theme < ApplicationRecord
     greater_than_or_equal_to: 0, less_than_or_equal_to: 0xFFFFFF,
     allow_nil: true, only_integer: true
 
-  has_attached_file :css, use_timestamp: false, s3_headers: {
-    'Content-Type' => 'text/css'
-  }, fog_file: {
-    content_type: 'text/css'
-  }
-  validates_attachment_content_type :css, content_type: /^text\//
-
-  before_save do
-    self.css = nil
-
-    style = StringIO.new(render_theme_with_context(self))
-
-    style.class.class_eval { attr_accessor :original_filename, :content_type }
-
-    style.content_type = 'text/css'
-    style.original_filename = 'theme.css'
-
-    self.css = style
-  end
-
   def theme_color
     ('#' + ('0000000' + primary_color.to_s(16))[-6, 6])
   end
