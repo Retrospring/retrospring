@@ -9,6 +9,8 @@
 }
 
 .list-group-item-action {
+  color: RGB(var(--body-text));
+  
   &:hover, &:focus {
     background-color: var(--raised-accent);
   }
