@@ -1,67 +1,113 @@
-.card
-  .card-body
-    %b Presets:
-    %a{href: '#', class: 'theme_preset', data: {preset: 'rs'}} Retrospring Purple,
-    %a{href: '#', class: 'theme_preset', data: {preset: 'dc'}} Dark Copycat,
-    %a{href: '#', class: 'theme_preset', data: {preset: 'lc'}} Light Copycat
-    = bootstrap_form_for(current_user.theme || Theme.new, url: {action: "update_theme"}, html: {id: 'update_theme'}, method: "patch") do |f|
-      .row
-        .col-md-6
-          = f.text_field :primary_color, class: 'color', data: {default: 0x5E35B1}
-        .col-md-6
-          = f.text_field :primary_text, class: 'color', data: {default: 0xFFFFFF}
-      .row
-        .col-md-6
-          = f.text_field :danger_color, class: 'color', data: {default: 0xFF0039}
-        .col-md-6
-          = f.text_field :danger_text, class: 'color', data: {default: 0xFFFFFF}
-      .row
-        .col-md-6
-          = f.text_field :success_color, class: 'color', data: {default: 0x3FB618}
-        .col-md-6
-          = f.text_field :success_text, class: 'color', data: {default: 0xFFFFFF}
-      .row
-        .col-md-6
-          = f.text_field :warning_color, class: 'color', data: {default: 0xFF7518}
-        .col-md-6
-          = f.text_field :warning_text, class: 'color', data: {default: 0xFFFFFF}
-      .row
-        .col-md-6
-          = f.text_field :info_color, class: 'color', data: {default: 0x9954BB}
-        .col-md-6
-          = f.text_field :info_text, class: 'color', data: {default: 0xFFFFFF}
-      .row
-        .col-md-6
-          = f.text_field :default_color, class: 'color', data: {default: 0x222222}
-        .col-md-6
-          = f.text_field :default_text, class: 'color', data: {default: 0xEEEEEE}
-      .row
-        .col-md-6
-          = f.text_field :panel_color, class: 'color', data: {default: 0xF9F9F9}
-        .col-md-6
-          = f.text_field :panel_text, class: 'color', data: {default: 0x151515}
-      .row
-        .col-md-6
-          = f.text_field :link_color, class: 'color', data: {default: 0x5E35B1}
-        .col-md-6
-          = f.text_field :background_color, class: 'color', data: {default: 0xFFFFFF}
-      .row
-        .col-md-6
-          = f.text_field :background_text, class: 'color', data: {default: 0x222222}
-        .col-md-6
-          = f.text_field :background_muted, class: 'color', data: {default: 0xBBBBBB}
-      .row
-        .col-md-6
-          = f.text_field :input_color, class: 'color', data: {default: 0xFFFFFF}
-        .col-md-6
-          = f.text_field :input_text, class: 'color', data: {default: 0x000000}
-      .row
-        .col-md-6
-          = f.text_field :outline_color, class: 'color', data: {default: 0x5E35B1}
-        .col-md-6
+= bootstrap_form_for(current_user.theme || Theme.new, url: {action: "update_theme"}, html: {id: 'update_theme'}, method: "patch") do |f|
+  .card
+    .card-body
+      %h1 Theming
+      %p.lead Welcome to the Theme Editor!
+      %p 
+        Here you'll be able to modify your Retrospring experience by adjusting all available colors. 
+        To further help you with adjusting needs, there are a few example elements using the specified colors, and sections will include 
+        descriptions on their general use on the site!
 
+      %p 
+        And with that:
+        %b Happy Theming!
+  .card
+    .card-body
+      %h2 General
+      %p
+        Here you'll find general page values that are basically visible all across the page.
+      .row
+        .col-sm-6
+          = f.text_field :background_color, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-6
+          = f.text_field :background_text, class: 'color', data: {default: 0x222222}
+  .card
+    .card-body
+      %h2 Forms and Inputs
+      %p
+        Styles for form inputs, like textfields.
+      .row
+        .col-sm-6
+          = f.text_field :input_color, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-6
+          = f.text_field :input_text, class: 'color', data: {default: 0x000000}
+  .card
+    .card-body
+      %h2 Raised Content
+      %p
+        Raised content basically describes all the different boxes and panels you can see across the site.
+      .row
+        .col-sm-6
+          = f.text_field :panel_color, class: 'color', data: {default: 0xF9F9F9}
+        .col-sm-6
+          = f.text_field :panel_text, class: 'color', data: {default: 0x151515}
+  .card
+    .card-body
+      %h2 Colors
+      %p
+        Colors you can find used on the site. The names of the colors usually describe the context.
+        The "text" colors for all styles represent the color that text on top of these colors has.
+
+      %ul
+        %li
+          %b Primary:
+          The primary/brand color of the site, used for navigation, links, etc.
+        %li
+          %b Danger:
+          Color used for errors or critical actions like deleting something.
+        %li
+          %b Warning:
+          Color used for warnings if something non-critical has happened.
+        %li
+          %b Info:
+          Color used for informational popups or messages.
+        %li
+          %b Success:
+          Color used for messages if something went through successfully.
+      .row
+        .col-sm-6
+          = f.text_field :primary_color, class: 'color', data: {default: 0x5E35B1}
+        .col-sm-6
+          = f.text_field :primary_text, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-12
+          .alert.alert-primary
+            A simple primary alert—check it out!
+      .row
+        .col-sm-6
+          = f.text_field :danger_color, class: 'color', data: {default: 0xFF0039}
+        .col-sm-6
+          = f.text_field :danger_text, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-12
+          .alert.alert-danger
+            A simple danger alert—check it out!
+      .row
+        .col-sm-6
+          = f.text_field :warning_color, class: 'color', data: {default: 0xFF7518}
+        .col-sm-6
+          = f.text_field :warning_text, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-12
+          .alert.alert-warning
+            A simple warning alert—check it out!
+      .row
+        .col-sm-6
+          = f.text_field :info_color, class: 'color', data: {default: 0x9954BB}
+        .col-sm-6
+          = f.text_field :info_text, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-12
+          .alert.alert-info
+            A simple info alert—check it out!
+      .row
+        .col-sm-6
+          = f.text_field :success_color, class: 'color', data: {default: 0x3FB618}
+        .col-sm-6
+          = f.text_field :success_text, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-12
+          .alert.alert-success
+            A simple success alert—check it out!
+  .card
+    .card-body
       .pull-left
         = f.submit t('views.actions.save'), class: 'btn btn-primary'
 
-    .pull-right
-      =button_to 'Delete Theme', delete_user_theme_path, data: { confirm: "Are you sure?" }, tabindex: -1, method: :delete, class: "btn btn-danger"
+      .pull-right
+        = button_to 'Delete Theme', delete_user_theme_path, data: { confirm: "Are you sure?" }, tabindex: -1, method: :delete, class: "btn btn-danger"
