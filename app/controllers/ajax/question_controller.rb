@@ -27,14 +27,21 @@ class Ajax::QuestionController < AjaxController
     params.require :anonymousQuestion
     params.require :rcpt
 
+    is_never_anonymous = user_signed_in? && (params[:rcpt].start_with?('grp:') || params[:rcpt] == 'followers')
+
     begin
       question = Question.create!(content: params[:question],
-                                  author_is_anonymous: params[:anonymousQuestion],
+                                  author_is_anonymous: is_never_anonymous ? false : params[:anonymousQuestion],
                                   user: current_user)
     rescue ActiveRecord::RecordInvalid => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :rec_inv
       @response[:message] = I18n.t('messages.question.create.rec_inv')
+      return
+    end
+
+    if !user_signed_in? && !question.author_is_anonymous
+      question.delete
       return
     end
 
@@ -53,19 +60,27 @@ class Ajax::QuestionController < AjaxController
           QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
         rescue ActiveRecord::RecordNotFound => e
           NewRelic::Agent.notice_error(e)
+          question.delete
           @response[:status] = :not_found
           @response[:message] = I18n.t('messages.question.create.not_found')
           return
         end
       end
     else
-      if User.find(params[:rcpt]).nil?
+      u = User.find_by_id(params[:rcpt])
+      if u.nil?
         @response[:status] = :not_found
         @response[:message] = I18n.t('messages.question.create.not_found')
+        question.delete
         return
       end
 
-      Inbox.create!(user_id: params[:rcpt], question_id: question.id, new: true)
+      if !u.privacy_allow_anonymous_questions && question.author_is_anonymous
+        question.delete
+        return
+      end
+
+      Inbox.create!(user_id: u.id, question_id: question.id, new: true)
     end
 
     @response[:status] = :okay

@@ -90,14 +90,14 @@ group :development, :test do
   gem 'puma'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec-its', '~> 1.3'
-  gem "rspec-sidekiq", "~> 3.0"
+  gem "rspec-sidekiq", "~> 3.0", require: false
   gem 'factory_bot_rails', require: false
   gem 'faker'
   gem 'capybara'
   gem 'poltergeist'
   gem 'simplecov', require: false
   gem 'simplecov-json', require: false
-  gem 'simplecov-rcov', require: false
+  gem 'simplecov-cobertura', require: false
   gem 'database_cleaner'
   gem 'better_errors'
   gem 'letter_opener' # Use this just in local test environments

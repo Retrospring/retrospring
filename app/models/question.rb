@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   include Question::AnswerMethods
 
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :answers, dependent: :destroy
   has_many :inboxes, dependent: :destroy
 

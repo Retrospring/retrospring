@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require "simplecov"
-# require "simplecov-rcov"
-# SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 SimpleCov.start "rails"
+
+if ENV.key?("GITHUB_ACTIONS")
+  require "simplecov-cobertura"
+  SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
+end

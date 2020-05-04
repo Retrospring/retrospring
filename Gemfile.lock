@@ -444,12 +444,12 @@ GEM
     simplecov (0.18.5)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
+    simplecov-cobertura (1.3.1)
+      simplecov (~> 0.8)
     simplecov-html (0.12.2)
     simplecov-json (0.2.1)
       json
       simplecov
-    simplecov-rcov (0.2.3)
-      simplecov (>= 0.4.1)
     spring (2.1.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
@@ -572,8 +572,8 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sidekiq (< 6)
   simplecov
+  simplecov-cobertura
   simplecov-json
-  simplecov-rcov
   spring (~> 2.0)
   sweetalert-rails
   timecop

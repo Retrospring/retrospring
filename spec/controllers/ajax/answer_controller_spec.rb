@@ -3,14 +3,7 @@
 
 require "rails_helper"
 
-describe Ajax::AnswerController, type: :controller do
-  shared_examples "returns the expected response" do
-    it "returns the expected response" do
-      expect(JSON.parse(subject.body)).to match(expected_response)
-    end
-  end
-
-  let(:user) { FactoryBot.create(:user) }
+describe Ajax::AnswerController, :ajax_controller, type: :controller do
   let(:question) { FactoryBot.create(:question, user: FactoryBot.build(:user, privacy_allow_stranger_answers: asker_allows_strangers)) }
   let(:asker_allows_strangers) { true }
 
@@ -186,7 +179,7 @@ describe Ajax::AnswerController, type: :controller do
 
   describe "#destroy" do
     let(:answer_user) { user }
-    let(:question) { FactoryBot.create(:question, user: FactoryBot.create(:user)) }
+    let(:question) { FactoryBot.create(:question) }
     let(:answer) { FactoryBot.create(:answer, user: answer_user, question: question) }
     let(:answer_id) { answer.id }
 

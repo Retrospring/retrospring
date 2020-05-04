@@ -6,6 +6,18 @@ class AjaxController < ApplicationController
 
   respond_to :json
 
+  rescue_from(StandardError) do |e|
+    NewRelic::Agent.notice_error(e)
+
+    @response = {
+      success: false,
+      message: "Something went wrong",
+      status: :err
+    }
+
+    return_response
+  end
+
   rescue_from(ActiveRecord::RecordNotFound) do |e|
     NewRelic::Agent.notice_error(e)
 
