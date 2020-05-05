@@ -38,7 +38,9 @@ $color-names: (
   "danger",
   "warning",
   "info",
-  "success"
+  "success",
+  "dark",
+  "light"
 );
 
 // Avatar variables
@@ -82,6 +84,8 @@ $avatar-sizes: (
   --warning-text: 255, 255, 255;
   --info-text: 255, 255, 255;
   --success-text: 255, 255, 255;
+  --dark-text: 255, 255, 255;
+  --light-text: 0, 0, 0;
 
   --body-text: 0, 0, 0;
   --muted-text: 108, 117, 125;
