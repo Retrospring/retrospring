@@ -47,14 +47,18 @@ module ThemeHelper
   end
 
   def get_active_theme
-    if current_user&.theme
-      current_user.theme
-    elsif @user&.theme
+    if @user&.theme
       if user_signed_in?
-        @user.theme unless !current_user&.show_foreign_themes?
+        if current_user&.show_foreign_themes?
+          @user.theme
+        else
+          current_user&.theme
+        end
       else
         @user.theme
       end
+    elsif current_user&.theme
+      current_user.theme
     end
   end
 
