@@ -48,7 +48,7 @@ module ApplicationHelper
   end
 
   def hidespan(body, hide)
-    content_tag(:span, body, class: "hidden-#{hide}")
+    content_tag(:span, body, class: hide)
   end
 
   ##
