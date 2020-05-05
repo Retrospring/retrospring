@@ -12,12 +12,12 @@
     %title= yield(:title)
     = javascript_include_tag 'i18n', 'data-turbolinks-track' => true
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = render_theme
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     - if user_signed_in?
       - if current_user.mod?
         = javascript_include_tag 'moderation', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    = render_theme
   %body#version1
     - if user_signed_in?
       = render 'navigation/main'
