@@ -7,7 +7,7 @@
         %div{class: "ab-comment-smile-list", style: "height: 0; width: 0"}= render "modal/comment_smiles", comment: comment
         .media
           .pull-left
-            %img.comment__user-avatar.avatar-md{src: comment.user.profile_picture.url(:medium)}
+            %img.comment__user-avatar.avatar-sm{src: comment.user.profile_picture.url(:medium)}
           .media-body
             %h6.media-heading.comment__user
               = user_screen_name comment.user

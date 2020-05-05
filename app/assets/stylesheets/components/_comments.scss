@@ -1,5 +1,6 @@
 .comment {
   list-style-type: none;
+  margin-bottom: map-get($spacers, 2);
 
   &__container {
     padding-left: 0;
