@@ -1,0 +1,25 @@
+.card
+  .list-group.list-group-horizontal-sm.text-center
+    = list_group_item t('views.general.timeline'), root_path
+    - if APP_CONFIG.dig(:features, :public, :enabled)
+      = list_group_item t('views.general.public'), public_timeline_path
+    .list-group-item.list-group-item-action.dropdown{class: "#{'active' if @group}"}
+      %a.dropdown-toggle{ type: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false }}
+        - if @group
+          = @group.display_name
+        - else
+          Groups
+      .dropdown-menu
+        - if current_user.groups.empty?
+          .p-3
+            %p Looks like you don't have any groups yet!
+            %p
+              You can create groups and add users to them using the
+              %i.fa.fa-fw.fa-users
+              icon in the navigation on user profiles (that are not yours)
+            %p.mb-0
+              Once you have done that, the groups will be listed here and
+              if selected, you'll get a timeline view of all users from
+              that group!
+        - current_user.groups.each do |group|
+          %a.dropdown-item{ href: group_timeline_path(group.name) }= group.display_name

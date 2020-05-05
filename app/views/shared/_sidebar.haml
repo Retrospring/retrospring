@@ -8,18 +8,12 @@
           = current_user.display_name
       .profile__screen-name
         = current_user.screen_name
-.card
-  .list-group
-    = list_group_item t('views.general.timeline'), root_path
-    - if APP_CONFIG.dig(:features, :public, :enabled)
-      = list_group_item t('views.general.public'), public_timeline_path
-    - current_user.groups.each do |group|
-      = list_group_item group.display_name, group_timeline_path(group.name)
 - unless @group.nil?
-  .card.profile--panel
-    .card-header
-      %h3.card-title= t('views.group.members')
+  .card
+    .card-header= t('views.group.members')
     .card-body
+      - if @group.members.empty?
+        %p.text-muted No members yet!
       - @group.members.each do |member|
         %a{href: show_user_profile_path(member.user.screen_name), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top }}
           %img.avatar-xs{src: member.user.profile_picture.url(:medium)}
