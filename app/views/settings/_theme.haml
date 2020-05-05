@@ -18,9 +18,9 @@
         Here you'll find general page values that are basically visible all across the page.
       .row
         .col-sm-6
-          = f.text_field :background_color, class: 'color', data: {default: 0xFFFFFF}
+          = f.text_field :background_color, class: 'color', data: {default: 0xF0EDF4}
         .col-sm-6
-          = f.text_field :background_text, class: 'color', data: {default: 0x222222}
+          = f.text_field :body_text, class: 'color', data: {default: 0x000000}
   .card
     .card-body
       %h2 Forms and Inputs
@@ -38,9 +38,11 @@
         Raised content basically describes all the different boxes and panels you can see across the site.
       .row
         .col-sm-6
-          = f.text_field :panel_color, class: 'color', data: {default: 0xF9F9F9}
+          = f.text_field :raised_background, class: 'color', data: {default: 0xFFFFFF}
         .col-sm-6
-          = f.text_field :panel_text, class: 'color', data: {default: 0x151515}
+          = f.text_field :raised_accent, class: 'color', data: {default: 0xF7F7F7}
+    .card-footer
+      %p Some text on top of a accented area on a raised element!
   .card
     .card-body
       %h2 Colors
@@ -74,7 +76,7 @@
             A simple primary alert—check it out!
       .row
         .col-sm-6
-          = f.text_field :danger_color, class: 'color', data: {default: 0xFF0039}
+          = f.text_field :danger_color, class: 'color', data: {default: 0xDC3545}
         .col-sm-6
           = f.text_field :danger_text, class: 'color', data: {default: 0xFFFFFF}
         .col-sm-12
@@ -82,7 +84,7 @@
             A simple danger alert—check it out!
       .row
         .col-sm-6
-          = f.text_field :warning_color, class: 'color', data: {default: 0xFF7518}
+          = f.text_field :warning_color, class: 'color', data: {default: 0xFFC107}
         .col-sm-6
           = f.text_field :warning_text, class: 'color', data: {default: 0xFFFFFF}
         .col-sm-12
@@ -90,7 +92,7 @@
             A simple warning alert—check it out!
       .row
         .col-sm-6
-          = f.text_field :info_color, class: 'color', data: {default: 0x9954BB}
+          = f.text_field :info_color, class: 'color', data: {default: 0x17A2B8}
         .col-sm-6
           = f.text_field :info_text, class: 'color', data: {default: 0xFFFFFF}
         .col-sm-12
@@ -98,16 +100,36 @@
             A simple info alert—check it out!
       .row
         .col-sm-6
-          = f.text_field :success_color, class: 'color', data: {default: 0x3FB618}
+          = f.text_field :success_color, class: 'color', data: {default: 0x28A745}
         .col-sm-6
           = f.text_field :success_text, class: 'color', data: {default: 0xFFFFFF}
         .col-sm-12
           .alert.alert-success
             A simple success alert—check it out!
+      .row
+        .col-sm-6
+          = f.text_field :dark_color, class: 'color', data: {default: 0x343A40}
+        .col-sm-6
+          = f.text_field :dark_text, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-12
+          %button.btn.btn-dark.mb-3 A dark button
+      .row
+        .col-sm-6
+          = f.text_field :light_color, class: 'color', data: {default: 0xF8F9FA}
+        .col-sm-6
+          = f.text_field :light_text, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-12
+          %button.btn.btn-light.mb-3 A light button
+      .row
+        .col-sm-6
+          = f.text_field :muted_text, class: 'color', data: {default: 0x6C757D}
+        .col-sm-6
+          %p.pt-4.text-muted Some muted text
   .card
     .card-body
       .pull-left
         = f.submit t('views.actions.save'), class: 'btn btn-primary'
 
-      .pull-right
-        = button_to 'Delete Theme', delete_user_theme_path, data: { confirm: "Are you sure?" }, tabindex: -1, method: :delete, class: "btn btn-danger"
+      - if current_user.theme
+        .pull-right
+          = button_to 'Delete Theme', delete_user_theme_path, data: { confirm: "Are you sure?" }, tabindex: -1, method: :delete, class: "btn btn-danger"

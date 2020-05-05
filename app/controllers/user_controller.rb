@@ -117,12 +117,12 @@ class UserController < ApplicationController
       :success_color, :success_text,
       :warning_color, :warning_text,
       :info_color, :info_text,
-      :default_color, :default_text,
-      :panel_color, :panel_text,
-      :link_color, :background_color,
-      :background_text, :background_muted,
-      :input_color, :input_text,
-      :outline_color
+      :dark_color, :dark_text,
+      :light_color, :light_text,
+      :raised_background, :raised_accent,
+      :background_color, :body_text, 
+      :muted_text, :input_color, 
+      :input_text
     ])
 
     if current_user.theme.nil?
