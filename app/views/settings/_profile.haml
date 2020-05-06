@@ -6,7 +6,7 @@
 
       .media#profile-picture-media
         .pull-left
-          %img.img-rounded.profile--img{src: current_user.profile_picture.url(:medium)}
+          %img.avatar-lg.mr-3{src: current_user.profile_picture.url(:medium)}
         .media-body
           = f.file_field :profile_picture, label: t('views.settings.profile.avatar')
 
@@ -23,7 +23,7 @@
 
       .media#profile-header-media
         .pull-left
-          %img.img-rounded.header--img{src: current_user.profile_header.url(:mobile)}
+          %img.mr-3{src: current_user.profile_header.url(:mobile)}
         .media-body
           = f.file_field :profile_header, label: t('views.settings.profile.header')
 
