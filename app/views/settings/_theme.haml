@@ -1,16 +1,20 @@
-= bootstrap_form_for(current_user.theme || Theme.new, url: {action: "update_theme"}, html: {id: 'update_theme'}, method: "patch") do |f|
-  .card
-    .card-body
-      %h1 Theming
-      %p.lead Welcome to the Theme Editor!
-      %p 
-        Here you'll be able to modify your Retrospring experience by adjusting all available colors. 
-        To further help you with adjusting needs, there are a few example elements using the specified colors, and sections will include 
-        descriptions on their general use on the site!
+.card
+  .card-body
+    %h1 Theming
+    %p.lead Welcome to the Theme Editor!
+    %p 
+      Here you'll be able to modify your Retrospring experience by adjusting all available colors. 
+      To further help you with adjusting needs, there are a few example elements using the specified colors, and sections will include 
+      descriptions on their general use on the site!
 
-      %p 
-        And with that:
-        %b Happy Theming!
+    %p 
+      And with that:
+      %b Happy Theming!
+    
+    - if current_user.theme
+      .pull-right
+        = button_to 'Delete Theme', delete_user_theme_path, data: { confirm: "Are you sure?" }, tabindex: -1, method: :delete, class: "btn btn-danger"
+= bootstrap_form_for(current_user.theme || Theme.new, url: {action: "update_theme"}, html: {id: 'update_theme'}, method: "patch") do |f|
   .card
     .card-body
       %h2 General
@@ -129,7 +133,3 @@
     .card-body
       .pull-left
         = f.submit t('views.actions.save'), class: 'btn btn-primary'
-
-      - if current_user.theme
-        .pull-right
-          = button_to 'Delete Theme', delete_user_theme_path, data: { confirm: "Are you sure?" }, tabindex: -1, method: :delete, class: "btn btn-danger"
