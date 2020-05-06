@@ -40,36 +40,6 @@ class UpdateThemeFields < ActiveRecord::Migration[5.2]
   end
 
   def down
-    add_column :themes, :css_file_name, :string
-    add_column :themes, :css_content_type, :string
-    add_column :themes, :css_file_size, :integer
-    add_column :themes, :css_updated_at, :datetime
-
-    rename_column :themes, :raised_background, :panel_color 
-    add_column :themes, :panel_text, :integer
-    remove_column :themes, :raised_accent
-
-    rename_column :themes, :dark_color, :default_color 
-    rename_column :themes, :dark_text, :default_text
-
-    remove_column :themes, :light_color
-    remove_column :themes, :light_text
-
-    rename_column :themes, :body_text, :background_text
-    rename_column :themes, :muted_text, :background_muted
-
-    add_column :themes, :link_color, :integer
-    add_column :themes, :outline_color, :integer
-
-    change_column_default :themes, :panel_color, 0xF9F9F9
-    change_column_default :themes, :default_color, 0x222222
-    change_column_default :themes, :background_text, 0x222222
-    change_column_default :themes, :background_muted, 0xBBBBBB
-    change_column_default :themes, :background_color, 0xFFFFFF
-    change_column_default :themes, :danger_color, 0xFF0039
-    change_column_default :themes, :warning_color, 0xFF7518
-    change_column_default :themes, :info_color, 0x9954BB
-    change_column_default :themes, :success_color, 0x3FB618
-    change_column_default :themes, :input_color, 0xFFFFFF
+    raise ActiveRecord::IrreversibleMigration
   end
 end
