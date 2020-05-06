@@ -107,7 +107,7 @@ class UserController < ApplicationController
 
   def delete_theme
     current_user.theme.destroy!
-    redirect_to edit_user_profile_path
+    redirect_to edit_user_theme_path
   end
 
   def update_theme
