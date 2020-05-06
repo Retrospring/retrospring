@@ -3,6 +3,34 @@
 require "rails_helper"
 
 describe ThemeHelper, :type => :helper do
+  describe "#render_theme" do
+    context "when target page doesn't have a theme" do
+      it "returns no theme" do
+        expect(helper.render_theme).to be_nil
+      end
+    end
+
+    context "when target page has a theme" do
+      before(:each) do
+        @user = FactoryBot.create(:user)
+        @user.theme = Theme.new
+        @user.save!
+      end
+
+      it "returns a theme" do
+        expect(helper.render_theme).to include("<style>:root {")
+      end
+
+      it "contains correct theme background colors" do
+        expect(helper.render_theme).to include("--primary: #5e35b1;")
+      end
+
+      it "properly converts color values for *-text theme attributes" do
+        expect(helper.render_theme).to include("--primary-text: 255, 255, 255;")
+      end
+    end
+  end
+
   describe "#get_hex_color_from_theme_value" do
     it "returns the proper hex value from the decimal value for white" do
       expect(helper.get_hex_color_from_theme_value(16777215)).to eq("ffffff")
