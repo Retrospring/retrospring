@@ -16,4 +16,8 @@
       ) var(--#{$color});
     }
   }
+
+  .btn-outline-#{$color} {
+    color: var(--#{$color});
+  }
 }
