@@ -4,8 +4,12 @@ require "rails_helper"
 
 describe ThemeHelper, :type => :helper do
   describe "#get_hex_color_from_theme_value" do
-    it "returns the proper hex value from the theme value" do
+    it "returns the proper hex value from the decimal value for white" do
       expect(helper.get_hex_color_from_theme_value(16777215)).to eq("ffffff")
+    end
+
+    it "returns the proper hex value from the decimal value for purple" do
+      expect(helper.get_hex_color_from_theme_value(6174129)).to eq("5e35b1")
     end
   end
 
