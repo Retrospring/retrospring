@@ -7,6 +7,12 @@ module ApplicationHelper
       class: ''
     }.merge(options)
 
+    classes = [
+      "nav-item",
+      current_page? ? "active" : nil,
+      options[:class]
+    ].compact.join(" ")
+
     unless options[:icon].nil?
       body = "#{content_tag(:i, '', class: "mdi-#{options[:icon]}")} #{body}"
     end
@@ -18,7 +24,7 @@ module ApplicationHelper
         }"))}"
     end
 
-    content_tag(:li, link_to(body.html_safe, path, class: "nav-link"), class: ("nav-item#{' active' if current_page? path} #{options[:class]}"))
+    content_tag(:li, link_to(body.html_safe, path, class: "nav-link"), class: classes)
   end
 
   def list_group_item(body, path, options = {})
@@ -28,6 +34,13 @@ module ApplicationHelper
       class: ''
     }.merge(options)
 
+    classes = [
+      "list-group-item",
+      "list-group-item-action",
+      current_page? ? "active" : nil,
+      options[:class]
+    ].compact.join(" ")
+
     unless options[:badge].nil? or options[:badge] == 0
       # TODO: make this prettier?
       body << " #{
@@ -36,7 +49,7 @@ module ApplicationHelper
         }"))}"
     end
 
-    content_tag(:a, body.html_safe, href: path, class: ("list-group-item list-group-item-action #{'active ' if current_page? path}#{options[:class]}"))
+    content_tag(:a, body.html_safe, href: path, class: classes)
   end
 
   def tooltip(body, tooltip_content, placement = "bottom")
