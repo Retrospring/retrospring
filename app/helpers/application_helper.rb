@@ -9,7 +9,7 @@ module ApplicationHelper
 
     classes = [
       "nav-item",
-      current_page? ? "active" : nil,
+      current_page?(path) ? "active" : nil,
       options[:class]
     ].compact.join(" ")
 
@@ -37,7 +37,7 @@ module ApplicationHelper
     classes = [
       "list-group-item",
       "list-group-item-action",
-      current_page? ? "active" : nil,
+      current_page?(path) ? "active" : nil,
       options[:class]
     ].compact.join(" ")
 
