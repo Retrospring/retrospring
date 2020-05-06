@@ -1,7 +1,6 @@
 #= require jquery3
 #= require jquery_ujs
 #= require jquery.turbolinks
-#= require jquery.arctic_scroll
 #= require turbolinks
 #= require popper
 #= require bootstrap
@@ -83,8 +82,6 @@ _ready = ->
     announcement = event.target.closest(".alert-announcement")
     aId = announcement.dataset.announcementId
     window.localStorage.setItem("announcement#{aId}", true)
-
-  $('.arctic_scroll').arctic_scroll speed: 500
 
 
 $(document).ready _ready
