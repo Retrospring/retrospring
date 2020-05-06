@@ -3,7 +3,7 @@ class AddAttachmentProfileHeaderToUsers < ActiveRecord::Migration[4.2]
     change_table :users do |t|
       t.string :profile_header_file_name
       t.string :profile_header_content_type
-      t.bigint :profile_header_file_size
+      t.integer :profile_header_file_size
       t.datetime :profile_header_updated_at
       t.boolean :profile_header_processing
       t.integer :crop_h_x

@@ -3,7 +3,7 @@ class AddAttachmentProfilePictureToUsers < ActiveRecord::Migration[4.2]
     change_table :users do |t|
       t.string :profile_picture_file_name
       t.string :profile_picture_content_type
-      t.bigint :profile_picture_file_size
+      t.integer :profile_picture_file_size
       t.datetime :profile_picture_updated_at
     end
   end
