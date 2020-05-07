@@ -80,8 +80,10 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap3-datetimepicker-rails (4.7.14)
-      momentjs-rails (>= 2.8.1)
+    bootstrap4-datetime-picker-rails (0.3.1)
+      jquery-rails (~> 4.2, >= 4.2.0)
+      moment-timezone-rails (~> 1.0)
+      momentjs-rails (>= 2.10.5, <= 3.0.0)
     bootstrap_form (4.4.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -268,6 +270,8 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    moment-timezone-rails (1.0.0)
+      momentjs-rails (>= 2.10.5, <= 3.0.0)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
     multi_json (1.14.1)
@@ -512,7 +516,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors
   bootstrap (~> 4.4, >= 4.4.1)
-  bootstrap3-datetimepicker-rails (~> 4.7.14)
+  bootstrap4-datetime-picker-rails
   bootstrap_form
   brakeman
   byebug
@@ -542,6 +546,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   letter_opener
+  moment-timezone-rails (~> 1.0)
   momentjs-rails (>= 2.9.0)
   newrelic_rpm
   nprogress-rails
