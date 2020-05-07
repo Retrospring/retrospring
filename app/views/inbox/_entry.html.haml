@@ -1,11 +1,11 @@
-.card.inbox-box{class: "bg-#{i.new? ? 'primary' : 'default'}", data: { id: i.id }}
+.card.inbox-box{class: i.new? ? 'inbox-entry--new' : '', data: { id: i.id }}
   .card-header
     .media
       - unless i.question.author_is_anonymous
         %a.pull-left{href: show_user_profile_path(i.question.user.screen_name)}
           %img.avatar-sm{src: i.question.user.profile_picture.url(:medium)}
       .media-body
-        %h6.text-muted.media-heading.answerbox--question-user
+        %h6.text-muted.media-heading.answerbox__question-user
           = raw t('views.inbox.entry.asked', user: user_screen_name(i.question.user, anonymous: i.question.author_is_anonymous), time: time_tooltip(i.question))
           - unless i.question.author_is_anonymous
             - if i.question.answer_count > 0

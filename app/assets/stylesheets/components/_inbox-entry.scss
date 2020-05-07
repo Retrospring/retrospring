@@ -1,0 +1,14 @@
+.inbox-entry {
+  &--new {
+    box-shadow: 0 0.125rem 0.25rem var(--primary);
+
+    .card-header {
+      background-color: var(--primary);
+      color: RGB(var(--primary-text));
+
+      .text-muted {
+        color: RGBA(var(--primary-text), 0.8) !important;
+      }
+    }
+  }
+}
