@@ -27,28 +27,6 @@
           = f.text_field :body_text, class: 'color', data: {default: 0x000000}
   .card
     .card-body
-      %h2 Forms and Inputs
-      %p
-        Styles for form inputs, like textfields.
-      .row
-        .col-sm-6
-          = f.text_field :input_color, class: 'color', data: {default: 0xFFFFFF}
-        .col-sm-6
-          = f.text_field :input_text, class: 'color', data: {default: 0x000000}
-  .card
-    .card-body
-      %h2 Raised Content
-      %p
-        Raised content basically describes all the different boxes and panels you can see across the site.
-      .row
-        .col-sm-6
-          = f.text_field :raised_background, class: 'color', data: {default: 0xFFFFFF}
-        .col-sm-6
-          = f.text_field :raised_accent, class: 'color', data: {default: 0xF7F7F7}
-    .card-footer
-      %p Some text on top of a accented area on a raised element!
-  .card
-    .card-body
       %h2 Colors
       %p
         Colors you can find used on the site. The names of the colors usually describe the context.
@@ -116,19 +94,41 @@
         .col-sm-6
           = f.text_field :dark_text, class: 'color', data: {default: 0xFFFFFF}
         .col-sm-12
-          %button.btn.btn-dark.mb-3 A dark button
+          %a.btn.btn-dark.mb-3{ href: '#' } A dark button
       .row
         .col-sm-6
           = f.text_field :light_color, class: 'color', data: {default: 0xF8F9FA}
         .col-sm-6
           = f.text_field :light_text, class: 'color', data: {default: 0xFFFFFF}
         .col-sm-12
-          %button.btn.btn-light.mb-3 A light button
+          %a.btn.btn-light.mb-3{ href: '#' } A light button
       .row
         .col-sm-6
           = f.text_field :muted_text, class: 'color', data: {default: 0x6C757D}
         .col-sm-6
           %p.pt-4.text-muted Some muted text
+  .card
+    .card-body
+      %h2 Forms and Inputs
+      %p
+        Styles for form inputs, like textfields.
+      .row
+        .col-sm-6
+          = f.text_field :input_color, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-6
+          = f.text_field :input_text, class: 'color', data: {default: 0x000000}
+  .card
+    .card-body
+      %h2 Raised Content
+      %p
+        Raised content basically describes all the different boxes and panels you can see across the site.
+      .row
+        .col-sm-6
+          = f.text_field :raised_background, class: 'color', data: {default: 0xFFFFFF}
+        .col-sm-6
+          = f.text_field :raised_accent, class: 'color', data: {default: 0xF7F7F7}
+    .card-footer
+      %p Some text on top of a accented area on a raised element!
   .card
     .card-body
       .pull-left
