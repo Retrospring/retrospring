@@ -34,6 +34,7 @@ class UpdateThemeFields < ActiveRecord::Migration[5.2]
     change_column_default :themes, :background_color, 0xF0EDF4
     change_column_default :themes, :danger_color, 0xDC3545
     change_column_default :themes, :warning_color, 0xFFC107
+    change_column_default :themes, :warning_text, 0x292929
     change_column_default :themes, :info_color, 0x17A2B8
     change_column_default :themes, :success_color, 0x28A745
     change_column_default :themes, :input_color, 0xF0EDF4

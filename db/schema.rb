@@ -197,7 +197,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_214933) do
     t.integer "success_color", default: 2664261
     t.integer "success_text", default: 16777215
     t.integer "warning_color", default: 16761095
-    t.integer "warning_text", default: 16777215
+    t.integer "warning_text", default: 2697513
     t.integer "info_color", default: 1548984
     t.integer "info_text", default: 16777215
     t.integer "dark_color", default: 3422784
