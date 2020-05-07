@@ -21,10 +21,10 @@
             %button#cropper-zoom-in.btn.btn-inverse{type: :button}
               %i.fa.fa-search-plus
 
-      .media#profile-header-media
-        .pull-left
-          %img.mr-3{src: current_user.profile_header.url(:mobile)}
-        .media-body
+      .row.mb-2#profile-header-media
+        .col
+          %img.mw-100.mr-3{src: current_user.profile_header.url(:mobile)}
+        .col-xs-12.mt-3.mt-sm-0.pl-3.pr-3
           = f.file_field :profile_header, label: t('views.settings.profile.header')
 
       .row#profile-header-crop-controls{style: 'display: none;'}
