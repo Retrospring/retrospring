@@ -73,13 +73,13 @@ _ready = ->
       lineColor: bodyColor
       density: 23000
 
-  $(".alert-announcement").each ->
+  $(".announcement").each ->
     aId = $(this)[0].dataset.announcementId
     unless (window.localStorage.getItem("announcement#{aId}"))
-      $(this).toggleClass("hidden")
+      $(this).toggleClass("d-none")
 
-  $(document).on "click", ".alert-announcement button.close", (evt) ->
-    announcement = event.target.closest(".alert-announcement")
+  $(document).on "click", ".announcement button.close", (evt) ->
+    announcement = event.target.closest(".announcement")
     aId = announcement.dataset.announcementId
     window.localStorage.setItem("announcement#{aId}", true)
 
