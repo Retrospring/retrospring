@@ -13,13 +13,13 @@
           %p= t('views.about.links.desc', app_title: APP_CONFIG['site_name'])
         .col-md-4.col-sm-6
           %a{href: "https://twitter.com/retrospring"}
-            .icon-showcase
+            .icon--showcase
               %i.fa.fa-twitter
           %h4.heading-about.text-center
             Twitter
         .col-md-4.col-sm-6
           %a{href: help_faq_path}
-            .icon-showcase
+            .icon--showcase
               %i.fa.fa-question
           %h4.heading-about.text-center
             FAQ
@@ -32,7 +32,7 @@
           %p= raw t('views.about.opensource.desc', app_title: APP_CONFIG['site_name'], github: link_to(t('views.about.opensource.github'), "https://github.com/Retrospring/retrospring"), bugtracker: link_to(t('views.about.opensource.bugtracker'), "https://github.com/Retrospring/retrospring/issues"))
         .col-md-4
           %a{href: "https://github.com/Retrospring/retrospring"}
-            .icon-showcase
+            .icon--showcase
               %i.fa.fa-github
           %h4.heading-about.text-center= t 'views.about.repository.title'
           %p.text-center
