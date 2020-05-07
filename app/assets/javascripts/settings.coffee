@@ -169,7 +169,6 @@ generateTheme = (payload) ->
   body = ":root {\n"
 
   (Object.keys(payload)).forEach (plKey) ->
-    console.log plKey
     if theme_attribute_map[plKey]
       if theme_attribute_map[plKey].includes 'text'
         hex = getHexColorFromThemeValue(payload[plKey])
