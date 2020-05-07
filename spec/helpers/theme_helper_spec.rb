@@ -39,6 +39,10 @@ describe ThemeHelper, :type => :helper do
     it "returns the proper hex value from the decimal value for purple" do
       expect(helper.get_hex_color_from_theme_value(6174129)).to eq("5e35b1")
     end
+
+    it "returns the proper hex value from the decimal value for blue" do
+      expect(helper.get_hex_color_from_theme_value(255)).to eq("0000ff")
+    end
   end
 
   describe "#get_decimal_triplet_from_hex" do
