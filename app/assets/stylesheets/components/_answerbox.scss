@@ -30,7 +30,7 @@
   }
 
   &__action {
-    padding-left: map-get($spacers, 1);
+    padding-left: 0;
     padding-right: map-get($spacers, 1);
 
     & i {
