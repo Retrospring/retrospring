@@ -43,7 +43,7 @@ module ThemeHelper
 
     body += "}"
 
-    content_tag(:style, body)
+    content_tag(:style, body, data: { "turbolinks-track": false })
   end
 
   def get_active_theme

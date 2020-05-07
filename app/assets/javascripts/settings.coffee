@@ -103,6 +103,7 @@ if window.URL? or window.webkitURL?
 # theming
 
 previewStyle = document.createElement 'style'
+previewStyle.setAttribute('data-turbolinks-track', 'false')
 document.head.appendChild previewStyle
 
 previewTimeout = null
@@ -171,7 +172,6 @@ generateTheme = (payload) ->
     console.log plKey
     if theme_attribute_map[plKey]
       if theme_attribute_map[plKey].includes 'text'
-        console.log "aaa"
         hex = getHexColorFromThemeValue(payload[plKey])
         body += "--#{theme_attribute_map[plKey]}: #{getDecimalTripletsFromHex(hex)};\n"
       else
