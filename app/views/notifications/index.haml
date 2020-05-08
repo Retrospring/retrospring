@@ -3,7 +3,7 @@
     - if @notifications.count == 0
       %li.list-group-item.text-center
         .notifications--none
-          %i.fa.fa-bell-o.no-notifications
+          %i.fa.fa-bell-o.notification__bell-icon
         %p
           - if params[:type] != "all"
             No new notifications.
