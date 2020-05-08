@@ -10,3 +10,9 @@
     box-shadow: .5px 0 0 0.1rem var(--primary);
   }
 }
+
+.input-group-text {
+  color: RGB(var(--body-text));
+  background-color: var(--raised-accent);
+  border: 0;
+}
