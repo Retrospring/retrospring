@@ -47,7 +47,7 @@ jobs:
         with:
           ruby-version: 2.7.x
       - name: Install dependencies
-        run: sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick
+        run: sudo apt update && sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick
       - name: Copy default configuration
         run: |
           cp config/database.yml.postgres config/database.yml
