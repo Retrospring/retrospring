@@ -3,6 +3,7 @@
 # workaround to get pagination right
 RailsAdmin.config do |config|
   config.main_app_name = ['justask', 'Kontrollzentrum']
+  config.parent_controller = '::ApplicationController'
 
   ## == Authentication ==
   config.authenticate_with do
