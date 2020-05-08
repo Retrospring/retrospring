@@ -102,13 +102,14 @@ if window.URL? or window.webkitURL?
 
 # theming
 
-previewStyle = document.createElement 'style'
-previewStyle.setAttribute('data-turbolinks-track', 'false')
-document.head.appendChild previewStyle
-
-previewTimeout = null
+previewStyle = null
 
 $(document).ready ->
+  previewStyle = document.createElement 'style'
+  document.body.appendChild previewStyle
+
+  previewTimeout = null
+
   $('#update_theme .color').each ->
     $this = $ this
     this.value = '#' + getHexColorFromThemeValue(this.value)
