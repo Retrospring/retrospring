@@ -33,6 +33,12 @@
 
   &-dropdown {
     min-width: 400px;
+
+    & .dropdown-item:hover, 
+    & .dropdown-item:active {
+      background: transparent;
+      color: RGB(var(--body-text));
+    }
   }
 
   .dropdown-item > & {
