@@ -12,17 +12,15 @@
             .btn-group
               %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
                 %span.caret
-              %ul.dropdown-menu.dropdown-menu-right{role: :menu}
+              .dropdown-menu.dropdown-menu-right{role: :menu}
                 - if current_user.mod? or q.user == current_user
-                  %li.text-danger
-                    %a{href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: q.id }}
-                      %i.fa.fa-trash-o
-                      = t 'views.actions.delete'
+                  %a.dropdown-item.text-danger{href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: q.id }}
+                    %i.fa.fa-trash-o
+                    = t 'views.actions.delete'
                 - unless q.user == current_user
-                  %li
-                    %a{href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id }}
-                      %i.fa.fa-exclamation-triangle
-                      = t 'views.actions.report'
+                  %a.dropdown-item{href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id }}
+                    %i.fa.fa-exclamation-triangle
+                    = t 'views.actions.report'
         %h6.media-heading.text-muted.answerbox__question-user
           = raw t('views.answerbox.asked', user: user_screen_name(q.user), time: time_tooltip(q))
           - if q.answer_count > 1
