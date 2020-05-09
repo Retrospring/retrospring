@@ -12,7 +12,7 @@
     %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @answers_last_id }}
       Load more
 
-  - if user_signed_in? and !current_user.answered? @question and current_user != @question.user and @question.user.privacy_allow_stranger_answers
+  - if user_signed_in? && !current_user.answered?(@question) && current_user != @question.user && @question.user&.privacy_allow_stranger_answers
     .card#q-answer-box
       .card-header
         %h3.card-title= t('views.question.title')
