@@ -1,0 +1,14 @@
+.profile--panel-push-inner.hidden-xs
+- unless @user.banned?
+  #answers
+    - @answers.each do |a|
+      = render 'answerbox', a: a
+
+= render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @answers_last_id
+
+- if @more_data_available
+  %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @answers_last_id }}
+    = t 'views.actions.load'
+
+- provide(:title, user_title(@user))
+- parent_layout "user/profile"

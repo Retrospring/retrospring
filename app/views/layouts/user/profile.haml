@@ -1,0 +1,16 @@
+.profile__header-container
+  %img.profile__header-image{src: @user.profile_header.url(:web)}
+.container
+  .row
+    .col-md-3.col-xs-12.col-sm-4
+      = render 'user/profile'
+      .d-none.d-sm-block= render 'shared/links'
+    .col-md-9.col-xs-12.col-sm-8
+      = render "questionbox"
+      = render "tabs/profile"
+      = yield
+- if user_signed_in?
+  = render 'modal/group'
+  - if current_user.mod? and @user != current_user
+    = render 'modal/privileges'
+    = render 'modal/ban'

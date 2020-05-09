@@ -1,0 +1,29 @@
+.card
+  .card-body
+    %h2 Export your data
+    %p
+      The data is inside a
+      %code= ".tar.gz"
+      archive and available in three formats: YAML, JSON, and XML.  The archive also contains a copy of your
+      profile picture and header picture in all sizes.
+    %p
+      Please note that you can only export your data once a week.  Exporting your data
+      will take a while, so please be patient.  You will receive a question once exporting
+      is done.
+    - if current_user.can_export?
+      %form{action: begin_user_export_path, method: 'POST'}
+        %p.text-center
+          %button#export-btn.btn.btn-lg.btn-primary{type: :submit} Export
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+    - else
+      %p.text-center
+        %button.btn.btn-lg.btn-primary.disabled{disabled: :disabled} Export
+    %p
+      - if current_user.export_url.nil?
+        Once exporting your account is done, a download link will appear here.
+      - else
+        Here is your export from
+        = succeed ':' do
+          = current_user.export_created_at
+        %a{href: current_user.export_url}
+          = File.basename current_user.export_url

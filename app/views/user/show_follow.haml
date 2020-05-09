@@ -1,0 +1,13 @@
+#users.row.row-cols-1.row-cols-sm-2.row-cols-md-3
+  - @users.each do |user|
+    .col
+      = render 'shared/userbox', user: user
+
+= render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @users_last_id
+
+- if @more_data_available
+  %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @users_last_id }}
+    = t 'views.actions.load'
+
+- provide(:title, user_title(@user, "friends and followers"))
+- parent_layout "user/profile"

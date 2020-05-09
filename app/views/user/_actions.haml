@@ -1,0 +1,32 @@
+.profile__actions
+  - if user_signed_in?
+    - type ||= :nil
+    - if user == current_user
+      %a.btn.btn-dark.btn-block{href: edit_user_profile_path} Edit profile
+    - else
+      - if current_user.following? user
+        %button#editprofile.btn.btn-primary.btn-block{type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name }}
+          = t 'views.actions.unfollow'
+      - else
+        %button#editprofile.btn.btn-primary.btn-block{type: :button, name: 'user-action', data: { action: :follow, type: type, target: user.screen_name }}
+          = t 'views.actions.follow'
+    - unless user == current_user
+      .btn-group.btn-block
+        %button.btn.btn-light.btn-block.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
+          = t 'views.actions.title'
+          %span.caret
+        .dropdown-menu
+          %a.dropdown-item.d-block.d-sm-none{href: '#', data: { target: "#modal-group-memberships", toggle: :modal }}
+            %i.fa.fa-users
+            = t 'views.actions.group'
+          %a.dropdown-item{href: '#', data: { action: 'report-user', target: user.screen_name }}
+            %i.fa.fa-exclamation-triangle
+            = t 'views.actions.report'
+          - if current_user.mod?
+            %a.dropdown-item{href: '#', data: { target: "#modal-privileges", toggle: :modal }}
+              %i.fa.fa-wrench
+              = raw t('views.actions.privilege', user: user.screen_name)
+            - unless user.has_role?(:administrator)
+              %a.dropdown-item{href: '#', data: { target: "#modal-ban", toggle: :modal }}
+                %i.fa.fa-ban
+                = t 'views.actions.ban'

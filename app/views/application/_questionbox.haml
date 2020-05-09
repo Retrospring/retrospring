@@ -1,0 +1,43 @@
+.card
+  .card-header
+    - if @user.motivation_header.blank?
+      = t 'views.questionbox.title'
+    - else
+      = @user.motivation_header
+  .card-body
+    - if @user.banned?
+      .text-center
+        %strong= t 'views.questionbox.banned'
+    - else
+      - if user_signed_in? or @user.privacy_allow_anonymous_questions?
+        #question-box
+          %textarea.form-control{:name => "qb-question", :placeholder => t('views.placeholder.question')}
+          .row{:style => "padding-top: 5px; padding-left: 5px; padding-right: 5px;"}
+            .col-6
+              - if user_signed_in?
+                - if @user.privacy_allow_anonymous_questions?
+                  %input{:name => "qb-anonymous", :type => "checkbox"}/
+                  = t 'views.actions.anonymous'
+                  %br/
+                - else
+                  %input{:name => "qb-anonymous", :type => "hidden", :value => "false"}/
+            .col-6
+              %p.pull-right
+                %input{name: 'qb-to', type: 'hidden', :value => @user.id}/
+                %button.btn.btn-primary{name: 'qb-ask', :type => "button", data: {loading_text: t('views.questionbox.load'), promote: user_signed_in? ? "false" : "true" }} Ask
+      - unless user_signed_in?
+        - if @user.privacy_allow_anonymous_questions?
+          #question-box-promote{:style => "display: none;"}
+            .row
+              .col-12.text-center
+                %strong= t 'views.questionbox.promote.message'
+            .row
+              .col-sm-5.offset-sm-1
+                %button#create-account.btn.btn-block.btn-primary= t 'views.questionbox.promote.create'
+              .col-sm-5
+                %button#new-question.btn.btn-block.btn-default= t 'views.questionbox.promote.another'
+            .row
+              .col-xs-12.col-sm-10.offset-sm-1.text-center
+                %small= t('views.questionbox.promote.join', app_title: APP_CONFIG['site_name'])
+        - else
+          %p= raw t 'views.questionbox.required', signup: link_to(t('views.sessions.new'),new_user_registration_path)

@@ -1,5 +1,5 @@
 jQuery ->
-  if $('#pagination').size() > 0
+  if $('#pagination').length > 0
     $('#pagination').hide()
     loading_posts = false
 

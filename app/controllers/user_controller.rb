@@ -107,30 +107,7 @@ class UserController < ApplicationController
 
   def delete_theme
     current_user.theme.destroy!
-    redirect_to edit_user_profile_path
-  end
-
-  # NOTE: Yes, I am storing and transmitting values as 3 byte numbers because false sense of security.
-  def preview_theme
-    attrib = params.permit([
-      :primary_color, :primary_text,
-      :danger_color, :danger_text,
-      :success_color, :success_text,
-      :warning_color, :warning_text,
-      :info_color, :info_text,
-      :default_color, :default_text,
-      :panel_color, :panel_text,
-      :link_color, :background_color,
-      :background_text, :background_muted,
-      :input_color, :input_text,
-      :outline_color
-    ])
-
-    attrib.each do |k ,v|
-      attrib[k] = v.to_i
-    end
-
-    render plain: render_theme_with_context(attrib)
+    redirect_to edit_user_theme_path
   end
 
   def update_theme
@@ -140,12 +117,12 @@ class UserController < ApplicationController
       :success_color, :success_text,
       :warning_color, :warning_text,
       :info_color, :info_text,
-      :default_color, :default_text,
-      :panel_color, :panel_text,
-      :link_color, :background_color,
-      :background_text, :background_muted,
-      :input_color, :input_text,
-      :outline_color
+      :dark_color, :dark_text,
+      :light_color, :light_text,
+      :raised_background, :raised_accent,
+      :background_color, :body_text, 
+      :muted_text, :input_color, 
+      :input_text
     ])
 
     if current_user.theme.nil?

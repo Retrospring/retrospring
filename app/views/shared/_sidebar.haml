@@ -1,0 +1,21 @@
+.card.userbox
+  %img.userbox__header{src: current_user.profile_header.url(:mobile)}
+  .card-body
+    %img.userbox__avatar{src: current_user.profile_picture.url(:small)}
+    .profile__name
+      - unless current_user.display_name.blank?
+        .profile__display-name
+          = current_user.display_name
+      .profile__screen-name
+        = current_user.screen_name
+- unless @group.nil?
+  .card
+    .card-header= t('views.group.members')
+    .card-body
+      - if @group.members.empty?
+        %p.text-muted No members yet!
+      - @group.members.each do |member|
+        %a{href: show_user_profile_path(member.user.screen_name), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top }}
+          %img.avatar-xs{src: member.user.profile_picture.url(:medium)}
+
+= render 'shared/links'

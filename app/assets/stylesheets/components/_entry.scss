@@ -1,0 +1,48 @@
+.entry {
+  $this: &;
+
+  &__value {
+    margin-bottom: 0;
+  }
+
+  &__description {
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .8rem;
+    margin-top: 0px;
+  }
+
+  &--statistics {
+    #{$this}__value,
+    #{$this}__description {
+      display: block;
+      text-align: center;
+    }
+
+    #{$this}__value {
+      margin-top: map-get($spacers, 3);
+    }
+
+    #{$this}__description {
+      margin-bottom: map-get($spacers, 3);
+    }
+  }
+
+  &--users {
+    #{$this}__value,
+    #{$this}__description {
+      display: block;
+      text-align: center;
+    }
+
+    #{$this}__value {
+      font-size: 4rem;
+      margin-top: map-get($spacers, 3);
+    }
+
+    #{$this}__description {
+      margin-bottom: map-get($spacers, 3);
+    }
+  }
+}

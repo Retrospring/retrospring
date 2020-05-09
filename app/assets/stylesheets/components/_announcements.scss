@@ -1,0 +1,16 @@
+.announcement {
+  width: 100%;
+  border-radius: 0;
+  text-align: center;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &__container {
+    position: fixed;
+    top: $navbar-height;
+    width: 100%;
+    z-index: 1024;
+  }
+}

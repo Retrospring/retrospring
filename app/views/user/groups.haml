@@ -1,0 +1,9 @@
+%ul
+  - @groups.each do |group|
+    %li
+      - if group.private?
+        %i.fa.fa-lock
+      = group.display_name
+
+- provide(:title, user_title(@user, "groups"))
+- parent_layout "user/profile"

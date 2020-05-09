@@ -1,0 +1,13 @@
+%nav.navbar.navbar-light.bg-light.navbar-static-top.j2-navbar.d-flex.d-sm-none{role: "navigation"}
+  %a.navbar-brand{href: moderation_path} Moderation
+  %button.navbar-toggler{"data-target" => "#j2-tl-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+    %span.sr-only Toggle navigation
+    %span.navbar-toggler-icon
+  #j2-tl-navbar-collapse.collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      = nav_entry t('views.moderation.tabs.all'), moderation_path
+      = nav_entry t('views.general.answer').pluralize(2)  ,     moderation_path('answer')
+      = nav_entry t('views.general.comment').pluralize(2),    moderation_path('comment')
+      = nav_entry t('views.general.user').pluralize(2)    ,       moderation_path('user')
+      = nav_entry t('views.general.question').pluralize(2),   moderation_path('question')
+      = nav_entry 'Priority',   moderation_priority_path

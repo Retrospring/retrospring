@@ -1,11 +1,11 @@
 - type ||= nil
-.panel.panel-default.questionbox{data: { id: q.id }}
-  .panel-body
+.card{data: { id: q.id }}
+  .card-body
     .media
       - if type == "discover"
         .pull-left
           %a{href: user_screen_name(q.user, link_only: true)}
-            %img.answerbox--img{src: q.user&.profile_picture&.url(:medium)}
+            %img.avatar-md.mr-2{src: q.user&.profile_picture&.url(:medium)}
       .media-body
         - if user_signed_in?
           .pull-right
@@ -23,11 +23,11 @@
                     %a{href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id }}
                       %i.fa.fa-exclamation-triangle
                       = t 'views.actions.report'
-        %h6.media-heading.text-muted.answerbox--question-user
+        %h6.media-heading.text-muted.answerbox__question-user
           = raw t('views.answerbox.asked', user: user_screen_name(q.user), time: time_tooltip(q))
           - if q.answer_count > 1
             ·
             %a{href: show_user_question_path(q.user.screen_name, q.id)}
               = pluralize(q.answer_count, t('views.general.answer'))
-        %p.answerbox--question-text
+        %p.answerbox__question-text
           = q.content

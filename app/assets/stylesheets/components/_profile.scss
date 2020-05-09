@@ -1,0 +1,61 @@
+.profile {
+  &__avatar {
+    display: block;
+    width: map-get($avatar-sizes, "xl");
+    height: map-get($avatar-sizes, "xl");
+    margin: -(map-get($avatar-sizes, "xl") / 2) auto 0;
+    border-radius: $avatar-border-radius;
+    box-shadow: $box-shadow;
+  }
+
+  &__header-container {
+    margin-bottom: map-get($spacers, 3);
+    position: relative;
+    z-index: -1;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.10),
+      rgba(0, 0, 0, 0.10)
+    ) var(--primary);
+    max-height: 440px;
+  }
+
+  &__header-image {
+    display: block;
+    width: 100%;
+  }
+
+  &__name,
+  &__biography,
+  &__website,
+  &__location {
+    margin-bottom: map-get($spacers, 3);
+  }
+
+  &__actions,
+  &__biography {
+    margin-top: map-get($spacers, 3);
+  }
+
+  &__display-name {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  &__screen-name {
+    &:only-child {
+      @extend .profile__display-name;
+    }
+
+    &:not(:only-child) {
+      font-size: 0.9em;
+      color: RGB(var(--muted-text));
+    }
+  }
+}
+
+.user--banned {
+  text-decoration: line-through !important;
+}

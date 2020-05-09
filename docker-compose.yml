@@ -10,8 +10,11 @@ services:
     links:
       - postgres
       - redis
+    environment:
+      - SPROCKETS_CACHE=/cache
     volumes:
       - ./:/app
+      - cache:/cache
     ports:
       - 3000:3000
 
@@ -27,3 +30,6 @@ services:
     environment:
       POSTGRES_PASSWORD: justask
       POSTGRES_DB: justask_development
+
+volumes:
+  cache:

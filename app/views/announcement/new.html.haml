@@ -1,29 +1,31 @@
 - provide(:title, generate_title("Add new announcement"))
-.container.j2-page
-  = bootstrap_form_for(@announcement, url: {action: "create"}) do |f|
-    - if @announcement.errors.any?
-      .row
-        .col-md-12
-          .alert.alert-danger
-            %strong
-              = pluralize(@announcement.errors.count, "error")
-              prohibited this announcement from being saved:
-            %ul
-              - @announcement.errors.full_messages.each do |err|
-                %li= err
-    .row
-      .col-md-12
-        = f.text_area :content, label: "Content"
-    .row
-      .col-md-6
-        = f.url_field :link_href, label: "Link URL"
-      .col-md-6
-        = f.datetime_field :link_text, label: "Link text"
-    .row
-      .col-md-6
-        = f.datetime_field :starts_at, label: "Start time"
-      .col-md-6
-        = f.datetime_field :ends_at, label: "End time"
-    .row
-      .col-md-12.text-right
-        = f.submit class: "btn btn-primary"
+.container.container--main
+  .card
+    .card-body
+      = bootstrap_form_for(@announcement, url: {action: "create"}) do |f|
+        - if @announcement.errors.any?
+          .row
+            .col-md-12
+              .alert.alert-danger
+                %strong
+                  = pluralize(@announcement.errors.count, "error")
+                  prohibited this announcement from being saved:
+                %ul
+                  - @announcement.errors.full_messages.each do |err|
+                    %li= err
+        .row
+          .col-md-12
+            = f.text_area :content, label: "Content"
+        .row
+          .col-md-6
+            = f.url_field :link_href, label: "Link URL"
+          .col-md-6
+            = f.text_field :link_text, label: "Link text"
+        .row
+          .col-md-6
+            = f.datetime_field :starts_at, label: "Start time", class: "datetimepicker-input", data: { toggle: "datetimepicker", target: "#announcement_starts_at", "date-format": "YYYY-MM-DD hh:mm A" }
+          .col-md-6
+            = f.datetime_field :ends_at, label: "End time", class: "datetimepicker-input", data: { toggle: "datetimepicker", target: "#announcement_ends_at", "date-format": "YYYY-MM-DD hh:mm A" }
+        .row
+          .col-md-12.text-right
+            = f.submit class: "btn btn-primary"

@@ -1,0 +1,103 @@
+/*
+ *= require rails_bootstrap_forms
+ *= require growl
+ *= require jquery.guillotine
+ *= require sweetalert
+ *= require jquery.minicolors
+ *= require flags
+ *= require_self
+ */
+
+/**
+ SETTINGS
+ ----------------------------------------------
+ Variable definitions, tools and mixins used
+ across all styling definitions.
+ */
+
+@import
+"variables";
+
+/**
+ VENDOR
+ ----------------------------------------------
+ Imported vendor assets used by Retrospring.
+ */
+
+@import
+"bootstrap",
+"tempusdominus-bootstrap-4",
+"font-awesome",
+"nprogress",
+"nprogress-bootstrap";
+
+/**
+ OVERRIDES
+ ----------------------------------------------
+ The imports from "overrides/" define almost barely
+ any style adjustments but rather override default
+ Bootstrap behaviour.
+
+ The largest change to regular bootstrap is the switch
+ to using the available CSS variables for most elements
+ used on the site, so theming can be done with changing
+ only those.
+ */
+
+@import
+"overrides/alerts",
+"overrides/bootstrap-datetimepicker",
+"overrides/buttons",
+"overrides/colors",
+"overrides/card",
+"overrides/dropdown",
+"overrides/growls",
+"overrides/inputs",
+"overrides/links",
+"overrides/list-group",
+"overrides/minicolors",
+"overrides/modal",
+"overrides/navbar",
+"overrides/sweet-alert";
+
+/**
+ ELEMENTS
+ ----------------------------------------------
+ Styles directly applied to HTML elements
+ */
+
+@import
+"elements/body";
+
+/**
+ COMPONENTS
+ ----------------------------------------------
+ Custom components defined for Retrospring.
+ */
+
+@import
+"components/announcements",
+"components/answerbox",
+"components/avatars",
+"components/buttons",
+"components/comments",
+"components/container",
+"components/entry",
+"components/icons",
+"components/inbox-entry",
+"components/jumbotron",
+"components/locales",
+"components/notifications",
+"components/profile",
+"components/question",
+"components/smiles",
+"components/userbox";
+
+/**
+ UTILITIES
+ ----------------------------------------------
+ Classes used for very specific cases
+ */
+
+@import
+"utilities";

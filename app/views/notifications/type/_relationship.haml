@@ -1,0 +1,8 @@
+.media.notification
+  .notification__icon
+    %img.avatar-sm{src: notification.target.source.profile_picture.url(:small)}
+  .media-body
+    %h6.media-heading.notification__user
+      = user_screen_name notification.target.source
+    .notification__text
+      = raw t('views.notifications.relationship.body', time: time_ago_in_words(notification.target.created_at))

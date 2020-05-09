@@ -19,21 +19,6 @@ load = ->
     else
       $("#ban-controls-time").show()
 
-  untilInput = $ modalForm.elements["until"]
-  untilInput.datetimepicker
-    defaultDate: untilInput.val()
-    sideBySide: true
-    icons:
-      time: "fa fa-clock-o"
-      date: "fa fa-calendar"
-      up: "fa fa-chevron-up"
-      down: "fa fa-chevron-down"
-      previous: "fa fa-chevron-left"
-      next: "fa fa-chevron-right"
-      today: "fa fa-home"
-      clear: "fa fa-trash-o"
-      close: "fa fa-times"
-
   modalForm.addEventListener "submit", (event) ->
     event.preventDefault();
 

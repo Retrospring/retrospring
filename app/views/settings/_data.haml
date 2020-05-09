@@ -1,0 +1,159 @@
+.card
+  .card-body
+    %h2 Your Profile Data
+    %p Everything we have about you! Really, not that much as you might expect.
+
+    %h3 General
+    .row
+      .col-md-6.col-sm-6.col-xs-12
+        %h4 Profile
+
+        %p.font-weight-bold.mb-0 User name
+        %p.text-muted= current_user.screen_name
+
+        %p.font-weight-bold.mb-0 Display name
+        %p.text-muted
+          - if current_user.display_name.blank?
+            None set!
+          - else
+            = current_user.display_name
+
+        %p.font-weight-bold.mb-0 Bio
+        %p.text-muted
+          - if current_user.bio.blank?
+            None set!
+          - else
+            = current_user.bio
+
+        %p.font-weight-bold.mb-0 Location
+        %p.text-muted
+          - if current_user.location.blank?
+            None set!
+          - else
+            = current_user.location
+
+        %p.font-weight-bold.mb-0 Website
+        %p.text-muted
+          - if current_user.website.blank?
+            None set!
+          - else
+            = current_user.website
+      .col-md-6.col-sm-6.col-xs-12
+        %h4 Pictures
+        %p.font-weight-bold.mb-0 Profile picture
+        .media
+          .pull-left
+            %img.profile--img{src: current_user.profile_picture.url(:medium)}
+          .media-body
+            %ul
+              %li
+                %a{href: current_user.profile_picture.url(:small)} Small
+              %li
+                %a{href: current_user.profile_picture.url(:medium)} Medium
+              %li
+                %a{href: current_user.profile_picture.url(:large)} Large
+              %li
+                %a{href: current_user.profile_picture.url(:original)} Original image
+
+        %p.font-weight-bold.mb-0 Header picture
+        %img{src: current_user.profile_header.url(:mobile), style: 'width: 100%'}
+        %p
+          %a{href: current_user.profile_header.url(:mobile)} Mobile
+          |
+          %a{href: current_user.profile_header.url(:web)} Web
+          |
+          %a{href: current_user.profile_header.url(:retina)} Retina
+          |
+          %a{href: current_user.profile_header.url(:original)} Original image
+    .row
+      .col-md-6.col-sm-6.col-xs-12
+        %h4 Statistics
+
+        %p.font-weight-bold.mb-0 Answers
+        %p.text-muted= current_user.answered_count
+
+        %p.font-weight-bold.mb-0 Questions
+        %p.text-muted= current_user.asked_count
+
+        %p.font-weight-bold.mb-0 Following
+        %p.text-muted= current_user.friend_count
+
+        %p.font-weight-bold.mb-0 Followers
+        %p.text-muted= current_user.follower_count
+
+        %p.font-weight-bold.mb-0 Smiles
+        %p.text-muted= current_user.smiled_count + current_user.comment_smiled_count
+
+        %p.font-weight-bold.mb-0 Comments
+        %p.text-muted= current_user.commented_count
+      .col-md-6.col-sm-6.col-xs-12
+        %h4 Badges
+
+        %p.font-weight-bold.mb-0 Admin
+        %p
+          - if current_user.has_role? :administrator
+            %span.label.label-success
+              %i.fa.fa-fw.fa-check
+          - else
+            %span.label.label-danger
+              %i.fa.fa-fw.fa-close
+
+        %p.font-weight-bold.mb-0 Moderator
+        %p
+          - if current_user.mod?
+            %span.label.label-success
+              %i.fa.fa-fw.fa-check
+          - else
+            %span.label.label-danger
+              %i.fa.fa-fw.fa-close
+    .row
+      .col-md-6.col-sm-6.col-xs-12
+        %h3 IP
+        %p.font-weight-bold.mb-0 Current Sign In
+        %p.text-muted= current_user.current_sign_in_ip
+
+        %p.font-weight-bold.mb-0 Last Sign In
+        %p.text-muted= current_user.last_sign_in_ip
+      .col-md-6.col-sm-6.col-xs-12
+        %h3 Miscellaneous
+
+        %p.font-weight-bold.mb-0 Locale
+        %p.text-muted
+          - if current_user.locale.blank?
+            None set!
+          - else
+            = current_user.locale
+
+        %p.font-weight-bold.mb-0 Sign In count
+        %p.text-muted= current_user.sign_in_count
+    %h3 Dates
+    .row
+      .col-md-6.col-sm-6.col-xs-12
+        %h4 Sign In
+
+        %p.font-weight-bold.mb-0 Current Sign In
+        %p.text-muted= current_user.current_sign_in_at ? localize(current_user.current_sign_in_at) : "Not set"
+
+        %p.font-weight-bold.mb-0 Last Sign In
+        %p.text-muted= current_user.last_sign_in_at ? localize(current_user.last_sign_in_at) : "Not set"
+
+        %p.font-weight-bold.mb-0 Remember me set at
+        %p.text-muted= current_user.remember_created_at ? localize(current_user.remember_created_at) : "Not set"
+      .col-md-6.col-sm-6.col-xs-12
+        %h4 Create/Update
+
+        %p.font-weight-bold.mb-0 Account created
+        %p.text-muted
+          - if current_user.created_at
+            = localize(current_user.created_at)
+            = " (#{time_ago_in_words(current_user.created_at)} ago)"
+          - else
+            Not set
+
+        %p.font-weight-bold.mb-0 Account last updated
+        %p.text-muted
+          - if current_user.created_at
+            = localize(current_user.updated_at)
+            = " (#{time_ago_in_words(current_user.updated_at)} ago)"
+          - else
+            Not set

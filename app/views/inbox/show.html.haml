@@ -1,25 +1,12 @@
-- provide(:title, generate_title("Inbox"))
-.container.j2-page
-  .row
-    .col-md-3.col-xs-12.col-sm-4.hidden-xs
-      = render 'inbox/sidebar'
-    .col-md-9.col-xs-12.col-sm-8
-      = render 'layouts/messages'
-      #entries
-        - @inbox.each do |i|
-          = render 'inbox/entry', i: i
+#entries
+  - @inbox.each do |i|
+    = render 'inbox/entry', i: i
 
-        - if @inbox.empty?
-          = t 'views.inbox.empty'
+  - if @inbox.empty?
+    = t 'views.inbox.empty'
 
-      = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @inbox_last_id
+  = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @inbox_last_id
 
-      - if @more_data_available
-        %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @inbox_last_id }}
-          = t 'views.actions.load'
-
-    .col-md-9.col-xs-12.col-sm-8.visible-xs
-      = render 'inbox/sidebar'
-
-= render "shared/links"
-- Inbox.where(id: @inbox.ids).update_all(new: false)
+  - if @more_data_available
+    %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @inbox_last_id }}
+      = t 'views.actions.load'

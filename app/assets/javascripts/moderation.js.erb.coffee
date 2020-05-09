@@ -1,3 +1,5 @@
 #= require moment
-#= require bootstrap-datetimepicker
+#= require tempusdominus-bootstrap-4
 #= require_tree ./moderation
+
+$('.datetimepicker-input').datetimepicker({});

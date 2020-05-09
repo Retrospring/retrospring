@@ -1,0 +1,32 @@
+.locales {
+  text-align: center;
+
+  &__panel {
+    position: relative;
+    display:  none;
+    padding:  5px;
+
+    ul {
+      margin:          0;
+      padding:         0;
+      padding-top:     map-get($spacers, 3);
+      width:           100%;
+      list-style:      none;
+      display:         inline-flex;
+      flex-direction:  row;
+      flex-wrap:       wrap;
+      align-items:     center;
+      justify-content: center;
+      
+      li {
+        margin:     0 5px 10px 5px;
+        flex:       0 0 auto;
+
+        * {
+          display:        inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

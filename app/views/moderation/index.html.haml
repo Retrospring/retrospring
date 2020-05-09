@@ -1,8 +1,2 @@
-- provide(:title, generate_title("Moderation"))
-= render 'moderation/moderation_nav'
-.container.j2-page
-  .row
-    = render 'moderation/moderation_tabs'
-    .col-md-9.col-sm-8.col-xs-12
-      - @reports.each do |r|
-        = render 'moderation/moderationbox', report: r
+- @reports.each do |r|
+  = render 'moderation/moderationbox', report: r

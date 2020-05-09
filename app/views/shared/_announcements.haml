@@ -1,8 +1,10 @@
-.container.announcements
+.announcement__container
   - @active_announcements.each do |announcement|
-    .alert.alert-announcement.alert-info.alert-dismissable.hidden{ data: { 'announcement-id': announcement.id } }
-      %button.close{ type: "button", "data-dismiss" => "alert" }
-        %span{ "aria-hidden" => "true" } &times;
-      %p= announcement.content
-      - if announcement.link_present?
-        %a.alert-link{ href: announcement.link_href }= announcement.link_text
+    .alert.announcement.alert-info.alert-dismissable.d-none{ data: { 'announcement-id': announcement.id } }
+      .container
+        %button.close{ type: "button", "data-dismiss" => "alert" }
+          %span{ "aria-hidden" => "true" } &times;
+        %p
+          = announcement.content
+          - if announcement.link_present?
+            %a.alert-link{ href: announcement.link_href }= announcement.link_text

@@ -1,114 +1,115 @@
 - provide(:title, "#{APP_CONFIG['site_name']}")
-.jumbotron.j2-jumbo.text-center.particle-jumbotron.frontpage
-  .frontpage-scroll
+.jumbotron.jumbotron--particles.jumbotron--frontpage
+  .jumbotron__scroller
     %a.arctic_scroll{href: "#content", data: {offset: "-80"} }
       %i.fa.fa-chevron-down
-  #particles
-  .particle-content.frontpage-content
+  #particles.jumbotron__particles
+  .jumbotron__content
     .container
       = render 'layouts/messages'
       %h1= APP_CONFIG['site_name']
       %p= t 'views.front.subtitle'
       %p
-        %a.btn.btn-register.btn-lg{href: url_for(new_user_registration_path)}
+        %a.btn.btn-outline-light.btn-lg{href: url_for(new_user_registration_path)}
           Register now
       %small
         Already a member?
         = link_to 'Sign in', new_user_session_path
-.container-fluid#content
-  .container.text-center
-    %h1.frontpage-heading= "What is #{APP_CONFIG['site_name']}?"
-    %p.lead
-      A
-      %abbr{title: "Question and Answer"} Q/A
-      based social network
-    %p Most of the people already know how these sorts of networks already work. You have a profile and other users (or even anonymous people without accounts) can ask you any question to find out more about you, so can you do the same with others. Finding friends with the same interests, people that share your opinion (and people that probably don't), you can find everything here!
-    %p.lead
-      But what makes
-      = APP_CONFIG['site_name']
-      special?
-    %p
-      = APP_CONFIG['site_name']
-      tries to take aspects from other popular or now gone platforms and combine them to get the best result possible. Also, we take in the ideas and feedback of our community so we can build a service that's even closer to being exactly the service people want to use!
-
-  .container.frontpage-features
-    %h2.features-heading.text-center Awesome Features
-    .row
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-comments.colored-icon
-          Discussion
-        %p= "With #{APP_CONFIG['site_name']}, you can ask and answer questions from other users as well as receive anonymous questions. Want to know something? Keep the conversation alive with interactive comments."
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-user-plus.colored-icon
-          Following
-        %p
-          Following users allows you to get a personalized feed of all people you want to know more about. You can also send a question to all your followers at once!
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-share-square-o.colored-icon
-          Sharing
-        %p
-          Want to share your answer to a question so that more people read it? With a simple click on the answer button, your answer is shared wherever you want!
-    .row
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-users.colored-icon
-          Groups
-        %p
-          Want to ask a question to a specific set of people? No problem! Set up unique groups of users and send them questions apart from everyone else.
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-image.colored-icon
-          Images
-        %p
-          Express yourself with images and upload an avatar and a header of your liking. And soon you'll be able to attach images to answers and questions as well!
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-paint-brush.colored-icon
-          Themes
-        %p
-          Don't like the default purple or don't like light interfaces in general? On
-          = APP_CONFIG['site_name']
-          you can change every color aspect of the site with Themes!
-    .row
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-globe.colored-icon
-          Open Source
-        %p
-          You heard it right!
-          = APP_CONFIG['site_name']
-          and all of it's core components are open source! Everyone can help and improve the service!
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-eye-slash.colored-icon
-          No Ads
-        %p
-          We don't like them ourselves, really.
-          = APP_CONFIG['site_name']
-          just runs with community funding over
-          %a{href: "https://patreon.com/retrospring"} Patreon
-          which is way better than displaying annoying stuff.
-      .col-md-4.col-sm-4.col-xs-12
-        %h3.heading-showcase
-          %i.fa.fa-fw.fa-user-secret.colored-icon
-          Your Data is yours
-        %p
-          Today the most precious things on the internet is your data.
-          = APP_CONFIG['site_name']
-          doesn't sell any data that is collected. It remains encrypted on our servers!
-.container-fluid.frontpage-fluid
+#content.container.text-center
+  %h1= "What is #{APP_CONFIG['site_name']}?"
+  %p.lead
+    A
+    %abbr{title: "Question and Answer"} Q/A
+    based social network
+  %p Most of the people already know how these sorts of networks already work. You have a profile and other users (or even anonymous people without accounts) can ask you any question to find out more about you, so can you do the same with others. Finding friends with the same interests, people that share your opinion (and people that probably don't), you can find everything here!
+  %p.lead
+    But what makes
+    = APP_CONFIG['site_name']
+    special?
   %p
-    Any questions? Ask us on
-    %a{href: "https://twitter.com/retrospring"} Twitter
-.container.text-center#register
+    = APP_CONFIG['site_name']
+    tries to take aspects from other popular or now gone platforms and combine them to get the best result possible. Also, we take in the ideas and feedback of our community so we can build a service that's even closer to being exactly the service people want to use!
+
+
+  %h2 Awesome Features
+  .row
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-comments.text-primary
+        Discussion
+      %p= "With #{APP_CONFIG['site_name']}, you can ask and answer questions from other users as well as receive anonymous questions. Want to know something? Keep the conversation alive with interactive comments."
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-user-plus.text-primary
+        Following
+      %p
+        Following users allows you to get a personalized feed of all people you want to know more about. You can also send a question to all your followers at once!
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-share-square-o.text-primary
+        Sharing
+      %p
+        Want to share your answer to a question so that more people read it? With a simple click on the answer button, your answer is shared wherever you want!
+  .row
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-users.text-primary
+        Groups
+      %p
+        Want to ask a question to a specific set of people? No problem! Set up unique groups of users and send them questions apart from everyone else.
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-image.text-primary
+        Images
+      %p
+        Express yourself with images and upload an avatar and a header of your liking. And soon you'll be able to attach images to answers and questions as well!
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-paint-brush.text-primary
+        Themes
+      %p
+        Don't like the default purple or don't like light interfaces in general? On
+        = APP_CONFIG['site_name']
+        you can change every color aspect of the site with Themes!
+  .row
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-globe.text-primary
+        Open Source
+      %p
+        You heard it right!
+        = APP_CONFIG['site_name']
+        and all of it's core components are open source! Everyone can help and improve the service!
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-eye-slash.text-primary
+        No Ads
+      %p
+        We don't like them ourselves, really.
+        = APP_CONFIG['site_name']
+        just runs with community funding over
+        %a{href: "https://patreon.com/retrospring"} Patreon
+        which is way better than displaying annoying stuff.
+    .col-md-4.col-sm-4.col-xs-12
+      %h3
+        %i.fa.fa-fw.fa-user-secret.text-primary
+        Your Data is yours
+      %p
+        Today the most precious things on the internet is your data.
+        = APP_CONFIG['site_name']
+        doesn't sell any data that is collected. It remains encrypted on our servers!
+  
+  .card
+    .card-body
+      %p
+        Any questions? Ask us on
+        %a{href: "https://twitter.com/retrospring"} Twitter
+  
   %h2 What are you waiting for?
   %p
     Registering takes less than 5 minutes!
   %p
-    %a.btn.btn-primary.btn-lg.register-now{href: url_for(new_user_registration_path)}
+    %a.btn.btn-primary.btn-lg{href: url_for(new_user_registration_path)}
       Register now
 
 = render "shared/links"

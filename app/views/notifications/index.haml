@@ -1,0 +1,22 @@
+.card
+  %ul#notifications.list-group
+    - if @notifications.count == 0
+      %li.list-group-item.text-center
+        .notifications--none
+          %i.fa.fa-bell-o.notification__bell-icon
+        %p
+          - if params[:type] != "all"
+            No new notifications.
+          - else
+            No notifications.
+    - else
+      - @notifications.each do |notification|
+        %li.list-group-item
+          .media
+            = render "notifications/type/#{notification.target_type.downcase}", notification: notification
+
+      = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @notifications_last_id, permitted_params: %i[type]
+
+      - if @more_data_available
+        %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @notifications_last_id }}
+          Load more
