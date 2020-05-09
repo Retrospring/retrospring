@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_214933) do
+ActiveRecord::Schema.define(version: 2020_05_09_094402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_214933) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
   end
 
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_214933) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
+    t.index ["answer_id"], name: "index_comments_on_answer_id"
     t.index ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
   end
 
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_214933) do
     t.boolean "new"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id"], name: "index_inboxes_on_user_id"
   end
 
   create_table "moderation_comments", id: :serial, force: :cascade do |t|
@@ -147,6 +150,8 @@ ActiveRecord::Schema.define(version: 2020_05_04_214933) do
     t.datetime "updated_at"
     t.boolean "deleted", default: false
     t.string "reason"
+    t.index ["type", "target_id"], name: "index_reports_on_type_and_target_id"
+    t.index ["user_id", "created_at"], name: "index_reports_on_user_id_and_created_at"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -168,6 +173,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_214933) do
     t.string "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id"], name: "index_services_on_user_id"
   end
 
   create_table "smiles", id: :serial, force: :cascade do |t|
@@ -186,6 +192,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_214933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true
+    t.index ["user_id", "answer_id"], name: "index_subscriptions_on_user_id_and_answer_id"
   end
 
   create_table "themes", id: :serial, force: :cascade do |t|
