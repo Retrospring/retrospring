@@ -1,6 +1,6 @@
 $('#notifications').append('<% @notifications.each do |notification|
-  %><%= j render 'notifications/notification', notification: notification
-%><% end %>');
+  %><li class="list-group-item"><div class="media"><%= j render "notifications/type/#{notification.target_type.downcase}", notification: notification
+%></div></li><% end %>');
 <% if @more_data_available %>
   $('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @notifications_last_id, permitted_params: %i[type] %>');
 <% else %>

@@ -9,7 +9,7 @@ class StaticController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.js
+        format.js { render layout: false }
       end
     else
       return render 'static/front'

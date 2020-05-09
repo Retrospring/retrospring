@@ -19,7 +19,7 @@ class UserController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js
+      format.js { render layout: false }
     end
   end
 
@@ -78,7 +78,11 @@ class UserController < ApplicationController
     @users_last_id = @users.map(&:id).min
     @more_data_available = !@user.cursored_followers(last_id: @users_last_id, size: 1).count.zero?
     @type = :friend
-    render 'show_follow'
+
+    respond_to do |format|
+      format.html { render "show_follow" }
+      format.js { render "show_follow", layout: false }
+    end
   end
 
   def friends
@@ -88,7 +92,11 @@ class UserController < ApplicationController
     @users_last_id = @users.map(&:id).min
     @more_data_available = !@user.cursored_friends(last_id: @users_last_id, size: 1).count.zero?
     @type = :friend
-    render 'show_follow'
+
+    respond_to do |format|
+      format.html { render "show_follow" }
+      format.js { render "show_follow", layout: false }
+    end
   end
 
   def questions
@@ -97,6 +105,11 @@ class UserController < ApplicationController
     @questions = @user.cursored_questions(author_is_anonymous: false, last_id: params[:last_id])
     @questions_last_id = @questions.map(&:id).min
     @more_data_available = !@user.cursored_questions(author_is_anonymous: false, last_id: @questions_last_id, size: 1).count.zero?
+
+    respond_to do |format|
+      format.html
+      format.js { render layout: false }
+    end
   end
 
   def data
