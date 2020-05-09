@@ -130,7 +130,7 @@ $(document).on "click", "button[name=ib-answer]", ->
       inbox: true
     success: (data, status, jqxhr) ->
       if data.success
-        $("div.inbox-box[data-id=#{iid}]").slideUp()
+        $("div.inbox-entry[data-id=#{iid}]").slideUp()
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       console.log jqxhr, status, error
@@ -162,7 +162,7 @@ $(document).on "click", "button[name=ib-destroy]", ->
         id: iid
       success: (data, status, jqxhr) ->
         if data.success
-          $("div.inbox-box[data-id=#{iid}]").slideUp()
+          $("div.inbox-entry[data-id=#{iid}]").slideUp()
           if document.getElementById('ib-delete-all')?
             del_all_btn = ($ "button#ib-delete-all")
           else
