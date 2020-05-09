@@ -14,8 +14,7 @@
 
   - if user_signed_in? && !current_user.answered?(@question) && current_user != @question.user && @question.user&.privacy_allow_stranger_answers
     .card#q-answer-box
-      .card-header
-        %h3.card-title= t('views.question.title')
+      .card-header= t('views.question.title')
       .card-body
         %textarea#q-answer.form-control{placeholder: t('views.placeholder.inbox'), data: { id: @question.id }}
         %br/
