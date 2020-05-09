@@ -2,12 +2,11 @@ version: "3.7"
 
 services:
   web:
-    build:       
-      context: .      
+    build:
+      context: .
       dockerfile: .docker/ruby/Dockerfile
-    command:
-      ruby bin/rails server --port 3000 --binding 0.0.0.0
-    links:
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    depends_on:
       - postgres
       - redis
     environment:
