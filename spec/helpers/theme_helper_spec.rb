@@ -18,7 +18,7 @@ describe ThemeHelper, :type => :helper do
       end
 
       it "returns a theme" do
-        expect(helper.render_theme).to include('<style data-turbolinks-track="false">:root {')
+        expect(helper.render_theme).to include('<style>:root {')
       end
 
       it "contains correct theme background colors" do
