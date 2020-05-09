@@ -6,6 +6,10 @@
       background-color: var(--primary);
       color: RGB(var(--primary-text));
 
+      a {
+        color: RGB(var(--primary-text));
+      }
+
       .text-muted {
         color: RGBA(var(--primary-text), 0.8) !important;
       }
