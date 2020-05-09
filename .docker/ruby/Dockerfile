@@ -1,30 +1,25 @@
 FROM ruby:2.7
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
-# for postgres
-RUN apt-get install -y libpq-dev
-
-# for nokogiri
-RUN apt-get install -y libxml2-dev libxslt1-dev
-
-# for images
-RUN apt-get install -y libmagickwand-dev imagemagick
-
-# for a JS runtime
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get install -y nodejs
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        postgresql-client \
+RUN apt-get update -qq \
+    && apt-get install -y --no-install-recommends build-essential \
+    libpq-dev postgresql-client \ 
+    libxml2-dev libxslt1-dev \
+    libmagickwand-dev imagemagick \
+    nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-ENV APP_HOME /app
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+RUN mkdir /app
+WORKDIR /app
 
-ADD Gemfile* $APP_HOME/
+ADD Gemfile* /app/
 RUN bundle install
+COPY . /app
 
+COPY .docker/entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]

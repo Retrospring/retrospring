@@ -1,0 +1,27 @@
+# Retrospring CODEOWNERS
+
+# General code ownership
+* @nilsding @pixeldesu
+
+# Ruby/Backend related code
+*.rb @nilsding
+
+# Frontend assets
+*.coffee @pixeldesu
+*.scss @pixeldesu
+
+# Frontend views
+*.haml @pixeldesu
+
+# Public documents
+/service-docs/ @pixeldesu
+
+# Localization
+/config/locales/ @pixeldesu
+
+# Tests
+/spec/ @nilsding
+
+# Docker setup related files
+Dockerfile @pixeldesu
+docker-compose.yml @pixeldesu
