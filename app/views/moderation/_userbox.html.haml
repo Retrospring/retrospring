@@ -1,12 +1,11 @@
-- header_class = if user.profile_header.exists? then "userbox--header-container" else "userbox--no-header" end
-.card
-  %div{class: header_class}
-    %img.userbox--header{src: user.profile_header.url(:mobile)}
+.card.h-100.userbox
+  %img.userbox__header{src: user.profile_header.url(:mobile)}
   .card-body
-    %img.userbox--avatar{src: user.profile_picture.url(:small)}
-    %p.userbox--username
-      %a.profile--displayname{href: show_user_profile_path(user.screen_name)}
-        = user.screen_name
+    %img.userbox__avatar{src: user.profile_picture.url(:small)}
+    %a.profile__name{href: show_user_profile_path(user.screen_name)}
+      - unless user.display_name.blank?
+        .profile__display-name
+          = user.display_name
     .row
       .col-md-12.col-sm-12.col-xs-12
         - unless count.nil?

@@ -4,7 +4,7 @@
   - else
     Users with the same IP
 #users
-  .row
+  .row.row-cols-1.row-cols-sm-2.row-cols-md-3
     - @users.each do |u, c|
-      .col-md-4.col-sm-12col-xs-12
+      .col
         = render 'moderation/userbox', user: u, count: c
