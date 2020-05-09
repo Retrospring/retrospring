@@ -2,6 +2,10 @@
   color: RGB(var(--body-text));
 }
 
+.btn-link:hover {
+  color: RGB(var(--body-text));
+}
+
 @each $color in $color-names {
   .btn-#{$color} {
 
