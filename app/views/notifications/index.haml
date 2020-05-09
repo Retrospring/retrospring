@@ -15,8 +15,9 @@
           .media
             = render "notifications/type/#{notification.target_type.downcase}", notification: notification
 
-      = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @notifications_last_id, permitted_params: %i[type]
+  - unless @notifications.count.zero?
+    = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @notifications_last_id, permitted_params: %i[type]
 
-      - if @more_data_available
-        %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @notifications_last_id }}
-          Load more
+    - if @more_data_available
+      %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @notifications_last_id }}
+        Load more
