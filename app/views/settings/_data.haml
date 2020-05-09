@@ -132,22 +132,28 @@
         %h4 Sign In
 
         %p.font-weight-bold.mb-0 Current Sign In
-        %p.text-muted= localize(current_user.current_sign_in_at)
+        %p.text-muted= current_user.current_sign_in_at ? localize(current_user.current_sign_in_at) : "Not set"
 
         %p.font-weight-bold.mb-0 Last Sign In
-        %p.text-muted= localize(current_user.last_sign_in_at)
+        %p.text-muted= current_user.last_sign_in_at ? localize(current_user.last_sign_in_at) : "Not set"
 
         %p.font-weight-bold.mb-0 Remember me set at
-        %p.text-muted= localize(current_user.remember_created_at)
+        %p.text-muted= current_user.remember_created_at ? localize(current_user.remember_created_at) : "Not set"
       .col-md-6.col-sm-6.col-xs-12
         %h4 Create/Update
 
         %p.font-weight-bold.mb-0 Account created
         %p.text-muted
-          = localize(current_user.created_at)
-          = " (#{time_ago_in_words(current_user.created_at)} ago)"
+          - if current_user.created_at
+            = localize(current_user.created_at)
+            = " (#{time_ago_in_words(current_user.created_at)} ago)"
+          - else
+            Not set
 
         %p.font-weight-bold.mb-0 Account last updated
         %p.text-muted
-          = localize(current_user.updated_at)
-          = " (#{time_ago_in_words(current_user.updated_at)} ago)"
+          - if current_user.created_at
+            = localize(current_user.updated_at)
+            = " (#{time_ago_in_words(current_user.updated_at)} ago)"
+          - else
+            Not set
