@@ -7,7 +7,7 @@
       .d-none.d-sm-block= render 'shared/links'
     .col-md-9.col-xs-12.col-sm-8
       = render "questionbox"
-      = render "tabs/profile"
+      = render "tabs/profile", user: @user
       = yield
 - if user_signed_in?
   = render 'modal/group'
