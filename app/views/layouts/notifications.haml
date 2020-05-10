@@ -6,6 +6,7 @@
     .col-md-9.col-xs-12.col-sm-8
       = yield
 
-- Notification.for(current_user).update_all(new: false)
-- provide(:title, generate_title("Notifications"))
-- parent_layout "base"
+:ruby
+  Notification.for(current_user).update_all(new: false)
+  provide(:title, generate_title('Notifications'))
+  parent_layout 'base'

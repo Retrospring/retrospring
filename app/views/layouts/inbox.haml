@@ -6,8 +6,9 @@
       = render 'layouts/messages'
       = yield
 
-= render "shared/links"
+= render 'shared/links'
 
-- Inbox.where(id: @inbox.ids).update_all(new: false)
-- provide(:title, generate_title("Inbox"))
-- parent_layout "base"
+:ruby
+  Inbox.where(id: @inbox.ids).update_all(new: false)
+  provide(:title, generate_title('Inbox'))
+  parent_layout 'base'
