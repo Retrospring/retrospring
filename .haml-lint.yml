@@ -89,6 +89,7 @@ linters:
       - Layout/TrailingEmptyLines
       - Layout/TrailingWhitespace
       - Metrics/BlockLength
+      - Metrics/BlockNesting
       - Metrics/LineLength
       - Style/BlockNesting
       - Style/ElseAlignment
