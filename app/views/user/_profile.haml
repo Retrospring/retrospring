@@ -1,38 +1,38 @@
 .card#profile
-  %img.profile__avatar{src: @user.profile_picture.url(:large)}
+  %img.profile__avatar{ src: user.profile_picture.url(:large) }
   .card-body
     .profile__name
-      - unless @user.display_name.blank?
+      - unless user.display_name.blank?
         .profile__display-name
-          = @user.display_name
+          = user.display_name
       .profile__screen-name
-        = @user.screen_name
+        = user.screen_name
     .profile__badge-container
-      - if @user.banned?
+      - if user.banned?
         %span.badge.badge-dark
           %i.fa.fa-fw.fa-ban
           = t 'views.user.title.banned'
-      - if @user.following? current_user
+      - if user.following? current_user
         .badge.badge-light
           = t 'views.user.follows_you'
       - if user_signed_in? && current_user.has_role?(:administrator)
-        - if @user.has_role?(:administrator)
+        - if user.has_role?(:administrator)
           %span.badge.badge-danger
             %i.fa.fa-fw.fa-flask
             = t 'views.user.title.admin'
-        - if @user.has_role?(:moderator)
+        - if user.has_role?(:moderator)
           %span.badge.badge-success
             %i.fa.fa-fw.fa-users
             = t 'views.user.title.moderator'
-    - unless @user.bio.blank?
+    - unless user.bio.blank?
       .profile__biography
-        = markdown @user.bio
-    - unless @user.website.blank?
+        = markdown user.bio
+    - unless user.website.blank?
       .profile__website
         %i.fa.fa-fw.fa-globe
-        %a{href: @user.website}= @user.display_website
-    - unless @user.location.blank?
+        %a{ href: user.website }= user.display_website
+    - unless user.location.blank?
       .profile__location
         %i.fa.fa-fw.fa-location-arrow
-        = @user.location
-    = render 'user/actions', user: @user, type: :follower
+        = user.location
+    = render 'user/actions', user: user, type: :follower
