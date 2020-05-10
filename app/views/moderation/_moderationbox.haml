@@ -1,0 +1,55 @@
+- unless report.nil? || report.target.nil? || report.user.nil? || report.type.nil?
+  .card.moderationbox{ data: { id: report.id } }
+    .card-header
+      %img.avatar-sm{ src: report.user.profile_picture.url(:medium) }
+      = raw t('views.moderation.moderationbox.reported',
+        user: user_screen_name(report.user),
+        content: report.type.sub('Reports::', ''),
+        time: time_tooltip(report))
+    .card-body
+      %p
+        - if report.type == 'Reports::User'
+          = user_screen_name report.target
+        - else
+          = report.target.content
+      %p
+        %b= t 'views.moderation.moderationbox.reason'
+        %br
+          - if report.reason.nil? || report.reason.strip.blank?
+            No reason provided
+          - else
+            - report.reason.lines.each do |reason|
+              - next if reason.strip.blank?
+              = reason.strip
+      .row
+        .col-md-8.col-sm-8.col-xs-8.text-left
+          %a.btn.btn-primary{ href: content_url(report) }
+            = t('views.moderation.moderationbox.view', content: report.type.sub('Reports::', ''))
+          - if report.target.respond_to?(:user) && report.target.user
+            %a.btn.btn-primary{ href: show_user_profile_path(report.target.user.screen_name) }
+              = t('views.moderation.moderationbox.view', content: t('views.general.user'))
+            %a.btn.btn-primary{ href: moderation_priority_path(report.target.user.id) }
+              Reports
+            %a.btn.btn-primary{ href: moderation_ip_path(report.target.user.id) }
+              IP
+        .col-md-4.col-sm-4.col-xs-4.text-right
+          %span.mod-count{ id: "mod-count-#{report.id}" }
+            = report.votes
+          .btn-group
+            %button.btn.btn-success.btn-sm{ type: :button,
+              name: 'mod-vote',
+              disabled: current_user.report_x_voted?(report, true) ? 'disabled' : nil,
+              data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'upvote' } }
+              %i.fa.fa-thumbs-up
+            %button.btn.btn-danger.btn-sm{ type: :button,
+              name: 'mod-vote',
+              disabled: current_user.report_x_voted?(report, false) ? 'disabled' : nil,
+              data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'downvote' } }
+              %i.fa.fa-thumbs-down
+          %button.btn.btn-primary.btn-sm{ type: :button, name: 'mod-comments', data: { id: report.id, state: :hidden } }
+            %i.fa.fa-comments
+            %span{ id: "mod-comment-count-#{report.id}" }= report.moderation_comments.all.count
+          %button.btn.btn-default.btn-sm{ type: :button, name: 'mod-delete-report', data: { id: report.id } }
+            %i.fa.fa-trash-o
+    .card-footer{ id: "mod-comments-section-#{report.id}", style: 'display: none' }
+      %div{ id: "mod-comments-#{report.id}" }= render 'moderation/discussion', report: report
