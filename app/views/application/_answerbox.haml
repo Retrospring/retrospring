@@ -1,3 +1,4 @@
+- display_all ||= nil
 .card.answerbox{ data: { id: a.id, q_id: a.question.id } }
   - if @question.nil?
     = render 'answerbox/header', a: a
