@@ -1,0 +1,10 @@
+%p{ style: 'margin:0px;padding:0px' }
+  Welcome to
+  = succeed ',' do
+    = APP_CONFIG['site_name']
+  = succeed '!' do
+    = @resource.screen_name
+%p &nbsp;
+%p{ style: 'margin:0px;padding:0px' } You can confirm your account email through the link below:
+%p{ style: 'margin:0px;padding:0px' }
+  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token, protocol: (APP_CONFIG['https'] ? :https : :http))
