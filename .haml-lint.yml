@@ -85,6 +85,7 @@ linters:
       - Lint/EndAlignment
       - Lint/Void
       - Layout/AlignParameters
+      - Layout/EmptyLineAfterGuardClause
       - Layout/IndentationWidth
       - Layout/TrailingEmptyLines
       - Layout/TrailingWhitespace
