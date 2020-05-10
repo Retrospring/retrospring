@@ -106,4 +106,5 @@ group :development, :test do
   gem 'guard-brakeman'
   gem 'timecop'
   gem 'rails-controller-testing'
+  gem 'haml_lint', require: false
 end
