@@ -1,12 +1,12 @@
 .container
   .locales
     %span
-      %a{href: '#', id: 'locale-switch'}
+      %a{ href: '#', id: 'locale-switch' }
         %i.fa.fa-globe
         = t('views.locale.languages')
-    #locales-panel.locales__panel
+    .locales__panel#locales-panel
       %ul
         - APP_LOCALES.each do |key, value|
           %li
-            .flag{class: "flag-#{value[1]}"}
-            %a{href: "?hl=#{key}"}= value[0]
+            .flag{ class: "flag-#{value[1]}" }
+            %a{ href: "?hl=#{key}" }= value[0]
