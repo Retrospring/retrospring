@@ -6,7 +6,7 @@
       = render 'user/profile', user: @user
       .d-none.d-sm-block= render 'shared/links'
     .col-md-9.col-xs-12.col-sm-8
-      = render 'questionbox'
+      = render 'questionbox', user: @user
       = render 'tabs/profile', user: @user
       = yield
 - if user_signed_in?
