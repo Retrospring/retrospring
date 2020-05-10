@@ -14,7 +14,7 @@
     - if current_user.theme
       .pull-right
         = button_to 'Delete Theme', delete_user_theme_path, data: { confirm: 'Are you sure?' }, tabindex: -1, method: :delete, class: 'btn btn-danger'
-= bootstrap_form_for(current_user.theme || Theme.new, url: { action: 'update_theme' }, html: { id: 'update_theme' }, method: 'patch') do |f|
+= bootstrap_form_for(current_user.theme || Theme.new, url: { action: 'update_theme' }, html: { id: 'update_theme' }, method: :patch) do |f|
   .card
     .card-body
       %h2 General

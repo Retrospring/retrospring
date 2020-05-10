@@ -12,7 +12,7 @@
         - if current_user.groups.count.positive?
           %label
             = t 'views.modal.ask.choose'
-            %select.form-control{ name: 'qb-all-rcpt', autocomplete: 'off' }
+            %select.form-control{ name: 'qb-all-rcpt', autocomplete: :off }
               %option{ value: 'followers', selected: true }= t('views.general.follower').pluralize(2)
               %optgroup{ label: t('views.group.title').pluralize(2) }
                 - current_user.groups.each do |group|

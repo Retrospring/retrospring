@@ -3,7 +3,7 @@
 - permitted_params ||= []
 #pagination
   %ul.pagination
-    %li.next{ class: more_data_available ? nil : 'disabled' }
+    %li.next{ class: more_data_available ? nil : :disabled }
       - if more_data_available
         %a{ rel: :next, href: url_for(params.permit(*permitted_params).merge(last_id: last_id)) }
           Next page

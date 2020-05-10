@@ -5,7 +5,7 @@
         %input.custom-control-input{ type: :checkbox,
           id: "groupCheck#{group.id}",
           name: 'gm-group-check',
-          data: { group: group.name, user: user.screen_name }, checked: user.member_of?(group), autocomplete: 'off' }
+          data: { group: group.name, user: user.screen_name }, checked: user.member_of?(group), autocomplete: :off }
         %label.custom-control-label{ for: "groupCheck#{group.id}" }
     .media-body
       .list-group-item-heading= group.display_name

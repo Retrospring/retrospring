@@ -23,5 +23,5 @@
 .card
   .card-header= t 'views.inbox.sidebar.actions.title'
   .card-body
-    %button.btn.btn-block.btn-danger{ type: :button, id: delete_id, disabled: (disabled ? 'disabled' : nil), data: { ib_count: inbox_count } }
+    %button.btn.btn-block.btn-danger{ type: :button, id: delete_id, disabled: (disabled ? :disabled : nil), data: { ib_count: inbox_count } }
       = t 'views.inbox.sidebar.actions.button'

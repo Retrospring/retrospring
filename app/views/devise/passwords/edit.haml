@@ -10,8 +10,8 @@
 
             = f.hidden_field :reset_password_token
 
-            = f.password_field :password, autofocus: true, autocomplete: 'off', label: 'New password'
-            = f.password_field :password_confirmation, autocomplete: 'off', label: 'Confirm new password'
+            = f.password_field :password, autofocus: true, autocomplete: :off, label: 'New password'
+            = f.password_field :password_confirmation, autocomplete: :off, label: 'Confirm new password'
 
             = f.submit 'Change my password'
 
