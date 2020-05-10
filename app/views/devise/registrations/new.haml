@@ -1,4 +1,4 @@
-- provide(:title, generate_title("Sign Up"))
+- provide(:title, generate_title('Sign Up'))
 .container
   .row
     .col-sm-8.offset-sm-2
@@ -11,11 +11,11 @@
             = f.text_field :screen_name, autofocus: true, label: t('views.settings.account.username')
             = f.email_field :email, autofocus: false, label: t('views.settings.account.email')
 
-            = f.password_field :password, autocomplete: "off", label: t('views.settings.account.password')
-            = f.password_field :password_confirmation, autocomplete: "off", label: t('views.settings.account.password_confirm')
+            = f.password_field :password, autocomplete: 'off', label: t('views.settings.account.password')
+            = f.password_field :password_confirmation, autocomplete: 'off', label: t('views.settings.account.password_confirm')
 
             %p= raw t('views.sessions.info', terms: link_to(t('views.general.terms'), terms_path))
-            = f.submit "Sign up", class: "btn btn-primary mb-3"
+            = f.submit 'Sign up', class: 'btn btn-primary mb-3'
 
-          = render "devise/shared/links"
+          = render 'devise/shared/links'
 = render 'shared/links'
