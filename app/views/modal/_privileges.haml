@@ -1,15 +1,15 @@
-#modal-privileges.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal-privileges-label", :role => "dialog", :tabindex => "-1"}
+.modal.fade#modal-privileges{ aria: { hidden: true, labelledby: 'modal-privileges-label' }, role: :dialog, tabindex: -1 }
   .modal-dialog
     .modal-content
       .modal-header
-        %h5#modal-privileges-label.modal-title
-          = raw t('views.actions.privilege', user: @user.screen_name)
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
+        %h5.modal-title#modal-privileges-label
+          = raw t('views.actions.privilege', user: user.screen_name)
+        %button.close{ data: { dismiss: :modal }, type: :button }
+          %span{ aria: { hidden: true } } ×
           %span.sr-only= t 'views.actions.close'
       %ul.list-group.groups--list
         - if current_user.has_role?(:administrator)
-          = render 'modal/privileges/item', privilege: 'moderator', description: t('views.modal.privilege.moderator'),user: @user
-          = render 'modal/privileges/item', privilege: 'admin', description: t('views.modal.privilege.admin'), user: @user
+          = render 'modal/privileges/item', privilege: 'moderator', description: t('views.modal.privilege.moderator'), user: user
+          = render 'modal/privileges/item', privilege: 'admin', description: t('views.modal.privilege.admin'), user: user
       .modal-footer
-        %button.btn.btn-primary{name: 'checked-privileges', type: :button, data: { dismiss: :modal }}= t 'views.actions.done'
+        %button.btn.btn-primary{ name: 'checked-privileges', type: :button, data: { dismiss: :modal } }= t 'views.actions.done'
