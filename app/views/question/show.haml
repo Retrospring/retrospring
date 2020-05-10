@@ -9,18 +9,18 @@
   = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @answers_last_id
 
   - if @more_data_available
-    %button#load-more-btn.btn.btn-default{type: :button, data: { last_id: @answers_last_id }}
+    %button.btn.btn-default#load-more-btn{ type: :button, data: { last_id: @answers_last_id } }
       Load more
 
   - if user_signed_in? && !current_user.answered?(@question) && current_user != @question.user && @question.user&.privacy_allow_stranger_answers
     .card#q-answer-box
       .card-header= t('views.question.title')
       .card-body
-        %textarea#q-answer.form-control{placeholder: t('views.placeholder.inbox'), data: { id: @question.id }}
+        %textarea.form-control#q-answer-text{ placeholder: t('views.placeholder.inbox'), data: { id: @question.id } }
         %br/
-        %button#q-answer.btn.btn-success{data: { q_id: @question.id }}
+        %button.btn.btn-success#q-answer-btn{ data: { q_id: @question.id } }
           = t('views.actions.answer')
         - current_user.services.each do |service|
           %label
-            %input{type: 'checkbox', name: 'share', checked: :checked, data: { q_id: @question.id, service: service.provider }}
+            %input{ type: 'checkbox', name: 'share', checked: :checked, data: { q_id: @question.id, service: service.provider } }
             = t('views.inbox.entry.sharing.post', service: service.provider.capitalize)
