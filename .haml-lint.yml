@@ -98,6 +98,7 @@ linters:
       - Style/FileName
       - Style/FinalNewline
       - Style/FrozenStringLiteralComment
+      - Style/IdenticalConditionalBranches
       - Style/IfUnlessModifier
       - Style/Next
       - Style/WhileUntilModifier
