@@ -1,7 +1,7 @@
 = nav_entry t('views.navigation.notifications'), notifications_path, badge: notification_count, class: 'd-block d-sm-none'
 - notifications = Notification.for(current_user).where(new: true).limit(4)
 %li.nav-item.dropdown.d-none.d-sm-block
-  %a.nav-link.dropdown-toggle{href: "#", "data-toggle" => "dropdown"}
+  %a.nav-link.dropdown-toggle{ href: '#', data: { toggle: :dropdown } }
     - if notification_count.nil?
       %i.fa.fa-bell-o
     - else
@@ -9,11 +9,11 @@
     %span.sr-only Notifications
     %span.badge= notification_count
   .dropdown-menu.notification-dropdown
-    - if notifications.count == 0
+    - if notifications.count.zero?
       .dropdown-item.text-center.p-2
         %i.fa.fa-bell-o.notification__bell-icon
         %p No new notifications.
-      %a.dropdown-item.text-center{href: notifications_path('all')}
+      %a.dropdown-item.text-center{ href: notifications_path('all') }
         %i.fa.fa-fw.fa-chevron-right
         Show all notifications
     - else
@@ -21,6 +21,6 @@
         .dropdown-item
           = render "notifications/type/#{notification.target_type.downcase}", notification: notification
 
-      %a.dropdown-item.text-center{href: notifications_path}
+      %a.dropdown-item.text-center{ href: notifications_path }
         %i.fa.fa-fw.fa-chevron-right
         Show all new notifications
