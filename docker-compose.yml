@@ -14,6 +14,8 @@ services:
     volumes:
       - ./:/app
       - cache:/cache
+      - gems:/usr/local/bundle/gems
+      - modules:/app/node_modules
     ports:
       - 3000:3000
 
@@ -32,3 +34,5 @@ services:
 
 volumes:
   cache:
+  gems:
+  modules:
