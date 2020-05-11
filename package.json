@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@rails/webpacker": "5.1.1",
+    "core-js": "^3.6.5",
+    "regenerator-runtime": "^0.13.5"
+  }
+}
