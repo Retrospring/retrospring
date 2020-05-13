@@ -1,6 +1,5 @@
 AllCops:
-  Rails:
-    Enabled: true
+  NewCops: enable
   Exclude:
     - 'vendor/**/*'
     - 'db/schema.rb'

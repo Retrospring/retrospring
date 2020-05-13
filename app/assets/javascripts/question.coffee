@@ -1,15 +1,15 @@
-$(document).on "keydown", "textarea#q-answer", (evt) ->
+$(document).on "keydown", "textarea#q-answer-text", (evt) ->
   qid = $(this)[0].dataset.id
   if evt.keyCode == 13 and evt.ctrlKey
     # trigger warning:
-    $("button#q-answer").trigger 'click'
+    $("button#q-answer-btn").trigger 'click'
 
 
-$(document).on "click", "button#q-answer", ->
+$(document).on "click", "button#q-answer-btn", ->
   btn = $(this)
   btn.button "loading"
   qid = btn[0].dataset.qId
-  $("textarea#q-answer").attr "readonly", "readonly"
+  $("textarea#q-answer-text").attr "readonly", "readonly"
 
   shareTo = []
   ($ "input[type=checkbox][name=share][data-q-id=#{qid}]:checked").each (i, share) ->
@@ -21,7 +21,7 @@ $(document).on "click", "button#q-answer", ->
     dataType: 'json'
     data:
       id: qid
-      answer: $("textarea#q-answer[data-id=#{qid}]").val()
+      answer: $("textarea#q-answer-text[data-id=#{qid}]").val()
       share: JSON.stringify shareTo
       inbox: false
     success: (data, status, jqxhr) ->
@@ -34,4 +34,4 @@ $(document).on "click", "button#q-answer", ->
       showNotification translate('frontend.error.message'), false
     complete: (jqxhr, status) ->
       btn.button "reset"
-      $("textarea#q-answer").removeAttr "readonly"
+      $("textarea#q-answer-text").removeAttr "readonly"

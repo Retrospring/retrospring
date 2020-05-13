@@ -1,0 +1,130 @@
+skip_frontmatter: false
+
+linters:
+  AlignmentTabs:
+    enabled: true
+
+  AltText:
+    enabled: false
+
+  ClassAttributeWithStaticValue:
+    enabled: true
+
+  ClassesBeforeIds:
+    enabled: true
+
+  ConsecutiveComments:
+    enabled: true
+    max_consecutive: 1
+
+  ConsecutiveSilentScripts:
+    enabled: true
+    max_consecutive: 2
+
+  EmptyObjectReference:
+    enabled: true
+
+  EmptyScript:
+    enabled: true
+
+  FinalNewline:
+    enabled: true
+    present: true
+
+  HtmlAttributes:
+    enabled: true
+
+  IdNames:
+    enabled: true
+    style: lisp_case
+
+  ImplicitDiv:
+    enabled: true
+
+  Indentation:
+    enabled: true
+    character: space # or tab
+    width: 2 # ignored if character == tab
+
+  InlineStyles:
+    enabled: false
+
+  InstanceVariables:
+    enabled: true
+    file_types: partials
+    matchers:
+      all: .*
+      partials: \A_.*\.haml\z
+
+  LeadingCommentSpace:
+    enabled: true
+
+  LineLength:
+    enabled: true
+    max: 160
+
+  MultilinePipe:
+    enabled: true
+
+  MultilineScript:
+    enabled: true
+
+  ObjectReferenceAttributes:
+    enabled: true
+
+  RepeatedId:
+    enabled: true
+    severity: error
+
+  RuboCop:
+    enabled: true
+    # These cops are incredibly noisy when it comes to HAML templates, so we
+    # ignore them.
+    ignored_cops:
+      - Lint/BlockAlignment
+      - Lint/EndAlignment
+      - Lint/Void
+      - Layout/AlignParameters
+      - Layout/EmptyLineAfterGuardClause
+      - Layout/IndentationWidth
+      - Layout/TrailingEmptyLines
+      - Layout/TrailingWhitespace
+      - Metrics/BlockLength
+      - Metrics/BlockNesting
+      - Metrics/LineLength
+      - Style/BlockNesting
+      - Style/ElseAlignment
+      - Style/EndOfLine
+      - Style/FileName
+      - Style/FinalNewline
+      - Style/FrozenStringLiteralComment
+      - Style/IdenticalConditionalBranches
+      - Style/IfUnlessModifier
+      - Style/Next
+      - Style/WhileUntilModifier
+
+  RubyComments:
+    enabled: true
+
+  SpaceBeforeScript:
+    enabled: true
+
+  SpaceInsideHashAttributes:
+    enabled: true
+    style: space
+
+  TagName:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true
+
+  UnnecessaryInterpolation:
+    enabled: true
+
+  UnnecessaryStringOutput:
+    enabled: true
+
+  ViewLength:
+    enabled: true
+    max: 200

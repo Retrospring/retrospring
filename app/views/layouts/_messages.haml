@@ -1,0 +1,10 @@
+%noscript
+  .alert.alert-danger
+    = t 'messages.noscript'
+
+- flash.each do |key, value|
+  .alert.alert-dismissible{ class: "alert-#{bootstrap_color key}", role: :alert }
+    %button.close{ type: :button, data: { dismiss: :alert } }
+      %span{ aria: { hidden: true } } &times;
+      %span.sr-only= t 'views.actions.close'
+    = value

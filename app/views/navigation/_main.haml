@@ -1,28 +1,28 @@
-%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top{role: "navigation"}
-  .container{class: ios_web_app? ? "ios-web-app" : ''}
-    %a.navbar-brand{href: "/"}= APP_CONFIG['site_name']
-    %button.navbar-toggler{"data-target" => "#j2-main-navbar-collapse", "data-toggle" => "collapse", type: "button"}
+%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top{ role: :navigation }
+  .container{ class: ios_web_app? ? 'ios-web-app' : '' }
+    %a.navbar-brand{ href: '/' }= APP_CONFIG['site_name']
+    %button.navbar-toggler{ data: { target: '#j2-main-navbar-collapse', toggle: :collapse }, type: :button }
       %span.sr-only Toggle navigation
       %span.navbar-toggler-icon
-    #j2-main-navbar-collapse.collapse.navbar-collapse
+    .collapse.navbar-collapse#j2-main-navbar-collapse
       %ul.nav.navbar-nav.mr-auto
         = nav_entry t('views.navigation.timeline'), root_path
-        = nav_entry t('views.navigation.inbox'), "/inbox", badge: inbox_count
+        = nav_entry t('views.navigation.inbox'), '/inbox', badge: inbox_count
         - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
           = nav_entry t('views.navigation.discover'), discover_path
       %ul.nav.navbar-nav
         - unless @user.nil?
           - unless @user == current_user
-            %li.nav-item.d-none.d-sm-block{"data-toggle" => "tooltip", "data-placement" => "bottom", title: t('views.actions.group')}
-              %a.nav-link{href: '#', data: { target: "#modal-group-memberships", toggle: :modal }}
+            %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.group') }
+              %a.nav-link{ href: '#', data: { target: '#modal-group-memberships', toggle: :modal } }
                 %i.fa.fa-users.hidden-xs
                 %span.d-none.d-sm-inline.d-md-none= t('views.actions.group')
-        = render "navigation/main/notifications"
-        %li.nav-item.d-none.d-sm-block{"data-toggle" => "tooltip", "data-placement" => "bottom", title: t('views.actions.ask_question')}
-          %a.nav-link{href: "#", name: "toggle-all-ask", "data-target" => "#modal-ask-followers", "data-toggle" => "modal"}
+        = render 'navigation/main/notifications'
+        %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.ask_question') }
+          %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { target: '#modal-ask-followers', toggle: :modal } }
             %i.fa.fa-pencil-square-o
-        = render "navigation/main/profile"
+        = render 'navigation/main/profile'
 
 = render 'modal/ask'
-%button.btn.btn-primary.btn-fab.d-block.d-sm-none{"data-target" => "#modal-ask-followers", "data-toggle" => "modal", :type => "button"}
+%button.btn.btn-primary.btn-fab.d-block.d-sm-none{ data: { target: '#modal-ask-followers', toggle: :modal }, type: 'button' }
   %i.fa.fa-pencil-square-o

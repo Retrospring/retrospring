@@ -1,41 +1,41 @@
 %span.d-none.d-sm-inline.text-muted
   - unless user_signed_in?
-    - if a.smile_count > 0
-      %button.btn.btn-info.btn-sm{name: 'ab-smile', disabled: true}
+    - if a.smile_count.positive?
+      %button.btn.btn-info.btn-sm{ name: 'ab-smile', disabled: true }
         %i.fa.fa-smile-o
-        %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
+        %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
 - if user_signed_in?
   - if current_user.smiled? a
-    %button.btn.btn-link.answerbox__action{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile }}
+    %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile } }
       %i.fa.fa-fw.fa-frown-o
-      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
+      %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
   - else
-    %button.btn.btn-link.answerbox__action{type: :button, name: 'ab-smile', data: { a_id: a.id, action: :smile }}
+    %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile', data: { a_id: a.id, action: :smile } }
       %i.fa.fa-fw.fa-smile-o
-      %span{id: "ab-smile-count-#{a.id}"}= a.smile_count
-- unless @display_all
-  %button.btn.btn-link.answerbox__action{type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden }}
+      %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
+- unless display_all
+  %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden } }
     %i.fa.fa-fw.fa-comments
-    %span{id: "ab-comment-count-#{a.id}"}= a.comment_count
+    %span{ id: "ab-comment-count-#{a.id}" }= a.comment_count
 - if user_signed_in?
   .btn-group
-    %button.btn.btn-default.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
+    %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
       %span.caret
-    .dropdown-menu.dropdown-menu-right{role: :menu}
+    .dropdown-menu.dropdown-menu-right{ role: :menu }
       - if Subscription.is_subscribed(current_user, a)
         -#                                            fun joke    should subscribe?
-        %a.dropdown-item{href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: "no" }}
+        %a.dropdown-item{ href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: 'no' } }
           %i.fa.fa-anchor
           = t 'views.actions.unsubscribe'
       - else
-        %a.dropdown-item{href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: "yes" }}
+        %a.dropdown-item{ href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: 'yes' } }
           %i.fa.fa-anchor
           = t 'views.actions.subscribe'
       - if privileged? a.user
-        %a.dropdown-item.text-danger{href: '#', data: { a_id: a.id, action: 'ab-destroy' }}
+        %a.dropdown-item.text-danger{ href: '#', data: { a_id: a.id, action: 'ab-destroy' } }
           %i.fa.fa-trash-o
           = t 'views.actions.return'
       - unless a.user == current_user
-        %a.dropdown-item{href: '#', data: { a_id: a.id, action: 'ab-report' }}
+        %a.dropdown-item{ href: '#', data: { a_id: a.id, action: 'ab-report' } }
           %i.fa.fa-exclamation-triangle
           = t 'views.actions.report'

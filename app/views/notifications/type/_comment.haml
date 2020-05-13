@@ -3,15 +3,16 @@
     %i.fa.fa-2x.fa-fw.fa-comments
   .media-body
     .notification__heading
-      %img.avatar-xs{src: notification.target.user.profile_picture.url(:small)}
+      %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small) }
       = user_screen_name notification.target.user
       commented on
       - if notification.target.answer.user == current_user
-        = link_to "your answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
+        = link_to 'your answer', show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
       - elsif notification.target.user == notification.target.answer.user
-        = link_to "their answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
+        = link_to 'their answer', show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
       - else
-        = link_to "#{notification.target.answer.user.screen_name}'s answer", show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
+        = link_to "#{notification.target.answer.user.screen_name}'s answer",
+          show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id)
       = time_tooltip(notification.target)
       ago
     .list-group
@@ -19,9 +20,9 @@
         .media.question-media
           .media-body
             %h6.notification__list-heading answer
-            = markdown notification.target.answer.content[0..60] + "#{notification.target.answer.content.length > 60 ? '[...]' : ''}"
+            = markdown notification.target.answer.content[0..60] + (notification.target.answer.content.length > 60 ? '[...]' : '')
       .list-group-item
         .media.question-media
           .media-body
             %h6.notification__list-heading comment
-            = markdown notification.target.content[0..60] + "#{notification.target.content.length > 60 ? '[...]' : ''}"
+            = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[...]' : '')

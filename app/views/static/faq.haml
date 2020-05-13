@@ -1,0 +1,13 @@
+- provide(:title, generate_title('Frequently Asked Questions'))
+.jumbotron.jumbotron--particles
+  .jumbotron__particles#particles
+  .jumbotron__content
+    %h1 Frequently Asked Questions
+    %p
+      Everything you want to know about
+      = succeed '!' do
+        = APP_CONFIG['site_name']
+.container
+  .card
+    .card-body
+      = raw_markdown_io 'service-docs/en/help/faq.md'

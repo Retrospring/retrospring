@@ -1,0 +1,29 @@
+- if report.moderation_comments.all.count.zero?
+  = t 'views.answerbox.no_comment'
+- else
+  %ul.comment__container
+    - report.moderation_comments.order(:created_at).each do |comment|
+      %li.comment{ data: { comment_id: comment.id } }
+        .media
+          .pull-left
+            %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:medium) }
+          .media-body
+            %h6.media-heading.comment__user
+              = user_screen_name comment.user
+              %span.text-muted{ title: comment.created_at, data: { toggle: :tooltip, placement: :right } }
+                = time_ago_in_words(comment.created_at)
+                ago
+            - if comment.user == current_user
+              .pull-right
+                .btn-group
+                  %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
+                    %span.caret
+                  .dropdown-menu.dropdown-menu-right{ role: :menu }
+                    %a.dropdown-item.text-danger{ href: '#', tabindex: -1, data: { action: 'mod-comment-destroy', id: comment.id } }
+                      %i.fa.fa-trash-o
+                      = t 'views.actions.delete'
+            .comment__content
+              = comment.content
+.form-group.has-feedback{ name: 'mod-comment-new-group', data: { id: report.id } }
+  %input.form-control.comments--box{ type: :text, placeholder: t('views.placeholder.comment'), name: 'mod-comment-new', data: { id: report.id } }
+  %span.text-muted.form-control-feedback.comments--count{ id: "mod-comment-charcount-#{report.id}" } 160

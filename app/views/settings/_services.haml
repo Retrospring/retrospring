@@ -1,19 +1,22 @@
 .card
   .card-body
-    - if @services.count > 0
+    - if @services.count.positive?
       = t 'views.settings.service.enabled'
     - else
       = t 'views.settings.service.none'
 
     - APP_CONFIG['sharing'].each do |service, service_options|
-      - if service_options['enabled'] and !@services.any? { |x| x.provider == service.to_s }
-        %p=link_to t('views.settings.service.connect', service: service.capitalize), "/auth/#{service}"
+      - if service_options['enabled'] && @services.none? { |x| x.provider == service.to_s }
+        %p= link_to t('views.settings.service.connect', service: service.capitalize), "/auth/#{service}"
 
-  - if @services.count > 0
+  - if @services.count.positive?
     %ul.list-group
       - @services.each do |service|
         %li.list-group-item
-          %i{class: "fa fa-#{service.provider}"}
+          %i{ class: "fa fa-#{service.provider}" }
           %strong= service.provider.capitalize
           (#{service.nickname})
-          = link_to t('views.settings.service.disconnect'), service_path(service), data: { confirm: t('views.settings.service.confirm', service: service.provider.capitalize) }, method: :delete
+          = link_to t('views.settings.service.disconnect'),
+            service_path(service),
+            data: { confirm: t('views.settings.service.confirm', service: service.provider.capitalize) },
+            method: :delete

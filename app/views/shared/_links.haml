@@ -1,0 +1,12 @@
+.text-center.text-muted.pb-3
+  &copy;
+  = Date.today.year
+  = APP_CONFIG['site_name']
+  ·
+  = link_to t('views.general.about'), about_path
+  ·
+  = link_to 'GitHub', 'https://github.com/Retrospring/retrospring'
+  ·
+  = link_to t('views.general.terms'), terms_path
+  ·
+  = link_to t('views.general.privacy'), privacy_policy_path

@@ -2,9 +2,11 @@
   .pull-left
     %i.fa.fa-smile-o
   .media-body
-    - if a.smiles.all.count == 0
+    - if a.smiles.all.count.zero?
       = t 'views.answerbox.no_smile'
     - else
       - a.smiles.all.each do |smile|
-        %a{href: show_user_profile_path(smile.user.screen_name), title: smile.user.screen_name, data: { toggle: :tooltip, placement: :top, smile_id: smile.id }}
-          %img.avatar-xs{src: smile.user.profile_picture.url(:medium)}
+        %a{ href: show_user_profile_path(smile.user.screen_name),
+          title: smile.user.screen_name,
+          data: { toggle: :tooltip, placement: :top, smile_id: smile.id } }
+          %img.avatar-xs{ src: smile.user.profile_picture.url(:medium) }
