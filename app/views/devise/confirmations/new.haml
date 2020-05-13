@@ -1,0 +1,15 @@
+- provide(:title, generate_title('Resend confirmation instructions'))
+.container
+  .row
+    .col-sm-8.offset-sm-2
+      .card.mt-3
+        .card-body
+          %h1 Resend confirmation instructions
+          = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+            = devise_error_messages!
+
+            = f.text_field :screen_name, autofocus: true, label: 'User name'
+            = f.submit 'Resend confirmation instructions', class: 'btn btn-primary mb-3'
+
+          = render 'devise/shared/links'
+= render 'shared/links'

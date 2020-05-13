@@ -1,0 +1,9 @@
+%p{ style: 'margin:0px;padding:0px' }
+  Hello
+  = succeed '!' do
+    = @resource.screen_name
+%p &nbsp;
+%p{ style: 'margin:0px;padding:0px' } Your account has been locked due to an excessive number of unsuccessful sign in attempts.
+%p{ style: 'margin:0px;padding:0px' } Click the link below to unlock your account:
+%p{ style: 'margin:0px;padding:0px' }
+  = link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token, protocol: (APP_CONFIG['https'] ? :https : :http))

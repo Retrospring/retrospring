@@ -1,21 +1,21 @@
-#modal-ban.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "modal-ban-label", :role => "dialog", :tabindex => "-1"}
+.modal.fade#modal-ban{ aria: { hidden: true, labelledby: 'modal-ban-label' }, role: :dialog, tabindex: -1 }
   .modal-dialog
     .modal-content
       .modal-header
-        %h5#modal-ban-label.modal-title
+        %h5.modal-title#modal-ban-label
           = t 'views.modal.bancontrol.title'
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
+        %button.close{ data: { dismiss: :modal }, type: :button }
+          %span{ aria: { hidden: true } } ×
           %span.sr-only Close
-      = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: "novalidate" }) do |f|
-        = f.hidden_field :user, value: @user.screen_name
-        #ban-control-super.modal-body
-          = f.check_box :ban, label: t('views.modal.bancontrol.ban'), checked: @user.banned?
-          #ban-controls{style: "#{"display: none" unless @user.banned?}"}
-            = f.check_box :permaban, label: t('views.modal.bancontrol.permanent'), checked: @user.permanently_banned?
-            #ban-controls-time{style: "#{"display: none" unless not @user.permanently_banned?}"}
-              = f.text_field :until, label: "", required: true, value: (@user.banned_until || DateTime.current).strftime("%m/%d/%Y %I:%M %p")
-            = f.text_field :reason, placeholder: t('views.modal.bancontrol.reason'), value: @user.ban_reason
+      = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: :novalidate }) do |f|
+        = f.hidden_field :user, value: user.screen_name
+        .modal-body#ban-control-super
+          = f.check_box :ban, label: t('views.modal.bancontrol.ban'), checked: user.banned?
+          #ban-controls{ style: !user.banned? ? 'display: none' : '' }
+            = f.check_box :permaban, label: t('views.modal.bancontrol.permanent'), checked: user.permanently_banned?
+            #ban-controls-time{ style: user.permanently_banned? ? 'display: none' : '' }
+              = f.text_field :until, label: '', required: true, value: (user.banned_until || DateTime.current).strftime('%m/%d/%Y %I:%M %p')
+            = f.text_field :reason, placeholder: t('views.modal.bancontrol.reason'), value: user.ban_reason
         .modal-footer
-          %button.btn.btn-default{name: 'stop-time', type: :button, data: { dismiss: :modal }}= t 'views.actions.close'
-          = f.submit t('views.modal.bancontrol.hammertime'), class: "btn btn-primary", name: 'hammer-time'
+          %button.btn.btn-default{ name: 'stop-time', type: :button, data: { dismiss: :modal } }= t 'views.actions.close'
+          = f.submit t('views.modal.bancontrol.hammertime'), class: 'btn btn-primary', name: 'hammer-time'

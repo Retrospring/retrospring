@@ -1,13 +1,14 @@
 .container.container--main
   .row
     .col-md-3.col-xs-12.col-sm-4.order-2.order-sm-1
-      = render 'inbox/sidebar'
+      = render 'inbox/sidebar', delete_id: @delete_id, disabled: @disabled, inbox_count: @inbox_count
     .col-md-9.col-xs-12.col-sm-8.order-1.order-sm-2
       = render 'layouts/messages'
       = yield
 
-= render "shared/links"
+= render 'shared/links'
 
-- Inbox.where(id: @inbox.ids).update_all(new: false)
-- provide(:title, generate_title("Inbox"))
-- parent_layout "base"
+:ruby
+  Inbox.where(id: @inbox.ids).update_all(new: false)
+  provide(:title, generate_title('Inbox'))
+  parent_layout 'base'

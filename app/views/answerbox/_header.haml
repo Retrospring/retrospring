@@ -1,21 +1,21 @@
 .card-header
   .media
     - unless a.question.author_is_anonymous
-      %a.pull-left{href: show_user_profile_path(a.question.user.screen_name)}
-        %img.answerbox__question-user-avatar.avatar-md{src: a.question.user.profile_picture.url(:medium)}
+      %a.pull-left{ href: show_user_profile_path(a.question.user.screen_name) }
+        %img.answerbox__question-user-avatar.avatar-md{ src: a.question.user.profile_picture.url(:medium) }
     .media-body
       - if user_signed_in?
         .pull-right
           .btn-group
-            %button.btn.btn-link.btn-sm.dropdown-toggle{data: { toggle: :dropdown }, aria: { expanded: :false }}
+            %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
               %span.caret
-            .dropdown-menu.dropdown-menu-right{role: :menu}
-              - if current_user.mod? or a.question.user == current_user
-                %a.dropdown-item.text-danger{href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: a.question.id }}
+            .dropdown-menu.dropdown-menu-right{ role: :menu }
+              - if current_user.mod? || a.question.user == current_user
+                %a.dropdown-item.text-danger{ href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: a.question.id } }
                   %i.fa.fa-trash-o
                   = t 'views.actions.delete'
               - unless a.question.user == current_user
-                %a.dropdown-item{href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: a.question.id }}
+                %a.dropdown-item{ href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: a.question.id } }
                   %i.fa.fa-exclamation-triangle
                   = t 'views.actions.report'
       %h6.text-muted.media-heading.answerbox__question-user
@@ -23,7 +23,7 @@
         - unless a.question.author_is_anonymous
           - if a.question.answer_count > 1
             ·
-            %a{href: show_user_question_path(a.question.user.screen_name, a.question.id)}
+            %a{ href: show_user_question_path(a.question.user.screen_name, a.question.id) }
               = pluralize(a.question.answer_count, t('views.general.answer'))
       .answerbox__question-text
         = a.question.content

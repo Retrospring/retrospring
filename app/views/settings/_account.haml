@@ -11,19 +11,19 @@
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         %div= raw t('views.settings.account.email_confirm', resource: resource.unconfirmed_email)
 
-      = f.password_field :password, autocomplete: "off", label: t('views.settings.account.password'), help: t('views.settings.account.password_help')
-      = f.password_field :password_confirmation, autocomplete: "off", label: t('views.settings.account.password_confirm')
+      = f.password_field :password, autocomplete: :off, label: t('views.settings.account.password'), help: t('views.settings.account.password_help')
+      = f.password_field :password_confirmation, autocomplete: :off, label: t('views.settings.account.password_confirm')
 
-      %button.btn.btn-primary{"data-target" => "#modal-passwd", "data-toggle" => "modal", :type => "button"}
+      %button.btn.btn-primary{ data: { target: '#modal-passwd', toggle: :modal, type: :button } }
         = t 'views.actions.save'
 
       %hr/
     %p
       = t 'views.settings.account.unsatisfied'
-      =button_to t('views.settings.account.delete'), '/settings/account', data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-xs"
+      = button_to t('views.settings.account.delete'), '/settings/account', data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-xs'
 
     = link_to t('views.settings.account.back'), :back
 
-.visible-xs= render "shared/links"
+.visible-xs= render 'shared/links'
 
 

@@ -1,0 +1,28 @@
+%html
+  %head
+    :css
+      body {
+        font-size: 16px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-family: Arial, sans-serif;
+      }
+      p {
+        margin: 0px;
+        padding: 0px;
+      }
+  %body
+    %table{ cellpadding: 0, cellspacing: 0, border: 5, bordercolor: '#5e35b1', bgcolor: '#5e35b1', style: 'font-size:0px;', align: 'center', width: '630' }
+      %tbody
+        %tr
+          %td{ style: 'padding:5px 10px;', align: 'center' }
+            %p{ style: 'margin:0px;padding:0px' }
+              %font{ color: '#ffffff', size: 6, face: 'Arial, sans-serif' }= APP_CONFIG['site_name']
+        %tr
+          %td{ bgcolor: '#ffffff', style: 'padding:10px' }
+            %font{ color: '#000000', size: 4, face: 'Arial, sans-serif' }= yield
+    %p{ style: 'margin:0px;padding:5px;', align: 'center' }
+      %font{ size: 2, color: '#797979', face: 'Arial, sans-serif' }
+        &copy;
+        = Time.zone.now.year
+        = APP_CONFIG['site_name']

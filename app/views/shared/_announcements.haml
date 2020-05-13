@@ -2,8 +2,8 @@
   - @active_announcements.each do |announcement|
     .alert.announcement.alert-info.alert-dismissable.d-none{ data: { 'announcement-id': announcement.id } }
       .container
-        %button.close{ type: "button", "data-dismiss" => "alert" }
-          %span{ "aria-hidden" => "true" } &times;
+        %button.close{ type: :button, data: { dismiss: :alert } }
+          %span{ aria: { hidden: true } } &times;
         %p
           = announcement.content
           - if announcement.link_present?

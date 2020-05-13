@@ -1,0 +1,3 @@
+.tab-pane.fade{ role: :tabpanel, id: 'questions' }
+  - questions.each do |q|
+    = render 'shared/question', q: q, type: 'discover'

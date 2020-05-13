@@ -1,14 +1,15 @@
-.card.answerbox{data: { id: a.id, q_id: a.question.id }}
+- display_all ||= nil
+.card.answerbox{ data: { id: a.id, q_id: a.question.id } }
   - if @question.nil?
-    = render "answerbox/header", a: a
+    = render 'answerbox/header', a: a
   .card-body
-    - if @display_all.nil?
+    - if display_all.nil?
       .answerbox__answer-text
         = markdown a.content[0..255]
         - if a.content.length > 255
           [...]
           %p
-            %a.btn.btn-primary{href: show_user_answer_path(a.user.screen_name, a.id)}
+            %a.btn.btn-primary{ href: show_user_answer_path(a.user.screen_name, a.id) }
               = t 'views.answerbox.read'
     - else
       .answerbox__answer-text
@@ -18,15 +19,15 @@
         .col.col-sm-4.col-md-6.text-left.text-muted
           .media
             .pull-left
-              %a{href: show_user_profile_path(a.user.screen_name)}
-                %img.answerbox__answer-user-avatar.avatar-sm{src: a.user.profile_picture.url(:medium)}
+              %a{ href: show_user_profile_path(a.user.screen_name) }
+                %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:medium) }
             .media-body
               %h6.media-heading.answerbox__answer-user
-                = raw t('views.answerbox.answered', hide: hidespan(t('views.answerbox.hide'), "d-none d-sm-inline"), user: user_screen_name(a.user))
+                = raw t('views.answerbox.answered', hide: hidespan(t('views.answerbox.hide'), 'd-none d-sm-inline'), user: user_screen_name(a.user))
               .answerbox__answer-date
                 = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))), show_user_answer_path(a.user.screen_name, a.id))
         .col.col-sm-8.col-md-6.text-right
-          = render 'answerbox/actions', a: a
+          = render 'answerbox/actions', a: a, display_all: display_all
     - else
       .row
         .col-4.col-sm-4.col-md-6.text-left.text-muted
@@ -34,6 +35,6 @@
           = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))), show_user_answer_path(a.user.screen_name, a.id))
         .col-8.col-sm-8.col-md-6.text-right
           = render 'answerbox/actions', a: a
-  .card-footer{id: "ab-comments-section-#{a.id}", style: @display_all.nil? ? 'display: none' : nil }
-    %div{id: "ab-smiles-#{a.id}"}= render 'answerbox/smiles', a: a
-    %div{id: "ab-comments-#{a.id}"}= render 'answerbox/comments', a: a
+  .card-footer{ id: "ab-comments-section-#{a.id}", style: display_all.nil? ? 'display: none' : nil }
+    %div{ id: "ab-smiles-#{a.id}" }= render 'answerbox/smiles', a: a
+    %div{ id: "ab-comments-#{a.id}" }= render 'answerbox/comments', a: a

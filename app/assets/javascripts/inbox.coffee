@@ -22,7 +22,7 @@
       btn.button "reset"
 
 ($ document).on "click", "button#ib-author", ->
-  $('#author_form').submit ->
+  $('#author-form').submit ->
     query = $('#author').val()
     window.location.href = '/inbox/' + query
     false

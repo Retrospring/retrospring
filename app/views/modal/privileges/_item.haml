@@ -1,11 +1,12 @@
-- description ||= ''
-- role_mapping = {"admin" => "administrator"}
-- requires_role = %w[admin moderator].include?(privilege)
-- checked = requires_role ? user.has_role?(role_mapping.fetch(privilege, privilege).to_sym) : user.public_send("#{privilege}?")
-%li.list-group-item{id: "privilege-#{privilege}"}
+:ruby
+  description ||= ''
+  role_mapping = { admin: 'administrator' }
+  requires_role = %w[admin moderator].include?(privilege)
+  checked = requires_role ? user.has_role?(role_mapping.fetch(privilege, privilege).to_sym) : user.public_send("#{privilege}?")
+%li.list-group-item{ id: "privilege-#{privilege}" }
   .media
     .pull-left
-      %input{type: :checkbox, name: 'check-your-privileges', data: { type: privilege, user: user.screen_name }, checked: checked, autocomplete: 'off'}
+      %input{ type: :checkbox, name: 'check-your-privileges', data: { type: privilege, user: user.screen_name }, checked: checked, autocomplete: :off }
     .media-body
       .list-group-item-heading= privilege.capitalize
       - unless description.blank?
