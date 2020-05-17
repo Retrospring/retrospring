@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 5.1', '>= 5.1.1'
 gem 'coffee-rails', '~> 4.1'
 gem 'jquery-rails'
-gem 'turbolinks', '~> 2.5.3'
+gem 'turbolinks', '~> 5.2.0'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.10'
 
