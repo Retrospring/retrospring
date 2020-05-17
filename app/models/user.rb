@@ -58,7 +58,9 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 200 }
 
   mount_uploader :profile_picture, ProfilePictureUploader, mount_on: :profile_picture_file_name
+  process_in_background :profile_picture
   mount_uploader :profile_header, ProfileHeaderUploader, mount_on: :profile_header_file_name
+  process_in_background :profile_header
 
   before_save do
     self.website = if website.match %r{\Ahttps?://}

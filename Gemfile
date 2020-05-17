@@ -38,6 +38,7 @@ gem 'tiny-color-rails'
 gem 'jquery-minicolors-rails'
 gem 'colorize'
 gem 'carrierwave', '~> 2.0'
+gem 'carrierwave_backgrounder', git: 'https://github.com/mltnhm/carrierwave_backgrounder.git'
 gem 'mini_magick'
 
 gem "rolify", "~> 5.2"

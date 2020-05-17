@@ -10,3 +10,7 @@ CarrierWave.configure do |config|
     config.fog_directory = APP_CONFIG.dig("fog", "directory") unless APP_CONFIG.dig("fog", "directory").nil?
   end
 end
+
+CarrierWave::Backgrounder.configure do |c|
+  c.backend :sidekiq, queue: :carrierwave
+end

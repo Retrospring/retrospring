@@ -7,7 +7,7 @@ production:
   :concurrency: 25
 :queues:
   - share
-  - paperclip
+  - carrierwave
   - mailers
   - deletion
   - question

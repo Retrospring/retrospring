@@ -11,6 +11,14 @@ GIT
       simple_oauth
 
 GIT
+  remote: https://github.com/mltnhm/carrierwave_backgrounder.git
+  revision: 8fe468957f047ad7039f07679e5952a534d07b6d
+  specs:
+    carrierwave_backgrounder (0.4.2)
+      carrierwave (>= 0.5, <= 2.1)
+      mime-types (>= 3.0.0)
+
+GIT
   remote: https://github.com/retrospring/questiongenerator.git
   revision: c5f8362ff769425d42a94b3a611731eadaa5e0ca
   specs:
@@ -527,6 +535,7 @@ DEPENDENCIES
   byebug
   capybara
   carrierwave (~> 2.0)
+  carrierwave_backgrounder!
   coffee-rails (~> 4.1)
   colorize
   database_cleaner

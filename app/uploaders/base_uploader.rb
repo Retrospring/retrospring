@@ -1,6 +1,7 @@
 class BaseUploader < CarrierWave::Uploader::Base
   include CarrierWave::Compatibility::Paperclip
   include CarrierWave::MiniMagick
+  include CarrierWave::Backgrounder::Delay
 
   storage :fog
 
