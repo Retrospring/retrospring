@@ -82,10 +82,6 @@ group :development do
   gem 'web-console', '< 4.0.0'
 end
 
-group :production do
-  gem 'unicorn', group: :production
-end
-
 gem 'puma'
 
 group :development, :test do
