@@ -1,24 +1,7 @@
 import Rails from '@rails/ujs';
 import swal from 'sweetalert';
 
-import I18n from '../i18n';
-import registerEvents from '../utilities/registerEvents';
-
-export function generateQuestionHandler(): void {
-  Rails.ajax({
-    url: '/ajax/generate_question',
-    type: 'POST',
-    dataType: 'json',
-    success: (data) => {
-      if (!data.success) return false;
-
-      document.querySelector('#entries').insertAdjacentHTML('afterbegin', data.render);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
-    }
-  });
-}
+import I18n from '../../i18n';
 
 export function deleteAllQuestionsHandler(event: Event): void {
   const button = event.currentTarget as Element;
@@ -52,8 +35,3 @@ export function deleteAllQuestionsHandler(event: Event): void {
     });
   });
 }
-
-export default (): void => registerEvents([
-  { type: 'click', target: document.querySelector('#ib-generate-question'), handler: generateQuestionHandler },
-  { type: 'click', target: document.querySelector('#ib-delete-all'), handler: deleteAllQuestionsHandler }
-]);
