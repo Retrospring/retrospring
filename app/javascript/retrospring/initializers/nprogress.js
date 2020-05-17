@@ -1,12 +1,12 @@
 import NProgress from 'nprogress';
 
 /**
- * This method sets up nProgress to listen on the Turbolinks
- * site navigation events
+ * NProgress initializer method, setting up NProgress to work
+ * on Turbolinks site navigation events
  */
-export default function nProgressSetup() {
+export default function() {
   NProgress.configure({
-    showSpinner: false
+    showSpinner: false,
   });
 
   document.addEventListener('page:fetch', () => { NProgress.start(); });
