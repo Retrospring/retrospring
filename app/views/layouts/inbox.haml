@@ -8,6 +8,9 @@
 
 = render 'shared/links'
 
+- content_for :packs do
+  = javascript_pack_tag 'inbox'
+
 :ruby
   Inbox.where(id: @inbox.ids).update_all(new: false)
   provide(:title, generate_title('Inbox'))
