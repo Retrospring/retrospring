@@ -25,6 +25,7 @@ coverage/
 
 # dont push generated js translations to repository
 /app/assets/javascripts/i18n/*.js
+/app/javascript/retrospring/i18n.ts
 
 # every fucking time, dolphin
 .directory

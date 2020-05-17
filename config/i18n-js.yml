@@ -24,5 +24,7 @@
 fallbacks: :default_locale
 
 translations:
-  - file: 'app/assets/javascripts/i18n/translations.js'
+  - file: 'app/javascript/retrospring/i18n.ts'
     only: ['*.frontend.*', '*.views.actions.*']
+    prefix: "import I18n from 'i18n-js';\n"
+    suffix: "\nexport default I18n;"

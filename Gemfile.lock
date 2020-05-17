@@ -218,10 +218,10 @@ GEM
     httparty (0.18.0)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (0.9.5)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    i18n-js (3.0.0.rc10)
-      i18n (~> 0.6)
+    i18n-js (3.6.0)
+      i18n (>= 0.6.6)
     ipaddress (0.8.3)
     jaro_winkler (1.5.4)
     jbuilder (2.10.0)
@@ -572,7 +572,7 @@ DEPENDENCIES
   haml (~> 5.0)
   haml_lint
   httparty
-  i18n-js (= 3.0.0.rc10)
+  i18n-js (~> 3.6)
   jbuilder (~> 2.10)
   jquery-minicolors-rails
   jquery-rails
