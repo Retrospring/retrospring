@@ -48,10 +48,10 @@
 
       = f.check_box :show_foreign_themes, label: 'Render other user themes when visiting their profile'
 
-      - %i[crop_x crop_y crop_w crop_h].each do |attrib|
+      - for attrib in %i(profile_picture_x profile_picture_y profile_picture_w profile_picture_h)
         = f.hidden_field attrib, id: attrib
 
-      - %i[crop_h_x crop_h_y crop_h_w crop_h_h].each do |attrib|
+      - for attrib in %i(profile_header_x profile_header_y profile_header_w profile_header_h)
         = f.hidden_field attrib, id: attrib
 
       = f.submit t('views.actions.save'), class: 'btn btn-primary'

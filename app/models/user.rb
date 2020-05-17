@@ -41,9 +41,6 @@ class User < ApplicationRecord
 
   has_one :theme, dependent: :destroy
 
-  attr_accessor :profile_picture_x, :profile_picture_y, :profile_picture_w, :profile_picture_h,
-                :profile_header_x, :profile_header_y, :profile_header_w, :profile_header_h
-
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 
