@@ -1,7 +1,19 @@
 {
+  "scripts": {
+    "lint": "yarn run eslint --ext .js app/javascript",
+    "lint:fix": "yarn run eslint --ext .js app/javascript --fix"
+  },
   "dependencies": {
+    "@rails/ujs": "^6.0.3",
     "@rails/webpacker": "5.1.1",
     "core-js": "^3.6.5",
-    "regenerator-runtime": "^0.13.5"
+    "nprogress": "^0.2.0",
+    "regenerator-runtime": "^0.13.5",
+    "turbolinks": "^5.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1"
   }
 }
