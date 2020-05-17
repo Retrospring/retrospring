@@ -1,6 +1,6 @@
 import initialize from './initializers';
 
-export default function start() {
+export default function start(): void {
   try {
     initialize();
   } catch (e) {

@@ -1,14 +1,21 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "extends": [
-        "airbnb-base"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
+    },
+    "env": {
+        "browser": true,
+        "es6": true
     },
     "parserOptions": {
         "ecmaVersion": 2018,

@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "lint": "yarn run eslint --ext .js app/javascript",
-    "lint:fix": "yarn run eslint --ext .js app/javascript --fix"
+    "lint": "yarn run eslint --ext .ts app/javascript",
+    "lint:fix": "yarn run eslint --ext .ts app/javascript --fix"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.9.0",
     "@rails/ujs": "^6.0.3",
     "@rails/webpacker": "5.1.1",
     "bootstrap": "^4.5.0",
@@ -12,11 +13,13 @@
     "nprogress": "^0.2.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.5",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "typescript": "^3.9.2"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^14.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "eslint": "^7.0.0",
     "eslint-plugin-import": "^2.20.1"
   }
 }

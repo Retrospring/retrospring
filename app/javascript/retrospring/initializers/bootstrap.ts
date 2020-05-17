@@ -7,6 +7,6 @@ import $ from 'jquery';
  * Inside of the exported function below, initialize Bootstrap
  * modules that require explicit initilization, like tooltips
  */
-export default function () {
+export default function (): void {
   $(document).ready(() => $('[data-toggle="tooltip"]').tooltip());
 }

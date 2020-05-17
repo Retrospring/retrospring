@@ -4,7 +4,7 @@ import NProgress from 'nprogress';
  * NProgress initializer method, setting up NProgress to work
  * on Turbolinks site navigation events
  */
-export default function () {
+export default function (): void {
   NProgress.configure({
     showSpinner: false,
   });
