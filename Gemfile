@@ -86,9 +86,10 @@ group :production do
   gem 'unicorn', group: :production
 end
 
+gem 'puma'
+
 group :development, :test do
   gem 'rake'
-  gem 'puma'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec-its', '~> 1.3'
   gem "rspec-sidekiq", "~> 3.0", require: false
