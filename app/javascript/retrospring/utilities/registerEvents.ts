@@ -10,7 +10,7 @@ export default function registerEvents(events: EventDef[]): void {
       event.target.forEach(element => {
         element.addEventListener(event.type, event.handler);
       });
-    } else {
+    } else if (event.target instanceof Node) {
       event.target.addEventListener(event.type, event.handler);
     }
   });
