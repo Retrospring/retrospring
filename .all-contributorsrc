@@ -1,0 +1,175 @@
+{
+  "projectName": "retrospring",
+  "projectOwner": "Retrospring",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "types": {
+    "ios": {
+      "symbol": "📱",
+      "description": "Worked on an iOS app.",
+      "link": "[<%= symbol %>](https://github.com/Retrospring/retrospring-ios),"
+    },
+    "blend": {
+      "symbol": "🖥",
+      "description": "Worked on an Windows UWP/Blend app.",
+      "link": "[<%= symbol %>](https://github.com/Retrospring/retrospring-blend),"
+    }
+  },
+  "contributors": [
+    {
+      "login": "nilsding",
+      "name": "Georg Gadinger",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1809170?v=4",
+      "profile": "https://nilsding.org",
+      "contributions": [
+        "maintenance",
+        "code",
+        "test",
+        "infra",
+        "bug",
+        "review"
+      ]
+    },
+    {
+      "login": "pixeldesu",
+      "name": "Andreas Nedbal",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1774242?v=4",
+      "profile": "https://pixelde.su",
+      "contributions": [
+        "maintenance",
+        "code",
+        "design",
+        "test",
+        "bug",
+        "review",
+        "ideas",
+        "translation",
+        "content"
+      ]
+    },
+    {
+      "login": "healingbrew",
+      "name": "Naomi Ahmed",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/614231?v=4",
+      "profile": "http://chomp.gg/",
+      "contributions": [
+        "code",
+        "design",
+        "bug",
+        "ideas",
+        "translation"
+      ]
+    },
+    {
+      "login": "mltnhm",
+      "name": "mltnhm",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6197148?v=4",
+      "profile": "https://kjk.dog",
+      "contributions": [
+        "code",
+        "infra",
+        "bug",
+        "ideas",
+        "review"
+      ]
+    },
+    {
+      "login": "corsair",
+      "name": "Tyler Corsair",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1847891?v=4",
+      "profile": "http://tylercorsair.com/",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "DasGraMMa",
+      "name": "Marcel",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5408476?v=4",
+      "profile": "https://www.gramma.name/",
+      "contributions": [
+        "blend"
+      ]
+    },
+    {
+      "login": "liclac",
+      "name": "embr",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/428026?v=4",
+      "profile": "https://twitter.com/_liclac",
+      "contributions": [
+        "ios"
+      ]
+    },
+    {
+      "login": "coderobe",
+      "name": "Robin B.",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8442384?v=4",
+      "profile": "https://coderobe.net/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "colons",
+      "name": "colons",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1394710?v=4",
+      "profile": "https://colons.co",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "skielred",
+      "name": "Tina",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9400466?v=4",
+      "profile": "https://tina.moe",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "thehowl",
+      "name": "Morgan",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4681308?v=4",
+      "profile": "https://zxq.co/howl",
+      "contributions": [
+        "content",
+        "translation"
+      ]
+    },
+    {
+      "login": "tmprnc",
+      "name": "temperance",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3785923?v=4",
+      "profile": "https://twitter.com/tmprnz",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Filippus",
+      "name": "Vilppu P.",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/11085847?v=4",
+      "profile": "https://github.com/Filippus",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "tupsut",
+      "name": "Saskia",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6755916?v=4",
+      "profile": "https://tupsu.tuuba.moe/",
+      "contributions": [
+        "translation"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
