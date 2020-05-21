@@ -14,7 +14,8 @@
           #ban-controls{ style: !user.banned? ? 'display: none' : '' }
             = f.check_box :permaban, label: t('views.modal.bancontrol.permanent'), checked: user.permanently_banned?
             #ban-controls-time{ style: user.permanently_banned? ? 'display: none' : '' }
-              = f.text_field :until, class: 'datetimepicker-input', label: '', required: true, value: (user.banned_until || DateTime.current).strftime('%m/%d/%Y %I:%M %p')
+              = f.text_field :until,
+                class: 'datetimepicker-input', label: '', required: true, value: (user.banned_until || DateTime.current).strftime('%m/%d/%Y %I:%M %p')
             = f.text_field :reason, placeholder: t('views.modal.bancontrol.reason'), value: user.ban_reason
         .modal-footer
           %button.btn.btn-default{ name: 'stop-time', type: :button, data: { dismiss: :modal } }= t 'views.actions.close'
