@@ -19,9 +19,12 @@ WORKDIR /app
 
 ADD Gemfile* /app/
 RUN bundle install
-COPY . /app
 
+ADD package.json /app/
+ADD yarn.lock /app/
 RUN yarn install
+
+COPY . /app
 
 COPY .docker/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
