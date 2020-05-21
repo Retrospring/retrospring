@@ -25,13 +25,11 @@
           .col-md-6
             = f.datetime_field :starts_at,
               label: 'Start time',
-              class: 'datetimepicker-input',
-              data: { toggle: 'datetimepicker', target: '#announcement_starts_at', 'date-format': 'YYYY-MM-DD hh:mm A' }
+              class: 'datetimepicker-input'
           .col-md-6
             = f.datetime_field :ends_at,
               label: 'End time',
-              class: 'datetimepicker-input',
-              data: { toggle: 'datetimepicker', target: '#announcement_ends_at', 'date-format': 'YYYY-MM-DD hh:mm A' }
+              class: 'datetimepicker-input'
         .row
           .col-md-12.text-right
             = f.submit class: 'btn btn-primary'
