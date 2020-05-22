@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_094402) do
+ActiveRecord::Schema.define(version: 2020_05_17_192431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -249,14 +249,11 @@ ActiveRecord::Schema.define(version: 2020_05_09_094402) do
     t.string "location", default: "", null: false
     t.text "bio", default: "", null: false
     t.string "profile_picture_file_name"
-    t.string "profile_picture_content_type"
-    t.integer "profile_picture_file_size"
-    t.datetime "profile_picture_updated_at"
     t.boolean "profile_picture_processing"
-    t.integer "crop_x"
-    t.integer "crop_y"
-    t.integer "crop_w"
-    t.integer "crop_h"
+    t.integer "profile_picture_x"
+    t.integer "profile_picture_y"
+    t.integer "profile_picture_w"
+    t.integer "profile_picture_h"
     t.boolean "privacy_allow_anonymous_questions", default: true
     t.boolean "privacy_allow_public_timeline", default: true
     t.boolean "privacy_allow_stranger_answers", default: true
@@ -266,14 +263,11 @@ ActiveRecord::Schema.define(version: 2020_05_09_094402) do
     t.datetime "banned_until"
     t.integer "comment_smiled_count", default: 0, null: false
     t.string "profile_header_file_name"
-    t.string "profile_header_content_type"
-    t.integer "profile_header_file_size"
-    t.datetime "profile_header_updated_at"
     t.boolean "profile_header_processing"
-    t.integer "crop_h_x"
-    t.integer "crop_h_y"
-    t.integer "crop_h_w"
-    t.integer "crop_h_h"
+    t.integer "profile_header_x"
+    t.integer "profile_header_y"
+    t.integer "profile_header_w"
+    t.integer "profile_header_h"
     t.string "locale", default: "en"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
