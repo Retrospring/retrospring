@@ -1,6 +1,6 @@
 class User::RegistrationsController < Devise::RegistrationsController
   def create
-    if verify_hcaptcha(model: resource)
+    if !APP_CONFIG.dig(:hcaptcha, :enabled) || verify_hcaptcha(model: resource)
       super
     else
       respond_with_navigational(resource){ redirect_to new_user_registration_path }

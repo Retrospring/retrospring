@@ -14,7 +14,8 @@
             = f.password_field :password, autocomplete: :off, label: t('views.settings.account.password')
             = f.password_field :password_confirmation, autocomplete: :off, label: t('views.settings.account.password_confirm')
 
-            = hcaptcha_tags
+            - if APP_CONFIG.dig(:hcaptcha, :enabled)
+              = hcaptcha_tags
 
             %p= raw t('views.sessions.info', terms: link_to(t('views.general.terms'), terms_path))
             = f.submit 'Sign up', class: 'btn btn-primary mb-3'
