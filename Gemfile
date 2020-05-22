@@ -40,6 +40,7 @@ gem 'colorize'
 gem 'carrierwave', '~> 2.0'
 gem 'carrierwave_backgrounder', git: 'https://github.com/mltnhm/carrierwave_backgrounder.git'
 gem 'mini_magick'
+gem 'hcaptcha', git: 'https://github.com/firstmoversadvantage/hcaptcha.git'
 
 gem "rolify", "~> 5.2"
 

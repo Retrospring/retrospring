@@ -1,4 +1,11 @@
 class User::RegistrationsController < Devise::RegistrationsController
+  def create
+    if verify_hcaptcha(model: resource)
+      super
+    else
+      respond_with_navigational(resource){ redirect_to new_user_registration_path }
+    end
+  end
 
   def destroy
     DeletionWorker.perform_async(resource.id)
