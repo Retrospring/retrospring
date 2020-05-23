@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 
 import I18n from '../../i18n';
 import animate from '../../utilities/animate';
+import { showErrorNotification } from '../../utilities/notifications';
 
 export function updateDeleteButton(increment = true): void {
   const deleteButton: HTMLElement = document.querySelector('[id^=ib-delete-all]');
@@ -58,6 +59,7 @@ export function deleteAllQuestionsHandler(event: Event): void {
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
+        showErrorNotification(I18n.t('frontend.error.message'));
       }
     });
   });

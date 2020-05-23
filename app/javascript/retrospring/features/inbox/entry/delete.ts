@@ -11,7 +11,7 @@ export function deleteEntryHandler(event: Event): void {
 
   const data = {
     id: element.getAttribute('data-ib-id')
-  }
+  };
 
   swal({
     title: I18n.t('frontend.inbox.confirm.title'),
@@ -43,7 +43,7 @@ export function deleteEntryHandler(event: Event): void {
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
-        showErrorNotification(I18n.t('frontend.error.message'))
+        showErrorNotification(I18n.t('frontend.error.message'));
       }
     });
   })

@@ -1,7 +1,9 @@
 import Rails from '@rails/ujs';
 
+import I18n from '../../i18n';
 import { updateDeleteButton } from './delete';
 import registerInboxEntryEvents from './entry';
+import { showErrorNotification } from '../../utilities/notifications';
 
 export function generateQuestionHandler(): void {
   Rails.ajax({
@@ -17,6 +19,7 @@ export function generateQuestionHandler(): void {
     },
     error: (data, status, xhr) => {
       console.log(data, status, xhr);
+      showErrorNotification(I18n.t('frontend.error.message'));
     }
   });
 }

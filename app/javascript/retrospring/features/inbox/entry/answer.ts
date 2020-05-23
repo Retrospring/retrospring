@@ -19,7 +19,7 @@ export function answerEntryHandler(): void {
     answer: inboxEntry.querySelector<HTMLInputElement>('textarea[name=ib-answer]')?.value,
     share: JSON.stringify(shareTo),
     inbox: 'true'
-  }
+  };
 
   Rails.ajax({
     url: '/ajax/answer',
