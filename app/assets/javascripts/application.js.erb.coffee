@@ -11,7 +11,6 @@
 #= require jquery.guillotine
 #= require jquery.particleground
 #= require sweetalert
-#= require js.cookie
 #= require i18n
 #= require_tree ./i18n
 #= require tinycolor-min
