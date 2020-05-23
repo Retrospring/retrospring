@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import I18n from '../../../i18n';
 import { updateDeleteButton } from '../delete';
 import animate from '../../../utilities/animate';
+import { showNotification, showErrorNotification } from '../../../utilities/notifications';
 
 export function deleteEntryHandler(event: Event): void {
   const element: HTMLButtonElement = event.currentTarget as HTMLButtonElement;
@@ -29,6 +30,7 @@ export function deleteEntryHandler(event: Event): void {
         if (!data.success) return false;
         const inboxEntry: Node = element.closest('.inbox-entry');
         updateDeleteButton(false);
+        showNotification(data.message);
 
         animate(inboxEntry, 'fadeOutUp')
           .then(() => {
@@ -37,6 +39,7 @@ export function deleteEntryHandler(event: Event): void {
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
+        showErrorNotification(I18n.t('frontend.error.message'))
       }
     });
   })

@@ -2,6 +2,7 @@ import Rails from '@rails/ujs';
 
 import { updateDeleteButton } from '../delete';
 import animate from '../../../utilities/animate';
+import { showNotification, showErrorNotification } from '../../../utilities/notifications';
 
 export function answerEntryHandler(): void {
   const element: HTMLButtonElement = event.currentTarget as HTMLButtonElement;
@@ -25,8 +26,12 @@ export function answerEntryHandler(): void {
     type: 'POST',
     data: new URLSearchParams(data).toString(),
     success: (data) => {
-      if (!data.success) return false;
+      if (!data.success) {
+        showErrorNotification(data.message);
+        return false;
+      }
       updateDeleteButton(false);
+      showNotification(data.message);
 
       animate(inboxEntry, 'fadeOutUp')
         .then(() => {
