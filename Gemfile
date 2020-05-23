@@ -30,10 +30,6 @@ gem 'colorize'
 
 gem "rolify", "~> 5.2"
 
-source "https://rails-assets.org" do
-  gem 'rails-assets-growl'
-end
-
 gem 'ruby-progressbar'
 
 gem 'rails_admin'
