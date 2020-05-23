@@ -9,43 +9,29 @@ gem 'i18n-js', '~> 3.6'
 gem 'pg'
 
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 5.1', '>= 5.1.1'
 gem 'coffee-rails', '~> 4.1'
-gem 'jquery-rails'
 gem 'turbolinks', '~> 5.2.0'
-gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.10'
 
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml', '~> 5.0'
-gem 'bootstrap', '~> 4.4', '>= 4.4.1'
-gem 'sweetalert-rails'
 gem 'devise', '~> 4.0'
 gem 'devise-i18n'
 gem 'devise-async'
 gem 'bootstrap_form'
-gem 'font-kit-rails'
-gem 'nprogress-rails'
-gem 'font-awesome-rails', '~> 4.7.0'
 gem "paperclip", "~> 5.2"
 gem 'delayed_paperclip'
 gem 'fog-core'
 gem 'fog-aws'
 gem 'fog-local'
-gem 'momentjs-rails', '>= 2.9.0'
-gem 'moment-timezone-rails', '~> 1.0'
-gem 'bootstrap4-datetime-picker-rails'
-gem 'tiny-color-rails'
-gem 'jquery-minicolors-rails'
 gem 'colorize'
 
 gem "rolify", "~> 5.2"
 
 source "https://rails-assets.org" do
   gem 'rails-assets-growl'
-  gem 'rails-assets-jquery', '~> 2.2.0'
 end
 
 gem 'ruby-progressbar'
