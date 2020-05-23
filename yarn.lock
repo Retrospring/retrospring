@@ -6953,6 +6953,11 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
+toastify-js@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/toastify-js/-/toastify-js-1.7.0.tgz#d6b44937ae2844a19c25fcc69ee5933165dbf666"
+  integrity sha512-GmPy4zJ/ulCfmCHlfCtgcB+K2xhx2AXW3T/ZZOSjyjaIGevhz+uvR8HSCTay/wBq4tt2mUnBqlObP1sSWGlsnQ==
+
 tough-cookie@~2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"

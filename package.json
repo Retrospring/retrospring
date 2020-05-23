@@ -18,6 +18,7 @@
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.5",
     "sweetalert": "^2.1.2",
+    "toastify-js": "^1.7.0",
     "turbolinks": "^5.2.0",
     "typeface-lato": "^0.0.75",
     "typescript": "^3.9.2"
