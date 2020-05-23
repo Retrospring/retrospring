@@ -1,8 +1,8 @@
 import Rails from '@rails/ujs';
 
 import { updateDeleteButton } from '../delete';
-import animate from '../../../utilities/animate';
-import { showNotification, showErrorNotification } from '../../../utilities/notifications';
+import animate from 'utilities/animate';
+import { showNotification, showErrorNotification } from 'utilities/notifications';
 
 export function answerEntryHandler(): void {
   const element: HTMLButtonElement = event.currentTarget as HTMLButtonElement;

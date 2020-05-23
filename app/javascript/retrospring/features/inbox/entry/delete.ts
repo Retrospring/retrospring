@@ -1,10 +1,10 @@
 import Rails from '@rails/ujs';
 import swal from 'sweetalert';
 
-import I18n from '../../../i18n';
+import I18n from 'retrospring/i18n';
 import { updateDeleteButton } from '../delete';
-import animate from '../../../utilities/animate';
-import { showNotification, showErrorNotification } from '../../../utilities/notifications';
+import animate from 'utilities/animate';
+import { showNotification, showErrorNotification } from 'utilities/notifications';
 
 export function deleteEntryHandler(event: Event): void {
   const element: HTMLButtonElement = event.currentTarget as HTMLButtonElement;

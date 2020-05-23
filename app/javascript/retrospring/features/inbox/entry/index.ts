@@ -1,4 +1,4 @@
-import registerEvents from '../../../utilities/registerEvents';
+import registerEvents from 'utilities/registerEvents';
 
 import { answerEntryHandler } from './answer';
 import { deleteEntryHandler } from './delete';

@@ -1,4 +1,4 @@
-import registerEvents from '../../utilities/registerEvents';
+import registerEvents from 'utilities/registerEvents';
 
 import { generateQuestionHandler } from './generate';
 import { deleteAllQuestionsHandler } from './delete';

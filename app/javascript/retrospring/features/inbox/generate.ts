@@ -1,9 +1,9 @@
 import Rails from '@rails/ujs';
 
-import I18n from '../../i18n';
+import I18n from 'retrospring/i18n';
 import { updateDeleteButton } from './delete';
 import registerInboxEntryEvents from './entry';
-import { showErrorNotification } from '../../utilities/notifications';
+import { showErrorNotification } from 'utilities/notifications';
 
 export function generateQuestionHandler(): void {
   Rails.ajax({

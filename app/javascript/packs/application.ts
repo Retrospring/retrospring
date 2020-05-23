@@ -1,3 +1,3 @@
-import start from '../retrospring/common';
+import start from 'retrospring/common';
 
 start();
