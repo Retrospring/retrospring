@@ -4,6 +4,27 @@ import swal from 'sweetalert';
 import I18n from '../../i18n';
 import animate from '../../utilities/animate';
 
+export function updateDeleteButton(increment = true): void {
+  const deleteButton: HTMLElement = document.querySelector('[id^=ib-delete-all]');
+  const inboxCount: number = parseInt(deleteButton.getAttribute('data-ib-count'));
+  let targetInboxCount = 0;
+
+  if (increment) {
+    targetInboxCount = inboxCount + 1;
+  }
+  else {
+    targetInboxCount = inboxCount - 1;
+  }
+
+  deleteButton.setAttribute('data-ib-count', targetInboxCount.toString());
+
+  if (targetInboxCount > 0) {
+    deleteButton.removeAttribute('disabled');
+  } else {
+    deleteButton.setAttribute('disabled', 'disabled');
+  }
+}
+
 export function deleteAllQuestionsHandler(event: Event): void {
   const button = event.currentTarget as Element;
   const count = button.getAttribute('data-ib-count');
@@ -40,25 +61,4 @@ export function deleteAllQuestionsHandler(event: Event): void {
       }
     });
   });
-}
-
-export function updateDeleteButton(increment: boolean = true): void {
-  const deleteButton: HTMLElement = document.querySelector('[id^=ib-delete-all]');
-  const inboxCount: number = parseInt(deleteButton.getAttribute('data-ib-count'));
-  let targetInboxCount: number = 0;
-
-  if (increment) {
-    targetInboxCount = inboxCount + 1;
-  }
-  else {
-    targetInboxCount = inboxCount - 1;
-  }
-
-  deleteButton.setAttribute('data-ib-count', targetInboxCount.toString());
-
-  if (targetInboxCount > 0) {
-    deleteButton.removeAttribute('disabled');
-  } else {
-    deleteButton.setAttribute('disabled', 'disabled');
-  }
 }

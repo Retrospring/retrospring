@@ -1,6 +1,6 @@
 function animateNodeList(resolve: Function, target: NodeList, animationClasses: string[]): void {
   const elementCount: number = target.length;
-  let animationEndedCount: number = 0;
+  let animationEndedCount = 0;
 
   target.forEach((element: HTMLElement) => {
     element.classList.add(...animationClasses);
