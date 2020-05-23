@@ -1,5 +1,7 @@
 import Rails from '@rails/ujs';
 
+import { updateDeleteButton } from './delete';
+
 export function generateQuestionHandler(): void {
   Rails.ajax({
     url: '/ajax/generate_question',
@@ -9,6 +11,7 @@ export function generateQuestionHandler(): void {
       if (!data.success) return false;
 
       document.querySelector('#entries').insertAdjacentHTML('afterbegin', data.render);
+      updateDeleteButton();
     },
     error: (data, status, xhr) => {
       console.log(data, status, xhr);
