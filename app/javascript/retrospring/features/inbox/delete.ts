@@ -2,6 +2,7 @@ import Rails from '@rails/ujs';
 import swal from 'sweetalert';
 
 import I18n from '../../i18n';
+import animate from '../../utilities/animate';
 
 export function deleteAllQuestionsHandler(event: Event): void {
   const button = event.currentTarget as Element;
@@ -27,7 +28,10 @@ export function deleteAllQuestionsHandler(event: Event): void {
       success: (data) => {
         if (!data.success) return false;
   
-        document.querySelector('#entries').innerHTML = 'Nothing to see here!';
+        animate(document.querySelectorAll('#entries .inbox-entry'), 'fadeOutUp')
+          .then(() => {
+            document.querySelector('#entries').innerHTML = 'Nothing to see here!';
+          });
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
