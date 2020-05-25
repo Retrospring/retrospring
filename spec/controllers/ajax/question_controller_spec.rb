@@ -40,7 +40,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       it "enqueues a QuestionWorker job" do
         allow(QuestionWorker).to receive(:perform_async)
         subject
-        expect(QuestionWorker).to have_received(:perform_async).with(expected_rcpt, user.id, Question.last.id)
+        expect(QuestionWorker).to have_received(:perform_async).with(user.id, Question.last.id)
       end
 
       include_examples "returns the expected response"
@@ -146,55 +146,6 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
         end
       end
 
-      context "when rcpt is a list" do
-        let(:rcpt) { "grp:foobar" }
-
-        context "when list exists" do
-          let(:list) { FactoryBot.create(:list, display_name: "FooBar", user: user) }
-          before { list }
-
-          context "when anonymousQuestion is true" do
-            let(:anonymous_question) { "true" }
-            let(:expected_question_anonymous) { false }
-
-            include_examples "creates the question", false
-            include_examples "enqueues a QuestionWorker job", "grp:foobar"
-          end
-
-          context "when anonymousQuestion is false" do
-            let(:anonymous_question) { "false" }
-            let(:expected_question_anonymous) { false }
-
-            include_examples "creates the question", false
-            include_examples "enqueues a QuestionWorker job", "grp:foobar"
-          end
-        end
-
-        context "when list does not exist" do
-          let(:expected_response) do
-            {
-              "success" => false,
-              "status" => "not_found",
-              "message" => anything
-            }
-          end
-
-          context "when anonymousQuestion is true" do
-            let(:anonymous_question) { "true" }
-
-            include_examples "does not create the question", false
-            include_examples "does not enqueue a QuestionWorker job"
-          end
-
-          context "when anonymousQuestion is false" do
-            let(:anonymous_question) { "false" }
-
-            include_examples "does not create the question", false
-            include_examples "does not enqueue a QuestionWorker job"
-          end
-        end
-      end
-
       context "when rcpt is a non-existent user" do
         let(:rcpt) { "tripmeister_eder" }
         let(:anonymous_question) { "false" }
@@ -270,12 +221,6 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       context "when rcpt is followers" do
         let(:rcpt) { "followers" }
-
-        include_examples "does not enqueue a QuestionWorker job"
-      end
-
-      context "when rcpt is a list" do
-        let(:rcpt) { "grp:foobar" }
 
         include_examples "does not enqueue a QuestionWorker job"
       end
