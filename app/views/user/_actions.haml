@@ -14,9 +14,9 @@
         = t 'views.actions.title'
         %span.caret
       .dropdown-menu
-        %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { target: '#modal-group-memberships', toggle: :modal } }
-          %i.fa.fa-users
-          = t 'views.actions.group'
+        %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
+          %i.fa.fa-list
+          = t 'views.actions.list'
         %a.dropdown-item{ href: '#', data: { action: 'report-user', target: user.screen_name } }
           %i.fa.fa-exclamation-triangle
           = t 'views.actions.report'

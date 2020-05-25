@@ -34,8 +34,8 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :moderation_comments, dependent: :destroy
   has_many :moderation_votes, dependent: :destroy
-  has_many :groups, dependent: :destroy
-  has_many :group_memberships, class_name: "GroupMember", foreign_key: 'user_id', dependent: :destroy
+  has_many :lists, dependent: :destroy
+  has_many :list_memberships, class_name: "ListMember", foreign_key: 'user_id', dependent: :destroy
 
   has_many :subscriptions, dependent: :destroy
 
@@ -110,10 +110,10 @@ class User < ApplicationRecord
     friends.include? target_user
   end
 
-  # @param group [Group]
-  # @return [Boolean] true if +self+ is a member of +group+
-  def member_of?(group)
-    group_memberships.pluck(:group_id).include? group.id
+  # @param list [List]
+  # @return [Boolean] true if +self+ is a member of +list+
+  def member_of?(list)
+    list_memberships.pluck(:list_id).include? list.id
   end
 
   # answers a question

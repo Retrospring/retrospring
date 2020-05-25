@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe(Group, type: :model) do
+RSpec.describe(List, type: :model) do
   let(:user) { FactoryBot.build(:user) }
 
   describe 'name mangling' do
     subject do
-      Group.new(user: user, display_name: display_name).tap(&:validate)
+      List.new(user: user, display_name: display_name).tap(&:validate)
     end
 
     {
-      'great group' => 'great-group',
+      'great list' => 'great-list',
       'followers' => '-followers-',
       '  followers  ' => '-followers-',
       "  the game  \t\nyes" => 'the-game-yes',
@@ -30,11 +30,11 @@ RSpec.describe(Group, type: :model) do
 
   describe 'validations' do
     subject do
-      Group.new(user: user, display_name: display_name).validate
+      List.new(user: user, display_name: display_name).validate
     end
 
-    context "when display name is 'great group' (valid)" do
-      let(:display_name) { 'great group' }
+    context "when display name is 'great list' (valid)" do
+      let(:display_name) { 'great list' }
 
       it { is_expected.to be true }
     end

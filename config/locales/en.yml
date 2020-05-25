@@ -13,10 +13,10 @@ en:
       fail:
         subscribe: "Failed to subscribe to answer."
         unsubscribe: "Failed to unsubscribe from answer."
-    group:
+    list:
       confirm:
-        title: "Really delete this group?"
-        text: "You will not be able to recover this group."
+        title: "Really delete this list?"
+        text: "You will not be able to recover this list."
     destroy_question:
       confirm:
         title: "Are you sure?"
@@ -94,20 +94,20 @@ en:
       destroy:
         fail: "You are not following that user."
         okay: "Successfully unfollowed user."
-    group:
+    list:
       create:
-        noname: "Please give that group a name."
-        toolong: "Group name too long (30 characters max.)"
+        noname: "Please give that list a name."
+        toolong: "List name too long (30 characters max.)"
         notfound: "Could not find user."
-        exists: "Group already exists."
-        okay: "Successfully created group."
+        exists: "List already exists."
+        okay: "Successfully created list."
       destroy:
-        notfound: "Could not find group."
-        okay: "Successfully deleted group."
+        notfound: "Could not find list."
+        okay: "Successfully deleted list."
       membership:
-        notfound: "Group not found."
-        add: "Successfully added user to group."
-        remove: "Successfully removed user from group."
+        notfound: "List not found."
+        add: "Successfully added user to list."
+        remove: "Successfully removed user from list."
     inbox:
       create:
         okay: "Successfully added new question."
@@ -149,7 +149,7 @@ en:
         okay: "Successfully deleted question."
       create:
         rec_inv: "Your question is too long."
-        not_found: "Group not found"
+        not_found: "List not found"
         okay: "Question asked successfully."
     report:
       create:
@@ -237,8 +237,8 @@ en:
       terms: "Terms of Service"
       privacy: "Privacy Policy"
       about: "About"
-    group:
-      title: "Group"
+    list:
+      title: "List"
       members: "Members"
     actions:
       title: "Actions"
@@ -256,7 +256,7 @@ en:
       load: "Load more"
       follow: "Follow"
       unfollow: "Unfollow"
-      group: "Manage group memberships"
+      list: "Manage list memberships"
       ban: "Ban Control"
       privilege: "Check %{user}'s privileges"
       save: "Save changes"
@@ -418,7 +418,7 @@ en:
     modal:
       ask:
         title: "Ask your followers"
-        choose: "Choose group:"
+        choose: "Choose list:"
         loading: "Asking..."
       bancontrol:
         title: "Ban Control Center"
@@ -426,13 +426,13 @@ en:
         permanent: "Permanently?"
         reason: "Reason"
         hammertime: "Hammer Time"
-      group:
-        title: "Manage group memberships"
+      list:
+        title: "Manage list memberships"
         tabs:
-          main: "Groups"
-          create: "Create new group"
-        create: "Create group"
-        name: "Group name"
+          main: "Lists"
+          create: "Create new list"
+        create: "Create list"
+        name: "List name"
         members: "members"
       privilege:
         moderator: "Someone trustworthy enough to help managing reports."

@@ -4,6 +4,6 @@
       = render 'shared/sidebar'
     .col-md-9.col-xs-12.col-sm-8
       = render 'layouts/messages'
-      = render 'tabs/feed', group: @group
+      = render 'tabs/feed', list: @list
       = yield
   .d-block.d-sm-none= render 'shared/links'

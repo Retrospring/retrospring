@@ -1,25 +1,25 @@
-($ document).on "click", "input[type=checkbox][name=gm-group-check]", ->
+($ document).on "click", "input[type=checkbox][name=gm-list-check]", ->
   box = $(this)
   box.attr 'disabled', 'disabled'
 
-  groupName = box[0].dataset.group
+  listName = box[0].dataset.list
 
-  count = Number ($ "span##{groupName}-members").html()
+  count = Number ($ "span##{listName}-members").html()
   boxChecked = box[0].checked
 
   count += if boxChecked then 1 else -1
 
   $.ajax
-    url: '/ajax/group_membership'
+    url: '/ajax/list_membership'
     type: 'POST'
     data:
       user: box[0].dataset.user
-      group: groupName
+      list: listName
       add: boxChecked
     success: (data, status, jqxhr) ->
       if data.success
         box[0].checked = if data.checked? then data.checked else !boxChecked
-        ($ "span##{groupName}-members").html(count)
+        ($ "span##{listName}-members").html(count)
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
       box[0].checked = false
@@ -29,19 +29,19 @@
       box.removeAttr "disabled"
 
 
-$(document).on "keyup", "input#new-group-name", (evt) ->
+$(document).on "keyup", "input#new-list-name", (evt) ->
   if evt.which == 13  # return key
     evt.preventDefault()
-    $("button#create-group").trigger 'click'
+    $("button#create-list").trigger 'click'
 
 
-($ document).on "click", "button#create-group", ->
+($ document).on "click", "button#create-list", ->
   btn = $(this)
   btn.button "loading"
-  input = ($ "input#new-group-name")
+  input = ($ "input#new-list-name")
 
   $.ajax
-    url: '/ajax/create_group'
+    url: '/ajax/create_list'
     type: 'POST'
     data:
       name: input.val()
@@ -49,7 +49,7 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
     dataType: 'json'
     success: (data, status, jqxhr) ->
       if data.success
-        ($ "ul.list-group.groups--list").append(data.render)
+        ($ "#lists-list ul.list-group").append(data.render)
         input.val ''
       showNotification data.message, data.success
     error: (jqxhr, status, error) ->
@@ -59,14 +59,14 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
       btn.button "reset"
 
 
-($ document).on "click", "a#delete-group", (ev) ->
+($ document).on "click", "a#delete-list", (ev) ->
   ev.preventDefault()
   btn = $(this)
-  group = btn[0].dataset.group
+  list = btn[0].dataset.list
 
   swal
-    title: translate('frontend.group.title')
-    text: translate('frontend.group.text')
+    title: translate('frontend.list.title')
+    text: translate('frontend.list.text')
     type: "warning"
     showCancelButton: true
     confirmButtonColor: "#DD6B55"
@@ -75,14 +75,14 @@ $(document).on "keyup", "input#new-group-name", (evt) ->
     closeOnConfirm: true
   , ->
     $.ajax
-      url: '/ajax/destroy_group'
+      url: '/ajax/destroy_list'
       type: 'POST'
       data:
-        group: group
+        list: list
       dataType: 'json'
       success: (data, status, jqxhr) ->
         if data.success
-          ($ "li.list-group-item#group-#{group}").slideUp()
+          ($ "li.list-group-item#list-#{list}").slideUp()
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
         console.log jqxhr, status, error

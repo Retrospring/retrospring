@@ -56,7 +56,7 @@ class Ajax::QuestionController < AjaxController
     elsif params[:rcpt].start_with? 'grp:'
       unless current_user.nil?
         begin
-          current_user.groups.find_by_name!(params[:rcpt].sub 'grp:', '')
+          current_user.lists.find_by_name!(params[:rcpt].sub 'grp:', '')
           QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
         rescue ActiveRecord::RecordNotFound => e
           NewRelic::Agent.notice_error(e)

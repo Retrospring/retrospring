@@ -9,13 +9,13 @@
       .modal-body
         %textarea.form-control{ name: 'qb-all-question', placeholder: t('views.placeholder.question') }
       .modal-footer
-        - if current_user.groups.count.positive?
+        - if current_user.lists.count.positive?
           %label
             = t 'views.modal.ask.choose'
             %select.form-control{ name: 'qb-all-rcpt', autocomplete: :off }
               %option{ value: 'followers', selected: true }= t('views.general.follower').pluralize(2)
-              %optgroup{ label: t('views.group.title').pluralize(2) }
-                - current_user.groups.each do |group|
-                  %option{ value: "grp:#{group.name}" }= group.display_name
+              %optlist{ label: t('views.list.title').pluralize(2) }
+                - current_user.lists.each do |list|
+                  %option{ value: "grp:#{list.name}" }= list.display_name
         %button.btn.btn-default{ type: :button, data: { dismiss: :modal } }= t 'views.actions.cancel'
         %button.btn.btn-primary{ name: 'qb-all-ask', type: :button, data: { loading_text: t('views.modal.ask.loading') } }= t 'views.actions.ask'

@@ -1,0 +1,9 @@
+%ul
+  - @lists.each do |list|
+    %li
+      - if list.private?
+        %i.fa.fa-lock
+      = list.display_name
+
+- provide(:title, user_title(@user, 'lists'))
+- parent_layout 'user/profile'

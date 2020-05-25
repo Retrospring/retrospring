@@ -8,5 +8,5 @@
   %button.btn.btn-default#load-more-btn{ type: :button, data: { last_id: @timeline_last_id } }
     = t 'views.actions.load'
 
-- provide(:title, group_title(@group))
+- provide(:title, list_title(@list))
 - parent_layout 'feed'

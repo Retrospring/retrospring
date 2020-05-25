@@ -14,7 +14,7 @@ class QuestionWorker
           Inbox.create(user_id: f.id, question_id: question_id, new: true)
         end
       elsif rcpt.start_with? 'grp:'
-        user.groups.find_by_name!(rcpt.sub 'grp:', '').members.each do |m|
+        user.lists.find_by_name!(rcpt.sub 'grp:', '').members.each do |m|
           Inbox.create(user_id: m.user.id, question_id: question_id, new: true)
         end
       else

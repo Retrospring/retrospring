@@ -146,12 +146,12 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
         end
       end
 
-      context "when rcpt is a group" do
+      context "when rcpt is a list" do
         let(:rcpt) { "grp:foobar" }
 
-        context "when group exists" do
-          let(:group) { FactoryBot.create(:group, display_name: "FooBar", user: user) }
-          before { group }
+        context "when list exists" do
+          let(:list) { FactoryBot.create(:list, display_name: "FooBar", user: user) }
+          before { list }
 
           context "when anonymousQuestion is true" do
             let(:anonymous_question) { "true" }
@@ -170,7 +170,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           end
         end
 
-        context "when group does not exist" do
+        context "when list does not exist" do
           let(:expected_response) do
             {
               "success" => false,
@@ -274,7 +274,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
         include_examples "does not enqueue a QuestionWorker job"
       end
 
-      context "when rcpt is a group" do
+      context "when rcpt is a list" do
         let(:rcpt) { "grp:foobar" }
 
         include_examples "does not enqueue a QuestionWorker job"
