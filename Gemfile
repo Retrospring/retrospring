@@ -40,6 +40,7 @@ gem 'colorize'
 gem 'carrierwave', '~> 2.0'
 gem 'carrierwave_backgrounder', git: 'https://github.com/mltnhm/carrierwave_backgrounder.git'
 gem 'mini_magick'
+gem 'hcaptcha', git: 'https://github.com/firstmoversadvantage/hcaptcha.git'
 
 gem "rolify", "~> 5.2"
 
@@ -87,6 +88,7 @@ gem 'puma'
 
 group :development, :test do
   gem 'rake'
+  gem 'rspec-mocks'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec-its', '~> 1.3'
   gem "rspec-sidekiq", "~> 3.0", require: false
