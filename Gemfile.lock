@@ -609,6 +609,7 @@ DEPENDENCIES
   redis
   rolify (~> 5.2)
   rspec-its (~> 1.3)
+  rspec-mocks
   rspec-rails (~> 3.9)
   rspec-sidekiq (~> 3.0)
   ruby-progressbar

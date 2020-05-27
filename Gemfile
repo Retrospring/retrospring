@@ -88,6 +88,7 @@ gem 'puma'
 
 group :development, :test do
   gem 'rake'
+  gem 'rspec-mocks'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec-its', '~> 1.3'
   gem "rspec-sidekiq", "~> 3.0", require: false
