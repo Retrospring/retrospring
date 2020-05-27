@@ -62,3 +62,8 @@ admins:
     # host: 's3.wherever.com'
   # bucket name, required
   # directory: 'retrospring'
+
+hcaptcha:
+  enabled: false
+  site_key: ''
+  secret_key: ''
