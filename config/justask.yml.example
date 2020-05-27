@@ -63,6 +63,7 @@ admins:
   # bucket name, required
   # directory: 'retrospring'
 
+# hCaptcha -- get keys from https://www.hcaptcha.com/
 hcaptcha:
   enabled: false
   site_key: ''

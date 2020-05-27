@@ -5,13 +5,15 @@ require "rails_helper"
 describe User::RegistrationsController, type: :controller do
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-
-    allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(true)
-    allow(controller).to receive(:verify_hcaptcha).and_return(captcha_successful)
   end
 
   describe "#create" do
     context "valid user sign up" do
+      before do
+        allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(true)
+        allow(controller).to receive(:verify_hcaptcha).and_return(captcha_successful)
+      end
+
       let :registration_params do
         {
             user: {
@@ -25,15 +27,15 @@ describe User::RegistrationsController, type: :controller do
 
       subject { post :create, params: registration_params }
 
-      context "when captcha was invalid" do
+      context "when captcha is invalid" do
         let(:captcha_successful) { false }
-        it "doesn't allow a registration without an invalid captcha" do
+        it "doesn't allow a registration with an invalid captcha" do
           expect { subject }.not_to(change { User.count })
           expect(response).to redirect_to :new_user_registration
         end
       end
 
-      context "when captcha was valid" do
+      context "when captcha is valid" do
         let(:captcha_successful) { true }
         it "creates a user" do
           allow(controller).to receive(:verify_hcaptcha).and_return(true)
@@ -43,6 +45,10 @@ describe User::RegistrationsController, type: :controller do
     end
 
     context "invalid user sign up" do
+      before do
+        allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
+      end
+
       subject { post :create, params: registration_params }
 
       context "when registration params are empty" do
@@ -56,11 +62,8 @@ describe User::RegistrationsController, type: :controller do
               }
           }
         end
-        let(:captcha_successful) { true }
 
-        it "rejects unfilled registration forms" do
-          allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
-
+        it "does not create a user" do
           expect { subject }.not_to(change { User.count })
         end
       end
@@ -74,11 +77,8 @@ describe User::RegistrationsController, type: :controller do
                 password_confirmation: 'AReallySecurePassword456!'
             }
         } }
-        let(:captcha_successful) { true }
 
-        it "rejects registrations with invalid usernames" do
-          allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
-
+        it "does not create a user" do
           expect { subject }.not_to(change { User.count })
         end
       end
@@ -92,11 +92,8 @@ describe User::RegistrationsController, type: :controller do
                 password_confirmation: 'AReallySecurePassword456!'
             }
         } }
-        let(:captcha_successful) { true }
 
-        it "rejects registrations with reserved usernames" do
-          allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
-
+        it "does not create a user" do
           expect { subject }.not_to(change { User.count })
         end
       end
