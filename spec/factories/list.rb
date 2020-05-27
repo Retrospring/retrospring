@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :group do
+  factory :list do
     sequence(:display_name) { |i| "#{Faker::Internet.username(specifier: 0..12, separators: %w[_])}#{i}" }
     user { FactoryBot.build(:user) }
 
@@ -9,9 +9,9 @@ FactoryBot.define do
       members { [] }
     end
 
-    after(:create) do |group, evaluator|
+    after(:create) do |list, evaluator|
       evaluator.members.each do |member|
-        GroupMember.create(group_id: group.id, user_id: member.id)
+        ListMember.create(list_id: list.id, user_id: member.id)
       end
     end
   end

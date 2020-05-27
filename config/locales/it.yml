@@ -13,7 +13,7 @@ it:
       fail:
         subscribe: "Impossibile iscriversi alla risposta."
         unsubscribe: "Impossibile disiscriversi dalla risposta."
-    group:
+    list:
       confirm:
         title: "Vuoi davvero eliminare questo gruppo?"
         text: "Non sarai più in grado di recuperare questo gruppo."
@@ -94,7 +94,7 @@ it:
       destroy:
         fail: "Non stai seguendo quell'utente."
         okay: "Non stai più seguendo quell'utente."
-    group:
+    list:
       create:
         noname: "Per favore, dai un nome a quel gruppo."
         toolong: "Nome del gruppo troppo grande (massimo 30 caratteri)"
@@ -236,7 +236,7 @@ it:
       terms: "Termini di Servizio"
       privacy: "Normativa sulla privacy"
       about: "Informazioni"
-    group:
+    list:
       title: "Gruppo"
       members: "Membri"
     actions:
@@ -255,7 +255,7 @@ it:
       load: "Carica altro"
       follow: "Segui"
       unfollow: "Non seguire più"
-      group: "Impostazioni sui gruppi"
+      list: "Impostazioni sui gruppi"
       ban: "Controlla Ban"
       privilege: "Controlla i privilegi dell'%{user}"
       save: "Salva le impostazioni"
@@ -425,7 +425,7 @@ it:
         permanent: Permanentemente?
         reason: "Motivo"
         hammertime: "Tempo del ban"
-      group:
+      list:
         title: "Gestisci appartenenza a gruppi"
         tabs:
           main: "Gruppi"

@@ -14,10 +14,10 @@ de:
       fail:
         subscribe: "Das Abonnieren der Antwort schlug fehl."
         unsubscribe: "Das Deabonnieren der Antwort schlug fehl."
-    group:
+    list:
       confirm:
-        title: "Diese Gruppe wirklich löschen?"
-        text: "Es wird nicht möglich sein, diese Gruppe wieder zu erhalten."
+        title: "Diese Liste wirklich löschen?"
+        text: "Es wird nicht möglich sein, diese Liste wieder zu erhalten."
     destroy_question:
       confirm:
         title: "Bist du sicher?"
@@ -97,20 +97,20 @@ de:
       destroy:
         fail: "Du folgst diesem Benutzer nicht."
         okay: "Erfolgreich Benutzer entfolgt."
-    group:
+    list:
       create:
-        noname: "Bitte gib dieser Gruppe einen Namen."
-        toolong: "Gruppenname zu lang (maximal 30 Zeichen)"
+        noname: "Bitte gib dieser Liste einen Namen."
+        toolong: "Listenname zu lang (maximal 30 Zeichen)"
         notfound: "Konnte Benutzer nicht finden."
-        exists: "Gruppe existiert bereits."
-        okay: "Gruppe erfolgreich erstellt."
+        exists: "Liste existiert bereits."
+        okay: "Liste erfolgreich erstellt."
       destroy:
-        notfound: "Konnte Gruppe nicht finden."
-        okay: "Gruppe erfolgreich gelöscht."
+        notfound: "Konnte Liste nicht finden."
+        okay: "Liste erfolgreich gelöscht."
       membership:
-        notfound: "Gruppe nicht gefunden."
-        add: "Benutzer erfolgreich zur Gruppe hinzugefügt."
-        remove: "Benutzer erfolgreich aus Gruppe entfernt."
+        notfound: "Liste nicht gefunden."
+        add: "Benutzer erfolgreich zur Liste hinzugefügt."
+        remove: "Benutzer erfolgreich aus Liste entfernt."
     inbox:
       create:
         okay: "Erfolgreich neue Frage hinzugefügt."
@@ -152,7 +152,7 @@ de:
         okay: "Frage erfolgreich gelöscht."
       create:
         rec_inv: "Deine Frage ist zu lang."
-        not_found: "Gruppe nicht gefunden"
+        not_found: "Liste nicht gefunden"
         okay: "Frage erfolgreich gestellt."
     report:
       create:
@@ -237,8 +237,8 @@ de:
       terms: "Allgemeine Nutzungsbedingungen"
       privacy: Datenschutz
       about: Über
-    group:
-      title: Gruppe
+    list:
+      title: Liste
       members: Mitglieder
     actions:
       title: Aktionen
@@ -256,7 +256,7 @@ de:
       load: Mehr...
       follow: Folgen
       unfollow: Entfolgen
-      group: "Verwalten von Gruppenmitgliedschaften"
+      list: "Verwalten von Listenmitgliedschaften"
       ban: Bann-Steuerung
       privilege: "Prüfe %{user}'s Privilegien"
       save: "Änderungen speichern"
@@ -420,7 +420,7 @@ de:
     modal:
       ask:
         title: "Frage deine Follower"
-        choose: "Gruppe:"
+        choose: "Liste:"
         loading: Fragen…
       bancontrol:
         title: Bannkontrollzentrum
@@ -428,13 +428,13 @@ de:
         permanent: "Für immer?"
         reason: Grund
         hammertime: Hammerzeit!
-      group:
-        title: "Gruppenzugehörigkeit verwalten"
+      list:
+        title: "Listenzugehörigkeit verwalten"
         tabs:
-          main: Gruppen
-          create: "Neue Gruppe erstellen"
-        create: "Gruppe erstellen"
-        name: Gruppenname
+          main: Listen
+          create: "Neue Liste erstellen"
+        create: "Liste erstellen"
+        name: Listenname
         members: Mitglieder
       privilege:
         blogger: "Der Benutzer erhält dieses Privileg wenn er etwas (nettes) über Retrospring gebloggt hat."

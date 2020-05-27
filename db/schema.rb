@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_192431) do
+ActiveRecord::Schema.define(version: 2020_05_25_145144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,28 +60,6 @@ ActiveRecord::Schema.define(version: 2020_05_17_192431) do
     t.index ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
   end
 
-  create_table "group_members", id: :serial, force: :cascade do |t|
-    t.integer "group_id", null: false
-    t.integer "user_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["group_id", "user_id"], name: "index_group_members_on_group_id_and_user_id", unique: true
-    t.index ["group_id"], name: "index_group_members_on_group_id"
-    t.index ["user_id"], name: "index_group_members_on_user_id"
-  end
-
-  create_table "groups", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "name"
-    t.string "display_name"
-    t.boolean "private", default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["name"], name: "index_groups_on_name"
-    t.index ["user_id", "name"], name: "index_groups_on_user_id_and_name", unique: true
-    t.index ["user_id"], name: "index_groups_on_user_id"
-  end
-
   create_table "inboxes", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "question_id"
@@ -89,6 +67,24 @@ ActiveRecord::Schema.define(version: 2020_05_17_192431) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "index_inboxes_on_user_id"
+  end
+
+  create_table "list_members", id: :serial, force: :cascade do |t|
+    t.integer "list_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["list_id", "user_id"], name: "index_list_members_on_list_id_and_user_id", unique: true
+  end
+
+  create_table "lists", id: :serial, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.string "display_name"
+    t.boolean "private", default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id", "name"], name: "index_lists_on_user_id_and_name", unique: true
   end
 
   create_table "moderation_comments", id: :serial, force: :cascade do |t|

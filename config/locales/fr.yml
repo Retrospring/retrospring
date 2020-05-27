@@ -14,9 +14,9 @@ fr:
       fail:
         subscribe: "Échec de l'abonnement à la réponse."
         unsubscribe: "Échec du désabonnement à la réponse."
-    group:
+    list:
       confirm:
-        title: "Voulez-vous vraiment supprimer ce groupe ?"
+        title: "Voulez-vous vraiment supprimer cette liste ?"
         text: "Vous ne pourrez pas le récupérer."
     destroy_question:
       confirm:
@@ -97,18 +97,18 @@ fr:
       destroy:
         fail: "Vous ne suivez pas cet utilisateur."
         okay: "Vous ne suivez plus cet utilisateur."
-    group:
+    list:
       create:
-        noname: "Veuillez donner un nom à ce groupe."
-        toolong: "Le nom du groupe est trop long (30 caractères max.)"
+        noname: "Veuillez donner un nom à cette liste."
+        toolong: "Le nom de la liste est trop long (30 caractères max.)"
         notfound: "L'utilisateur est introuvable."
-        exists: "Ce groupe existe déjà."
-        okay: "Le groupe a été créé avec succès."
+        exists: "Cette liste existe déjà."
+        okay: "La liste a été créé avec succès."
       destroy:
-        notfound: "Le groupe est introuvable."
-        okay: "Le groupe a été supprimé avec succès."
+        notfound: "La liste est introuvable."
+        okay: "La liste a été supprimé avec succès."
       membership:
-        notfound: "Le groupe est introuvable."
+        notfound: "La liste est introuvable."
         add: "L'utilisateur a été ajouté avec succès."
         remove: "L'utilisateur a été enlevé avec succès."
     inbox:
@@ -152,7 +152,7 @@ fr:
         okay: "La question a été supprimée avec succès."
       create:
         rec_inv: "Votre question est trop longue."
-        not_found: "Le groupe est introuvable."
+        not_found: "La liste est introuvable."
         okay: "La question a été posée avec succès."
     report:
       create:
@@ -237,8 +237,8 @@ fr:
       terms: "Conditions générales d'utilisation"
       privacy: "Politique de confidentialité"
       about: "À propos"
-    group:
-      title: "Groupe"
+    list:
+      title: "Liste"
       members: "Membres"
     actions:
       title: "Actions"
@@ -256,7 +256,7 @@ fr:
       load: "Charger plus"
       follow: "Suivre"
       unfollow: "Ne plus suivre"
-      group: "Gérer l'appartenance à un groupe"
+      list: "Gérer l'appartenance à une liste"
       ban: "Contrôle des bannissements"
       privilege: "Vérifier les privilèges de %{user}"
       save: "Enregistrer les modifications"
@@ -418,7 +418,7 @@ fr:
     modal:
       ask:
         title: "Poser une question à vos abonnés"
-        choose: "Choisir un groupe :"
+        choose: "Choisir une liste :"
         loading: "Envoi..."
       bancontrol:
         title: "Centre de contrôle des bannissements"
@@ -426,13 +426,13 @@ fr:
         permanent: "Définitivement ?"
         reason: "Raison"
         hammertime: "Que le Marteau s'abatte"
-      group:
-        title: "Gérer l'appartenance à un groupe"
+      list:
+        title: "Gérer l'appartenance à une liste"
         tabs:
-          main: "Groupes"
-          create: "Créer un nouveau groupe"
+          main: "Listes"
+          create: "Créer une nouvelle liste"
         create: "Créer"
-        name: "Nom du groupe"
+        name: "Nom de la liste"
         members: "membres"
       privilege:
         blogger: "L'utilisateur obtient ce titre s'il a posté un article (agréable) à propos de Retrospring."

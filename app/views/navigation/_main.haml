@@ -13,10 +13,10 @@
       %ul.nav.navbar-nav
         - unless @user.nil?
           - unless @user == current_user
-            %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.group') }
-              %a.nav-link{ href: '#', data: { target: '#modal-group-memberships', toggle: :modal } }
-                %i.fa.fa-users.hidden-xs
-                %span.d-none.d-sm-inline.d-md-none= t('views.actions.group')
+            %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.list') }
+              %a.nav-link{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
+                %i.fa.fa-list.hidden-xs
+                %span.d-none.d-sm-inline.d-md-none= t('views.actions.list')
         = render 'navigation/main/notifications'
         %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.ask_question') }
           %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { target: '#modal-ask-followers', toggle: :modal } }

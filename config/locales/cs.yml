@@ -14,7 +14,7 @@ cs:
       fail:
         subscribe: "Nepodařilo se přihlásit k odběru na odpovědi."
         unsubscribe: "Nepodařilo se zrušit odběr na odpovědi."
-    group:
+    list:
       confirm:
         title: "Opravdu chcete smazat tuto skupinu?"
         text: "Nebudete tuto skupinu moci obnovit."
@@ -95,7 +95,7 @@ cs:
       destroy:
         fail: "Nesledujete tohoto uživatele."
         okay: "Používatel úspěšně odsledován."
-    group:
+    list:
       create:
         noname: "Prosím pojmenujte tuto skupinu."
         toolong: "Jméno skupiny příliš dlhé (max. 30 znaků)"
@@ -235,7 +235,7 @@ cs:
       terms: "Podmínky služby"
       privacy: "Ochrana osobních údajů"
       about: "O něm"
-    group:
+    list:
       title: "Skupina"
       members: "Členové"
     actions:
@@ -254,7 +254,7 @@ cs:
       load: "Načíst víc"
       follow: "Sledovat"
       unfollow: "Nesledovat"
-      group: "Spravovat skupinové členství"
+      list: "Spravovat skupinové členství"
       ban: "Správa Banů"
       privilege: "Zkontrolovat výsady %{user}"
       save: "Uložit změny"
@@ -424,7 +424,7 @@ cs:
         permanent: "Permanentně?"
         reason: "Důvod"
         hammertime: "Hammer Time"
-      group:
+      list:
         title: "Spravovat skupinové členství"
         tabs:
           main: "Skupiny"

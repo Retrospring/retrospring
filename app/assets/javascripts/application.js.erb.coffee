@@ -19,7 +19,7 @@
 # local requires to be seen by everyone:
 #= require_tree ./answerbox
 #= require_tree ./questionbox
-#= require groups
+#= require lists
 #= require inbox
 #= require memes
 #= require notifications

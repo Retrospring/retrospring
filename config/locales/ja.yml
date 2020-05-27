@@ -13,7 +13,7 @@ ja:
       fail:
         subscribe: 回答の購読に失敗しました。
         unsubscribe: 回答の購読の解除に失敗しました。
-    group:
+    list:
       confirm:
         title: このグループを削除してもよろしいですか？
         text: このグループを復元することはできなくなります。
@@ -96,7 +96,7 @@ ja:
       destroy:
         fail: このユーザーをフォローしていません。
         okay: フォローの解除に成功しました。
-    group:
+    list:
       create:
         noname: グループに名前をつけてください。
         toolong: グループ名が長過ぎます(最大30文字)
@@ -236,7 +236,7 @@ ja:
       terms: 利用規約
       privacy: プライバシーポリシー
       about: Retrospringについて
-    group:
+    list:
       title: グループ
       members: メンバー
     actions:
@@ -255,7 +255,7 @@ ja:
       load: つづきを読み込む
       follow: フォロー
       unfollow: フォロー解除
-      group: グループのメンバーを管理
+      list: グループのメンバーを管理
       ban: 利用停止管理
       privilege: "%{user}の権限を確認する"
       save: 変更を保存する
@@ -425,7 +425,7 @@ ja:
         permanent: 永久的に追放しますか？
         reason: 理由
         hammertime: 利用停止時間
-      group:
+      list:
         title: グループのメンバーを管理
         tabs:
           main: グループ

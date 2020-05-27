@@ -30,8 +30,8 @@ RailsAdmin.config do |config|
   config.included_models = %w[
     Answer
     Comment
-    Group
-    GroupMember
+    List
+    ListMember
     Inbox
     Notification
     Question

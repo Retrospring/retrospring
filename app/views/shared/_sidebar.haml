@@ -8,13 +8,13 @@
           = current_user.display_name
       .profile__screen-name
         = current_user.screen_name
-- unless @group.nil?
+- unless @list.nil?
   .card
-    .card-header= t('views.group.members')
+    .card-header= t('views.list.members')
     .card-body
-      - if @group.members.empty?
-        %p.text-muted No members yet!
-      - @group.members.each do |member|
+      - if @list.members.empty?
+        %p.text-muted No members yet.
+      - @list.members.each do |member|
         %a{ href: show_user_profile_path(member.user.screen_name), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top } }
           %img.avatar-xs{ src: member.user.profile_picture.url(:medium) }
 

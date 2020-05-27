@@ -1,0 +1,18 @@
+%li.list-group-item{ id: "list-#{list.name}" }
+  .media
+    .pull-left
+      .custom-control.custom-checkbox
+        %input.custom-control-input{ type: :checkbox,
+          id: "listCheck#{list.id}",
+          name: 'gm-list-check',
+          data: { list: list.name, user: user.screen_name }, checked: user.member_of?(list), autocomplete: :off }
+        %label.custom-control-label{ for: "listCheck#{list.id}" }
+    .media-body
+      .list-group-item-heading= list.display_name
+      .list-group-item-text.text-muted
+        %span{ id: "#{list.name}-members" }= list.members.count
+        = t 'views.modal.list.members'
+        ·
+        %a.text-danger#delete-list{ href: '#', data: { list: list.name } }
+          %i.fa.fa-close
+          = t 'views.actions.delete'

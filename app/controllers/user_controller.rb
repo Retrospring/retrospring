@@ -61,13 +61,13 @@ class UserController < ApplicationController
   end
   # endregion
 
-  # region Groups
-  def groups
+  # region Lists
+  def lists
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @groups = if current_user == @user
-                @user.groups
+    @lists = if current_user == @user
+                @user.lists
               else
-                @user.groups.where(private: false)
+                @user.lists.where(private: false)
               end.all
   end
   # endregion

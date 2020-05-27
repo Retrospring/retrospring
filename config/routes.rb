@@ -102,16 +102,16 @@ Rails.application.routes.draw do
     match '/create_comment', to: 'comment#create', via: :post, as: :create_comment
     match '/destroy_comment', to: 'comment#destroy', via: :post, as: :destroy_comment
     match '/report', to: 'report#create', via: :post, as: :report
-    match '/create_group', to: 'group#create', via: :post, as: :create_group
-    match '/destroy_group', to: 'group#destroy', via: :post, as: :destroy_group
-    match '/group_membership', to: 'group#membership', via: :post, as: :group_membership
+    match '/create_list', to: 'list#create', via: :post, as: :create_list
+    match '/destroy_list', to: 'list#destroy', via: :post, as: :destroy_list
+    match '/list_membership', to: 'list#membership', via: :post, as: :list_membership
     match '/subscribe', to: 'subscription#subscribe', via: :post, as: :subscribe_answer
     match '/unsubscribe', to: 'subscription#unsubscribe', via: :post, as: :unsubscribe_answer
   end
 
   match '/discover', to: 'discover#index', via: :get, as: :discover
   match '/public', to: 'public#index', via: :get, as: :public_timeline if APP_CONFIG.dig(:features, :public, :enabled)
-  match '/group/:group_name', to: 'group#index', via: :get, as: :group_timeline
+  match '/list/:list_name', to: 'list#index', via: :get, as: :list_timeline
 
   match '/notifications(/:type)', to: 'notifications#index', via: :get, as: :notifications, defaults: {type: 'new'}
 
@@ -129,7 +129,7 @@ Rails.application.routes.draw do
   match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question
   match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers, defaults: {page: 1}
   match '/:username/friends(/p/:page)', to: 'user#friends', via: 'get', as: :show_user_friends, defaults: {page: 1}
-  match '/:username/groups(/p/:page)', to: 'user#groups', via: 'get', as: :show_user_groups, defaults: {page: 1}
+  match '/:username/lists(/p/:page)', to: 'user#lists', via: 'get', as: :show_user_lists, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 
   puts 'processing time of routes.rb: ' + "#{(Time.now - start).round(3).to_s.ljust(5, '0')}s".light_green
