@@ -5,8 +5,9 @@
 = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @timeline_last_id
 
 - if @more_data_available
-  %button.btn.btn-default#load-more-btn{ type: :button, data: { last_id: @timeline_last_id } }
-    Load more
+  .d-flex.justify-content-center
+    %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @timeline_last_id } }
+      = t 'views.actions.load'
 
 - provide(:title, APP_CONFIG['site_name'])
 - parent_layout 'feed'
