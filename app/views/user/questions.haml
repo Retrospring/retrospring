@@ -5,7 +5,7 @@
 = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @questions_last_id
 
 - if @more_data_available
-  .d-flex.justify-content-center
+  .d-flex.justify-content-center.justify-content-sm-start
     %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @questions_last_id } }
       = t 'views.actions.load'
 
