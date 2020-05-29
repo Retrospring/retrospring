@@ -19,5 +19,6 @@
     = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @notifications_last_id, permitted_params: %i[type]
 
     - if @more_data_available
-      %button.btn.btn-default#load-more-btn{ type: :button, data: { last_id: @notifications_last_id } }
-        Load more
+      .d-flex.justify-content-center
+        %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @notifications_last_id } }
+          = t 'views.actions.load'
