@@ -7,6 +7,6 @@
     - else
       - a.smiles.all.each do |smile|
         %a{ href: show_user_profile_path(smile.user.screen_name),
-          title: smile.user.display_name,
+          title: user_screen_name(smile.user, anonymous: false, url: false),
           data: { toggle: :tooltip, placement: :top, smile_id: smile.id } }
           %img.avatar-xs{ src: smile.user.profile_picture.url(:medium) }
