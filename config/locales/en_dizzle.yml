@@ -13,10 +13,10 @@ en_dizzle:
       fail:
         subscribe: "Failed ta subscribe ta answer."
         unsubscribe: "Failed ta unsubscribe from answer."
-    group:
+    list:
       confirm:
-        title: "Straight-Up delete dis group?"
-        text: "Yo ass aint gonna be able ta recover dis group."
+        title: "Straight-Up delete dis list?"
+        text: "Yo ass aint gonna be able ta recover dis list."
     destroy_question:
       confirm:
         title: "Is you sure?"
@@ -94,20 +94,20 @@ en_dizzle:
       destroy:
         fail: "Yo ass aint followin dat user."
         okay: "Successfully unfollowed user."
-    group:
+    list:
       create:
         noname: "Please give dat crew a name."
-        toolong: "Group name too long (30 charactas max.)"
+        toolong: "List name too long (30 charactas max.)"
         notfound: "Could not find user."
-        exists: "Group already exists."
-        okay: "Successfully pimped group."
+        exists: "List already exists."
+        okay: "Successfully pimped list."
       destroy:
-        notfound: "Could not find group."
-        okay: "Successfully deleted group."
+        notfound: "Could not find list."
+        okay: "Successfully deleted list."
       membership:
-        notfound: "Group not found."
-        add: "Successfully added user ta group."
-        remove: "Successfully removed user from group."
+        notfound: "List not found."
+        add: "Successfully added user ta list."
+        remove: "Successfully removed user from list."
     inbox:
       create:
         okay: "Successfully added freshly smoked up question."
@@ -149,7 +149,7 @@ en_dizzle:
         okay: "Successfully deleted question."
       create:
         rec_inv: "Yo crazy-ass question is too long."
-        not_found: "Group not found"
+        not_found: "List not found"
         okay: "Question asked successfully."
     report:
       create:
@@ -235,7 +235,7 @@ en_dizzle:
       terms: "Tha termz"
       privacy: "Shit that no one ain't read"
       about: "'bout"
-    group:
+    list:
       title: "Fam"
       members: "Peepz"
     actions:
@@ -254,7 +254,7 @@ en_dizzle:
       load: "Load sum more"
       follow: "Go check on tha homeboy"
       unfollow: "Stop checkin' on tha homeboy"
-      group: "Manage crew memberships"
+      list: "Manage crew memberships"
       ban: "Banish that fucker"
       privilege: "Peep %{user}z privileges"
       save: "Save chizzles"
@@ -424,7 +424,7 @@ en_dizzle:
         permanent: "Fo' all the timez?"
         reason: "Reason"
         hammertime: "Hammer Time"
-      group:
+      list:
         title: "Manage crew memberships"
         tabs:
           main: "Crews"

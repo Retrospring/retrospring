@@ -30,10 +30,10 @@ if window.URL? or window.webkitURL?
         preview = ($ '#profile-picture-preview')
 
         updateVars = (data, action) ->
-          ($ '#crop_x').val Math.floor(data.x / data.scale)
-          ($ '#crop_y').val Math.floor(data.y / data.scale)
-          ($ '#crop_w').val Math.floor(data.w / data.scale)
-          ($ '#crop_h').val Math.floor(data.h / data.scale)
+          ($ '#profile_picture_x').val Math.floor(data.x / data.scale)
+          ($ '#profile_picture_y').val Math.floor(data.y / data.scale)
+          ($ '#profile_picture_w').val Math.floor(data.w / data.scale)
+          ($ '#profile_picture_h').val Math.floor(data.h / data.scale)
 #          rx = 100 / data.w
 #          ry = 100 / data.h
 #          ($ '#profile-picture-preview').css
@@ -76,10 +76,10 @@ if window.URL? or window.webkitURL?
         preview = ($ '#profile-header-preview')
 
         updateVars = (data, action) ->
-          ($ '#crop_h_x').val Math.floor(data.x / data.scale)
-          ($ '#crop_h_y').val Math.floor(data.y / data.scale)
-          ($ '#crop_h_w').val Math.floor(data.w / data.scale)
-          ($ '#crop_h_h').val Math.floor(data.h / data.scale)
+          ($ '#profile_header_x').val Math.floor(data.x / data.scale)
+          ($ '#profile_header_y').val Math.floor(data.y / data.scale)
+          ($ '#profile_header_w').val Math.floor(data.w / data.scale)
+          ($ '#profile_header_h').val Math.floor(data.h / data.scale)
 
         cropper.on 'load', ->
           if ({}.toString).call(src) == "[object URL]"

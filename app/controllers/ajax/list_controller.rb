@@ -1,4 +1,4 @@
-class Ajax::GroupController < AjaxController
+class Ajax::ListController < AjaxController
   def create
     @response[:status] = :err
 
@@ -13,35 +13,35 @@ class Ajax::GroupController < AjaxController
     rescue ActionController::ParameterMissing => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :toolong
-      @response[:message] = I18n.t('messages.group.create.noname')
+      @response[:message] = I18n.t('messages.list.create.noname')
       return
     end
     params.require :user
 
     begin
       target_user = User.find_by_screen_name!(params[:user])
-      group = Group.create! user: current_user, display_name: params[:name]
+      list = List.create! user: current_user, display_name: params[:name]
     rescue ActiveRecord::RecordInvalid => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :toolong
-      @response[:message] = I18n.t('messages.group.create.toolong')
+      @response[:message] = I18n.t('messages.list.create.toolong')
       return
     rescue ActiveRecord::RecordNotFound => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :notfound
-      @response[:message] = I18n.t('messages.group.create.notfound')
+      @response[:message] = I18n.t('messages.list.create.notfound')
       return
     rescue ActiveRecord::RecordNotUnique => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :exists
-      @response[:message] = I18n.t('messages.group.create.exists')
+      @response[:message] = I18n.t('messages.list.create.exists')
       return
     end
 
     @response[:status] = :okay
     @response[:success] = true
-    @response[:message] = I18n.t('messages.group.create.okay')
-    @response[:render] = render_to_string(partial: 'modal/group/item', locals: { group: group, user: target_user })
+    @response[:message] = I18n.t('messages.list.create.okay')
+    @response[:render] = render_to_string(partial: 'modal/list/item', locals: { list: list, user: target_user })
   end
 
   def destroy
@@ -53,20 +53,20 @@ class Ajax::GroupController < AjaxController
       return
     end
 
-    params.require :group
+    params.require :list
 
     begin
-      Group.where(user: current_user, name: params[:group]).first.destroy!
+      List.where(user: current_user, name: params[:list]).first.destroy!
     rescue ActiveRecord::RecordNotFound => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :notfound
-      @response[:message] = I18n.t('messages.group.destroy.notfound')
+      @response[:message] = I18n.t('messages.list.destroy.notfound')
       return
     end
 
     @response[:status] = :okay
     @response[:success] = true
-    @response[:message] = I18n.t('messages.group.destroy.okay')
+    @response[:message] = I18n.t('messages.list.destroy.okay')
   end
 
   def membership
@@ -79,30 +79,30 @@ class Ajax::GroupController < AjaxController
     end
 
     params.require :user
-    params.require :group
+    params.require :list
     params.require :add
 
     add = params[:add] == 'true'
 
     begin
-      group = current_user.groups.find_by_name!(params[:group])
+      list = current_user.lists.find_by_name!(params[:list])
     rescue ActiveRecord::RecordNotFound => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :notfound
-      @response[:message] = I18n.t('messages.group.membership.notfound')
+      @response[:message] = I18n.t('messages.list.membership.notfound')
       return
     end
 
     target_user = User.find_by_screen_name!(params[:user])
 
     if add
-      group.add_member target_user if group.members.find_by_user_id(target_user.id).nil?
+      list.add_member target_user if list.members.find_by_user_id(target_user.id).nil?
       @response[:checked] = true
-      @response[:message] = I18n.t('messages.group.membership.add')
+      @response[:message] = I18n.t('messages.list.membership.add')
     else
-      group.remove_member target_user unless group.members.find_by_user_id(target_user.id).nil?
+      list.remove_member target_user unless list.members.find_by_user_id(target_user.id).nil?
       @response[:checked] = false
-      @response[:message] = I18n.t('messages.group.membership.remove')
+      @response[:message] = I18n.t('messages.list.membership.remove')
     end
 
     @response[:status] = :okay

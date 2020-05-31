@@ -27,7 +27,7 @@ class Ajax::QuestionController < AjaxController
     params.require :anonymousQuestion
     params.require :rcpt
 
-    is_never_anonymous = user_signed_in? && (params[:rcpt].start_with?('grp:') || params[:rcpt] == 'followers')
+    is_never_anonymous = user_signed_in? && params[:rcpt] == 'followers'
 
     begin
       question = Question.create!(content: params[:question],
@@ -50,22 +50,7 @@ class Ajax::QuestionController < AjaxController
     end
 
     if params[:rcpt] == 'followers'
-      unless current_user.nil?
-        QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
-      end
-    elsif params[:rcpt].start_with? 'grp:'
-      unless current_user.nil?
-        begin
-          current_user.groups.find_by_name!(params[:rcpt].sub 'grp:', '')
-          QuestionWorker.perform_async params[:rcpt], current_user.id, question.id
-        rescue ActiveRecord::RecordNotFound => e
-          NewRelic::Agent.notice_error(e)
-          question.delete
-          @response[:status] = :not_found
-          @response[:message] = I18n.t('messages.question.create.not_found')
-          return
-        end
-      end
+      QuestionWorker.perform_async(current_user.id, question.id) unless current_user.nil?
     else
       u = User.find_by_id(params[:rcpt])
       if u.nil?

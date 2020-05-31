@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class Group < ApplicationRecord
-  include Group::TimelineMethods
+class List < ApplicationRecord
+  include List::TimelineMethods
 
   belongs_to :user
-  has_many :group_members, dependent: :destroy
+  has_many :list_members, dependent: :destroy
 
   validates :name, length: { minimum: 1 }
   validates :display_name, length: { maximum: 30 }
@@ -15,13 +15,13 @@ class Group < ApplicationRecord
     self.name = '-followers-' if self.name == 'followers'
   end
 
-  alias members group_members
+  alias members list_members
 
   def add_member(user)
-    GroupMember.create! group: self, user: user
+    ListMember.create! list: self, user: user
   end
 
   def remove_member(user)
-    GroupMember.where(group: self, user: user).first!.destroy
+    ListMember.where(list: self, user: user).first!.destroy
   end
 end

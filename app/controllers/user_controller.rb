@@ -28,8 +28,9 @@ class UserController < ApplicationController
   end
 
   def update
-    user_attributes = params.require(:user).permit(:display_name, :profile_picture, :profile_header, :motivation_header, :website,
-                                                   :location, :bio, :crop_x, :crop_y, :crop_w, :crop_h, :crop_h_x, :crop_h_y, :crop_h_w, :crop_h_h, :show_foreign_themes)
+    user_attributes = params.require(:user).permit(:display_name,  :motivation_header, :website, :show_foreign_themes, :location, :bio,
+                                                   :profile_picture_x, :profile_picture_y, :profile_picture_w, :profile_picture_h,
+                                                   :profile_header_x, :profile_header_y, :profile_header_w, :profile_header_h, :profile_picture, :profile_header)
     if current_user.update_attributes(user_attributes)
       text = t('flash.user.update.text')
       text += t('flash.user.update.avatar') if user_attributes[:profile_picture]
@@ -60,13 +61,13 @@ class UserController < ApplicationController
   end
   # endregion
 
-  # region Groups
-  def groups
+  # region Lists
+  def lists
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @groups = if current_user == @user
-                @user.groups
+    @lists = if current_user == @user
+                @user.lists
               else
-                @user.groups.where(private: false)
+                @user.lists.where(private: false)
               end.all
   end
   # endregion

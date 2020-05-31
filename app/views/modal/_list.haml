@@ -1,0 +1,28 @@
+.modal.fade#modal-list-memberships{ aria: { hidden: true, labelledby: 'modal-list-memberships-label' }, role: :dialog, tabindex: -1 }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#modal-list-memberships-label= t 'views.modal.list.title'
+        %button.close{ data: { dismiss: :modal }, type: :button }
+          %span{ aria: { hidden: true } } ×
+          %span.sr-only= t 'views.actions.close'
+      %div{ role: :tabpanel }
+        %ul.nav.nav-tabs.mt-1{ role: :tablist }
+          %li.nav-item{ role: 'presentation' }
+            %a.nav-link.active{ href: '#lists-list', aria: { controls: 'lists-list' }, data: { toggle: :tab }, role: :tab }
+              = t 'views.modal.list.tabs.main'
+          %li.nav-item{ role: 'presentation' }
+            %a.nav-link{ href: '#create', aria: { controls: 'create' }, data: { toggle: :tab }, role: :tab }
+              = t 'views.modal.list.tabs.create'
+
+        .tab-content
+          .tab-pane.active{ role: :tabpanel, id: 'lists-list' }
+            %ul.list-group
+              - current_user.lists.each do |list|
+                = render 'modal/list/item', list: list, user: user
+          .tab-pane{ role: :tabpanel, id: 'create' }
+            .modal-body
+              %input.form-control#new-list-name{ type: :text, placeholder: t('views.modal.list.name') }
+              %button.btn.btn-primary#create-list{ type: :button, data: { user: user.screen_name } }= t('views.modal.list.create')
+      .modal-footer
+        %button.btn.btn-primary{ name: 'gm-save', type: :button, data: { dismiss: :modal } }= t 'views.actions.done'

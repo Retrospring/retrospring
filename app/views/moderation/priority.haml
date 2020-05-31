@@ -6,5 +6,5 @@
 #users
   .row.row-cols-1.row-cols-sm-2.row-cols-md-3
     - @users.each do |u, c|
-      .col
-        = render 'moderation/userbox', user: u, count: c
+      .col.pb-3
+        = render 'moderation/userbox', user: u, count: (c || 0)

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Ajax::GroupController, :ajax_controller, type: :controller do
+describe Ajax::ListController, :ajax_controller, type: :controller do
   let(:target_user) { FactoryBot.create(:user) }
 
   describe "#create" do
@@ -29,8 +29,8 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
 
       before(:each) { sign_in(user) }
 
-      it "creates the group" do
-        expect { subject }.to(change { user.groups.count }.by(1))
+      it "creates the list" do
+        expect { subject }.to(change { user.lists.count }.by(1))
       end
 
       include_examples "returns the expected response"
@@ -45,8 +45,8 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
           }
         end
 
-        it "does not create the group" do
-          expect { subject }.not_to(change { user.groups.count })
+        it "does not create the list" do
+          expect { subject }.not_to(change { user.lists.count })
         end
 
         include_examples "returns the expected response"
@@ -62,14 +62,14 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
           }
         end
 
-        it "does not create the group" do
-          expect { subject }.not_to(change { user.groups.count })
+        it "does not create the list" do
+          expect { subject }.not_to(change { user.lists.count })
         end
 
         include_examples "returns the expected response"
       end
 
-      context "when group name is invalid for reasons" do
+      context "when list name is invalid for reasons" do
         let(:name) { "\u{1f43e}" }
         let(:expected_response) do
           {
@@ -79,14 +79,14 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
           }
         end
 
-        it "does not create the group" do
-          expect { subject }.not_to(change { user.groups.count })
+        it "does not create the list" do
+          expect { subject }.not_to(change { user.lists.count })
         end
 
         include_examples "returns the expected response"
       end
 
-      context "when group already exists" do
+      context "when list already exists" do
         before(:each) { post(:create, params: params) }
         let(:expected_response) do
           {
@@ -96,20 +96,20 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
           }
         end
 
-        it "does not create the group" do
-          expect { subject }.not_to(change { user.groups.count })
+        it "does not create the list" do
+          expect { subject }.not_to(change { user.lists.count })
         end
 
         include_examples "returns the expected response"
       end
 
-      context "when someone else created a group with the same name" do
+      context "when someone else created a list with the same name" do
         before(:each) do
-          FactoryBot.create(:group, user: target_user, display_name: name)
+          FactoryBot.create(:list, user: target_user, display_name: name)
         end
 
-        it "creates the group" do
-          expect { subject }.to(change { user.groups.count }.by(1))
+        it "creates the list" do
+          expect { subject }.to(change { user.lists.count }.by(1))
         end
 
         include_examples "returns the expected response"
@@ -131,11 +131,11 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
 
   describe "#destroy" do
     let(:name) { "I signori della gallassia" }
-    let(:group) { FactoryBot.create(:group, user: user, display_name: name) }
-    let(:group_param) { group.name }
+    let(:list) { FactoryBot.create(:list, user: user, display_name: name) }
+    let(:list_param) { list.name }
     let(:params) do
       {
-        "group" => group_param
+        "list" => list_param
       }
     end
 
@@ -152,15 +152,15 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
 
       before(:each) { sign_in(user) }
 
-      it "deletes the group" do
-        group
-        expect { subject }.to(change { user.groups.count }.by(-1))
+      it "deletes the list" do
+        list
+        expect { subject }.to(change { user.lists.count }.by(-1))
       end
 
       include_examples "returns the expected response"
 
-      context "when group param is missing" do
-        let(:group_param) { "" }
+      context "when list param is missing" do
+        let(:list_param) { "" }
         let(:expected_response) do
           {
             "success" => false,
@@ -169,15 +169,15 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
           }
         end
 
-        it "does not delete the group" do
-          expect { subject }.not_to(change { user.groups.count })
+        it "does not delete the list" do
+          expect { subject }.not_to(change { user.lists.count })
         end
 
         include_examples "returns the expected response"
       end
 
-      context "when group does not exist" do
-        let(:group_param) { "the-foobars-and-the-dingdongs" }
+      context "when list does not exist" do
+        let(:list_param) { "the-foobars-and-the-dingdongs" }
         let(:expected_response) do
           {
             "success" => false,
@@ -186,25 +186,25 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
           }
         end
 
-        it "does not delete the group" do
-          expect { subject }.not_to(change { user.groups.count })
+        it "does not delete the list" do
+          expect { subject }.not_to(change { user.lists.count })
         end
 
         include_examples "returns the expected response"
       end
 
-      context "when someone else created a group with the same name" do
+      context "when someone else created a list with the same name" do
         before(:each) do
-          group
-          FactoryBot.create(:group, user: target_user, display_name: name)
+          list
+          FactoryBot.create(:list, user: target_user, display_name: name)
         end
 
-        it "deletes the group" do
-          expect { subject }.to(change { user.groups.count }.by(-1))
+        it "deletes the list" do
+          expect { subject }.to(change { user.lists.count }.by(-1))
         end
 
-        it "does not delete the other users' group" do
-          expect { subject }.not_to(change { target_user.groups.count })
+        it "does not delete the other users' list" do
+          expect { subject }.not_to(change { target_user.lists.count })
         end
 
         include_examples "returns the expected response"
@@ -227,12 +227,12 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
   describe "#membership" do
     let(:name) { "The Agency" }
     let(:members) { [] }
-    let(:group) { FactoryBot.create(:group, user: user, display_name: name, members: members) }
-    let(:group_param) { group.name }
+    let(:list) { FactoryBot.create(:list, user: user, display_name: name, members: members) }
+    let(:list_param) { list.name }
     let(:target_user_param) { target_user.screen_name }
     let(:params) do
       {
-        "group" => group_param,
+        "list" => list_param,
         "user" => target_user_param,
         "add" => add_param
       }
@@ -257,17 +257,17 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
         let(:expected_checked) { false }
 
         it "does not do anything" do
-          expect { subject }.not_to(change { group.members })
-          expect(group.members.map { |gm| gm.user.id }.sort ).to eq([])
+          expect { subject }.not_to(change { list.members })
+          expect(list.members.map { |gm| gm.user.id }.sort ).to eq([])
         end
 
         include_examples "returns the expected response"
 
-        context "when the user was already added to the group" do
+        context "when the user was already added to the list" do
           let(:members) { [target_user] }
 
-          it "removes the user from the group" do
-            expect { subject }.to(change { group.reload.members.map { |gm| gm.user.id }.sort }.from([target_user.id]).to([]))
+          it "removes the user from the list" do
+            expect { subject }.to(change { list.reload.members.map { |gm| gm.user.id }.sort }.from([target_user.id]).to([]))
           end
 
           include_examples "returns the expected response"
@@ -278,26 +278,26 @@ describe Ajax::GroupController, :ajax_controller, type: :controller do
         let(:add_param) { "true" }
         let(:expected_checked) { true }
 
-        it "adds the user to the group" do
-          expect { subject }.to(change { group.reload.members.map { |gm| gm.user.id }.sort }.from([]).to([target_user.id]))
+        it "adds the user to the list" do
+          expect { subject }.to(change { list.reload.members.map { |gm| gm.user.id }.sort }.from([]).to([target_user.id]))
         end
 
         include_examples "returns the expected response"
 
-        context "when the user was already added to the group" do
+        context "when the user was already added to the list" do
           let(:members) { [target_user] }
 
-          it "does not add the user to the group again" do
-            expect { subject }.not_to(change { group.members })
-            expect(group.members.map { |gm| gm.user.id }.sort ).to eq([target_user.id])
+          it "does not add the user to the list again" do
+            expect { subject }.not_to(change { list.members })
+            expect(list.members.map { |gm| gm.user.id }.sort ).to eq([target_user.id])
           end
 
           include_examples "returns the expected response"
         end
       end
 
-      context "when group does not exist" do
-        let(:group_param) { "the-good-agency" }
+      context "when list does not exist" do
+        let(:list_param) { "the-good-agency" }
         let(:add_param) { "add" }
         let(:expected_response) do
           {

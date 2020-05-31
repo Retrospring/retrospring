@@ -13,7 +13,7 @@ en_pirate:
       fail:
         subscribe: "Failed to subscribe to answer."
         unsubscribe: "Failed to unsubscribe from answer."
-    group:
+    list:
       confirm:
         title: "D' ye wish to send this crew t' Davy Jones' Locker?"
         text: "Ye gunna not be able to recover 'tis crew."
@@ -94,7 +94,7 @@ en_pirate:
       destroy:
         fail: "Ye not be spyin' on that user."
         okay: "No longer spyin' on user."
-    group:
+    list:
       create:
         noname: "Please gift that crew a moniker."
         toolong: "Crew moniker too long (30 characters max.)"
@@ -235,7 +235,7 @@ en_pirate:
       terms: "Terms of ye Service"
       privacy: "Pirat-y Policy"
       about: "About"
-    group:
+    list:
       title: "Crew"
       members: "Members"
     actions:
@@ -254,7 +254,7 @@ en_pirate:
       load: "Load more"
       follow: "Spy"
       unfollow: "Un-Spy"
-      group: "Manage Crew memberships"
+      list: "Manage Crew memberships"
       ban: "Ban Control"
       privilege: "Check %{user}'s privileges"
       save: "Save changes"
@@ -424,7 +424,7 @@ en_pirate:
         permanent: "Permanently?"
         reason: "Reason"
         hammertime: "Ye olde Hammer Time!"
-      group:
+      list:
         title: "Manage crew memberships"
         tabs:
           main: "Crews"

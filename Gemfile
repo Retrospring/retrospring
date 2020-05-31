@@ -21,12 +21,14 @@ gem 'devise', '~> 4.0'
 gem 'devise-i18n'
 gem 'devise-async'
 gem 'bootstrap_form'
-gem "paperclip", "~> 5.2"
-gem 'delayed_paperclip'
 gem 'fog-core'
 gem 'fog-aws'
 gem 'fog-local'
 gem 'colorize'
+gem 'carrierwave', '~> 2.0'
+gem 'carrierwave_backgrounder', git: 'https://github.com/mltnhm/carrierwave_backgrounder.git'
+gem 'mini_magick'
+gem 'hcaptcha', git: 'https://github.com/firstmoversadvantage/hcaptcha.git'
 
 gem "rolify", "~> 5.2"
 
@@ -54,7 +56,6 @@ gem 'twitter'
 # To use a more recent Faraday version, a fork of this gem is required.
 gem 'tumblr_client', git: 'https://github.com/amplifr/tumblr_client'
 
-gem 'foreman'
 gem 'redis'
 
 gem 'fake_email_validator'
@@ -63,15 +64,14 @@ group :development do
   gem 'spring', '~> 2.0'
   gem 'byebug'
   gem 'web-console', '< 4.0.0'
+  gem 'binding_of_caller'
 end
 
-group :production do
-  gem 'unicorn', group: :production
-end
+gem 'puma'
 
 group :development, :test do
   gem 'rake'
-  gem 'puma'
+  gem 'rspec-mocks'
   gem 'rspec-rails', '~> 3.9'
   gem 'rspec-its', '~> 1.3'
   gem "rspec-sidekiq", "~> 3.0", require: false

@@ -166,7 +166,7 @@ module ApplicationHelper
     user_title user, "comments"
   end
 
-  def group_title(group)
-    generate_title group.name
+  def list_title(list)
+    generate_title list.name
   end
 end
