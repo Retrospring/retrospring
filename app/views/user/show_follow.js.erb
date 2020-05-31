@@ -1,5 +1,5 @@
 $('#users').append('<% @users.each do |user|
-  %><div class="col"><%= j render 'shared/userbox', user: user, type: @type
+  %><div class="col pb-3"><%= j render 'shared/userbox', user: user, type: @type
 %></div><% end %>');
 <% if @more_data_available %>
   $('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @users_last_id %>');
