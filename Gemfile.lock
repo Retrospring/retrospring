@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/Retrospring/hcaptcha.git
+  revision: 9feac4908097e3dc2afd6f08d07cbfbaa1073a1d
+  ref: v6.0.2
+  specs:
+    hcaptcha (6.0.2)
+      json
+
+GIT
   remote: https://github.com/amplifr/tumblr_client
   revision: 3927ee366598a9b70b095933ded32e45f730b652
   specs:
@@ -9,13 +17,6 @@ GIT
       mime-types
       oauth
       simple_oauth
-
-GIT
-  remote: https://github.com/firstmoversadvantage/hcaptcha.git
-  revision: 531ce4562dd3d29a52497bfe09378ba61a40c98a
-  specs:
-    hcaptcha (6.0.1)
-      json
 
 GIT
   remote: https://github.com/mltnhm/carrierwave_backgrounder.git
@@ -577,7 +578,7 @@ DEPENDENCIES
   guard-brakeman
   haml (~> 5.0)
   haml_lint
-  hcaptcha!
+  hcaptcha (~> 6.0)!
   httparty
   i18n-js (= 3.0.0.rc10)
   jbuilder (~> 2.10)
