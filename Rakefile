@@ -430,3 +430,32 @@ namespace :justask do
     end
   end
 end
+
+namespace :db do
+  namespace :schema do
+    task :create_timestampid_function do
+      conn = ActiveRecord::Base.connection
+      have_func = conn.execute("SELECT EXISTS(SELECT * FROM pg_proc WHERE proname = 'gen_timestamp_id');").values.first.first
+      next if have_func
+
+      statement = File.read(File.join(__dir__, 'db/migrate/20200704163504_use_timestamped_ids.rb')).match(/<~SQL(?<stmt>.+)SQL$/m)[:stmt]
+      conn.execute(statement)
+    end
+
+    task :create_id_sequences do
+      conn = ActiveRecord::Base.connection
+
+      # required for the timestampid function to work properly
+      %i[questions answers comments smiles comment_smiles users].each do |tbl|
+        conn.execute("CREATE SEQUENCE IF NOT EXISTS #{tbl}_id_seq")
+      end
+    end
+  end
+
+  # create timestampid before loading schema
+  Rake::Task['db:schema:load'].enhance ['db:schema:create_timestampid_function']
+  # create id_sequences after loading schema
+  Rake::Task['db:schema:load'].enhance do
+    Rake::Task['db:schema:create_id_sequences'].invoke
+  end
+end
