@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_145144) do
+ActiveRecord::Schema.define(version: 2020_07_04_163504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
     t.index ["user_id"], name: "index_announcements_on_user_id"
   end
 
-  create_table "answers", id: :serial, force: :cascade do |t|
+  create_table "answers", id: :bigint, default: -> { "gen_timestamp_id('answers'::text)" }, force: :cascade do |t|
     t.text "content"
-    t.integer "question_id"
+    t.bigint "question_id"
     t.integer "comment_count", default: 0, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
   end
 
-  create_table "comment_smiles", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comment_id"
+  create_table "comment_smiles", id: :bigint, default: -> { "gen_timestamp_id('comment_smiles'::text)" }, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_comment_smiles_on_comment_id"
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
     t.index ["user_id"], name: "index_comment_smiles_on_user_id"
   end
 
-  create_table "comments", id: :serial, force: :cascade do |t|
+  create_table "comments", id: :bigint, default: -> { "gen_timestamp_id('comments'::text)" }, force: :cascade do |t|
     t.string "content"
-    t.integer "answer_id"
-    t.integer "user_id"
+    t.bigint "answer_id"
+    t.bigint "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
   end
 
   create_table "inboxes", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "question_id"
+    t.bigint "user_id"
+    t.bigint "question_id"
     t.boolean "new"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -71,14 +71,14 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
 
   create_table "list_members", id: :serial, force: :cascade do |t|
     t.integer "list_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["list_id", "user_id"], name: "index_list_members_on_list_id_and_user_id", unique: true
   end
 
   create_table "lists", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "name"
     t.string "display_name"
     t.boolean "private", default: true
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
 
   create_table "moderation_comments", id: :serial, force: :cascade do |t|
     t.integer "report_id"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.string "content"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
 
   create_table "moderation_votes", id: :serial, force: :cascade do |t|
     t.integer "report_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.boolean "upvote", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -109,19 +109,19 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
 
   create_table "notifications", id: :serial, force: :cascade do |t|
     t.string "target_type"
-    t.integer "target_id"
-    t.integer "recipient_id"
+    t.bigint "target_id"
+    t.bigint "recipient_id"
     t.boolean "new"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "questions", id: :serial, force: :cascade do |t|
+  create_table "questions", id: :bigint, default: -> { "gen_timestamp_id('questions'::text)" }, force: :cascade do |t|
     t.string "content"
     t.boolean "author_is_anonymous"
     t.string "author_name"
     t.string "author_email"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "answer_count", default: 0, null: false
@@ -129,8 +129,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
   end
 
   create_table "relationships", id: :serial, force: :cascade do |t|
-    t.integer "source_id"
-    t.integer "target_id"
+    t.bigint "source_id"
+    t.bigint "target_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["source_id", "target_id"], name: "index_relationships_on_source_id_and_target_id", unique: true
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
 
   create_table "reports", id: :serial, force: :cascade do |t|
     t.string "type", null: false
-    t.integer "target_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "target_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "deleted", default: false
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
 
   create_table "services", id: :serial, force: :cascade do |t|
     t.string "type", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "uid"
     t.string "access_token"
     t.string "access_secret"
@@ -172,9 +172,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
-  create_table "smiles", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "answer_id"
+  create_table "smiles", id: :bigint, default: -> { "gen_timestamp_id('smiles'::text)" }, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["answer_id"], name: "index_smiles_on_answer_id"
@@ -183,8 +183,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
   end
 
   create_table "subscriptions", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "answer_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "answer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: true
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
   end
 
   create_table "themes", id: :serial, force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "primary_color", default: 6174129
     t.integer "primary_text", default: 16777215
     t.integer "danger_color", default: 14431557
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_145144) do
     t.index ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", id: :bigint, default: -> { "gen_timestamp_id('users'::text)" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
