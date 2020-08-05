@@ -338,7 +338,7 @@ GEM
     parser (2.7.1.2)
       ast (~> 2.4.0)
     pg (1.2.3)
-    pghero (2.4.2)
+    pghero (2.7.0)
       activerecord (>= 5)
     poltergeist (1.18.1)
       capybara (>= 2.1, < 4)
