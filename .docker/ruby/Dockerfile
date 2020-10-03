@@ -14,7 +14,7 @@ RUN mkdir /app
 WORKDIR /app
 
 ADD Gemfile* /app/
-RUN bundle install
+RUN bundle install --jobs=$(nproc)
 COPY . /app
 
 COPY .docker/entrypoint.sh /usr/bin/
