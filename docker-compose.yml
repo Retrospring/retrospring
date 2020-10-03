@@ -29,6 +29,9 @@ services:
     environment:
       POSTGRES_PASSWORD: justask
       POSTGRES_DB: justask_development
+    volumes:
+      - db:/var/lib/postgresql/data
 
 volumes:
+  db:
   cache:
