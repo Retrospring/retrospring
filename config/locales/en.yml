@@ -377,6 +377,7 @@ en:
         profile: "Profile"
         privacy: "Privacy"
         sharing: "Sharing"
+        security: "Security"
       account:
         modal:
           title: "Save account changes"
@@ -415,6 +416,9 @@ en:
         connect: "Connect to %{service}"
         disconnect: "Disconnect"
         confirm: "Really disconnect service %{service}?"
+      security:
+        2fa:
+          title: "Two-factor authentication"
     modal:
       ask:
         title: "Ask your followers"
@@ -443,3 +447,7 @@ en:
         admin: "Admin"
         moderator: "Moderator"
         banned: "Banned"
+    auth:
+      2fa:
+        title: "Two-factor authentication"
+        otp_field: "One-time password"

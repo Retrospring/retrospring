@@ -172,4 +172,33 @@ class UserController < ApplicationController
 
     redirect_to user_export_path
   end
+
+  def edit_security
+    current_user.otp_secret_key = User.otp_random_secret
+
+    @provisioning_uri = current_user.provisioning_uri(nil, issuer: APP_CONFIG[:hostname])
+    qr_code = RQRCode::QRCode.new(@provisioning_uri, :size => 12, :level => :h)
+    @qr_svg = qr_code.as_svg(offset: 0, color: '000',
+                         shape_rendering: 'crispEdges',
+                         module_size: 4)
+  end
+
+  def update_2fa
+    req_params = params.require(:user).permit(:otp_secret_key, :otp_validation)
+    
+    current_user.otp_secret_key = req_params[:otp_secret_key]
+
+    if current_user.authenticate_otp(req_params[:otp_validation])
+      flash[:success] = 'yay'
+      current_user.save!
+    else
+      flash[:error] = current_user.otp_code
+    end
+
+    redirect_to edit_user_security_path
+  end
+
+  def destroy_2fa
+
+  end
 end
