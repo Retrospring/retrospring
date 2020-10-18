@@ -7,7 +7,7 @@ class User::SessionsController < Devise::SessionsController
       self.resource = warden.authenticate!(auth_options)
     end
 
-    if resource.active_for_authentication? && !resource.otp_secret_key.nil?
+    if resource.active_for_authentication? && resource.otp_module_enabled?
       if params[:user][:otp_attempt].blank?
         session[:user_sign_in_uid] = resource.id
         sign_out(resource)

@@ -185,8 +185,6 @@ class UserController < ApplicationController
 
   def update_2fa
     req_params = params.require(:user).permit(:otp_secret_key, :otp_validation)
-    
-    current_user.otp_secret_key = req_params[:otp_secret_key]
 
     if current_user.authenticate_otp(req_params[:otp_validation])
       flash[:success] = 'yay'
