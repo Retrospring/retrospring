@@ -1,0 +1,35 @@
+.totp-setup {
+  display: flex;
+
+  &__card {
+    background: var(--primary);
+    padding: 10px;
+    border-radius: 5px;
+    width: 256px;
+  }
+
+  &__qr {
+    background: white;
+    border-radius: 5px;
+  }
+
+  &__text {
+    background: #000;
+    color: #fff;
+    margin: 10px 0 0 0;
+    padding: 5px;
+    border-radius: 5px;
+
+    code {
+      color: var(--warning);
+    }
+  }
+
+  &__right {
+    margin-left: 20px;
+  }
+
+  &__code-field {
+    font-family: "Monaco", "Inconsolata", "Cascadia Code", "Consolas", monospace;
+  }
+}

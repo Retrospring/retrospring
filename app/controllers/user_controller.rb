@@ -185,18 +185,23 @@ class UserController < ApplicationController
 
   def update_2fa
     req_params = params.require(:user).permit(:otp_secret_key, :otp_validation)
+    current_user.otp_secret_key = req_params[:otp_secret_key]
+    current_user.otp_module = :enabled
 
     if current_user.authenticate_otp(req_params[:otp_validation])
-      flash[:success] = 'yay'
+      flash[:success] = 'Two factor authentication has been enabled for your account.'
       current_user.save!
     else
-      flash[:error] = current_user.otp_code
+      flash[:error] = 'The code you entered was invalid.'
     end
 
     redirect_to edit_user_security_path
   end
 
   def destroy_2fa
-
+    current_user.otp_module = :disabled
+    current_user.save!
+    flash[:success] = 'Two factor authentication has been disabled for your account.'
+    redirect_to edit_user_security_path
   end
 end
