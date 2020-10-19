@@ -27,6 +27,11 @@ class User::SessionsController < Devise::SessionsController
   end
 
   def two_factor_entry
+    unless session.has_key? :user_sign_in_uid
+      redirect_to root_url
+      return
+    end
+
     self.resource = User.find(session[:user_sign_in_uid])
     render 'auth/two_factor_authentication'
   end
