@@ -16,13 +16,21 @@
               If you do not have an authenticator app already installed on your device, we suggest one of the following:
             %ul.list-unstyled.pl-3
               %li
-                %a{:href => "https://play.google.com/store/apps/details?id=com.beemdevelopment.aegis"}
-                  %i.fa.fa-android
-                  Aegis Authenticator for Android
+                %i.fa.fa-android
+                Aegis Authenticator for Android
+                %ul.list-inline
+                  %li.list-inline-item
+                    %a{href: "https://play.google.com/store/apps/details?id=com.beemdevelopment.aegis"} Google Play
+                  %li.list-inline-item
+                    %a{href: "https://f-droid.org/app/com.beemdevelopment.aegis"} F-Droid
+                  %li.list-inline-item
+                    %a{href: "https://github.com/beemdevelopment/Aegis"} Source Code
               %li
-                %a{:href => "https://apps.apple.com/gb/app/strongbox-authenticator/id1023839880"}
-                  %i.fa.fa-apple
-                  Strongbox Authenticator for iOS
+                %i.fa.fa-apple
+                Strongbox Authenticator for iOS
+                %ul.list-inline
+                  %li.list-inline-item
+                    %a{href: "https://apps.apple.com/gb/app/strongbox-authenticator/id1023839880"} App Store
             %p Once you have downloaded an authenticator app, add your Retrospring account by scanning the QR code displayed on the left.
             = f.text_field :otp_validation, class: 'totp-setup__code-field', label: 'Enter the code displayed in the app here:'
             = f.hidden_field :otp_secret_key, value: current_user.otp_secret_key
