@@ -14,9 +14,10 @@
               = u.display_name
             %span.text-muted= u.screen_name
         %p.answerbox__question-text
-          - if type == 'new'
+          - case type
+          - when 'new'
             = t('views.discover.userbox.new', time: time_ago_in_words(u.created_at))
-          - elsif type == 'most'
+          - when 'most'
             = t('views.discover.userbox.answers', questions: pluralize(a, t('views.general.question')))
           - else
             = t('views.discover.userbox.questions', questions: pluralize(q, t('views.general.question')))

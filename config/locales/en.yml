@@ -419,6 +419,7 @@ en:
       security:
         2fa:
           title: "Two-factor authentication"
+          detach_confirm: "Are you sure you want to disable two-factor authentication?"
     modal:
       ask:
         title: "Ask your followers"
