@@ -174,7 +174,7 @@ class UserController < ApplicationController
   end
 
   def edit_security
-    current_user.otp_secret_key = User.otp_random_secret
+    current_user.otp_secret_key = User.otp_random_secret(26)
 
     @provisioning_uri = current_user.provisioning_uri(nil, issuer: APP_CONFIG[:hostname])
     qr_code = RQRCode::QRCode.new(current_user.provisioning_uri("Retrospring:#{current_user.screen_name}", issuer: "Retrospring"))
