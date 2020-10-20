@@ -15,6 +15,7 @@ WORKDIR /app
 
 ADD Gemfile* /app/
 RUN bundle install --jobs=$(nproc)
+RUN gem install ruby-debug-ide
 COPY . /app
 
 COPY .docker/entrypoint.sh /usr/bin/
