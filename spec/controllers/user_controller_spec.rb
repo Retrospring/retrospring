@@ -74,7 +74,7 @@ describe UserController, type: :controller do
       it "shows a setup form for users who don't have 2FA enabled" do
         subject
         expect(response).to have_rendered(:edit_security)
-        expect(response).to have_rendered(partial: 'settings/security/_totp-setup')
+        expect(response).to have_rendered(partial: 'settings/security/_totp_setup')
       end
 
       it "shows the option to disable 2FA for users who have 2FA already enabled" do
@@ -83,7 +83,7 @@ describe UserController, type: :controller do
 
         subject
         expect(response).to have_rendered(:edit_security)
-        expect(response).to have_rendered(partial: 'settings/security/_totp-enabled')
+        expect(response).to have_rendered(partial: 'settings/security/_totp_enabled')
       end
     end
   end
