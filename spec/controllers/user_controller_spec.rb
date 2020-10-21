@@ -128,9 +128,27 @@ describe UserController, type: :controller do
         it "shows an error if the user attempts to use the code once it has expired" do
           Timecop.freeze(Time.at(1603290910)) do
             subject
-            expect(flash[:error]).to eq 'The code you entered was invalid.'
+            expect(flash[:error]).to eq('The code you entered was invalid.')
           end
         end
+      end
+    end
+  end
+
+  describe "#destroy_2fa" do
+    subject { delete :destroy_2fa }
+
+    context "user signed in" do
+      before(:each) do
+        user.otp_module = :enabled
+        user.save
+        sign_in user
+      end
+
+      it "disables 2FA for the logged in user" do
+        subject
+        user.reload
+        expect(user.otp_module_enabled?).to be_falsey
       end
     end
   end
