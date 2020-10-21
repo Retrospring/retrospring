@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe UserController, type: :controller do
-  let(:user) { FactoryBot.create :user }
+  let(:user) { FactoryBot.create :user, otp_module: :disabled }
 
   describe "#edit" do
     subject { get :edit }
@@ -60,6 +60,30 @@ describe UserController, type: :controller do
       it "redirects to the edit_user_profile page" do
         subject
         expect(response).to redirect_to(:edit_user_profile)
+      end
+    end
+  end
+
+  describe "#edit_security" do
+    subject { get :edit_security }
+
+    context "user signed in" do
+      before(:each) { sign_in user }
+      render_views
+
+      it "shows a setup form for users who don't have 2FA enabled" do
+        subject
+        expect(response).to have_rendered(:edit_security)
+        expect(response).to have_rendered(partial: 'settings/security/_totp-setup')
+      end
+
+      it "shows the option to disable 2FA for users who have 2FA already enabled" do
+        user.otp_module = :enabled
+        user.save
+
+        subject
+        expect(response).to have_rendered(:edit_security)
+        expect(response).to have_rendered(partial: 'settings/security/_totp-enabled')
       end
     end
   end
