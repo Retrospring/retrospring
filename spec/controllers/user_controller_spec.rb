@@ -87,4 +87,51 @@ describe UserController, type: :controller do
       end
     end
   end
+
+  describe "#update_2fa" do
+    subject { post :update_2fa, params: update_params }
+
+    context "user signed in" do
+      before(:each) { sign_in user }
+
+      context "user enters the incorrect code" do
+        let(:update_params) do
+          {
+              user: { otp_secret_key: 'EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3',
+                      otp_validation: 123456 }
+          }
+        end
+
+        it "shows an error if the user enters the incorrect code" do
+          Timecop.freeze(Time.at(1603290888)) do
+            subject
+            expect(response).to redirect_to :edit_user_security
+          end
+        end
+      end
+
+      context "user enters the correct code" do
+        let(:update_params) do
+          {
+              user: { otp_secret_key: 'EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3',
+                      otp_validation: 187894 }
+          }
+        end
+
+        it "enables 2FA for the logged in user" do
+          Timecop.freeze(Time.at(1603290888)) do
+            subject
+            expect(response).to redirect_to :edit_user_security
+          end
+        end
+
+        it "shows an error if the user attempts to use the code once it has expired" do
+          Timecop.freeze(Time.at(1603290910)) do
+            subject
+            expect(flash[:error]).to eq 'The code you entered was invalid.'
+          end
+        end
+      end
+    end
+  end
 end
