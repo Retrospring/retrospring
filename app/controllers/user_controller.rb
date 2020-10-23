@@ -190,7 +190,7 @@ class UserController < ApplicationController
     current_user.otp_module = :enabled
 
     if current_user.authenticate_otp(req_params[:otp_validation])
-      flash[:success] = I18n.t('views.auth.2fa.setup.success')
+      flash[:success] = t('views.auth.2fa.setup.success')
       current_user.save!
     else
       flash[:error] = t('views.auth.2fa.errors.invalid_code')
