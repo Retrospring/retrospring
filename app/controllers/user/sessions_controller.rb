@@ -18,7 +18,7 @@ class User::SessionsController < Devise::SessionsController
         warden.lock!
         render 'auth/two_factor_authentication'
       else
-        if resource.authenticate_otp(params[:user][:otp_attempt])
+        if resource.authenticate_otp(params[:user][:otp_attempt], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
           continue_sign_in(resource, resource_name)
         else
           sign_out(resource)

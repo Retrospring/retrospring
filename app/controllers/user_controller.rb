@@ -189,7 +189,7 @@ class UserController < ApplicationController
     req_params = params.require(:user).permit(:otp_validation)
     current_user.otp_module = :enabled
 
-    if current_user.authenticate_otp(req_params[:otp_validation])
+    if current_user.authenticate_otp(req_params[:otp_validation], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
       flash[:success] = t('views.auth.2fa.setup.success')
       current_user.save!
     else
