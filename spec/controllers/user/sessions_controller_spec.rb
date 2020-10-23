@@ -22,12 +22,4 @@ describe User::SessionsController do
       expect(subject).to have_rendered('auth/two_factor_authentication')
     end
   end
-
-  describe "#two_factor_entry" do
-    subject { get :two_factor_entry }
-
-    it "redirects back to the home page if no sign in target is set" do
-      expect(subject).to redirect_to :root
-    end
-  end
 end
