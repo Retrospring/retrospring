@@ -47,8 +47,8 @@ Rails.application.routes.draw do
   devise_for :users, path: 'user', skip: [:sessions, :registrations]
   as :user do
     # :sessions
-    get 'sign_in' => 'devise/sessions#new', as: :new_user_session
-    post 'sign_in' => 'devise/sessions#create', as: :user_session
+    get 'sign_in' => 'user/sessions#new', as: :new_user_session
+    post 'sign_in' => 'user/sessions#create', as: :user_session
     delete 'sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
     # :registrations
     get 'settings/delete_account' => 'devise/registrations#cancel', as: :cancel_user_registration
@@ -66,6 +66,10 @@ Rails.application.routes.draw do
   match '/settings/theme', to: 'user#edit_theme', via: 'get', as: :edit_user_theme
   match '/settings/theme', to: 'user#update_theme', via: 'patch', as: :update_user_theme
   match '/settings/theme/delete', to: 'user#delete_theme', via: 'delete', as: :delete_user_theme
+
+  match '/settings/security', to: 'user#edit_security', via: :get, as: :edit_user_security
+  match '/settings/security/2fa', to: 'user#update_2fa', via: :patch, as: :update_user_2fa
+  match '/settings/security/2fa', to: 'user#destroy_2fa', via: :delete, as: :destroy_user_2fa
 
   # resources :services, only: [:index, :destroy]
   match '/settings/services', to: 'services#index', via: 'get', as: :services

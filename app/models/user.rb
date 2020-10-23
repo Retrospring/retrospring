@@ -4,12 +4,17 @@ class User < ApplicationRecord
   include User::QuestionMethods
   include User::RelationshipMethods
   include User::TimelineMethods
+  include ActiveModel::OneTimePassword
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :async, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable, :authentication_keys => [:login]
+
+  has_one_time_password
+  enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true
+  attr_accessor :otp_attempt, :otp_validation
 
   rolify
 

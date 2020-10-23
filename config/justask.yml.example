@@ -68,3 +68,6 @@ hcaptcha:
   enabled: false
   site_key: ''
   secret_key: ''
+
+# TOTP Drift period in seconds
+otp_drift_period: 30

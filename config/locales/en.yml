@@ -377,6 +377,7 @@ en:
         profile: "Profile"
         privacy: "Privacy"
         sharing: "Sharing"
+        security: "Security"
       account:
         modal:
           title: "Save account changes"
@@ -415,6 +416,10 @@ en:
         connect: "Connect to %{service}"
         disconnect: "Disconnect"
         confirm: "Really disconnect service %{service}?"
+      security:
+        2fa:
+          title: "Two-factor authentication"
+          detach_confirm: "Are you sure you want to disable two-factor authentication?"
     modal:
       ask:
         title: "Ask your followers"
@@ -443,3 +448,11 @@ en:
         admin: "Admin"
         moderator: "Moderator"
         banned: "Banned"
+    auth:
+      2fa:
+        title: "Two-factor authentication"
+        otp_field: "One-time password"
+        errors:
+          invalid_code: "The code you entered was invalid."
+        setup:
+          success: "Two factor authentication has been enabled for your account."

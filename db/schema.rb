@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_04_163504) do
+ActiveRecord::Schema.define(version: 2020_10_18_090453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,6 +273,8 @@ ActiveRecord::Schema.define(version: 2020_07_04_163504) do
     t.string "export_url"
     t.boolean "export_processing", default: false, null: false
     t.datetime "export_created_at"
+    t.string "otp_secret_key"
+    t.integer "otp_module"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

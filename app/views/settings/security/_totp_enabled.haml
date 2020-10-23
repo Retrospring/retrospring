@@ -1,0 +1,3 @@
+%p Your account is set up to require the use of a one-time password in order to log in
+= link_to t('views.actions.remove'), destroy_user_2fa_path, class: 'btn btn-primary', method: 'delete',
+          data: { confirm: t('views.settings.security.2fa.detach_confirm') }

@@ -1,0 +1,42 @@
+.totp-setup.container
+  .row
+    .totp-setup__card-container.col
+      .totp-setup__card
+        .totp-setup__qr
+          = qr_svg
+        %p.totp-setup__text
+          If you cannot scan the QR code, use the following key instead:
+          %code= current_user.otp_secret_key.scan(/.{4}/).flatten.join(' ')
+    .totp-setup__content.col
+      = bootstrap_form_for(current_user, url: { action: :update_2fa, method: :post }) do |f|
+        %p
+          If you do not have an authenticator app already installed on your device, we suggest one of the following:
+        %ul.list-unstyled.pl-3
+          %li
+            %i.fa.fa-android
+            Aegis Authenticator for Android
+            %ul.list-inline
+              %li.list-inline-item
+                %a{ href: 'https://play.google.com/store/apps/details?id=com.beemdevelopment.aegis' } Google Play
+              %li.list-inline-item
+                %a{ href: 'https://f-droid.org/app/com.beemdevelopment.aegis' } F-Droid
+              %li.list-inline-item
+                %a{ href: 'https://github.com/beemdevelopment/Aegis' } Source Code
+          %li
+            %i.fa.fa-apple
+            Strongbox Authenticator for iOS
+            %ul.list-inline
+              %li.list-inline-item
+                %a{ href: 'https://apps.apple.com/gb/app/strongbox-authenticator/id1023839880' } App Store
+          %li
+            %i.fa.fa-apple
+            %i.fa.fa-android
+            Microsoft Authenticator
+            %ul.list-inline
+              %li.list-inline-item
+                %a{ href: 'https://apps.apple.com/gb/app/microsoft-authenticator/id983156458' } App Store
+              %li.list-inline-item
+                %a{ href: 'https://play.google.com/store/apps/details?id=com.azure.authenticator' } Google Play
+        %p Once you have downloaded an authenticator app, add your Retrospring account by scanning the QR code displayed on the left.
+        = f.text_field :otp_validation, class: 'totp-setup__code-field', label: 'Enter the code displayed in the app here:', autofocus: true
+        = f.submit t('views.actions.save'), class: 'btn btn-primary'

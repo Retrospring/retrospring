@@ -1,0 +1,7 @@
+.card
+  .card-body
+    %h2= t('views.settings.security.2fa.title')
+    - if current_user.otp_module_disabled?
+      = render partial: 'settings/security/totp_setup', locals: { qr_svg: qr_svg }
+    - else
+      = render partial: 'settings/security/totp_enabled'
