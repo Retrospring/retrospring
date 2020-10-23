@@ -1,8 +1,12 @@
 class User::SessionsController < Devise::SessionsController
+  def new
+    session.delete(:user_sign_in_uid)
+    super
+  end
+
   def create
     if session.has_key?(:user_sign_in_uid)
-      self.resource = User.find(session[:user_sign_in_uid])
-      session.delete(:user_sign_in_uid)
+      self.resource = User.find(session.delete(:user_sign_in_uid))
     else
       self.resource = warden.authenticate!(auth_options)
     end
@@ -11,14 +15,15 @@ class User::SessionsController < Devise::SessionsController
       if params[:user][:otp_attempt].blank?
         session[:user_sign_in_uid] = resource.id
         sign_out(resource)
-        redirect_to user_two_factor_entry_url
+        warden.lock!
+        render 'auth/two_factor_authentication'
       else
         if resource.authenticate_otp(params[:user][:otp_attempt])
           continue_sign_in(resource, resource_name)
         else
           sign_out(resource)
-          flash[:error] = t('devise.failure.invalid')
-          redirect_to root_url
+          flash[:error] = "Invalid code provided"
+          redirect_to new_user_session_url
         end
       end
     else

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe User::SessionsController do
   before do
+    # Required for devise to register routes
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
@@ -18,7 +19,7 @@ describe User::SessionsController do
       user.otp_module = :enabled
       user.save
 
-      expect(subject).to redirect_to :user_two_factor_entry
+      expect(subject).to have_rendered('auth/two_factor_authentication')
     end
   end
 

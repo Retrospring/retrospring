@@ -4,6 +4,7 @@ require "rails_helper"
 
 describe User::RegistrationsController, type: :controller do
   before do
+    # Required for devise to register routes
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 

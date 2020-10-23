@@ -176,6 +176,7 @@ class UserController < ApplicationController
   def edit_security
     if current_user.otp_module_disabled?
       current_user.otp_secret_key = User.otp_random_secret(26)
+      current_user.save
 
       @provisioning_uri = current_user.provisioning_uri(nil, issuer: APP_CONFIG[:hostname])
       qr_code = RQRCode::QRCode.new(current_user.provisioning_uri("Retrospring:#{current_user.screen_name}", issuer: "Retrospring"))
@@ -185,8 +186,7 @@ class UserController < ApplicationController
   end
 
   def update_2fa
-    req_params = params.require(:user).permit(:otp_secret_key, :otp_validation)
-    current_user.otp_secret_key = req_params[:otp_secret_key]
+    req_params = params.require(:user).permit(:otp_validation)
     current_user.otp_module = :enabled
 
     if current_user.authenticate_otp(req_params[:otp_validation])

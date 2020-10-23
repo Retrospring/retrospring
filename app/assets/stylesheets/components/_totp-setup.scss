@@ -1,11 +1,20 @@
 .totp-setup {
-  display: flex;
-
   &__card {
     background: var(--primary);
     padding: 10px;
     border-radius: 5px;
-    width: 256px;
+
+    min-width: 256px;
+    max-width: 256px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__card-container {
+    min-width: 276px;
+    max-width: 276px;
+    width: 100%;
+    padding: 0;
   }
 
   &__qr {
@@ -21,12 +30,9 @@
     border-radius: 5px;
 
     code {
+      display: block;
       color: var(--warning);
     }
-  }
-
-  &__right {
-    margin-left: 20px;
   }
 
   &__code-field {
