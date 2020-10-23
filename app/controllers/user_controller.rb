@@ -190,10 +190,10 @@ class UserController < ApplicationController
     current_user.otp_module = :enabled
 
     if current_user.authenticate_otp(req_params[:otp_validation])
-      flash[:success] = 'Two factor authentication has been enabled for your account.'
+      flash[:success] = I18n.t('views.auth.2fa.setup.success')
       current_user.save!
     else
-      flash[:error] = 'The code you entered was invalid.'
+      flash[:error] = t('views.auth.2fa.errors.invalid_code')
     end
 
     redirect_to edit_user_security_path

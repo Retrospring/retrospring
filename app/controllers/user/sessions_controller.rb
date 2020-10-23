@@ -22,7 +22,7 @@ class User::SessionsController < Devise::SessionsController
           continue_sign_in(resource, resource_name)
         else
           sign_out(resource)
-          flash[:error] = "Invalid code provided"
+          flash[:error] = t('views.auth.2fa.errors.invalid_code')
           redirect_to new_user_session_url
         end
       end
