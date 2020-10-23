@@ -453,6 +453,6 @@ en:
         title: "Two-factor authentication"
         otp_field: "One-time password"
         errors:
-          invalid_code: ""
+          invalid_code: "The code you entered was invalid."
         setup:
           success: "Two factor authentication has been enabled for your account."
