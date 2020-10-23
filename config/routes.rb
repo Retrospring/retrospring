@@ -47,9 +47,8 @@ Rails.application.routes.draw do
   devise_for :users, path: 'user', skip: [:sessions, :registrations]
   as :user do
     # :sessions
-    get 'sign_in' => 'devise/sessions#new', as: :new_user_session
+    get 'sign_in' => 'user/sessions#new', as: :new_user_session
     post 'sign_in' => 'user/sessions#create', as: :user_session
-    get 'otp_auth' => 'user/sessions#two_factor_entry', as: :user_two_factor_entry
     delete 'sign_out' => 'devise/sessions#destroy', as: :destroy_user_session
     # :registrations
     get 'settings/delete_account' => 'devise/registrations#cancel', as: :cancel_user_registration
