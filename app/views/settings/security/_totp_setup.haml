@@ -38,5 +38,5 @@
               %li.list-inline-item
                 %a{ href: 'https://play.google.com/store/apps/details?id=com.azure.authenticator' } Google Play
         %p Once you have downloaded an authenticator app, add your Retrospring account by scanning the QR code displayed on the left.
-        = f.text_field :otp_validation, class: 'totp-setup__code-field', label: 'Enter the code displayed in the app here:'
+        = f.text_field :otp_validation, class: 'totp-setup__code-field', label: 'Enter the code displayed in the app here:', autofocus: true
         = f.submit t('views.actions.save'), class: 'btn btn-primary'
