@@ -182,6 +182,8 @@ class UserController < ApplicationController
       qr_code = RQRCode::QRCode.new(current_user.provisioning_uri("Retrospring:#{current_user.screen_name}", issuer: "Retrospring"))
 
       @qr_svg = qr_code.as_svg({offset: 4, module_size: 4, color: '000;fill:var(--primary)'}).html_safe
+    else
+      @recovery_code_count = TotpRecoveryCode.where(user_id: current_user.id).count
     end
   end
 
