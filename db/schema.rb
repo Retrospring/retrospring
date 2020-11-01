@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_090453) do
+ActiveRecord::Schema.define(version: 2020_11_01_155648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,12 @@ ActiveRecord::Schema.define(version: 2020_10_18_090453) do
     t.integer "light_color", default: 16316922
     t.integer "light_text", default: 0
     t.index ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at"
+  end
+
+  create_table "totp_recovery_codes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "code", limit: 8
+    t.index ["user_id", "code"], name: "index_totp_recovery_codes_on_user_id_and_code"
   end
 
   create_table "users", id: :bigint, default: -> { "gen_timestamp_id('users'::text)" }, force: :cascade do |t|

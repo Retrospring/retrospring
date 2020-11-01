@@ -1,0 +1,6 @@
+%p= t('views.auth.2fa.setup.success')
+
+%ul
+  - @recovery_keys.each do |key|
+    %li
+      %code= key.code

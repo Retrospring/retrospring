@@ -190,13 +190,14 @@ class UserController < ApplicationController
     current_user.otp_module = :enabled
 
     if current_user.authenticate_otp(req_params[:otp_validation], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
-      flash[:success] = t('views.auth.2fa.setup.success')
+      @recovery_keys = TotpRecoveryCode.create!(Array.new(10) { {user: current_user, code: SecureRandom.base58(8).downcase} })
       current_user.save!
+
+      render 'settings/security/recovery_keys'
     else
       flash[:error] = t('views.auth.2fa.errors.invalid_code')
+      redirect_to edit_user_security_path
     end
-
-    redirect_to edit_user_security_path
   end
 
   def destroy_2fa
