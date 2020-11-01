@@ -203,6 +203,7 @@ class UserController < ApplicationController
   def destroy_2fa
     current_user.otp_module = :disabled
     current_user.save!
+    TotpRecoveryCode.where(user_id: resource.id).delete_all
     flash[:success] = 'Two factor authentication has been disabled for your account.'
     redirect_to edit_user_security_path
   end
