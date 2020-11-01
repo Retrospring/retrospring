@@ -18,7 +18,15 @@ class User::SessionsController < Devise::SessionsController
         warden.lock!
         render 'auth/two_factor_authentication'
       else
-        if resource.authenticate_otp(params[:user][:otp_attempt], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
+        if params[:user][:otp_attempt].length == 8
+          found = TotpRecoveryCode.where(user_id: resource.id, code: params[:user][:otp_attempt].downcase).delete_all
+          if found == 1
+            continue_sign_in(resource, resource_name)
+          else
+            flash[:error] = t('views.auth.2fa.errors.invalid_code')
+            redirect_to new_user_session_url
+          end
+        elsif resource.authenticate_otp(params[:user][:otp_attempt], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
           continue_sign_in(resource, resource_name)
         else
           sign_out(resource)
