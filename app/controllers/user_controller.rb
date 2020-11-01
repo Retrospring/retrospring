@@ -205,8 +205,14 @@ class UserController < ApplicationController
   def destroy_2fa
     current_user.otp_module = :disabled
     current_user.save!
-    TotpRecoveryCode.where(user_id: resource.id).delete_all
+    TotpRecoveryCode.where(user_id: current_user.id).delete_all
     flash[:success] = 'Two factor authentication has been disabled for your account.'
     redirect_to edit_user_security_path
+  end
+
+  def reset_user_recovery_codes
+    TotpRecoveryCode.where(user_id: current_user.id).delete_all
+    @recovery_keys = TotpRecoveryCode.create!(Array.new(10) { {user: current_user, code: SecureRandom.base58(8).downcase} })
+    render 'settings/security/recovery_keys'
   end
 end
