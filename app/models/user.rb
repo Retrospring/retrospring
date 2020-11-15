@@ -43,6 +43,7 @@ class User < ApplicationRecord
   has_many :list_memberships, class_name: "ListMember", foreign_key: 'user_id', dependent: :destroy
 
   has_many :subscriptions, dependent: :destroy
+  has_many :totp_recovery_codes, dependent: :destroy
 
   has_one :theme, dependent: :destroy
 
