@@ -129,9 +129,10 @@ describe UserController, type: :controller do
         end
 
         it "shows an error if the user attempts to use the code once it has expired" do
-          Timecop.freeze(Time.at(1603290910)) do
+          Timecop.freeze(Time.at(1603290950)) do
             subject
-            expect(flash[:error]).to eq('The code you entered was invalid.')
+            expect(response).to redirect_to :edit_user_security
+            expect(flash[:error]).to eq(I18n.t('views.auth.2fa.errors.invalid_code'))
           end
         end
       end
