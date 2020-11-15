@@ -1,6 +1,23 @@
-%p= t('views.auth.2fa.setup.success')
+.container.container--main
+  .row.justify-content-center
+    .col-md-5.totp-setup__recovery-container
+      .card
+        .card-body
+          .d-none.d-print-block.totp-setup__recovery-icon
+            %i.fa.fa-comments
+          %h1.totp-setup__recovery-title Your Retrospring recovery codes
 
-%ul
-  - @recovery_keys.each do |key|
-    %li
-      %code= key.code
+          %ul.totp-setup__recovery-codes
+            - @recovery_keys.each do |key|
+              %li
+                %code= key.code
+          .d-none.d-print-block= "These codes were generated #{Time.now.strftime("%F at %T %Z")}"
+        .card-footer.d-print-none
+          We recommend storing these in a password manager or printing them out on paper.
+          %br
+          %a.btn{onclick: 'print()'}
+            %i.fa.fa-print
+            Print
+        .d-none.d-print-block.text-success
+          %i.fa.fa-tree
+          Please consider the environment before printing this page.

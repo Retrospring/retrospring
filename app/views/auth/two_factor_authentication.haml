@@ -7,7 +7,7 @@
           %h1.mb-3.mt-0= t('views.auth.2fa.title')
           = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f|
 
-            = f.text_field :otp_attempt, autofocus: true, label: t('views.auth.2fa.otp_field')
+            = f.text_field :otp_attempt, autofocus: true, label: 'Please enter the code from your authenticator app'
 
             = f.submit t('views.sessions.create'), class: 'btn btn-primary mt-3 mb-3'
 
