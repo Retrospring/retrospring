@@ -182,7 +182,7 @@ class UserController < ApplicationController
 
       @qr_svg = qr_code.as_svg({offset: 4, module_size: 4, color: '000;fill:var(--primary)'}).html_safe
     else
-      @recovery_code_count = TotpRecoveryCode.where(user_id: current_user.id).count
+      @recovery_code_count = current_user.totp_recovery_codes.count
     end
   end
 
@@ -204,13 +204,13 @@ class UserController < ApplicationController
   def destroy_2fa
     current_user.otp_module = :disabled
     current_user.save!
-    TotpRecoveryCode.remove_all_for(current_user)
+    current_user.totp_recovery_codes.delete_all
     flash[:success] = 'Two factor authentication has been disabled for your account.'
     redirect_to edit_user_security_path
   end
 
   def reset_user_recovery_codes
-    TotpRecoveryCode.remove_all_for(current_user)
+    current_user.totp_recovery_codes.delete_all
     @recovery_keys = TotpRecoveryCode.generate_for(current_user)
     render 'settings/security/recovery_keys'
   end
