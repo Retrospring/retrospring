@@ -11,11 +11,11 @@
             - @recovery_keys.each do |key|
               %li
                 %code= key.code
-          .d-none.d-print-block= "These codes were generated #{Time.now.strftime("%F at %T %Z")}"
+          .d-none.d-print-block These codes were generated #{Time.now.strftime('%F at %T %Z')}
         .card-footer.d-print-none
           We recommend storing these in a password manager or printing them out on paper.
           %br
-          %a.btn{onclick: 'print()'}
+          %a.btn{ onclick: 'print()' }
             %i.fa.fa-print
             Print
         .d-none.d-print-block.text-success
