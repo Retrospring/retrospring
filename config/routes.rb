@@ -70,6 +70,7 @@ Rails.application.routes.draw do
   match '/settings/security', to: 'user#edit_security', via: :get, as: :edit_user_security
   match '/settings/security/2fa', to: 'user#update_2fa', via: :patch, as: :update_user_2fa
   match '/settings/security/2fa', to: 'user#destroy_2fa', via: :delete, as: :destroy_user_2fa
+  match '/settings/security/recovery', to: 'user#reset_user_recovery_codes', via: :delete, as: :reset_user_recovery_codes
 
   # resources :services, only: [:index, :destroy]
   match '/settings/services', to: 'services#index', via: 'get', as: :services

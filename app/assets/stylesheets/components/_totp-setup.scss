@@ -1,6 +1,6 @@
 %totp-input {
   font-family: "Monaco", "Inconsolata", "Cascadia Code", "Consolas", monospace;
-  width: 86px;
+  width: 100px;
 }
 
 .totp-setup {
@@ -42,6 +42,32 @@
 
   &__code-field {
     @extend %totp-input;
+  }
+
+  &__recovery {
+    &-container {
+      max-width: 455px;
+    }
+
+    &-icon {
+      font-size: .75in;
+    }
+
+    &-title {
+      text-align: left;
+    }
+
+    &-codes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0;
+
+      li {
+        list-style-type: none;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
   }
 }
 

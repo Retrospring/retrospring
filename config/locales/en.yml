@@ -265,6 +265,7 @@ en:
       done: "Done"
       y: "Yes"
       n: "No"
+      remove: "Remove"
     sessions:
       destroy: "Logout"
       create: "Sign in"

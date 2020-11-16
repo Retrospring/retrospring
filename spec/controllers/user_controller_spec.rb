@@ -3,7 +3,9 @@
 require "rails_helper"
 
 describe UserController, type: :controller do
-  let(:user) { FactoryBot.create :user, otp_module: :disabled }
+  let(:user) { FactoryBot.create :user,
+                                 otp_module: :disabled,
+                                 otp_secret_key: 'EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3'}
 
   describe "#edit" do
     subject { get :edit }
@@ -97,8 +99,7 @@ describe UserController, type: :controller do
       context "user enters the incorrect code" do
         let(:update_params) do
           {
-              user: { otp_secret_key: 'EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3',
-                      otp_validation: 123456 }
+              user: { otp_validation: 123456 }
           }
         end
 
@@ -106,6 +107,7 @@ describe UserController, type: :controller do
           Timecop.freeze(Time.at(1603290888)) do
             subject
             expect(response).to redirect_to :edit_user_security
+            expect(flash[:error]).to eq('The code you entered was invalid.')
           end
         end
       end
@@ -113,22 +115,24 @@ describe UserController, type: :controller do
       context "user enters the correct code" do
         let(:update_params) do
           {
-              user: { otp_secret_key: 'EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3',
-                      otp_validation: 187894 }
+              user: { otp_validation: 187894 }
           }
         end
 
-        it "enables 2FA for the logged in user" do
+        it "enables 2FA for the logged in user and generates recovery keys" do
           Timecop.freeze(Time.at(1603290888)) do
             subject
-            expect(response).to redirect_to :edit_user_security
+            expect(response).to have_rendered(:recovery_keys)
+
+            expect(user.totp_recovery_codes.count).to be(TotpRecoveryCode::NUMBER_OF_CODES_TO_GENERATE)
           end
         end
 
         it "shows an error if the user attempts to use the code once it has expired" do
-          Timecop.freeze(Time.at(1603290910)) do
+          Timecop.freeze(Time.at(1603290950)) do
             subject
-            expect(flash[:error]).to eq('The code you entered was invalid.')
+            expect(response).to redirect_to :edit_user_security
+            expect(flash[:error]).to eq(I18n.t('views.auth.2fa.errors.invalid_code'))
           end
         end
       end
@@ -142,13 +146,31 @@ describe UserController, type: :controller do
       before(:each) do
         user.otp_module = :enabled
         user.save
-        sign_in user
+        sign_in(user)
       end
 
       it "disables 2FA for the logged in user" do
         subject
         user.reload
         expect(user.otp_module_enabled?).to be_falsey
+        expect(user.totp_recovery_codes.count).to be(0)
+      end
+    end
+  end
+
+  describe "#reset_user_recovery_codes" do
+    subject { delete :reset_user_recovery_codes }
+
+    context "user signed in" do
+      before(:each) do
+        sign_in(user)
+      end
+
+      it "regenerates codes on request" do
+        old_codes = user.totp_recovery_codes.pluck(:code)
+        subject
+        new_codes = user.totp_recovery_codes.pluck(:code)
+        expect(new_codes).not_to match_array(old_codes)
       end
     end
   end

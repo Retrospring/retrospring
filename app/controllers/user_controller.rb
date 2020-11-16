@@ -175,13 +175,14 @@ class UserController < ApplicationController
 
   def edit_security
     if current_user.otp_module_disabled?
-      current_user.otp_secret_key = User.otp_random_secret(26)
+      current_user.otp_secret_key = User.otp_random_secret(25)
       current_user.save
 
-      @provisioning_uri = current_user.provisioning_uri(nil, issuer: APP_CONFIG[:hostname])
       qr_code = RQRCode::QRCode.new(current_user.provisioning_uri("Retrospring:#{current_user.screen_name}", issuer: "Retrospring"))
 
       @qr_svg = qr_code.as_svg({offset: 4, module_size: 4, color: '000;fill:var(--primary)'}).html_safe
+    else
+      @recovery_code_count = current_user.totp_recovery_codes.count
     end
   end
 
@@ -190,19 +191,27 @@ class UserController < ApplicationController
     current_user.otp_module = :enabled
 
     if current_user.authenticate_otp(req_params[:otp_validation], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
-      flash[:success] = t('views.auth.2fa.setup.success')
+      @recovery_keys = TotpRecoveryCode.generate_for(current_user)
       current_user.save!
+
+      render 'settings/security/recovery_keys'
     else
       flash[:error] = t('views.auth.2fa.errors.invalid_code')
+      redirect_to edit_user_security_path
     end
-
-    redirect_to edit_user_security_path
   end
 
   def destroy_2fa
     current_user.otp_module = :disabled
     current_user.save!
+    current_user.totp_recovery_codes.delete_all
     flash[:success] = 'Two factor authentication has been disabled for your account.'
     redirect_to edit_user_security_path
+  end
+
+  def reset_user_recovery_codes
+    current_user.totp_recovery_codes.delete_all
+    @recovery_keys = TotpRecoveryCode.generate_for(current_user)
+    render 'settings/security/recovery_keys'
   end
 end
