@@ -11,7 +11,7 @@
         = f.hidden_field :user, value: user.screen_name
         .modal-body#ban-control-super
           = f.check_box :ban, label: t('views.modal.bancontrol.ban'), checked: user.banned?
-          #ban-controls{ style: !user.banned? ? 'display: none' : '' }
+          #ban-controls{ style: user.banned? ? '' : 'display: none' }
             = f.check_box :permaban, label: t('views.modal.bancontrol.permanent'), checked: user.permanently_banned?
             #ban-controls-time{ style: user.permanently_banned? ? 'display: none' : '' }
               = f.text_field :until, label: '', required: true, value: (user.banned_until || DateTime.current).strftime('%m/%d/%Y %I:%M %p')
