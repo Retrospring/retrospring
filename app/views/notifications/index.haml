@@ -5,10 +5,10 @@
         .notifications--none
           %i.fa.fa-bell-o.notification__bell-icon
         %p
-          - if params[:type] != 'all'
-            No new notifications.
-          - else
+          - if params[:type] == 'all'
             No notifications.
+          - else
+            No new notifications.
     - else
       - @notifications.each do |notification|
         %li.list-group-item
