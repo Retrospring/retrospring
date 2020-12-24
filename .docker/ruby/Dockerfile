@@ -1,5 +1,8 @@
 FROM ruby:2.7
 
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 RUN apt-get update -qq \
@@ -8,6 +11,7 @@ RUN apt-get update -qq \
     libxml2-dev libxslt1-dev \
     libmagickwand-dev imagemagick \
     nodejs \
+    yarn \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /app
@@ -16,6 +20,11 @@ WORKDIR /app
 ADD Gemfile* /app/
 RUN bundle install --jobs=$(nproc)
 RUN gem install ruby-debug-ide
+
+ADD package.json /app/
+ADD yarn.lock /app/
+RUN yarn install
+
 COPY . /app
 
 COPY .docker/entrypoint.sh /usr/bin/
