@@ -17,6 +17,12 @@ module Errors
     end
   end
 
+  class NotAuthorized < Base
+    def status
+      401
+    end
+  end
+
   class Forbidden < Base
     def status
       403

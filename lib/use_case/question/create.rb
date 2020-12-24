@@ -56,11 +56,11 @@ module UseCase
       end
 
       def source_user
-        @source_user ||= User.find(source_user_id)
+        @source_user ||= ::User.find(source_user_id)
       end
 
       def target_user
-        @target_user ||= User.find(target_user_id)
+        @target_user ||= ::User.find(target_user_id)
       end
     end
   end

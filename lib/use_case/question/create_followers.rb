@@ -31,7 +31,7 @@ module UseCase
       end
 
       def source_user
-        @source_user ||= User.find(source_user_id)
+        @source_user ||= ::User.find(source_user_id)
       end
     end
   end

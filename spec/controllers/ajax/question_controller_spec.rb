@@ -374,9 +374,15 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       end
 
       context "when the question does not exist" do
-        let(:question_id) { "sonic_the_hedgehog" }
+        let(:question_id) { "-1" }
 
         include_examples "does not delete the question", "not_found"
+      end
+
+      context "when the question is an invalid value" do
+        let(:question_id) { "sonic_the_hedgehog" }
+
+        include_examples "does not delete the question", "bad_request"
       end
     end
 

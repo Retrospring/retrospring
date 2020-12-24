@@ -2,29 +2,24 @@
 
 require "use_case/question/create"
 require "use_case/question/create_followers"
+require "use_case/question/destroy"
 
 class Ajax::QuestionController < AjaxController
   def destroy
     params.require :question
 
-    question = Question.find params[:question]
-    if question.nil?
-      @response[:status] = :not_found
-      @response[:message] = I18n.t('messages.question.destroy.not_found')
-      return
-    end
+    # set up fake success response -- the use cases raise errors on exceptions
+    # which get rescued by the base class
+    @response = {
+      success: true,
+      message: 'Question destroyed successfully.',
+      status: :okay
+    }
 
-    if not (current_user.mod? or question.user == current_user)
-      @response[:status] = :not_authorized
-      @response[:message] = I18n.t('messages.question.destroy.not_authorized')
-      return
-    end
-
-    question.destroy!
-
-    @response[:status] = :okay
-    @response[:message] = I18n.t('messages.question.destroy.okay')
-    @response[:success] = true
+    UseCase::Question::Destroy.call(
+      current_user_id: current_user.id,
+      question_id: params[:question]
+    )
   end
 
   def create
