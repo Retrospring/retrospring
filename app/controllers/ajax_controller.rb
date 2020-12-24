@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "errors"
+
 class AjaxController < ApplicationController
   before_action :build_response
   after_action :return_response
@@ -18,6 +20,30 @@ class AjaxController < ApplicationController
     return_response
   end
 
+  rescue_from(Errors::Base) do |e|
+    NewRelic::Agent.notice_error(e)
+
+    @response = {
+      success: false,
+      message: e.message,
+      status: e.code
+    }
+
+    return_response
+  end
+
+  rescue_from(Dry::Types::CoercionError) do |e|
+    NewRelic::Agent.notice_error(e)
+
+    @response = {
+      success: false,
+      message: "could not coerce value",
+      status: :bad_request
+    }
+
+    return_response
+  end
+
   rescue_from(ActiveRecord::RecordNotFound) do |e|
     NewRelic::Agent.notice_error(e)
 
@@ -25,6 +51,18 @@ class AjaxController < ApplicationController
       success: false,
       message: "Record not found",
       status: :not_found
+    }
+
+    return_response
+  end
+
+  rescue_from(ActiveRecord::RecordInvalid) do |e|
+    NewRelic::Agent.notice_error(e)
+
+    @response = {
+      success: false,
+      message: "Record invalid",
+      status: :rec_inv
     }
 
     return_response

@@ -46,6 +46,9 @@ gem "hcaptcha", "~> 6.0", git: "https://github.com/Retrospring/hcaptcha.git", re
 
 gem "rolify", "~> 5.2"
 
+gem "dry-initializer", "~> 3.0"
+gem "dry-types", "~> 1.4"
+
 source "https://rails-assets.org" do
   gem 'rails-assets-growl'
   gem 'rails-assets-jquery', '~> 2.2.0'
@@ -78,6 +81,8 @@ gem 'tumblr_client', git: 'https://github.com/amplifr/tumblr_client'
 gem 'redis'
 
 gem 'fake_email_validator'
+
+gem "amazing_print", "~> 1.2"
 
 group :development do
   gem 'spring', '~> 2.0'

@@ -109,7 +109,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "unknown",
+                "status" => "forbidden",
                 "message" => anything
               }
             end
@@ -146,8 +146,24 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
         end
       end
 
-      context "when rcpt is a non-existent user" do
+      context "when rcpt is an invalid value" do
         let(:rcpt) { "tripmeister_eder" }
+        let(:anonymous_question) { "false" }
+        let(:expected_response) do
+          {
+            "success" => false,
+            "status" => "bad_request",
+            "message" => anything
+          }
+        end
+
+        include_examples "does not create the question", false
+
+        include_examples "returns the expected response"
+      end
+
+      context "when rcpt is a non-existent user" do
+        let(:rcpt) { "-1" }
         let(:anonymous_question) { "false" }
         let(:expected_response) do
           {
@@ -190,7 +206,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "unknown",
+                "status" => "bad_request",
                 "message" => anything
               }
             end
@@ -204,7 +220,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           let(:expected_response) do
             {
               "success" => false,
-              "status" => "unknown",
+              "status" => "forbidden",
               "message" => anything
             }
           end
@@ -213,6 +229,13 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
           context "when anonymousQuestion is false" do
             let(:anonymous_question) { "false" }
+            let(:expected_response) do
+              {
+                "success" => false,
+                "status" => "bad_request",
+                "message" => anything
+              }
+            end
 
             include_examples "does not create the question"
           end
@@ -221,12 +244,32 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       context "when rcpt is followers" do
         let(:rcpt) { "followers" }
+        let(:expected_response) do
+          {
+            "success" => false,
+            "status" => "bad_request",
+            "message" => anything
+          }
+        end
 
         include_examples "does not enqueue a QuestionWorker job"
       end
 
-      context "when rcpt is a non-existent user" do
+      context "when rcpt is an invalid value" do
         let(:rcpt) { "tripmeister_eder" }
+        let(:expected_response) do
+          {
+            "success" => false,
+            "status" => "bad_request",
+            "message" => anything
+          }
+        end
+
+        include_examples "does not create the question", false
+      end
+
+      context "when rcpt is a non-existent user" do
+        let(:rcpt) { "-1" }
         let(:expected_response) do
           {
             "success" => false,

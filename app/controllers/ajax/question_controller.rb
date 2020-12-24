@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+require "use_case/question/create"
+require "use_case/question/create_followers"
+
 class Ajax::QuestionController < AjaxController
   def destroy
     params.require :question
@@ -27,49 +32,27 @@ class Ajax::QuestionController < AjaxController
     params.require :anonymousQuestion
     params.require :rcpt
 
-    is_never_anonymous = user_signed_in? && params[:rcpt] == 'followers'
+    # set up fake success response -- the use cases raise errors on exceptions
+    # which get rescued by the base class
+    @response = {
+      success: true,
+      message: 'Question asked successfully.',
+      status: :okay
+    }
 
-    begin
-      question = Question.create!(content: params[:question],
-                                  author_is_anonymous: is_never_anonymous ? false : params[:anonymousQuestion],
-                                  user: current_user)
-    rescue ActiveRecord::RecordInvalid => e
-      NewRelic::Agent.notice_error(e)
-      @response[:status] = :rec_inv
-      @response[:message] = I18n.t('messages.question.create.rec_inv')
+    if user_signed_in? && params[:rcpt] == 'followers'
+      UseCase::Question::CreateFollowers.call(
+        source_user_id: current_user.id,
+        content: params[:question]
+      )
       return
     end
 
-    if !user_signed_in? && !question.author_is_anonymous
-      question.delete
-      return
-    end
-
-    unless current_user.nil?
-      current_user.increment! :asked_count unless params[:anonymousQuestion] == 'true'
-    end
-
-    if params[:rcpt] == 'followers'
-      QuestionWorker.perform_async(current_user.id, question.id) unless current_user.nil?
-    else
-      u = User.find_by_id(params[:rcpt])
-      if u.nil?
-        @response[:status] = :not_found
-        @response[:message] = I18n.t('messages.question.create.not_found')
-        question.delete
-        return
-      end
-
-      if !u.privacy_allow_anonymous_questions && question.author_is_anonymous
-        question.delete
-        return
-      end
-
-      Inbox.create!(user_id: u.id, question_id: question.id, new: true)
-    end
-
-    @response[:status] = :okay
-    @response[:message] = I18n.t('messages.question.create.okay')
-    @response[:success] = true
+    UseCase::Question::Create.call(
+      source_user_id: user_signed_in? ? current_user.id : nil,
+      target_user_id: params[:rcpt],
+      content: params[:question],
+      anonymous: params[:anonymousQuestion]
+    )
   end
 end
