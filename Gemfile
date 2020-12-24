@@ -110,3 +110,5 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'haml_lint', require: false
 end
+
+gem "webpacker", "~> 5.2"
