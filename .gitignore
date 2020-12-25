@@ -25,6 +25,7 @@ coverage/
 
 # dont push generated js translations to repository
 /app/assets/javascripts/i18n/*.js
+/app/javascript/packs/legacy/i18n.js
 
 # every fucking time, dolphin
 .directory

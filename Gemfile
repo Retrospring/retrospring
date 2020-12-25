@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2'
 gem 'rails-i18n', '~> 5.0'
-gem 'i18n-js', '= 3.0.0.rc10'
+gem 'i18n-js', '= 3.6'
 
 gem 'pg'
 
