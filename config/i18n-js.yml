@@ -24,7 +24,7 @@
 fallbacks: :default_locale
 
 translations:
-  - file: 'app/javascript/packs/legacy/i18n.js'
+  - file: 'app/javascript/legacy/i18n.js'
     only: ['*.frontend.*', '*.views.actions.*']
     prefix: "import I18n from 'i18n-js'\n"
     suffix: "\nexport default I18n"
