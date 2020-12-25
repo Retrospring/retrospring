@@ -3,6 +3,7 @@
     "bootstrap": "^4.5.3",
     "cheet.js": "^0.3.3",
     "core-js": "^3.8.1",
+    "i18n-js": "^3.8.0",
     "jquery": "^3.5.1",
     "jquery-minicolors": "^2.1.10",
     "jquery-ujs": "^1.2.2",
