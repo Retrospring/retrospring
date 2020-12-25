@@ -22,7 +22,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@rails/webpacker": "5.2.1",
-    "coffee-loader": "^2.0.0",
+    "coffee-loader": "1.0.1",
     "coffeescript": "^2.5.1",
     "webpack": "^4",
     "webpack-dev-server": "^3.11.0"
