@@ -280,7 +280,7 @@ ActiveRecord::Schema.define(version: 2020_11_01_155648) do
     t.boolean "export_processing", default: false, null: false
     t.datetime "export_created_at"
     t.string "otp_secret_key"
-    t.integer "otp_module"
+    t.integer "otp_module", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
