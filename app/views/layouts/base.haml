@@ -13,6 +13,7 @@
     = javascript_include_tag 'i18n', data: { 'turbolinks-track': true }
     = stylesheet_link_tag    'application', media: 'all', data: { 'turbolinks-track': true }
     = javascript_pack_tag 'legacy/application', data: { 'turbolinks-track': true }
+    = stylesheet_pack_tag 'legacy/application', data: { 'turbolinks-track': true }
     - if user_signed_in? && current_user.mod?
       = javascript_pack_tag 'legacy/moderation/index', data: { 'turbolinks-track': true }
     = csrf_meta_tags
