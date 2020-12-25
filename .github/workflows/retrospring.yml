@@ -67,6 +67,8 @@ jobs:
         run: |
           npm i -g yarn
           yarn install --frozen-lockfile
+      - name: Export i18n JS files
+        run: bundle exec rails i18n:js:export
       - name: Compile assets
         run:
           bundle exec rake assets:precompile
