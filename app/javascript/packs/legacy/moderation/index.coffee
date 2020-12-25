@@ -1,14 +1,9 @@
-import '../jquery'
-import 'popper.js'
-import 'bootstrap'
-import {} from 'jquery-ujs'
-import 'jquery.turbolinks/src/jquery.turbolinks'
-import 'jquery.guillotine'
-import 'particleground/jquery.particleground.min'
-import 'jquery.growl'
+import 'tempusdominus-bootstrap-4'
 
 import './ban'
 import './comment'
 import './destroy'
 import './privileges'
 import './vote'
+
+$('.datetimepicker-input').datetimepicker({});
