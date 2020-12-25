@@ -1,3 +1,5 @@
+import tinycolor from 'tinycolor2'
+
 window.doppler = (percentage, value, relative = false) ->
   while percentage >= 1
     percentage /= 10

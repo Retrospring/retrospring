@@ -1,3 +1,30 @@
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
+import './jquery'
+import 'popper.js'
+import 'bootstrap'
+import {} from 'jquery-ujs'
+import 'jquery.turbolinks/src/jquery.turbolinks'
+import 'jquery.guillotine'
+import 'particleground/jquery.particleground.min'
+import 'jquery.growl'
+import NProgress from 'nprogress'
+import Cookies from 'js-cookie'
+
+import './answerbox'
+import './questionbox'
+import './inbox'
+import './memes'
+import './notifications'
+import './pagination'
+import './question'
+import './settings'
+import './user'
+import './report'
+import './locale-box'
+import './util'
+
 #= require jquery3
 #= require jquery_ujs
 #= require jquery.turbolinks
@@ -29,7 +56,7 @@
 #= require user
 #= require report
 #= require locale-box
-#= require util
+
 # not required:
 # _tree ./moderation
 
