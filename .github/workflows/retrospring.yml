@@ -66,7 +66,7 @@ jobs:
       - name: Install node modules
         run: |
           npm i -g yarn
-          yarn install
+          yarn install --frozen-lockfile
       - name: Compile assets
         run:
           bundle exec rake assets:precompile
