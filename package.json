@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@babel/preset-typescript": "^7.12.7",
     "bootstrap": "^4.5.3",
     "cheet.js": "^0.3.3",
     "core-js": "^3.8.1",
@@ -18,7 +19,8 @@
     "sweetalert": "1.1.3",
     "tempusdominus-bootstrap-4": "5.1.2",
     "tinycolor2": "^1.4.2",
-    "turbolinks": "turbolinks/turbolinks-classic"
+    "turbolinks": "turbolinks/turbolinks-classic",
+    "typescript": "^4.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
