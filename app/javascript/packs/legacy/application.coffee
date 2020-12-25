@@ -18,6 +18,7 @@ import I18n from './i18n'
 import './answerbox'
 import './questionbox'
 import './inbox'
+import './lists'
 import './memes'
 import './notifications'
 import './pagination'
@@ -27,41 +28,6 @@ import './user'
 import './report'
 import './locale-box'
 import './util'
-
-#= require jquery3
-#= require jquery_ujs
-#= require jquery.turbolinks
-#= require turbolinks
-#= require popper
-#= require bootstrap
-#= require nprogress
-#= require nprogress-turbolinks
-#= require growl
-#= require cheet
-#= require jquery.guillotine
-#= require jquery.particleground
-#= require sweetalert
-#= require js.cookie
-#= require i18n
-#= require_tree ./i18n
-#= require tinycolor-min
-#= require jquery.minicolors
-# local requires to be seen by everyone:
-#= require_tree ./answerbox
-#= require_tree ./questionbox
-#= require lists
-#= require inbox
-#= require memes
-#= require notifications
-#= require pagination
-#= require question
-#= require settings
-#= require user
-#= require report
-#= require locale-box
-
-# not required:
-# _tree ./moderation
 
 window.moment = moment
 
