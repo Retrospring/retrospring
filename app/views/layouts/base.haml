@@ -10,7 +10,6 @@
     %link{ rel: 'icon', href: '/icon-152.png', sizes: '152x152' }
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
-    = javascript_include_tag 'i18n', data: { 'turbolinks-track': true }
     = stylesheet_link_tag    'application', media: 'all', data: { 'turbolinks-track': true }
     = javascript_pack_tag 'legacy/application', data: { 'turbolinks-track': true }
     = stylesheet_pack_tag 'legacy/application', data: { 'turbolinks-track': true }
