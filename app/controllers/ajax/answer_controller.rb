@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+require "use_case/inbox/answer"
+require "use_case/question/answer"
+
 class Ajax::AnswerController < AjaxController
   def create
     params.require :id
@@ -5,55 +10,28 @@ class Ajax::AnswerController < AjaxController
     params.require :share
     params.require :inbox
 
+    # set up fake success response -- the use cases raise errors on exceptions
+    # which get rescued by the base class
+    @response = {
+      success: true,
+      message: I18n.t('messages.answer.create.okay'),
+      status: :okay
+    }
+
     inbox = (params[:inbox] == 'true')
+    services = JSON.parse(params[:share])
+    base_use_case_params = {
+      current_user_id: current_user.id,
+      content: params[:answer],
+      share_to_services: services
+    }
 
-    if inbox
-      inbox_entry = Inbox.find(params[:id])
+    answer = if inbox
+               UseCase::Inbox::Answer.call(base_use_case_params.merge(inbox_entry_id: params[:id]))
+             else
+               UseCase::Question::Answer.call(base_use_case_params.merge(question_id: params[:id]))
+             end.fetch(:answer)
 
-      unless current_user == inbox_entry.user
-        @response[:status] = :fail
-        @response[:message] = I18n.t('messages.answer.create.fail')
-        return
-      end
-    else
-      question = Question.find(params[:id])
-
-      unless question.user.privacy_allow_stranger_answers
-        @response[:status] = :privacy_stronk
-        @response[:message] = I18n.t('messages.answer.create.privacy_stronk')
-        return
-      end
-    end
-
-    # this should never trigger because empty params throw ParameterMissing
-    unless params[:answer].length > 0
-      @response[:status] = :peter_dinklage
-      @response[:message] = I18n.t('messages.answer.create.peter_dinklage')
-      return
-    end
-
-    answer = nil
-
-    begin
-      answer = if inbox
-                 inbox_entry.answer params[:answer], current_user
-               else
-                 current_user.answer question, params[:answer]
-               end
-    rescue => e
-      NewRelic::Agent.notice_error(e)
-      @response[:status] = :err
-      @response[:message] = I18n.t('messages.error')
-      return
-    end
-
-    services = JSON.parse params[:share]
-    ShareWorker.perform_async(current_user.id, answer.id, services)
-
-
-    @response[:status] = :okay
-    @response[:message] = I18n.t('messages.answer.create.okay')
-    @response[:success] = true
     unless inbox
       # this assign is needed because shared/_answerbox relies on it, I think
       @question = 1
