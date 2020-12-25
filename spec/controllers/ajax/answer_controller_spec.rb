@@ -94,7 +94,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "fail",
+                "status" => "forbidden",
                 "message" => anything
               }
             end
@@ -130,7 +130,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "privacy_stronk",
+                "status" => "forbidden",
                 "message" => anything
               }
             end
