@@ -860,6 +860,11 @@
   dependencies:
     mkdirp "^1.0.4"
 
+"@rails/ujs@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.1.0.tgz#9a48df6511cb2b472c9f596c1f37dc0af022e751"
+  integrity sha512-kQNKyM4ePAc4u9eR1c4OqrbAHH+3SJXt++8izIjeaZeg+P7yBtgoF/dogMD/JPPowNC74ACFpM/4op0Ggp/fPw==
+
 "@rails/webpacker@5.2.1":
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-5.2.1.tgz#87cdbd4af2090ae2d74bdc51f6f04717d907c5b3"
@@ -7252,9 +7257,10 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-turbolinks@turbolinks/turbolinks-classic:
-  version "0.0.1"
-  resolved "https://codeload.github.com/turbolinks/turbolinks-classic/tar.gz/80216ce9d89920bf073709405e3fce6d0a3ccd9a"
+turbolinks@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/turbolinks/-/turbolinks-5.2.0.tgz#e6877a55ea5c1cb3bb225f0a4ae303d6d32ff77c"
+  integrity sha512-pMiez3tyBo6uRHFNNZoYMmrES/IaGgMhQQM+VFF36keryjb5ms0XkVpmKHkfW/4Vy96qiGW3K9bz0tF5sK9bBw==
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
