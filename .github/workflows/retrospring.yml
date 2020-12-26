@@ -83,6 +83,8 @@ jobs:
           REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
       - name: Lint HAML templates
         run: bundle exec haml-lint app/views
+      - name: Lint TypeScript
+        run: yarn run lint
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
