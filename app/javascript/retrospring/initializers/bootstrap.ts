@@ -2,7 +2,7 @@ import 'bootstrap';
 import $ from 'jquery';
 
 /**
- * This module sets up Bootstraps JavaScript
+ * This module sets up Bootstrap's JavaScript
  *
  * Inside of the exported function below, initialize Bootstrap
  * modules that require explicit initilization, like tooltips
