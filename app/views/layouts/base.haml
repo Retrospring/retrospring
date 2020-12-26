@@ -11,8 +11,8 @@
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
     = stylesheet_link_tag 'application', media: 'all', data: { 'turbolinks-track': true }
+    = javascript_pack_tag 'application', data: { 'turbolinks-track': true }
     = javascript_pack_tag 'legacy', data: { 'turbolinks-track': true }
-    = javascript_pack_tag 'hello_typescript'
     = stylesheet_pack_tag 'legacy', data: { 'turbolinks-track': true }
     - if user_signed_in? && current_user.mod?
       = javascript_pack_tag 'legacy-moderation', data: { 'turbolinks-track': true }
