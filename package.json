@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "lint": "yarn run eslint --ext .ts app/javascript",
+    "lint:fix": "yarn run eslint --ext .ts app/javascript --fix"
+  },
   "dependencies": {
     "@babel/preset-typescript": "^7.12.7",
     "@rails/ujs": "^6.1.0",
@@ -27,8 +31,12 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@rails/webpacker": "5.2.1",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
     "coffee-loader": "1.0.1",
     "coffeescript": "^2.5.1",
+    "eslint": "^7.16.0",
+    "eslint-plugin-import": "^2.22.1",
     "webpack": "^4",
     "webpack-dev-server": "^3.11.0"
   }
