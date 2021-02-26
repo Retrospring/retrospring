@@ -89,3 +89,4 @@ $(document).on 'turbolinks:load', _ready
 
 $(document).on 'turbolinks:render', ->
   $('.dropdown-toggle').dropdown()
+  $('[data-toggle="tooltip"]').tooltip()
