@@ -2,6 +2,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
 import '../legacy/jquery'
+import 'bootstrap'
 import {} from 'jquery-ujs'
 import 'jquery.guillotine'
 import 'particleground/jquery.particleground.min'
@@ -33,9 +34,6 @@ import '../legacy/locale-box'
 import '../legacy/util'
 
 window.moment = moment
-
-NProgress.configure
-  showSpinner: false
 
 window.translate = (scope, options) ->
   # for some reason I18n errors when calling it by assign proxy, so we got to wrap it
