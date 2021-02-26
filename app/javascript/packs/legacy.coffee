@@ -2,8 +2,9 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
 import '../legacy/jquery'
-import 'bootstrap'
 import {} from 'jquery-ujs'
+import 'popper.js'
+import 'bootstrap'
 import 'jquery.guillotine'
 import 'particleground/jquery.particleground.min'
 import 'jquery.growl'
@@ -84,4 +85,7 @@ _ready = ->
 
 
 $(document).ready _ready
-$(document).on 'page:load', _ready
+$(document).on 'turbolinks:load', _ready
+
+$(document).on 'turbolinks:render', ->
+  $('.dropdown-toggle').dropdown()
