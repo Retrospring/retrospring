@@ -113,7 +113,7 @@ $(document).on 'ready turbolinks:load', ->
 
     $('#update_theme .color').each ->
       $this = $ this
-      this.value = '#' + getHexColorFromThemeValue(this.dataset.default)
+      this.value = '#' + getHexColorFromThemeValue(this.value)
 
       $this.minicolors
         control:      'hue'
