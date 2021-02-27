@@ -104,27 +104,27 @@ if window.URL? or window.webkitURL?
 
 previewStyle = null
 
-$(document).ready ->
-  previewStyle = document.createElement 'style'
-  document.body.appendChild previewStyle
+$(document).on 'ready turbolinks:load', ->
+  if $('#update_theme').length > 0
+    previewStyle = document.createElement 'style'
+    document.body.appendChild previewStyle
 
-  previewTimeout = null
+    previewTimeout = null
 
-  $('#update_theme .color').each ->
-    $this = $ this
-    this.value = '#' + getHexColorFromThemeValue(this.value)
+    $('#update_theme .color').each ->
+      $this = $ this
+      this.value = '#' + getHexColorFromThemeValue(this.dataset.default)
 
-    $this.minicolors
-      control:      'hue'
-      defaultValue: this.value
-      letterCase:   'lowercase'
-      position:     'bottom left'
-      theme:        'bootstrap'
-      inline:       false
-      change:       ->
-        clearTimeout previewTimeout
-        previewTimeout = setTimeout(previewTheme, 1000)
-  true
+      $this.minicolors
+        control:      'hue'
+        defaultValue: this.value
+        letterCase:   'lowercase'
+        position:     'bottom left'
+        theme:        'bootstrap'
+        inline:       false
+        change:       ->
+          clearTimeout previewTimeout
+          previewTimeout = setTimeout(previewTheme, 1000)
 
 $(document).on 'click', 'a.theme_preset', (event) ->
   preset = [].concat themePresets[this.dataset.preset]
