@@ -14,6 +14,7 @@ export default function initialize(): void {
 
   files.keys().forEach((key) => {
     if (key === './index.ts') return;
+    if (key.startsWith('./_')) return;
     files(key).default();
   });
 }

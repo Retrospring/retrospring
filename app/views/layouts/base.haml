@@ -10,12 +10,12 @@
     %link{ rel: 'icon', href: '/icon-152.png', sizes: '152x152' }
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
-    = stylesheet_link_tag 'application', media: 'all', data: { 'turbolinks-track': true }
-    = javascript_pack_tag 'application', data: { 'turbolinks-track': true }
-    = javascript_pack_tag 'legacy', data: { 'turbolinks-track': true }
-    = stylesheet_pack_tag 'legacy', data: { 'turbolinks-track': true }
+    = stylesheet_link_tag 'application', media: 'all', data: { 'turbolinks-track': 'reload' }
+    = javascript_pack_tag 'application', data: { 'turbolinks-track': 'reload' }
+    = javascript_pack_tag 'legacy', data: { 'turbolinks-track': 'reload' }
+    = stylesheet_pack_tag 'legacy', data: { 'turbolinks-track': 'reload' }
     - if user_signed_in? && current_user.mod?
-      = javascript_pack_tag 'legacy-moderation', data: { 'turbolinks-track': true }
+      = javascript_pack_tag 'legacy-moderation', data: { 'turbolinks-track': 'reload' }
     = csrf_meta_tags
   %body
     - if user_signed_in?
