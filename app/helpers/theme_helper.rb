@@ -40,6 +40,7 @@ module ThemeHelper
         body += "\t--#{ATTRIBUTE_MAP[k]}: ##{get_hex_color_from_theme_value(v)};\n"
       end
     end
+    body += "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n"
 
     body += "}"
 
@@ -69,5 +70,21 @@ module ThemeHelper
   def get_decimal_triplet_from_hex(value)
     hexes = value.split(/(.{2})/).reject { |c| c.empty? }
     hexes.map(&:hex).join(", ")
+  end
+
+  def rgb_values_from_hex(value)
+    [
+      (value & 0xFF0000) >> 16, # R
+      (value & 0x00FF00) >> 8, # G
+      value & 0x0000FF # B
+    ]
+  end
+
+  def rgb_to_hex(rgb_values)
+    rgb_values.map.with_index { |v, i| v << (2 - i) * 8 }.reduce(&:+).to_s(16)
+  end
+
+  def lighten(value, amount = 0.25)
+    rgb_to_hex(rgb_values_from_hex(value).map { |v| [(v + 255 * amount).round, 255].min })
   end
 end
