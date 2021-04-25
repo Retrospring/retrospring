@@ -327,6 +327,9 @@ GEM
     omniauth-oauth (1.2.0)
       oauth
       omniauth (>= 1.0, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     omniauth-tumblr (1.2)
       multi_json
       omniauth-oauth (~> 1.0)
@@ -596,6 +599,7 @@ DEPENDENCIES
   mini_magick
   newrelic_rpm
   omniauth
+  omniauth-rails_csrf_protection (~> 1.0)
   omniauth-tumblr
   omniauth-twitter
   pg

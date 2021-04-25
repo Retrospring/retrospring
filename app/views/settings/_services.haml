@@ -7,7 +7,7 @@
 
     - APP_CONFIG['sharing'].each do |service, service_options|
       - if service_options['enabled'] && @services.none? { |x| x.provider == service.to_s }
-        %p= link_to t('views.settings.service.connect', service: service.capitalize), "/auth/#{service}"
+        %p= link_to t('views.settings.service.connect', service: service.capitalize), "/auth/#{service}", method: :post
 
   - if @services.count.positive?
     %ul.list-group
