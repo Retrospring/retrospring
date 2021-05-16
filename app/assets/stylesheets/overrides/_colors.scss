@@ -1,3 +1,14 @@
+/**
+  This root section is used to turn all theme colors of Bootstrap
+  into CSS variables again. This has been the case for 4 but was
+  removed in 5.
+  */
+:root {
+  @each $theme, $color in $theme-colors {
+    --#{$theme}: #{$color};
+  }
+}
+
 @each $color in $color-names {
   .bg-#{$color} {
     background-color: var(--#{$color}) !important;

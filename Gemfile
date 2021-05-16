@@ -16,7 +16,7 @@ gem 'jbuilder', '~> 2.10'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml', '~> 5.0'
-gem 'bootstrap', '~> 4.4', '>= 4.4.1'
+gem 'bootstrap', '~> 5.0', '>= 5.0.1'
 gem 'devise', '~> 4.0'
 gem 'devise-i18n'
 gem 'devise-async'
