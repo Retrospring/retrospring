@@ -33,7 +33,7 @@ module ThemeHelper
     theme.attributes.each do |k, v|
       next unless ATTRIBUTE_MAP.key?(k)
 
-      if k.include? "text"
+      if k.include? 'text'
         hex = get_hex_color_from_theme_value(v)
         body += "\t--#{ATTRIBUTE_MAP[k]}: #{get_decimal_triplet_from_hex(hex)};\n"
       else
@@ -42,9 +42,18 @@ module ThemeHelper
     end
     body += "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n"
 
-    body += "}"
+    body += '}'
 
     content_tag(:style, body)
+  end
+
+  def theme_color
+    theme = get_active_theme
+    if theme
+      "##{get_hex_color_from_theme_value(theme.primary_color)}"
+    else
+      '#5e35b1'
+    end
   end
 
   def get_active_theme
@@ -64,12 +73,12 @@ module ThemeHelper
   end
 
   def get_hex_color_from_theme_value(value)
-    ('0000000' + value.to_s(16))[-6, 6]
+    ("0000000#{value.to_s(16)}")[-6, 6]
   end
 
   def get_decimal_triplet_from_hex(value)
     hexes = value.split(/(.{2})/).reject { |c| c.empty? }
-    hexes.map(&:hex).join(", ")
+    hexes.map(&:hex).join(', ')
   end
 
   def rgb_values_from_hex(value)
