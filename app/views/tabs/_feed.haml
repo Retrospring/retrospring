@@ -3,7 +3,7 @@
     = list_group_item t('views.general.timeline'), root_path
     - if APP_CONFIG.dig(:features, :public, :enabled)
       = list_group_item t('views.general.public'), public_timeline_path
-    .list-group-item.list-group-item-action.dropdown{ class: list ? 'active' : '' }
+    .list-group-item.list-group-item-action.dropdown{ class: list ? 'active' : '', data: { toggle: :dropdown } }
       %a.dropdown-toggle{ type: :button, data: { toggle: :dropdown }, aria: { haspopup: true, expanded: false } }
         - if list
           = list.display_name
