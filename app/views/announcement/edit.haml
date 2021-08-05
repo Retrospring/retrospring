@@ -1,5 +1,5 @@
 - provide(:title, generate_title('Edit announcement'))
-.container.container--main
+.container-lg.container--main
   .card
     .card-body
       = bootstrap_form_for(@announcement, url: { action: 'update' }, method: 'PATCH') do |f|
