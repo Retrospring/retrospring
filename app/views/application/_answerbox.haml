@@ -16,7 +16,7 @@
         = markdown a.content
     - if @user.nil?
       .row
-        .col.col-sm-4.col-md-6.text-left.text-muted
+        .col-sm-6.text-left.text-muted
           .media
             .pull-left
               %a{ href: show_user_profile_path(a.user.screen_name) }
@@ -26,14 +26,14 @@
                 = raw t('views.answerbox.answered', hide: hidespan(t('views.answerbox.hide'), 'd-none d-sm-inline'), user: user_screen_name(a.user))
               .answerbox__answer-date
                 = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))), show_user_answer_path(a.user.screen_name, a.id))
-        .col.col-sm-8.col-md-6.text-right
+        .col-md-6.d-flex.d-md-block.answerbox__actions
           = render 'answerbox/actions', a: a, display_all: display_all
     - else
       .row
-        .col-4.col-sm-4.col-md-6.text-left.text-muted
+        .col-md-6.text-left.text-muted
           %i.fa.fa-clock-o
           = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))), show_user_answer_path(a.user.screen_name, a.id))
-        .col-8.col-sm-8.col-md-6.text-right
+        .col-md-6.d-md-flex.answerbox__actions
           = render 'answerbox/actions', a: a, display_all: display_all
   .card-footer{ id: "ab-comments-section-#{a.id}", style: display_all.nil? ? 'display: none' : nil }
     %div{ id: "ab-smiles-#{a.id}" }= render 'answerbox/smiles', a: a
