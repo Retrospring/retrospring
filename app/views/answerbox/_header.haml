@@ -18,6 +18,10 @@
                 %a.dropdown-item{ href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: a.question.id } }
                   %i.fa.fa-exclamation-triangle
                   = t 'views.actions.report'
+              - if current_user.has_role? :administrator
+                %a.dropdown-item{ href: rails_admin_path + "/question/#{a.question.id}", target: '_blank' }
+                  %i.fa.fa-gears
+                  View in Kontrollzentrum
       %h6.text-muted.media-heading.answerbox__question-user
         = raw t('views.answerbox.asked', user: user_screen_name(a.question.user, anonymous: a.question.author_is_anonymous), time: time_tooltip(a.question))
         - if !a.question.author_is_anonymous && a.question.answer_count > 1
