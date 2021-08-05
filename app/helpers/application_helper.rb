@@ -16,7 +16,11 @@ module ApplicationHelper
     ].compact.join(" ")
 
     unless options[:icon].nil?
-      body = "#{content_tag(:i, '', class: "mdi-#{options[:icon]}")} #{body}"
+      if options[:icon_only]
+        body = "#{content_tag(:i, '', class: "fa fa-#{options[:icon]}", title: body)}"
+      else
+        body = "#{content_tag(:i, '', class: "fa fa-#{options[:icon]}")} #{body}"
+      end
     end
     unless options[:badge].nil?
       # TODO: make this prettier?

@@ -56,6 +56,15 @@ module ThemeHelper
     end
   end
 
+  def mobile_theme_color
+    theme = get_active_theme
+    if theme
+      "##{get_hex_color_from_theme_value(theme.background_color)}"
+    else
+      '#f0edf4'
+    end
+  end
+
   def get_active_theme
     if @user&.theme
       if user_signed_in?
