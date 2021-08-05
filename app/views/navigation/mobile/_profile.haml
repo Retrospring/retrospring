@@ -1,0 +1,31 @@
+.dropdown-menu
+  %h6.dropdown-header.d-none.d-sm-block= current_user.screen_name
+  %a.dropdown-item{ href: show_user_profile_path(current_user.screen_name) }
+    %i.fa.fa-fw.fa-user
+    = t('views.navigation.show')
+  %a.dropdown-item{ href: edit_user_registration_path }
+    %i.fa.fa-fw.fa-cog
+    = t('views.navigation.settings')
+  .dropdown-divider
+  - if current_user.has_role?(:administrator)
+    %a.dropdown-item{ href: rails_admin_path }
+      %i.fa.fa-fw.fa-cogs
+      = t('views.navigation.admin')
+    %a.dropdown-item{ href: sidekiq_web_path }
+      %i.fa.fa-fw.fa-bar-chart
+      = t('views.navigation.sidekiq')
+    %a.dropdown-item{ href: pghero_path }
+      %i.fa.fa-fw.fa-database
+      Database Monitor
+    %a.dropdown-item{ href: announcement_index_path }
+      %i.fa.fa-fw.fa-info
+      Announcements
+    .dropdown-divider
+  - if current_user.mod?
+    %a.dropdown-item{ href: moderation_path }
+      %i.fa.fa-fw.fa-gavel
+      = t('views.navigation.moderation')
+    .dropdown-divider
+  %a.dropdown-item{ href: destroy_user_session_path, data: { method: :delete } }
+    %i.fa.fa-fw.fa-sign-out
+    = t 'views.sessions.destroy'

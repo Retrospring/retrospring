@@ -11,7 +11,7 @@
   text-transform: uppercase;
   text-decoration: none;
   position: fixed;
-  bottom: 0px;
+  bottom: calc(#{$navbar-height} + env(safe-area-inset-bottom));
   right: 0px;
   margin-right: 7px;
   margin-bottom: 7px;

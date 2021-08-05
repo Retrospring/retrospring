@@ -3,5 +3,10 @@ body {
   word-wrap: break-word;
   color: RGB(var(--body-text));
   background-color: var(--background);
-  padding-top: $navbar-height;
+  @include media-breakpoint-up('lg') {
+    padding-top: $navbar-height;
+  }
+  @include media-breakpoint-down('md') {
+    padding-bottom: $navbar-height;
+  }
 }
