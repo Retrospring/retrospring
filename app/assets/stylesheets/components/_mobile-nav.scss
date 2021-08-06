@@ -1,5 +1,5 @@
 #rs-mobile-nav {
-  padding-bottom: calc(env(safe-area-inset-bottom) + 4px);
+  padding-bottom: unquote('calc(env(safe-area-inset-bottom) + 4px)');
 
   .navbar-nav {
     flex-direction: row;
