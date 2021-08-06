@@ -1,7 +1,6 @@
 %nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none{ role: :navigation }
   .container{ class: ios_web_app? ? 'ios-web-app' : '' }
     %a.navbar-brand{ href: '/' }
-      %i.fa.fa-comments
       = APP_CONFIG['site_name']
     %ul.nav.navbar-nav.mr-auto
       = nav_entry t('views.navigation.timeline'), root_path, icon: 'home'
