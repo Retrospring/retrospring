@@ -11,4 +11,6 @@
       = t 'views.actions.load'
 
 - provide(:title, user_title(@user))
+- provide(:og, user_opengraph(@user))
+- provide(:meta, user_twitter_card(@user))
 - parent_layout 'user/profile'
