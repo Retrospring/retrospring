@@ -185,7 +185,7 @@ module ApplicationHelper
   # @param user [User]
   def user_opengraph(user)
     opengraph_meta_tags({
-      'og:title': user.display_name,
+      'og:title': user.safe_name,
       'og:type': 'profile',
       'og:image': full_profile_picture_url(user),
       'og:url': show_user_profile_url(user.screen_name),
@@ -201,7 +201,7 @@ module ApplicationHelper
       'twitter:card': 'summary',
       'twitter:site': '@retrospring',
       'twitter:title': user.motivation_header.presence || "Ask me anything!",
-      'twitter:description': "Ask #{user.display_name} anything on Retrospring",
+      'twitter:description': "Ask #{user.safe_name} anything on Retrospring",
       'twitter:image': full_profile_picture_url(user)
     })
   end
@@ -209,7 +209,7 @@ module ApplicationHelper
   # @param answer [Answer]
   def answer_opengraph(answer)
     opengraph_meta_tags({
-      'og:title': answer.question.content,
+      'og:title': "#{answer.user.safe_name} answered: #{answer.question.content}",
       'og:type': 'article',
       'og:image': full_profile_picture_url(answer.user),
       'og:url': show_user_answer_url(answer.user.screen_name, answer.id),

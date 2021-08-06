@@ -27,7 +27,6 @@ describe ApplicationHelper, :type => :helper do
 
       subject { user_opengraph(user) }
 
-
       it 'should generate a matching OpenGraph structure for a user' do
         allow(APP_CONFIG).to receive(:[]).with('site_name').and_return('pineapplespring')
         expect(subject).to eq(<<-EOS.chomp)
@@ -42,4 +41,51 @@ EOS
       end
     end
   end
+
+  describe "#user_twitter_card" do
+    context "sample user" do
+      let(:user) { FactoryBot.create(:user,
+                                     display_name: '',
+                                     bio: 'A bunch of raccoons in a trenchcoat.',
+                                     screen_name: 'raccoons') }
+
+      subject { user_twitter_card(user) }
+
+      it 'should generate a matching OpenGraph structure for a user' do
+        expect(subject).to eq(<<-EOS.chomp)
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@retrospring" />
+<meta name="twitter:title" content="Ask me anything!" />
+<meta name="twitter:description" content="Ask raccoons anything on Retrospring" />
+<meta name="twitter:image" content="http://test.host/images/large/no_avatar.png" />
+EOS
+      end
+    end
+  end
+
+  describe "#answer_opengraph" do
+    context "sample user and answer" do
+      let!(:user) { FactoryBot.create(:user,
+                                     display_name: '',
+                                     bio: 'A bunch of raccoons in a trenchcoat.',
+                                     screen_name: 'raccoons') }
+      let(:answer) { FactoryBot.create(:answer,
+                                       user_id: user.id,) }
+
+      subject { answer_opengraph(answer) }
+
+      it 'should generate a matching OpenGraph structure for a user' do
+        allow(APP_CONFIG).to receive(:[]).with('site_name').and_return('pineapplespring')
+        expect(subject).to eq(<<-EOS.chomp)
+<meta property="og:title" content="raccoons answered: #{answer.question.content}" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="http://test.host/images/large/no_avatar.png" />
+<meta property="og:url" content="http://test.host/raccoons/a/#{answer.id}" />
+<meta property="og:description" content="#{answer.content}" />
+<meta property="og:site_name" content="pineapplespring" />
+EOS
+      end
+    end
+  end
+
 end
