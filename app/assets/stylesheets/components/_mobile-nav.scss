@@ -5,5 +5,14 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+
+    .nav-link {
+      padding: 0;
+
+      .fa {
+        padding-top: 8px;
+        font-size: 20px;
+      }
+    }
   }
 }
