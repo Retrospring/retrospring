@@ -19,7 +19,7 @@
                   %i.fa.fa-exclamation-triangle
                   = t 'views.actions.report'
               - if current_user.has_role? :administrator
-                %a.dropdown-item{ href: "#{rails_admin_path}/question/#{a.question.id}", target: '_blank' }
+                %a.dropdown-item{ href: rails_admin_path_for_resource(a.question), target: '_blank' }
                   %i.fa.fa-gears
                   View in Kontrollzentrum
       %h6.text-muted.media-heading.answerbox__question-user

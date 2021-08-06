@@ -29,6 +29,6 @@
               %i.fa.fa-ban
               = t 'views.actions.ban'
         - if current_user.has_role? :administrator
-          %a.dropdown-item{ href: "#{rails_admin_path}/user/#{user.id}", target: '_blank' }
+          %a.dropdown-item{ href: rails_admin_path_for_resource(user), target: '_blank' }
             %i.fa.fa-cogs
             "View in Kontrollzentrum"
