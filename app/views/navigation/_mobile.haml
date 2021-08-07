@@ -1,8 +1,5 @@
 = render 'navigation/mobile/profile'
-:ruby
-  notification_count = Notification.for(current_user).where(new: true).count
-  notification_count = nil if notification_count.zero?
-  notifications_icon = notification_count.nil? ? 'bell-o' : 'bell'
+- notifications_icon = notification_count.nil? ? 'bell-o' : 'bell'
 %nav.navbar.navbar-themed.bg-primary.fixed-bottom.d-lg-none.d-block#rs-mobile-nav{ role: :navigation }
   .container{ class: ios_web_app? ? 'ios-web-app' : '' }
     %ul.nav.navbar-nav.navbar-icon-row
