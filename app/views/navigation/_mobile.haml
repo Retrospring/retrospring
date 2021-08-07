@@ -1,4 +1,8 @@
 = render 'navigation/mobile/profile'
+:ruby
+  notification_count = Notification.for(current_user).where(new: true).count
+  notification_count = nil if notification_count.zero?
+  notifications_icon = notification_count.nil? ? 'bell-o' : 'bell'
 %nav.navbar.navbar-themed.bg-primary.fixed-bottom.d-lg-none.d-block#rs-mobile-nav{ role: :navigation }
   .container{ class: ios_web_app? ? 'ios-web-app' : '' }
     %ul.nav.navbar-nav.navbar-icon-row
@@ -6,7 +10,7 @@
       = nav_entry t('views.navigation.inbox'), '/inbox', badge: inbox_count, icon: 'inbox', icon_only: true
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t('views.navigation.discover'), discover_path, icon: 'compass', icon_only: true
-      = nav_entry t('views.navigation.notifications'), '#', icon: 'bell-o', icon_only: true
+      = nav_entry t('views.navigation.notifications'), '/notifications', badge: notification_count, icon: notifications_icon, icon_only: true
       %li.nav-item.profile--image-dropdown
         %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
           %img.avatar-md.d-inline{ src: current_user.profile_picture.url(:small) }
