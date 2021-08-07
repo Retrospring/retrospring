@@ -169,4 +169,8 @@ module ApplicationHelper
   def list_title(list)
     generate_title list.name
   end
+
+  def rails_admin_path_for_resource(resource)
+    [rails_admin_path, resource.model_name.param_key, resource.id].join('/')
+  end
 end
