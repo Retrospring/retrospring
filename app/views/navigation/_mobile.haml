@@ -1,14 +1,12 @@
+= render 'navigation/mobile/profile'
 %nav.navbar.navbar-themed.bg-primary.fixed-bottom.d-lg-none.d-block#rs-mobile-nav{ role: :navigation }
   .container{ class: ios_web_app? ? 'ios-web-app' : '' }
-    %ul.nav.navbar-nav.mr-auto
-      .collapse.navbar-collapse#j2-mobile-navbar-collapse
-        %ul.nav.navbar-nav
-          = render 'navigation/mobile/profile'
+    %ul.nav.navbar-nav.navbar-icon-row
       = nav_entry t('views.navigation.timeline'), root_path, icon: 'home', icon_only: true
       = nav_entry t('views.navigation.inbox'), '/inbox', badge: inbox_count, icon: 'inbox', icon_only: true
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t('views.navigation.discover'), discover_path, icon: 'compass', icon_only: true
       = nav_entry t('views.navigation.notifications'), '#', icon: 'bell-o', icon_only: true
       %li.nav-item.profile--image-dropdown
-        %a{ data: { target: '#j2-mobile-navbar-collapse', toggle: :collapse } }
+        %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
           %img.avatar-md.d-inline{ src: current_user.profile_picture.url(:small) }

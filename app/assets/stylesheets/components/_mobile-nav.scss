@@ -1,7 +1,7 @@
 #rs-mobile-nav {
   padding-bottom: unquote('calc(env(safe-area-inset-bottom) + 4px)');
 
-  .navbar-nav {
+  .navbar-icon-row {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
@@ -15,4 +15,12 @@
       }
     }
   }
+}
+
+#rs-mobile-nav-profile {
+  position: fixed;
+  bottom: unquote("calc(env(safe-area-inset-bottom) + #{$navbar-height + 2px})");
+  right: unquote("calc(env(safe-area-inset-right) + 15px)");
+  left: unset;
+  top: unset;
 }
