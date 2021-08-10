@@ -1,5 +1,5 @@
 !!! 5
-%html{ lang: 'en' }
+%html{ lang: 'en', prefix: 'og: https://ogp.me/ns#' }
   %head
     %meta{ charset: 'utf-8' }
     %meta{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }
@@ -17,6 +17,8 @@
     - if user_signed_in? && current_user.mod?
       = javascript_pack_tag 'legacy-moderation', data: { 'turbolinks-track': 'reload' }
     = csrf_meta_tags
+    = yield(:og)
+    = yield(:meta)
   %body
     - if user_signed_in?
       = render 'navigation/main'

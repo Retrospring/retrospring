@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include ApplicationHelper::GraphMethods
+
   def nav_entry(body, path, options = {})
     options = {
       badge: nil,

@@ -10,5 +10,8 @@
     %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @answers_last_id } }
       = t 'views.actions.load'
 
-- provide(:title, user_title(@user))
-- parent_layout 'user/profile'
+:ruby
+  provide(:title, user_title(@user))
+  provide(:og, user_opengraph(@user))
+  provide(:meta, user_twitter_card(@user))
+  parent_layout 'user/profile'

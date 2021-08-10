@@ -253,6 +253,10 @@ class User < ApplicationRecord
     !self.export_processing
   end
 
+  def safe_name
+    self.display_name.presence || self.screen_name
+  end
+
   # %w[admin moderator].each do |m|
   #   define_method(m) { raise "not allowed: #{m}" }
   #   define_method(m+??) { raise "not allowed: #{m}?"}
