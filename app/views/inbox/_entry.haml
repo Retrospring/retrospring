@@ -19,6 +19,9 @@
       = t 'views.actions.answer'
     %button.btn.btn-danger{ name: 'ib-destroy', data: { ib_id: i.id } }
       = t 'views.actions.delete'
+    - if current_user.has_role? :administrator
+      %a.btn.btn-primary{ href: rails_admin_path_for_resource(i) }
+        View in Kontrollzentrum
     %button.btn.btn-default{ name: 'ib-options', data: { ib_id: i.id, state: :hidden } }
       %i.fa.fa-cog
       %span.sr-only= t 'views.actions.options'
