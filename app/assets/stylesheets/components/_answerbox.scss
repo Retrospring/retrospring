@@ -61,4 +61,25 @@
       }
     }
   }
+
+  &__actions {
+    text-align: right;
+    justify-content: space-between;
+    padding-top: 10px;
+
+    @include media-breakpoint-up('sm') {
+      justify-content: flex-end;
+      padding-top: 0;
+    }
+  }
+
+  .card-body {
+    padding-bottom: .6rem;
+  }
+}
+
+body:not(.cap-web-share) {
+  .answerbox__action[name="ab-share"] {
+    display: none;
+  }
 }
