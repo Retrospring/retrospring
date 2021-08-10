@@ -64,16 +64,17 @@
 
   &__actions {
     text-align: right;
-    @include media-breakpoint-down('md') {
-      justify-content: space-between;
-      padding-top: 10px;
+    justify-content: space-between;
+    padding-top: 10px;
+
+    @include media-breakpoint-up('sm') {
+      justify-content: unset;
+      padding-top: 0;
     }
   }
 
-  @include media-breakpoint-down('md') {
-    .card-body {
-      padding-bottom: .6rem;
-    }
+  .card-body {
+    padding-bottom: .6rem;
   }
 }
 
