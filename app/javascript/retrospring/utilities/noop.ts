@@ -1,3 +1,3 @@
-export default () => void {
+export default (): void => {
   // do nothing
 }

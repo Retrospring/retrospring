@@ -68,7 +68,7 @@
     padding-top: 10px;
 
     @include media-breakpoint-up('sm') {
-      justify-content: unset;
+      justify-content: flex-end;
       padding-top: 0;
     }
   }
