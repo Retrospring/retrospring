@@ -4,8 +4,11 @@
     %meta{ charset: 'utf-8' }
     %meta{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover' }
-    %meta{ name: 'theme-color', content: theme_color, media: '(min-width: 993px)' }
-    %meta{ name: 'theme-color', content: mobile_theme_color, media: '(max-width: 992px)' }
+    - if user_signed_in?
+      %meta{ name: 'theme-color', content: theme_color, media: '(min-width: 993px)' }
+      %meta{ name: 'theme-color', content: mobile_theme_color, media: '(max-width: 992px)' }
+    - else
+      %meta{ name: 'theme-color', content: theme_color }
     %link{ rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
     %link{ rel: 'icon', href: '/images/favicon/favicon-16.png', sizes: '16x16' }
     %link{ rel: 'icon', href: '/icon-152.png', sizes: '152x152' }
