@@ -1,4 +1,4 @@
-interface EventDef {
+export interface EventDef {
     type: string;
     target: Node | NodeList;
     handler: EventListenerOrEventListenerObject;
