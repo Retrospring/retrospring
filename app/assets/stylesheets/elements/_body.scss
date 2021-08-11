@@ -9,4 +9,9 @@ body {
   @include media-breakpoint-down('md') {
     padding-bottom: $navbar-height;
   }
+
+  &.not-logged-in {
+    padding-top: $navbar-height;
+    padding-bottom: 0;
+  }
 }

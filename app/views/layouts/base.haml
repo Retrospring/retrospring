@@ -20,7 +20,7 @@
     = csrf_meta_tags
     = yield(:og)
     = yield(:meta)
-  %body
+  %body{ class: user_signed_in? ? '' : 'not-logged-in'}
     - if user_signed_in?
       = render 'navigation/main'
     - else
