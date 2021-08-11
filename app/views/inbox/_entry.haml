@@ -12,19 +12,20 @@
             %a{ href: show_user_question_path(i.question.user.screen_name, i.question.id) }
               = pluralize(i.question.answer_count, t('views.inbox.entry.response'))
         %p.answerbox__question-text= i.question.content
-      .pull-right
-        .btn-group
-          %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
-            %span.caret
-          .dropdown-menu.dropdown-menu-right{ role: :menu }
-            - if i.question.user_id != current_user.id
-              %a.dropdown-item{ name: 'ib-report', data: { q_id: i.question.id } }
-                %i.fa.fa-warning
-                = t 'views.actions.report'
-            - if current_user.has_role? :administrator
-              %a.dropdown-item{ href: rails_admin_path_for_resource(i) }
-                %i.fa.fa-gears
-                View in Kontrollzentrum
+      - if i.question.user_id != current_user.id || current_user.has_role?(:administrator)
+        .pull-right
+          .btn-group
+            %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
+              %span.caret
+            .dropdown-menu.dropdown-menu-right{ role: :menu }
+              - if i.question.user_id != current_user.id
+                %a.dropdown-item{ name: 'ib-report', data: { q_id: i.question.id } }
+                  %i.fa.fa-warning
+                  = t 'views.actions.report'
+              - if current_user.has_role? :administrator
+                %a.dropdown-item{ href: rails_admin_path_for_resource(i) }
+                  %i.fa.fa-gears
+                  View in Kontrollzentrum
 
   .card-body
     %textarea.form-control{ name: 'ib-answer', placeholder: t('views.placeholder.inbox'), data: { id: i.id } }
