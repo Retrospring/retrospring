@@ -3,8 +3,9 @@
   &__question-user, 
   &__answer-user, 
   &__answer-date {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     overflow: hidden;
+    word-break: break-all;
   }
   
   &__answer-date {
