@@ -10,6 +10,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
         expect(Question.last.content).to eq(question_content)
         expect(Question.last.author_is_anonymous).to be(expected_question_anonymous)
         expect(Question.last.user).to eq(expected_question_user)
+        expect(Question.last.direct).to eq(expected_question_direct)
       end
 
       if check_for_inbox
@@ -85,6 +86,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
         context "when user allows anonymous questions" do
           let(:user_allows_anonymous_questions) { true }
+          let(:expected_question_direct) { true }
 
           context "when anonymousQuestion is true" do
             let(:anonymous_question) { "true" }
@@ -120,6 +122,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           context "when anonymousQuestion is false" do
             let(:anonymous_question) { "false" }
             let(:expected_question_anonymous) { false }
+            let(:expected_question_direct) { true }
 
             include_examples "creates the question"
           end
@@ -128,6 +131,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       context "when rcpt is followers" do
         let(:rcpt) { "followers" }
+        let(:expected_question_direct) { false }
 
         context "when anonymousQuestion is true" do
           let(:anonymous_question) { "true" }
@@ -182,6 +186,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
         context "when user allows anonymous questions" do
           let(:user_allows_anonymous_questions) { true }
+          let(:expected_question_direct) { true }
 
           include_examples "creates the question"
 
