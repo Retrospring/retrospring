@@ -4,6 +4,8 @@ class Relationship < ApplicationRecord
   validates :source_id, presence: true
   validates :target_id, presence: true
 
+  default_scope { order(created_at: :asc) }
+
   after_create do
     Notification.notify target, self
 
