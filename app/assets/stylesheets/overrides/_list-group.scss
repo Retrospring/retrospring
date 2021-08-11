@@ -5,6 +5,10 @@
   &.active:hover {
     background-color: var(--primary);
     border-color: var(--primary);
+
+    a {
+      color: var(--primary-text);
+    }
   }
 }
 
