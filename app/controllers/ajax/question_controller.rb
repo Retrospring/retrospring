@@ -32,7 +32,8 @@ class Ajax::QuestionController < AjaxController
     begin
       question = Question.create!(content: params[:question],
                                   author_is_anonymous: is_never_anonymous ? false : params[:anonymousQuestion],
-                                  user: current_user)
+                                  user: current_user,
+                                  direct: params[:rcpt] != 'followers')
     rescue ActiveRecord::RecordInvalid => e
       NewRelic::Agent.notice_error(e)
       @response[:status] = :rec_inv
