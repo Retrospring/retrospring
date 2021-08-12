@@ -19,7 +19,9 @@
       }
 
       .badge {
-        float: right;
+        position: absolute;
+        top: 4px;
+        transform: translateX(16px);
       }
     }
   }
