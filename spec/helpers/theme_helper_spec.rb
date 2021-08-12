@@ -141,4 +141,54 @@ describe ThemeHelper, :type => :helper do
       end
     end
   end
+
+  describe '#theme_color' do
+    subject { helper.theme_color }
+
+    context 'when user is signed in' do
+      let(:user) { FactoryBot.create(:user) }
+      let(:theme) { FactoryBot.create(:theme, user: user) }
+
+      before(:each) do
+        user.theme = theme
+        user.save!
+        sign_in(user)
+      end
+
+      it 'should return the user theme\'s primary color' do
+        expect(subject).to eq('#8e8cd8')
+      end
+    end
+
+    context 'user is not signed in' do
+      it 'should return the default primary color' do
+        expect(subject).to eq('#5e35b1')
+      end
+    end
+  end
+
+  describe '#mobile_theme_color' do
+    subject { helper.mobile_theme_color }
+
+    context 'when user is signed in' do
+      let(:user) { FactoryBot.create(:user) }
+      let(:theme) { FactoryBot.create(:theme, user: user) }
+
+      before(:each) do
+        user.theme = theme
+        user.save!
+        sign_in(user)
+      end
+
+      it 'should return the user theme\'s background color' do
+        expect(subject).to eq('#c6c5eb')
+      end
+    end
+
+    context 'user is not signed in' do
+      it 'should return the default background color' do
+        expect(subject).to eq('#f0edf4')
+      end
+    end
+  end
 end
