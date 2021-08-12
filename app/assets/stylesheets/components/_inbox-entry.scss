@@ -8,6 +8,10 @@
 
       a {
         color: RGB(var(--primary-text));
+
+        &.dropdown-item {
+          color: inherit;
+        }
       }
 
       .text-muted {
