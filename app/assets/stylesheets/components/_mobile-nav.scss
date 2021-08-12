@@ -1,9 +1,13 @@
 #rs-mobile-nav {
-  padding-bottom: unquote('calc(env(safe-area-inset-bottom) + 4px)');
+  .container {
+    padding: 0;
+  }
+
+  padding: 4px 0 unquote('calc(env(safe-area-inset-bottom) + 4px)') 0;
 
   .navbar-icon-row {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
 
     .nav-link {
