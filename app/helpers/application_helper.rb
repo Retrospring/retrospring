@@ -26,7 +26,7 @@ module ApplicationHelper
       badge_class = "badge"
       badge_class << " badge-#{options[:badge_color]}" unless options[:badge_color].nil?
       badge_class << " badge-pill" if options[:badge_pill]
-      body << " #{content_tag(:span, options[:badge], class: badge_class)}"
+      body += " #{content_tag(:span, options[:badge], class: badge_class)}"
     end
 
     content_tag(:li, link_to(body.html_safe, path, class: "nav-link"), class: classes)
