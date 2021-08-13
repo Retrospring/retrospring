@@ -1,0 +1,36 @@
+#rs-mobile-nav {
+  .container {
+    padding: 0;
+  }
+
+  padding: 4px 0 unquote('calc(env(safe-area-inset-bottom) + 4px)') 0;
+
+  .navbar-icon-row {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+
+    .nav-link {
+      padding: 0;
+
+      .fa {
+        padding-top: 8px;
+        font-size: 20px;
+      }
+
+      .badge {
+        position: absolute;
+        top: 4px;
+        transform: translateX(16px);
+      }
+    }
+  }
+}
+
+#rs-mobile-nav-profile {
+  position: fixed;
+  bottom: unquote("calc(env(safe-area-inset-bottom) + #{$navbar-height + 2px})");
+  right: unquote("calc(env(safe-area-inset-right) + 15px)");
+  left: unset;
+  top: unset;
+}

@@ -3,6 +3,40 @@
 require "rails_helper"
 
 describe ApplicationHelper, :type => :helper do
+  describe '#nav_entry' do
+    it 'should return a HTML navigation item which links to a given address' do
+      allow(self).to receive(:current_page?).and_return(false)
+      expect(nav_entry('Example', '/example')).to(
+        eq('<li class="nav-item "><a class="nav-link" href="/example">Example</a></li>')
+      )
+    end
+
+    it 'should return with an active attribute if the link matches the current URL' do
+      allow(self).to receive(:current_page?).and_return(true)
+      expect(nav_entry('Example', '/example')).to(
+        eq('<li class="nav-item active "><a class="nav-link" href="/example">Example</a></li>')
+      )
+    end
+
+    it 'should include an icon if given' do
+      allow(self).to receive(:current_page?).and_return(false)
+      expect(nav_entry('Example', '/example', icon: 'beaker')).to(
+        eq('<li class="nav-item "><a class="nav-link" href="/example"><i class="fa fa-beaker"></i> Example</a></li>')
+      )
+    end
+
+    it 'should include a badge if given' do
+      allow(self).to receive(:current_page?).and_return(false)
+      expect(nav_entry('Example', '/example', badge: 3)).to(
+        eq('<li class="nav-item "><a class="nav-link" href="/example">Example <span class="badge">3</span></a></li>')
+      )
+
+      expect(nav_entry('Example', '/example', badge: 3, badge_color: 'primary', badge_pill: true)).to(
+        eq('<li class="nav-item "><a class="nav-link" href="/example">Example <span class="badge badge-primary badge-pill">3</span></a></li>')
+      )
+    end
+  end
+
   describe "#bootstrap_color" do
     it 'should map error and alert to danger' do
       expect(bootstrap_color("error")).to eq("danger")

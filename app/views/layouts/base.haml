@@ -3,8 +3,12 @@
   %head
     %meta{ charset: 'utf-8' }
     %meta{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }
-    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' }
-    %meta{ name: 'theme-color', content: theme_color }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover' }
+    - if user_signed_in?
+      %meta{ name: 'theme-color', content: theme_color, media: '(min-width: 993px)' }
+      %meta{ name: 'theme-color', content: mobile_theme_color, media: '(max-width: 992px)' }
+    - else
+      %meta{ name: 'theme-color', content: theme_color }
     %link{ rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
     %link{ rel: 'icon', href: '/images/favicon/favicon-16.png', sizes: '16x16' }
     %link{ rel: 'icon', href: '/icon-152.png', sizes: '152x152' }
@@ -19,7 +23,7 @@
     = csrf_meta_tags
     = yield(:og)
     = yield(:meta)
-  %body
+  %body{ class: user_signed_in? ? '' : 'not-logged-in' }
     - if user_signed_in?
       = render 'navigation/main'
     - else

@@ -20,4 +20,8 @@ class Theme < ApplicationRecord
   def theme_color
     ('#' + ('0000000' + primary_color.to_s(16))[-6, 6])
   end
+
+  def mobile_theme_color
+    ('#' + ('0000000' + background_color.to_s(16))[-6, 6])
+  end
 end

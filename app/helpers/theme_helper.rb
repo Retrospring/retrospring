@@ -50,9 +50,18 @@ module ThemeHelper
   def theme_color
     theme = get_active_theme
     if theme
-      "##{get_hex_color_from_theme_value(theme.primary_color)}"
+      theme.theme_color
     else
       '#5e35b1'
+    end
+  end
+
+  def mobile_theme_color
+    theme = get_active_theme
+    if theme
+      theme.mobile_theme_color
+    else
+      '#f0edf4'
     end
   end
 

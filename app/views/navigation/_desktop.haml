@@ -1,0 +1,20 @@
+%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none{ role: :navigation }
+  .container{ class: ios_web_app? ? 'ios-web-app' : '' }
+    %a.navbar-brand{ href: '/' }
+      = APP_CONFIG['site_name']
+    %ul.nav.navbar-nav.mr-auto
+      = nav_entry t('views.navigation.timeline'), root_path, icon: 'home'
+      = nav_entry t('views.navigation.inbox'), '/inbox', icon: 'inbox', badge: inbox_count
+      - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
+        = nav_entry t('views.navigation.discover'), discover_path, icon: 'compass'
+    %ul.nav.navbar-nav
+      - if @user.present? && @user != current_user
+        %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.list') }
+          %a.nav-link{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
+            %i.fa.fa-list.hidden-xs
+            %span.d-none.d-sm-inline.d-md-none= t('views.actions.list')
+      = render 'navigation/main/notifications'
+      %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.ask_question') }
+        %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { target: '#modal-ask-followers', toggle: :modal } }
+          %i.fa.fa-pencil-square-o
+      = render 'navigation/main/profile'
