@@ -234,21 +234,24 @@ class User < ApplicationRecord
   end
   # endregion
 
-  # forwards fill
   def banned?
-    self.permanently_banned? or ((not self.banned_until.nil?) and self.banned_until >= DateTime.current)
+    self.user_bans.current.any?
   end
 
   def unban
-    self.update(permanently_banned: false, ban_reason: nil, banned_until: nil)
+    self.user_bans.current.update(expires_at: DateTime.now)
   end
 
-  def ban(buntil=nil, reason=nil)
-    if buntil == nil
-      self.update(permanently_banned: true, ban_reason: reason)
-    else
-      self.update(permanently_banned: false, banned_until: buntil, ban_reason: reason)
-    end
+  # Bans a user.
+  # @param duration [Fixnum, nil] Ban duration
+  # @param duration_unit [String, nil] Unit for the <code>duration</code> parameter. Accepted units: hours, days, weeks, months
+  # @param reason [String] Reason for the ban. This is displayed to the user.
+  # @param banned_by [User] User who instated the ban
+  def ban(duration, duration_unit = 'hours', reason = nil, banned_by = nil)
+    raise Errors::InvalidBanDuration unless %w[hours days weeks months].include? duration_unit
+
+    expiry = duration && DateTime.now + duration.public_send(duration_unit)
+    self.user_bans.create(expires_at: expiry, reason: reason, banned_by: banned_by)
   end
 
   def can_export?
