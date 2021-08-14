@@ -47,6 +47,11 @@ class User < ApplicationRecord
 
   has_one :theme, dependent: :destroy
 
+  has_many :user_bans, dependent: :destroy
+  has_many :banned_users, class_name: 'UserBan',
+                          foreign_key: 'banned_by_id',
+                          dependent: :nullify
+
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 

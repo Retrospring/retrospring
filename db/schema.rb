@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_133004) do
+ActiveRecord::Schema.define(version: 2021_08_14_134115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,15 @@ ActiveRecord::Schema.define(version: 2021_08_11_133004) do
     t.bigint "user_id"
     t.string "code", limit: 8
     t.index ["user_id", "code"], name: "index_totp_recovery_codes_on_user_id_and_code"
+  end
+
+  create_table "user_bans", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "reason"
+    t.datetime "expires_at"
+    t.bigint "banned_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: :bigint, default: -> { "gen_timestamp_id('users'::text)" }, force: :cascade do |t|
