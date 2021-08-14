@@ -109,13 +109,15 @@ class Ajax::ModerationController < AjaxController
     params.require :user
     params.require :ban
     params.require :permaban
+    params.require :duration
+    params.require :duration_unit
 
-    reason = params[:reason]
+    duration = params[:duration].to_s
+    duration_unit = params[:duration_unit].to_s
+    reason = params[:reason].to_s
     target = User.find_by_screen_name!(params[:user])
-    unban  = params[:ban] == "0"
-    perma  = params[:permaban] == "1"
-
-    buntil = DateTime.strptime params[:until], "%m/%d/%Y %I:%M %p" unless unban || perma
+    unban  = params[:ban] == '0'
+    perma  = params[:permaban] == '1'
 
     if !unban && target.has_role?(:administrator)
       @response[:status] = :nopriv
@@ -128,11 +130,11 @@ class Ajax::ModerationController < AjaxController
       @response[:message] = I18n.t('messages.moderation.ban.unban')
       @response[:success] = true
     elsif perma
-      target.ban nil, reason
+      target.ban nil, nil, reason, current_user
       @response[:message] = I18n.t('messages.moderation.ban.perma')
     else
-      target.ban buntil, reason
-      @response[:message] = I18n.t('messages.moderation.ban.temp', date: buntil.to_s)
+      target.ban duration, duration_unit, reason, current_user
+      @response[:message] = "User banned for #{duration} #{duration_unit}"
     end
     target.save!
 
@@ -162,7 +164,7 @@ class Ajax::ModerationController < AjaxController
 
     @response[:checked] = status
     type = params[:type].downcase
-    target_role = {"admin" => "administrator"}.fetch(type, type).to_sym
+    target_role = {'admin' => 'administrator'}.fetch(type, type).to_sym
 
     if status
       target_user.add_role target_role
