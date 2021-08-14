@@ -248,6 +248,15 @@ ActiveRecord::Schema.define(version: 2021_12_28_135426) do
     t.index ["user_id", "code"], name: "index_totp_recovery_codes_on_user_id_and_code"
   end
 
+  create_table "user_bans", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "reason"
+    t.datetime "expires_at"
+    t.bigint "banned_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", id: :bigint, default: -> { "gen_timestamp_id('users'::text)" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
