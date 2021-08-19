@@ -30,11 +30,14 @@ load = ->
 
     data = {
       ban: checktostr banCheckbox
-      permaban: checktostr permabanCheckbox
-      until: modalForm.elements["until"].value.trim()
-      reason: modalForm.elements["reason"].value.trim()
       user: modalForm.elements["user"].value
     }
+
+    if banCheckbox.checked
+      data.reason = modalForm.elements["reason"].value.trim()
+      unless permabanCheckbox.checked
+        data.duration = modalForm.elements["duration"].value.trim()
+        data.duration_unit = modalForm.elements["duration_unit"].value.trim()
 
     $.ajax
       url: '/ajax/mod/ban'
@@ -43,6 +46,7 @@ load = ->
       success: (data, status, jqxhr) ->
         showNotification data.message, data.success
       error: (jqxhr, status, error) ->
+        console.error 'request failed', data
         console.log jqxhr, status, error
         showNotification translate('frontend.error.message'), false
       complete: (jqxhr, status) ->

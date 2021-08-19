@@ -239,7 +239,7 @@ class User < ApplicationRecord
   end
 
   def unban
-    self.user_bans.current.update(expires_at: DateTime.now)
+    self.user_bans.current.update!(expires_at: DateTime.now)
   end
 
   # Bans a user.
@@ -248,9 +248,6 @@ class User < ApplicationRecord
   # @param reason [String] Reason for the ban. This is displayed to the user.
   # @param banned_by [User] User who instated the ban
   def ban(duration, duration_unit = 'hours', reason = nil, banned_by = nil)
-    raise Errors::InvalidBanDuration unless %w[hours days weeks months].include? duration_unit
-
-    expiry = duration && DateTime.now + duration.public_send(duration_unit)
     self.user_bans.create(expires_at: expiry, reason: reason, banned_by: banned_by)
   end
 
