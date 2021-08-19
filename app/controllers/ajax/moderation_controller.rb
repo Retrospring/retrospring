@@ -1,3 +1,7 @@
+require 'use_case/user/ban'
+require 'use_case/user/unban'
+require 'errors'
+
 class Ajax::ModerationController < AjaxController
   def vote
     params.require :id
@@ -108,38 +112,49 @@ class Ajax::ModerationController < AjaxController
 
     params.require :user
     params.require :ban
-    params.require :permaban
-    params.require :duration
-    params.require :duration_unit
 
-    duration = params[:duration].to_s
+    duration = params[:duration].to_i
     duration_unit = params[:duration_unit].to_s
     reason = params[:reason].to_s
-    target = User.find_by_screen_name!(params[:user])
+    target_user = User.find_by_screen_name!(params[:user])
     unban  = params[:ban] == '0'
-    perma  = params[:permaban] == '1'
+    perma  = params[:duration].nil?
 
-    if !unban && target.has_role?(:administrator)
+    if !unban && target_user.has_role?(:administrator)
       @response[:status] = :nopriv
       @response[:message] = I18n.t('messages.moderation.ban.nopriv')
       return
     end
 
     if unban
-      target.unban
+      UseCase::User::Unban.call(target_user.id)
       @response[:message] = I18n.t('messages.moderation.ban.unban')
       @response[:success] = true
+      @response[:status]  = :okay
+      return
     elsif perma
-      target.ban nil, nil, reason, current_user
       @response[:message] = I18n.t('messages.moderation.ban.perma')
+      expiry = nil
     else
-      target.ban duration, duration_unit, reason, current_user
-      @response[:message] = "User banned for #{duration} #{duration_unit}"
+      params.require :duration
+      params.require :duration_unit
+
+      raise Errors::InvalidBanDuration unless %w[hours days weeks months].include? duration_unit
+
+      expiry = DateTime.now + duration.public_send(duration_unit)
+      @response[:message] = I18n.t('messages.moderation.ban.temp', date: expiry.to_s)
     end
-    target.save!
+
+    UseCase::User::Ban.call(
+      target_user_id: target_user.id,
+      expiry: expiry,
+      reason: reason,
+      source_user_id: current_user.id)
+
+    target_user.save!
 
     @response[:status] = :okay
-    @response[:success] = target.banned? == !unban
+    @response[:success] = true
   end
 
   def privilege
