@@ -49,7 +49,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_one :theme, dependent: :destroy
 
-  has_many :user_bans, dependent: :destroy
+  has_many :bans, class_name: 'UserBan', dependent: :destroy
   has_many :banned_users, class_name: 'UserBan',
                           foreign_key: 'banned_by_id',
                           dependent: :nullify
@@ -224,11 +224,11 @@ class User < ApplicationRecord
   # endregion
 
   def banned?
-    self.user_bans.current.any?
+    self.bans.current.any?
   end
 
   def unban
-    self.user_bans.current.update!(expires_at: DateTime.now)
+    self.bans.current.update!(expires_at: DateTime.now)
   end
 
   # Bans a user.
@@ -237,7 +237,7 @@ class User < ApplicationRecord
   # @param reason [String] Reason for the ban. This is displayed to the user.
   # @param banned_by [User] User who instated the ban
   def ban(duration, duration_unit = 'hours', reason = nil, banned_by = nil)
-    self.user_bans.create(expires_at: expiry, reason: reason, banned_by: banned_by)
+    self.bans.create(expires_at: expiry, reason: reason, banned_by: banned_by)
   end
 
   def can_export?
