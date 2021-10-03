@@ -17,7 +17,18 @@ class StaticController < ApplicationController
   end
 
   def about
+    @users = User
+      .where.not(confirmed_at: nil)
+      .where(permanently_banned: false)
+      .where(banned_until: nil)
+      .where('answered_count > 0')
+      .where('asked_count > 0')
+      .count
 
+    @questions = Question.count
+    @answers = Answer.count
+    @comments = Comment.count
+    @smiles = Smile.count + CommentSmile.count
   end
 
   def faq
