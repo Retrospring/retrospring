@@ -7,10 +7,10 @@ describe StaticController, type: :controller do
     subject { get :about }
     
     before(:each) {
-      User.create(screen_name: 'very_valid_user', confirmed_at: Time.now, answered_count: 1, asked_count: 1)
-      User.create(screen_name: 'big_ben', permanently_banned: true)
-      User.create(screen_name: 'youre_mom', banned_until: Time.now + 10.days)
-      User.create(screen_name: 'silence_fox', confirmed_at: Time.now)
+      FactoryBot.create(:user, { confirmed_at: Time.now, answered_count: 1, asked_count: 1 })
+      FactoryBot.create(:user, { permanently_banned: true })
+      FactoryBot.create(:user, { banned_until: Time.now + 10.days })
+      FactoryBot.create(:user, { confirmed_at: Time.now })
     }
 
     it "shows the correct user count" do
