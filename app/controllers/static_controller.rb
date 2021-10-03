@@ -18,7 +18,7 @@ class StaticController < ApplicationController
 
   def about
     @users = User
-      .where('confirmed_at IS NOT NULL')
+      .where.not(confirmed_at: nil)
       .where(permanently_banned: false)
       .where(banned_until: nil)
       .where('answered_count > 0')
