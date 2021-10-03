@@ -48,21 +48,21 @@
           %p= t('views.about.statistics.desc', app_title: APP_CONFIG['site_name'])
         .col-md-3.col-sm-6.col-xs-6
           .entry.entry--statistics
-            %h2.entry__value#asked-count= Question.count
-            %h4.entry__description= t('views.general.question').pluralize(Question.count)
+            %h2.entry__value#asked-count= @questions
+            %h4.entry__description= t('views.general.question').pluralize(@questions)
           .entry.entry--statistics
-            %h2.entry__value#answered-count= Answer.count
-            %h4.entry__description= t('views.general.answer').pluralize(Answer.count)
+            %h2.entry__value#answered-count= @answers
+            %h4.entry__description= t('views.general.answer').pluralize(@answers)
         .col-md-3.col-sm-6.col-xs-6
           .entry.entry--statistics
-            %h2.entry__value#comment-count= Comment.count
-            %h4.entry__description= t('views.general.comment').pluralize(Comment.count)
+            %h2.entry__value#comment-count= @comments
+            %h4.entry__description= t('views.general.comment').pluralize(@comments)
           .entry.entry--statistics
-            %h2.entry__value#smile-count= Smile.count + CommentSmile.count
-            %h4.entry__description= t('views.general.smile').pluralize(Smile.count)
+            %h2.entry__value#smile-count= @smiles
+            %h4.entry__description= t('views.general.smile').pluralize(@smiles)
         .col-md-3.col-sm-12.col-xs-12
           .entry.entry--users
-            .entry__value#follower-count= User.count
-            %h4.entry__description= t('views.general.user').pluralize(User.count)
+            .entry__value#follower-count= @users
+            %h4.entry__description= t('views.general.user').pluralize(@users)
 
 = render 'shared/links'
