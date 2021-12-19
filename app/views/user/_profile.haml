@@ -24,15 +24,15 @@
           %span.badge.badge-success
             %i.fa.fa-fw.fa-users
             = t 'views.user.title.moderator'
-    - unless user.bio.blank?
+    - unless user.profile.description.blank?
       .profile__biography
-        = markdown user.bio
-    - unless user.website.blank?
+        = markdown user.profile.description
+    - unless user.profile.website.blank?
       .profile__website
         %i.fa.fa-fw.fa-globe
-        %a{ href: user.website }= user.display_website
-    - unless user.location.blank?
+        %a{ href: user.profile.website }= user.profile.display_website
+    - unless user.profile.location.blank?
       .profile__location
         %i.fa.fa-fw.fa-location-arrow
-        = user.location
+        = user.profile.location
     = render 'user/actions', user: user, type: :follower

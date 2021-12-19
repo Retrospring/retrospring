@@ -13,31 +13,31 @@
 
         %p.font-weight-bold.mb-0 Display name
         %p.text-muted
-          - if current_user.display_name.blank?
+          - if current_user.profile.display_name.blank?
             None set!
           - else
-            = current_user.display_name
+            = current_user.profile.display_name
 
         %p.font-weight-bold.mb-0 Bio
         %p.text-muted
-          - if current_user.bio.blank?
+          - if current_user.profile.description.blank?
             None set!
           - else
-            = current_user.bio
+            = current_user.profile.description
 
         %p.font-weight-bold.mb-0 Location
         %p.text-muted
-          - if current_user.location.blank?
+          - if current_user.profile.location.blank?
             None set!
           - else
-            = current_user.location
+            = current_user.profile.location
 
         %p.font-weight-bold.mb-0 Website
         %p.text-muted
-          - if current_user.website.blank?
+          - if current_user.profile.website.blank?
             None set!
           - else
-            = current_user.website
+            = current_user.profile.website
       .col-md-6.col-sm-6.col-xs-12
         %h4 Pictures
         %p.font-weight-bold.mb-0 Profile picture
