@@ -45,6 +45,7 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :totp_recovery_codes, dependent: :destroy
 
+  has_one :profile, dependent: :destroy
   has_one :theme, dependent: :destroy
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
@@ -64,14 +65,6 @@ class User < ApplicationRecord
   process_in_background :profile_picture
   mount_uploader :profile_header, ProfileHeaderUploader, mount_on: :profile_header_file_name
   process_in_background :profile_header
-
-  before_save do
-    self.website = if website.match %r{\Ahttps?://}
-                     website
-                   else
-                     "http://#{website}"
-                   end unless website.blank?
-  end
 
   # when a user has been deleted, all reports relating to the user become invalid
   before_destroy do
@@ -169,12 +162,6 @@ class User < ApplicationRecord
     comment.smiles.pluck(:user_id).include? self.id
   end
 
-  def display_website
-    website.match(/https?:\/\/([A-Za-z.\-0-9]+)\/?(?:.*)/i)[1]
-  rescue NoMethodError
-    website
-  end
-
   def comment(answer, content)
     Comment.create!(user: self, answer: answer, content: content)
   end
@@ -251,10 +238,6 @@ class User < ApplicationRecord
       return (Time.now > self.export_created_at.in(1.week)) && !self.export_processing
     end
     !self.export_processing
-  end
-
-  def safe_name
-    self.display_name.presence || self.screen_name
   end
 
   # %w[admin moderator].each do |m|
