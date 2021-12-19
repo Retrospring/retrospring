@@ -119,9 +119,10 @@ ActiveRecord::Schema.define(version: 2021_12_19_153054) do
   create_table "profiles", force: :cascade do |t|
     t.bigint "user_id"
     t.string "display_name"
-    t.string "description"
-    t.string "location"
-    t.string "website"
+    t.string "description", default: "", null: false
+    t.string "location", default: "", null: false
+    t.string "website", default: "", null: false
+    t.string "motivation_header", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -136,7 +137,9 @@ ActiveRecord::Schema.define(version: 2021_12_19_153054) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "answer_count", default: 0, null: false
+    t.datetime "discarded_at"
     t.boolean "direct", default: false, null: false
+    t.index ["discarded_at"], name: "index_questions_on_discarded_at"
     t.index ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"
   end
 

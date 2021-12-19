@@ -55,8 +55,8 @@ describe ApplicationHelper, :type => :helper do
   describe "#user_opengraph" do
     context "sample user" do
       let(:user) { FactoryBot.create(:user,
-                                     display_name: 'Cunes',
-                                     bio: 'A bunch of raccoons in a trenchcoat.',
+                                     profile: { display_name: 'Cunes',
+                                                description: 'A bunch of raccoons in a trenchcoat.' },
                                      screen_name: 'raccoons') }
 
       subject { user_opengraph(user) }
@@ -79,12 +79,12 @@ EOS
   describe "#user_twitter_card" do
     context "sample user" do
       let(:user) { FactoryBot.create(:user,
-                                     display_name: '',
-                                     bio: 'A bunch of raccoons in a trenchcoat.',
+                                     profile: {
+                                       display_name: '',
+                                       description: 'A bunch of raccoons in a trenchcoat.'},
                                      screen_name: 'raccoons') }
 
       subject { user_twitter_card(user) }
-
       it 'should generate a matching OpenGraph structure for a user' do
         expect(subject).to eq(<<-EOS.chomp)
 <meta name="twitter:card" content="summary" />

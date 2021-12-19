@@ -58,9 +58,6 @@ class User < ApplicationRecord
   validates :email, fake_email: true
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }, screen_name: true
 
-  validates :display_name, length: { maximum: 50 }
-  validates :bio, length: { maximum: 200 }
-
   mount_uploader :profile_picture, ProfilePictureUploader, mount_on: :profile_picture_file_name
   process_in_background :profile_picture
   mount_uploader :profile_header, ProfileHeaderUploader, mount_on: :profile_header_file_name
@@ -75,6 +72,10 @@ class User < ApplicationRecord
         r.save
       end
     end
+  end
+
+  after_create do
+    Profile.create(user_id: id) if Profile.where(user_id: id).count.zero?
   end
 
   def login=(login)

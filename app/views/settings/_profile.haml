@@ -2,8 +2,6 @@
   .card-body
     = bootstrap_form_for(current_user, url: { action: :edit }, html: { multipart: true }, method: :patch) do |f|
 
-      = f.text_field :display_name, label: t('views.settings.profile.displayname')
-
       .media#profile-picture-media
         .pull-left
           %img.avatar-lg.mr-3{ src: current_user.profile_picture.url(:medium) }
@@ -38,14 +36,6 @@
             %button.btn.btn-inverse#cropper-header-zoom-in{ type: :button }
               %i.fa.fa-search-plus
 
-      = f.text_field :motivation_header, label: t('views.settings.profile.motivation'), placeholder: t('views.settings.profile.placeholder.motivation')
-
-      = f.text_field :website, label: t('views.settings.profile.website'), placeholder: 'https://example.com'
-
-      = f.text_field :location, label: t('views.settings.profile.location'), placeholder: t('views.settings.profile.placeholder.location')
-
-      = f.text_area :bio, label: t('views.settings.profile.bio'), placeholder: t('views.settings.profile.placeholder.bio')
-
       = f.check_box :show_foreign_themes, label: 'Render other user themes when visiting their profile'
 
       - %i[profile_picture_x profile_picture_y profile_picture_w profile_picture_h].each do |attrib|
@@ -53,5 +43,21 @@
 
       - %i[profile_header_x profile_header_y profile_header_w profile_header_h].each do |attrib|
         = f.hidden_field attrib, id: attrib
+
+      = f.submit t('views.actions.save'), class: 'btn btn-primary'
+
+.card
+  .card-body
+    = bootstrap_form_for(current_user.profile, url: { action: :edit }, html: { multipart: true }, method: :patch) do |f|
+
+      = f.text_field :display_name, label: t('views.settings.profile.displayname')
+
+      = f.text_field :motivation_header, label: t('views.settings.profile.motivation'), placeholder: t('views.settings.profile.placeholder.motivation')
+
+      = f.text_field :website, label: t('views.settings.profile.website'), placeholder: 'https://example.com'
+
+      = f.text_field :location, label: t('views.settings.profile.location'), placeholder: t('views.settings.profile.placeholder.location')
+
+      = f.text_area :description, label: t('views.settings.profile.bio'), placeholder: t('views.settings.profile.placeholder.bio')
 
       = f.submit t('views.actions.save'), class: 'btn btn-primary'

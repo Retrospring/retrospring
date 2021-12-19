@@ -3,9 +3,9 @@ class Profile < ApplicationRecord
 
   attr_readonly :user_id
 
-  validates :display_name, length: { maximum: 32 }
+  validates :display_name, length: { maximum: 50 }
   validates :location,     length: { maximum: 72 }
-  validates :description,  length: { maximum: 256 }
+  validates :description,  length: { maximum: 200 }
 
   before_save do
     unless website.blank?
@@ -24,6 +24,6 @@ class Profile < ApplicationRecord
   end
 
   def safe_name
-    self.display_name.presence || self.screen_name
+    display_name.presence || user.screen_name
   end
 end
