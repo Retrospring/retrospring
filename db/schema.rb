@@ -137,9 +137,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_153054) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "answer_count", default: 0, null: false
-    t.datetime "discarded_at"
     t.boolean "direct", default: false, null: false
-    t.index ["discarded_at"], name: "index_questions_on_discarded_at"
     t.index ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"
   end
 

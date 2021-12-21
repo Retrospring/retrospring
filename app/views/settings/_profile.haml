@@ -48,7 +48,7 @@
 
 .card
   .card-body
-    = bootstrap_form_for(current_user.profile, url: { action: :edit }, html: { multipart: true }, method: :patch) do |f|
+    = bootstrap_form_for(current_user.profile, url: { action: :update_profile }, html: { multipart: true }, method: :patch) do |f|
 
       = f.text_field :display_name, label: t('views.settings.profile.displayname')
 
