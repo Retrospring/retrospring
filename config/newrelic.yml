@@ -24,6 +24,9 @@ common: &default_settings
   # Logging level for log/newrelic_agent.log
   log_level: info
 
+  # disabling browser monitoring for data privacy concerns
+  browser_monitoring:
+    auto_instrument: false
 
 # Environment-specific settings are in this section.
 # RAILS_ENV or RACK_ENV (as appropriate) is used to determine the environment.
