@@ -43,6 +43,28 @@ describe UserController, type: :controller do
     end
   end
 
+  describe "#update_profile" do
+    subject { patch :update_profile, params: { profile: profile_params } }
+    let(:profile_params) do
+      {
+        display_name: 'sneaky cune'
+      }
+    end
+
+    context "user signed in" do
+      before(:each) { sign_in user }
+
+      it "updates the user's profile" do
+        expect { subject }.to change{ user.profile.reload.display_name }.to('sneaky cune')
+      end
+
+      it "redirects to the edit_user_profile page" do
+        subject
+        expect(response).to redirect_to(:edit_user_profile)
+      end
+    end
+  end
+
   describe "#update" do
     subject { patch :update, params: { user: header_params } }
     let(:header_params) do
