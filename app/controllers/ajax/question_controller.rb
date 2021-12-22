@@ -66,7 +66,9 @@ class Ajax::QuestionController < AjaxController
         return
       end
 
-      Inbox.create!(user_id: u.id, question_id: question.id, new: true)
+      unless MuteRule.where(user: u).any? { |rule| rule.applies_to? question }
+        Inbox.create!(user_id: u.id, question_id: question.id, new: true)
+      end
     end
 
     @response[:status] = :okay
