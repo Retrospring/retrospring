@@ -59,3 +59,12 @@ hcaptcha:
 
 # TOTP Drift period in seconds
 otp_drift_period: 30
+
+accepted_image_formats:
+  - image/jpeg
+  - .jpg
+  - .jpeg
+  - image/png
+  - .png
+  - image/gif
+  - .gif
