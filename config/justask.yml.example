@@ -60,6 +60,10 @@ hcaptcha:
 # TOTP Drift period in seconds
 otp_drift_period: 30
 
+# This list controls the "accept" attribute on file upload fields
+# This ensures mobile users get an appropriate file picker (one for only images)
+# as well as preventing the upload of videos or formats we don't support
+# including making iOS automatically convert HEIC files to JPEG
 accepted_image_formats:
   - image/jpeg
   - .jpg
