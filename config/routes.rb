@@ -114,6 +114,9 @@ Rails.application.routes.draw do
     match '/list_membership', to: 'list#membership', via: :post, as: :list_membership
     match '/subscribe', to: 'subscription#subscribe', via: :post, as: :subscribe_answer
     match '/unsubscribe', to: 'subscription#unsubscribe', via: :post, as: :unsubscribe_answer
+    match '/mute', to: 'mute_rule#create', via: :post, as: :create_mute_rule
+    match '/mute/:id', to: 'mute_rule#update', via: :post, as: :update_mute_rule
+    match '/mute/:id', to: 'mute_rule#destroy', via: :delete, as: :delete_mute_rule
   end
 
   match '/discover', to: 'discover#index', via: :get, as: :discover
