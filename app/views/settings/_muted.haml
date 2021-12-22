@@ -1,0 +1,17 @@
+.card
+  .card-body
+    %h2 Muted words
+    %p Muting words (or longer phrases) will prevent questions containing those to appear in your inbox.
+    %p Note: Filtered questions are discarded completely from your inbox, and won't reappear if you remove a filter later on.
+    - @rules.each do |rule|
+      .form-group
+        .input-group
+          %input.form-control#new-rule-text{disabled: true, value: rule.muted_phrase}
+          .input-group-append
+            %button.btn.btn-danger#new-rule-submit{type: 'button'} Remove
+    .form-group
+      %form
+        .input-group
+          %input.form-control#new-rule-text{placeholder: 'Add a new muted word...'}
+          .input-group-append
+            %button.btn.btn-primary#new-rule-submit{type: 'submit'} Add
