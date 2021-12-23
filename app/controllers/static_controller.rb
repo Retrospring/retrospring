@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StaticController < ApplicationController
+  include ThemeHelper
+
   def index
     if user_signed_in?
       @timeline = current_user.cursored_timeline(last_id: params[:last_id])
@@ -52,5 +54,38 @@ class StaticController < ApplicationController
 
   def terms
 
+  end
+
+  def webapp_manifest
+    render json: {
+      name: APP_CONFIG["site_name"],
+      description: t(".front.subtitle"),
+      start_url: root_url(source: "pwa"),
+      scope: root_url,
+      display: "standalone",
+      categories: %w[social],
+      lang: I18n.locale,
+      shortcuts: [
+        {
+          name: t('views.navigation.inbox'),
+          url: inbox_url,
+          icons: [
+            {
+              src: "/icons/shortcuts/inbox.svg",
+              sizes: "96x96"
+            }
+          ]
+        }
+      ],
+      icons: %i[1024 512 384 192 128 96 72 48].map do |size|
+        [
+          { src: "/icons/maskable_icon_x#{size}.webp", size: "#{size}x#{size}", type: "image/webp" },
+          { src: "/icons/maskable_icon_x#{size}.png", size: "#{size}x#{size}", type: "image/png" }
+        ]
+      end.flatten,
+      theme_color: theme_color,
+      background_color: mobile_theme_color,
+      orientation: "any"
+    }
   end
 end
