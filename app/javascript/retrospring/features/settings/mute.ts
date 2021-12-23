@@ -21,7 +21,12 @@ export function createSubmitEvent(
 
         const newEntryFragment = template.content.cloneNode(true) as Element;
         newEntryFragment.querySelector<HTMLInputElement>('input').value = textEntry.value;
-        newEntryFragment.querySelector<HTMLButtonElement>('button').dataset.id = String(data.id);
+        const newDeleteButton = newEntryFragment.querySelector<HTMLButtonElement>('button')
+        newDeleteButton.dataset.id = String(data.id);
+        newDeleteButton.onclick = createDeleteEvent(
+          newEntryFragment.querySelector('.form-group'),
+          newDeleteButton
+        )
 
         rulesList.appendChild(newEntryFragment)
 
@@ -29,4 +34,26 @@ export function createSubmitEvent(
       }
     });
   };
+}
+
+export function createDeleteEvent(
+  entry: HTMLDivElement,
+  deleteButton: HTMLButtonElement
+): () => void {
+  return () => {
+    deleteButton.disabled = true;
+
+    Rails.ajax({
+      url: '/ajax/mute/' + deleteButton.dataset.id,
+      type: 'DELETE',
+      dataType: 'json',
+      success: (data) => {
+        if (data.success) {
+          entry.parentElement.removeChild(entry)
+        } else {
+          deleteButton.disabled = false;
+        }
+      }
+    })
+  }
 }
