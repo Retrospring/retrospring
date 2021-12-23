@@ -7,18 +7,18 @@
       - @rules.each do |rule|
         .form-group
           .input-group
-            %input.form-control{disabled: true, value: rule.muted_phrase}
+            %input.form-control{ disabled: true, value: rule.muted_phrase }
             .input-group-append
-              %button.btn.btn-danger{type: 'button', data: {id: rule.id}} Remove
+              %button.btn.btn-danger{ type: 'button', data: { id: rule.id } } Remove
     .form-group
       %form
         .input-group
-          %input.form-control#new-rule-text{placeholder: 'Add a new muted word...'}
+          %input.form-control#new-rule-text{ placeholder: 'Add a new muted word...' }
           .input-group-append
-            %button.btn.btn-primary#new-rule-submit{type: 'submit'} Add
+            %button.btn.btn-primary#new-rule-submit{ type: 'submit' } Add
 %template#rule-template
   .form-group
     .input-group
-      %input.form-control{disabled: true}
+      %input.form-control{ disabled: true }
       .input-group-append
-        %button.btn.btn-danger{type: 'button'} Remove
+        %button.btn.btn-danger{ type: 'button' } Remove

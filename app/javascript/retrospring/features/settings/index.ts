@@ -8,7 +8,7 @@ export default (): void => {
   rulesList.querySelectorAll<HTMLDivElement>('.form-group:not(.js-initalized)').forEach(entry => {
     const button = entry.querySelector('button')
     button.onclick = createDeleteEvent(entry, button)
-  })
+  });
   const textEntry: HTMLButtonElement = document.getElementById('new-rule-text') as HTMLButtonElement;
   const template: HTMLTemplateElement = document.getElementById('rule-template') as HTMLTemplateElement;
 
