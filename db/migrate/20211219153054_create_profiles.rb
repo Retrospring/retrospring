@@ -11,14 +11,14 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    User.find_each do |user|
-      Profile.create!(
-        user_id: user.id,
-        display_name: user.display_name,
-        description: user.bio,
-        location: user.location,
-        website: user.website,
-      )
+    transaction do
+      execute 'INSERT INTO profiles (user_id, display_name, description, location, website, motivation_header, created_at, updated_at) SELECT users.id as user_id, users.display_name, users.bio as description, users.location, users.website, users.motivation_header, users.created_at, users.updated_at FROM users;'
+
+      remove_column :users, :display_name
+      remove_column :users, :bio
+      remove_column :users, :location
+      remove_column :users, :website
+      remove_column :users, :motivation_header
     end
   end
 end
