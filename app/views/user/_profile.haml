@@ -2,9 +2,9 @@
   %img.profile__avatar{ src: user.profile_picture.url(:large) }
   .card-body
     .profile__name
-      - unless user.display_name.blank?
+      - unless user.profile.display_name.blank?
         .profile__display-name
-          = user.display_name
+          = user.profile.display_name
       .profile__screen-name
         = user.screen_name
     .profile__badge-container

@@ -32,7 +32,7 @@ class Services::Tumblr < Service
       asker = if answer.question.author_is_anonymous?
                 APP_CONFIG['anonymous_name']
               else
-                answer.question.user.display_name.blank? ? answer.question.user.screen_name : answer.question.user.display_name
+                answer.question.user.profile.display_name.blank? ? answer.question.user.screen_name : answer.question.user.profile.display_name
               end
       client.text(
           self.uid,
