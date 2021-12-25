@@ -48,7 +48,9 @@ class Ajax::AnswerController < AjaxController
     end
 
     services = JSON.parse params[:share]
-    ShareWorker.perform_async(current_user.id, answer.id, services)
+    services.each do |service|
+      ShareWorker.perform_async(current_user.id, answer.id, service)
+    end
 
 
     @response[:status] = :okay
