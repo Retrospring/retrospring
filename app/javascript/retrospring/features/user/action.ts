@@ -6,7 +6,7 @@ export function userActionHandler(event: Event): void {
   const target = button.dataset.target;
   const action = button.dataset.action;
 
-  let targetURL = action === 'follow' ? '/ajax/create_friend' : '/ajax/destroy_friend';
+  const targetURL = action === 'follow' ? '/ajax/create_friend' : '/ajax/destroy_friend';
   let success = false;
 
   Rails.ajax({
