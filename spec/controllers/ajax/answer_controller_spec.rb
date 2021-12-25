@@ -27,7 +27,9 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
 
         it "enqueues a job for sharing the answer to social networks" do
           subject
-          expect(ShareWorker).to have_enqueued_sidekiq_job(user.id, Answer.last.id, shared_services)
+          shared_services.each do |service|
+            expect(ShareWorker).to have_enqueued_sidekiq_job(user.id, Answer.last.id, service)
+          end
         end
 
         include_examples "returns the expected response"
