@@ -12,7 +12,7 @@ class ShareWorker
 
     user_service.post(Answer.find(answer_id))
   rescue => e
-    logger.info "failed to post answer #{answer_id} to #{service.provider} for user #{user_id}: #{e.message}"
+    logger.info "failed to post answer #{answer_id} to #{service} for user #{user_id}: #{e.message}"
     NewRelic::Agent.notice_error(e)
     raise
   end
