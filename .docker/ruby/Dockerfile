@@ -12,9 +12,10 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends build-essential \
-    libpq-dev postgresql-client \ 
+    libpq-dev postgresql-client \
     libxml2-dev libxslt1-dev \
     libmagickwand-dev imagemagick \
+    libidn11-dev \
     nodejs \
     yarn \
     && rm -rf /var/lib/apt/lists/*
