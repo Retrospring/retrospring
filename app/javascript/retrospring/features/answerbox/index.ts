@@ -1,5 +1,5 @@
-import registerEvents from "retrospring/utilities/registerEvents";
-import {createShareEvent} from "./share";
+import registerEvents from 'utilities/registerEvents';
+import { createShareEvent } from './share';
 
 export default (): void => {
   if ('share' in navigator) {

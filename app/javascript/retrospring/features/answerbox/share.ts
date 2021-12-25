@@ -1,4 +1,4 @@
-import noop from 'retrospring/utilities/noop';
+import noop from 'utilities/noop';
 
 export function createShareEvent(answerbox: HTMLElement): () => void {
   return function (): void {
