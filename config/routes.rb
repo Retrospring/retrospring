@@ -62,6 +62,7 @@ Rails.application.routes.draw do
 
   match '/settings/profile', to: 'user#edit', via: 'get', as: :edit_user_profile
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
+  match '/settings/profile_info', to: 'user#update_profile', via: 'patch', as: :update_user_profile_info
 
   match '/settings/theme', to: 'user#edit_theme', via: 'get', as: :edit_user_theme
   match '/settings/theme', to: 'user#update_theme', via: 'patch', as: :update_user_theme

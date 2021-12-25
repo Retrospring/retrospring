@@ -6,15 +6,19 @@ FactoryBot.define do
     sequence(:email) { |i| "#{i}#{Faker::Internet.email}" }
     password { 'P4s5w0rD' }
     confirmed_at { Time.now.utc }
-    display_name { Faker::Name.name }
 
     transient do
       roles { [] }
+      profile { { display_name: Faker::Name.name } }
     end
 
     after(:create) do |user, evaluator|
       evaluator.roles.each do |role|
         user.add_role role
+      end
+
+      evaluator.profile.each do |key, value|
+        user.profile.public_send(:"#{key}=", value)
       end
     end
   end

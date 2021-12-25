@@ -1,9 +1,9 @@
 .card
   .card-header
-    - if user.motivation_header.blank?
+    - if user.profile.motivation_header.blank?
       = t 'views.questionbox.title'
     - else
-      = user.motivation_header
+      = user.profile.motivation_header
   .card-body
     - if user.banned?
       .text-center
