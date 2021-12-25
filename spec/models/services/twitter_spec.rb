@@ -31,5 +31,16 @@ describe Services::Twitter do
 
       expect(twitter_client).to have_received(:update!).with("#{'q' * 123}… — #{'a' * 124}… https://example.com/#{user.screen_name}/a/#{answer.id}")
     end
+    
+    it "posts an un-shortened tweet" do
+      answer.question.content = 'Why are raccoons so good?'
+      answer.question.save!
+      answer.content = 'Because they are good cunes.'
+      answer.save!
+
+      service.post(answer)
+
+      expect(twitter_client).to have_received(:update!).with("#{answer.question.content} — #{answer.content} https://example.com/#{user.screen_name}/a/#{answer.id}")
+    end
   end
 end
