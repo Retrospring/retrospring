@@ -313,6 +313,6 @@ ActiveRecord::Schema.define(version: 2021_12_28_135426) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "profiles", "users"
   add_foreign_key "mute_rules", "users"
+  add_foreign_key "profiles", "users"
 end
