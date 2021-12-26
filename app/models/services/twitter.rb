@@ -1,4 +1,5 @@
 class Services::Twitter < Service
+  include Rails.application.routes.url_helpers
   include SocialHelper::TwitterMethods
 
   def provider
