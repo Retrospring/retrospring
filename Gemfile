@@ -44,7 +44,7 @@ gem 'newrelic_rpm'
 
 gem 'sidekiq', "< 6" # remove version constraint once we have redis 5
 
-gem 'questiongenerator', git: 'https://github.com/retrospring/questiongenerator.git'
+gem 'questiongenerator', '~> 1.0'
 
 gem 'sanitize'
 gem 'redcarpet'

@@ -26,12 +26,6 @@ GIT
       carrierwave (>= 0.5, <= 2.1)
       mime-types (>= 3.0.0)
 
-GIT
-  remote: https://github.com/retrospring/questiongenerator.git
-  revision: c5f8362ff769425d42a94b3a611731eadaa5e0ca
-  specs:
-    questiongenerator (0.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -355,6 +349,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.1)
       nio4r (~> 2.0)
+    questiongenerator (1.0.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-pjax (1.1.0)
@@ -610,7 +605,7 @@ DEPENDENCIES
   pghero
   poltergeist
   puma
-  questiongenerator!
+  questiongenerator (~> 1.0)
   rails (~> 5.2)
   rails-controller-testing
   rails-i18n (~> 5.0)
