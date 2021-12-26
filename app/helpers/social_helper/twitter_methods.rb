@@ -1,7 +1,6 @@
 require 'cgi'
 
 module SocialHelper::TwitterMethods
-  include Rails.application.routes.url_helpers
   include MarkdownHelper
 
   def prepare_tweet(answer)

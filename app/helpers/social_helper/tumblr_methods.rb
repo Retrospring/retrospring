@@ -1,8 +1,6 @@
 require 'cgi'
 
 module SocialHelper::TumblrMethods
-  include Rails.application.routes.url_helpers
-  
   def tumblr_title(answer)
     asker = if answer.question.author_is_anonymous?
       APP_CONFIG['anonymous_name']
