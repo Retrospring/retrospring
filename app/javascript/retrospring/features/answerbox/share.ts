@@ -1,11 +1,11 @@
 import noop from 'utilities/noop';
 
-export function createShareEvent(answerbox: HTMLElement): () => void {
-  return function (): void {
-    navigator.share({
-      url: answerbox.querySelector<HTMLAnchorElement>('.answerbox__answer-date > a, a.answerbox__permalink').href
-    })
+export function shareEventHandler(event: Event): void {
+  const answerbox = (event.target as HTMLElement).closest('.answerbox');
+
+  navigator.share({
+    url: answerbox.querySelector<HTMLAnchorElement>('.answerbox__answer-date > a, a.answerbox__permalink').href
+  })
     .then(noop)
     .catch(noop)
-  }
 }
