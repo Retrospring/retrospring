@@ -8,7 +8,10 @@
 
 # Frontend assets
 *.coffee @pixeldesu
+*.js @pixeldesu
+*.json @pixeldesu
 *.scss @pixeldesu
+*.ts @pixeldesu
 
 # Frontend views
 *.haml @pixeldesu
