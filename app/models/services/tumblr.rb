@@ -1,6 +1,5 @@
 class Services::Tumblr < Service
-  include Rails.application.routes.url_helpers
-  include MarkdownHelper
+  include SocialHelper::TumblrMethods
 
   def provider
     "tumblr"
@@ -23,21 +22,10 @@ class Services::Tumblr < Service
     end
 
     def create_post(answer)
-      answer_url = show_user_answer_url(
-          id: answer.id,
-          username: answer.user.screen_name,
-          host: APP_CONFIG['hostname'],
-          protocol: (APP_CONFIG['https'] ? :https : :http)
-      )
-      asker = if answer.question.author_is_anonymous?
-                APP_CONFIG['anonymous_name']
-              else
-                answer.question.user.profile.display_name.blank? ? answer.question.user.screen_name : answer.question.user.profile.display_name
-              end
       client.text(
           self.uid,
-          title: "#{asker} asked: #{answer.question.content}",
-          body: "#{answer.content}\n\n[Smile or comment on the answer here](#{answer_url})",
+          title: tumblr_title(answer),
+          body: tumblr_body(answer),
           format: 'markdown',
           tweet: 'off'
       )
