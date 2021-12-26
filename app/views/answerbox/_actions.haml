@@ -16,8 +16,18 @@
   %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden } }
     %i.fa.fa-fw.fa-comments
     %span{ id: "ab-comment-count-#{a.id}" }= a.comment_count
-%button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-share' }
-  %i.fa.fa-fw.fa-share-alt{ title: 'Share' }
+.btn-group
+  %button.btn.btn-link.answerbox__action{ data: { toggle: :dropdown }, aria: { expanded: false } }
+    %i.fa.fa-fw.fa-share-alt{ title: 'Share' }
+  .dropdown-menu.dropdown-menu-right{ role: :menu }
+    %a.dropdown-item{ href: twitter_share_url(a) }
+      %i.fa.fa-fw.fa-twitter
+      Share on Twitter
+    %a.dropdown-item{ href: tumblr_share_url(a) }
+      %i.fa.fa-fw.fa-tumblr
+      Share on Tumblr
+    %a.dropdown-item{ href: '#', name: 'ab-share' }
+      Share on other apps...
 - if user_signed_in?
   .btn-group
     %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
