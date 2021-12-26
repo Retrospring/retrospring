@@ -17,6 +17,7 @@ Retrospring uses a variety of third-party services to help provide our Services 
 * [_Cloudflare - Privacy Policy_](https://www.cloudflare.com/en-gb/privacypolicy/)
 * [_Twitter - Privacy Policy_](https://twitter.com/en/privacy)
 * [_Tumblr - Privacy Policy_](https://www.tumblr.com/privacy/en)
+
 ## Information Sharing
 Retrospring will keep any collected data (see "Information Collection and Use" above) encrypted on our servers. Any information shared with other Services is controlled by the user itself, as we only supply sharing to these. If a user isn't satisfied with Terms from another Service they shouldn't connect their accounts or remove access over the Sharing page on the profile settings page.
 
@@ -29,6 +30,6 @@ You can also permanently delete your Retrospring account with a button at the bo
 Our Services are not directed to persons under 14. If you become aware that your child has provided us with personal information without your consent, contact us on privacy@retrospring.net . We do not knowingly collect personal information from children under 14. If we become aware that a child under 14 has provided us with personal information, we take steps to remove such information and terminate the child's account.
 
 ## Last Revision
-This Privacy Policy was last updated on **December 22nd, 2021**
+This Privacy Policy was last updated on **December 26nd, 2021**
 
 [_You can view a revision history of this document on GitHub._](https://github.com/Retrospring/retrospring/commits/master/service-docs/en/policy/privacy.md)
