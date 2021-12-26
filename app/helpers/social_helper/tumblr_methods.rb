@@ -5,7 +5,7 @@ module SocialHelper::TumblrMethods
     asker = if answer.question.author_is_anonymous?
       APP_CONFIG['anonymous_name']
     else
-      answer.question.user.profile.display_name.blank? ? answer.question.user.screen_name : answer.question.user.profile.display_name
+      answer.question.user.profile.safe_name
     end
 
     "#{asker} asked: #{answer.question.content}"
