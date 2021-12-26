@@ -20,10 +20,10 @@
   %button.btn.btn-link.answerbox__action{ data: { toggle: :dropdown }, aria: { expanded: false } }
     %i.fa.fa-fw.fa-share-alt{ title: 'Share' }
   .dropdown-menu.dropdown-menu-right{ role: :menu }
-    %a.dropdown-item{ href: twitter_share_url(a) }
+    %a.dropdown-item{ href: twitter_share_url(a), target: '_blank' }
       %i.fa.fa-fw.fa-twitter
       Share on Twitter
-    %a.dropdown-item{ href: tumblr_share_url(a) }
+    %a.dropdown-item{ href: tumblr_share_url(a), target: '_blank' }
       %i.fa.fa-fw.fa-tumblr
       Share on Tumblr
     %a.dropdown-item{ href: '#', name: 'ab-share' }
