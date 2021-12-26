@@ -80,7 +80,7 @@
 }
 
 body:not(.cap-web-share) {
-  .answerbox__action[name="ab-share"] {
+  [name="ab-share"] {
     display: none;
   }
 }
