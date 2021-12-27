@@ -11,6 +11,15 @@ class ShareWorker
     user_service = User.find(user_id).services.find_by(type: service_type)
 
     user_service.post(Answer.find(answer_id))
+  rescue ActiveRecord::RecordNotFound
+    # The question to be posted was deleted
+    return
+  rescue Twitter::Error::DuplicateStatus
+    return
+  rescue Twitter::Error::Unauthorized
+    # User's Twitter token has expired or been revoked
+    # TODO: Notify user if this happens (https://github.com/Retrospring/retrospring/issues/123)
+    return
   rescue => e
     logger.info "failed to post answer #{answer_id} to #{service} for user #{user_id}: #{e.message}"
     NewRelic::Agent.notice_error(e)
