@@ -8,12 +8,20 @@ describe SocialHelper::TwitterMethods, :type => :helper do
                                   content: 'a' * 255,
                                   question_content: 'q' * 255) }
 
+  before do
+    stub_const("APP_CONFIG", {
+      'hostname' => 'example.com',
+      'https' => true,
+      'items_per_page' => 5
+    })
+  end
+
   describe '#prepare_tweet' do
     context 'when the question and answer need to be shortened' do
       subject { prepare_tweet(answer) }
 
       it 'should return a properly formatted tweet' do
-        expect(subject).to eq("#{'q' * 123}… — #{'a' * 124}… https://justask.rrerr.net/#{user.screen_name}/a/#{answer.id}")
+        expect(subject).to eq("#{'q' * 123}… — #{'a' * 124}… https://example.com/#{user.screen_name}/a/#{answer.id}")
       end
     end
 
@@ -28,7 +36,7 @@ describe SocialHelper::TwitterMethods, :type => :helper do
       subject { prepare_tweet(answer) }
 
       it 'should return a properly formatted tweet' do
-        expect(subject).to eq("#{answer.question.content} — #{answer.content} https://justask.rrerr.net/#{user.screen_name}/a/#{answer.id}")
+        expect(subject).to eq("#{answer.question.content} — #{answer.content} https://example.com/#{user.screen_name}/a/#{answer.id}")
       end
     end
   end
