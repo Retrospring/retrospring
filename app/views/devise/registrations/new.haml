@@ -11,6 +11,8 @@
 
             = f.text_field :screen_name, autofocus: true, label: t('views.settings.account.username')
             = f.email_field :email, autofocus: false, label: t('views.settings.account.email')
+            .alert.alert-danger
+              We're currently experiencing issues with Outlook/Hotmail addresses, please don't use those!
 
             = f.password_field :password, autocomplete: :off, label: t('views.settings.account.password')
             = f.password_field :password_confirmation, autocomplete: :off, label: t('views.settings.account.password_confirm')
