@@ -8,6 +8,20 @@ describe SocialHelper::TumblrMethods, :type => :helper do
                                     content: 'aaaa',
                                     question_content: 'q') }
 
+  before do
+    stub_const("APP_CONFIG", {
+      'hostname' => 'example.com',
+      'anonymous_name' => 'Anonymous',
+      'https' => true,
+      'items_per_page' => 5,
+      'sharing' => {
+        'tumblr' => {
+          'consumer_key' => 'AAA',
+        }
+      }
+    })
+  end
+
   describe '#tumblr_title' do
     context 'Asker is anonymous' do
       subject { tumblr_title(answer) }
@@ -36,7 +50,7 @@ describe SocialHelper::TumblrMethods, :type => :helper do
     subject { tumblr_body(answer) }
 
     it 'should return a proper body' do
-      expect(subject).to eq("aaaa\n\n[Smile or comment on the answer here](https://justask.rrerr.net/#{answer.user.screen_name}/a/#{answer.id})")
+      expect(subject).to eq("aaaa\n\n[Smile or comment on the answer here](https://example.com/#{answer.user.screen_name}/a/#{answer.id})")
     end
   end
 
@@ -44,7 +58,7 @@ describe SocialHelper::TumblrMethods, :type => :helper do
     subject { tumblr_share_url(answer) }
 
     it 'should return a proper share link' do
-        expect(subject).to eq("https://www.tumblr.com/widgets/share/tool?shareSource=legacy&posttype=text&title=#{CGI.escape(tumblr_title(answer))}&url=#{CGI.escape("https://justask.rrerr.net/#{answer.user.screen_name}/a/#{answer.id}")}&caption=&content=#{CGI.escape(tumblr_body(answer))}")
+        expect(subject).to eq("https://www.tumblr.com/widgets/share/tool?shareSource=legacy&posttype=text&title=#{CGI.escape(tumblr_title(answer))}&url=#{CGI.escape("https://example.com/#{answer.user.screen_name}/a/#{answer.id}")}&caption=&content=#{CGI.escape(tumblr_body(answer))}")
     end
   end
 end
