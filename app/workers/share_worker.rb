@@ -12,6 +12,7 @@ class ShareWorker
 
     user_service.post(Answer.find(answer_id))
   rescue ActiveRecord::RecordNotFound
+    logger.info "Tried to post answer ##{answer_id} for user ##{user_id} to #{service.titleize} but the user/answer/service did not exist (likely deleted), will not retry."
     # The question to be posted was deleted
     return
   rescue Twitter::Error::DuplicateStatus
