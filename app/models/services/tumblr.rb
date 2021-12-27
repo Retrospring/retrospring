@@ -1,4 +1,5 @@
 class Services::Tumblr < Service
+  include Rails.application.routes.url_helpers
   include SocialHelper::TumblrMethods
 
   def provider
