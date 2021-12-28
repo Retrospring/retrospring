@@ -8,6 +8,20 @@ describe ShareWorker do
   let!(:service) { Services::Twitter.create!(type: 'Services::Twitter',
                                                     user: user) }
 
+  before do
+    stub_const("APP_CONFIG", {
+      'hostname' => 'example.com',
+      'anonymous_name' => 'Anonymous',
+      'https' => true,
+      'items_per_page' => 5,
+      'sharing' => {
+        'twitter' => {
+          'consumer_key' => '',
+        }
+      }
+    })
+  end
+
   describe "#perform" do
     subject {
       Sidekiq::Testing.fake! do
@@ -27,7 +41,7 @@ describe ShareWorker do
     context 'when answer exists' do
       it 'retries on unhandled exceptions' do
         expect { subject }.to change(ShareWorker.jobs, :size).by(1)
-        expect { ShareWorker.drain }.to raise_error(Twitter::Error::Forbidden)
+        expect { ShareWorker.drain }.to raise_error(Twitter::Error::BadRequest)
       end
     end
   end
