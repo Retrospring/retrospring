@@ -100,8 +100,9 @@ EOS
   describe "#answer_opengraph" do
     context "sample user and answer" do
       let!(:user) { FactoryBot.create(:user,
-                                     display_name: '',
-                                     bio: 'A bunch of raccoons in a trenchcoat.',
+                                      profile: {
+                                        display_name: '',
+                                        description: 'A bunch of raccoons in a trenchcoat.'},
                                      screen_name: 'raccoons') }
       let(:answer) { FactoryBot.create(:answer,
                                        user_id: user.id,) }

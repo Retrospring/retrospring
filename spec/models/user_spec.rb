@@ -12,6 +12,7 @@ RSpec.describe User, type: :model do
         password: 'y_u_no_secure_password?',
         email: 'nice.meme@nsa.gov'
       )
+      Profile.new(user: @user)
     end
 
     subject { @user }
@@ -23,7 +24,7 @@ RSpec.describe User, type: :model do
     end
 
     it '#motivation_header has a default value' do
-      expect(@user.motivation_header).to match ''
+      expect(@user.profile.motivation_header).to match ''
     end
 
     it 'does not save an invalid screen name' do

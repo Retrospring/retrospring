@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_19_153054) do
+ActiveRecord::Schema.define(version: 2021_12_28_135426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2021_12_19_153054) do
     t.boolean "new"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["new"], name: "index_notifications_on_new"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -257,12 +259,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_153054) do
     t.integer "asked_count", default: 0, null: false
     t.integer "answered_count", default: 0, null: false
     t.integer "commented_count", default: 0, null: false
-    t.string "display_name"
     t.integer "smiled_count", default: 0, null: false
-    t.string "motivation_header", default: "", null: false
-    t.string "website", default: "", null: false
-    t.string "location", default: "", null: false
-    t.text "bio", default: "", null: false
     t.string "profile_picture_file_name"
     t.boolean "profile_picture_processing"
     t.integer "profile_picture_x"
