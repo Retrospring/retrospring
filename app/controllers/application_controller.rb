@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :sentry_user_context
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_locale
   before_action :banned?
@@ -63,5 +64,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:screen_name, :email, :password, :password_confirmation, :remember_me) }
     devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:login, :screen_name, :email, :password, :remember_me) }
     devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:screen_name, :email, :password, :password_confirmation, :current_password) }
+  end
+
+  def sentry_user_context
+    if current_user.present?
+      Sentry.set_user({ id: current_user.id })
+    else
+      Sentry.set_user({ ip_address: request.ip })
+    end
   end
 end

@@ -8,7 +8,7 @@ class Ajax::ModerationController < AjaxController
     begin
       current_user.report_vote(report, params[:upvote])
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.moderation.vote.fail')
       return
@@ -28,7 +28,7 @@ class Ajax::ModerationController < AjaxController
     begin
       current_user.report_unvote report
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.moderation.destroy_vote.fail')
       return
@@ -49,7 +49,7 @@ class Ajax::ModerationController < AjaxController
       report.deleted = true
       report.save
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.moderation.destroy_report.fail')
       return
@@ -70,7 +70,7 @@ class Ajax::ModerationController < AjaxController
     begin
       current_user.report_comment(report, params[:comment])
     rescue ActiveRecord::RecordInvalid => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :rec_inv
       @response[:message] = I18n.t('messages.moderation.create_comment.rec_inv')
       return

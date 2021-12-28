@@ -11,7 +11,7 @@ class Ajax::ListController < AjaxController
     begin
       params.require :name
     rescue ActionController::ParameterMissing => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :toolong
       @response[:message] = I18n.t('messages.list.create.noname')
       return
@@ -22,17 +22,17 @@ class Ajax::ListController < AjaxController
       target_user = User.find_by_screen_name!(params[:user])
       list = List.create! user: current_user, display_name: params[:name]
     rescue ActiveRecord::RecordInvalid => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :toolong
       @response[:message] = I18n.t('messages.list.create.toolong')
       return
     rescue ActiveRecord::RecordNotFound => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :notfound
       @response[:message] = I18n.t('messages.list.create.notfound')
       return
     rescue ActiveRecord::RecordNotUnique => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :exists
       @response[:message] = I18n.t('messages.list.create.exists')
       return
@@ -58,7 +58,7 @@ class Ajax::ListController < AjaxController
     begin
       List.where(user: current_user, name: params[:list]).first.destroy!
     rescue ActiveRecord::RecordNotFound => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :notfound
       @response[:message] = I18n.t('messages.list.destroy.notfound')
       return
@@ -87,7 +87,7 @@ class Ajax::ListController < AjaxController
     begin
       list = current_user.lists.find_by_name!(params[:list])
     rescue ActiveRecord::RecordNotFound => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :notfound
       @response[:message] = I18n.t('messages.list.membership.notfound')
       return

@@ -41,7 +41,7 @@ class Ajax::AnswerController < AjaxController
                  current_user.answer question, params[:answer]
                end
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return

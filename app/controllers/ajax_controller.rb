@@ -7,7 +7,7 @@ class AjaxController < ApplicationController
   respond_to :json
 
   rescue_from(StandardError) do |e|
-    NewRelic::Agent.notice_error(e)
+    Sentry.capture_exception(e)
 
     @response = {
       success: false,
@@ -19,7 +19,7 @@ class AjaxController < ApplicationController
   end
 
   rescue_from(ActiveRecord::RecordNotFound) do |e|
-    NewRelic::Agent.notice_error(e)
+    Sentry.capture_exception(e)
 
     @response = {
       success: false,
@@ -31,7 +31,7 @@ class AjaxController < ApplicationController
   end
 
   rescue_from(ActionController::ParameterMissing) do |e|
-    NewRelic::Agent.notice_error(e)
+    Sentry.capture_exception(e)
 
     @response = {
       success: false,

@@ -9,7 +9,7 @@ class DeletionWorker
       User.find(resource_id).destroy!
     rescue => e
       logger.info "failed to delete user: #{e.message}"
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
     end
   end
 end
