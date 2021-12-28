@@ -8,8 +8,8 @@ export function destroyListHandler(event: Event): void {
   const list = button.dataset.list;
 
   swal({
-    title: I18n.translate('frontend.list.title'),
-    text: I18n.translate('frontend.list.text'),
+    title: I18n.translate('frontend.list.confirm.title'),
+    text: I18n.translate('frontend.list.confirm.text'),
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
