@@ -42,6 +42,7 @@ gem 'rails_admin'
 gem 'pghero'
 gem "sentry-ruby"
 gem "sentry-rails"
+gem "sentry-sidekiq"
 
 gem 'sidekiq', "< 6" # remove version constraint once we have redis 5
 
