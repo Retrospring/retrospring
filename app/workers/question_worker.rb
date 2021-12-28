@@ -15,6 +15,6 @@ class QuestionWorker
     end
   rescue StandardError => e
     logger.info "failed to ask question: #{e.message}"
-    NewRelic::Agent.notice_error(e)
+    Sentry.capture_exception(e)
   end
 end

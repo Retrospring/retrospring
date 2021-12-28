@@ -72,3 +72,6 @@ accepted_image_formats:
   - .png
   - image/gif
   - .gif
+
+# Sentry connection string
+sentry_dsn: ''

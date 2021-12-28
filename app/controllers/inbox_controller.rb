@@ -32,7 +32,7 @@ class InboxController < ApplicationController
                                               .zero?
         end
       rescue => e
-        NewRelic::Agent.notice_error(e)
+        Sentry.capture_exception(e)
         flash.now[:error] = "No user with the name @#{params[:author]} found, showing default entries instead!"
         @not_found = true
       end

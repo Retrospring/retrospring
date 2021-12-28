@@ -40,7 +40,8 @@ gem 'ruby-progressbar'
 
 gem 'rails_admin'
 gem 'pghero'
-gem 'newrelic_rpm'
+gem "sentry-ruby"
+gem "sentry-rails"
 
 gem 'sidekiq', "< 6" # remove version constraint once we have redis 5
 

@@ -26,7 +26,7 @@ class Exporter
     finalize
     publish
   rescue => e
-    NewRelic::Agent.notice_error(e)
+    Sentry.capture_exception(e)
     @user.export_processing = false
     @user.save validate: false
   end

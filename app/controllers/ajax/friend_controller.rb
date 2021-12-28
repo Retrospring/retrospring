@@ -7,7 +7,7 @@ class Ajax::FriendController < AjaxController
     begin
       current_user.follow target_user
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.friend.create.fail')
       return
@@ -26,7 +26,7 @@ class Ajax::FriendController < AjaxController
     begin
       current_user.unfollow target_user
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :fail
       @response[:message] = I18n.t('messages.friend.destroy.fail')
       return

@@ -8,7 +8,7 @@ class Ajax::CommentController < AjaxController
     begin
       current_user.comment(answer, params[:comment])
     rescue ActiveRecord::RecordInvalid => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :rec_inv
       @response[:message] = I18n.t('messages.comment.create.rec_inv')
       return

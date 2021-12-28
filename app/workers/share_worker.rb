@@ -25,7 +25,7 @@ class ShareWorker
     return
   rescue => e
     logger.info "failed to post answer #{answer_id} to #{service} for user #{user_id}: #{e.message}"
-    NewRelic::Agent.notice_error(e)
+    Sentry.capture_exception(e)
     raise
   end
 end

@@ -34,7 +34,7 @@ class Ajax::InboxController < AjaxController
     begin
       inbox.remove
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return
@@ -51,7 +51,7 @@ class Ajax::InboxController < AjaxController
     begin
       Inbox.where(user: current_user).each { |i| i.remove }
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return
@@ -69,7 +69,7 @@ class Ajax::InboxController < AjaxController
                                    .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
       @inbox.each { |i| i.remove }
     rescue => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :err
       @response[:message] = I18n.t('messages.error')
       return

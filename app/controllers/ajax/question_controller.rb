@@ -35,7 +35,7 @@ class Ajax::QuestionController < AjaxController
                                   user: current_user,
                                   direct: params[:rcpt] != 'followers')
     rescue ActiveRecord::RecordInvalid => e
-      NewRelic::Agent.notice_error(e)
+      Sentry.capture_exception(e)
       @response[:status] = :rec_inv
       @response[:message] = I18n.t('messages.question.create.rec_inv')
       return
