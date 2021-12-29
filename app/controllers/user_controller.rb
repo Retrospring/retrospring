@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   include ThemeHelper
 
-  before_action :authenticate_user!, only: %w(edit update edit_privacy update_privacy edit_theme update_theme preview_theme delete_theme data export begin_export)
+  before_action :authenticate_user!, only: %w(edit update edit_privacy update_privacy edit_theme update_theme preview_theme delete_theme data export begin_export edit_security update_2fa destroy_2fa reset_user_recovery_codes)
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
