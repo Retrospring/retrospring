@@ -373,9 +373,9 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
       {
         user: user_param,
         ban: ban,
-        permaban: permaban,
         reason: "just a prank, bro",
-        until: wrongly_formatted_date_ugh
+        duration: duration,
+        duration_unit: duration_unit,
       }
     end
 
@@ -414,17 +414,17 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
 
       context "when ban = 0" do
         let(:ban) { "0" }
-        let(:wrongly_formatted_date_ugh) { nil }
 
         "01".each_char do |pb|
           context "when permaban = #{pb}" do
-            let(:permaban) { pb }
+            let(:duration) { nil }
+            let(:duration_unit) { nil }
 
             context "when user is already banned" do
-              before { target_user.ban }
+              before { target_user.ban(nil) }
 
               it "unbans the user" do
-                expect { subject }.to(change { target_user.reload.banned? }.from(true).to(false))
+                expect { subject }.to change { target_user.reload.banned? }.from(true).to(false)
               end
 
               include_examples "returns the expected response"
@@ -443,16 +443,18 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
 
       context "when ban = 1" do
         let(:ban) { "1" }
-        let(:wrongly_formatted_date_ugh) { "4/20/2420 12:00 AM" }
+        let(:duration) { 3 }
+        let(:duration_unit) { 'hours' }
 
         context "when permaban = 0" do
           let(:permaban) { "0" }
 
-          it "bans the user until 2420-04-20" do
-            expect { subject }.to(change { target_user.reload.banned? }.from(false).to(true))
-            expect(target_user).not_to be_permanently_banned
-            expect(target_user.ban_reason).to eq("just a prank, bro")
-            expect(target_user.banned_until).to eq(DateTime.strptime(wrongly_formatted_date_ugh, "%m/%d/%Y %I:%M %p"))
+          it "bans the user for 3 hours" do
+            Timecop.freeze do
+              expect { subject }.to(change { target_user.reload.banned? }.from(false).to(true))
+              expect(target_user.bans.current.first.reason).to eq("just a prank, bro")
+              expect(target_user.bans.current.first.expires_at).to eq(Time.now.utc + 3.hours)
+            end
           end
 
           include_examples "returns the expected response"
@@ -461,13 +463,13 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
         end
 
         context "when permaban = 1" do
-          let(:permaban) { "1" }
+          let(:duration) { nil }
+          let(:duration_unit) { nil }
 
           it "bans the user for all eternity" do
-            expect { subject }.to(change { target_user.reload.banned? }.from(false).to(true))
-            expect(target_user).to be_permanently_banned
-            expect(target_user.ban_reason).to eq("just a prank, bro")
-            expect(target_user.banned_until).to be_nil
+            expect { subject }.to change { target_user.reload.banned? }.from(false).to(true)
+            expect(target_user.bans.current.first.reason).to eq("just a prank, bro")
+            expect(target_user.bans.current.first.expires_at).to be_nil
           end
 
           include_examples "returns the expected response"
@@ -480,8 +482,8 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
     context "when user does not exist" do
       let(:user_param) { "fritz-fantom" }
       let(:ban) { "1" }
-      let(:permaban) { "1" }
-      let(:wrongly_formatted_date_ugh) { "4/20/2420 12:00 AM" }
+      let(:duration) { nil }
+      let(:duration_unit) { nil }
       let(:expected_response) do
         {
           "success" => false,

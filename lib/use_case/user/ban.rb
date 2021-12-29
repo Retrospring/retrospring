@@ -24,12 +24,14 @@ module UseCase
 
         if reason == REASON_SPAM
           target_user.update!(
-            display_name: nil,
-            bio: '',
-            location: '',
-            website: '',
             profile_picture: nil,
             profile_header: nil
+          )
+          target_user.profile.update!(
+            display_name: nil,
+            description: '',
+            location: '',
+            website: '',
           )
         end
 
@@ -43,7 +45,11 @@ module UseCase
       end
 
       def source_user
-        @source_user ||= ::User.find(source_user_id)
+        if source_user_id
+          @source_user ||= ::User.find(source_user_id)
+        else
+          nil
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 - current_ban = user.bans.current.first
 .modal.fade#modal-ban{ aria: { hidden: true, labelledby: 'modal-ban-label' }, role: :dialog, tabindex: -1 }
   .modal-dialog
-    .modal-content
+    .modal-content#ban-control-super
       .modal-header
         %h5.modal-title#modal-ban-label
           = t 'views.modal.bancontrol.title'
@@ -11,7 +11,7 @@
       = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: :novalidate }) do |f|
         = f.hidden_field :user, value: user.screen_name
         - if current_ban.nil?
-          .modal-body#ban-control-super
+          .modal-body
             = f.check_box :ban, label: t('views.modal.bancontrol.ban'), checked: user.banned?
             #ban-controls{ style: user.banned? ? '' : 'display: none' }
               = f.check_box :permaban, label: t('views.modal.bancontrol.permanent'), checked: user.permanently_banned?
@@ -22,13 +22,13 @@
                   = f.radio_button :duration_unit, 'days', label: 'Days'
                   = f.radio_button :duration_unit, 'weeks', label: 'Weeks'
                   = f.radio_button :duration_unit, 'months', label: 'Months'
-              = f.text_field :reason, placeholder: t('views.modal.bancontrol.reason'), value: user.ban_reason
+              = f.text_field :reason, placeholder: t('views.modal.bancontrol.reason'), value: user.bans.current.first&.reason
           .modal-footer
             %button.btn.btn-default{ name: 'stop-time', type: :button, data: { dismiss: :modal } }= t 'views.actions.close'
             = f.submit t('views.modal.bancontrol.hammertime'), class: 'btn btn-primary', name: 'hammer-time'
         - else
           = f.hidden_field :ban, value: '0'
-          .modal-body#ban-control-super
+          .modal-body
             - if current_ban.expires_at.nil?
               This user is currently permanently banned for
               %strong= current_ban.reason
@@ -40,7 +40,7 @@
             - if current_ban.banned_by.present?
               %br
               This ban was instated by
-              %strong= current_ban.banned_by.safe_name
+              %strong= current_ban.banned_by.profile.safe_name
               on
               %strong= current_ban.created_at
           .modal-footer

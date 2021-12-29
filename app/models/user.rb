@@ -237,7 +237,17 @@ class User < ApplicationRecord
   # @param reason [String] Reason for the ban. This is displayed to the user.
   # @param banned_by [User] User who instated the ban
   def ban(duration, duration_unit = 'hours', reason = nil, banned_by = nil)
-    self.bans.create(expires_at: expiry, reason: reason, banned_by: banned_by)
+    if duration
+      expiry = duration.public_send(duration_unit)
+    else
+      expiry = nil
+    end
+    UseCase::User::Ban.call(
+      target_user_id: id,
+      expiry: expiry,
+      reason: reason,
+      source_user_id: banned_by&.id
+    )
   end
 
   def can_export?
