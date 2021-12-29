@@ -30,7 +30,7 @@
     - unless user.profile.website.blank?
       .profile__website
         %i.fa.fa-fw.fa-globe
-        %a{ href: user.profile.website }= user.profile.display_website
+        %a{ href: user.profile.website, target: '_blank' }= user.profile.display_website
     - unless user.profile.location.blank?
       .profile__location
         %i.fa.fa-fw.fa-location-arrow
