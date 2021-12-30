@@ -417,8 +417,8 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
 
         "01".each_char do |pb|
           context "when permaban = #{pb}" do
-            let(:duration) { nil }
-            let(:duration_unit) { nil }
+            let(:duration) { pb == '0' ? 3 : nil }
+            let(:duration_unit) { pb == '0' ? 'hours' : nil }
 
             context "when user is already banned" do
               before { target_user.ban(nil) }
@@ -453,7 +453,7 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
             Timecop.freeze do
               expect { subject }.to(change { target_user.reload.banned? }.from(false).to(true))
               expect(target_user.bans.current.first.reason).to eq("just a prank, bro")
-              expect(target_user.bans.current.first.expires_at).to eq(Time.now.utc + 3.hours)
+              expect(target_user.bans.current.first.expires_at.to_i).to eq((Time.now.utc + 3.hours).to_i)
             end
           end
 
