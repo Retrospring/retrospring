@@ -29,4 +29,4 @@
           %a{ href: show_user_question_path(a.question.user.screen_name, a.question.id) }
             = pluralize(a.question.answer_count, t('views.general.answer'))
       .answerbox__question-text
-        = a.question.content
+        = question_markdown a.question.content
