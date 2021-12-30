@@ -9,7 +9,8 @@ module UseCase
 
       def call
         UserBan.current.where(user_id: target_user_id).update_all(
-          expires_at: DateTime.now
+          # -1s to account for flakyness with timings in tests
+          expires_at: DateTime.now - 1.second
         )
       end
     end

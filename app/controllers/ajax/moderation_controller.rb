@@ -118,7 +118,7 @@ class Ajax::ModerationController < AjaxController
     reason = params[:reason].to_s
     target_user = User.find_by_screen_name!(params[:user])
     unban  = params[:ban] == '0'
-    perma  = params[:duration].nil?
+    perma  = params[:duration].blank?
 
     if !unban && target_user.has_role?(:administrator)
       @response[:status] = :nopriv

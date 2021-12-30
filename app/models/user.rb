@@ -224,7 +224,7 @@ class User < ApplicationRecord
   # endregion
 
   def banned?
-    self.bans.current.any?
+    self.bans.current.count > 0
   end
 
   def unban

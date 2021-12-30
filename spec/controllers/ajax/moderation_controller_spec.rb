@@ -424,7 +424,7 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
               before { target_user.ban(nil) }
 
               it "unbans the user" do
-                expect { subject }.to change { target_user.reload.banned? }.from(true).to(false)
+                 expect { subject }.to change { target_user.reload.banned? }.from(true).to(false)
               end
 
               include_examples "returns the expected response"
@@ -443,15 +443,14 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
 
       context "when ban = 1" do
         let(:ban) { "1" }
-        let(:duration) { 3 }
-        let(:duration_unit) { 'hours' }
 
         context "when permaban = 0" do
-          let(:permaban) { "0" }
+          let(:duration) { 3 }
+          let(:duration_unit) { 'hours' }
 
           it "bans the user for 3 hours" do
             Timecop.freeze do
-              expect { subject }.to(change { target_user.reload.banned? }.from(false).to(true))
+              expect { subject }.to change { target_user.reload.banned? }.from(false).to(true)
               expect(target_user.bans.current.first.reason).to eq("just a prank, bro")
               expect(target_user.bans.current.first.expires_at.to_i).to eq((Time.now.utc + 3.hours).to_i)
             end
