@@ -478,6 +478,33 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
       end
     end
 
+    context "when reason = Spam" do
+      let(:params) do
+        {
+          user: target_user.screen_name,
+          ban: "1",
+          reason: "Spam",
+          duration: nil,
+          duration_unit: nil,
+        }
+      end
+
+      it "empties the user's profile" do
+        user.profile.display_name = "Veggietales Facts"
+        user.profile.description = "Are you a fan of Veggietales? Want to expand your veggie knowledge? Here at Veggietales Facts, we tweet trivia for fans like you."
+        user.profile.location = "Hell"
+        user.profile.website = "https://twitter.com/veggiefact"
+
+        expect { subject }.to change { target_user.reload.banned? }.from(false).to(true)
+        expect(target_user.bans.current.first.reason).to eq("Spam")
+
+        expect(target_user.profile.display_name).to be_nil
+        expect(target_user.profile.description).to be_empty
+        expect(target_user.profile.location).to be_empty
+        expect(target_user.profile.website).to be_empty
+      end
+    end
+
     context "when user does not exist" do
       let(:user_param) { "fritz-fantom" }
       let(:ban) { "1" }
