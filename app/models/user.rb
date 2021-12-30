@@ -228,7 +228,7 @@ class User < ApplicationRecord
   end
 
   def unban
-    self.bans.current.update!(expires_at: DateTime.now)
+    UseCase::User::Unban.call(id)
   end
 
   # Bans a user.
