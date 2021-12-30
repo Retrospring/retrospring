@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   match '/help/faq', to: 'static#faq', via: 'get', as: :help_faq
   match '/privacy', to: 'static#privacy_policy', via: 'get', as: :privacy_policy
   match '/terms', to: 'static#terms', via: 'get', as: :terms
+  match '/linkfilter', to: 'static#linkfilter', via: 'get', as: :linkfilter
 
   # Devise routes
   devise_for :users, path: 'user', skip: [:sessions, :registrations]
