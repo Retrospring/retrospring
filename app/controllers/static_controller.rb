@@ -31,6 +31,12 @@ class StaticController < ApplicationController
     @smiles = Smile.count + CommentSmile.count
   end
 
+  def linkfilter
+    redirect_to root_path unless params[:url]
+    
+    @link = params[:url]
+  end
+
   def faq
 
   end
