@@ -6,18 +6,19 @@ load = ->
   banCheckbox = modalForm.querySelector('[name="ban"][type="checkbox"]')
   permabanCheckbox = modalForm.querySelector('[name="permaban"][type="checkbox"]')
 
-  banCheckbox.addEventListener "change", (event) ->
-    $t = $ this
-    if $t.is(":checked")
-      $("#ban-controls").show()
-    else
-      $("#ban-controls").hide()
-  permabanCheckbox.addEventListener "change", (event) ->
-    $t = $ this
-    if $t.is(":checked")
-      $("#ban-controls-time").hide()
-    else
-      $("#ban-controls-time").show()
+  if banCheckbox
+    banCheckbox.addEventListener "change", (event) ->
+      $t = $ this
+      if $t.is(":checked")
+        $("#ban-controls").show()
+      else
+        $("#ban-controls").hide()
+    permabanCheckbox.addEventListener "change", (event) ->
+      $t = $ this
+      if $t.is(":checked")
+        $("#ban-controls-time").hide()
+      else
+        $("#ban-controls-time").show()
 
   modalForm.addEventListener "submit", (event) ->
     event.preventDefault();
@@ -29,11 +30,11 @@ load = ->
         "0"
 
     data = {
-      ban: checktostr banCheckbox
+      ban: banCheckbox ? checktostr banCheckbox : false
       user: modalForm.elements["user"].value
     }
 
-    if banCheckbox.checked
+    if banCheckbox && banCheckbox.checked
       data.reason = modalForm.elements["reason"].value.trim()
       unless permabanCheckbox.checked
         data.duration = modalForm.elements["duration"].value.trim()
