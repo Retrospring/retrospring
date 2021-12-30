@@ -154,9 +154,11 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     fail "user #{args[:screen_name]} not found" if user.nil?
-    user.permanently_banned = true
-    user.ban_reason = args[:reason]
-    user.save!
+    UseCase::User::Ban.call(
+      target_user_id: user.id,
+      expiry: nil,
+      reason: args[:reason],
+    )
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
 
@@ -164,10 +166,11 @@ namespace :justask do
   task :ban, [:screen_name, :reason] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
-    user.permanently_banned = false
-    user.banned_until = DateTime.current + 1
-    user.ban_reason = args[:reason]
-    user.save!
+    UseCase::User::Ban.call(
+      target_user_id: user.id,
+      expiry: DateTime.current + 1,
+      reason: args[:reason],
+    )
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
 
@@ -175,10 +178,11 @@ namespace :justask do
   task :week_ban, [:screen_name, :reason] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
-    user.permanently_banned = false
-    user.banned_until = DateTime.current + 7
-    user.ban_reason = args[:reason]
-    user.save!
+    UseCase::User::Ban.call(
+      target_user_id: user.id,
+      expiry: DateTime.current + 7,
+      reason: args[:reason],
+      )
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
 
@@ -186,10 +190,11 @@ namespace :justask do
   task :month_ban, [:screen_name, :reason] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
-    user.permanently_banned = false
-    user.banned_until = DateTime.current + 30
-    user.ban_reason = args[:reason]
-    user.save!
+    UseCase::User::Ban.call(
+      target_user_id: user.id,
+      expiry: DateTime.current + 30,
+      reason: args[:reason],
+      )
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
 
@@ -197,10 +202,11 @@ namespace :justask do
   task :year_ban, [:screen_name, :reason] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
-    user.permanently_banned = false
-    user.banned_until = DateTime.current + 365
-    user.ban_reason = args[:reason]
-    user.save!
+    UseCase::User::Ban.call(
+      target_user_id: user.id,
+      expiry: DateTime.current + 365,
+      reason: args[:reason],
+    )
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
 
@@ -208,10 +214,11 @@ namespace :justask do
   task :aeon_ban, [:screen_name, :reason] => :environment do |t, args|
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
-    user.permanently_banned = false
-    user.banned_until = DateTime.current + 365_000_000_000
-    user.ban_reason = args[:reason]
-    user.save!
+    UseCase::User::Ban.call(
+      target_user_id: user.id,
+      expiry: DateTime.current + 365_000_000_000,
+      reason: args[:reason],
+    )
     puts "#{user.screen_name} got hit by\033[5m YE OLDE BANHAMMER\033[0m!!1!"
   end
 
@@ -220,10 +227,7 @@ namespace :justask do
     fail "screen name required" if args[:screen_name].nil?
     user = User.find_by_screen_name(args[:screen_name])
     fail "user #{args[:screen_name]} not found" if user.nil?
-    user.permanently_banned = false
-    user.banned_until = nil
-    user.ban_reason = nil
-    user.save!
+    UseCase::User::Unban.call(user.id)
     puts "#{user.screen_name} is no longer banned."
   end
 
