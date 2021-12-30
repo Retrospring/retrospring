@@ -25,3 +25,8 @@ RAW_MARKDOWN_OPTS = {
   strikethrough: true,
   superscript: false
 }
+
+ALLOWED_HOSTS = [
+  APP_CONFIG['hostname'],
+  *APP_CONFIG['allowed_hosts']
+]
