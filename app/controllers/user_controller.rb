@@ -4,7 +4,7 @@ class UserController < ApplicationController
   before_action :authenticate_user!, only: %w(edit update edit_privacy update_privacy edit_theme update_theme preview_theme delete_theme data export begin_export edit_security update_2fa destroy_2fa reset_user_recovery_codes)
 
   def show
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @answers = @user.cursored_answers(last_id: params[:last_id])
     @answers_last_id = @answers.map(&:id).min
     @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
@@ -99,7 +99,7 @@ class UserController < ApplicationController
   def friends
     @title = 'Following'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @users = @user.cursored_friends(last_id: params[:last_id])
+    @users = @user.cursored_friends(last_id: params[:last_id]).includes(:profile)
     @users_last_id = @users.map(&:id).min
     @more_data_available = !@user.cursored_friends(last_id: @users_last_id, size: 1).count.zero?
     @type = :friend

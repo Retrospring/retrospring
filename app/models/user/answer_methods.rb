@@ -9,5 +9,6 @@ module User::AnswerMethods
     answers
       .order(:created_at)
       .reverse_order
+      .includes(comments: [:user], question: [:user])
   end
 end
