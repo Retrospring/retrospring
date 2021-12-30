@@ -11,7 +11,7 @@
             ·
             %a{ href: show_user_question_path(i.question.user.screen_name, i.question.id) }
               = pluralize(i.question.answer_count, t('views.inbox.entry.response'))
-        %p.answerbox__question-text= i.question.content
+        %p.answerbox__question-text= question_markdown i.question.content
       - if i.question.user_id != current_user.id || current_user.has_role?(:administrator)
         .pull-right
           .btn-group
