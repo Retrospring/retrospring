@@ -23,18 +23,13 @@ load = ->
   modalForm.addEventListener "submit", (event) ->
     event.preventDefault();
 
-    checktostr = (el) ->
-      if el.checked
-        "1"
-      else
-        "0"
-
     data = {
-      ban: banCheckbox ? checktostr banCheckbox : false
+      ban: "0"
       user: modalForm.elements["user"].value
     }
 
     if banCheckbox && banCheckbox.checked
+      data.ban = "1"
       data.reason = modalForm.elements["reason"].value.trim()
       unless permabanCheckbox.checked
         data.duration = modalForm.elements["duration"].value.trim()
