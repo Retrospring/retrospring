@@ -7,6 +7,6 @@ module User::TimelineMethods
 
   # @return [Array] the users' timeline
   def timeline
-    Answer.where('user_id in (?) OR user_id = ?', friend_ids, id).order(:created_at).reverse_order.includes(comments: [:user], question: [:user], user: [:profile])
+    Answer.where('user_id in (?) OR user_id = ?', friend_ids, id).order(:created_at).reverse_order.includes(comments: [:user, :smiles], question: [:user], user: [:profile], smiles: [:user])
   end
 end
