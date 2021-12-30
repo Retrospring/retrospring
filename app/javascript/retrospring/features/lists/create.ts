@@ -27,6 +27,7 @@ export function createListHandler(event: Event): void {
 }
 
 export function createListInputHandler(event: KeyboardEvent): void {
+  // Return key
   if (event.which === 13) {
     event.preventDefault();
     document.querySelector<HTMLButtonElement>('button#create-list').click();
