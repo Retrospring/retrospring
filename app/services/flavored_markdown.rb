@@ -1,5 +1,6 @@
 class FlavoredMarkdown < Redcarpet::Render::HTML
   include Rails.application.routes.url_helpers
+  include SharedMarkers
 
   def preprocess(text)
     wrap_mentions(text)

@@ -15,6 +15,11 @@ module MarkdownHelper
     CGI.unescape_html(Sanitize.fragment(md.render(content), EVIL_TAGS)).strip
   end
 
+  def question_markdown(content)
+    md = Redcarpet::Markdown.new(QuestionMarkdown.new, MARKDOWN_OPTS)
+    Sanitize.fragment(md.render(content), EVIL_TAGS).html_safe
+  end
+
   def raw_markdown(content)
     md = Redcarpet::Markdown.new(Redcarpet::Render::HTML, RAW_MARKDOWN_OPTS)
     raw md.render content

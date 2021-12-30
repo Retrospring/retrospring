@@ -73,5 +73,12 @@ accepted_image_formats:
   - image/gif
   - .gif
 
+# This list controls which hosts are excempt from the linkfilter
+# Note: `hostname` is always included by default
+allowed_hosts:
+  - twitter.com
+  - youtube.com
+  - youtu.be
+
 # Sentry connection string
 sentry_dsn: ''
