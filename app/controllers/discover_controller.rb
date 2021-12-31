@@ -8,10 +8,10 @@ class DiscoverController < ApplicationController
 
     top_x = 10  # only display the top X items
 
-    @popular_answers = Answer.where("created_at > ?", Time.now.ago(1.week)).order(:smile_count).reverse_order.limit(top_x)
-    @most_discussed = Answer.where("created_at > ?", Time.now.ago(1.week)).order(:comment_count).reverse_order.limit(top_x)
-    @popular_questions = Question.where("created_at > ?", Time.now.ago(1.week)).order(:answer_count).reverse_order.limit(top_x)
-    @new_users = User.where("asked_count > 0").order(:id).reverse_order.limit(top_x)
+    @popular_answers = Answer.where("created_at > ?", Time.now.ago(1.week)).order(:smile_count).reverse_order.limit(top_x).includes(:question, :user, :comments)
+    @most_discussed = Answer.where("created_at > ?", Time.now.ago(1.week)).order(:comment_count).reverse_order.limit(top_x).includes(:question, :user, :comments)
+    @popular_questions = Question.where("created_at > ?", Time.now.ago(1.week)).order(:answer_count).reverse_order.limit(top_x).includes(:user)
+    @new_users = User.where("asked_count > 0").order(:id).reverse_order.limit(top_x).includes(:profile)
 
     # .user = the user
     # .question_count = how many questions did the user ask
