@@ -52,11 +52,15 @@ describe MarkdownHelper, :type => :helper do
 
   describe '#question_markdown' do
     it 'should link allowed links without the linkfilter' do
-      expect(question_markdown('https://twitter.com/retrospring')).to eq('<p><a href="https://twitter.com/retrospring" target="_blank">https://twitter.com/retrospring</a></p>')
+      expect(question_markdown('https://twitter.com/retrospring')).to eq('<p><a href="https://twitter.com/retrospring" target="_blank" rel="nofollow">https://twitter.com/retrospring</a></p>')
     end
 
     it 'should link untrusted links with the linkfilter' do
-      expect(question_markdown('https://rrerr.net')).to eq('<p><a href="/linkfilter?url=https%3A%2F%2Frrerr.net" target="_blank">https://rrerr.net</a></p>')
+      expect(question_markdown('https://rrerr.net')).to eq('<p><a href="/linkfilter?url=https%3A%2F%2Frrerr.net" target="_blank" rel="nofollow">https://rrerr.net</a></p>')
+    end
+
+    it 'should not process any markup aside of links' do
+      expect(question_markdown('**your account has been disabled**, [click here to enable it again](https://evil.example.com)')). to eq('<p>**your account has been disabled**, [click here to enable it again](<a href="/linkfilter?url=https%3A%2F%2Fevil.example.com" target="_blank" rel="nofollow">https://evil.example.com</a>)</p>')
     end
   end
 
