@@ -76,10 +76,10 @@
         %p.text-muted= current_user.asked_count
 
         %p.font-weight-bold.mb-0 Following
-        %p.text-muted= current_user.friend_count
+        %p.text-muted= current_user.followings.count
 
         %p.font-weight-bold.mb-0 Followers
-        %p.text-muted= current_user.follower_count
+        %p.text-muted= current_user.followers.count
 
         %p.font-weight-bold.mb-0 Smiles
         %p.text-muted= current_user.smiled_count + current_user.comment_smiled_count

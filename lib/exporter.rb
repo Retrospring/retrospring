@@ -36,7 +36,7 @@ class Exporter
   def collect_user_info
     %i(answered_count asked_count ban_reason banned_until comment_smiled_count commented_count
        confirmation_sent_at confirmed_at created_at profile_header profile_header_h profile_header_w profile_header_x profile_header_y
-       profile_picture_w profile_picture_h profile_picture_x profile_picture_y current_sign_in_at current_sign_in_ip follower_count friend_count
+       profile_picture_w profile_picture_h profile_picture_x profile_picture_y current_sign_in_at current_sign_in_ip
        id last_sign_in_at last_sign_in_ip locale permanently_banned
        privacy_allow_anonymous_questions privacy_allow_public_timeline privacy_allow_stranger_answers
        privacy_show_in_search profile_header_file_name profile_picture_file_name
@@ -232,8 +232,8 @@ class Exporter
 
   def user_stub(user)
     uobj = {}
-    %i(answered_count asked_count comment_smiled_count commented_count created_at follower_count
-       friend_count id permanently_banned screen_name smiled_count).each do |f|
+    %i(answered_count asked_count comment_smiled_count commented_count created_at
+       id permanently_banned screen_name smiled_count).each do |f|
       uobj[f] = user.send f
     end
 

@@ -275,8 +275,6 @@ ActiveRecord::Schema.define(version: 2022_01_05_171216) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "screen_name"
-    t.integer "friend_count", default: 0, null: false
-    t.integer "follower_count", default: 0, null: false
     t.integer "asked_count", default: 0, null: false
     t.integer "answered_count", default: 0, null: false
     t.integer "commented_count", default: 0, null: false
