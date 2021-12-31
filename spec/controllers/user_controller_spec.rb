@@ -21,6 +21,34 @@ describe UserController, type: :controller do
     end
   end
 
+  describe "#followers" do
+    subject { get :followers, params: { username: user.screen_name } }
+
+    context "user signed in" do
+      before(:each) { sign_in user }
+
+      it "renders the user/show_follow template" do
+        subject
+        expect(assigns(:user)).to eq(user)
+        expect(response).to render_template("user/show_follow")
+      end
+    end
+  end
+
+  describe "#friends" do
+    subject { get :friends, params: { username: user.screen_name } }
+
+    context "user signed in" do
+      before(:each) { sign_in user }
+
+      it "renders the user/show_follow template" do
+        subject
+        expect(assigns(:user)).to eq(user)
+        expect(response).to render_template("user/show_follow")
+      end
+    end
+  end
+
   describe "#edit" do
     subject { get :edit }
 
