@@ -7,10 +7,10 @@ module User::RelationshipMethods
   define_cursor_paginator :cursored_followers, :ordered_followers
 
   def ordered_friends
-    friends.reverse_order
+    friends.reverse_order.includes(:profile)
   end
 
   def ordered_followers
-    followers.reverse_order
+    followers.reverse_order.includes(:profile)
   end
 end

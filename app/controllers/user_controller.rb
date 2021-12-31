@@ -84,7 +84,7 @@ class UserController < ApplicationController
 
   def followers
     @title = 'Followers'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @users = @user.cursored_followers(last_id: params[:last_id])
     @users_last_id = @users.map(&:id).min
     @more_data_available = !@user.cursored_followers(last_id: @users_last_id, size: 1).count.zero?
@@ -98,8 +98,8 @@ class UserController < ApplicationController
 
   def friends
     @title = 'Following'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
-    @users = @user.cursored_friends(last_id: params[:last_id]).includes(:profile)
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
+    @users = @user.cursored_friends(last_id: params[:last_id])
     @users_last_id = @users.map(&:id).min
     @more_data_available = !@user.cursored_friends(last_id: @users_last_id, size: 1).count.zero?
     @type = :friend
@@ -112,7 +112,7 @@ class UserController < ApplicationController
 
   def questions
     @title = 'Questions'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).first!
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @questions = @user.cursored_questions(author_is_anonymous: false, last_id: params[:last_id])
     @questions_last_id = @questions.map(&:id).min
     @more_data_available = !@user.cursored_questions(author_is_anonymous: false, last_id: @questions_last_id, size: 1).count.zero?
