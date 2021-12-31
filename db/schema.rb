@@ -157,9 +157,11 @@ ActiveRecord::Schema.define(version: 2022_01_05_171216) do
     t.bigint "target_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "type", null: false
     t.index ["source_id", "target_id"], name: "index_relationships_on_source_id_and_target_id", unique: true
     t.index ["source_id"], name: "index_relationships_on_source_id"
     t.index ["target_id"], name: "index_relationships_on_target_id"
+    t.index ["type"], name: "index_relationships_on_type"
   end
 
   create_table "reports", id: :serial, force: :cascade do |t|

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include User::Relationship
+  include User::Relationship::Follow
   include User::AnswerMethods
   include User::InboxMethods
   include User::QuestionMethods
@@ -24,14 +26,6 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :inboxes, dependent: :destroy
-  has_many :active_relationships, class_name: 'Relationship',
-                                  foreign_key: 'source_id',
-                                  dependent: :destroy
-  has_many :passive_relationships, class_name: 'Relationship',
-                                   foreign_key: 'target_id',
-                                   dependent: :destroy
-  has_many :friends,   through: :active_relationships, source: :target
-  has_many :followers, through: :passive_relationships, source: :source
   has_many :smiles, dependent: :destroy
   has_many :comment_smiles, dependent: :destroy
   has_many :services, dependent: :destroy
@@ -109,11 +103,6 @@ class User < ApplicationRecord
   # unfollows an user
   def unfollow(target_user)
     active_relationships.find_by(target: target_user).destroy
-  end
-
-  # @return [Boolean] true if +self+ is following +target_user+
-  def following?(target_user)
-    friends.include? target_user
   end
 
   # @param list [List]
