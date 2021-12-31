@@ -70,6 +70,18 @@ describe ThemeHelper, :type => :helper do
           expect(helper.get_active_theme).to be_a(Theme)
         end
       end
+
+      context "when target answer's user has a theme" do
+        before(:each) do
+          @answer = FactoryBot.create(:answer, user: FactoryBot.create(:user))
+          @answer.user.theme = Theme.new
+          @answer.user.save!
+        end
+
+        it "returns a theme" do
+          expect(helper.get_active_theme).to be_a(Theme)
+        end
+      end
     end
 
     context "when user is signed in" do
@@ -91,6 +103,20 @@ describe ThemeHelper, :type => :helper do
             @user = FactoryBot.create(:user)
             @user.theme = theme
             @user.save!
+          end
+
+          it "returns a theme" do
+            expect(helper.get_active_theme).to be(theme)
+          end
+        end
+
+        context "when target answer's user has a theme" do
+          let(:theme) { Theme.new }
+
+          before(:each) do
+            @answer = FactoryBot.create(:answer, user: FactoryBot.create(:user))
+            @answer.user.theme = theme
+            @answer.user.save!
           end
 
           it "returns a theme" do
@@ -125,6 +151,31 @@ describe ThemeHelper, :type => :helper do
 
           it "returns the theme of the current page" do
             expect(helper.get_active_theme).to eq(user_theme)
+          end
+
+          context "when user doesn't allow foreign themes" do
+            before(:each) do
+              user.show_foreign_themes = false
+              user.save!
+            end
+
+            it "should return the users theme" do
+              expect(helper.get_active_theme).to eq(theme)
+            end
+          end
+        end
+
+        context "when target answer's user has a theme" do
+          let(:answer_theme) { Theme.new }
+
+          before(:each) do
+            @answer = FactoryBot.create(:answer, user: FactoryBot.create(:user))
+            @answer.user.theme = answer_theme
+            @answer.user.save!
+          end
+
+          it "returns the theme of the current page" do
+            expect(helper.get_active_theme).to eq(answer_theme)
           end
 
           context "when user doesn't allow foreign themes" do

@@ -76,6 +76,16 @@ module ThemeHelper
       else
         @user.theme
       end
+    elsif @answer&.user&.theme
+      if user_signed_in?
+        if current_user&.show_foreign_themes?
+          @answer.user.theme
+        else
+          current_user&.theme
+        end
+      else
+        @answer.user.theme
+      end
     elsif current_user&.theme
       current_user.theme
     end
