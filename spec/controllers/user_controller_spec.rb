@@ -49,6 +49,20 @@ describe UserController, type: :controller do
     end
   end
 
+  describe "#questions" do
+    subject { get :questions, params: { username: user.screen_name } }
+
+    context "user signed in" do
+      before(:each) { sign_in user }
+
+      it "renders the user/questions template" do
+        subject
+        expect(assigns(:user)).to eq(user)
+        expect(response).to render_template("user/questions")
+      end
+    end
+  end
+
   describe "#edit" do
     subject { get :edit }
 
