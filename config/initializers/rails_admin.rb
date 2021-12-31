@@ -34,6 +34,7 @@ RailsAdmin.config do |config|
     ListMember
     Inbox
     Notification
+    Profile
     Question
     Relationship
     Report
