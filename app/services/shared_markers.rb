@@ -1,9 +1,13 @@
 module SharedMarkers
-  def autolink(link, _link_type)
-    if ALLOWED_HOSTS.include? URI(link).host
-      return "<a href=\"#{link}\" target=\"_blank\">#{link}</a>"
-    end
+  include ActionView::Helpers::TagHelper
 
-    "<a href=\"#{linkfilter_path(url: link)}\" target=\"_blank\">#{link}</a>"
+  def autolink(link, _link_type)
+    href = if ALLOWED_HOSTS_IN_MARKDOWN.include?(URI(link).host)
+             link
+           else
+             linkfilter_path(url: link)
+           end
+
+    content_tag(:a, link, href: href, target: "_blank", rel: "nofollow")
   end
 end
