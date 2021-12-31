@@ -9,4 +9,4 @@
         - APP_LOCALES.each do |key, value|
           %li
             .flag{ class: "flag-#{value[1]}" }
-            %a{ href: "?hl=#{key}" }= value[0]
+            %a{ href: "?hl=#{key}", rel: 'nofollow' }= value[0]
