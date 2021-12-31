@@ -26,7 +26,7 @@ RAW_MARKDOWN_OPTS = {
   superscript: false
 }
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS_IN_MARKDOWN = [
   APP_CONFIG['hostname'],
-  *APP_CONFIG['allowed_hosts']
+  *APP_CONFIG['allowed_hosts_in_markdown']
 ]

@@ -75,7 +75,7 @@ accepted_image_formats:
 
 # This list controls which hosts are excempt from the linkfilter
 # Note: `hostname` is always included by default
-allowed_hosts:
+allowed_hosts_in_markdown:
   - twitter.com
   - youtube.com
   - youtu.be
