@@ -28,9 +28,9 @@ describe Ajax::FriendController, :ajax_controller, type: :controller do
         end
 
         it "creates a follow relationship" do
-          expect(user.friends.ids).not_to include(target_user.id)
-          expect { subject }.to(change { user.friends.count }.by(1))
-          expect(user.friends.ids).to include(target_user.id)
+          expect(user.followings.ids).not_to include(target_user.id)
+          expect { subject }.to(change { user.followings.count }.by(1))
+          expect(user.followings.ids).to include(target_user.id)
         end
 
         include_examples "returns the expected response"
@@ -48,7 +48,7 @@ describe Ajax::FriendController, :ajax_controller, type: :controller do
         end
 
         it "does not create a follow relationship" do
-          expect { subject }.not_to(change { user.friends.count })
+          expect { subject }.not_to(change { user.followings.count })
         end
 
         include_examples "returns the expected response"
@@ -99,9 +99,9 @@ describe Ajax::FriendController, :ajax_controller, type: :controller do
           before(:each) { user.follow target_user }
 
           it "destroys a follow relationship" do
-            expect(user.friends.ids).to include(target_user.id)
-            expect { subject }.to(change { user.friends.count }.by(-1))
-            expect(user.friends.ids).not_to include(target_user.id)
+            expect(user.followings.ids).to include(target_user.id)
+            expect { subject }.to(change { user.followings.count }.by(-1))
+            expect(user.followings.ids).not_to include(target_user.id)
           end
 
           include_examples "returns the expected response"
@@ -117,7 +117,7 @@ describe Ajax::FriendController, :ajax_controller, type: :controller do
           end
 
           it "does not destroy a follow relationship" do
-            expect { subject }.not_to(change { user.friends.count })
+            expect { subject }.not_to(change { user.followings.count })
           end
 
           include_examples "returns the expected response"
@@ -136,7 +136,7 @@ describe Ajax::FriendController, :ajax_controller, type: :controller do
         end
 
         it "does not destroy a follow relationship" do
-          expect { subject }.not_to(change { user.friends.count })
+          expect { subject }.not_to(change { user.followings.count })
         end
 
         include_examples "returns the expected response"

@@ -10,7 +10,7 @@ class UserController < ApplicationController
     @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
 
     if user_signed_in?
-      notif = Notification.where(target_type: "Relationship", target_id: @user.active_relationships.where(target_id: current_user.id).pluck(:id), recipient_id: current_user.id, new: true).first
+      notif = Notification.where(target_type: "Relationship", target_id: @user.active_follow_relationships.where(target_id: current_user.id).pluck(:id), recipient_id: current_user.id, new: true).first
       unless notif.nil?
         notif.new = false
         notif.save
@@ -96,12 +96,12 @@ class UserController < ApplicationController
     end
   end
 
-  def friends
+  def followings
     @title = 'Following'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
-    @users = @user.cursored_friends(last_id: params[:last_id])
+    @users = @user.cursored_followings(last_id: params[:last_id])
     @users_last_id = @users.map(&:id).min
-    @more_data_available = !@user.cursored_friends(last_id: @users_last_id, size: 1).count.zero?
+    @more_data_available = !@user.cursored_followings(last_id: @users_last_id, size: 1).count.zero?
     @type = :friend
 
     respond_to do |format|
