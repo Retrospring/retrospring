@@ -1,6 +1,6 @@
 class AnswerController < ApplicationController
   def show
-    @answer = Answer.find(params[:id]).include(comments: [:user, :smiles], question: [:user], smiles: [:user])
+    @answer = Answer.includes(comments: [:user, :smiles], question: [:user], smiles: [:user]).find(params[:id])
     @display_all = true
 
     if user_signed_in?
