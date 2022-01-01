@@ -3,7 +3,7 @@
 
   @include media-breakpoint-down('md') {
     top: unset !important;
-    bottom: 45px !important;
+    bottom: calc(45px + env(safe-area-inset-bottom)) !important;
     position: fixed;
     left: 0 !important;
   }
