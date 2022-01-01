@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Page not found!</title>
+  <title>Page not found</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
     :root {
@@ -82,7 +82,11 @@
       max-width: 100%;
     }
 
-    @media (min-width: 576px) {
+    .error-text-container {
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
       body {
         padding: 3rem 1rem 1rem 1rem;
       }
@@ -92,43 +96,51 @@
       }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 992px) {
       body {
         padding: 5rem 1rem 3rem 1rem;
       }
 
-      .error-artwork-container picture {
-        width: 768px;
+      .error {
+        display: flex;
+        justify-content: center;
+      }
+
+      .error-text-container {
+        align-self: center;
+        text-align: left;
       }
     }
   </style>
 </head>
 <body>
-  <div class="error-artwork-container">
-    <picture>
-      <source
-        srcset="/images/errors/small/404.png 576w,
-                /images/errors/medium/404.png 768w,
-                /images/errors/original/404.png 1200w">
-      <img src="/images/errors/small/404.png"/>
-    </picture>
-  </div>
-  <div class="text-center">
-    <h1>
-      <span class="text-primary font-weight-bold">404</span>
-      <small class="text-muted">Page not found</small>
-    </h1>
-    <p>
-      Whatever you might have been searching for, it's not here!
-    </p>
-    <ul class="links">
-      <li class="d-none js-back-link">
-        <a href="javascript:history.back()">Back</a>
-      </li>
-      <li>
-        <a href="/">Home</a>
-      </li>
-    </ul>
+  <div class="error">
+    <div class="error-artwork-container">
+      <picture>
+        <source
+          srcset="/images/errors/small/404.png 576w,
+                  /images/errors/medium/404.png 768w,
+                  /images/errors/original/404.png 1200w">
+        <img src="/images/errors/small/404.png"/>
+      </picture>
+    </div>
+    <div class="error-text-container">
+      <h1>
+        <span class="text-primary font-weight-bold">404</span>
+        <small class="text-muted">Page not found</small>
+      </h1>
+      <p>
+        Whatever you might have been looking for, it's not here.
+      </p>
+      <ul class="links">
+        <li class="d-none js-back-link">
+          <a href="javascript:history.back()">Back</a>
+        </li>
+        <li>
+          <a href="/">Home</a>
+        </li>
+      </ul>
+    </div>
   </div>
   <script>
     if (window.history.length > 0) {
