@@ -23,9 +23,9 @@ describe ServicesController, type: :controller do
     subject { get :create, params: { provider: 'twitter' } }
 
     context 'no services connected' do
-    it 'creates a service integration' do
-      expect { subject }.to change { Service.count }.by(1)
-    end
+      it 'creates a service integration' do
+        expect { subject }.to change { Service.count }.by(1)
+      end
     end
 
     context 'a user has a service connected' do
@@ -34,7 +34,7 @@ describe ServicesController, type: :controller do
 
       it 'shows an error when trying to attach a service account which is already connected' do
         subject
-        expect(flash[:error]).to eq("The Twitter account you are trying to connect is already connected to another #{APP_CONFIG['site_name']} account.")
+        expect(flash[:error]).to eq("The Twitter account you are trying to connect is already connected to another #{APP_CONFIG['site_name']} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring.")
       end
     end
   end

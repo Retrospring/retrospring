@@ -15,7 +15,7 @@ class ServicesController < ApplicationController
       flash[:success] = t('flash.service.create.success')
     else
       if service.errors.details.has_key?(:uid) && service.errors.details[:uid].any? { |err| err[:error] == :taken }
-        flash[:error] = "The #{service.type.split('::').last.titleize} account you are trying to connect is already connected to another #{APP_CONFIG['site_name']} account."
+        flash[:error] = "The #{service.type.split('::').last.titleize} account you are trying to connect is already connected to another #{APP_CONFIG['site_name']} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
       else
         flash[:error] = t('flash.service.create.error')
       end
