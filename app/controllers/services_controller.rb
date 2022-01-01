@@ -9,11 +9,16 @@ class ServicesController < ApplicationController
 
   def create
     service = Service.initialize_from_omniauth( omniauth_hash )
+    service.user = current_user
 
-    if current_user.services << service
+    if service.save
       flash[:success] = t('flash.service.create.success')
     else
-      flash[:error] = t('flash.service.create.error')
+      if service.errors.details.has_key?(:uid) && service.errors.details[:uid].any? { |err| err[:error] == :taken }
+        flash[:error] = "The #{service.type.split('::').last.titleize} account you are trying to connect is already connected to another #{APP_CONFIG['site_name']} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
+      else
+        flash[:error] = t('flash.service.create.error')
+      end
     end
 
     if origin
