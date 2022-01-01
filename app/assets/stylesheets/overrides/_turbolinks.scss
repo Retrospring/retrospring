@@ -1,3 +1,10 @@
 .turbolinks-progress-bar {
   background: var(--turbolinks-progress-color);
+
+  @include media-breakpoint-down('sm') {
+    top: unset !important;
+    bottom: 0 !important;
+    position: fixed;
+    left: 0 !important;
+  }
 }
