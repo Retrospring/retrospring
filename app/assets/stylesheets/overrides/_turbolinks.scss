@@ -1,7 +1,7 @@
 .turbolinks-progress-bar {
   background: var(--turbolinks-progress-color);
 
-  @include media-breakpoint-down('sm') {
+  @include media-breakpoint-down('md') {
     top: unset !important;
     bottom: 0 !important;
     position: fixed;
