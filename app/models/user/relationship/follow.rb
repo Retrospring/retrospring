@@ -20,9 +20,7 @@ class User
 
       # Follow an user
       def follow(target_user)
-        raise Justask::Errors::FollowingOtherBlockedSelf if target_user.blocking?(self)
-        raise Justask::Errors::FollowingSelfBlockedOther if blocking?(target_user)
-        raise Justask::Errors::FollowingSelf if target_user == self
+        raise Errors::FollowingSelf if target_user == self
         create_relationship(active_follow_relationships, target_user)
       end
 

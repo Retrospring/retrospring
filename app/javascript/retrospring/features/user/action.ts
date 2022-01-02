@@ -7,14 +7,15 @@ export function userActionHandler(event: Event): void {
   const target = button.dataset.target;
   const action = button.dataset.action;
 
-  const targetURL = action === 'follow' ? '/ajax/create_friend' : '/ajax/destroy_friend';
+  const targetURL = action === 'follow' ? '/ajax/create_relationship' : '/ajax/destroy_relationship';
   let success = false;
 
   Rails.ajax({
     url: targetURL,
     type: 'POST',
     data: new URLSearchParams({
-      screen_name: target
+      screen_name: target,
+      type: "follow"
     }).toString(),
     success: (data) => {
       success = data.success;

@@ -15,5 +15,13 @@ module UseCase
     def call
       raise NotImplementedError
     end
+
+    private
+
+    def not_blank!(*args)
+      args.each do |arg|
+        raise Errors::ParamIsMissing if instance_variable_get("@#{arg}").blank?
+      end
+    end
   end
 end
