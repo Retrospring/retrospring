@@ -95,16 +95,6 @@ class User < ApplicationRecord
     end
   end
 
-  # follows an user.
-  def follow(target_user)
-    active_relationships.create(target: target_user)
-  end
-
-  # unfollows an user
-  def unfollow(target_user)
-    active_relationships.find_by(target: target_user).destroy
-  end
-
   # @param list [List]
   # @return [Boolean] true if +self+ is a member of +list+
   def member_of?(list)

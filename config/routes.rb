@@ -102,8 +102,8 @@ Rails.application.routes.draw do
     match '/delete_all_inbox/:author', to: 'inbox#remove_all_author', via: :post, as: :delete_all_author
     match '/answer', to: 'answer#create', via: :post, as: :answer
     match '/destroy_answer', to: 'answer#destroy', via: :post, as: :destroy_answer
-    match '/create_friend', to: 'friend#create', via: :post, as: :create_friend
-    match '/destroy_friend', to: 'friend#destroy', via: :post, as: :destroy_friend
+    match '/create_relationship', to: 'relationship#create', via: :post, as: :create_relationship
+    match '/destroy_relationship', to: 'relationship#destroy', via: :post, as: :destroy_relationship
     match '/create_smile', to: 'smile#create', via: :post, as: :create_smile
     match '/destroy_smile', to: 'smile#destroy', via: :post, as: :destroy_smile
     match '/create_comment_smile', to: 'smile#create_comment', via: :post, as: :create_comment_smile
