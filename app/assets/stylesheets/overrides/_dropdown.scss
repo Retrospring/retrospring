@@ -27,3 +27,9 @@
 .dropdown-toggle {
   -webkit-appearance: none;
 }
+
+@include media-breakpoint-up('md') {
+  .dropdown-menu--lists {
+    max-width: 275px;
+  }
+}

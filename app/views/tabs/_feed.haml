@@ -3,22 +3,21 @@
     = list_group_item t('views.general.timeline'), root_path
     - if APP_CONFIG.dig(:features, :public, :enabled)
       = list_group_item t('views.general.public'), public_timeline_path
-    .list-group-item.list-group-item-action.dropdown{ class: list ? 'active' : '' }
-      %a.dropdown-toggle{ type: :button, data: { toggle: :dropdown }, aria: { haspopup: true, expanded: false } }
-        - if list
-          = list.display_name
-        - else
-          Lists
-      .dropdown-menu
-        - if current_user.lists.empty?
-          .p-3
-            %p Looks like you don't have any lists yet.
-            %p
-              You can create lists and add users to them using the
-              %i.fa.fa-fw.fa-list
-              icon in the navigation on user profiles that are not yours.
-            %p.mb-0
-              Once you have done that, the lists will be shown here.
-              When you select a list you'll get a timeline view of all users within that list.
-        - current_user.lists.each do |list|
-          %a.dropdown-item{ href: list_timeline_path(list.name) }= list.display_name
+    %a.list-group-item.list-group-item-action.dropdown.dropdown-toggle{ class: list ? 'active' : '', type: :button, data: { toggle: :dropdown }, aria: { haspopup: true, expanded: false } }
+      - if list
+        = list.display_name
+      - else
+        Lists
+    .dropdown-menu.dropdown-menu--lists
+      - if current_user.lists.empty?
+        .p-3
+          %p Looks like you don't have any lists yet.
+          %p
+            You can create lists and add users to them using the
+            %i.fa.fa-fw.fa-list
+            icon in the navigation on user profiles that are not yours.
+          %p.mb-0
+            Once you have done that, the lists will be shown here.
+            When you select a list you'll get a timeline view of all users within that list.
+      - current_user.lists.each do |list|
+        %a.dropdown-item{ href: list_timeline_path(list.name) }= list.display_name
