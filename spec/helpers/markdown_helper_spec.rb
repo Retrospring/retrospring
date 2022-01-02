@@ -62,6 +62,14 @@ describe MarkdownHelper, :type => :helper do
     it 'should not process any markup aside of links' do
       expect(question_markdown('**your account has been disabled**, [click here to enable it again](https://evil.example.com)')). to eq('<p>**your account has been disabled**, [click here to enable it again](<a href="/linkfilter?url=https%3A%2F%2Fevil.example.com" target="_blank" rel="nofollow">https://evil.example.com</a>)</p>')
     end
+
+    it 'should not raise an exception if an invalid link is processed' do
+      expect{ question_markdown('https://example.com/example.質問') }.not_to raise_error
+    end
+
+    it 'should not process invalid links' do
+      expect(question_markdown('https://example.com/example.質問')).to eq('<p>https://example.com/example.質問</p>')
+    end
   end
 
   describe '#raw_markdown' do
