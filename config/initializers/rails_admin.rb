@@ -33,6 +33,7 @@ RailsAdmin.config do |config|
     List
     ListMember
     Inbox
+    MuteRule
     Notification
     Profile
     Question
