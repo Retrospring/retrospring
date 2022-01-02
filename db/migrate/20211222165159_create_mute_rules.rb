@@ -6,5 +6,7 @@ class CreateMuteRules < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    change_column(:mute_rules, :id, :bigint, default: -> { "gen_timestamp_id('mute_rules'::text)" })
   end
 end
