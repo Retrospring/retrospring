@@ -446,7 +446,7 @@ namespace :db do
       conn = ActiveRecord::Base.connection
 
       # required for the timestampid function to work properly
-      %i[questions answers comments smiles comment_smiles users].each do |tbl|
+      %i[questions answers comments smiles comment_smiles users mute_rules].each do |tbl|
         conn.execute("CREATE SEQUENCE IF NOT EXISTS #{tbl}_id_seq")
       end
     end
