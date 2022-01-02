@@ -107,6 +107,14 @@ ActiveRecord::Schema.define(version: 2021_12_28_135426) do
     t.index ["user_id"], name: "index_moderation_votes_on_user_id"
   end
 
+  create_table "mute_rules", id: :bigint, default: -> { "gen_timestamp_id('mute_rules'::text)" }, force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "muted_phrase"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mute_rules_on_user_id"
+  end
+
   create_table "notifications", id: :serial, force: :cascade do |t|
     t.string "target_type"
     t.bigint "target_id"
@@ -305,5 +313,6 @@ ActiveRecord::Schema.define(version: 2021_12_28_135426) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "mute_rules", "users"
   add_foreign_key "profiles", "users"
 end

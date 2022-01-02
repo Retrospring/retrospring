@@ -41,6 +41,7 @@ class User < ApplicationRecord
   has_many :moderation_votes, dependent: :destroy
   has_many :lists, dependent: :destroy
   has_many :list_memberships, class_name: "ListMember", foreign_key: 'user_id', dependent: :destroy
+  has_many :mute_rules, dependent: :destroy
 
   has_many :subscriptions, dependent: :destroy
   has_many :totp_recovery_codes, dependent: :destroy

@@ -224,4 +224,10 @@ class UserController < ApplicationController
     @recovery_keys = TotpRecoveryCode.generate_for(current_user)
     render 'settings/security/recovery_keys'
   end
+
+  # region Muting
+  def edit_mute
+    @rules = MuteRule.where(user: current_user)
+  end
+  # endregion
 end

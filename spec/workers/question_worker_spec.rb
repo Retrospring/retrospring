@@ -26,5 +26,19 @@ describe QuestionWorker do
             .to(5)
         )
     end
+
+    it "respects mute rules" do
+      question.content = 'Some spicy question text'
+      question.save
+
+      MuteRule.create(user_id: user.followers.first.id, muted_phrase: 'spicy')
+
+      expect { subject }
+        .to(
+          change { Inbox.where(user_id: user.followers.ids, question_id: question_id, new: true).count }
+            .from(0)
+            .to(4)
+        )
+    end
   end
 end
