@@ -30,7 +30,7 @@
                   Ask
       - unless user_signed_in?
         - if user.privacy_allow_anonymous_questions?
-          #question-box-promote{ style: 'display: none;' }
+          #question-box-promote.d-none
             .row
               .col-12.text-center
                 %strong= t 'views.questionbox.promote.message'
