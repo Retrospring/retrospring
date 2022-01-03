@@ -7,6 +7,8 @@ export function answerEntryHandler(event: Event): void {
   const element: HTMLButtonElement = event.target as HTMLButtonElement;
   const inboxEntry: HTMLElement = element.closest<HTMLElement>('.inbox-entry');
 
+  element.disabled = true;
+
   const shareTo = [];
   inboxEntry.querySelectorAll('input[type=checkbox][name=ib-share]:checked')
     .forEach((element: HTMLInputElement) => {
@@ -27,6 +29,7 @@ export function answerEntryHandler(event: Event): void {
     success: (data) => {
       if (!data.success) {
         showErrorNotification(data.message);
+        element.disabled = false;
         return false;
       }
       updateDeleteButton(false);
@@ -35,6 +38,7 @@ export function answerEntryHandler(event: Event): void {
     },
     error: (data, status, xhr) => {
       console.log(data, status, xhr);
+      element.disabled = false;
     }
   });
 }
