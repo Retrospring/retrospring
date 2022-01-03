@@ -24,7 +24,6 @@ import I18n from '../legacy/i18n'
 
 import '../legacy/answerbox'
 import '../legacy/questionbox'
-import '../legacy/inbox'
 import '../legacy/memes'
 import '../legacy/notifications'
 import '../legacy/pagination'
