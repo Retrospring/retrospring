@@ -6,10 +6,10 @@ import { generateQuestionHandler } from './generate';
 
 export default (): void => {
   registerEvents([
-    { type: 'click', target: document.querySelector('#ib-generate-question'), handler: generateQuestionHandler },
-    { type: 'click', target: document.querySelector('#ib-delete-all'), handler: deleteAllQuestionsHandler },
-    { type: 'click', target: document.querySelector('#ib-delete-all-author'), handler: deleteAllAuthorQuestionsHandler },
-    { type: 'submit', target: document.querySelector('#author-form'), handler: authorSearchHandler }
+    { type: 'click', target: '#ib-generate-question', handler: generateQuestionHandler, global: true },
+    { type: 'click', target: '#ib-delete-all', handler: deleteAllQuestionsHandler, global: true },
+    { type: 'click', target: '#ib-delete-all-author', handler: deleteAllAuthorQuestionsHandler, global: true },
+    { type: 'submit', target: '#author-form', handler: authorSearchHandler, global: true }
   ]);
 
   registerInboxEntryEvents();
