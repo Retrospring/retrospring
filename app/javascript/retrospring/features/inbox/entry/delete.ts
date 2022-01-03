@@ -1,0 +1,46 @@
+import Rails from '@rails/ujs';
+import swal from 'sweetalert';
+
+import I18n from '../../../../legacy/i18n';
+import { updateDeleteButton } from '../delete';
+import { showNotification, showErrorNotification } from 'utilities/notifications';
+
+export function deleteEntryHandler(event: Event): void {
+  const element: HTMLButtonElement = event.target as HTMLButtonElement;
+
+  const data = {
+    id: element.getAttribute('data-ib-id')
+  };
+
+  swal({
+    title: I18n.t('frontend.inbox.confirm.title'),
+    text: I18n.t('frontend.inbox.confirm.text'),
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: I18n.translate('views.actions.delete'),
+    cancelButtonText: I18n.translate('views.actions.cancel'),
+    closeOnConfirm: true
+  }, (returnValue) => {
+    if (returnValue === null) return false;
+    
+    Rails.ajax({
+      url: '/ajax/delete_inbox',
+      type: 'POST',
+      data: new URLSearchParams(data).toString(),
+      success: (data) => {
+        if (!data.success) return false;
+        const inboxEntry: Node = element.closest('.inbox-entry');
+
+        updateDeleteButton(false);
+        showNotification(data.message);
+
+        (inboxEntry as HTMLElement).remove();
+      },
+      error: (data, status, xhr) => {
+        console.log(data, status, xhr);
+        showErrorNotification(I18n.t('frontend.error.message'));
+      }
+    });
+  })
+}
