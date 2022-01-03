@@ -1,5 +1,6 @@
 import Rails from '@rails/ujs';
 import swal from 'sweetalert';
+import { showNotification, showErrorNotification } from 'utilities/notifications';
 import I18n from '../../../legacy/i18n';
 
 export function destroyListHandler(event: Event): void {
@@ -32,11 +33,11 @@ export function destroyListHandler(event: Event): void {
           }
         }
         
-        window['showNotification'](data.message, data.success);
+        showNotification(data.message, data.success);
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
-        window['showNotification'](I18n.translate('frontend.error.message'), false);
+        showErrorNotification(I18n.translate('frontend.error.message'));
       }
     });
   });
