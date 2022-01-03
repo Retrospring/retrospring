@@ -7,7 +7,7 @@ import initLists from 'retrospring/features/lists';
 
 start();
 document.addEventListener('turbolinks:load', initAnswerbox);
-document.addEventListener('turbolinks:load', initInbox);
+document.addEventListener('DOMContentLoaded', initInbox);
 document.addEventListener('DOMContentLoaded', initUser);
 document.addEventListener('turbolinks:load', initSettings);
 document.addEventListener('DOMContentLoaded', initLists);
