@@ -1,5 +1,6 @@
-- @reports.each do |r|
-  = render 'moderation/moderationbox', report: r
+#reports
+  - @reports.each do |r|
+    = render 'moderation/moderationbox', report: r
 
 - unless @reports.count.zero?
   = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @reports_last_id, permitted_params: %i[type]

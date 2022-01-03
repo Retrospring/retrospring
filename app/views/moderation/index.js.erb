@@ -1,0 +1,6 @@
+$('#reports').append('<% @reports.each do |report| %><%= j render "moderation/moderationbox", report: report %><% end %>');
+<% if @more_data_available %>
+  $('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @reports_last_id, permitted_params: %i[type] %>');
+<% else %>
+  $('#pagination, #load-more-btn').remove();
+<% end %>
