@@ -35,7 +35,7 @@ export function questionboxAllHandler(event: Event): void {
   });
 }
 
-export function questionboxAllInputHandler(event: KeyboardEvent) {
+export function questionboxAllInputHandler(event: KeyboardEvent): void {
   if (event.keyCode == 13 && (event.ctrlKey || event.metaKey)) {
     document.querySelector<HTMLButtonElement>(`button[name=qb-all-ask]`).click();
   }

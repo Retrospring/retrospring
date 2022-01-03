@@ -2,7 +2,7 @@ import Rails from '@rails/ujs';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
 import I18n from '../../../legacy/i18n';
 
-export function questionboxUserHandler(event: Event) {
+export function questionboxUserHandler(event: Event): void {
   const button = event.target as HTMLButtonElement;
   const promote = button.dataset.promote === "true";
   const anonymousQuestion = document.querySelector<HTMLInputElement>('input[name=qb-anonymous]')?.checked;
@@ -44,7 +44,7 @@ export function questionboxUserHandler(event: Event) {
   });
 }
 
-export function questionboxPromoteHandler(event: Event) {
+export function questionboxPromoteHandler(): void {
   const questionbox = document.querySelector('#question-box');
   questionbox.classList.toggle('d-none');
 
@@ -52,7 +52,7 @@ export function questionboxPromoteHandler(event: Event) {
   promote.classList.toggle('d-none');
 }
 
-export function questionboxUserInputHandler(event: KeyboardEvent) {
+export function questionboxUserInputHandler(event: KeyboardEvent): void {
   if (event.keyCode == 13 && (event.ctrlKey || event.metaKey)) {
     document.querySelector<HTMLButtonElement>(`button[name=qb-ask]`).click();
   }
