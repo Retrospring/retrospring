@@ -32,12 +32,12 @@ export function deleteAllQuestionsHandler(event: Event): void {
   swal({
     title: I18n.translate('frontend.inbox.confirm_all.title', { count: count }),
     text: I18n.translate('frontend.inbox.confirm_all.text'),
-    icon: 'warning',
-    dangerMode: true,
-    buttons: [
-      I18n.translate('views.actions.cancel'),
-      I18n.translate('views.actions.delete')
-    ]
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: I18n.translate('views.actions.delete'),
+    cancelButtonText: I18n.translate('views.actions.cancel'),
+    closeOnConfirm: true
   }, (returnValue) => {
     if (returnValue === null) return false;
     
@@ -66,12 +66,12 @@ export function deleteAllAuthorQuestionsHandler(event: Event): void {
   swal({
     title: I18n.translate('frontend.inbox.confirm_all.title', { count: count }),
     text: I18n.translate('frontend.inbox.confirm_all.text'),
-    icon: 'warning',
-    dangerMode: true,
-    buttons: [
-      I18n.translate('views.actions.cancel'),
-      I18n.translate('views.actions.delete')
-    ]
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: I18n.translate('views.actions.delete'),
+    cancelButtonText: I18n.translate('views.actions.cancel'),
+    closeOnConfirm: true
   }, (returnValue) => {
     if (returnValue === null) return false;
     
