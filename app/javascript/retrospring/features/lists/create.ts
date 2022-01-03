@@ -1,4 +1,5 @@
 import Rails from '@rails/ujs';
+import { showNotification, showErrorNotification } from 'utilities/notifications';
 import I18n from '../../../legacy/i18n';
 
 export function createListHandler(event: Event): void {
@@ -17,11 +18,11 @@ export function createListHandler(event: Event): void {
         document.querySelector('#lists-list ul.list-group').insertAdjacentHTML('beforeend', data.render);
       }
       
-      window['showNotification'](data.message, data.success);
+      showNotification(data.message, data.success);
     },
     error: (data, status, xhr) => {
       console.log(data, status, xhr);
-      window['showNotification'](I18n.translate('frontend.error.message'), false);
+      showErrorNotification(I18n.translate('frontend.error.message'));
     }
   });
 }
