@@ -1,8 +1,10 @@
 import { userActionHandler } from './action';
 import { userReportHandler } from './report';
-import { on } from 'utilities/on';
+import registerEvents from 'retrospring/utilities/registerEvents';
 
 export default (): void => {
-  on('click', 'button[name=user-action]', userActionHandler);
-  on('click', 'a[data-action=report-user]', userReportHandler);
+  registerEvents([
+    { type: 'click', target: 'button[name=user-action]', handler: userActionHandler, global: true },
+    { type: 'click', target: 'a[data-action=report-user]', handler: userReportHandler, global: true }
+  ]);
 }
