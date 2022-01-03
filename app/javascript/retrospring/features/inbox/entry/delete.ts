@@ -13,8 +13,8 @@ export function deleteEntryHandler(event: Event): void {
   };
 
   swal({
-    title: I18n.t('frontend.inbox.confirm.title'),
-    text: I18n.t('frontend.inbox.confirm.text'),
+    title: I18n.translate('frontend.inbox.confirm.title'),
+    text: I18n.translate('frontend.inbox.confirm.text'),
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
@@ -39,7 +39,7 @@ export function deleteEntryHandler(event: Event): void {
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
-        showErrorNotification(I18n.t('frontend.error.message'));
+        showErrorNotification(I18n.translate('frontend.error.message'));
       }
     });
   })

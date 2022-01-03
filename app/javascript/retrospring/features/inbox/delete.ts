@@ -30,13 +30,13 @@ export function deleteAllQuestionsHandler(event: Event): void {
   const count = button.getAttribute('data-ib-count');
 
   swal({
-    title: I18n.t('frontend.inbox.confirm_all.title', { count: count }),
-    text: I18n.t('frontend.inbox.confirm_all.text'),
+    title: I18n.translate('frontend.inbox.confirm_all.title', { count: count }),
+    text: I18n.translate('frontend.inbox.confirm_all.text'),
     icon: 'warning',
     dangerMode: true,
     buttons: [
-      I18n.t('views.actions.cancel'),
-      I18n.t('views.actions.delete')
+      I18n.translate('views.actions.cancel'),
+      I18n.translate('views.actions.delete')
     ]
   }, (returnValue) => {
     if (returnValue === null) return false;
@@ -53,7 +53,7 @@ export function deleteAllQuestionsHandler(event: Event): void {
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
-        showErrorNotification(I18n.t('frontend.error.message'));
+        showErrorNotification(I18n.translate('frontend.error.message'));
       }
     });
   });
@@ -64,13 +64,13 @@ export function deleteAllAuthorQuestionsHandler(event: Event): void {
   const count = button.getAttribute('data-ib-count');
 
   swal({
-    title: I18n.t('frontend.inbox.confirm_all.title', { count: count }),
-    text: I18n.t('frontend.inbox.confirm_all.text'),
+    title: I18n.translate('frontend.inbox.confirm_all.title', { count: count }),
+    text: I18n.translate('frontend.inbox.confirm_all.text'),
     icon: 'warning',
     dangerMode: true,
     buttons: [
-      I18n.t('views.actions.cancel'),
-      I18n.t('views.actions.delete')
+      I18n.translate('views.actions.cancel'),
+      I18n.translate('views.actions.delete')
     ]
   }, (returnValue) => {
     if (returnValue === null) return false;
@@ -87,7 +87,7 @@ export function deleteAllAuthorQuestionsHandler(event: Event): void {
       },
       error: (data, status, xhr) => {
         console.log(data, status, xhr);
-        showErrorNotification(I18n.t('frontend.error.message'));
+        showErrorNotification(I18n.translate('frontend.error.message'));
       }
     });
   });

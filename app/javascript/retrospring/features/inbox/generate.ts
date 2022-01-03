@@ -17,7 +17,7 @@ export function generateQuestionHandler(): void {
     },
     error: (data, status, xhr) => {
       console.log(data, status, xhr);
-      showErrorNotification(I18n.t('frontend.error.message'));
+      showErrorNotification(I18n.translate('frontend.error.message'));
     }
   });
 }
