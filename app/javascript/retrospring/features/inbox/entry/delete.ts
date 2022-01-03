@@ -7,6 +7,7 @@ import { showNotification, showErrorNotification } from 'utilities/notifications
 
 export function deleteEntryHandler(event: Event): void {
   const element: HTMLButtonElement = event.target as HTMLButtonElement;
+  element.disabled = true;
 
   const data = {
     id: element.getAttribute('data-ib-id')
@@ -22,7 +23,10 @@ export function deleteEntryHandler(event: Event): void {
     cancelButtonText: I18n.translate('views.actions.cancel'),
     closeOnConfirm: true
   }, (returnValue) => {
-    if (returnValue === null) return false;
+    if (returnValue === false) {
+      element.disabled = false;
+      return;
+    }
     
     Rails.ajax({
       url: '/ajax/delete_inbox',
