@@ -56,3 +56,9 @@
     color: var(--#{$color});
   }
 }
+
+.btn {
+  .fa {
+    pointer-events: none;
+  }
+}
