@@ -37,7 +37,7 @@
     %button.btn.btn-default{ name: 'ib-options', data: { ib_id: i.id, state: :hidden } }
       %i.fa.fa-cog
       %span.sr-only= t 'views.actions.options'
-  .card-footer{ id: "ib-options-#{i.id}", style: 'display: none' }
+  .card-footer.d-none{ id: "ib-options-#{i.id}" }
     %h4= t 'views.inbox.entry.sharing.title'
     - if current_user.services.count.positive?
       .row
