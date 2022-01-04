@@ -2,7 +2,7 @@ import {createDeleteEvent, createSubmitEvent} from "retrospring/features/setting
 
 export default (): void => {
   const submit: HTMLButtonElement = document.getElementById('new-rule-submit') as HTMLButtonElement;
-  if (submit.classList.contains('js-initialized')) return;
+  if (!submit || submit.classList.contains('js-initialized')) return;
 
   const rulesList = document.querySelector<HTMLDivElement>('.js-rules-list');
   rulesList.querySelectorAll<HTMLDivElement>('.form-group:not(.js-initalized)').forEach(entry => {
