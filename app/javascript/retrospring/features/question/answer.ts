@@ -10,7 +10,7 @@ export function questionAnswerHandler(event: Event): void {
   document.querySelector<HTMLInputElement>('textarea#q-answer-text').readOnly = true;
 
   const shareTo = [];
-  Array.from(document.querySelectorAll(`input[type=checkbox][name=share][data-q-id=${questionId}]:checked`))
+  Array.from(document.querySelectorAll(`input[type=checkbox][name=share][data-q-id="${questionId}"]:checked`))
     .forEach((element: HTMLInputElement) => {
       shareTo.push(element.dataset.service);
     });
