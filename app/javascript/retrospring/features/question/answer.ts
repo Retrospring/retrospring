@@ -35,6 +35,7 @@ export function questionAnswerHandler(event: Event): void {
       }
 
       showNotification(data.message);
+      document.querySelector('div#answers').insertAdjacentHTML('afterbegin', data.render);
       document.querySelector('div#q-answer-box').remove();
     },
     error: (data, status, xhr) => {
