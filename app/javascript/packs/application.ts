@@ -5,7 +5,7 @@ import initUser from 'retrospring/features/user';
 import initSettings from 'retrospring/features/settings/index';
 import initLists from 'retrospring/features/lists';
 import initQuestionbox from 'retrospring/features/questionbox';
-import initQuestion from 'retrospring/features/questionbox';
+import initQuestion from 'retrospring/features/question';
 
 start();
 document.addEventListener('turbolinks:load', initAnswerbox);
