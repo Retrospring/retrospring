@@ -14,11 +14,7 @@ describe SocialHelper::TumblrMethods, :type => :helper do
       'anonymous_name' => 'Anonymous',
       'https' => true,
       'items_per_page' => 5,
-      'sharing' => {
-        'tumblr' => {
-          'consumer_key' => 'AAA',
-        }
-      }
+      'sharing' => {}
     })
   end
 

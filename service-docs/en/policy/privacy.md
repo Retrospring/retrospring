@@ -12,11 +12,10 @@ Like many websites, we use cookies and similar technologies to collect  addition
 #### Non-personal Identification Information
 When using our Services, we may receive technical information ("Non-personal Identification") information such as your IP address, browser type, operating system, the referring web page, pages visited, location, search terms, and cookie information. We receive this data when you interact with our Services, for example, when you visit our websites or sign into our Services.
 #### Third-Party Services
-Retrospring uses a variety of third-party services to help provide our Services or to share your answers to, if connected, other Services like Twitter or Tumblr. These third-party service providers may collect information sent by your browser as part of a web page request, such as cookies or your IP address. Please refer to their Privacy Policies in regard to how they handle your data.
+Retrospring uses a variety of third-party services to help provide our Services or to share your answers to, if connected, other Services like Twitter. These third-party service providers may collect information sent by your browser as part of a web page request, such as cookies or your IP address. Please refer to their Privacy Policies in regard to how they handle your data.
 
 * [_Cloudflare - Privacy Policy_](https://www.cloudflare.com/en-gb/privacypolicy/)
 * [_Twitter - Privacy Policy_](https://twitter.com/en/privacy)
-* [_Tumblr - Privacy Policy_](https://www.tumblr.com/privacy/en)
 
 ## Information Sharing
 Retrospring will keep any collected data (see "Information Collection and Use" above) encrypted on our servers. Any information shared with other Services is controlled by the user itself, as we only supply sharing to these. If a user isn't satisfied with Terms from another Service they shouldn't connect their accounts or remove access over the Sharing page on the profile settings page.

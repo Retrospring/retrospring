@@ -7,18 +7,6 @@ GIT
       json
 
 GIT
-  remote: https://github.com/amplifr/tumblr_client
-  revision: 3927ee366598a9b70b095933ded32e45f730b652
-  specs:
-    tumblr_client (0.8.5)
-      faraday
-      faraday_middleware
-      json
-      mime-types
-      oauth
-      simple_oauth
-
-GIT
   remote: https://github.com/mltnhm/carrierwave_backgrounder.git
   revision: 8fe468957f047ad7039f07679e5952a534d07b6d
   specs:
@@ -187,8 +175,6 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-    faraday_middleware (1.2.0)
-      faraday (~> 1.0)
     ffi (1.15.4)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -339,9 +325,6 @@ GEM
     omniauth-rails_csrf_protection (1.0.0)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
-    omniauth-tumblr (1.2)
-      multi_json
-      omniauth-oauth (~> 1.0)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -625,7 +608,6 @@ DEPENDENCIES
   mini_magick
   omniauth
   omniauth-rails_csrf_protection (~> 1.0)
-  omniauth-tumblr
   omniauth-twitter
   pg
   pghero
@@ -657,7 +639,6 @@ DEPENDENCIES
   simplecov-json
   spring (~> 2.0)
   timecop
-  tumblr_client!
   turbolinks (~> 2.5.3)
   twitter
   twitter-text
