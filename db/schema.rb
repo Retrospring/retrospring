@@ -192,6 +192,7 @@ ActiveRecord::Schema.define(version: 2022_01_05_171216) do
     t.string "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "post_tag", limit: 20
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
