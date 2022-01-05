@@ -41,7 +41,6 @@ RailsAdmin.config do |config|
     Report
     Service
     Services::Twitter
-    Services::Tumblr
     Smile
     Theme
     User
