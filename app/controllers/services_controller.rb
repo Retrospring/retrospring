@@ -30,7 +30,7 @@ class ServicesController < ApplicationController
 
   def update
     service = current_user.services.find(params[:id])
-    service.post_tag = params[:service][:post_tag]
+    service.post_tag = params[:service][:post_tag].gsub('@', '')
     if service.save
       flash[:success] = "Service updated successfully"
     else
