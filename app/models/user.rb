@@ -232,7 +232,7 @@ class User < ApplicationRecord
   end
 
   # Bans a user.
-  # @param duration [Fixnum, nil] Ban duration
+  # @param duration [Integer?] Ban duration
   # @param duration_unit [String, nil] Unit for the <code>duration</code> parameter. Accepted units: hours, days, weeks, months
   # @param reason [String] Reason for the ban. This is displayed to the user.
   # @param banned_by [User] User who instated the ban
