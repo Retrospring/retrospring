@@ -1,9 +1,0 @@
-/* TEAM */
-
-  Georg G. (nilsding [at] nilsding [dot] org)
-  Site: https://nilsding.org
-  Location: Linz, Austria
-
-  Andreas N. (pixeldesu [at] outlook [dot] com)
-  Site: https://pixelde.su
-  Location: Germany
