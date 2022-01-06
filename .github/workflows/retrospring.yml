@@ -35,34 +35,27 @@ jobs:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: justask_test
 
+      # used by setup-ruby with bundler-cache
+      BUNDLE_JOBS: '4'
+      BUNDLE_RETRY: '3'
+      BUNDLE_WITHOUT: 'production'
+
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v1
+      - name: Install dependencies
+        run: sudo apt update && sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick libidn11-dev
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-      - name: Set up Ruby 2.7
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.x
+          bundler-cache: true
       - name: Set up Node 12
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-      - name: Install dependencies
-        run: sudo apt update && sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick libidn11-dev
       - name: Copy default configuration
         run: |
           cp config/database.yml.postgres config/database.yml
           cp config/justask.yml.example config/justask.yml
-      - name: Install gems
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle config set without 'production'
-          bundle install --jobs 4 --retry 3
       - name: Install node modules
         run: |
           npm i -g yarn
