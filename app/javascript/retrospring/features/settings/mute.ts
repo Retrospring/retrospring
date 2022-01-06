@@ -58,7 +58,7 @@ function createDeleteEvent(
   }
 }
 
-export function muteDocumentHandler() {
+export function muteDocumentHandler(): void {
   const submit: HTMLButtonElement = document.getElementById('new-rule-submit') as HTMLButtonElement;
   if (!submit || submit.classList.contains('js-initialized')) return;
 

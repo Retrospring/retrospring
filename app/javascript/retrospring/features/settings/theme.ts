@@ -15,7 +15,7 @@ const previewTheme = (): void => {
   generateTheme(payload);
 }
 
-const generateTheme = (payload: object): void => {
+const generateTheme = (payload: Record<string, string>): void => {
   const themeAttributeMap = {
     'primary_color': 'primary',
     'primary_text': 'primary-text',
@@ -88,7 +88,7 @@ export function themeDocumentHandler(): void {
 
     color.addEventListener('input', () => {
       clearTimeout(previewTimeout);
-      setTimeout(previewTheme, 1000);
+      previewTimeout = setTimeout(previewTheme, 1000);
     });
   });
 }

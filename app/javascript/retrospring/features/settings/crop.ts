@@ -3,7 +3,7 @@ import Croppr from 'croppr';
 
 const readImage = (file, callback) => callback((window.URL || window.webkitURL).createObjectURL(file));
 
-export function profilePictureChangeHandler(event: Event) {
+export function profilePictureChangeHandler(event: Event): void {
   const input = event.target as HTMLInputElement;
 
   const cropControls = document.querySelector('#profile-picture-crop-controls');
@@ -32,7 +32,7 @@ export function profilePictureChangeHandler(event: Event) {
   }
 }
 
-export function profileHeaderChangeHandler(event: Event) {
+export function profileHeaderChangeHandler(event: Event): void {
   const input = event.target as HTMLInputElement;
 
   const cropControls = document.querySelector('#profile-header-crop-controls');
