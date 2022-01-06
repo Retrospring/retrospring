@@ -36,6 +36,9 @@ gem "hcaptcha", "~> 6.0", git: "https://github.com/Retrospring/hcaptcha.git", re
 
 gem "rolify", "~> 5.2"
 
+gem "dry-initializer", "~> 3.0"
+gem "dry-types", "~> 1.4"
+
 gem 'ruby-progressbar'
 
 gem 'rails_admin'

@@ -40,10 +40,11 @@ class ApplicationController < ActionController::Base
       name = current_user.screen_name
       # obligatory '2001: A Space Odyssey' reference
       flash[:notice] = t('flash.ban.error', name: name)
-      unless current_user.ban_reason.nil?
-        flash[:notice] += "\n#{t('flash.ban.reason', reason: current_user.ban_reason)}"
+      current_ban = current_user.bans.current.first
+      unless current_ban&.reason.nil?
+        flash[:notice] += "\n#{t('flash.ban.reason', reason: current_user.bans.current.first.reason)}"
       end
-      if not current_user.permanently_banned?
+      unless current_ban&.permanently_banned?
         # TODO format banned_until
         flash[:notice] += "\n#{t('flash.ban.until', time: current_user.banned_until)}"
       end

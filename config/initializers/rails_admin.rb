@@ -44,5 +44,6 @@ RailsAdmin.config do |config|
     Smile
     Theme
     User
+    UserBan
   ]
 end

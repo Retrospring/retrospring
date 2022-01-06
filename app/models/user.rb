@@ -49,6 +49,11 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_one :theme, dependent: :destroy
 
+  has_many :bans, class_name: 'UserBan', dependent: :destroy
+  has_many :banned_users, class_name: 'UserBan',
+                          foreign_key: 'banned_by_id',
+                          dependent: :nullify
+
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.\-]+)\/?(?:.*)/i
 
@@ -218,21 +223,31 @@ class User < ApplicationRecord
   end
   # endregion
 
-  # forwards fill
   def banned?
-    self.permanently_banned? or ((not self.banned_until.nil?) and self.banned_until >= DateTime.current)
+    self.bans.current.count > 0
   end
 
   def unban
-    self.update(permanently_banned: false, ban_reason: nil, banned_until: nil)
+    UseCase::User::Unban.call(id)
   end
 
-  def ban(buntil=nil, reason=nil)
-    if buntil == nil
-      self.update(permanently_banned: true, ban_reason: reason)
+  # Bans a user.
+  # @param duration [Integer?] Ban duration
+  # @param duration_unit [String, nil] Unit for the <code>duration</code> parameter. Accepted units: hours, days, weeks, months
+  # @param reason [String] Reason for the ban. This is displayed to the user.
+  # @param banned_by [User] User who instated the ban
+  def ban(duration, duration_unit = 'hours', reason = nil, banned_by = nil)
+    if duration
+      expiry = duration.public_send(duration_unit)
     else
-      self.update(permanently_banned: false, banned_until: buntil, ban_reason: reason)
+      expiry = nil
     end
+    UseCase::User::Ban.call(
+      target_user_id: id,
+      expiry: expiry,
+      reason: reason,
+      source_user_id: banned_by&.id
+    )
   end
 
   def can_export?
