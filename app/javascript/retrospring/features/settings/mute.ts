@@ -1,6 +1,6 @@
 import Rails from '@rails/ujs';
 
-export function createSubmitEvent(
+function createSubmitEvent(
   submit: HTMLButtonElement,
   rulesList: HTMLDivElement,
   textEntry: HTMLButtonElement,
@@ -36,7 +36,7 @@ export function createSubmitEvent(
   };
 }
 
-export function createDeleteEvent(
+function createDeleteEvent(
   entry: HTMLDivElement,
   deleteButton: HTMLButtonElement
 ): () => void {
@@ -56,4 +56,21 @@ export function createDeleteEvent(
       }
     })
   }
+}
+
+export function muteDocumentHandler() {
+  const submit: HTMLButtonElement = document.getElementById('new-rule-submit') as HTMLButtonElement;
+  if (!submit || submit.classList.contains('js-initialized')) return;
+
+  const rulesList = document.querySelector<HTMLDivElement>('.js-rules-list');
+  rulesList.querySelectorAll<HTMLDivElement>('.form-group:not(.js-initalized)').forEach(entry => {
+    const button = entry.querySelector('button')
+    button.onclick = createDeleteEvent(entry, button)
+  });
+  const textEntry: HTMLButtonElement = document.getElementById('new-rule-text') as HTMLButtonElement;
+  const template: HTMLTemplateElement = document.getElementById('rule-template') as HTMLTemplateElement;
+
+  submit.form.onsubmit = createSubmitEvent(submit, rulesList, textEntry, template)
+
+  submit.classList.add('js-initialized');
 }

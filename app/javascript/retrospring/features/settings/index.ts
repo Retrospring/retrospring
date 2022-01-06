@@ -1,18 +1,17 @@
-import {createDeleteEvent, createSubmitEvent} from "retrospring/features/settings/mute";
+import registerEvents from "utilities/registerEvents";
+import { muteDocumentHandler } from "./mute";
+import { profileHeaderChangeHandler, profilePictureChangeHandler } from "./crop";
+import { themeDocumentHandler, themeSubmitHandler } from "./theme";
+import { userSubmitHandler } from "./password";
 
 export default (): void => {
-  const submit: HTMLButtonElement = document.getElementById('new-rule-submit') as HTMLButtonElement;
-  if (!submit || submit.classList.contains('js-initialized')) return;
+  muteDocumentHandler();
+  themeDocumentHandler();
 
-  const rulesList = document.querySelector<HTMLDivElement>('.js-rules-list');
-  rulesList.querySelectorAll<HTMLDivElement>('.form-group:not(.js-initalized)').forEach(entry => {
-    const button = entry.querySelector('button')
-    button.onclick = createDeleteEvent(entry, button)
-  });
-  const textEntry: HTMLButtonElement = document.getElementById('new-rule-text') as HTMLButtonElement;
-  const template: HTMLTemplateElement = document.getElementById('rule-template') as HTMLTemplateElement;
-
-  submit.form.onsubmit = createSubmitEvent(submit, rulesList, textEntry, template)
-
-  submit.classList.add('js-initialized')
+  registerEvents([
+    { type: 'submit', target: document.querySelector('#update_theme'), handler: themeSubmitHandler },
+    { type: 'submit', target: document.querySelector('#edit_user'), handler: userSubmitHandler },
+    { type: 'change', target: document.querySelector('#user_profile_picture[type=file]'), handler: profilePictureChangeHandler },
+    { type: 'change', target: document.querySelector('#user_profile_header[type=file]'), handler: profileHeaderChangeHandler }
+  ]);
 }
