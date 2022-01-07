@@ -238,6 +238,15 @@ namespace :justask do
     end
   end
 
+  desc "Removes users whose accounts haven't been verified for over 3 months."
+  task remove_stale: :environment do
+    puts "Removing stale users…"
+    removed = User.where(confirmed_at: nil)
+        .where("confirmation_sent_at < ?", DateTime.now.utc - 3.months)
+        .destroy_all.count
+    puts "Removed #{removed} users"
+  end
+
   desc "Fixes the notifications"
   task fix_notifications: :environment do
     format = '%t (%c/%C) [%b>%i] %e'
