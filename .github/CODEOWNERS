@@ -5,6 +5,7 @@
 
 # Ruby/Backend related code
 *.rb @nilsding
+Gemfile.lock @nilsding
 
 # Frontend assets
 *.coffee @pixeldesu
@@ -12,6 +13,7 @@
 *.json @pixeldesu
 *.scss @pixeldesu
 *.ts @pixeldesu
+yarn.lock @pixeldesu
 
 # Frontend views
 *.haml @pixeldesu
