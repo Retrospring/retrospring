@@ -15,6 +15,7 @@
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
     = stylesheet_link_tag 'application', media: 'all', data: { 'turbolinks-track': 'reload' }
+    = stylesheet_pack_tag 'application', data: { 'turbolinks-track': 'reload' }
     = javascript_pack_tag 'application', data: { 'turbolinks-track': 'reload' }
     = javascript_pack_tag 'legacy', data: { 'turbolinks-track': 'reload' }
     = stylesheet_pack_tag 'legacy', data: { 'turbolinks-track': 'reload' }
