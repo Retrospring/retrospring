@@ -77,6 +77,7 @@ Rails.application.routes.draw do
 
   # resources :services, only: [:index, :destroy]
   match '/settings/services', to: 'services#index', via: 'get', as: :services
+  match '/settings/services/:id', to: 'services#update', via: 'patch', as: :update_service
   match '/settings/services/:id', to: 'services#destroy', via: 'delete', as: :service
   controller :services do
     scope "/auth", as: "auth" do

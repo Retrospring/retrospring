@@ -28,6 +28,17 @@ class ServicesController < ApplicationController
     end
   end
 
+  def update
+    service = current_user.services.find(params[:id])
+    service.post_tag = params[:service][:post_tag].tr('@', '')
+    if service.save
+      flash[:success] = "Service updated successfully"
+    else
+      flash[:error] = "Failed to update service"
+    end
+    redirect_to services_path
+  end
+
   def failure
     Rails.logger.info "oauth error: #{params.inspect}"
     flash[:error] = t('flash.service.failure')

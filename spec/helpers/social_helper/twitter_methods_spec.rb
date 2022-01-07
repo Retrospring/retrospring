@@ -4,9 +4,11 @@ require 'rails_helper'
 
 describe SocialHelper::TwitterMethods, :type => :helper do
   let(:user) { FactoryBot.create(:user) }
+  let(:question_content) { 'q' * 255 }
+  let(:answer_content) { 'a' * 255 }
   let(:answer) { FactoryBot.create(:answer, user: user,
-                                  content: 'a' * 255,
-                                  question_content: 'q' * 255) }
+                                   content: answer_content,
+                                   question_content: question_content) }
 
   before do
     stub_const("APP_CONFIG", {
@@ -22,6 +24,25 @@ describe SocialHelper::TwitterMethods, :type => :helper do
 
       it 'should return a properly formatted tweet' do
         expect(subject).to eq("#{'q' * 123}… — #{'a' * 124}… https://example.com/#{user.screen_name}/a/#{answer.id}")
+      end
+    end
+
+    context 'when a suffix has been passed' do
+      let(:question_content) { 'question' }
+      let(:answer_content) { 'answer' }
+
+      subject { prepare_tweet(answer, '#askracc') }
+
+      it 'should include the suffix after the link' do
+        expect(subject).to eq("question — answer #askracc https://example.com/#{user.screen_name}/a/#{answer.id}")
+      end
+    end
+
+    context 'when a suffix has been passed and the tweet needs to be shortened' do
+      subject { prepare_tweet(answer, '#askracc') }
+
+      it 'should shorten the tweet while keeping the suffix intact' do
+        expect(subject).to eq("#{'q' * 120}… — #{'a' * 120}… #askracc https://example.com/#{user.screen_name}/a/#{answer.id}")
       end
     end
 

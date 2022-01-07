@@ -38,4 +38,45 @@ describe ServicesController, type: :controller do
       end
     end
   end
+
+  context '#update' do
+    subject { patch :update, params: params }
+
+    context 'not signed in' do
+      let(:params) { { id: 1 } }
+
+      it 'redirects to sign in page' do
+        subject
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context 'user with Twitter connection' do
+      before { sign_in user }
+
+      let(:user) { FactoryBot.create(:user) }
+      let(:service) { Services::Twitter.create(user: user, uid: 12) }
+      let(:params) { { id: service.id, service: { post_tag: post_tag } } }
+
+      context 'tag is valid' do
+        let(:post_tag) { '#askaraccoon' }
+
+        it 'updates a service connection' do
+          expect { subject }.to change { service.reload.post_tag }.to('#askaraccoon')
+          expect(response).to redirect_to(services_path)
+          expect(flash[:success]).to eq("Service updated successfully")
+        end
+      end
+
+      context 'tag is too long' do
+        let(:post_tag) { 'a' * 21 }  # 1 character over the limit
+
+        it 'shows an error' do
+          subject
+          expect(response).to redirect_to(services_path)
+          expect(flash[:error]).to eq("Failed to update service")
+        end
+      end
+    end
+  end
 end

@@ -23,6 +23,6 @@ class Services::Twitter < Service
     end
 
     def post_tweet(answer)
-      client.update! prepare_tweet(answer)
+      client.update! prepare_tweet(answer, self.post_tag)
     end
 end

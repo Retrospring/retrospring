@@ -3,6 +3,7 @@ class Service < ApplicationRecord
 
   belongs_to :user
   validates_uniqueness_of :uid, scope: :type
+  validates_length_of :post_tag, maximum: 20
 
   class << self
 
