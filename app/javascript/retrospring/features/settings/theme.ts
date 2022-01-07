@@ -69,6 +69,7 @@ const getDecimalTripletsFromHex = (hex: string): string => {
 
 export function themeDocumentHandler(): void {
   if (!document.querySelector('#update_theme')) return;
+  if (document.querySelector('#clr-picker')) return;
 
   previewStyle = document.createElement('style');
   previewStyle.setAttribute('data-preview-style', '');
@@ -77,7 +78,21 @@ export function themeDocumentHandler(): void {
   Coloris.init();
 
   Array.from(document.querySelectorAll('#update_theme .color')).forEach((color: HTMLInputElement) => {
-    color.value = `#${getHexColorFromThemeValue(color.value)}`;
+    // If there already is a hex-color in the input, skip
+    if (color.value.startsWith('#')) return;
+
+    let colorValue;
+
+    // match for value="[digits]" to ALWAYS get a color value
+    // TODO: Fix this later with rethinking the entire lifecycle, or dropping Turbolinks
+    colorValue = color.outerHTML.match(/value="(\d+)"/)[1];
+
+    // matching failed, or no result was found, we just fallback to the input value
+    if (colorValue === null) {
+      colorValue = color.value;
+    }
+
+    color.value = `#${getHexColorFromThemeValue(colorValue)}`;
 
     Coloris({
       el: '.color',
