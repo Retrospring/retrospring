@@ -23,6 +23,8 @@
 #
 fallbacks: :default_locale
 
+export_i18n_js: false
+
 translations:
   - file: 'app/javascript/legacy/i18n.js'
     only: ['*.frontend.*', '*.views.actions.*']
