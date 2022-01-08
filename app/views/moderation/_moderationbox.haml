@@ -51,5 +51,5 @@
             %span{ id: "mod-comment-count-#{report.id}" }= report.moderation_comments.all.count
           %button.btn.btn-default.btn-sm{ type: :button, name: 'mod-delete-report', data: { id: report.id } }
             %i.fa.fa-trash-o
-    .card-footer{ id: "mod-comments-section-#{report.id}", style: 'display: none' }
+    .card-footer.d-none{ id: "mod-comments-section-#{report.id}" }
       %div{ id: "mod-comments-#{report.id}" }= render 'moderation/discussion', report: report
