@@ -35,8 +35,8 @@ describe UserController, type: :controller do
     end
   end
 
-  describe "#friends" do
-    subject { get :friends, params: { username: user.screen_name } }
+  describe "#followings" do
+    subject { get :followings, params: { username: user.screen_name } }
 
     context "user signed in" do
       before(:each) { sign_in user }
