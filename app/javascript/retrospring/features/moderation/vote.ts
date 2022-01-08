@@ -41,12 +41,14 @@ export function voteReportHandler(event: Event): void {
     },
     complete: () => {
       if (success) {
+        const inverseVoteButton = document.querySelector<HTMLButtonElement>(`[name=mod-vote][data-id="${id}"][data-vote-type="${ upvote ? 'downvote' : 'upvote' }"]`);
+        const inverseUnvoteButton = document.querySelector<HTMLButtonElement>(`[name=mod-vote][data-id="${id}"][data-vote-type="${ upvote ? 'downvote' : 'upvote' }"]`);
+        
         switch (action) {
           case 'vote':
             button.disabled = true;
             button.dataset.action = 'unvote';
   
-            const inverseVoteButton = document.querySelector<HTMLButtonElement>(`[name=mod-vote][data-id="${id}"][data-vote-type="${ upvote ? 'downvote' : 'upvote' }"]`);
             inverseVoteButton.disabled = false;
             inverseVoteButton.dataset.action = 'unvote';
             break;
@@ -54,7 +56,6 @@ export function voteReportHandler(event: Event): void {
             button.disabled = false;
             button.dataset.action = 'vote';
   
-            const inverseUnvoteButton = document.querySelector<HTMLButtonElement>(`[name=mod-vote][data-id="${id}"][data-vote-type="${ upvote ? 'downvote' : 'upvote' }"]`);
             inverseUnvoteButton.disabled = false;
             inverseUnvoteButton.dataset.action = 'vote';
             break;
