@@ -35,6 +35,6 @@
           = link_to(raw(t('views.answerbox.time', time: time_tooltip(a))), show_user_answer_path(a.user.screen_name, a.id), class: 'answerbox__permalink')
         .col-md-6.d-md-flex.answerbox__actions
           = render 'answerbox/actions', a: a, display_all: display_all
-  .card-footer{ id: "ab-comments-section-#{a.id}", style: display_all.nil? ? 'display: none' : nil }
+  .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? 'd-none' : nil }
     %div{ id: "ab-smiles-#{a.id}" }= render 'answerbox/smiles', a: a
     %div{ id: "ab-comments-#{a.id}" }= render 'answerbox/comments', a: a
