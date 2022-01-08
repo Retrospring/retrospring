@@ -9,7 +9,6 @@ import 'particleground/jquery.particleground.min'
 import 'jquery.growl'
 import 'sweetalert'
 import Cookies from 'js-cookie'
-import moment from 'moment'
 
 require('nprogress/nprogress.css')
 require('jquery.growl/stylesheets/jquery.growl.css')
@@ -25,8 +24,6 @@ import '../legacy/pagination'
 import '../legacy/report'
 import '../legacy/locale-box'
 import '../legacy/util'
-
-window.moment = moment
 
 window.translate = (scope, options) ->
   # for some reason I18n errors when calling it by assign proxy, so we got to wrap it
