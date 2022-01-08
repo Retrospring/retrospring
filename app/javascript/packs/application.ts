@@ -6,6 +6,7 @@ import initSettings from 'retrospring/features/settings/index';
 import initLists from 'retrospring/features/lists';
 import initQuestionbox from 'retrospring/features/questionbox';
 import initQuestion from 'retrospring/features/question';
+import initModeration from 'retrospring/features/moderation';
 
 start();
 document.addEventListener('turbolinks:load', initAnswerbox);
@@ -15,3 +16,4 @@ document.addEventListener('turbolinks:load', initSettings);
 document.addEventListener('DOMContentLoaded', initLists);
 document.addEventListener('DOMContentLoaded', initQuestionbox);
 document.addEventListener('DOMContentLoaded', initQuestion);
+document.addEventListener('DOMContentLoaded', initModeration);
