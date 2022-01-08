@@ -18,8 +18,6 @@
     = javascript_pack_tag 'application', data: { 'turbolinks-track': 'reload' }
     = javascript_pack_tag 'legacy', data: { 'turbolinks-track': 'reload' }
     = stylesheet_pack_tag 'legacy', data: { 'turbolinks-track': 'reload' }
-    - if user_signed_in? && current_user.mod?
-      = javascript_pack_tag 'legacy-moderation', data: { 'turbolinks-track': 'reload' }
     = csrf_meta_tags
     = yield(:og)
     = yield(:meta)
