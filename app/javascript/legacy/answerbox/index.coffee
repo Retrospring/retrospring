@@ -1,8 +1,0 @@
-import './comment/destroy'
-import './comment/report'
-import './comment/smile'
-import './comment'
-import './destroy'
-import './report'
-import './smile'
-import './subscribe'
