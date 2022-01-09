@@ -306,7 +306,7 @@ en_dizzle:
       opensource:
         title: "Open Source"
         warning: "%{app_title} is hustlin on unfinished code, full of bugs. Caveat emptor."
-        desc: "Want ta contribute, biatch? If yo ass be a Ruby pimper, CoffeeScript coder or frontend designer, you can now help %{app_title} ta git tha features mah playas wanted by forkin our %{github}. If thatz not tha case, you can still report bugs n' request features at our %{bugtracker}."
+        desc: "Want ta contribute, biatch? If yo ass be a Ruby pimper, TypeScript coder or frontend designer, you can now help %{app_title} ta git tha features mah playas wanted by forkin our %{github}. If thatz not tha case, you can still report bugs n' request features at our %{bugtracker}."
         github: "Github repository"
         bugtracker: "tha bug tracker yo"
       repository:

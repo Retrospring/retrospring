@@ -306,7 +306,7 @@ cs:
       opensource:
         title: "Open Source"
         warning: "%{app_title} běží na nedokončeném kódu, který je plný chyb. Bez záruky."
-        desc: "Chcete přispět? Pokud jste Ruby vývojář, CoffeeScript kodér nebo frontend návrhář, nyní můžete pomoci %{app_title} dostat funkce které všichni chtějí když forknete náš %{github}. Pokud to není tento případ, stále můžete hlásit chyby a žádat si o funkce v naším %{bugtracker}u."
+        desc: "Chcete přispět? Pokud jste Ruby vývojář, TypeScript kodér nebo frontend návrhář, nyní můžete pomoci %{app_title} dostat funkce které všichni chtějí když forknete náš %{github}. Pokud to není tento případ, stále můžete hlásit chyby a žádat si o funkce v naším %{bugtracker}u."
         github: "Github úložiště"
         bugtracker: "bug tracker"
       repository:
