@@ -1,0 +1,5 @@
+.toastify {
+  @include media-breakpoint-up('md') {
+    transform: translateY(56px) !important;
+  }
+}
