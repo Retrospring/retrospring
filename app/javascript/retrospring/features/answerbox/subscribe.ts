@@ -29,7 +29,7 @@ export function answerboxSubscribeHandler(event: Event): void {
     success: (data) => {
       if (data.success) {
         button.dataset.torpedo = ["yes", "no"][torpedo];
-        button.children[0].nextSibling.textContent = torpedo ? I18n.translate('views.actions.unsubscribe') : I18n.translate('views.actions.subscribe');
+        button.children[0].nextSibling.textContent = ' ' + (torpedo ? I18n.translate('views.actions.unsubscribe') : I18n.translate('views.actions.subscribe'));
         showNotification(I18n.translate(`frontend.subscription.${torpedo ? 'subscribe' : 'unsubscribe'}`));
       } else {
         showErrorNotification(I18n.translate(`frontend.subscription.fail.${torpedo ? 'subscribe' : 'unsubscribe'}`));
