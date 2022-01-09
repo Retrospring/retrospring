@@ -1,3 +1,5 @@
+require('sweetalert/dist/sweetalert.css');
+
 import start from 'retrospring/common';
 import initAnswerbox from 'retrospring/features/answerbox/index';
 import initInbox from 'retrospring/features/inbox/index';
