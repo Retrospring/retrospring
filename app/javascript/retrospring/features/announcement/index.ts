@@ -3,7 +3,7 @@ import closeAnnouncementHandler from './close';
 
 export default (): void => {
   registerEvents([
-    { type: 'click', target: '.announcement button.close', handler: closeAnnouncementHandler, global: true },
+    { type: 'click', target: document.querySelector('.announcement button.close'), handler: closeAnnouncementHandler },
   ]);
 
   document.querySelectorAll('.announcement').forEach(function (el: HTMLDivElement) {
