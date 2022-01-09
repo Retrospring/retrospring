@@ -3,7 +3,7 @@ import Rails from '@rails/ujs';
 import I18n from '../../../../legacy/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 
-export function commentCreateHandler(event: KeyboardEvent) {
+export function commentCreateHandler(event: KeyboardEvent): boolean {
   const input = event.target as HTMLInputElement;
   const id = input.dataset.aId;
   const counter = document.querySelector(`#ab-comment-charcount-${id}`);
