@@ -11,7 +11,7 @@ import initQuestion from 'retrospring/features/question';
 import initModeration from 'retrospring/features/moderation';
 
 start();
-document.addEventListener('turbolinks:load', initAnswerbox);
+document.addEventListener('DOMContentLoaded', initAnswerbox);
 document.addEventListener('DOMContentLoaded', initInbox);
 document.addEventListener('DOMContentLoaded', initUser);
 document.addEventListener('turbolinks:load', initSettings);
