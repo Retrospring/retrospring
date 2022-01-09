@@ -1,7 +1,7 @@
 require('sweetalert/dist/sweetalert.css');
 
 import start from 'retrospring/common';
-import initAnnouncements from 'retrospring/features/announcement/index';
+import initAnnouncements from 'retrospring/features/announcement';
 import initAnswerbox from 'retrospring/features/answerbox/index';
 import initInbox from 'retrospring/features/inbox/index';
 import initUser from 'retrospring/features/user';
