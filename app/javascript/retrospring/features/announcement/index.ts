@@ -7,7 +7,7 @@ export default (): void => {
   ]);
 
   document.querySelectorAll('.announcement').forEach(function (el: HTMLDivElement) {
-    if (!window.localStorage.getItem(el.dataset.announcementId)) {
+    if (!window.localStorage.getItem(`announcement${el.dataset.announcementId}`)) {
       el.classList.remove('d-none');
     }
   });
