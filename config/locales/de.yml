@@ -310,7 +310,7 @@ de:
       opensource:
         title: Open-Source
         warning: "%{app_title} läuft mit unfertigen Code, voll mit Bugs. Caveat emptor."
-        desc: "Möchtest du beitragen?  Wenn du ein Ruby-, CoffeeScript oder Frontend-Entwickler bist, kannst du %{app_title} dabei helfen, fehlende Features einzubauen oder vorhandene zu verbessen, indem du das %{github} forkst.  Falls nicht, kannst du in unserem %{bugtracker} Bugs reporten oder neue Features vorschlagen."
+        desc: "Möchtest du beitragen?  Wenn du ein Ruby-, TypeScript oder Frontend-Entwickler bist, kannst du %{app_title} dabei helfen, fehlende Features einzubauen oder vorhandene zu verbessen, indem du das %{github} forkst.  Falls nicht, kannst du in unserem %{bugtracker} Bugs reporten oder neue Features vorschlagen."
         github: "Github Repository"
         bugtracker: Bugtracker
       repository:

@@ -307,7 +307,7 @@ ja:
       opensource:
         title: オープンソース
         warning: "%{app_title}は完成されたコードで動いておらず、バグで満ちています。動く保証はありません。"
-        desc: "貢献したいですか？Rubyデベロッパー、CoffeeScriptコーダーかフロントエンドデザイナーならば、私たちの%{github}をフォークすることによってみんなが欲しい機能をつけて%{app_title}を助けることができます。そうでなければ、バグを報告して私たちの%{bugtracker}で機能をリクエストすることができます。"
+        desc: "貢献したいですか？Rubyデベロッパー、TypeScriptコーダーかフロントエンドデザイナーならば、私たちの%{github}をフォークすることによってみんなが欲しい機能をつけて%{app_title}を助けることができます。そうでなければ、バグを報告して私たちの%{bugtracker}で機能をリクエストすることができます。"
         github: Githubレポジトリ
         bugtracker: バグトラッカー
       repository:

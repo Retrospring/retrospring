@@ -308,7 +308,7 @@ fr:
       opensource:
         title: "Open Source"
         warning: "%{app_title} fonctionne grâce à du code incomplet, plein de bugs. Caveat emptor."
-        desc: "Envie de nous aider ? Que vous soyez un développeur Ruby, un codeur CoffeeScript ou un designer frontend, vous pouvez dès maintenant aider %{app_title} à obtenir les fonctionnalités longuement désirées par nos utilisateurs en créant un fork sur notre %{github}. Si ce n'est pas le cas, vous pouvez toujours signaler des bugs et suggérer des fonctionnalités sur notre %{bugtracker}."
+        desc: "Envie de nous aider ? Que vous soyez un développeur Ruby, un codeur TypeScript ou un designer frontend, vous pouvez dès maintenant aider %{app_title} à obtenir les fonctionnalités longuement désirées par nos utilisateurs en créant un fork sur notre %{github}. Si ce n'est pas le cas, vous pouvez toujours signaler des bugs et suggérer des fonctionnalités sur notre %{bugtracker}."
         github: "repository GitHub"
         bugtracker: "bug tracker"
       repository:

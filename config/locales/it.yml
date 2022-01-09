@@ -307,7 +307,7 @@ it:
       opensource:
         title: "Open Source (Sorgente Aperta)"
         warning: "%{app_title} usa del codice non finito, pieno di bug. Caveat emptor."
-        desc: "Vuoi darci una mano? Se sei uno sviluppatore di Ruby, programmatore di CoffeeScript o un designer frontend, puoi aiutare %{app_title} ad avere le funzioni che tutti volevano facendo un fork della nostra %{github}. Se ciò non è il caso, puoi comunque segnalare bug e richiedere funzioni sul nostro %{bugtracker}."
+        desc: "Vuoi darci una mano? Se sei uno sviluppatore di Ruby, programmatore di TypeScript o un designer frontend, puoi aiutare %{app_title} ad avere le funzioni che tutti volevano facendo un fork della nostra %{github}. Se ciò non è il caso, puoi comunque segnalare bug e richiedere funzioni sul nostro %{bugtracker}."
         github: "repository Github"
         bugtracker: "bug tracker"
       repository:

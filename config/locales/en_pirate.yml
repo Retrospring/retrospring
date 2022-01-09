@@ -306,7 +306,7 @@ en_pirate:
       opensource:
         title: "Open Ship"
         warning: "%{app_title} is running on unfinished code, full of bugs. Caveat emptor."
-        desc: "Want to contribute? If you are a Ruby developer, CoffeeScript coder or frontend designer, you can now help %{app_title} to get the features everyone wanted by forking our %{github}. If that's not the case, you can still report bugs and request features at our %{bugtracker}."
+        desc: "Want to contribute? If you are a Ruby developer, TypeScript coder or frontend designer, you can now help %{app_title} to get the features everyone wanted by forking our %{github}. If that's not the case, you can still report bugs and request features at our %{bugtracker}."
         github: "Github tavern"
         bugtracker: "bug tracker"
       repository:
