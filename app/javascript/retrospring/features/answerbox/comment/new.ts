@@ -35,7 +35,7 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
 
           const sub = document.querySelector<HTMLElement>(`[data-action=ab-submarine][data-a-id="${id}"]`);
           sub.dataset.torpedo = "no"
-          sub.children[0].nextSibling.textContent = I18n.translate('views.actions.unsubscribe');
+          sub.children[0].nextSibling.textContent = ' ' + I18n.translate('views.actions.unsubscribe');
         }
 
         showNotification(data.message, data.success);
