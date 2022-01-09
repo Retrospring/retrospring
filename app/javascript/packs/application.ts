@@ -1,6 +1,7 @@
 require('sweetalert/dist/sweetalert.css');
 
 import start from 'retrospring/common';
+import initAnnouncements from 'retrospring/features/announcement/index';
 import initAnswerbox from 'retrospring/features/answerbox/index';
 import initInbox from 'retrospring/features/inbox/index';
 import initUser from 'retrospring/features/user';
@@ -19,3 +20,4 @@ document.addEventListener('DOMContentLoaded', initLists);
 document.addEventListener('DOMContentLoaded', initQuestionbox);
 document.addEventListener('DOMContentLoaded', initQuestion);
 document.addEventListener('DOMContentLoaded', initModeration);
+document.addEventListener('turbolinks:load', initAnnouncements)

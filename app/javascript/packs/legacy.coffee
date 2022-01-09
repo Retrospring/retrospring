@@ -51,17 +51,6 @@ _ready = ->
       lineColor: bodyColor
       density: 23000
 
-  $(".announcement").each ->
-    aId = $(this)[0].dataset.announcementId
-    unless (window.localStorage.getItem("announcement#{aId}"))
-      $(this).toggleClass("d-none")
-
-  $(document).on "click", ".announcement button.close", (evt) ->
-    announcement = event.target.closest(".announcement")
-    aId = announcement.dataset.announcementId
-    window.localStorage.setItem("announcement#{aId}", true)
-
-
 $(document).ready _ready
 $(document).on 'turbolinks:load', _ready
 
