@@ -1,6 +1,8 @@
+import { reportDialog } from 'utilities/reportDialog';
+
 export function userReportHandler(event: Event): void {
   event.preventDefault();
   const button: HTMLButtonElement = event.target as HTMLButtonElement;
 
-  window['reportDialog']('user', button.dataset.target);
+  reportDialog('user', button.dataset.target);
 }
