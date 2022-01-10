@@ -16,8 +16,8 @@ RSpec.describe Question, :type => :model do
     expect(@question.content).to match 'Is this a question?'
   end
 
-  it 'does not save questions longer than 255 characters' do
-    @question.content = 'X' * 256
+  it 'does not save questions longer than 512 characters' do
+    @question.content = 'X' * 513
     expect{@question.save!}.to raise_error(ActiveRecord::RecordInvalid)
   end
 

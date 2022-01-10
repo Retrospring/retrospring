@@ -5,7 +5,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :inboxes, dependent: :destroy
 
-  validates :content, length: { maximum: 255 }
+  validates :content, length: { maximum: 512 }
 
   before_destroy do
     rep = Report.where(target_id: self.id, type: 'Reports::Question')
