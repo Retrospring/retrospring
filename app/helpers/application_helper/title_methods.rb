@@ -18,7 +18,7 @@ module ApplicationHelper::TitleMethods
     unless content.nil?
       content = strip_markdown(content)
       if content.length > 45
-        content = content[0..42] + "..."
+        content = content[0..42] + "…"
       end
       list.push content
     end

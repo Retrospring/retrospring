@@ -28,7 +28,7 @@ describe ApplicationHelper::TitleMethods, :type => :helper do
     end
 
     it 'should cut content that is too long' do
-      expect(generate_title('A title', 'with', 'a' * 50)).to eq('A title with aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa... | Waschmaschine')
+      expect(generate_title('A title', 'with', 'a' * 50)).to eq('A title with aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa… | Waschmaschine')
     end
   end
 
