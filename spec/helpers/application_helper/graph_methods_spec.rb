@@ -14,15 +14,15 @@ describe ApplicationHelper::GraphMethods, :type => :helper do
 
       it 'should generate a matching OpenGraph structure for a user' do
         allow(APP_CONFIG).to receive(:[]).with('site_name').and_return('pineapplespring')
-        expect(subject).to eq(<<-EOS.chomp)
-<meta property="og:title" content="Cunes" />
-<meta property="og:type" content="profile" />
-<meta property="og:image" content="http://test.host/images/large/no_avatar.png" />
-<meta property="og:url" content="http://test.host/raccoons" />
-<meta property="og:description" content="A bunch of raccoons in a trenchcoat." />
-<meta property="og:site_name" content="pineapplespring" />
-<meta property="profile:username" content="raccoons" />
-EOS
+        expect(subject).to eq(<<~EOS.chomp)
+          <meta property="og:title" content="Cunes" />
+          <meta property="og:type" content="profile" />
+          <meta property="og:image" content="http://test.host/images/large/no_avatar.png" />
+          <meta property="og:url" content="http://test.host/raccoons" />
+          <meta property="og:description" content="A bunch of raccoons in a trenchcoat." />
+          <meta property="og:site_name" content="pineapplespring" />
+          <meta property="profile:username" content="raccoons" />
+        EOS
       end
     end
   end
@@ -37,13 +37,13 @@ EOS
 
       subject { user_twitter_card(user) }
       it 'should generate a matching OpenGraph structure for a user' do
-        expect(subject).to eq(<<-EOS.chomp)
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@retrospring" />
-<meta name="twitter:title" content="Ask me anything!" />
-<meta name="twitter:description" content="Ask raccoons anything on Retrospring" />
-<meta name="twitter:image" content="http://test.host/images/large/no_avatar.png" />
-EOS
+        expect(subject).to eq(<<~EOS.chomp)
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@retrospring" />
+          <meta name="twitter:title" content="Ask me anything!" />
+          <meta name="twitter:description" content="Ask raccoons anything on Retrospring" />
+          <meta name="twitter:image" content="http://test.host/images/large/no_avatar.png" />
+        EOS
       end
     end
   end
@@ -62,14 +62,14 @@ EOS
 
       it 'should generate a matching OpenGraph structure for a user' do
         allow(APP_CONFIG).to receive(:[]).with('site_name').and_return('pineapplespring')
-        expect(subject).to eq(<<-EOS.chomp)
-<meta property="og:title" content="raccoons answered: #{answer.question.content}" />
-<meta property="og:type" content="article" />
-<meta property="og:image" content="http://test.host/images/large/no_avatar.png" />
-<meta property="og:url" content="http://test.host/raccoons/a/#{answer.id}" />
-<meta property="og:description" content="#{answer.content}" />
-<meta property="og:site_name" content="pineapplespring" />
-EOS
+        expect(subject).to eq(<<~EOS.chomp)
+          <meta property="og:title" content="raccoons answered: #{answer.question.content}" />
+          <meta property="og:type" content="article" />
+          <meta property="og:image" content="http://test.host/images/large/no_avatar.png" />
+          <meta property="og:url" content="http://test.host/raccoons/a/#{answer.id}" />
+          <meta property="og:description" content="#{answer.content}" />
+          <meta property="og:site_name" content="pineapplespring" />
+        EOS
       end
     end
   end
