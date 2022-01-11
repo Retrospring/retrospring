@@ -33,6 +33,61 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'email validation' do
+    subject do
+      FactoryBot.build(:user, email: email).tap(&:validate).errors[:email]
+    end
+
+    shared_examples_for 'valid email' do |example_email|
+      context "when email is #{example_email}" do
+        let(:email) { example_email }
+
+        it "does not have validation errors" do
+          expect(subject).to be_empty
+        end
+      end
+    end
+
+    shared_examples_for 'invalid email' do |example_email|
+      context "when email is #{example_email}" do
+        let(:email) { example_email }
+
+        it "has validation errors" do
+          expect(subject).not_to be_empty
+        end
+      end
+    end
+
+    include_examples 'valid email', 'ifyouusethismailyouarebanned@nilsding.org'
+    include_examples 'valid email', 'fritz.fantom@gmail.com'
+    include_examples 'valid email', 'fritz.fantom@columbiamail.co'
+    include_examples 'valid email', 'fritz.fantom@protonmail.com'
+    include_examples 'valid email', 'fritz.fantom@enterprise.k8s.420stripes.k8s.needs.more.k8s.jira.atlassian.k8s.eu-central-1.s3.amazonaws.com'
+    include_examples 'invalid email', '@jack'
+
+    # examples from the real world:
+
+    # .con is not a valid TLD
+    include_examples 'invalid email', 'fritz.fantom@gmail.con'
+    include_examples 'invalid email', 'fritz.fantom@protonmail.con'
+    # neither is .coom
+    include_examples 'invalid email', 'fritz.fantom@gmail.coom'
+    # common typos:
+    include_examples 'invalid email', 'fritz.fantom@fmail.com'
+    include_examples 'invalid email', 'fritz.fantom@gemail.com'
+    include_examples 'invalid email', 'fritz.fantom@gmail.co'
+    include_examples 'invalid email', 'fritz.fantom@gmailcom'
+    include_examples 'invalid email', 'fritz.fantom@gmaile.com'
+    include_examples 'invalid email', 'fritz.fantom@gmaill.com'
+    include_examples 'invalid email', 'fritz.fantom@hotmailcom'
+    include_examples 'invalid email', 'fritz.fantom@icluod.com'
+    # no TLD
+    include_examples 'invalid email', 'fritz.fantom@gmail'
+    include_examples 'invalid email', 'fritz.fantom@protonmail'
+    # not registered as of 2022-01-11
+    include_examples 'invalid email', 'fritz.fantom@proton.mail'
+  end
+
   # -- User::TimelineMethods --
 
   shared_examples_for 'result is blank' do
