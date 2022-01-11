@@ -61,7 +61,7 @@ class User < ApplicationRecord
     screen_name.strip!
   end
 
-  validates :email, fake_email: true
+  validates :email, fake_email: true, typoed_email: true
   validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }, screen_name: true
 
   mount_uploader :profile_picture, ProfilePictureUploader, mount_on: :profile_picture_file_name
