@@ -69,8 +69,6 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
     ast (2.4.2)
-    autoprefixer-rails (10.4.0.0)
-      execjs (~> 2)
     bcrypt (3.1.16)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
@@ -79,10 +77,6 @@ GEM
     bindex (0.8.1)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    bootstrap (4.6.1)
-      autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 1.14.3, < 2)
-      sassc-rails (>= 2.0.0)
     bootstrap_form (5.0.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -216,10 +210,6 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    font-awesome-rails (4.7.0.8)
-      railties (>= 3.2, < 8.0)
-    font-kit-rails (1.2.0)
-      rails
     formatador (0.3.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -358,7 +348,6 @@ GEM
       capybara (>= 2.1, < 4)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
-    popper_js (1.16.0)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -596,7 +585,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
-  bootstrap (~> 4.4, >= 4.4.1)
   bootstrap_form
   brakeman
   byebug
@@ -616,8 +604,6 @@ DEPENDENCIES
   fog-aws
   fog-core
   fog-local
-  font-awesome-rails (~> 4.7.0)
-  font-kit-rails
   guard-brakeman
   haml (~> 5.0)
   haml_lint
