@@ -1,4 +1,4 @@
-require('sweetalert/dist/sweetalert.css');
+require('../styles/application.scss');
 
 import start from 'retrospring/common';
 import initAnnouncements from 'retrospring/features/announcement';
