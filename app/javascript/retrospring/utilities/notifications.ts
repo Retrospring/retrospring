@@ -1,4 +1,3 @@
-require('toastify-js/src/toastify.css');
 import Toastify from 'toastify-js';
 
 export function showErrorNotification(text: string): void {
