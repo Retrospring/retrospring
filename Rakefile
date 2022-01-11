@@ -467,8 +467,12 @@ namespace :db do
 
   # create timestampid before loading schema
   Rake::Task['db:schema:load'].enhance ['db:schema:create_timestampid_function']
+  Rake::Task['db:test:load_schema'].enhance ['db:schema:create_timestampid_function']
   # create id_sequences after loading schema
   Rake::Task['db:schema:load'].enhance do
+    Rake::Task['db:schema:create_id_sequences'].invoke
+  end
+  Rake::Task['db:test:load_schema'].enhance do
     Rake::Task['db:schema:create_id_sequences'].invoke
   end
 end
