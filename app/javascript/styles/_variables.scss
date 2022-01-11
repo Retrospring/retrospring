@@ -1,5 +1,7 @@
 // Font settings
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+$lato-font-path: "~lato-font/fonts";
+
+$fa-font-path: "~font-awesome/fonts";
 
 $font-family-sans-serif:  "Lato","Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
