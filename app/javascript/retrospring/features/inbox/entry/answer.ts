@@ -48,6 +48,6 @@ export function answerEntryInputHandler(event: KeyboardEvent): void {
   const inboxId = input.dataset.id;
 
   if (event.keyCode == 13 && (event.ctrlKey || event.metaKey)) {
-    document.querySelector<HTMLButtonElement>(`button[name=ib-answer][data-ib-id=${inboxId}]`).click();
+    document.querySelector<HTMLButtonElement>(`button[name="ib-answer"][data-ib-id="${inboxId}"]`).click();
   }
 }
