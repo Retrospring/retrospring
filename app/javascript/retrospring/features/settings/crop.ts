@@ -1,4 +1,3 @@
-import 'croppr/dist/croppr.css';
 import Croppr from 'croppr';
 
 const readImage = (file, callback) => callback((window.URL || window.webkitURL).createObjectURL(file));
