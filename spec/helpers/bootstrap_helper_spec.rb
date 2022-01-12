@@ -88,9 +88,9 @@ describe BootstrapHelper, :type => :helper do
 
   describe "#time_tooltip" do
     it 'should return a tooltip with proper time values' do
-      Timecop.freeze(Time.local(1984)) do
+      Timecop.freeze(Time.utc(1984)) do
         @user = FactoryBot.create(:user)
-        Timecop.travel(Time.now + 10.minutes)
+        Timecop.travel(Time.now.utc + 10.minutes)
 
         expect(time_tooltip(@user)).to eq("<span title=\"Sun, 01 Jan 1984 00:00:00 +0000\" data-toggle=\"tooltip\" data-placement=\"bottom\">10 minutes</span>")
       end
