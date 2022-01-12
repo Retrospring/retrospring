@@ -2,8 +2,8 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2'
-gem 'rails-i18n', '~> 5.0'
+gem 'rails', '~> 6.0'
+gem 'rails-i18n', '~> 6.0'
 gem 'i18n-js', '= 3.6'
 
 gem 'pg'
@@ -76,7 +76,7 @@ gem 'puma'
 group :development, :test do
   gem 'rake'
   gem 'rspec-mocks'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
   gem 'rspec-its', '~> 1.3'
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem 'factory_bot_rails', require: false
