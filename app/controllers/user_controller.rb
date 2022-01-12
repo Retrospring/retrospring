@@ -30,7 +30,7 @@ class UserController < ApplicationController
   def update
     user_attributes = params.require(:user).permit(:show_foreign_themes, :profile_picture_x, :profile_picture_y, :profile_picture_w, :profile_picture_h,
                                                    :profile_header_x, :profile_header_y, :profile_header_w, :profile_header_h, :profile_picture, :profile_header)
-    if current_user.update_attributes(user_attributes)
+    if current_user.update(user_attributes)
       text = t('flash.user.update.text')
       text += t('flash.user.update.avatar') if user_attributes[:profile_picture]
       text += t('flash.user.update.header') if user_attributes[:profile_header]
@@ -44,7 +44,7 @@ class UserController < ApplicationController
   def update_profile
     profile_attributes = params.require(:profile).permit(:display_name, :motivation_header, :website, :location, :description)
 
-    if current_user.profile.update_attributes(profile_attributes)
+    if current_user.profile.update(profile_attributes)
       flash[:success] = t('flash.user.update.text')
     else
       flash[:error] = t('flash.user.update.error')
@@ -62,7 +62,7 @@ class UserController < ApplicationController
                                                    :privacy_allow_public_timeline,
                                                    :privacy_allow_stranger_answers,
                                                    :privacy_show_in_search)
-    if current_user.update_attributes(user_attributes)
+    if current_user.update(user_attributes)
       flash[:success] = t('flash.user.update_privacy.success')
     else
       flash[:error] = t('flash.user.update_privacy.error')
@@ -158,7 +158,7 @@ class UserController < ApplicationController
       else
         flash[:error] = 'Theme saving failed. ' + current_user.theme.errors.messages.flatten.join(' ')
       end
-    elsif current_user.theme.update_attributes(update_attributes)
+    elsif current_user.theme.update(update_attributes)
       flash[:success] = 'Theme saved.'
     else
       flash[:error] = 'Theme saving failed. ' + current_user.theme.errors.messages.flatten.join(' ')
