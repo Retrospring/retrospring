@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 6.1'
 gem 'rails-i18n', '~> 6.0'
 gem 'i18n-js', '= 3.6'
 
