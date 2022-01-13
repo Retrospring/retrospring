@@ -14,8 +14,6 @@
     "font-awesome": "4.7.0",
     "i18n-js": "^3.8.0",
     "jquery": "^3.5.1",
-    "jquery-ujs": "^1.2.2",
-    "jquery.turbolinks": "^2.1.0",
     "js-cookie": "2.2.1",
     "lato-font": "^3.0.0",
     "particleground": "jnicol/particleground",
