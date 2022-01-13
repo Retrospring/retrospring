@@ -2,7 +2,7 @@ import Rails from '@rails/ujs';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
 import swal from 'sweetalert';
 
-import I18n from '../../../legacy/i18n';
+import I18n from 'retrospring/i18n';
 
 export function answerboxDestroyHandler(event: Event): void {
   event.preventDefault();

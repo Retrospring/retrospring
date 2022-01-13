@@ -1,6 +1,6 @@
 import Rails from '@rails/ujs';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
-import I18n from '../../../legacy/i18n';
+import I18n from 'retrospring/i18n';
 
 export function userActionHandler(event: Event): void {
   const button: HTMLButtonElement = event.target as HTMLButtonElement;

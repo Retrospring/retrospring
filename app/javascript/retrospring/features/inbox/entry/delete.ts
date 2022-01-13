@@ -1,7 +1,7 @@
 import Rails from '@rails/ujs';
 import swal from 'sweetalert';
 
-import I18n from '../../../../legacy/i18n';
+import I18n from 'retrospring/i18n';
 import { updateDeleteButton } from '../delete';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 

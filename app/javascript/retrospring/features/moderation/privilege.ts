@@ -1,6 +1,6 @@
 import Rails from '@rails/ujs';
 
-import I18n from '../../../legacy/i18n';
+import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 
 export function privilegeCheckHandler(event: Event): void {
