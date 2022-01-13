@@ -7,7 +7,6 @@ import 'bootstrap'
 import 'particleground/jquery.particleground.min'
 
 import '../legacy/pagination'
-import '../legacy/locale-box'
 import '../legacy/util'
 
 _ready = ->
