@@ -1,7 +1,7 @@
 import Rails from '@rails/ujs';
 import swal from 'sweetalert';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
-import I18n from '../../../legacy/i18n';
+import I18n from 'retrospring/i18n';
 
 export function destroyListHandler(event: Event): void {
   event.preventDefault();

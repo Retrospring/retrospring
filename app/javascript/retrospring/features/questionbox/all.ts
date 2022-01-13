@@ -1,6 +1,6 @@
 import Rails from '@rails/ujs';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
-import I18n from '../../../legacy/i18n';
+import I18n from 'retrospring/i18n';
 
 export function questionboxAllHandler(event: Event): void {
   const button = event.target as HTMLButtonElement;
