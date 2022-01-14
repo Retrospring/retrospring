@@ -39,7 +39,9 @@ export function deleteAllQuestionsHandler(event: Event): void {
     cancelButtonText: I18n.translate('views.actions.cancel'),
     closeOnConfirm: true
   }, (returnValue) => {
-    if (returnValue === null) return false;
+    if (returnValue === false) {
+      return;
+    }
     
     Rails.ajax({
       url: '/ajax/delete_all_inbox',
