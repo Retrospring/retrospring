@@ -94,9 +94,9 @@ group :development, :test do
   gem 'timecop'
   gem 'rails-controller-testing'
   gem 'haml_lint', require: false
+  gem 'rt_rubocop_defaults', '~> 2.3', '>= 2.3.1'
   gem 'rubocop', '~> 1.22', '>= 1.22.1'
   gem 'rubocop-rails', '~> 2.13', '>= 2.13.1'
-  gem 'rt_rubocop_defaults', '~> 2.3', '>= 2.3.1'
 end
 
 gem "webpacker", "~> 5.2"
