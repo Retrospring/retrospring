@@ -1,0 +1,14 @@
+sass-lint:
+  enabled: false
+
+coffeescript:
+  enabled: false
+
+jshint:
+  enabled: false
+
+haml:
+  config_file: .haml-lint.yml
+
+rubocop:
+  config_file: .rubocop.yml
