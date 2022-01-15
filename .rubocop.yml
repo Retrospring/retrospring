@@ -2,7 +2,7 @@ require:
   - rt_rubocop_defaults
   - rubocop-rails
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
   Exclude:
     - 'config/**/*'
     - 'vendor/**/*'
