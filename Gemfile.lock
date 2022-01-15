@@ -474,6 +474,8 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.10.3)
+    rt_rubocop_defaults (2.3.1)
+      rubocop (~> 1.5)
     rubocop (1.24.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -485,6 +487,10 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.1)
       parser (>= 3.0.1.1)
+    rubocop-rails (2.13.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
@@ -658,6 +664,8 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails (~> 4.0)
   rspec-sidekiq (~> 3.0)
+  rt_rubocop_defaults (~> 2.3, >= 2.3.1)
+  rubocop-rails (~> 2.13, >= 2.13.1)
   ruby-progressbar
   sanitize
   sass-rails (~> 5.0)

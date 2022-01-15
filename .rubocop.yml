@@ -1,23 +1,43 @@
+require: 
+  - rt_rubocop_defaults
+  - rubocop-rails
 AllCops:
-  NewCops: enable
+  TargetRubyVersion: 2.5
   Exclude:
+    - 'config/**/*'
     - 'vendor/**/*'
     - 'db/schema.rb'
+    - 'db/seeds.rb'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
 
-Metrics/ClassLength:
+Rails:
+  Enabled: true
+
+Rails/InverseOf:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 20
+  Exclude:
+    - 'db/**/*'
 
 Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
-  Enabled: false
-
-Metrics/ModuleLength:
-  Enabled: false
+  Max: 15
+  Exclude:
+    - 'db/migrate/*.rb'
 
 Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
+
+Style/Encoding:
   Enabled: false
