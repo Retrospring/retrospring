@@ -1,102 +1,101 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'rails', '~> 6.1'
-gem 'rails-i18n', '~> 6.0'
-gem 'i18n-js', '= 3.6'
+gem "i18n-js", "= 3.6"
+gem "rails", "~> 6.1"
+gem "rails-i18n", "~> 6.0"
 
-gem 'pg'
+gem "pg"
 
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'turbolinks', '~> 2.5.3'
-gem 'jbuilder', '~> 2.10'
+gem "jbuilder", "~> 2.10"
+gem "sass-rails", "~> 5.0"
+gem "turbolinks", "~> 2.5.3"
+gem "uglifier", ">= 1.3.0"
 
-gem 'bcrypt', '~> 3.1.7'
+gem "bcrypt", "~> 3.1.7"
 
-gem 'haml', '~> 5.0'
-gem 'devise', '~> 4.0'
-gem 'devise-i18n'
-gem 'devise-async'
-gem 'active_model_otp'
-gem 'rqrcode'
-gem 'bootstrap_form'
-gem 'fog-core'
-gem 'fog-aws'
-gem 'fog-local'
-gem 'colorize'
-gem 'carrierwave', '~> 2.0'
-gem 'carrierwave_backgrounder', git: 'https://github.com/mltnhm/carrierwave_backgrounder.git'
-gem 'mini_magick'
+gem "active_model_otp"
+gem "bootstrap_form"
+gem "carrierwave", "~> 2.0"
+gem "carrierwave_backgrounder", git: "https://github.com/mltnhm/carrierwave_backgrounder.git"
+gem "colorize"
+gem "devise", "~> 4.0"
+gem "devise-async"
+gem "devise-i18n"
+gem "fog-aws"
+gem "fog-core"
+gem "fog-local"
+gem "haml", "~> 5.0"
 gem "hcaptcha", "~> 6.0", git: "https://github.com/Retrospring/hcaptcha.git", ref: "v6.0.2"
+gem "mini_magick"
+gem "rqrcode"
 
 gem "rolify", "~> 5.2"
 
 gem "dry-initializer", "~> 3.0"
 gem "dry-types", "~> 1.4"
 
-gem 'ruby-progressbar'
+gem "ruby-progressbar"
 
-gem 'rails_admin'
-gem 'pghero'
-gem "sentry-ruby"
+gem "pghero"
+gem "rails_admin"
 gem "sentry-rails"
+gem "sentry-ruby"
 gem "sentry-sidekiq"
 
-gem 'sidekiq', "< 6" # remove version constraint once we have redis 5
+gem "sidekiq", "< 6" # remove version constraint once we have redis 5
 
-gem 'questiongenerator', '~> 1.0'
+gem "questiongenerator", "~> 1.0"
 
-gem 'sanitize'
-gem 'redcarpet'
-gem 'httparty'
+gem "httparty"
+gem "redcarpet"
+gem "sanitize"
 
 # OmniAuth and providers
-gem 'omniauth'
-gem 'omniauth-twitter'
+gem "omniauth"
+gem "omniauth-twitter"
 
 # OAuth clients
-gem 'twitter'
-gem 'twitter-text'
+gem "twitter"
+gem "twitter-text"
 
-gem 'redis'
+gem "redis"
 
-gem 'fake_email_validator'
+gem "fake_email_validator"
 
 group :development do
-  gem 'spring', '~> 2.0'
-  gem 'byebug'
-  gem 'web-console', '~> 4.0'
-  gem 'binding_of_caller'
+  gem "binding_of_caller"
+  gem "byebug"
+  gem "spring", "~> 2.0"
+  gem "web-console", "~> 4.0"
 end
 
-gem 'puma'
+gem "puma"
 
 group :development, :test do
-  gem 'rake'
-  gem 'rspec-mocks'
-  gem 'rspec-rails', '~> 4.0'
-  gem 'rspec-its', '~> 1.3'
+  gem "better_errors"
+  gem "brakeman"
+  gem "capybara"
+  gem "database_cleaner"
+  gem "factory_bot_rails", require: false
+  gem "faker"
+  gem "guard-brakeman"
+  gem "haml_lint", require: false
+  gem "letter_opener" # Use this just in local test environments
+  gem "poltergeist"
+  gem "rails-controller-testing"
+  gem "rake"
+  gem "rspec-its", "~> 1.3"
+  gem "rspec-mocks"
+  gem "rspec-rails", "~> 4.0"
   gem "rspec-sidekiq", "~> 3.0", require: false
-  gem 'factory_bot_rails', require: false
-  gem 'faker'
-  gem 'capybara'
-  gem 'poltergeist'
-  gem 'simplecov', require: false
-  gem 'simplecov-json', require: false
-  gem 'simplecov-cobertura', require: false
-  gem 'database_cleaner'
-  gem 'better_errors'
-  gem 'letter_opener' # Use this just in local test environments
-  gem 'brakeman'
-  gem 'guard-brakeman'
-  gem 'timecop'
-  gem 'rails-controller-testing'
-  gem 'haml_lint', require: false
-  gem 'rt_rubocop_defaults', '~> 2.3', '>= 2.3.1'
-  gem 'rubocop', '~> 1.22', '>= 1.22.1'
-  gem 'rubocop-rails', '~> 2.13', '>= 2.13.1'
+  gem "rubocop", "~> 1.22", ">= 1.22.1"
+  gem "rubocop-rails", "~> 2.13", ">= 2.13.1"
+  gem "simplecov", require: false
+  gem "simplecov-cobertura", require: false
+  gem "simplecov-json", require: false
+  gem "timecop"
 end
 
 gem "webpacker", "~> 5.2"
