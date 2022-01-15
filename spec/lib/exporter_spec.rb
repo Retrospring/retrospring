@@ -16,8 +16,6 @@ RSpec.describe Exporter do
     created_at: 2.weeks.ago.utc,
     current_sign_in_at: 8.hours.ago.utc,
     current_sign_in_ip: '198.51.100.220',
-    follower_count: 12,
-    friend_count: 8,
     last_sign_in_at: 1.hour.ago,
     last_sign_in_ip: '192.0.2.14',
     locale: 'en',
