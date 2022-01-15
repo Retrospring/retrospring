@@ -1,8 +1,8 @@
-require: 
-  - rt_rubocop_defaults
+require:
   - rubocop-rails
 AllCops:
-  TargetRubyVersion: 2.7
+  DisplayCopNames: true
+  CacheRootDirectory: '.git'
   Exclude:
     - 'config/**/*'
     - 'vendor/**/*'
@@ -10,12 +10,25 @@ AllCops:
     - 'db/seeds.rb'
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - coverage/**/*
+  TargetRubyVersion: 2.7
+  NewCops: enable
 
 Rails:
   Enabled: true
 
 Rails/InverseOf:
   Enabled: false
+
+
+### Lint
+
+Lint/NestedMethodDefinition:
+  Exclude:
+    - api/sinatra/**/*
+
+
+### Metrics
 
 Metrics/AbcSize:
   Max: 20
@@ -30,10 +43,84 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*.rb'
 
-Style/ClassAndModuleChildren:
+Metrics/BlockLength:
+  Exclude:
+    - '*.gemspec'
+    - '**/*.rake'
+    - 'api/**/*'
+    - 'app/api/routes.rb'
+    - 'config/initialize/**/*'
+    - 'config/initializers/**/*'
+    - 'spec/**/*'
+
+Metrics/ClassLength:
+  Exclude:
+    - spec/**/*
+
+Metrics/CyclomaticComplexity:
+  Severity: refactor
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'app/api/routes.rb'
+    - 'spec/requests/**/*'
+
+
+### Style / Layout
+
+#### Hash
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19_no_mixed_keys
+
+Style/HashTransformKeys:
   Enabled: false
 
+Style/HashTransformValues:
+  Enabled: false
+
+Layout/MultilineOperationIndentation:
+  Description: Checks indentation of binary operations that span more than one line.
+  EnforcedStyle: indented
+
+#### Rest
 Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/ExponentialNotation:
+  # https://docs.rubocop.org/rubocop/cops_style.html#styleexponentialnotation
+  EnforcedStyle: engineering
+
+Style/NumericLiterals:
+  Description: Add underscores to large numeric literals to improve their readability.
+  StyleGuide: https://github.com/bbatsov/ruby-style-guide#underscores-in-numerics
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
   Enabled: false
 
 Style/RescueStandardError:
