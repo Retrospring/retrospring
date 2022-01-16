@@ -40,9 +40,9 @@ describe UseCase::Relationship::Create do
 
   let(:base_params) do
     {
-      current_user:    current_user,
-      target_user:     target_user,
-      type:            type
+      current_user: current_user,
+      target_user:  target_user,
+      type:         type
     }
   end
   let(:params)          { base_params }

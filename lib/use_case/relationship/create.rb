@@ -17,9 +17,9 @@ module UseCase
         source_user.public_send(type, target_user)
 
         {
-          status: 201,
+          status:   201,
           resource: true,
-          extra: {
+          extra:    {
             target_user: target_user
           }
         }
@@ -29,6 +29,7 @@ module UseCase
 
       def find_source_user
         return current_user if current_user.is_a?(::User)
+
         ::User.find_by!(screen_name: current_user)
       rescue ActiveRecord::RecordNotFound
         raise Errors::UserNotFound
@@ -36,6 +37,7 @@ module UseCase
 
       def find_target_user
         return target_user if target_user.is_a?(::User)
+
         ::User.find_by!(screen_name: target_user)
       rescue ActiveRecord::RecordNotFound
         raise Errors::UserNotFound

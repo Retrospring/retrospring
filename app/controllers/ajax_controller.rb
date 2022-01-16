@@ -12,7 +12,7 @@ class AjaxController < ApplicationController
     @response = {
       success: false,
       message: "Something went wrong",
-      status: :err
+      status:  :err
     }
 
     return_response
@@ -24,7 +24,7 @@ class AjaxController < ApplicationController
     @response = {
       success: false,
       message: "Missing parameter: #{e.key}",
-      status: :err
+      status:  :err
     }
 
     return_response
@@ -36,7 +36,7 @@ class AjaxController < ApplicationController
     @response = {
       success: false,
       message: "Invalid parameter",
-      status: :err
+      status:  :err
     }
 
     return_response
@@ -48,7 +48,7 @@ class AjaxController < ApplicationController
     @response = {
       success: false,
       message: "Record not found",
-      status: :not_found
+      status:  :not_found
     }
 
     return_response
@@ -59,8 +59,8 @@ class AjaxController < ApplicationController
 
     @response = {
       success: false,
-      message: I18n.t('messages.parameter_error', parameter: e.param.capitalize),
-      status: :parameter_error
+      message: I18n.t("messages.parameter_error", parameter: e.param.capitalize),
+      status:  :parameter_error
     }
 
     return_response
@@ -75,8 +75,8 @@ class AjaxController < ApplicationController
   def build_response
     @response = {
       success: false,
-      message: '',
-      status: 'unknown'
+      message: "",
+      status:  "unknown"
     }
   end
 

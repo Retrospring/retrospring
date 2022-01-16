@@ -12,11 +12,11 @@ class Ajax::RelationshipController < AjaxController
 
     UseCase::Relationship::Create.call(
       current_user: current_user.screen_name,
-      target_user: params[:target_user],
-      type: params[:type]
+      target_user:  params[:target_user],
+      type:         params[:type]
     )
     @response[:success] = true
-    @response[:message] = t('messages.friend.create.success')
+    @response[:message] = t("messages.friend.create.success")
   rescue Errors::Base => e
     @response[:message] = t(e.locale_tag)
   ensure
@@ -26,11 +26,11 @@ class Ajax::RelationshipController < AjaxController
   def destroy
     UseCase::Relationship::Destroy.call(
       current_user: current_user.screen_name,
-      target_user: params[:target_user],
-      type: params[:type]
+      target_user:  params[:target_user],
+      type:         params[:type]
     )
     @response[:success] = true
-    @response[:message] = t('messages.friend.create.success')
+    @response[:message] = t("messages.friend.create.success")
   rescue Errors::Base => e
     @response[:message] = t(e.locale_tag)
   ensure
