@@ -1,28 +1,26 @@
+# frozen_string_literal: true
+
 module ApplicationHelper::TitleMethods
   include MarkdownHelper
   include UserHelper
 
-  def generate_title(name, junction = nil, content = nil, s = false)
-    if s
-      if name[-1].downcase != "s"
-        name = name + "'s"
-      else
-        name = name + "'"
-      end
+  def generate_title(name, junction = nil, content = nil, possesive = false)
+    if possesive
+      name = if name[-1].downcase == "s"
+               "#{name}'"
+             else
+               "#{name}'s"
+             end
     end
 
-    list = [name]
-
-    list.push junction unless junction.nil?
+    list = [name, junction].compact
 
     unless content.nil?
       content = strip_markdown(content)
-      if content.length > 45
-        content = content[0..42] + "…"
-      end
+      content = "#{content[0..42]}…" if content.length > 45
       list.push content
     end
-    list.push "|", APP_CONFIG['site_name']
+    list.push "|", APP_CONFIG["site_name"]
 
     list.join " "
   end
