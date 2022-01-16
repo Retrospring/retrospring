@@ -16,7 +16,7 @@ class Ajax::RelationshipController < AjaxController
       type: params[:type]
     )
     @response[:success] = true
-    @response[:message] = t(".success")
+    @response[:message] = t('messages.friend.create.success')
   rescue Errors::Base => e
     @response[:message] = t(e.locale_tag)
   ensure
@@ -30,7 +30,7 @@ class Ajax::RelationshipController < AjaxController
       type: params[:type]
     )
     @response[:success] = true
-    @response[:message] = t(".success")
+    @response[:message] = t('messages.friend.create.success')
   rescue Errors::Base => e
     @response[:message] = t(e.locale_tag)
   ensure
