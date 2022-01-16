@@ -5,9 +5,9 @@ require "rails_helper"
 
 describe Ajax::RelationshipController, type: :controller do
   shared_examples_for "params is empty" do
-    let(:params) { { type: type } } # type is still required as it's part of the route
+    let(:params) { }
 
-    include_examples "ajax does not succeed", "param is missing"
+    include_examples "ajax does not succeed", "is required"
   end
 
   let!(:user) { FactoryBot.create(:user) }
@@ -60,7 +60,7 @@ describe Ajax::RelationshipController, type: :controller do
         let(:type) { "dick" }
 
         it_behaves_like "params is empty"
-        include_examples "ajax does not succeed", "Bad Request"
+        include_examples "ajax does not succeed", "Invalid parameter"
       end
     end
   end
@@ -84,8 +84,6 @@ describe Ajax::RelationshipController, type: :controller do
           expect { subject }.to change { Relationship.count }.by(0)
         end
       end
-
-      it_behaves_like "params is empty"
 
       context "target_user does not exist" do
         let(:target_user) { "peter-witzig" }
@@ -114,8 +112,7 @@ describe Ajax::RelationshipController, type: :controller do
       context "type = 'dick'" do
         let(:type) { "dick" }
 
-        it_behaves_like "params is empty"
-        include_examples "ajax does not succeed", "Bad Request"
+        include_examples "ajax does not succeed", "Invalid parameter"
       end
     end
   end

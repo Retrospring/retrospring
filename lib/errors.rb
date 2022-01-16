@@ -19,9 +19,6 @@ module Errors
     end
   end
 
-  class ParamIsMissing < BadRequest
-  end
-
   class InvalidBanDuration < BadRequest
   end
 

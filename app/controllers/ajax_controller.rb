@@ -18,6 +18,30 @@ class AjaxController < ApplicationController
     return_response
   end
 
+  rescue_from(KeyError) do |e|
+    Sentry.capture_exception(e)
+
+    @response = {
+      success: false,
+      message: "Missing parameter: #{e.key}",
+      status: :err
+    }
+
+    return_response
+  end
+
+  rescue_from(Dry::Types::CoercionError, Dry::Types::ConstraintError) do |e|
+    Sentry.capture_exception(e)
+
+    @response = {
+      success: false,
+      message: "Invalid parameter",
+      status: :err
+    }
+
+    return_response
+  end
+
   rescue_from(ActiveRecord::RecordNotFound) do |e|
     Sentry.capture_exception(e)
 
