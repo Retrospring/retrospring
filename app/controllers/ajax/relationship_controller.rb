@@ -8,8 +8,10 @@ class Ajax::RelationshipController < AjaxController
   before_action :authenticate_user!
 
   def create
+    params.require :target_user
+
     UseCase::Relationship::Create.call(
-      current_user_id: current_user.id,
+      current_user: current_user.screen_name,
       target_user: params[:target_user],
       type: params[:type]
     )
@@ -23,7 +25,7 @@ class Ajax::RelationshipController < AjaxController
 
   def destroy
     UseCase::Relationship::Destroy.call(
-      current_user_id: current_user.id,
+      current_user: current_user.screen_name,
       target_user: params[:target_user],
       type: params[:type]
     )

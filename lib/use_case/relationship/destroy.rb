@@ -6,15 +6,11 @@ require "errors"
 module UseCase
   module Relationship
     class Destroy < UseCase::Base
-      option :current_user_id, type: Types::Coercible::Integer
-      option :target_user, type: Types::Coercible::String
-      option :type, type: Types::Coercible::String
+      option :current_user, type: Types::Coercible::String | Types.Instance(User)
+      option :target_user, type: Types::Coercible::String | Types.Instance(User)
+      option :type, type: Types::RelationshipTypes
 
       def call
-        not_blank! :current_user_id, :target_user, :type
-
-        type = @type.downcase
-        ensure_type(type)
         source_user = find_source_user
         target_user = find_target_user
 
@@ -31,20 +27,13 @@ module UseCase
 
       private
 
-      def ensure_type(type)
-        raise Errors::BadRequest unless type == 'follow'
-      end
-
       def find_source_user
-        user_id = @current_user_id
-        ::User.find(user_id)
+        ::User.find_by!(screen_name: current_user)
       rescue ActiveRecord::RecordNotFound
         raise Errors::UserNotFound
       end
 
       def find_target_user
-        target_user = @target_user
-        return target_user if target_user.is_a?(::User)
         ::User.find_by!(screen_name: target_user)
       rescue ActiveRecord::RecordNotFound
         raise Errors::UserNotFound
