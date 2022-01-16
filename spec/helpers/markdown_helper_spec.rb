@@ -26,7 +26,7 @@ describe MarkdownHelper, type: :helper do
 
   describe "#strip_markdown" do
     it "should not return formatted text" do
-      expect(strip_markdown("**Strong text**".dup)).to eq("Strong text")
+      expect(strip_markdown("**Strong text**")).to eq("Strong text")
     end
   end
 
