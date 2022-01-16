@@ -4,8 +4,8 @@ module ApplicationHelper::TitleMethods
   include MarkdownHelper
   include UserHelper
 
-  def generate_title(name, junction = nil, content = nil, possesive = false)
-    if possesive
+  def generate_title(name, junction = nil, content = nil, possessive = false)
+    if possessive
       name = if name[-1].downcase == "s"
                "#{name}'"
              else
