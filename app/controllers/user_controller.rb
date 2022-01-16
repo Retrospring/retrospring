@@ -96,6 +96,7 @@ class UserController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def followings
     @title = 'Following'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
@@ -109,6 +110,7 @@ class UserController < ApplicationController
       format.js { render "show_follow", layout: false }
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def questions
     @title = 'Questions'

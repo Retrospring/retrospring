@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Relationships::Follow < Relationship
   after_create do
     Notification.notify target, self

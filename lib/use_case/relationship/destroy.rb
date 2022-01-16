@@ -17,9 +17,9 @@ module UseCase
         source_user.public_send("un#{type}", target_user)
 
         {
-          status: 204,
+          status:   204,
           resource: nil,
-          extra: {
+          extra:    {
             target_user: target_user
           }
         }

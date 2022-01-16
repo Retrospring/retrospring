@@ -5,7 +5,7 @@ require "rails_helper"
 
 describe Ajax::RelationshipController, type: :controller do
   shared_examples_for "params is empty" do
-    let(:params) { }
+    let(:params) { {} }
 
     include_examples "ajax does not succeed", "is required"
   end

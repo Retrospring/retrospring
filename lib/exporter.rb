@@ -232,8 +232,8 @@ class Exporter
 
   def user_stub(user)
     uobj = {}
-    %i(answered_count asked_count comment_smiled_count commented_count created_at
-       id permanently_banned screen_name smiled_count).each do |f|
+    %i[answered_count asked_count comment_smiled_count commented_count created_at
+       id permanently_banned screen_name smiled_count].each do |f|
       uobj[f] = user.send f
     end
 
