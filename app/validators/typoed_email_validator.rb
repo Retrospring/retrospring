@@ -4,10 +4,8 @@ class TypoedEmailValidator < ActiveModel::EachValidator
   # this array contains "forbidden" email address endings
   INVALID_ENDINGS = [
     # without @:
-    *%w[
-      .con
-      .coom
-    ],
+    ".con",
+    ".coom",
 
     # with @:
     *%w[
@@ -31,10 +29,10 @@ class TypoedEmailValidator < ActiveModel::EachValidator
 
   def valid?(value)
     # needs an @
-    return false unless value.include?('@')
+    return false unless value.include?("@")
 
     # part after the @ needs to have at least one period
-    return false if value.split('@', 2).last.count('.') == 0
+    return false if value.split("@", 2).last.count(".").zero?
 
     # finally, common typos
     return false if INVALID_ENDINGS.any? { value.end_with?(_1) }
