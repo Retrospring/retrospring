@@ -14,6 +14,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       gmail.co
       gmaile.com
       gmaill.com
+      gmali.com
       icluod.com
       proton.mail
     ].map { "@#{_1}" }
