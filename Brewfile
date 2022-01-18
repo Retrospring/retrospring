@@ -1,0 +1,6 @@
+brew "postgres"
+brew "redis"
+brew "libidn"
+brew "shared-mime-info"
+brew "imagemagick"
+brew "node"
