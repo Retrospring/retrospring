@@ -17,31 +17,31 @@ describe Ajax::RelationshipController, type: :controller do
     shared_examples_for "valid relationship type" do
       it_behaves_like "params is empty"
 
-      context "target_user does not exist" do
-        let(:target_user) { "peter-witzig" }
+      context "screen_name does not exist" do
+        let(:screen_name) { "peter-witzig" }
 
         include_examples "ajax does not succeed", "not found"
       end
 
-      context "target_user is current user" do
-        let(:target_user) { user.screen_name }
+      context "screen_name is current user" do
+        let(:screen_name) { user.screen_name }
 
         include_examples "ajax does not succeed", "yourself"
       end
 
-      context "target_user is different from current_user" do
-        let(:target_user) { user2.screen_name }
+      context "screen_name is different from current_user" do
+        let(:screen_name) { user2.screen_name }
 
         it "creates the relationship" do
           expect { subject }.to change { Relationship.count }.by(1)
-          expect(Relationship.last.target.screen_name).to eq(target_user)
+          expect(Relationship.last.target.screen_name).to eq(screen_name)
         end
       end
     end
 
     let(:type)        { "Sauerkraut" }
-    let(:target_user) { user2.screen_name }
-    let(:params)      { { type: type, target_user: target_user } }
+    let(:screen_name) { user2.screen_name }
+    let(:params)      { { type: type, screen_name: screen_name } }
 
     subject { post(:create, params: params) }
 
@@ -67,7 +67,7 @@ describe Ajax::RelationshipController, type: :controller do
 
   describe "#destroy" do
     shared_examples_for "valid relationship type" do
-      let(:target_user) { user2.screen_name }
+      let(:screen_name) { user2.screen_name }
 
       context "relationship exists" do
         before do
@@ -85,16 +85,16 @@ describe Ajax::RelationshipController, type: :controller do
         end
       end
 
-      context "target_user does not exist" do
-        let(:target_user) { "peter-witzig" }
+      context "screen_name does not exist" do
+        let(:screen_name) { "peter-witzig" }
 
         include_examples "ajax does not succeed", "not found"
       end
     end
 
     let(:type)        { "Sauerkraut" }
-    let(:target_user) { user2.screen_name }
-    let(:params)      { { type: type, target_user: target_user } }
+    let(:screen_name) { user2.screen_name }
+    let(:params)      { { type: type, screen_name: screen_name } }
 
     subject { delete(:destroy, params: params) }
 
