@@ -17,8 +17,8 @@ class Ajax::RelationshipController < AjaxController
     )
     @response[:success] = true
     @response[:message] = t("messages.friend.create.okay")
-  rescue Errors::Base
-    @response[:message] = t("messages.answer.create.fail")
+  rescue Errors::Base => e
+    @response[:message] = t(e.locale_tag)
   ensure
     return_response
   end
@@ -31,8 +31,8 @@ class Ajax::RelationshipController < AjaxController
     )
     @response[:success] = true
     @response[:message] = t("messages.friend.destroy.okay")
-  rescue Errors::Base
-    @response[:message] = t("messages.friend.destroy.fail")
+  rescue Errors::Base => e
+    @response[:message] = t(e.locale_tag)
   ensure
     return_response
   end
