@@ -144,5 +144,9 @@ Rails.application.routes.draw do
   match '/:username/lists(/p/:page)', to: 'user#lists', via: 'get', as: :show_user_lists, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 
+  match '/feedback/consent', to: 'feedback#consent', via: ['get', 'post'], as: 'feedback_consent'
+  match '/feedback/bugs(/*any)', to: 'feedback#bugs', via: 'get', as: 'feedback_bugs'
+  match '/feedback/feature-requests(/*any)', to: 'feedback#features', via: 'get', as: 'feedback_features'
+
   puts 'processing time of routes.rb: ' + "#{(Time.now - start).round(3).to_s.ljust(5, '0')}s".light_green
 end

@@ -1,0 +1,24 @@
+.text-center.mx-sm-5
+  %h2 Notice
+
+  %p
+    =APP_CONFIG['site_name']
+    uses Canny to collect feedback or bug reports on the following pages.
+
+  %p
+    Canny collects the username, user ID and email address for these purposes. 
+    Unless you specifically consent to this,
+    =APP_CONFIG['site_name']
+    will not send your data to Canny, but you can't use the feedback forms either.
+
+  %p
+    %a.text-muted{ href: 'https://canny.io/privacy' } Canny's Privacy Policy
+
+  %p
+    = button_to "Consent and proceed", feedback_consent_path, class: 'btn btn-primary', method: :post, params: { consent: true }
+
+  %p
+    Alternatively, you can send us bug reports and feature requests directly on GitHub.
+
+  %p
+    %a.btn.btn-outline-primary{ href: 'https://github.com/Retrospring/retrospring/issues' } GitHub Issues
