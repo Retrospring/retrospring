@@ -1,0 +1,16 @@
+.jumbotron.jumbotron--particles
+  .jumbotron__particles#particles
+  .jumbotron__content
+    %h1 Feedback
+.container
+  - unless params[:action] === "consent"
+    .card
+      .list-group.list-group-horizontal-sm.text-center
+        = list_group_item "Bugs", feedback_bugs_path
+        = list_group_item "Feature Requests", feedback_features_path
+  .card
+    .card-body
+      = yield
+
+:ruby
+  parent_layout 'base'

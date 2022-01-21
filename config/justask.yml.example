@@ -75,3 +75,9 @@ allowed_hosts_in_markdown:
 
 # Sentry connection string
 sentry_dsn: ''
+
+# Canny feedback forms
+# canny:
+#  sso: "CANNY_SSO_TOKEN_HERE"
+#  feature_board: "CANNY_FEATURE_BOARD_TOKEN"
+#  bug_board: "CANNY_BUGS_BOARD_TOKEN"
