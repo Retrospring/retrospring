@@ -5,15 +5,15 @@ require "rails_helper"
 describe FeedbackController, type: :controller do
   before do
     stub_const("APP_CONFIG", {
-      'hostname' => 'example.com',
-      'https' => true,
-      'items_per_page' => 5,
-      'canny' => {
-        'sso': 'sso',
-        'feature_board': 'feature',
-        'bug_board': 'bug'
-      }
-    })
+                 "hostname"       => "example.com",
+                 "https"          => true,
+                 "items_per_page" => 5,
+                 "canny"          => {
+                   sso:           "sso",
+                   feature_board: "feature",
+                   bug_board:     "bug"
+                 }
+               })
   end
 
   describe "#consent" do
@@ -28,7 +28,7 @@ describe FeedbackController, type: :controller do
       end
 
       it "sets the consent role" do
-        post :consent, params: { consent: 'true' }
+        post :consent, params: { consent: "true" }
         expect(user.has_role?(:canny_consent)).to eq(true)
         expect(response).to redirect_to(feedback_bugs_path)
       end
