@@ -2,7 +2,7 @@ class ScreenNameValidator < ActiveModel::EachValidator
   FORBIDDEN_SCREEN_NAMES = %w(justask_admin retrospring_admin admin justask retrospring about public
                               notifications inbox sign_in sign_up sidekiq moderation moderator mod administrator
                               siteadmin site_admin help retro_spring retroospring retrosprlng niisding nllsding 
-                              pixeidesu plxeldesu plxeidesu terms privacy linkfilter)
+                              pixeidesu plxeldesu plxeidesu terms privacy linkfilter feedback)
   FORBIDDEN_SCREEN_NAME_REGEXPS = [/wreciap\z/i]
 
   def validate_each(record, attribute, value)
