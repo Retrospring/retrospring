@@ -41,14 +41,14 @@ describe UseCase::Relationship::Create do
   let(:base_params) do
     {
       source_user: source_user,
-      target_user:  target_user,
-      type:         type
+      target_user: target_user,
+      type:        type
     }
   end
-  let(:params)          { base_params }
-  let(:source_user)    { user1.screen_name }
-  let(:target_user)     { user2.screen_name }
-  let(:type)            { nil }
+  let(:params)      { base_params }
+  let(:source_user) { user1.screen_name }
+  let(:target_user) { user2.screen_name }
+  let(:type)        { nil }
 
   # test data:
   let!(:user1) { FactoryBot.create(:user, screen_name: "timallen") }
