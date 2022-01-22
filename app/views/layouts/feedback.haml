@@ -3,7 +3,7 @@
   .jumbotron__content
     %h1 Feedback
 .container
-  - unless params[:action] === "consent"
+  - unless params[:action] == "consent"
     .card
       .list-group.list-group-horizontal-sm.text-center
         = list_group_item "Bugs", feedback_bugs_path
@@ -13,4 +13,4 @@
       = yield
 
 :ruby
-  parent_layout 'base'
+  parent_layout "base"
