@@ -15,7 +15,7 @@
     %a.text-muted{ href: "https://canny.io/privacy" } Canny's Privacy Policy
 
   %p
-    = button_to "Consent and proceed", feedback_consent_path, class: "btn btn-primary", method: :post, params: { consent: true }
+    = button_to "Consent and proceed", feedback_consent_update_path, class: "btn btn-primary", method: :post, params: { consent: true }
 
   %p
     Alternatively, you can send us bug reports and feature requests directly on GitHub.

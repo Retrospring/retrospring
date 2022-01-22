@@ -26,12 +26,6 @@ describe FeedbackController, type: :controller do
         get :consent
         expect(response).to render_template(:consent)
       end
-
-      it "sets the consent role" do
-        post :consent, params: { consent: "true" }
-        expect(user.has_role?(:canny_consent)).to eq(true)
-        expect(response).to redirect_to(feedback_bugs_path)
-      end
     end
 
     context "user signed in with consent" do
@@ -43,6 +37,18 @@ describe FeedbackController, type: :controller do
         get :consent
         expect(response).to redirect_to(feedback_bugs_path)
       end
+    end
+  end
+
+  describe "#update" do
+    let(:user) { FactoryBot.create(:user) }
+
+    before(:each) { sign_in(user) }
+
+    it "sets the consent role" do
+      post :update, params: { consent: "true" }
+      expect(user.has_role?(:canny_consent)).to eq(true)
+      expect(response).to redirect_to(feedback_bugs_path)
     end
   end
 

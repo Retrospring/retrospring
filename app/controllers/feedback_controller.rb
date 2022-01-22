@@ -7,7 +7,9 @@ class FeedbackController < ApplicationController
 
   def consent
     redirect_to feedback_bugs_path if current_user.has_role? :canny_consent
+  end
 
+  def update
     return unless params[:consent] == "true"
 
     current_user.add_role :canny_consent
