@@ -144,7 +144,8 @@ Rails.application.routes.draw do
   match '/:username/lists(/p/:page)', to: 'user#lists', via: 'get', as: :show_user_lists, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 
-  match '/feedback/consent', to: 'feedback#consent', via: ['get', 'post'], as: 'feedback_consent'
+  match '/feedback/consent', to: 'feedback#consent', via: 'get', as: 'feedback_consent'
+  match '/feedback/consent/update', to: 'feedback#update', via: 'post', as: 'feedback_consent_update'
   match '/feedback/bugs(/*any)', to: 'feedback#bugs', via: 'get', as: 'feedback_bugs'
   match '/feedback/feature_requests(/*any)', to: 'feedback#features', via: 'get', as: 'feedback_features'
 
