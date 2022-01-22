@@ -11,9 +11,9 @@ class Ajax::RelationshipController < AjaxController
     params.require :screen_name
 
     UseCase::Relationship::Create.call(
-      current_user: current_user.screen_name,
-      target_user:  params[:screen_name],
-      type:         params[:type]
+      source_user: current_user.screen_name,
+      target_user: params[:screen_name],
+      type:        params[:type]
     )
     @response[:success] = true
     @response[:message] = t("messages.friend.create.okay")
@@ -25,9 +25,9 @@ class Ajax::RelationshipController < AjaxController
 
   def destroy
     UseCase::Relationship::Destroy.call(
-      current_user: current_user.screen_name,
-      target_user:  params[:screen_name],
-      type:         params[:type]
+      source_user: current_user.screen_name,
+      target_user: params[:screen_name],
+      type:        params[:type]
     )
     @response[:success] = true
     @response[:message] = t("messages.friend.destroy.okay")

@@ -136,11 +136,13 @@ Rails.application.routes.draw do
   match '/@:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question_alt
   match '/@:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers_alt, defaults: {page: 1}
   match '/@:username/followings(/p/:page)', to: 'user#followings', via: 'get', as: :show_user_followings_alt, defaults: {page: 1}
+  match '/@:username/friends(/p/:page)', to: redirect('/@%{username}/followings/p/%{page}'), via: 'get', defaults: {page: 1}
   match '/:username(/p/:page)', to: 'user#show', via: 'get', as: :show_user_profile, defaults: {page: 1}
   match '/:username/a/:id', to: 'answer#show', via: 'get', as: :show_user_answer
   match '/:username/q/:id', to: 'question#show', via: 'get', as: :show_user_question
   match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers, defaults: {page: 1}
   match '/:username/followings(/p/:page)', to: 'user#followings', via: 'get', as: :show_user_followings, defaults: {page: 1}
+  match '/:username/friends(/p/:page)', to: redirect('/%{username}/followings/p/%{page}'), via: 'get', defaults: {page: 1}
   match '/:username/lists(/p/:page)', to: 'user#lists', via: 'get', as: :show_user_lists, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 

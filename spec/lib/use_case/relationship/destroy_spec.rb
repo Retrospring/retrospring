@@ -26,15 +26,15 @@ describe UseCase::Relationship::Destroy do
       end
     end
 
-    context "current_user does not exist" do
-      let(:current_user) { "Schweinsbraten" }
+    context "source_user does not exist" do
+      let(:source_user) { "Schweinsbraten" }
       let(:target_user) { user2.screen_name }
 
       include_examples "raises an error", Errors::UserNotFound
     end
 
     context "target_user does not exist" do
-      let(:current_user) { user1.screen_name }
+      let(:source_user) { user1.screen_name }
       let(:target_user) { "peterwitzig" }
 
       include_examples "raises an error", Errors::UserNotFound
@@ -43,13 +43,13 @@ describe UseCase::Relationship::Destroy do
 
   let(:base_params) do
     {
-      current_user: current_user,
+      source_user: source_user,
       target_user:  target_user,
       type:         type
     }
   end
   let(:params)          { base_params }
-  let(:current_user)    { user1.screen_name }
+  let(:source_user)    { user1.screen_name }
   let(:target_user)     { user2.screen_name }
   let(:type)            { nil }
 
