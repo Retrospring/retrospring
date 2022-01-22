@@ -6,8 +6,8 @@ require "errors"
 module UseCase
   module Relationship
     class Create < UseCase::Base
-      option :current_user, type: Types::Coercible::String
-      option :target_user, type: Types::Coercible::String
+      option :source_user, type: Types::Coercible::String | Types.Instance(User)
+      option :target_user, type: Types::Coercible::String | Types.Instance(User)
       option :type, type: Types::RelationshipTypes
 
       def call
@@ -28,9 +28,9 @@ module UseCase
       private
 
       def find_source_user
-        return current_user if current_user.is_a?(::User)
+        return source_user if source_user.is_a?(::User)
 
-        ::User.find_by!(screen_name: current_user)
+        ::User.find_by!(screen_name: source_user)
       rescue ActiveRecord::RecordNotFound
         raise Errors::UserNotFound
       end

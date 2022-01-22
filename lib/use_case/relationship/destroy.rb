@@ -6,7 +6,7 @@ require "errors"
 module UseCase
   module Relationship
     class Destroy < UseCase::Base
-      option :current_user, type: Types::Coercible::String | Types.Instance(User)
+      option :source_user, type: Types::Coercible::String | Types.Instance(User)
       option :target_user, type: Types::Coercible::String | Types.Instance(User)
       option :type, type: Types::RelationshipTypes
 
@@ -28,12 +28,16 @@ module UseCase
       private
 
       def find_source_user
-        ::User.find_by!(screen_name: current_user)
+        return source_user if source_user.is_a?(::User)
+
+        ::User.find_by!(screen_name: source_user)
       rescue ActiveRecord::RecordNotFound
         raise Errors::UserNotFound
       end
 
       def find_target_user
+        return target_user if target_user.is_a?(::User)
+
         ::User.find_by!(screen_name: target_user)
       rescue ActiveRecord::RecordNotFound
         raise Errors::UserNotFound

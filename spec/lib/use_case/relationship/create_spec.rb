@@ -7,8 +7,8 @@ require "errors"
 
 describe UseCase::Relationship::Create do
   shared_examples_for "valid relationship type" do
-    context "current_user does not exist" do
-      let(:current_user) { "Schweinsbraten" }
+    context "source_user does not exist" do
+      let(:source_user) { "Schweinsbraten" }
 
       include_examples "raises an error", Errors::UserNotFound
     end
@@ -19,13 +19,13 @@ describe UseCase::Relationship::Create do
       include_examples "raises an error", Errors::UserNotFound
     end
 
-    context "target_user is current_user" do
+    context "target_user is source_user" do
       let(:target_user)  { user1.screen_name }
 
       include_examples "raises an error", Errors::SelfAction
     end
 
-    context "target_user is different from current_user" do
+    context "target_user is different from source_user" do
       its([:status]) { is_expected.to eq(201) }
       its([:extra])  { is_expected.to eq(target_user: user2) }
 
@@ -40,13 +40,13 @@ describe UseCase::Relationship::Create do
 
   let(:base_params) do
     {
-      current_user: current_user,
+      source_user: source_user,
       target_user:  target_user,
       type:         type
     }
   end
   let(:params)          { base_params }
-  let(:current_user)    { user1.screen_name }
+  let(:source_user)    { user1.screen_name }
   let(:target_user)     { user2.screen_name }
   let(:type)            { nil }
 
