@@ -26,14 +26,15 @@
       %i.fa.fa-fw.fa-gavel
       = t("views.navigation.moderation")
     .dropdown-divider
-  %h6.dropdown-header.d-none.d-sm-block Feedback
-  %a.dropdown-item{ href: feedback_features_path }
-    %i.fa.fa-fw.fa-flask
-    Feature Requests
-  %a.dropdown-item{ href: feedback_bugs_path }
-    %i.fa.fa-fw.fa-bug
-    Bugs
-  .dropdown-divider
+  - if APP_CONFIG["canny"]
+    %h6.dropdown-header.d-none.d-sm-block Feedback
+    %a.dropdown-item{ href: feedback_features_path }
+      %i.fa.fa-fw.fa-flask
+      Feature Requests
+    %a.dropdown-item{ href: feedback_bugs_path }
+      %i.fa.fa-fw.fa-bug
+      Bugs
+    .dropdown-divider
   = button_to destroy_user_session_path, method: "delete", class: "dropdown-item" do
     %i.fa.fa-fw.fa-sign-out
     = t("views.sessions.destroy")
