@@ -11,7 +11,7 @@ class Ajax::RelationshipController < AjaxController
     params.require :screen_name
 
     UseCase::Relationship::Create.call(
-      source_user: current_user.screen_name,
+      source_user: current_user,
       target_user: params[:screen_name],
       type:        params[:type]
     )
@@ -25,7 +25,7 @@ class Ajax::RelationshipController < AjaxController
 
   def destroy
     UseCase::Relationship::Destroy.call(
-      source_user: current_user.screen_name,
+      source_user: current_user,
       target_user: params[:screen_name],
       type:        params[:type]
     )
