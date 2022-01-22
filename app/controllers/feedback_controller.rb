@@ -4,6 +4,8 @@ class FeedbackController < ApplicationController
     before_action :canny_consent_given?, only: %w(features bugs)
 
     def consent
+        redirect_to feedback_bugs_path if current_user.has_role? :canny_consent
+
         if params[:consent] === 'true' then
             current_user.add_role :canny_consent
             redirect_to feedback_bugs_path
