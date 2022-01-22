@@ -6,5 +6,6 @@
 %script
   Canny('render', {
   boardToken: '#{APP_CONFIG['canny']['bug_board']}',
+  ssoToken: '#{canny_token}',
   basePath: '/feedback/bugs'
   });

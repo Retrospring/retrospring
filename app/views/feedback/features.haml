@@ -6,5 +6,6 @@
 %script
   Canny('render', {
   boardToken: '#{APP_CONFIG['canny']['feature_board']}',
+  ssoToken: '#{canny_token}',
   basePath: '/feedback/feature-requests'
   });

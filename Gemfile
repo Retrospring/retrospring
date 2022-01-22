@@ -64,6 +64,8 @@ gem "redis"
 
 gem "fake_email_validator"
 
+gem "jwt", "~> 2.3"
+
 group :development do
   gem "binding_of_caller"
   gem "byebug"
