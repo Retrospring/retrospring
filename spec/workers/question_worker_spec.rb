@@ -28,10 +28,10 @@ describe QuestionWorker do
     end
 
     it "respects mute rules" do
-      question.content = 'Some spicy question text'
+      question.content = "Some spicy question text"
       question.save
 
-      MuteRule.create(user_id: user.followers.first.id, muted_phrase: 'spicy')
+      MuteRule.create(user_id: user.followers.first.id, muted_phrase: "spicy")
 
       expect { subject }
         .to(
