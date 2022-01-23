@@ -6,8 +6,8 @@ require "errors"
 module UseCase
   module Relationship
     class Destroy < UseCase::Base
-      option :source_user, type: Types::Coercible::String | Types.Instance(User)
-      option :target_user, type: Types::Coercible::String | Types.Instance(User)
+      option :source_user, type: Types.Instance(::User) | Types::Coercible::String
+      option :target_user, type: Types.Instance(::User) | Types::Coercible::String
       option :type, type: Types::RelationshipTypes
 
       def call
