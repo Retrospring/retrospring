@@ -11,25 +11,25 @@ class ApplicationController < ActionController::Base
 
   # check if user wants to read
   def check_locale
-    return I18n.locale = 'en' if Rails.env.test?
+    return I18n.locale = "en" if Rails.env.test?
 
-    I18n.locale = 'en'
+    I18n.locale = "en"
 
-#    if params[:hl].nil?
-#      if current_user.present?
-#        I18n.locale = current_user.locale
-#      elsif not cookies[:lang].nil?
-#        I18n.locale = cookies[:lang]
-#      else
-#        I18n.locale = 'en'
-#      end
-#    else
-#      I18n.locale = params[:hl]
-#      if current_user.present?
-#        current_user.locale = I18n.locale
-#        current_user.save!
-#      end
-#    end
+    # if params[:hl].nil?
+    #   if current_user.present?
+    #     I18n.locale = current_user.locale
+    #   elsif not cookies[:lang].nil?
+    #     I18n.locale = cookies[:lang]
+    #   else
+    #     I18n.locale = 'en'
+    #   end
+    # else
+    #   I18n.locale = params[:hl]
+    #   if current_user.present?
+    #     current_user.locale = I18n.locale
+    #     current_user.save!
+    #   end
+    # end
 
     cookies[:lang] = I18n.locale
   end
