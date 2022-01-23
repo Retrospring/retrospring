@@ -46,8 +46,8 @@ describe UseCase::Relationship::Create do
     }
   end
   let(:params)      { base_params }
-  let(:source_user) { user1.screen_name }
-  let(:target_user) { user2.screen_name }
+  let(:source_user) { user1 }
+  let(:target_user) { user2 }
   let(:type)        { nil }
 
   # test data:
@@ -60,6 +60,13 @@ describe UseCase::Relationship::Create do
     let(:type) { "follow" }
 
     include_examples "valid relationship type"
+
+    context "using screen names" do
+      let(:source_user) { user1.screen_name }
+      let(:target_user) { user2.screen_name }
+
+      include_examples "valid relationship type"
+    end
   end
 
   context "type = 'dick'" do
