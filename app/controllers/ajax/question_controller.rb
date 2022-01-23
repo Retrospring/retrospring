@@ -2,6 +2,8 @@
 
 require "digest"
 require "errors"
+require "use_case/question/create"
+require "use_case/question/create_followers"
 
 class Ajax::QuestionController < AjaxController
   def destroy
@@ -14,7 +16,7 @@ class Ajax::QuestionController < AjaxController
       return
     end
 
-    if not (current_user.mod? or question.user == current_user)
+    unless current_user&.mod? || question.user == current_user
       @response[:status] = :not_authorized
       @response[:message] = t(".noauth")
       return
@@ -32,65 +34,29 @@ class Ajax::QuestionController < AjaxController
     params.require :anonymousQuestion
     params.require :rcpt
 
-    is_never_anonymous = user_signed_in? && params[:rcpt] == 'followers'
-    author_is_anonymous = is_never_anonymous ? false : params[:anonymousQuestion]
+    # set up fake success response -- the use cases raise errors on exceptions
+    # which get rescued by the base class
+    @response = {
+      success: true,
+      message: t(".success"),
+      status:  :okay
+    }
 
-    begin
-      question = Question.create!(content:             params[:question],
-                                  author_is_anonymous: author_is_anonymous,
-                                  author_identifier:   AnonymousBlock.get_identifier(request.ip),
-                                  user:                current_user,
-                                  direct:              params[:rcpt] != "followers")
-    rescue ActiveRecord::RecordInvalid => e
-      Sentry.capture_exception(e)
-      @response[:status] = :rec_inv
-      @response[:message] = t(".invalid")
+    if user_signed_in? && params[:rcpt] == "followers"
+      UseCase::Question::CreateFollowers.call(
+        source_user_id:    current_user.id,
+        content:           params[:question],
+        author_identifier: AnonymousBlock.get_identifier(request.ip)
+      )
       return
     end
 
-    if !user_signed_in? && !question.author_is_anonymous
-      question.delete
-      return
-    end
-
-    unless current_user.nil?
-      current_user.increment! :asked_count unless params[:anonymousQuestion] == 'true'
-    end
-
-    if params[:rcpt] == 'followers'
-      QuestionWorker.perform_async(current_user.id, question.id) unless current_user.nil?
-    else
-      target_user = User.find_by(id: params[:rcpt])
-
-      if target_user.nil?
-        @response[:status] = :not_found
-        @response[:message] = t(".notfound")
-        question.delete
-        return
-      end
-
-      if target_user.blocking?(current_user)
-        question.delete
-        raise Errors::AskingOtherBlockedSelf
-      end
-      if current_user&.blocking?(target_user)
-        question.delete
-        raise Errors::AskingSelfBlockedOther
-      end
-
-      if !target_user.privacy_allow_anonymous_questions && question.author_is_anonymous
-        question.delete
-        return
-      end
-
-      unless target_user.mute_rules.any? { |rule| rule.applies_to? question } ||
-          (author_is_anonymous && target_user.anonymous_blocks.where(identifier: AnonymousBlock.get_identifier(request.ip)).any?)
-        Inbox.create!(user_id: target_user.id, question_id: question.id, new: true)
-      end
-    end
-
-    @response[:status] = :okay
-    @response[:message] = t(".success")
-    @response[:success] = true
+    UseCase::Question::Create.call(
+      source_user_id:    user_signed_in? ? current_user.id : nil,
+      target_user_id:    params[:rcpt],
+      content:           params[:question],
+      anonymous:         params[:anonymousQuestion],
+      author_identifier: AnonymousBlock.get_identifier(request.ip)
+    )
   end
 end
