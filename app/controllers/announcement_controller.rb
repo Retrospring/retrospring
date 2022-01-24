@@ -31,10 +31,10 @@ class AnnouncementController < ApplicationController
     @announcement = Announcement.find(params[:id])
     @announcement.update(announcement_params)
     if @announcement.save
-      flash[:success] = T(".success")
+      flash[:success] = t(".success")
       redirect_to announcement_index_path
     else
-      flash[:error] = T(".error")
+      flash[:error] = t(".error")
       render "announcement/edit"
     end
   end
