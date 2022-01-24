@@ -3,16 +3,6 @@
   .card
     .card-body
       = bootstrap_form_for(@announcement, url: { action: 'create' }) do |f|
-        - if @announcement.errors.any?
-          .row
-            .col-md-12
-              .alert.alert-danger
-                %strong
-                  = pluralize(@announcement.errors.count, 'error')
-                  prohibited this announcement from being saved:
-                %ul
-                  - @announcement.errors.full_messages.each do |err|
-                    %li= err
         .row
           .col-md-12
             = f.text_area :content
