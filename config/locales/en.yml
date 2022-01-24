@@ -457,6 +457,27 @@ en:
           invalid_code: "The code you entered was invalid."
         setup:
           success: "Two factor authentication has been enabled for your account."
+  announcement:
+    index:
+      title: :activerecord.models.announcement.other
+      confirm: "Are you sure you want to delete this announcement?"
+      new: "Add Announcement"
+    new:
+      title: "Create Announcement"
+    create:
+      success: "Announcement created successfully."
+      error: "Unable to create announcement."
+    edit:
+      title: "Edit Announcement"
+    update:
+      success: "Announcement updated successfully."
+      error: "Unable to save announcement."
+    destroy:
+      success: "Announcement has been deleted successfully."
+      error: "Unable to delete announcement."
+  voc:
+    delete: "Delete"
+    edit: "Edit"
   errors:
     base: "An error occurred"
 
