@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "use_case/base"
+require "errors"
 
 module UseCase
   module Question
