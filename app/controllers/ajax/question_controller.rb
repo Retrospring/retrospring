@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "digest"
 require "errors"
 require "use_case/question/create"
 require "use_case/question/create_followers"
@@ -44,18 +43,18 @@ class Ajax::QuestionController < AjaxController
 
     if user_signed_in? && params[:rcpt] == "followers"
       UseCase::Question::CreateFollowers.call(
-        source_user_id:    current_user.id,
-        content:           params[:question],
+        source_user_id: current_user.id,
+        content:        params[:question],
         author_identifier: AnonymousBlock.get_identifier(request.ip)
       )
       return
     end
 
     UseCase::Question::Create.call(
-      source_user_id:    user_signed_in? ? current_user.id : nil,
-      target_user_id:    params[:rcpt],
-      content:           params[:question],
-      anonymous:         params[:anonymousQuestion],
+      source_user_id: user_signed_in? ? current_user.id : nil,
+      target_user_id: params[:rcpt],
+      content:        params[:question],
+      anonymous:      params[:anonymousQuestion],
       author_identifier: AnonymousBlock.get_identifier(request.ip)
     )
   end
