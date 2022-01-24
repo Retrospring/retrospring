@@ -8,13 +8,13 @@
           %small.text-muted= announcement.starts_at
 
         .d-flex.w-100
-          = link_to t("voc.edit"), announcement_edit_path(id: announcement.id), class: 'btn btn-link text-primary'
+          = link_to t("voc.edit"), announcement_edit_path(id: announcement.id), class: "btn btn-link text-primary"
           = button_to t("voc.delete"),
             announcement_destroy_path(id: announcement.id),
             method: :delete,
-            class: 'btn btn-link text-danger',
+            class: "btn btn-link text-danger",
             confirm: t(".confirm")
 
   .row
     .col-md-12
-      = link_to t(".new"), :announcement_new, class: 'btn btn-primary'
+      = link_to t(".new"), :announcement_new, class: "btn btn-primary"
