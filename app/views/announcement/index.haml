@@ -1,4 +1,4 @@
-- provide(:title, generate_title('Announcements'))
+- provide(:title, generate_title(t(".title")))
 .container-lg.container--main
   - @announcements.each do |announcement|
     .card
@@ -8,13 +8,13 @@
           %small.text-muted= announcement.starts_at
 
         .d-flex.w-100
-          = link_to 'Edit', announcement_edit_path(id: announcement.id), class: 'btn btn-link text-primary'
-          = button_to 'Delete',
+          = link_to t("voc.edit"), announcement_edit_path(id: announcement.id), class: 'btn btn-link text-primary'
+          = button_to t("voc.delete"),
             announcement_destroy_path(id: announcement.id),
             method: :delete,
             class: 'btn btn-link text-danger',
-            confirm: 'Are you sure you want to delete this announcement?'
+            confirm: t(".confirm")
 
   .row
     .col-md-12
-      = link_to 'Add new', :announcement_new, class: 'btn btn-primary'
+      = link_to t(".new"), :announcement_new, class: 'btn btn-primary'
