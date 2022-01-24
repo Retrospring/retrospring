@@ -2,7 +2,7 @@
 .container-lg.container--main
   .card
     .card-body
-      = bootstrap_form_for(@announcement, url: { action: 'update' }, method: 'PATCH') do |f|
+      = bootstrap_form_for(@announcement, url: { action: "update" }, method: "PATCH") do |f|
         .row
           .col-md-12
             = f.text_area :content
@@ -14,12 +14,10 @@
         .row
           .col-md-6
             = f.datetime_field :starts_at,
-              class: 'datetimepicker-input',
-              data: { toggle: 'datetimepicker', target: '#announcement_starts_at', 'date-format': 'YYYY-MM-DD hh:mm A' }
+              data: { target: "#announcement_starts_at", "date-format": "YYYY-MM-DD hh:mm A" }
           .col-md-6
             = f.datetime_field :ends_at,
-              class: 'datetimepicker-input',
-              data: { toggle: 'datetimepicker', target: '#announcement_ends_at', 'date-format': 'YYYY-MM-DD hh:mm A' }
+              data: { target: "#announcement_ends_at", "date-format": "YYYY-MM-DD hh:mm A" }
         .row
           .col-md-12.text-right
-            = f.submit class: 'btn btn-primary'
+            = f.submit class: "btn btn-primary"
