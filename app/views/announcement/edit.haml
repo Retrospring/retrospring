@@ -1,4 +1,4 @@
-- provide(:title, generate_title('Edit announcement'))
+- provide(:title, generate_title(t(".title")))
 .container-lg.container--main
   .card
     .card-body
@@ -15,21 +15,19 @@
                     %li= err
         .row
           .col-md-12
-            = f.text_area :content, label: 'Content'
+            = f.text_area :content
         .row
           .col-md-6
-            = f.url_field :link_href, label: 'Link URL'
+            = f.url_field :link_href
           .col-md-6
-            = f.text_field :link_text, label: 'Link text'
+            = f.text_field :link_text
         .row
           .col-md-6
             = f.datetime_field :starts_at,
-              label: 'Start time',
               class: 'datetimepicker-input',
               data: { toggle: 'datetimepicker', target: '#announcement_starts_at', 'date-format': 'YYYY-MM-DD hh:mm A' }
           .col-md-6
             = f.datetime_field :ends_at,
-              label: 'End time',
               class: 'datetimepicker-input',
               data: { toggle: 'datetimepicker', target: '#announcement_ends_at', 'date-format': 'YYYY-MM-DD hh:mm A' }
         .row

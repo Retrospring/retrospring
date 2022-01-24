@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      announcement:
+        one: "Announcement"
+        other: "Announcements"
+    attributes:
+      announcement:
+        content: "Content"
+        link_href: "Link URL"
+        link_text: "Link text"
+        starts_at: "Start time"
+        ends_at: "End time"
