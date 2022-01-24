@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnnouncementController < ApplicationController
   before_action :authenticate_user!
 
@@ -13,10 +15,11 @@ class AnnouncementController < ApplicationController
     @announcement = Announcement.new(announcement_params)
     @announcement.user = current_user
     if @announcement.save
-      flash[:success] = "Announcement created successfully."
+      flash[:success] = t(".success")
       redirect_to action: :index
     else
-      render 'announcement/new'
+      flash[:error] = t(".error")
+      render "announcement/new"
     end
   end
 
@@ -28,18 +31,19 @@ class AnnouncementController < ApplicationController
     @announcement = Announcement.find(params[:id])
     @announcement.update(announcement_params)
     if @announcement.save
-      flash[:success] = "Announcement updated successfully."
+      flash[:success] = T(".success")
       redirect_to announcement_index_path
     else
-      render 'announcement/edit'
+      flash[:error] = T(".error")
+      render "announcement/edit"
     end
   end
 
   def destroy
     if Announcement.destroy(params[:id])
-      flash[:success] = "Announcement deleted successfully."
+      flash[:success] = t(".success")
     else
-      flash[:error] = "Failed to delete announcement."
+      flash[:error] = t(".error")
     end
     redirect_to announcement_index_path
   end
