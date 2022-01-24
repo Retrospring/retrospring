@@ -20,6 +20,18 @@ class AjaxController < ApplicationController
     end
   end
 
+  rescue_from(Errors::Base) do |e|
+    Sentry.capture_exception(e)
+
+    @response = {
+      success: false,
+      message: e.message,
+      status: e.code
+    }
+
+    return_response
+  end
+
   rescue_from(KeyError) do |e|
     Sentry.capture_exception(e)
 
