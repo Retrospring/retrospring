@@ -12,9 +12,9 @@ class QuestionWorker
     question = Question.find(question_id)
 
     user.followers.each do |f|
-      if MuteRule.where(user: f).none? { |rule| rule.applies_to? question }
-        Inbox.create(user_id: f.id, question_id: question_id, new: true)
-      end
+      next if MuteRule.where(user: f).any? { |rule| rule.applies_to? question }
+
+      Inbox.create(user_id: f.id, question_id: question_id, new: true)
     end
   rescue StandardError => e
     logger.info "failed to ask question: #{e.message}"

@@ -48,10 +48,10 @@ module UseCase
       end
 
       def check_blocks
-        if source_user_id.present?
-          raise Errors::AskingOtherBlockedSelf if target_user.blocking?(source_user)
-          raise Errors::AskingSelfBlockedOther if source_user.blocking?(target_user)
-        end
+        return if source_user_id.blank?
+
+        raise Errors::AskingOtherBlockedSelf if target_user.blocking?(source_user)
+        raise Errors::AskingSelfBlockedOther if source_user.blocking?(target_user)
       end
 
       def increment_asked_count
