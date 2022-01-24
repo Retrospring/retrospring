@@ -48,7 +48,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       include_examples "returns the expected response"
     end
 
-    shared_examples "enqueues a QuestionWorker job" do |expected_rcpt|
+    shared_examples "enqueues a QuestionWorker job" do |_expected_rcpt|
       it "enqueues a QuestionWorker job" do
         allow(QuestionWorker).to receive(:perform_async)
         subject
