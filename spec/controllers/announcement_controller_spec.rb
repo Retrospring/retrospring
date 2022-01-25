@@ -24,7 +24,7 @@ describe AnnouncementController, type: :controller do
       end
 
       context "one announcement" do
-        let!(:announcement) { Announcement.create(content: "I am announcement", user: user, starts_at: Time.current, ends_at: Time.current + 2.days) }
+        let!(:announcement) { Announcement.create(content: "I am announcement", user: user, starts_at: Time.current, ends_at: 2.days.from_now) }
 
         it "includes the announcement in the @announcements assign" do
           subject
@@ -51,9 +51,9 @@ describe AnnouncementController, type: :controller do
     let :announcement_params do
       {
         announcement: {
-          content: "I like dogs!",
+          content:   "I like dogs!",
           starts_at: Time.current,
-          ends_at: Time.current + 2.days
+          ends_at:   2.days.from_now
         }
       }
     end
@@ -79,9 +79,9 @@ describe AnnouncementController, type: :controller do
       let :announcement_params do
         {
           announcement: {
-            content: "I like dogs!",
+            content:   "I like dogs!",
             starts_at: Time.current,
-            ends_at: Time.current - 2.days
+            ends_at:   2.days.ago
           }
         }
       end
@@ -95,10 +95,10 @@ describe AnnouncementController, type: :controller do
 
   describe "#edit" do
     let! :announcement do
-      Announcement.create(content: "Dogs are pretty cool, I guess",
-                          starts_at: Time.current + 3.days,
-                          ends_at: Time.current + 10.days,
-                          user: user)
+      Announcement.create(content:   "Dogs are pretty cool, I guess",
+                          starts_at: 3.days.from_now,
+                          ends_at:   10.days.from_now,
+                          user:      user)
     end
 
     subject { get :edit, params: { id: announcement.id } }
@@ -121,15 +121,15 @@ describe AnnouncementController, type: :controller do
     end
 
     let! :announcement do
-      Announcement.create(content: "Dogs are pretty cool, I guess",
-                          starts_at: Time.current + 3.days,
-                          ends_at: Time.current + 10.days,
-                          user: user)
+      Announcement.create(content:   "Dogs are pretty cool, I guess",
+                          starts_at: 3.days.from_now,
+                          ends_at:   10.days.from_now,
+                          user:      user)
     end
 
     subject do
       patch :update, params: {
-        id: announcement.id,
+        id:           announcement.id,
         announcement: announcement_params
       }
     end
@@ -154,15 +154,15 @@ describe AnnouncementController, type: :controller do
 
       let :announcement_params do
         {
-          content: "I like dogs!",
+          content:   "I like dogs!",
           starts_at: Time.current,
-          ends_at: Time.current - 2.days
+          ends_at:   2.days.ago
         }
       end
 
       subject do
         patch :update, params: {
-          id: announcement.id,
+          id:           announcement.id,
           announcement: announcement_params
         }
       end
@@ -176,10 +176,10 @@ describe AnnouncementController, type: :controller do
 
   describe "#destroy" do
     let! :announcement do
-      Announcement.create(content: "Dogs are pretty cool, I guess",
-                          starts_at: Time.current + 3.days,
-                          ends_at: Time.current + 10.days,
-                          user: user)
+      Announcement.create(content:   "Dogs are pretty cool, I guess",
+                          starts_at: 3.days.from_now,
+                          ends_at:   10.days.from_now,
+                          user:      user)
     end
 
     subject { delete :destroy, params: { id: announcement.id } }
@@ -198,4 +198,3 @@ describe AnnouncementController, type: :controller do
     end
   end
 end
-
