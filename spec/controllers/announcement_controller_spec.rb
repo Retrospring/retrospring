@@ -72,6 +72,25 @@ describe AnnouncementController, type: :controller do
         expect(response).to redirect_to(:announcement_index)
       end
     end
+
+    context "submitting a malformed announcement" do
+      before(:each) { sign_in(user) }
+
+      let :announcement_params do
+        {
+          announcement: {
+            content: "I like dogs!",
+            starts_at: Time.current,
+            ends_at: Time.current - 2.days
+          }
+        }
+      end
+
+      it "stays in the new view when a malformed announcement is submitted" do
+        post :create, params: announcement_params
+        expect(response).to render_template(:new)
+      end
+    end
   end
 
   describe "#edit" do
@@ -127,6 +146,30 @@ describe AnnouncementController, type: :controller do
       it "redirects to announcement#index" do
         subject
         expect(response).to redirect_to(:announcement_index)
+      end
+    end
+
+    context "submitting a malformed announcement" do
+      before(:each) { sign_in(user) }
+
+      let :announcement_params do
+        {
+          content: "I like dogs!",
+          starts_at: Time.current,
+          ends_at: Time.current - 2.days
+        }
+      end
+
+      subject do
+        patch :update, params: {
+          id: announcement.id,
+          announcement: announcement_params
+        }
+      end
+
+      it "stays in the edit view when a malformed announcement is submitted" do
+        subject
+        expect(response).to render_template(:edit)
       end
     end
   end
