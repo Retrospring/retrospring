@@ -11,3 +11,8 @@ en:
         link_text: "Link text"
         starts_at: "Start time"
         ends_at: "End time"
+      service:
+        post_tag: "Tag"
+    help:
+      services/twitter:
+        post_tag: "Automatically append a tag to your shared answers. A # symbol is not automatically prepended."
