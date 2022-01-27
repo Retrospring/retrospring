@@ -1,6 +1,7 @@
-class ServicesController < ApplicationController
+# frozen_string_literal: true
 
-  skip_before_action :verify_authenticity_token, :only => :create
+class ServicesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create
   before_action :authenticate_user!
 
   def index
@@ -8,29 +9,25 @@ class ServicesController < ApplicationController
   end
 
   def create
-    service = Service.initialize_from_omniauth( omniauth_hash )
+    service = Service.initialize_from_omniauth(omniauth_hash)
     service.user = current_user
 
     if service.save
       flash[:success] = t(".success")
     else
-      if service.errors.details.has_key?(:uid) && service.errors.details[:uid].any? { |err| err[:error] == :taken }
-        flash[:error] = t(".duplicate", service: service.type.split("::").last.titleize, app: APP_CONFIG["site_name"])
-      else
-        flash[:error] = t(".error")
-      end
+      flash[:error] = if service.errors.details[:uid]&.any? { |err| err[:error] == :taken }
+                        t(".duplicate", service: service.type.split("::").last.titleize, app: APP_CONFIG["site_name"])
+                      else
+                        t(".error")
+                      end
     end
 
-    if origin
-      redirect_to origin
-    else
-      redirect_to services_path
-    end
+    redirect_to origin || services_path
   end
 
   def update
     service = current_user.services.find(params[:id])
-    service.post_tag = params[:service][:post_tag].tr('@', '')
+    service.post_tag = params[:service][:post_tag].tr("@", "")
     if service.save
       flash[:success] = t(".success")
     else
@@ -54,11 +51,11 @@ class ServicesController < ApplicationController
 
   private
 
-    def origin
-      request.env['omniauth.origin']
-    end
+  def origin
+    request.env["omniauth.origin"]
+  end
 
-    def omniauth_hash
-      request.env['omniauth.auth']
-    end
+  def omniauth_hash
+    request.env["omniauth.auth"]
+  end
 end
