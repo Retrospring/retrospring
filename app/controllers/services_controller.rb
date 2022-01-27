@@ -12,12 +12,12 @@ class ServicesController < ApplicationController
     service.user = current_user
 
     if service.save
-      flash[:success] = t('flash.service.create.success')
+      flash[:success] = t(".success")
     else
       if service.errors.details.has_key?(:uid) && service.errors.details[:uid].any? { |err| err[:error] == :taken }
-        flash[:error] = "The #{service.type.split('::').last.titleize} account you are trying to connect is already connected to another #{APP_CONFIG['site_name']} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
+        flash[:error] = t(".duplicate", service: service.type.split("::").last.titleize, app: APP_CONFIG["site_name"])
       else
-        flash[:error] = t('flash.service.create.error')
+        flash[:error] = t(".error")
       end
     end
 
@@ -32,23 +32,23 @@ class ServicesController < ApplicationController
     service = current_user.services.find(params[:id])
     service.post_tag = params[:service][:post_tag].tr('@', '')
     if service.save
-      flash[:success] = "Service updated successfully"
+      flash[:success] = t(".success")
     else
-      flash[:error] = "Failed to update service"
+      flash[:error] = t(".error")
     end
     redirect_to services_path
   end
 
   def failure
     Rails.logger.info "oauth error: #{params.inspect}"
-    flash[:error] = t('flash.service.failure')
+    flash[:error] = t(".error")
     redirect_to services_path
   end
 
   def destroy
     @service = current_user.services.find(params[:id])
     @service.destroy
-    flash[:success] = t('flash.service.destroy')
+    flash[:success] = t(".success")
     redirect_to services_path
   end
 
