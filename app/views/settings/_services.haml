@@ -1,13 +1,10 @@
 .card
   .card-body
-    - if @services.count.positive?
-      = t 'views.settings.service.enabled'
-    - else
-      = t 'views.settings.service.none'
+    = t(".services", count: @services.count)
 
     - APP_CONFIG['sharing'].each do |service, service_options|
       - if service_options['enabled'] && @services.none? { |x| x.provider == service.to_s }
-        %p= button_to t('views.settings.service.connect', service: service.capitalize), "/auth/#{service}", method: :post, class: 'btn btn-info'
+        %p= button_to t(".connect", service: service.capitalize), "/auth/#{service}", method: :post, class: 'btn btn-info'
 
   - if @services.count.positive?
     %ul.list-group
@@ -16,15 +13,14 @@
           %i{ class: "fa fa-#{service.provider}" }
           %strong= service.provider.capitalize
           (#{service.nickname})
-          = button_to t('views.settings.service.disconnect'),
+          = button_to t(".disconnect"),
             service_path(service),
-            data: { confirm: t('views.settings.service.confirm', service: service.provider.capitalize) },
+            data: { confirm: t(".confirm", service: service.provider.capitalize) },
             method: :delete,
             class: 'btn btn-link',
             form: { class: 'd-inline' }
 
           .col-md-6.mt-2
-            = bootstrap_form_for(service, as: 'service', url: update_service_path(service)) do |f|
-              = f.text_field :post_tag, class: 'form-control', label: 'tag', label_as_placeholder: true,
-                append: f.submit('Update', class: 'btn btn-primary'), maxlength: 20, pattern: '^[^@]*$',
-                help: "Automatically append a tag to your shared answers. #{'A # symbol is not automatically prepended.' if service.provider == 'twitter'}"
+            = bootstrap_form_for(service, url: update_service_path(service)) do |f|
+              = f.text_field :post_tag, label_as_placeholder: true,
+                append: f.submit(t("voc.update"), class: 'btn btn-primary'), maxlength: 20, pattern: "^[^@]*$"
