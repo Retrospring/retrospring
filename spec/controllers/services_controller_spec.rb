@@ -64,7 +64,7 @@ describe ServicesController, type: :controller do
         it 'updates a service connection' do
           expect { subject }.to change { service.reload.post_tag }.to('#askaraccoon')
           expect(response).to redirect_to(services_path)
-          expect(flash[:success]).to eq("Service updated successfully")
+          expect(flash[:success]).to eq("Service updated successfully.")
         end
       end
 
@@ -74,7 +74,7 @@ describe ServicesController, type: :controller do
         it 'shows an error' do
           subject
           expect(response).to redirect_to(services_path)
-          expect(flash[:error]).to eq("Failed to update service")
+          expect(flash[:error]).to eq("Unable to update service.")
         end
       end
     end
