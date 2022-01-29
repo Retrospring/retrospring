@@ -78,6 +78,7 @@ gem "puma"
 group :development, :test do
   gem "better_errors"
   gem "brakeman"
+  gem "bullet"
   gem "capybara"
   gem "database_cleaner"
   gem "factory_bot_rails", require: false
