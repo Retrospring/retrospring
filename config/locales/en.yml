@@ -511,3 +511,10 @@ en:
     user_not_found: "User not found"
 
     conflict: "This already exists"
+  feedback:
+    consent:
+      title: "Feedback"
+    bugs:
+      title: "Bugs – Feedback"
+    features:
+      title: "Feature Requests – Feedback"
