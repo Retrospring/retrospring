@@ -7,7 +7,8 @@
         %div{ style: 'height: 0; width: 0' }= render 'modal/comment_smiles', comment: comment
         .media
           .pull-left
-            %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:medium) }
+            %a{href: show_user_profile_path(username: comment.user.screen_name)}
+              %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:medium) }
           .media-body
             %h6.media-heading.comment__user
               = user_screen_name comment.user
