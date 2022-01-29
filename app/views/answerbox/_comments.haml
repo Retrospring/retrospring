@@ -1,13 +1,13 @@
 - if a.comments.all.count.zero?
-  = t 'views.answerbox.no_comment'
+  = t "views.answerbox.no_comment"
 - else
   %ul.comment__container
     - a.comments.order(:created_at).each do |comment|
       %li.comment{ data: { comment_id: comment.id } }
-        %div{ style: 'height: 0; width: 0' }= render 'modal/comment_smiles', comment: comment
+        %div{ style: "height: 0; width: 0" }= render "modal/comment_smiles", comment: comment
         .media
           .pull-left
-            %a{href: show_user_profile_path(username: comment.user.screen_name)}
+            %a{ href: show_user_profile_path(username: comment.user.screen_name) }
               %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:medium) }
           .media-body
             %h6.media-heading.comment__user
@@ -20,34 +20,34 @@
           .pull-right
             %span.d-none.d-sm-inline.text-muted
               - if !user_signed_in? && comment.smile_count.positive?
-                %button.btn.btn-link.answerbox__action{ name: 'ab-smile-comment', disabled: true }
+                %button.btn.btn-link.answerbox__action{ name: "ab-smile-comment", disabled: true }
                   %i.fa.fa-smile-o
                   %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
             - if user_signed_in?
               - if current_user.smiled_comment? comment
-                %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile-comment', data: { c_id: comment.id, action: :unsmile } }
+                %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: :unsmile } }
                   %i.fa.fa-fw.fa-frown-o
                   %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
               - else
-                %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile-comment', data: { c_id: comment.id, action: :smile } }
+                %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: :smile } }
                   %i.fa.fa-fw.fa-smile-o
                   %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
               .btn-group
                 %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
                   %span.caret
                 .dropdown-menu.dropdown-menu-right{ role: :menu }
-                  %a.dropdown-item{ href: '#', type: :button, data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
+                  %a.dropdown-item{ href: "#", type: :button, data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
                     %i.fa.fa-smile-o
-                    = t 'views.actions.view'
+                    = t "views.actions.view"
                   - if privileged?(comment.user) || privileged?(a.user)
-                    %a.dropdown-item.text-danger{ href: '#', data: { action: 'ab-comment-destroy', c_id: comment.id } }
+                    %a.dropdown-item.text-danger{ href: "#", data: { action: "ab-comment-destroy", c_id: comment.id } }
                       %i.fa.fa-trash-o
-                      = t 'views.actions.delete'
+                      = t "views.actions.delete"
                   - unless comment.user == current_user
-                    %a.dropdown-item{ href: '#', data: { action: 'ab-comment-report', c_id: comment.id } }
+                    %a.dropdown-item{ href: "#", data: { action: "ab-comment-report", c_id: comment.id } }
                       %i.fa.fa-exclamation-triangle
-                      = t 'views.acions.report'
+                      = t "views.acions.report"
 - if user_signed_in?
-  .form-group.has-feedback.comment__input-group{ name: 'ab-comment-new-group', data: { a_id: a.id } }
-    %input.form-control.comment__input{ type: :text, placeholder: t('views.placeholder.comment'), name: 'ab-comment-new', data: { a_id: a.id } }
+  .form-group.has-feedback.comment__input-group{ name: "ab-comment-new-group", data: { a_id: a.id } }
+    %input.form-control.comment__input{ type: :text, placeholder: t("views.placeholder.comment"), name: "ab-comment-new", data: { a_id: a.id } }
     %span.text-muted.form-control-feedback.comment__character-count{ id: "ab-comment-charcount-#{a.id}" } 160
