@@ -52,11 +52,6 @@ en:
       reason: "Ban reason: %{reason}"
       until: "Banned until: %{time}"
     user:
-      update:
-        text: "Your profile has been updated!"
-        avatar: " It might take a few minutes until your new profile picture is shown everywhere."
-        header: " It might take a few minutes until your new profile header is shown everywhere."
-        error: "An error occurred. ;_;"
       update_privacy:
         success: "Your privacy settings have been updated!"
         error: "An error occurred. ;_;"
