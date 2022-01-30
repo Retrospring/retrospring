@@ -31,12 +31,12 @@ class UserController < ApplicationController
     user_attributes = params.require(:user).permit(:show_foreign_themes, :profile_picture_x, :profile_picture_y, :profile_picture_w, :profile_picture_h,
                                                    :profile_header_x, :profile_header_y, :profile_header_w, :profile_header_h, :profile_picture, :profile_header)
     if current_user.update(user_attributes)
-      text = t('flash.user.update.text')
-      text += t('flash.user.update.avatar') if user_attributes[:profile_picture]
-      text += t('flash.user.update.header') if user_attributes[:profile_header]
+      text = t(".success")
+      text += t(".notice.profile_picture") if user_attributes[:profile_picture]
+      text += t(".notice.profile_header") if user_attributes[:profile_header]
       flash[:success] = text
     else
-      flash[:error] = t('flash.user.update.error')
+      flash[:error] = t(".error")
     end
     redirect_to edit_user_profile_path
   end
@@ -45,9 +45,9 @@ class UserController < ApplicationController
     profile_attributes = params.require(:profile).permit(:display_name, :motivation_header, :website, :location, :description)
 
     if current_user.profile.update(profile_attributes)
-      flash[:success] = t('flash.user.update.text')
+      flash[:success] = t(".success")
     else
-      flash[:error] = t('flash.user.update.error')
+      flash[:error] = t(".error")
     end
     redirect_to edit_user_profile_path
   end
