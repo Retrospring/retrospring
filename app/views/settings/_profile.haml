@@ -6,25 +6,25 @@
         .pull-left
           %img.avatar-lg.mr-3{ src: current_user.profile_picture.url(:medium) }
         .media-body
-          = f.file_field :profile_picture, label: t('views.settings.profile.avatar'), accept: APP_CONFIG[:accepted_image_formats].join(',')
+          = f.file_field :profile_picture, accept: APP_CONFIG[:accepted_image_formats].join(',')
 
       .row.d-none#profile-picture-crop-controls
         .col-sm-10.col-md-8
-          %strong= t('views.settings.profile.avatar_adjust')
+          %strong= t('.adjust.profile_picture')
           %img#profile-picture-cropper{ src: current_user.profile_picture.url(:medium) }
 
       .row.mb-2#profile-header-media
         .col
           %img.mw-100.mr-3{ src: current_user.profile_header.url(:mobile) }
         .col-xs-12.mt-3.mt-sm-0.pl-3.pr-3
-          = f.file_field :profile_header, label: t('views.settings.profile.header'), accept: APP_CONFIG[:accepted_image_formats].join(',')
+          = f.file_field :profile_header, accept: APP_CONFIG[:accepted_image_formats].join(',')
 
       .row.d-none#profile-header-crop-controls
         .col-sm-10.col-md-8
-          %strong= t('views.settings.profile.header_adjust')
+          %strong= t('.adjust.profile_header')
           %img#profile-header-cropper{ src: current_user.profile_header.url(:web) }
 
-      = f.check_box :show_foreign_themes, label: 'Render other user themes when visiting their profile'
+      = f.check_box :show_foreign_themes
 
       - %i[profile_picture_x profile_picture_y profile_picture_w profile_picture_h].each do |attrib|
         = f.hidden_field attrib, id: attrib
@@ -32,20 +32,19 @@
       - %i[profile_header_x profile_header_y profile_header_w profile_header_h].each do |attrib|
         = f.hidden_field attrib, id: attrib
 
-      = f.submit t('views.actions.save'), class: 'btn btn-primary'
-
+      = f.primary
 .card
   .card-body
     = bootstrap_form_for(current_user.profile, url: { action: :update_profile }, html: { multipart: true }, method: :patch) do |f|
 
-      = f.text_field :display_name, label: t('views.settings.profile.displayname')
+      = f.text_field :display_name
 
-      = f.text_field :motivation_header, label: t('views.settings.profile.motivation'), placeholder: t('views.settings.profile.placeholder.motivation')
+      = f.text_field :motivation_header
 
-      = f.text_field :website, label: t('views.settings.profile.website'), placeholder: 'https://example.com'
+      = f.text_field :website
 
-      = f.text_field :location, label: t('views.settings.profile.location'), placeholder: t('views.settings.profile.placeholder.location')
+      = f.text_field :location
 
-      = f.text_area :description, label: t('views.settings.profile.bio'), placeholder: t('views.settings.profile.placeholder.bio')
+      = f.text_area :description
 
-      = f.submit t('views.actions.save'), class: 'btn btn-primary'
+      = f.primary

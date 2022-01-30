@@ -11,8 +11,26 @@ en:
         link_text: "Link text"
         starts_at: "Start time"
         ends_at: "End time"
+      profile:
+        description: "Biography"
+        display_name: "Your name"
+        location: "Location"
+        motivation_header: "Motivation header"
+        website: "Website"
       service:
         post_tag: "Tag"
+      user:
+        profile_picture: "Profile picture"
+        profile_header: "Profile header"
+        show_foreign_themes: "Render other user themes when visiting their profile"
     help:
+      profile:
+        motivation_header: "Shown in the header of the question box on your profile. Motivate users to ask you questions!"
       services/twitter:
         post_tag: "Automatically append a tag to your shared answers. A # symbol is not automatically prepended."
+  helpers:
+    submit:
+      user:
+        update: :voc.save
+      profile:
+        update: :voc.save

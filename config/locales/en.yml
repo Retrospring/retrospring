@@ -387,20 +387,6 @@ en:
         delete: "Delete my account"
         unsatisfied: "Unsatisfied?"
         back: "Back"
-      profile:
-        displayname: "Your name"
-        avatar: "Profile picture"
-        avatar_adjust: "Adjust your new avatar"
-        header: "Profile header"
-        header_adjust: "Adjust your new header"
-        motivation: "Motivation header"
-        website: "Website"
-        location: "Location"
-        bio: "Bio"
-        placeholder:
-          motivation: "Ask me anything!"
-          location: "Where are you?"
-          bio: "Tell us something nice about you!"
       privacy:
         anonymous: "Allow anonymous questions"
         public: "Show your answers in the public timeline"
@@ -464,6 +450,10 @@ en:
       success: "Announcement has been deleted successfully."
       error: "Unable to delete announcement."
   settings:
+    profile:
+      adjust:
+        profile_picture: "Adjust your new profile picture"
+        profile_header: "Adjust your new profile header"
     services:
       services:
         one: "Sharing is enabled for the following service:"
@@ -486,9 +476,22 @@ en:
       error: :errors.base
     destroy:
       success: "Service removed successfully."
+  user:
+    edit:
+      title: "Profile Settings"
+    update:
+      success: "Profile updated successfully."
+      error: "Unable to update profile."
+      notice:
+        profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
+        profile_header: " It might take a few minutes until your new profile header is shown everywhere."
+    update_profile:
+      success: :user.update.success
+      error: :user.update.error
   voc:
     delete: "Delete"
     edit: "Edit"
+    save: "Save changes"
     update: "Update"
   errors:
     base: "An error occurred"
