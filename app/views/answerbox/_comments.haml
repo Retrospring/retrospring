@@ -21,7 +21,7 @@
             %span.d-none.d-sm-inline.text-muted
               - if !user_signed_in? && comment.smile_count.positive?
                 %button.btn.btn-link.answerbox__action{ name: "ab-smile-comment", disabled: true }
-                  %i.fa.fa-smile-o
+                  %i.fa.fa-fw.fa-smile-o
                   %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
             - if user_signed_in?
               - if current_user.smiled_comment? comment
@@ -37,15 +37,15 @@
                   %span.caret
                 .dropdown-menu.dropdown-menu-right{ role: :menu }
                   %a.dropdown-item{ href: "#", data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
-                    %i.fa.fa-smile-o
+                    %i.fa.fa-fw.fa-smile-o
                     = t "views.actions.view"
                   - if privileged?(comment.user) || privileged?(a.user)
                     %a.dropdown-item.text-danger{ href: "#", data: { action: "ab-comment-destroy", c_id: comment.id } }
-                      %i.fa.fa-trash-o
+                      %i.fa.fa-fw.fa-trash-o
                       = t "views.actions.delete"
                   - unless comment.user == current_user
                     %a.dropdown-item{ href: "#", data: { action: "ab-comment-report", c_id: comment.id } }
-                      %i.fa.fa-exclamation-triangle
+                      %i.fa.fa-fw.fa-exclamation-triangle
                       = t "views.acions.report"
 - if user_signed_in?
   .form-group.has-feedback.comment__input-group{ name: "ab-comment-new-group", data: { a_id: a.id } }
