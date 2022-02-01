@@ -36,7 +36,7 @@
                 %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
                   %span.caret
                 .dropdown-menu.dropdown-menu-right{ role: :menu }
-                  %a.dropdown-item{ href: "#", type: :button, data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
+                  %a.dropdown-item{ href: "#", data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
                     %i.fa.fa-smile-o
                     = t "views.actions.view"
                   - if privileged?(comment.user) || privileged?(a.user)
