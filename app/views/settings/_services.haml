@@ -21,6 +21,6 @@
             form: { class: "d-inline" }
 
           .col-md-6.mt-2
-            = bootstrap_form_for(service, url: update_service_path(service)) do |f|
+            = bootstrap_form_for(service, as: "service", url: update_service_path(service)) do |f|
               = f.text_field :post_tag, label_as_placeholder: true,
                 append: f.submit(t("voc.update"), class: "btn btn-primary"), maxlength: 20, pattern: "^[^@]*$"
