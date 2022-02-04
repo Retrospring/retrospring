@@ -38,7 +38,7 @@ class User < ApplicationRecord
   has_many :moderation_comments, dependent: :destroy_async
   has_many :moderation_votes, dependent: :destroy_async
   has_many :lists, dependent: :destroy_async
-  has_many :list_memberships, class_name: "ListMember", foreign_key: 'user_id', dependent: :destroy_async
+  has_many :list_memberships, class_name: "ListMember", dependent: :destroy_async
   has_many :mute_rules, dependent: :destroy_async
   has_many :anonymous_blocks, dependent: :destroy_async
 
@@ -48,7 +48,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy_async
   has_one :theme, dependent: :destroy_async
 
-  has_many :bans, class_name: 'UserBan', dependent: :destroy_async
+  has_many :bans, class_name: "UserBan", dependent: :destroy_async
   has_many :banned_users, class_name: 'UserBan',
                           foreign_key: 'banned_by_id',
                           dependent: :nullify
