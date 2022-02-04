@@ -16,7 +16,7 @@ class Question < ApplicationRecord
       end
     end
 
-    user.decrement! :asked_count unless self.author_is_anonymous
+    user&.decrement! :asked_count unless self.author_is_anonymous
   end
 
   def can_be_removed?

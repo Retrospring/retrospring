@@ -45,8 +45,8 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy_async
   has_many :totp_recovery_codes, dependent: :destroy_async
 
-  has_one :profile, dependent: :destroy_async
-  has_one :theme, dependent: :destroy_async
+  has_one :profile, dependent: :destroy
+  has_one :theme, dependent: :destroy
 
   has_many :bans, class_name: "UserBan", dependent: :destroy_async
   has_many :banned_users, class_name: 'UserBan',

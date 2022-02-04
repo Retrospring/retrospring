@@ -28,13 +28,13 @@ class Answer < ApplicationRecord
       end
     end
 
-    self.user.decrement! :answered_count
-    self.question.decrement! :answer_count
+    self.user&.decrement! :answered_count
+    self.question&.decrement! :answer_count
     self.smiles.each do |smile|
       Notification.denotify self.user, smile
     end
     self.comments.each do |comment|
-      comment.user.decrement! :commented_count
+      comment.user&.decrement! :commented_count
       Subscription.denotify comment, self
     end
     Notification.denotify self.question.user, self
