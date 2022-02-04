@@ -6,10 +6,10 @@ staging:
 production:
   :concurrency: 25
 :queues:
+  - default
   - share
   - carrierwave
   - mailers
-  - deletion
   - question
   - export
 
