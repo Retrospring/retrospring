@@ -7,6 +7,7 @@ class Comment < ApplicationRecord
 
   validates :content, length: { maximum: 160 }
 
+  # rubocop:disable Rails/SkipsModelValidations
   after_create do
     Subscription.subscribe self.user, answer, false
     Subscription.notify self, answer
@@ -24,9 +25,10 @@ class Comment < ApplicationRecord
     end
 
     Subscription.denotify self, answer
-    user&.decrement!  :commented_count
+    user&.decrement! :commented_count
     answer&.decrement! :comment_count
   end
+  # rubocop:enable Rails/SkipsModelValidations
 
   def notification_type(*_args)
     Notifications::Commented

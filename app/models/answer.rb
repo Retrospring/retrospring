@@ -8,14 +8,15 @@ class Answer < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :comment_smiles, through: :comments, source: :smiles
 
+  # rubocop:disable Rails/SkipsModelValidations
   after_create do
     Inbox.where(user: self.user, question: self.question).destroy_all
 
     Notification.notify self.question.user, self unless self.question.user == self.user or self.question.user.nil?
     Subscription.subscribe self.user, self
     Subscription.subscribe self.question.user, self unless self.question.author_is_anonymous
-    self.user.increment! :answered_count
-    self.question.increment! :answer_count
+    user.increment! :answered_count
+    question.increment! :answer_count
   end
 
   before_destroy do
@@ -28,8 +29,8 @@ class Answer < ApplicationRecord
       end
     end
 
-    self.user&.decrement! :answered_count
-    self.question&.decrement! :answer_count
+    user&.decrement! :answered_count
+    question&.decrement! :answer_count
     self.smiles.each do |smile|
       Notification.denotify self.user, smile
     end
@@ -40,6 +41,7 @@ class Answer < ApplicationRecord
     Notification.denotify self.question.user, self
     Subscription.destruct self
   end
+  # rubocop:enable Rails/SkipsModelValidations
 
   def notification_type(*_args)
     Notifications::QuestionAnswered

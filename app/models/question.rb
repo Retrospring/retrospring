@@ -16,7 +16,9 @@ class Question < ApplicationRecord
       end
     end
 
-    user&.decrement! :asked_count unless self.author_is_anonymous
+    # rubocop:disable Rails/SkipsModelValidations
+    user&.decrement! :asked_count unless author_is_anonymous
+    # rubocop:enable Rails/SkipsModelValidations
   end
 
   def can_be_removed?
