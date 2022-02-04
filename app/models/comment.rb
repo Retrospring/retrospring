@@ -24,8 +24,8 @@ class Comment < ApplicationRecord
     end
 
     Subscription.denotify self, answer
-    user.decrement!  :commented_count
-    answer.decrement! :comment_count
+    user&.decrement!  :commented_count
+    answer&.decrement! :comment_count
   end
 
   def notification_type(*_args)

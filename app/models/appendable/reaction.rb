@@ -10,8 +10,8 @@ class Appendable::Reaction < Appendable
 
   before_destroy do
     Notification.denotify parent.user, self
-    user.decrement! :smiled_count
-    parent.decrement! :smile_count
+    user&.decrement! :smiled_count
+    parent&.decrement! :smile_count
   end
   # rubocop:enable Rails/SkipsModelValidations
 
