@@ -27,28 +27,28 @@ class User < ApplicationRecord
 
 #   attr_accessor :login
 
-  has_many :questions, dependent: :destroy
-  has_many :answers, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :inboxes, dependent: :destroy
-  has_many :smiles, class_name: "Appendable::Reaction", dependent: :destroy
-  has_many :services, dependent: :destroy
-  has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
-  has_many :reports, dependent: :destroy
-  has_many :moderation_comments, dependent: :destroy
-  has_many :moderation_votes, dependent: :destroy
-  has_many :lists, dependent: :destroy
-  has_many :list_memberships, class_name: "ListMember", foreign_key: 'user_id', dependent: :destroy
-  has_many :mute_rules, dependent: :destroy
-  has_many :anonymous_blocks, dependent: :destroy
+  has_many :questions, dependent: :destroy_async
+  has_many :answers, dependent: :destroy_async
+  has_many :comments, dependent: :destroy_async
+  has_many :inboxes, dependent: :destroy_async
+  has_many :smiles, class_name: "Appendable::Reaction", dependent: :destroy_async
+  has_many :services, dependent: :destroy_async
+  has_many :notifications, foreign_key: :recipient_id, dependent: :destroy_async
+  has_many :reports, dependent: :destroy_async
+  has_many :moderation_comments, dependent: :destroy_async
+  has_many :moderation_votes, dependent: :destroy_async
+  has_many :lists, dependent: :destroy_async
+  has_many :list_memberships, class_name: "ListMember", foreign_key: 'user_id', dependent: :destroy_async
+  has_many :mute_rules, dependent: :destroy_async
+  has_many :anonymous_blocks, dependent: :destroy_async
 
-  has_many :subscriptions, dependent: :destroy
-  has_many :totp_recovery_codes, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy_async
+  has_many :totp_recovery_codes, dependent: :destroy_async
 
-  has_one :profile, dependent: :destroy
-  has_one :theme, dependent: :destroy
+  has_one :profile, dependent: :destroy_async
+  has_one :theme, dependent: :destroy_async
 
-  has_many :bans, class_name: 'UserBan', dependent: :destroy
+  has_many :bans, class_name: 'UserBan', dependent: :destroy_async
   has_many :banned_users, class_name: 'UserBan',
                           foreign_key: 'banned_by_id',
                           dependent: :nullify
