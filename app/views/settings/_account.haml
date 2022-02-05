@@ -1,29 +1,26 @@
 .card
   .card-body
-    = bootstrap_form_for(resource, as: resource_name, url: '/settings/account', html: { method: :put }) do |f|
-      = render 'modal/password', f: f
+    = bootstrap_form_for(resource, as: resource_name, url: "/settings/account", html: { method: :put }) do |f|
+      = render "modal/password", f: f
+      = render "devise/shared/error_messages", resource: resource
 
-      = render 'devise/shared/error_messages', resource: resource
+      = f.text_field :screen_name, autofocus: true
 
-      = f.text_field :screen_name, autofocus: true, label: t('views.settings.account.username')
-
-      = f.email_field :email, label: t('views.settings.account.email')
+      = f.email_field :email
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        %div= raw t('views.settings.account.email_confirm', resource: resource.unconfirmed_email)
+        .alert.alert-info= raw t(".email_confirm", resource: resource.unconfirmed_email)
 
-      = f.password_field :password, autocomplete: :off, label: t('views.settings.account.password'), help: t('views.settings.account.password_help')
-      = f.password_field :password_confirmation, autocomplete: :off, label: t('views.settings.account.password_confirm')
+      = f.password_field :password, autocomplete: :off, help: t(".help.password")
+      = f.password_field :password_confirmation, autocomplete: :off
 
-      %button.btn.btn-primary{ data: { target: '#modal-passwd', toggle: :modal, type: :button } }
-        = t 'views.actions.save'
+      %button.btn.btn-primary{ data: { target: "#modal-passwd", toggle: :modal, type: :button } }
+        = t("voc.save")
 
       %hr/
     %p
-      = t 'views.settings.account.unsatisfied'
-      = button_to t('views.settings.account.delete'), '/settings/account', data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-xs'
+      = t(".delete.heading")
+      = button_to t(".delete.action"), "/settings/account", data: { confirm: t(".delete.confirm") }, method: :delete, class: "btn btn-danger btn-xs"
 
-    = link_to t('views.settings.account.back'), :back
-
-.visible-xs= render 'shared/links'
+.visible-xs= render "shared/links"
 
 
