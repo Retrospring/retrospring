@@ -259,7 +259,6 @@ en:
       destroy: "Logout"
       create: "Sign in"
       new: "Sign up"
-      info: "With signing up you accept our %{terms}"
     moderation:
       tabs:
         all: "All reports"
