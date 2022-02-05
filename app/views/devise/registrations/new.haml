@@ -1,26 +1,24 @@
-- provide(:title, generate_title('Sign Up'))
+- provide(:title, generate_title(t(".title")))
 .container
   .row
     .col-sm-8.offset-sm-2
       .card.mt-3
         .card-body
-          %h1= t('views.sessions.new')
+          %h1= t(".title")
           = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-            = render 'devise/shared/error_messages', resource: resource
-            = render 'layouts/messages'
+            = render "devise/shared/error_messages", resource: resource
+            = render "layouts/messages"
 
-            = f.text_field :screen_name, autofocus: true, label: t('views.settings.account.username')
-            = f.email_field :email, autofocus: false, label: t('views.settings.account.email'),
-              help: "Don't forget to check your spam folder in case our mail might have landed there!"
-
-            = f.password_field :password, autocomplete: :off, label: t('views.settings.account.password')
-            = f.password_field :password_confirmation, autocomplete: :off, label: t('views.settings.account.password_confirm')
+            = f.text_field :screen_name, autofocus: true
+            = f.email_field :email, autofocus: false
+            = f.password_field :password, autocomplete: :off
+            = f.password_field :password_confirmation, autocomplete: :off
 
             - if APP_CONFIG.dig(:hcaptcha, :enabled)
               = hcaptcha_tags
 
-            %p= raw t('views.sessions.info', terms: link_to(t('views.general.terms'), terms_path))
-            = f.submit 'Sign up', class: 'btn btn-primary mb-3'
+            %p= raw t(".info", terms: link_to(t("voc.terms"), terms_path))
+            = f.primary
 
-          = render 'devise/shared/links'
-= render 'shared/links'
+          = render "devise/shared/links"
+= render "shared/links"
