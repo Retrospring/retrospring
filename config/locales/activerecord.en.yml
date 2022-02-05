@@ -20,10 +20,19 @@ en:
       service:
         post_tag: "Tag"
       user:
+        current_password: "Current password"
+        email: "Email"
+        login: "Username or Email"
+        password: "Password"
+        password_confirmation: "Confirm your password"
         profile_picture: "Profile picture"
         profile_header: "Profile header"
+        screen_name: "Username"
         show_foreign_themes: "Render other user themes when visiting their profile"
     help:
+      user:
+        email: "Don't forget to check your spam folder in case our mail might have landed there!"
+        current_password: "We need your current password to confirm your changes"
       profile:
         motivation_header: "Shown in the header of the question box on your profile. Motivate users to ask you questions!"
       services/twitter:
@@ -31,6 +40,8 @@ en:
   helpers:
     submit:
       user:
+        new: "Sign in"
+        create: :voc.register
         update: :voc.save
       profile:
         update: :voc.save
