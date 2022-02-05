@@ -368,20 +368,6 @@ en:
         privacy: "Privacy"
         sharing: "Sharing"
         security: "Security"
-      account:
-        modal:
-          title: "Save account changes"
-        username: "User name"
-        email: "Email address"
-        email_confirm: "Currently awaiting confirmation for %{resource}"
-        password: "Password"
-        password_confirm: "Confirm password"
-        password_help: "Leave this blank if you don't want to change it"
-        password_current: "Current password"
-        password_current_help: "We need your current password to confirm your changes"
-        delete: "Delete my account"
-        unsatisfied: "Unsatisfied?"
-        back: "Back"
       privacy:
         anonymous: "Allow anonymous questions"
         public: "Show your answers in the public timeline"
