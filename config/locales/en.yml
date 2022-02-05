@@ -444,7 +444,28 @@ en:
     destroy:
       success: "Announcement has been deleted successfully."
       error: "Unable to delete announcement."
+  devise:
+    registrations:
+      edit:
+        title: "Account Settings"
+      new:
+        title: "Sign up"
+        info: "With signing up you accept our %{terms}"
+    sessions:
+      new:
+        title: "Sign in"
+  modal:
+    password:
+      title: "Save account changes"
   settings:
+    account:
+      email_confirm: "Currently awaiting confirmation for %{resource}"
+      help:
+        password: "Leave this blank if you don't want to change it"
+      delete:
+        action: "Delete my account"
+        confirm: "Are you sure?"
+        heading: "Unsatisfied?"
     profile:
       adjust:
         profile_picture: "Adjust your new profile picture"
@@ -484,9 +505,14 @@ en:
       success: :user.update.success
       error: :user.update.error
   voc:
+    cancel: "Cancel"
+    close: "Close"
     delete: "Delete"
     edit: "Edit"
+    login: "Sign in"
     save: "Save changes"
+    register: "Sign up"
+    terms: "Terms of Service"
     update: "Update"
   errors:
     base: "An error occurred"
