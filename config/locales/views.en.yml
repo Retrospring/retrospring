@@ -1,0 +1,57 @@
+en:
+  announcement:
+    index:
+      title: :activerecord.models.announcement.other
+      confirm: "Are you sure you want to delete this announcement?"
+      new: "Add Announcement"
+    new:
+      title: "Create Announcement"
+    edit:
+      title: "Edit Announcement"
+  devise:
+    registrations:
+      edit:
+        title: "Account Settings"
+      new:
+        title: "Sign up"
+        info: "With signing up you accept our %{terms}"
+    sessions:
+      new:
+        title: "Sign in"
+  feedback:
+    consent:
+      title: "Feedback"
+    bugs:
+      title: "Bugs – Feedback"
+    features:
+      title: "Feature Requests – Feedback"
+  modal:
+    password:
+      title: "Save account changes"
+  services:
+    index:
+      title: "Service Settings"
+  settings:
+    account:
+      email_confirm: "Currently awaiting confirmation for %{resource}"
+      help:
+        password: "Leave this blank if you don't want to change it"
+      delete:
+        action: "Delete my account"
+        confirm: "Are you sure?"
+        heading: "Unsatisfied?"
+    profile:
+      adjust:
+        profile_picture: "Adjust your new profile picture"
+        profile_header: "Adjust your new profile header"
+    services:
+      services:
+        one: "Sharing is enabled for the following service:"
+        other: "Sharing is enabled for the following services:"
+        zero: "You have not connected any services yet."
+      connect: "Connect to %{service}"
+      disconnect: "Disconnect"
+      confirm: "Really disconnect service %{service}?"
+  user:
+    edit:
+      title: "Profile Settings"

@@ -412,60 +412,16 @@ en:
         setup:
           success: "Two factor authentication has been enabled for your account."
   announcement:
-    index:
-      title: :activerecord.models.announcement.other
-      confirm: "Are you sure you want to delete this announcement?"
-      new: "Add Announcement"
-    new:
-      title: "Create Announcement"
     create:
       success: "Announcement created successfully."
       error: "Unable to create announcement."
-    edit:
-      title: "Edit Announcement"
     update:
       success: "Announcement updated successfully."
       error: "Unable to save announcement."
     destroy:
       success: "Announcement has been deleted successfully."
       error: "Unable to delete announcement."
-  devise:
-    registrations:
-      edit:
-        title: "Account Settings"
-      new:
-        title: "Sign up"
-        info: "With signing up you accept our %{terms}"
-    sessions:
-      new:
-        title: "Sign in"
-  modal:
-    password:
-      title: "Save account changes"
-  settings:
-    account:
-      email_confirm: "Currently awaiting confirmation for %{resource}"
-      help:
-        password: "Leave this blank if you don't want to change it"
-      delete:
-        action: "Delete my account"
-        confirm: "Are you sure?"
-        heading: "Unsatisfied?"
-    profile:
-      adjust:
-        profile_picture: "Adjust your new profile picture"
-        profile_header: "Adjust your new profile header"
-    services:
-      services:
-        one: "Sharing is enabled for the following service:"
-        other: "Sharing is enabled for the following services:"
-        zero: "You have not connected any services yet."
-      connect: "Connect to %{service}"
-      disconnect: "Disconnect"
-      confirm: "Really disconnect service %{service}?"
   services:
-    index:
-      title: "Service Settings"
     create:
       success: "Service connected successfully."
       duplicate: "The %{service} account you are trying to connect is already connected to another %{app} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
@@ -478,8 +434,6 @@ en:
     destroy:
       success: "Service removed successfully."
   user:
-    edit:
-      title: "Profile Settings"
     update:
       success: "Profile updated successfully."
       error: "Unable to update profile."
@@ -520,10 +474,3 @@ en:
     user_not_found: "User not found"
 
     conflict: "This already exists"
-  feedback:
-    consent:
-      title: "Feedback"
-    bugs:
-      title: "Bugs – Feedback"
-    features:
-      title: "Feature Requests – Feedback"
