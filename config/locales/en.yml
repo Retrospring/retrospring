@@ -411,38 +411,6 @@ en:
           invalid_code: "The code you entered was invalid."
         setup:
           success: "Two factor authentication has been enabled for your account."
-  announcement:
-    create:
-      success: "Announcement created successfully."
-      error: "Unable to create announcement."
-    update:
-      success: "Announcement updated successfully."
-      error: "Unable to save announcement."
-    destroy:
-      success: "Announcement has been deleted successfully."
-      error: "Unable to delete announcement."
-  services:
-    create:
-      success: "Service connected successfully."
-      duplicate: "The %{service} account you are trying to connect is already connected to another %{app} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
-      error: "Unable to connect service."
-    update:
-      success: "Service updated successfully."
-      error: "Unable to update service."
-    failure:
-      error: :errors.base
-    destroy:
-      success: "Service removed successfully."
-  user:
-    update:
-      success: "Profile updated successfully."
-      error: "Unable to update profile."
-      notice:
-        profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
-        profile_header: " It might take a few minutes until your new profile header is shown everywhere."
-    update_profile:
-      success: :user.update.success
-      error: :user.update.error
   voc:
     cancel: "Cancel"
     close: "Close"
