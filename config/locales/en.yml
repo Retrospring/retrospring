@@ -411,24 +411,3 @@ en:
           invalid_code: "The code you entered was invalid."
         setup:
           success: "Two factor authentication has been enabled for your account."
-  errors:
-    base: "An error occurred"
-
-    bad_request: "Bad Request"
-    param_is_missing: "param is missing"
-
-    forbidden: "This is illegal, you know"
-    blocked: "You have been blocked from performing this request"
-    other_blocked_self: "You have been blocked by this user"
-    asking_other_blocked_self: "You have been blocked from asking this user questions"
-    following_other_blocked_self: "You have been blocked from following this user"
-    self_blocked_other: "You cannot do this while blocking this user"
-    asking_self_blocked_other: "You cannot ask an user who you are currently blocking"
-    following_self_blocked_other: "You cannot follow an user who you are currently blocking"
-    self_action: "You cannot do this to yourself"
-    following_self: "You cannot follow yourself"
-
-    not_found: "That does not exist"
-    user_not_found: "User not found"
-
-    conflict: "This already exists"
