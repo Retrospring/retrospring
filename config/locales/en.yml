@@ -411,16 +411,6 @@ en:
           invalid_code: "The code you entered was invalid."
         setup:
           success: "Two factor authentication has been enabled for your account."
-  voc:
-    cancel: "Cancel"
-    close: "Close"
-    delete: "Delete"
-    edit: "Edit"
-    login: "Sign in"
-    save: "Save changes"
-    register: "Sign up"
-    terms: "Terms of Service"
-    update: "Update"
   errors:
     base: "An error occurred"
 
