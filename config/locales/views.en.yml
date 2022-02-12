@@ -55,3 +55,5 @@ en:
   user:
     edit:
       title: "Profile Settings"
+    edit_theme:
+      title: "Theme Settings"
