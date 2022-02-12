@@ -12,6 +12,7 @@
     .card-body
       %h2= t(".general.heading")
       %p= t(".general.body")
+
       .row
         .col-sm-6
           = f.text_field :background_color, class: 'color', data: { default: 0xF0EDF4 }
@@ -78,9 +79,9 @@
           %p.pt-4.text-muted= t(".colors.text.example")
   .card
     .card-body
-      %h2 Forms and Inputs
-      %p
-        Styles for form inputs, like textfields.
+      %h2= t(".forms.heading")
+      %p= t(".forms.body")
+
       .row
         .col-sm-6
           = f.text_field :input_color, class: 'color', data: { default: 0xFFFFFF }
@@ -88,17 +89,17 @@
           = f.text_field :input_text, class: 'color', data: { default: 0x000000 }
   .card
     .card-body
-      %h2 Raised Content
-      %p
-        Raised content basically describes all the different boxes and panels you can see across the site.
+      %h2= t(".raised.heading")
+      %p= t(".raised.body")
+
       .row
         .col-sm-6
           = f.text_field :raised_background, class: 'color', data: { default: 0xFFFFFF }
         .col-sm-6
           = f.text_field :raised_accent, class: 'color', data: { default: 0xF7F7F7 }
     .card-footer
-      %p Some text on top of a accented area on a raised element!
+      %p= t(".raised.accent.example")
   .card
     .card-body
       .pull-left
-        = f.submit t('views.actions.save'), class: 'btn btn-primary'
+        = f.primary
