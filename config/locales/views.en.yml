@@ -83,6 +83,14 @@ en:
             light: "light"
         text:
           example: "Some muted text"
+      forms:
+        heading: "Forms and Inputs"
+        body: "Styles for form inputs, like text fields."
+      raised:
+        heading: "Raised Content"
+        body: "Raised content basically describes all the different boxes and panels you can see across the site."
+        accent:
+          example: "Some text on top of a accented area on a raised element!"
   user:
     edit:
       title: "Profile Settings"
