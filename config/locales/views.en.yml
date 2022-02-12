@@ -60,6 +60,29 @@ en:
         descriptions on their general use on the site!</p>
         <p>And with that: <b>Happy Theming!</b>
       delete: "Delete Theme"
+      general:
+        heading: "General"
+        body: "Here you'll find general page values that are basically visible all across the page."
+      colors:
+        heading: "Colors"
+        body: |
+          Colors you can find used on the site. The names of the colors usually describe the context.
+          The "text" colors for all styles represent the color that text on top of these colors has.
+        alert:
+          example: "A simple %{type} alert — check it out!"
+          type:
+            danger: "danger"
+            info: "info"
+            primary: "primary"
+            success: "success"
+            warning: "warning"
+        button:
+          example: "A %{type} button"
+          type:
+            dark: "dark"
+            light: "light"
+        text:
+          example: "Some muted text"
   user:
     edit:
       title: "Profile Settings"

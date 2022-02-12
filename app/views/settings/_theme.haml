@@ -10,9 +10,8 @@
 = bootstrap_form_for(current_user.theme || Theme.new, url: { action: "update_theme" }, html: { id: "update_theme" }, method: :patch) do |f|
   .card
     .card-body
-      %h2 General
-      %p
-        Here you'll find general page values that are basically visible all across the page.
+      %h2= t(".general.heading")
+      %p= t(".general.body")
       .row
         .col-sm-6
           = f.text_field :background_color, class: 'color', data: { default: 0xF0EDF4 }
@@ -20,86 +19,63 @@
           = f.text_field :body_text, class: 'color', data: { default: 0x000000 }
   .card
     .card-body
-      %h2 Colors
-      %p
-        Colors you can find used on the site. The names of the colors usually describe the context.
-        The "text" colors for all styles represent the color that text on top of these colors has.
+      %h2= t(".colors.heading")
+      %p= t(".colors.body")
 
-      %ul
-        %li
-          %b Primary:
-          The primary/brand color of the site, used for navigation, links, etc.
-        %li
-          %b Danger:
-          Color used for errors or critical actions like deleting something.
-        %li
-          %b Warning:
-          Color used for warnings if something non-critical has happened.
-        %li
-          %b Info:
-          Color used for informational popups or messages.
-        %li
-          %b Success:
-          Color used for messages if something went through successfully.
       .row
         .col-sm-6
           = f.text_field :primary_color, class: 'color', data: { default: 0x5E35B1 }
         .col-sm-6
           = f.text_field :primary_text, class: 'color', data: { default: 0xFFFFFF }
         .col-sm-12
-          .alert.alert-primary
-            A simple primary alert—check it out!
+          .alert.alert-primary= t(".colors.alert.example", type: t(".colors.alert.type.primary"))
       .row
         .col-sm-6
           = f.text_field :danger_color, class: 'color', data: { default: 0xDC3545 }
         .col-sm-6
           = f.text_field :danger_text, class: 'color', data: { default: 0xFFFFFF }
         .col-sm-12
-          .alert.alert-danger
-            A simple danger alert—check it out!
+          .alert.alert-danger= t(".colors.alert.example", type: t(".colors.alert.type.danger"))
       .row
         .col-sm-6
           = f.text_field :warning_color, class: 'color', data: { default: 0xFFC107 }
         .col-sm-6
           = f.text_field :warning_text, class: 'color', data: { default: 0x292929 }
         .col-sm-12
-          .alert.alert-warning
-            A simple warning alert—check it out!
+          .alert.alert-warning= t(".colors.alert.example", type: t(".colors.alert.type.warning"))
       .row
         .col-sm-6
           = f.text_field :info_color, class: 'color', data: { default: 0x17A2B8 }
         .col-sm-6
           = f.text_field :info_text, class: 'color', data: { default: 0xFFFFFF }
         .col-sm-12
-          .alert.alert-info
-            A simple info alert—check it out!
+          .alert.alert-info= t(".colors.alert.example", type: t(".colors.alert.type.info"))
       .row
         .col-sm-6
           = f.text_field :success_color, class: 'color', data: { default: 0x28A745 }
         .col-sm-6
           = f.text_field :success_text, class: 'color', data: { default: 0xFFFFFF }
         .col-sm-12
-          .alert.alert-success
-            A simple success alert—check it out!
+          .alert.alert-success= t(".colors.alert.example", type: t(".colors.alert.type.success"))
       .row
         .col-sm-6
           = f.text_field :dark_color, class: 'color', data: { default: 0x343A40 }
         .col-sm-6
           = f.text_field :dark_text, class: 'color', data: { default: 0xFFFFFF }
         .col-sm-12
-          %a.btn.btn-dark.mb-3{ href: '#' } A dark button
+          %a.btn.btn-dark.mb-3{ href: '#' }= t(".colors.button.example", type: t(".colors.button.type.dark"))
       .row
         .col-sm-6
           = f.text_field :light_color, class: 'color', data: { default: 0xF8F9FA }
         .col-sm-6
           = f.text_field :light_text, class: 'color', data: { default: 0xFFFFFF }
         .col-sm-12
-          %a.btn.btn-light.mb-3{ href: '#' } A light button
+          %a.btn.btn-light.mb-3{ href: '#' }= t(".colors.button.example", type: t(".colors.button.type.light"))
       .row
         .col-sm-6
           = f.text_field :muted_text, class: 'color', data: { default: 0x6C757D }
         .col-sm-6
-          %p.pt-4.text-muted Some muted text
+          %p.pt-4.text-muted= t(".colors.text.example")
   .card
     .card-body
       %h2 Forms and Inputs
