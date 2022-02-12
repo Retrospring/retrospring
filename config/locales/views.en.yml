@@ -38,7 +38,6 @@ en:
         password: "Leave this blank if you don't want to change it"
       delete:
         action: "Delete my account"
-        confirm: "Are you sure?"
         heading: "Unsatisfied?"
     profile:
       adjust:
@@ -52,6 +51,15 @@ en:
       connect: "Connect to %{service}"
       disconnect: "Disconnect"
       confirm: "Really disconnect service %{service}?"
+    theme:
+      heading: "Theming"
+      lead: "Welcome to the Theme Editor!"
+      body_html: |
+        <p>Here you'll be able to modify your Retrospring experience by adjusting all available colors.
+        To further help you with adjusting needs, there are a few example elements using the specified colors, and sections will include
+        descriptions on their general use on the site!</p>
+        <p>And with that: <b>Happy Theming!</b>
+      delete: "Delete Theme"
   user:
     edit:
       title: "Profile Settings"
