@@ -2,6 +2,7 @@ en:
   voc:
     cancel: "Cancel"
     close: "Close"
+    confirm: "Are you sure?"
     delete: "Delete"
     edit: "Edit"
     login: "Sign in"
