@@ -21,7 +21,7 @@ class User::SessionsController < Devise::SessionsController
         if params[:user][:otp_attempt].length == 8
           found = TotpRecoveryCode.where(user_id: resource.id, code: params[:user][:otp_attempt].downcase).delete_all
           if found == 1
-            flash[:info] = "You have #{TotpRecoveryCode.where(user_id: resource.id).count} recovery codes remaining."
+            flash[:info] = t(".info", count: TotpRecoveryCode.where(user_id: resource.id).count)
             continue_sign_in(resource, resource_name)
           else
             flash[:error] = t(".error")
