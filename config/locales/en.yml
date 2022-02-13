@@ -371,10 +371,6 @@ en:
         anonymous: "Allow anonymous questions"
         public: "Show your answers in the public timeline"
         stranger: "Allow other people to answer your questions"
-      security:
-        2fa:
-          title: "Two-factor authentication"
-          detach_confirm: "Are you sure you want to disable two-factor authentication?"
     modal:
       ask:
         title: "Ask your followers"
@@ -403,11 +399,3 @@ en:
         admin: "Admin"
         moderator: "Moderator"
         banned: "Banned"
-    auth:
-      2fa:
-        title: "Two-factor authentication"
-        otp_field: "One-time password"
-        errors:
-          invalid_code: "The code you entered was invalid."
-        setup:
-          success: "Two factor authentication has been enabled for your account."
