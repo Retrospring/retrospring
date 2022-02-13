@@ -22,6 +22,11 @@ en:
     destroy:
       success: "Service removed successfully."
   user:
+    export:
+      info: "An export is currently in progress for this account."
+    begin_export:
+      success: "Your account is currently being exported. This will take a little while."
+      error: "Exporting is currently not possible."
     update:
       success: "Profile updated successfully."
       error: "Unable to update profile."

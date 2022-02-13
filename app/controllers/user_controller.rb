@@ -170,16 +170,16 @@ class UserController < ApplicationController
 
   def export
     if current_user.export_processing
-      flash[:info] = 'An export is currently in progress for this account.'
+      flash[:info] = t(".info")
     end
   end
 
   def begin_export
     if current_user.can_export?
       ExportWorker.perform_async(current_user.id)
-      flash[:success] = 'Your account is currently being exported.  This will take a little while.'
+      flash[:success] = t(".success")
     else
-      flash[:error] = 'Nice try, kid.'
+      flash[:error] = t(".error")
     end
 
     redirect_to user_export_path

@@ -40,6 +40,18 @@ en:
         action: "Delete my account"
         confirm: "Are you sure?"
         heading: "Unsatisfied?"
+    export:
+      heading: "Export your data"
+      body_html: |
+        <p>The data is inside a <code>.tar.gz</code> archive and available in three formats: YAML, JSON, and XML. 
+        The archive also contains a copy of your profile picture and header picture in all sizes.</p>
+        <p>Please note that you can only export your data once a week. Exporting your data
+        will take a while, so please be patient. You will receive a question once exporting
+        is done.</p>
+      export: "Export"
+      export_url:
+        none: "Once exporting your account is done, a download link will appear here."
+        present: "Here's your export from %{time}"
     profile:
       adjust:
         profile_picture: "Adjust your new profile picture"
@@ -55,3 +67,5 @@ en:
   user:
     edit:
       title: "Profile Settings"
+    export:
+      title: "Export"
