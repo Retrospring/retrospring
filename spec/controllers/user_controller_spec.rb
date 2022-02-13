@@ -253,7 +253,7 @@ describe UserController, type: :controller do
           Timecop.freeze(Time.at(1603290950)) do
             subject
             expect(response).to redirect_to :edit_user_security
-            expect(flash[:error]).to eq(I18n.t('views.auth.2fa.errors.invalid_code'))
+            expect(flash[:error]).to eq(I18n.t("errors.invalid_otp"))
           end
         end
       end
