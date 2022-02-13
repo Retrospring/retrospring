@@ -1,6 +1,6 @@
-%p Your account is set up to require the use of a one-time password in order to log in.
-%p You currently have #{recovery_code_count} unused recovery codes.
-= button_to t('views.actions.remove'), destroy_user_2fa_path, class: 'btn btn-danger', method: 'delete',
-          data: { confirm: t('views.settings.security.2fa.detach_confirm') }
-= button_to 'Re-generate recovery codes', reset_user_recovery_codes_path, class: 'btn btn-primary', method: 'delete',
-          data: { confirm: 'Are you sure? This will disable your previous set of recovery codes.' }
+%p= t(".body")
+%p= t(".recovery_code_count", count: recovery_code_count)
+= button_to t(".remove.action"), destroy_user_2fa_path, class: "btn btn-danger", method: "delete",
+          data: { confirm: t(".remove.confirm") }
+= button_to t(".regenerate.action"), reset_user_recovery_codes_path, class: "btn btn-primary", method: "delete",
+          data: { confirm: t(".regenerate.confirm") }
