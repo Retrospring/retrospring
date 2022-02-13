@@ -1,14 +1,12 @@
 .container
   .row
     .col-sm-4.offset-sm-4
-      = render 'layouts/messages'
+      = render "layouts/messages"
       .card.mt-3
         .card-body
-          %h1.mb-3.mt-0= t('views.auth.2fa.title')
+          %h1.mb-3.mt-0= t(".heading")
           = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f|
+            = f.text_field :otp_attempt, autofocus: true, label: t(".otp_attempt")
+            = f.submit t("voc.login"), class: "btn btn-primary mt-3 mb-3"
 
-            = f.text_field :otp_attempt, autofocus: true, label: 'Please enter the code from your authenticator app'
-
-            = f.submit t('views.sessions.create'), class: 'btn btn-primary mt-3 mb-3'
-
-= render 'shared/links'
+= render "shared/links"
