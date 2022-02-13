@@ -192,7 +192,7 @@ class UserController < ApplicationController
 
       qr_code = RQRCode::QRCode.new(current_user.provisioning_uri("Retrospring:#{current_user.screen_name}", issuer: "Retrospring"))
 
-      @qr_svg = qr_code.as_svg({offset: 4, module_size: 4, color: '000;fill:var(--primary)'}).html_safe
+      @qr_svg = qr_code.as_svg({offset: 4, module_size: 4, color: "000;fill:var(--primary)"}).html_safe
     else
       @recovery_code_count = current_user.totp_recovery_codes.count
     end
@@ -206,9 +206,9 @@ class UserController < ApplicationController
       @recovery_keys = TotpRecoveryCode.generate_for(current_user)
       current_user.save!
 
-      render 'settings/security/recovery_keys'
+      render "settings/security/recovery_keys"
     else
-      flash[:error] = t('views.auth.2fa.errors.invalid_code')
+      flash[:error] = t(".error")
       redirect_to edit_user_security_path
     end
   end
@@ -217,7 +217,7 @@ class UserController < ApplicationController
     current_user.otp_module = :disabled
     current_user.save!
     current_user.totp_recovery_codes.delete_all
-    flash[:success] = 'Two factor authentication has been disabled for your account.'
+    flash[:success] = t(".success")
     redirect_to edit_user_security_path
   end
 
