@@ -33,9 +33,16 @@ en:
       notice:
         profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
         profile_header: " It might take a few minutes until your new profile header is shown everywhere."
+    update_2fa:
+      error: :errors.invalid_otp
+    destroy_2fa:
+      success: "Two factor authentication has been disabled for your account."
     update_profile:
       success: :user.update.success
       error: :user.update.error
     update_theme:
       success: "Theme saved successfully."
       error: "Theme saving failed. %{errors}"
+    sessions:
+      create:
+        error: :errors.invalid_otp

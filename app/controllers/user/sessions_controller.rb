@@ -16,7 +16,7 @@ class User::SessionsController < Devise::SessionsController
         session[:user_sign_in_uid] = resource.id
         sign_out(resource)
         warden.lock!
-        render 'auth/two_factor_authentication'
+        render "auth/two_factor_authentication"
       else
         if params[:user][:otp_attempt].length == 8
           found = TotpRecoveryCode.where(user_id: resource.id, code: params[:user][:otp_attempt].downcase).delete_all
@@ -24,14 +24,14 @@ class User::SessionsController < Devise::SessionsController
             flash[:info] = "You have #{TotpRecoveryCode.where(user_id: resource.id).count} recovery codes remaining."
             continue_sign_in(resource, resource_name)
           else
-            flash[:error] = t('views.auth.2fa.errors.invalid_code')
+            flash[:error] = t(".error")
             redirect_to new_user_session_url
           end
         elsif resource.authenticate_otp(params[:user][:otp_attempt], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
           continue_sign_in(resource, resource_name)
         else
           sign_out(resource)
-          flash[:error] = t('views.auth.2fa.errors.invalid_code')
+          flash[:error] = t(".error")
           redirect_to new_user_session_url
         end
       end
