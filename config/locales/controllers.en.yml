@@ -45,4 +45,5 @@ en:
       error: "Theme saving failed. %{errors}"
     sessions:
       create:
+        info: "You have %{count} recovery codes remaining."
         error: :errors.invalid_otp
