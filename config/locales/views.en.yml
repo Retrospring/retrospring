@@ -38,7 +38,6 @@ en:
         password: "Leave this blank if you don't want to change it"
       delete:
         action: "Delete my account"
-        confirm: "Are you sure?"
         heading: "Unsatisfied?"
     export:
       heading: "Export your data"
@@ -64,8 +63,50 @@ en:
       connect: "Connect to %{service}"
       disconnect: "Disconnect"
       confirm: "Really disconnect service %{service}?"
+    theme:
+      heading: "Theming"
+      lead: "Welcome to the Theme Editor!"
+      body_html: |
+        <p>Here you'll be able to modify your Retrospring experience by adjusting all available colors.
+        To further help you with adjusting needs, there are a few example elements using the specified colors, and sections will include
+        descriptions on their general use on the site!</p>
+        <p>And with that: <b>Happy Theming!</b>
+      delete: "Delete Theme"
+      general:
+        heading: "General"
+        body: "Here you'll find general page values that are basically visible all across the page."
+      colors:
+        heading: "Colors"
+        body: |
+          Colors you can find used on the site. The names of the colors usually describe the context.
+          The "text" colors for all styles represent the color that text on top of these colors has.
+        alert:
+          example: "A simple %{type} alert — check it out!"
+          type:
+            danger: "danger"
+            info: "info"
+            primary: "primary"
+            success: "success"
+            warning: "warning"
+        button:
+          example: "A %{type} button"
+          type:
+            dark: "dark"
+            light: "light"
+        text:
+          example: "Some muted text"
+      forms:
+        heading: "Forms and Inputs"
+        body: "Styles for form inputs, like text fields."
+      raised:
+        heading: "Raised Content"
+        body: "Raised content basically describes all the different boxes and panels you can see across the site."
+        accent:
+          example: "Some text on top of a accented area on a raised element!"
   user:
     edit:
       title: "Profile Settings"
+    edit_theme:
+      title: "Theme Settings"
     export:
       title: "Export"

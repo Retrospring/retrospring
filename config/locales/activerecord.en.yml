@@ -19,6 +19,28 @@ en:
         website: "Website"
       service:
         post_tag: "Tag"
+      theme:
+        background_color: "Background color"
+        body_text: "Body text color"
+        dark_color: "Dark color"
+        dark_text: "Dark text color"
+        danger_color: "Danger color"
+        danger_text: "Danger text color"
+        info_color: "Info color"
+        info_text: "Info text color"
+        input_color: "Input color"
+        input_text: "Input text color"
+        light_color: "Light color"
+        light_text: "Light text color"
+        muted_text: "Muted text color"
+        primary_color: "Primary color"
+        primary_text: "Primary text color"
+        raised_accent: "Raised accent color"
+        raised_background: "Raised background color"
+        success_color: "Success color"
+        success_text: "Success text color"
+        warning_color: "Warning color"
+        warning_text: "Warning text color"
       user:
         current_password: "Current password"
         email: "Email"
@@ -37,6 +59,12 @@ en:
         motivation_header: "Shown in the header of the question box on your profile. Motivate users to ask you questions!"
       services/twitter:
         post_tag: "Automatically append a tag to your shared answers. A # symbol is not automatically prepended."
+      theme:
+        danger_color: "Color used for errors or critical actions like deleting something."
+        info_color: "Color used for informational popups or messages."
+        primary_color: "The primary/brand color of the site, used for navigation, links, etc."
+        success_color: "Color used for messages if something went through successfully."
+        warning_color: "Color used for warnings if something non-critical has happened."
   helpers:
     submit:
       user:
@@ -44,4 +72,7 @@ en:
         create: :voc.register
         update: :voc.save
       profile:
+        update: :voc.save
+      theme:
+        create: :voc.save
         update: :voc.save

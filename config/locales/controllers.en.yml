@@ -36,3 +36,6 @@ en:
     update_profile:
       success: :user.update.success
       error: :user.update.error
+    update_theme:
+      success: "Theme saved successfully."
+      error: "Theme saving failed. %{errors}"
