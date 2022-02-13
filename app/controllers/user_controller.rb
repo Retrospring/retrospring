@@ -158,12 +158,12 @@ class UserController < ApplicationController
       if current_user.theme.save
         flash[:success] = t(".success")
       else
-        flash[:error] = t(".error", errors: current_user.theme.errors.messages.flatten.join(' '))
+        flash[:error] = t(".error", errors: current_user.theme.errors.messages.flatten.join(" "))
       end
     elsif current_user.theme.update(update_attributes)
       flash[:success] = t(".success")
     else
-      flash[:error] = t(".error", errors: current_user.theme.errors.messages.flatten.join(' '))
+      flash[:error] = t(".error", errors: current_user.theme.errors.messages.flatten.join(" "))
     end
     redirect_to edit_user_theme_path
   end
