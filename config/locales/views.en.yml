@@ -1,4 +1,8 @@
 en:
+  auth:
+    two_factor_authentication:
+      heading: "Two-factor authentication"
+      otp_attempt: "Please enter the code from your authenticator app"
   announcement:
     index:
       title: :activerecord.models.announcement.other
@@ -55,6 +59,37 @@ en:
       adjust:
         profile_picture: "Adjust your new profile picture"
         profile_header: "Adjust your new profile header"
+    security:
+      heading: "Two-factor authentication"
+      recovery_keys:
+        heading: "Your %{app_name} recovery codes"
+        generated_at: "These codes were generated at %{time}"
+        recommendation: "We recommend storing these in a password manager or printing them out on paper."
+        print: "Print"
+        consideration: "Please consider the environment before printing this page."
+      totp_enabled:
+        body: "Your account is set up to require the use of a one-time password in order to log in."
+        recovery_code_count: "You currently have %{count} unused recovery codes."
+        remove:
+          action: "Remove Two-factor authentication"
+          confirm: "Are you sure you want to disable two-factor authentication?"
+        regenerate:
+          action: "Regenerate recovery codes"
+          confirm: "Are you sure? This will disable your previous set of recovery codes."
+      totp_setup:
+        setup_key: "If you cannot scan the QR code, use the following key instead:"
+        setup_qr: "Once you have downloaded an authenticator app, add your %{app_name} account by scanning the QR code displayed on the left."
+        otp_validation: "Enter the code displayed in the app here:"
+        app:
+          none: "If you do not have an authenticator app already installed on your device, we suggest one of the following:"
+          aegis: "Aegis Authenticator for Android"
+          strongbox: "Strongbox Authenticator for iOS"
+          microsoft: "Microsoft Authenticator"
+        source:
+          app_store: "App Store"
+          fdroid: "F-Droid"
+          google_play: "Google Play"
+          code: "Source Code"
     services:
       services:
         one: "Sharing is enabled for the following service:"
@@ -106,6 +141,8 @@ en:
   user:
     edit:
       title: "Profile Settings"
+    edit_security:
+      title: "Security Settings"
     edit_theme:
       title: "Theme Settings"
     export:

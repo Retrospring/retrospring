@@ -20,3 +20,5 @@ en:
     user_not_found: "User not found"
 
     conflict: "This already exists"
+
+    invalid_otp: "The code you entered was invalid."
