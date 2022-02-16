@@ -1,4 +1,18 @@
 en:
+  ajax:
+    mute_rule:
+      nopriv: "Can't edit other people's rules"
+      create:
+        noauth: :messages.noauth
+        success: "Rule added successfully."
+      update:
+        noauth: :messages.noauth
+        nopriv: :ajax.mute_rule.nopriv
+        success: "Rule updated successfully."
+      destroy:
+        noauth: :messages.noauth
+        nopriv: :ajax.mute_rule.nopriv
+        success: "Rule deleted successfully."
   announcement:
     create:
       success: "Announcement created successfully."
