@@ -1,24 +1,24 @@
 .card
   .card-body
-    %h2 Muted words
-    %p Muting words (or longer phrases) will prevent questions containing those to appear in your inbox.
-    %p Note: Filtered questions are discarded completely from your inbox, and won't reappear if you remove a filter later on.
+    %h2= t(".heading")
+    %p= t(".body")
+    %p= t(".note")
     .js-rules-list
       - @rules.each do |rule|
         .form-group
           .input-group
             %input.form-control{ disabled: true, value: rule.muted_phrase }
             .input-group-append
-              %button.btn.btn-danger{ type: 'button', data: { id: rule.id } } Remove
+              %button.btn.btn-danger{ type: "button", data: { id: rule.id } }= t(".actions.remove")
     .form-group
       %form
         .input-group
-          %input.form-control#new-rule-text{ placeholder: 'Add a new muted word...' }
+          %input.form-control#new-rule-text{ placeholder: t(".placeholder") }
           .input-group-append
-            %button.btn.btn-primary#new-rule-submit{ type: 'submit' } Add
+            %button.btn.btn-primary#new-rule-submit{ type: "submit" }= t(".actions.add")
 %template#rule-template
   .form-group
     .input-group
       %input.form-control{ disabled: true }
       .input-group-append
-        %button.btn.btn-danger{ type: 'button' } Remove
+        %button.btn.btn-danger{ type: "button" }= t(".actions.remove")

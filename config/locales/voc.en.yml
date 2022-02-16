@@ -10,3 +10,5 @@ en:
     register: "Sign up"
     terms: "Terms of Service"
     update: "Update"
+  messages:
+    noauth: "requires authentication"
