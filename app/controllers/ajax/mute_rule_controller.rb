@@ -4,14 +4,14 @@ class Ajax::MuteRuleController < AjaxController
 
     unless user_signed_in?
       @response[:status] = :noauth
-      @response[:message] = I18n.t('messages.noauth')
+      @response[:message] = t(".noauth")
       return
     end
 
     rule = MuteRule.create!(user: current_user, muted_phrase: params[:muted_phrase])
     @response[:status] = :okay
     @response[:success] = true
-    @response[:message] = "Rule added successfully."
+    @response[:message] = t(".success")
     @response[:id] = rule.id
   end
 
@@ -21,7 +21,7 @@ class Ajax::MuteRuleController < AjaxController
 
     unless user_signed_in?
       @response[:status] = :noauth
-      @response[:message] = I18n.t('messages.noauth')
+      @response[:message] = t(".noauth")
       return
     end
 
@@ -29,7 +29,7 @@ class Ajax::MuteRuleController < AjaxController
 
     if rule.user_id != current_user.id
       @response[:status] = :nopriv
-      @response[:message] = "Can't edit other people's rules"
+      @response[:message] = t(".nopriv")
       return
     end
 
@@ -37,7 +37,7 @@ class Ajax::MuteRuleController < AjaxController
     rule.save!
 
     @response[:status] = :okay
-    @response[:message] = "Rule updated successfully."
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -46,7 +46,7 @@ class Ajax::MuteRuleController < AjaxController
 
     unless user_signed_in?
       @response[:status] = :noauth
-      @response[:message] = I18n.t('messages.noauth')
+      @response[:message] = t(".noauth")
       return
     end
 
@@ -54,14 +54,14 @@ class Ajax::MuteRuleController < AjaxController
 
     if rule.user_id != current_user.id
       @response[:status] = :nopriv
-      @response[:message] = "Can't edit other people's rules"
+      @response[:message] = t(".nopriv")
       return
     end
 
     rule.destroy!
 
     @response[:status] = :okay
-    @response[:message] = "Rule deleted successfully."
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 end
