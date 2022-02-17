@@ -11,4 +11,4 @@ en:
     terms: "Terms of Service"
     update: "Update"
   messages:
-    noauth: "requires authentication"
+    noauth: "You must be signed in to do this."
