@@ -46,6 +46,7 @@ en:
     data:
       heading: "Your Profile Data"
       body: "Everything we have about you! Really, not that much as you might expect."
+      none: "None set!"
       section:
         general: "General"
         profile: "Profile"
