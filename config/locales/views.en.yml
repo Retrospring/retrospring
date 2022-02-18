@@ -43,6 +43,33 @@ en:
       delete:
         action: "Delete my account"
         heading: "Unsatisfied?"
+    data:
+      heading: "Your Profile Data"
+      body: "Everything we have about you! Really, not that much as you might expect."
+      section:
+        general: "General"
+        profile: "Profile"
+        pictures: "Pictures"
+        ip: "IP"
+        miscellaneous: "Miscellaneous"
+        dates: "Dates"
+        sign_in: "Sign In"
+        create_update: "Create/Update"
+      pictures:
+        profile_picture:
+          heading: "Profile picture"
+          size:
+            small: "Small"
+            medium: "Medium"
+            large: "Large"
+            original: "Original image"
+        profile_header:
+          heading: "Profile header"
+          size:
+            mobile: "Mobile"
+            web: "Web"
+            retina: "Retina"
+            original: "Original image"
     export:
       heading: "Export your data"
       body_html: |
@@ -147,6 +174,8 @@ en:
         accent:
           example: "Some text on top of a accented area on a raised element!"
   user:
+    data:
+      title: "Your Data"
     edit:
       title: "Profile Settings"
     edit_mute:
