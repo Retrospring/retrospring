@@ -14,28 +14,28 @@
         %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.display_name")
         %p.text-muted
           - if current_user.profile.display_name.blank?
-            None set!
+            = t(".none")
           - else
             = current_user.profile.display_name
 
         %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.description")
         %p.text-muted
           - if current_user.profile.description.blank?
-            None set!
+            = t(".none")
           - else
             = current_user.profile.description
 
         %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.location")
         %p.text-muted
           - if current_user.profile.location.blank?
-            None set!
+            = t(".none")
           - else
             = current_user.profile.location
 
         %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.website")
         %p.text-muted
           - if current_user.profile.website.blank?
-            None set!
+            = t(".none")
           - else
             = current_user.profile.website
       .col-md-6.col-sm-6.col-xs-12.mb-3
@@ -79,7 +79,7 @@
         %p.font-weight-bold.mb-0= t("activerecord.attributes.user.locale")
         %p.text-muted
           - if current_user.locale.blank?
-            None set!
+            = t(".none")
           - else
             = current_user.locale
 
@@ -107,7 +107,7 @@
             = localize(current_user.created_at)
             = " (#{time_ago_in_words(current_user.created_at)} ago)"
           - else
-            Not set
+            = t(".none")
 
         %p.font-weight-bold.mb-0= t("activerecord.attributes.user.updated at")
         %p.text-muted
@@ -115,4 +115,4 @@
             = localize(current_user.updated_at)
             = " (#{time_ago_in_words(current_user.updated_at)} ago)"
           - else
-            Not set
+            = t(".none")
