@@ -12,3 +12,5 @@ en:
     update: "Update"
   messages:
     noauth: "You must be signed in to do this."
+  time:
+    distance_ago: "%{time} ago"
