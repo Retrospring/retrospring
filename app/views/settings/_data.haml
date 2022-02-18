@@ -105,7 +105,7 @@
         %p.text-muted
           - if current_user.created_at
             = localize(current_user.created_at)
-            = " (#{time_ago_in_words(current_user.created_at)} ago)"
+            = " (#{t("time.distance_ago", time: time_ago_in_words(current_user.created_at))})"
           - else
             = t(".none")
 
@@ -113,6 +113,6 @@
         %p.text-muted
           - if current_user.created_at
             = localize(current_user.updated_at)
-            = " (#{time_ago_in_words(current_user.updated_at)} ago)"
+            = " (#{t("time.distance_ago", time: time_ago_in_words(current_user.updated_at))})"
           - else
             = t(".none")
