@@ -5,7 +5,7 @@
 
     %h3= t(".section.general")
     .row
-      .col-md-6.col-sm-6.col-xs-12
+      .col-md-6.col-sm-6.col-xs-12.mb-3
         %h4= t(".section.profile")
 
         %p.font-weight-bold.mb-0= t("activerecord.attributes.user.screen_name")
@@ -38,10 +38,10 @@
             None set!
           - else
             = current_user.profile.website
-      .col-md-6.col-sm-6.col-xs-12
+      .col-md-6.col-sm-6.col-xs-12.mb-3
         %h4= t(".section.pictures")
         %p.font-weight-bold.mb-0= t(".pictures.profile_picture.heading")
-        .media
+        .media.mb-3
           .pull-left
             %img.profile--img{ src: current_user.profile_picture.url(:medium) }
           .media-body
@@ -66,14 +66,14 @@
           |
           %a{ href: current_user.profile_header.url(:original) }= t(".pictures.profile_header.size.original")
     .row
-      .col-md-6.col-sm-6.col-xs-12
+      .col-md-6.col-sm-6.col-xs-12.mb-3
         %h3= t(".section.ip")
         %p.font-weight-bold.mb-0= t("activerecord.attributes.user.current_sign_in_ip")
         %p.text-muted= current_user.current_sign_in_ip
 
         %p.font-weight-bold.mb-0= t("activerecord.attributes.user.last_sign_in_ip")
         %p.text-muted= current_user.last_sign_in_ip
-      .col-md-6.col-sm-6.col-xs-12
+      .col-md-6.col-sm-6.col-xs-12.mb-3
         %h3= t(".section.miscellaneous")
 
         %p.font-weight-bold.mb-0= t("activerecord.attributes.user.locale")
