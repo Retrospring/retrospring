@@ -67,47 +67,6 @@
           %a{ href: current_user.profile_header.url(:original) }= t(".pictures.profile_header.size.original")
     .row
       .col-md-6.col-sm-6.col-xs-12
-        %h4= t(".section.statistics")
-
-        %p.font-weight-bold.mb-0 Answers
-        %p.text-muted= current_user.answered_count
-
-        %p.font-weight-bold.mb-0 Questions
-        %p.text-muted= current_user.asked_count
-
-        %p.font-weight-bold.mb-0 Following
-        %p.text-muted= current_user.followings.count
-
-        %p.font-weight-bold.mb-0 Followers
-        %p.text-muted= current_user.followers.count
-
-        %p.font-weight-bold.mb-0 Smiles
-        %p.text-muted= current_user.smiled_count + current_user.comment_smiled_count
-
-        %p.font-weight-bold.mb-0 Comments
-        %p.text-muted= current_user.commented_count
-      .col-md-6.col-sm-6.col-xs-12
-        %h4= t(".section.badges")
-
-        %p.font-weight-bold.mb-0 Admin
-        %p
-          - if current_user.has_role? :administrator
-            %span.label.label-success
-              %i.fa.fa-fw.fa-check
-          - else
-            %span.label.label-danger
-              %i.fa.fa-fw.fa-close
-
-        %p.font-weight-bold.mb-0 Moderator
-        %p
-          - if current_user.mod?
-            %span.label.label-success
-              %i.fa.fa-fw.fa-check
-          - else
-            %span.label.label-danger
-              %i.fa.fa-fw.fa-close
-    .row
-      .col-md-6.col-sm-6.col-xs-12
         %h3= t(".section.ip")
         %p.font-weight-bold.mb-0= t("activerecord.attributes.user.current_sign_in_ip")
         %p.text-muted= current_user.current_sign_in_ip
