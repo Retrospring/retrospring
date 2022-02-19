@@ -51,6 +51,9 @@ en:
       error: :errors.invalid_otp
     destroy_2fa:
       success: "Two factor authentication has been disabled for your account."
+    update_privacy:
+      success: :user.update.success
+      error: :user.update.error
     update_profile:
       success: :user.update.success
       error: :user.update.error
