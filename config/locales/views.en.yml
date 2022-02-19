@@ -146,6 +146,17 @@ en:
         body: "Raised content basically describes all the different boxes and panels you can see across the site."
         accent:
           example: "Some text on top of a accented area on a raised element!"
+  tabs:
+    settings:
+      account: "Account"
+      profile: "Profile"
+      privacy: "Privacy"
+      sharing: "Sharing"
+      security: "Security"
+      mutes: "Muted words"
+      theme: "Theme"
+      data: "Your Data"
+      export: "Export"
   user:
     edit:
       title: "Profile Settings"

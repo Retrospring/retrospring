@@ -1,13 +1,13 @@
 .card
   .list-group
-    = list_group_item t('views.settings.tabs.account'), edit_user_registration_path
-    = list_group_item t('views.settings.tabs.profile'), edit_user_profile_path
-    = list_group_item t('views.settings.tabs.privacy'), edit_user_privacy_path
-    = list_group_item t('views.settings.tabs.security'), edit_user_security_path
-    = list_group_item t('views.settings.tabs.sharing'), services_path
-    = list_group_item 'Muted words', edit_user_mute_rules_path
-    = list_group_item 'Theme', edit_user_theme_path
-    = list_group_item 'Your Data', user_data_path
-    = list_group_item 'Export', user_export_path
+    = list_group_item t(".account"), edit_user_registration_path
+    = list_group_item t(".profile"), edit_user_profile_path
+    = list_group_item t(".privacy"), edit_user_privacy_path
+    = list_group_item t(".security"), edit_user_security_path
+    = list_group_item t(".sharing"), services_path
+    = list_group_item t(".mutes"), edit_user_mute_rules_path
+    = list_group_item t(".theme"), edit_user_theme_path
+    = list_group_item t(".data"), user_data_path
+    = list_group_item t(".export"), user_export_path
 
-.d-none.d-sm-block= render 'shared/links'
+.d-none.d-sm-block= render "shared/links"
