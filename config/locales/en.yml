@@ -360,13 +360,6 @@ en:
         create: "Create an account"
         another: "Ask another question"
         join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
-    settings:
-      tabs:
-        account: "Account"
-        profile: "Profile"
-        privacy: "Privacy"
-        sharing: "Sharing"
-        security: "Security"
       privacy:
         anonymous: "Allow anonymous questions"
         public: "Show your answers in the public timeline"
