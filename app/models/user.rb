@@ -8,6 +8,7 @@ class User < ApplicationRecord
   include User::BanMethods
   include User::InboxMethods
   include User::QuestionMethods
+  include User::ReactionMethods
   include User::RelationshipMethods
   include User::TimelineMethods
   include ActiveModel::OneTimePassword
@@ -30,7 +31,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :inboxes, dependent: :destroy
-  has_many :smiles, dependent: :destroy
+  has_many :smiles, class_name: "Appendable::Reaction", dependent: :destroy
   has_many :comment_smiles, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
@@ -126,23 +127,6 @@ class User < ApplicationRecord
     question.answers.pluck(:user_id).include? self.id
   end
 
-  # smiles an answer
-  # @param answer [Answer] the answer to smile
-  def smile(answer)
-    # rubocop:disable Style/RedundantSelf
-    raise Errors::ReactingSelfBlockedOther if self.blocking?(answer.user)
-    raise Errors::ReactingOtherBlockedSelf if answer.user.blocking?(self)
-    # rubocop:enable Style/RedundantSelf
-
-    Smile.create!(user: self, answer: answer)
-  end
-
-  # unsmile an answer
-  # @param answer [Answer] the answer to unsmile
-  def unsmile(answer)
-    Smile.find_by(user: self, answer: answer).destroy
-  end
-
   # smiles a comment
   # @param comment [Comment] the comment to smile
   def smile_comment(comment)
@@ -158,10 +142,6 @@ class User < ApplicationRecord
   # @param comment [Comment] the comment to unsmile
   def unsmile_comment(comment)
     CommentSmile.find_by(user: self, comment: comment).destroy
-  end
-
-  def smiled?(answer)
-    answer.smiles.pluck(:user_id).include? self.id
   end
 
   def smiled_comment?(comment)

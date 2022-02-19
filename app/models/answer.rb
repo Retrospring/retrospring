@@ -4,7 +4,7 @@ class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :question
   has_many :comments, dependent: :destroy
-  has_many :smiles, dependent: :destroy
+  has_many :smiles, class_name: "Appendable::Reaction", foreign_key: :parent_id, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :comment_smiles, through: :comments, source: :smiles
 
