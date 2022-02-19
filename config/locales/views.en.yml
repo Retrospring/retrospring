@@ -151,6 +151,8 @@ en:
       title: "Profile Settings"
     edit_mute:
       title: "Muted Words"
+    edit_privacy:
+      title: "Privacy Settings"
     edit_security:
       title: "Security Settings"
     edit_theme:
