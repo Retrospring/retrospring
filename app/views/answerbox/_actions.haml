@@ -1,17 +1,17 @@
 %span.d-none.d-sm-inline.text-muted
-  - if !user_signed_in? && a.smile_count.positive?
+  - if !user_signed_in? && a.smiles.count.positive?
     %button.btn.btn-info.btn-sm{ name: 'ab-smile', disabled: true }
       %i.fa.fa-smile-o
-      %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
+      %span{ id: "ab-smile-count-#{a.id}" }= a.smiles.count
 - if user_signed_in?
   - if current_user.smiled? a
     %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile } }
       %i.fa.fa-fw.fa-frown-o
-      %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
+      %span{ id: "ab-smile-count-#{a.id}" }= a.smiles.count
   - else
     %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile', data: { a_id: a.id, action: :smile } }
       %i.fa.fa-fw.fa-smile-o
-      %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
+      %span{ id: "ab-smile-count-#{a.id}" }= a.smiles.count
 - unless display_all
   %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden } }
     %i.fa.fa-fw.fa-comments
