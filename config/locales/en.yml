@@ -356,13 +356,6 @@ en:
         create: "Create an account"
         another: "Ask another question"
         join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
-    settings:
-      tabs:
-        account: "Account"
-        profile: "Profile"
-        privacy: "Privacy"
-        sharing: "Sharing"
-        security: "Security"
     modal:
       ask:
         title: "Ask your followers"
