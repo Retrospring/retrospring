@@ -51,10 +51,6 @@ en:
       error: "I'm sorry, %{name}, I'm afraid I can't do that."
       reason: "Ban reason: %{reason}"
       until: "Banned until: %{time}"
-    user:
-      update_privacy:
-        success: "Your privacy settings have been updated!"
-        error: "An error occurred. ;_;"
   messages:
     noscript: "Please activate JavaScript."
     error: "An error occurred."
@@ -360,10 +356,6 @@ en:
         create: "Create an account"
         another: "Ask another question"
         join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
-      privacy:
-        anonymous: "Allow anonymous questions"
-        public: "Show your answers in the public timeline"
-        stranger: "Allow other people to answer your questions"
     modal:
       ask:
         title: "Ask your followers"

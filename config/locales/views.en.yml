@@ -43,6 +43,34 @@ en:
       delete:
         action: "Delete my account"
         heading: "Unsatisfied?"
+    data:
+      heading: "Your Profile Data"
+      body: "Everything we have about you! Really, not that much as you might expect."
+      none: "None set!"
+      section:
+        general: "General"
+        profile: "Profile"
+        pictures: "Pictures"
+        ip: "IP"
+        miscellaneous: "Miscellaneous"
+        dates: "Dates"
+        sign_in: "Sign In"
+        create_update: "Create/Update"
+      pictures:
+        profile_picture:
+          heading: "Profile picture"
+          size:
+            small: "Small"
+            medium: "Medium"
+            large: "Large"
+            original: "Original image"
+        profile_header:
+          heading: "Profile header"
+          size:
+            mobile: "Mobile"
+            web: "Web"
+            retina: "Retina"
+            original: "Original image"
     export:
       heading: "Export your data"
       body_html: |
@@ -158,10 +186,14 @@ en:
       data: "Your Data"
       export: "Export"
   user:
+    data:
+      title: "Your Data"
     edit:
       title: "Profile Settings"
     edit_mute:
       title: "Muted Words"
+    edit_privacy:
+      title: "Privacy Settings"
     edit_security:
       title: "Security Settings"
     edit_theme:

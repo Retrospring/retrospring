@@ -1,9 +1,8 @@
 .card
   .card-body
-    = bootstrap_form_for(current_user, url: { action: 'edit_privacy' }, method: :patch) do |f|
+    = bootstrap_form_for(current_user, url: { action: "edit_privacy" }, method: :patch) do |f|
+      = f.check_box :privacy_allow_anonymous_questions
+      = f.check_box :privacy_allow_public_timeline
+      = f.check_box :privacy_allow_stranger_answers
 
-      = f.check_box :privacy_allow_anonymous_questions, label: t('views.settings.privacy.anonymous')
-      = f.check_box :privacy_allow_public_timeline, label: t('views.settings.privacy.public')
-      = f.check_box :privacy_allow_stranger_answers, label: t('views.settings.privacy.stranger')
-
-      = f.submit t('views.actions.save'), class: 'btn btn-primary'
+      = f.primary
