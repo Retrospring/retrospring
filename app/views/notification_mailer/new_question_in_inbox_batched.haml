@@ -1,0 +1,14 @@
+%h3 There are #{@inbox_count} new questions waiting for you.
+
+%p{ style: 'margin:0px;padding:0px' }
+  Here is the latest one from #{@asker_name}:
+
+%blockquote
+  = @question.content
+
+%p{ style: 'margin:0px;padding:0px' }
+  Answer all the questions from your inbox at
+  %a{ href: inbox_url }= inbox_url
+
+%p &nbsp;
+%p{ style: 'margin:0px;padding:0px' } Please do not reply to this email.

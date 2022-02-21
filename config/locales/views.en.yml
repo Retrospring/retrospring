@@ -91,6 +91,16 @@ en:
       actions:
         add: "Add"
         remove: "Remove"
+    notifications:
+      heading: "Notifications"
+      body: "Update your notification preferences here."
+      email_heading: "Emails"
+      type_questions: "New questions in your inbox"
+      type_questions_help: "When would you like to receive a notification?"
+      frequency_never: "Never"
+      frequency_immediately: "Immediately"
+      frequency_hourly: "Within one hour"
+      frequency_daily: "Within one day"
     profile:
       adjust:
         profile_picture: "Adjust your new profile picture"
@@ -179,6 +189,7 @@ en:
       account: "Account"
       profile: "Profile"
       privacy: "Privacy"
+      notifications: "Notifications"
       sharing: "Sharing"
       security: "Security"
       mutes: "Muted words"
@@ -192,6 +203,8 @@ en:
       title: "Profile Settings"
     edit_mute:
       title: "Muted Words"
+    edit_notifications:
+      title: "Notification settings"
     edit_privacy:
       title: "Privacy Settings"
     edit_security:

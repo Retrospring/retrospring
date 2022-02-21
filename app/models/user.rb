@@ -18,6 +18,13 @@ class User < ApplicationRecord
   enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true
   attr_accessor :otp_attempt, :otp_validation
 
+  enum email_notify_on_new_inbox: {
+    never:       0,
+    immediately: 1,
+    hourly:      2,
+    daily:       3
+  }, _prefix: true
+
   rolify
 
 #   attr_accessor :login

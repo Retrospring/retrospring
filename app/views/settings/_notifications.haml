@@ -1,0 +1,14 @@
+.card
+  .card-body
+    %h2= t(".heading")
+    %p= t(".body")
+
+    = bootstrap_form_for(current_user, url: { action: "update_notifications" }, method: :patch) do |f|
+      - # settings for all notification types should go in here
+      %h3= t(".email_heading")
+
+      = f.form_group :email_notify_on_new_inbox, label: { text: t(".type_questions") }, help: t(".type_questions_help") do
+        - User.email_notify_on_new_inboxes.each do |name, _intvalue|
+          = f.radio_button :email_notify_on_new_inbox, name, label: t(".frequency_#{name}"), checked: current_user.email_notify_on_new_inbox == name
+
+      = f.primary

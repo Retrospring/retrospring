@@ -232,4 +232,21 @@ class UserController < ApplicationController
     @rules = MuteRule.where(user: current_user)
   end
   # endregion
+
+  # Notifications {{{
+  def edit_notifications
+  end
+
+  def update_notifications
+    update_params = params.require(:user).permit(:email_notify_on_new_inbox)
+
+    if current_user.update(update_params)
+      flash[:success] = t(".success")
+    else
+      flash[:error] = t(".error")
+    end
+
+    redirect_to edit_user_notifications_path
+  end
+  # }}}
 end

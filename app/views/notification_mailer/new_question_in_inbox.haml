@@ -1,0 +1,11 @@
+%h3 #{@asker_name} just asked you a question.
+
+%blockquote
+  = @question.content
+
+%p{ style: 'margin:0px;padding:0px' }
+  Answer the question from your inbox at
+  %a{ href: inbox_url }= inbox_url
+
+%p &nbsp;
+%p{ style: 'margin:0px;padding:0px' } Please do not reply to this email.

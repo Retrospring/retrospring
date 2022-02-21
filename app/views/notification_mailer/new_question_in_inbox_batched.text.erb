@@ -1,0 +1,11 @@
+There are <%= @inbox_count %> new questions waiting for you.
+
+Here is the latest one from <%= @asker_name %>:
+
+<% @question.content.each_line do |q| %>
+> <%= q.chomp %>
+<% end %>
+
+Answer all the questions from your inbox at <%= inbox_url %>
+
+Please do not reply to this email.

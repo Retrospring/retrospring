@@ -51,6 +51,9 @@ en:
       error: :errors.invalid_otp
     destroy_2fa:
       success: "Two factor authentication has been disabled for your account."
+    update_notifications:
+      success: "Notification settings saved."
+      error: "Notification settings saving failed."
     update_privacy:
       success: :user.update.success
       error: :user.update.error

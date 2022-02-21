@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Retromail < Devise::Mailer
   helper :application
   include Devise::Controllers::UrlHelpers
   default template_path: 'devise/mailer', parts_order: [ 'text/plain', 'text/html' ]
-  layout 'mail'
+  layout 'mailer'
 
   def devise_mail(record, action, opts={})
     initialize_from_record(record)

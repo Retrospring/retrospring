@@ -1,0 +1,9 @@
+<%= @asker_name %> just asked you a question:
+
+<% @question.content.each_line do |q| %>
+> <%= q.chomp %>
+<% end %>
+
+Answer the question from your inbox at <%= inbox_url %>
+
+Please do not reply to this email.
