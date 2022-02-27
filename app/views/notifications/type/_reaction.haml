@@ -1,0 +1,23 @@
+.media.notification
+  .notification__icon
+    %i.fa.fa-2x.fa-fw.fa-smile-o
+  .media-body
+    .notification__heading
+      %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small) }
+      = user_screen_name notification.target.user
+      smiled
+      - if notification.target.parent_type == 'Answer'
+        = link_to 'your answer', show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.parent.id)
+      - elsif notification.target.parent_type == 'Comment'
+        = link_to 'your comment', show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.parent.answer.id)
+      = time_tooltip(notification.target)
+      ago
+    .list-group
+      .list-group-item
+        .media.question-media
+          .media-body
+            - if notification.target.parent_type == 'Answer'
+              %h6.notification__list-heading answer
+            - elsif notification.target.parent_type == 'Comment'
+              %h6.notification__list-heading comment
+            = markdown notification.target.parent.content[0..60] + (notification.target.parent.content.length > 60 ? '[...]' : '')
