@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   belongs_to :answer
   validates :user_id, presence: true
   validates :answer_id, presence: true
-  has_many :smiles, class_name: "CommentSmile", foreign_key: :comment_id, dependent: :destroy
+  has_many :smiles, class_name: "Appendable::Reaction", foreign_key: :parent_id, dependent: :destroy
 
   validates :content, length: { maximum: 160 }
 

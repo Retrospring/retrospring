@@ -24,7 +24,7 @@
                   %i.fa.fa-fw.fa-smile-o
                   %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
             - if user_signed_in?
-              - if current_user.smiled_comment? comment
+              - if current_user.smiled? comment
                 %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: :unsmile } }
                   %i.fa.fa-fw.fa-frown-o
                   %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count

@@ -39,6 +39,7 @@ class Notification < ApplicationRecord
 
       def make_notification(recipient, target, notification_type)
         n = notification_type.new(target: target,
+                                  target_type: target.type,  # To ensure we don't get a type of 'Appenddable'
                                   recipient: recipient,
                                   new: true)
         n.save!

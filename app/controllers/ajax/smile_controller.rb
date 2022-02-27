@@ -47,7 +47,7 @@ class Ajax::SmileController < AjaxController
     comment = Comment.find(params[:id])
 
     begin
-      current_user.smile_comment comment
+      current_user.smile comment
     rescue Errors::Base => e
       @response[:status] = e.code
       @response[:message] = I18n.t(e.locale_tag)
@@ -70,7 +70,7 @@ class Ajax::SmileController < AjaxController
     comment = Comment.find(params[:id])
 
     begin
-      current_user.unsmile_comment comment
+      current_user.unsmile comment
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
