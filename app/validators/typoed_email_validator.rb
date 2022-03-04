@@ -6,6 +6,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
     # without @:
     ".con",
     ".coom",
+    ".mail",
 
     # with @:
     *%w[
@@ -15,15 +16,15 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       gmaile.com
       gmaill.com
       gmali.com
+      hotmaill.com
       icluod.com
-      proton.mail
     ].map { "@#{_1}" }
   ].freeze
 
   def validate_each(record, attribute, value)
     return if valid?(value)
 
-    record.errors[attribute] << "contains a typo"
+    record.errors.add(attribute, :typo, message: "contains a typo")
   end
 
   private
