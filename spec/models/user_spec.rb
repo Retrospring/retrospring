@@ -62,6 +62,7 @@ RSpec.describe User, type: :model do
     include_examples "valid email", "fritz.fantom@gmail.com"
     include_examples "valid email", "fritz.fantom@columbiamail.co"
     include_examples "valid email", "fritz.fantom@protonmail.com"
+    include_examples "valid email", "fritz.fantom@example.email"
     include_examples "valid email", "fritz.fantom@enterprise.k8s.420stripes.k8s.needs.more.k8s.jira.atlassian.k8s.eu-central-1.s3.amazonaws.com"
     include_examples "invalid email", "@jack"
 
@@ -72,6 +73,8 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@protonmail.con"
     # neither is .coom
     include_examples "invalid email", "fritz.fantom@gmail.coom"
+    # nor .mail (.email is, however)
+    include_examples "invalid email", "fritz.fantom@proton.mail"
     # common typos:
     include_examples "invalid email", "fritz.fantom@fmail.com"
     include_examples "invalid email", "fritz.fantom@gemail.com"
@@ -81,12 +84,11 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@gmaill.com"
     include_examples "invalid email", "fritz.fantom@gmali.com"
     include_examples "invalid email", "fritz.fantom@hotmailcom"
+    include_examples "invalid email", "fritz.fantom@hotmaill.com"
     include_examples "invalid email", "fritz.fantom@icluod.com"
     # no TLD
     include_examples "invalid email", "fritz.fantom@gmail"
     include_examples "invalid email", "fritz.fantom@protonmail"
-    # not registered as of 2022-01-11
-    include_examples "invalid email", "fritz.fantom@proton.mail"
   end
 
   # -- User::TimelineMethods --
