@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :comment_smile do
+  factory :comment_smile, class: Appendable::Reaction do
     user { FactoryBot.build(:user) }
-    comment { FactoryBot.build(:comment) }
+    parent { FactoryBot.build(:comment) }
+    content { "🙂" }
   end
 end
