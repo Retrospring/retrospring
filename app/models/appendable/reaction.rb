@@ -10,7 +10,7 @@ class Appendable::Reaction < Appendable
   before_destroy do
     Notification.denotify parent.user, self unless parent.user == user
     user.decrement! :smiled_count
-    answer.decrement! :smile_count
+    parent.decrement! :smile_count
   end
 
   def notification_type(*_args)
