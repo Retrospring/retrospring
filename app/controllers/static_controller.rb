@@ -33,7 +33,7 @@ class StaticController < ApplicationController
     @questions = Question.count
     @answers = Answer.count
     @comments = Comment.count
-    @smiles = Smile.count + CommentSmile.count
+    @smiles = Appendable::Reaction.count
   end
 
   def linkfilter
