@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   TYPE_MAPPINGS = {
-    'smile'    => 'appendable::reaction',
-    'reaction' => 'appendable::reaction',
+    "smile"    => "appendable::reaction",
+    "reaction" => "appendable::reaction"
   }.freeze
 
   def index
@@ -24,9 +26,9 @@ class NotificationsController < ApplicationController
     cursor_params = { last_id: last_id, size: size }.compact
 
     case type
-    when 'all'
+    when "all"
       Notification.cursored_for(current_user, **cursor_params)
-    when 'new'
+    when "new"
       Notification.cursored_for(current_user, new: true, **cursor_params)
     else
       Notification.cursored_for_type(current_user, type, **cursor_params)
