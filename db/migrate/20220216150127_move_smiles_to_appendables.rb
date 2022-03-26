@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoveSmilesToAppendables < ActiveRecord::Migration[6.1]
   def up
     execute "INSERT INTO appendables (type, user_id, parent_id, parent_type, content, created_at, updated_at)
