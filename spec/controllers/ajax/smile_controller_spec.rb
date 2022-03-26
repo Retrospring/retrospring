@@ -28,8 +28,8 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "creates a smile to the answer" do
-          expect { subject }.to(change { Smile.count }.by(1))
-          expect(answer.reload.smiles.ids).to include(Smile.last.id)
+          expect { subject }.to(change { Appendable::Reaction.count }.by(1))
+          expect(answer.reload.smiles.ids).to include(Appendable::Reaction.last.id)
         end
 
         include_examples "returns the expected response"
@@ -133,7 +133,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
 
   describe "#destroy" do
     let(:answer) { FactoryBot.create(:answer, user: user) }
-    let(:smile) { FactoryBot.create(:smile, user: user, answer: answer) }
+    let(:smile) { FactoryBot.create(:smile, user: user, parent: answer) }
     let(:answer_id) { answer.id }
 
     let(:params) do
@@ -160,7 +160,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "deletes the smile" do
-          expect { subject }.to(change { Smile.count }.by(-1))
+          expect { subject }.to(change { Appendable::Reaction.count }.by(-1))
         end
 
         include_examples "returns the expected response"
@@ -219,8 +219,8 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "creates a smile to the comment" do
-          expect { subject }.to(change { CommentSmile.count }.by(1))
-          expect(comment.reload.smiles.ids).to include(CommentSmile.last.id)
+          expect { subject }.to(change { Appendable::Reaction.count }.by(1))
+          expect(comment.reload.smiles.ids).to include(Appendable::Reaction.last.id)
         end
 
         include_examples "returns the expected response"
@@ -277,7 +277,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
   describe "#destroy_comment" do
     let(:answer) { FactoryBot.create(:answer, user: user) }
     let(:comment) { FactoryBot.create(:comment, user: user, answer: answer) }
-    let(:comment_smile) { FactoryBot.create(:comment_smile, user: user, comment: comment) }
+    let(:comment_smile) { FactoryBot.create(:comment_smile, user: user, parent: comment) }
     let(:comment_id) { comment.id }
 
     let(:params) do
@@ -304,7 +304,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "deletes the smile" do
-          expect { subject }.to(change { CommentSmile.count }.by(-1))
+          expect { subject }.to(change { Appendable::Reaction.count }.by(-1))
         end
 
         include_examples "returns the expected response"
