@@ -13,7 +13,7 @@
       - @notifications.each do |notification|
         %li.list-group-item
           .media
-            = render "notifications/type/#{notification.target_type.downcase}", notification: notification
+            = render "notifications/type/#{notification.target_type.downcase.split('::').last}", notification: notification
 
   - unless @notifications.count.zero?
     = render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @notifications_last_id, permitted_params: %i[type]

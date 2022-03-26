@@ -1,8 +1,13 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
+  TYPE_MAPPINGS = {
+    'smile'    => 'appendable::reaction',
+    'reaction' => 'appendable::reaction',
+  }.freeze
+
   def index
-    @type = params[:type]
+    @type = TYPE_MAPPINGS[params[:type]] || params[:type]
     @notifications = cursored_notifications_for(type: @type, last_id: params[:last_id])
     @notifications_last_id = @notifications.map(&:id).min
     @more_data_available = !cursored_notifications_for(type: @type, last_id: @notifications_last_id, size: 1).count.zero?
