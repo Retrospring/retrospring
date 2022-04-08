@@ -5,8 +5,8 @@
   .card-body
     - if display_all.nil?
       .answerbox__answer-text
-        = markdown a.content[0..255]
-        - if a.content.length > 255
+        = markdown a.content[0..640]
+        - if a.content.length > 640
           [...]
           %p
             %a.btn.btn-primary{ href: show_user_answer_path(a.user.screen_name, a.id) }
