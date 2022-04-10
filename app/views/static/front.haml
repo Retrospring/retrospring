@@ -1,126 +1,87 @@
-- provide(:title, APP_CONFIG['site_name'])
+- provide(:title, APP_CONFIG["site_name"])
 .jumbotron
   .jumbotron__content
     .container
-      = render 'layouts/messages'
-      %h1= APP_CONFIG['site_name']
-      %p= t 'views.front.subtitle'
+      = render "layouts/messages"
+      %h1= APP_CONFIG["site_name"]
+      %p= t(".subtitle")
       %p
         %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_registration_path) }
-          Register now
+          = t(".register")
       %small
-        Already a member?
-        = link_to 'Sign in', new_user_session_path
+        = t(".already_member")
+        = link_to t("voc.login"), new_user_session_path
 .container
   .row.my-5.my-sm-10
     .col-sm-6.order-12.order-sm-1.text-center.text-sm-right
-      %h2.mb-4 Receive and ask questions
-      %p 
-        After registering on
-        = APP_CONFIG['site_name']
-        share your unique link to your profile and receive questions in your inbox to answer
-        them right away. 
-      %p 
-        You can of course also use your account to ask anyone else on the site
-        questions, and once you accumulated followers you can send out questions to all of them
-        at once.
+      %h2.mb-4= t(".questions.header")
+      = t(".questions.body_html", app_name: APP_CONFIG["site_name"])
     .col-sm-6.order-1.order-sm-12
-      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: "font-size: 10em"}
         %i.fa.fa-envelope.align-self-center.mb-5.mb-sm-0
 
   .row.my-5.my-sm-10
     .col-sm-6
-      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: "font-size: 10em"}
         %i.fa.fa-comments.align-self-center.mb-5.mb-sm-0
     .col-sm-6.text-center.text-sm-left
-      %h2.mb-4 Keep the discussion going
-      %p
-        Someone answered your question and maybe not everything is cleared up? Use comments!
-        On
-        = APP_CONFIG['site_name']
-        you can leave comments on answers to keep the discussion going.
-      %p
-        Don't need to say anything, but still like the answer? Leave a smile (our form of likes) on an answer!
+      %h2.mb-4= t(".discussions.header")
+      = t(".discussions.body_html", app_name: APP_CONFIG["site_name"])
 
   .row.my-5.my-sm-10
     .col-sm-6.order-12.order-sm-1.text-center.text-sm-right
-      %h2.mb-4 Share your answers
-      %p
-        Want your followers on another platform to see your
-        = APP_CONFIG['site_name']
-        answers? You can configure automatic sharing to your favorite platforms easily.
-      %p.text-muted
-        Not sure if it's a favorite, but at the moment only
-        %b Twitter
-        is supported.
+      %h2.mb-4= t(".share.header")
+      = t(".share.body_html", app_name: APP_CONFIG["site_name"])
     .col-sm-6.order-1.order-sm-12
-      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: "font-size: 10em"}
         %i.fa.fa-share.align-self-center.mb-5.mb-sm-0
 
   .row.my-5.my-sm-10
     .col-sm-6
-      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: "font-size: 10em"}
         %i.fa.fa-paint-brush.align-self-center.mb-5.mb-sm-0
     .col-sm-6.text-center.text-sm-left
-      %h2.mb-4 Customize your experience
-      %p
-        Make your
-        = APP_CONFIG['site_name']
-        profile your own with the ability to set a custom profile picture and header image.
-      %p
-        Going a step further, you can customize all colors of
-        = APP_CONFIG['site_name']
-        to your own liking. Don't like purple? Make it blue, red or green!
-      %p
-        For a quick demonstration, you can try this out here with a few presets:
+      %h2.mb-4= t(".customize.header")
+      = t(".customize.body_html", app_name: APP_CONFIG["site_name"])
       .card
         .card-body
           .row.mx-n2
             .col.px-2
-              %button.btn.btn-block.btn-success.js-theme-button{ data: { theme: 'theme-success' } } Green
+              %button.btn.btn-block.btn-success.js-theme-button{ data: { theme: "theme-success" } }= t(".customize.themes.green")
             .col.px-2
-              %button.btn.btn-block.btn-warning.js-theme-button{ data: { theme: 'theme-warning' } } Orange
+              %button.btn.btn-block.btn-warning.js-theme-button{ data: { theme: "theme-warning" } }= t(".customize.themes.orange")
             .col.px-2
-              %button.btn.btn-block.btn-danger.js-theme-button{ data: { theme: 'theme-danger' } } Red
+              %button.btn.btn-block.btn-danger.js-theme-button{ data: { theme: "theme-danger" } }= t(".customize.themes.red")
             .col.px-2
-              %button.btn.btn-block.btn-default.js-theme-button{ data: { theme: 'reset' } } Reset
+              %button.btn.btn-block.btn-default.js-theme-button{ data: { theme: "reset" } }= t(".customize.themes.reset")
 
 .container.text-center
-  %h2.mb-4 But wait, there's more!
+  %h2.mb-4= t(".more_features")
   .row.my-5
     .col-sm-4
       %h3.mb-3
         %i.fa.fa-fw.fa-globe.text-primary
-        Open Source
-      %p
-        You heard it right!
-        = APP_CONFIG['site_name']
-        and all of it's core components are open source!
-        Everyone can help and improve the service!
+        = t(".open_source.header")
+      %p= t(".open_source.body", app_name: APP_CONFIG["site_name"])
     .col-sm-4
       %h3.mb-3
         %i.fa.fa-fw.fa-eye-slash.text-primary
-        No Ads
-      %p
-        We don't like them ourselves, really. They make websites slow and are
-        (for the most part) annoying. So there's none!
+        = t(".no_ads.header")
+      %p= t(".no_ads.body")
     .col-sm-4
       %h3.mb-3
         %i.fa.fa-fw.fa-user-secret.text-primary
-        Your Data is yours
-      %p
-        Today the most precious things on the internet is your data.
-        = APP_CONFIG['site_name']
-        doesn't sell any data that is collected. It remains encrypted on our servers!
+        = t(".your_data.header")
+      %p= t(".your_data.body", app_name: APP_CONFIG["site_name"])
 
   .card
     .card-body
-      %h2 What are you waiting for?
-      %p
-        Registering takes less than 5 minutes!
+      %h2= t(".prompt.header")
+      %p= t(".prompt.body")
       %p
         %a.btn.btn-primary.btn-lg{ href: url_for(new_user_registration_path) }
-          Register now
+          = t(".register")
 
-= render 'shared/links'
+= render "shared/links"
+
 
