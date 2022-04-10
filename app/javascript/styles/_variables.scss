@@ -56,6 +56,10 @@ $avatar-sizes: (
   "xl": 160px,
 );
 
+$spacers: (
+  10: (1rem * 6)
+);
+
 :root {
   --background: #f0edf4;
   --input-bg: var(--background);
