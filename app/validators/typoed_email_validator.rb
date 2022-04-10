@@ -17,6 +17,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       gmaill.com
       gmali.com
       hotmaill.com
+      iclould.com
       icluod.com
     ].map { "@#{_1}" }
   ].freeze
