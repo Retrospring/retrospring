@@ -174,6 +174,64 @@ en:
         body: "Raised content basically describes all the different boxes and panels you can see across the site."
         accent:
           example: "Some text on top of a accented area on a raised element!"
+  static:
+    front:
+      subtitle: "Ask questions, give answers and learn more about your friends."
+      register: "Register now"
+      already_member: "Already a member?"
+      more_features: "But wait, there's more!"
+      questions:
+        header: "Receive and ask questions"
+        body_html: |
+          <p>After registering on %{app_name} share your unique link to your profile and 
+          receive questions in your inbox to answer
+          them right away.</p>
+
+          <p>You can of course also use your account to ask anyone else on the site
+          questions, and once you accumulated followers you can send out questions to all of them
+          at once.</p>
+      discussions:
+        header: "Keep the discussion going"
+        body_html: |
+          <p>Someone answered your question and maybe not everything is cleared up? Use comments!
+          On %{app_name} you can leave comments on answers to keep the discussion going.</p>
+
+          <p>Don't need to say anything, but still like the answer? Leave a smile (our form of likes) on an answer!</p>
+      share:
+        header: "Share your answers"
+        body_html: |
+          <p>Want your followers on another platform to see your %{app_name} answers?
+          You can configure automatic sharing to your favorite platforms easily.</p>
+
+          <p class="text-muted">Not sure if it's a favorite, but at the moment only
+          <b>Twitter</b> is supported.</p>
+      customize:
+        header: "Customize your experience"
+        body_html: |
+          <p>Make your %{app_name} profile your own with the ability to set a custom 
+          profile picture and header image.</p>
+
+          <p>Going a step further, you can customize all colors of
+          %{app_name} to your own liking. Don't like purple? Make it blue, red or green!</p>
+
+          <p>For a quick demonstration, you can try this out here with a few presets:</p>
+        themes:
+          green: "Green"
+          orange: "Orange"
+          red: "Red"
+          reset: "Reset"
+      open_source:
+        header: "Open Source"
+        body: "You heard it right! %{app_name} and all of it's core components are open source! Everyone can help and improve the service!"
+      no_ads:
+        header: "No Ads"
+        body: "We don't like them ourselves, really. They make websites slow and are (for the most part) annoying. So there's none!"
+      your_data:
+        header: "Your data is yours"
+        body: "Today the most precious things on the internet is your data. %{app_name} doesn't sell any data that is collected. It remains encrypted on our servers!"
+      prompt:
+        header: "What are you waiting for?"
+        body: "Registering takes less than 5 minutes!"
   tabs:
     settings:
       account: "Account"
