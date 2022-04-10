@@ -11,11 +11,9 @@
       %small
         Already a member?
         = link_to 'Sign in', new_user_session_path
-  %svg{:viewbox => "0 0 1440 320", :xmlns => "http://www.w3.org/2000/svg"}
-    %path{:d => "M0,160L80,186.7C160,213,320,267,480,250.7C640,235,800,149,960,128C1120,107,1280,149,1360,170.7L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z", :fill => "var(--primary)", "fill-opacity" => "1"}
 .container
-  .row.my-5
-    .col-sm-6
+  .row.my-5.my-sm-10
+    .col-sm-6.order-12.order-sm-1.text-center.text-sm-right
       %h2.mb-4 Receive and ask questions
       %p 
         After registering on
@@ -26,13 +24,15 @@
         You can of course also use your account to ask anyone else on the site
         questions, and once you accumulated followers you can send out questions to all of them
         at once.
-    .col-sm-6
-      %i.fa.fa-envelope
+    .col-sm-6.order-1.order-sm-12
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+        %i.fa.fa-envelope.align-self-center.mb-5.mb-sm-0
 
-  .row.my-5
+  .row.my-5.my-sm-10
     .col-sm-6
-      %i.fa.fa-comments
-    .col-sm-6
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+        %i.fa.fa-comments.align-self-center.mb-5.mb-sm-0
+    .col-sm-6.text-center.text-sm-left
       %h2.mb-4 Keep the discussion going
       %p
         Someone answered your question and maybe not everything is cleared up? Use comments!
@@ -42,8 +42,8 @@
       %p
         Don't need to say anything, but still like the answer? Leave a smile (our form of likes) on an answer!
 
-  .row.my-5
-    .col-sm-6
+  .row.my-5.my-sm-10
+    .col-sm-6.order-12.order-sm-1.text-center.text-sm-right
       %h2.mb-4 Share your answers
       %p
         Want your followers on another platform to see your
@@ -53,13 +53,15 @@
         Not sure if it's a favorite, but at the moment only
         %b Twitter
         is supported.
-    .col-sm-6
-      %i.fa.fa-share
+    .col-sm-6.order-1.order-sm-12
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+        %i.fa.fa-share.align-self-center.mb-5.mb-sm-0
 
-  .row.my-5
+  .row.my-5.my-sm-10
     .col-sm-6
-      %i.fa.fa-paint-brush
-    .col-sm-6
+      .text-center.text-primary.d-flex.h-100.justify-content-center{ style: 'font-size: 10em'}
+        %i.fa.fa-paint-brush.align-self-center.mb-5.mb-sm-0
+    .col-sm-6.text-center.text-sm-left
       %h2.mb-4 Customize your experience
       %p
         Make your
@@ -71,6 +73,17 @@
         to your own liking. Don't like purple? Make it blue, red or green!
       %p
         For a quick demonstration, you can try this out here with a few presets:
+      .card
+        .card-body
+          .row.mx-n2
+            .col.px-2
+              %button.btn.btn-block.btn-success.js-theme-button{ data: { theme: 'theme-success' } } Green
+            .col.px-2
+              %button.btn.btn-block.btn-warning.js-theme-button{ data: { theme: 'theme-warning' } } Orange
+            .col.px-2
+              %button.btn.btn-block.btn-danger.js-theme-button{ data: { theme: 'theme-danger' } } Red
+            .col.px-2
+              %button.btn.btn-block.btn-default.js-theme-button{ data: { theme: 'reset' } } Reset
 
 .container.text-center
   %h2.mb-4 But wait, there's more!
@@ -100,12 +113,14 @@
         = APP_CONFIG['site_name']
         doesn't sell any data that is collected. It remains encrypted on our servers!
 
-  %h2 What are you waiting for?
-  %p
-    Registering takes less than 5 minutes!
-  %p
-    %a.btn.btn-primary.btn-lg{ href: url_for(new_user_registration_path) }
-      Register now
+  .card
+    .card-body
+      %h2 What are you waiting for?
+      %p
+        Registering takes less than 5 minutes!
+      %p
+        %a.btn.btn-primary.btn-lg{ href: url_for(new_user_registration_path) }
+          Register now
 
 = render 'shared/links'
 
