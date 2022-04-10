@@ -274,17 +274,6 @@ en:
       admin: "Kontrollzentrum"
       sidekiq: "Sidekiq"
       moderation: "Moderation Panel"
-    front:
-      subtitle: "Ask questions, give answers and learn more about your friends."
-      ask:
-        title: "Ask and answer questions"
-        desc: "With %{app_title} you can ask people questions and answer questions from other users or unregistered people. Want to know something more? Keep the discussion ongoing in the comments!"
-      follow:
-        title: "Follow users and get followed"
-        desc: "Following users allows you to get a personalized feed of all people you want to know more about. You can also send a question to all your followers at once!"
-      share:
-        title: "Sharing to other networks"
-        desc: "Want to share your answer to a question so that more people read it? With a simple click on the answer button, your answer is shared wherever you want!"
     about:
       subtitle: "About our service, features and other information"
       links:
