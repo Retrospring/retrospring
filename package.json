@@ -16,7 +16,6 @@
     "jquery": "^3.5.1",
     "js-cookie": "2.2.1",
     "lato-font": "^3.0.0",
-    "particleground": "jnicol/particleground",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
     "sweetalert": "1.1.3",
