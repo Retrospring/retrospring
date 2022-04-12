@@ -19,7 +19,6 @@
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
     "sweetalert": "1.1.3",
-    "tinycolor2": "^1.4.2",
     "toastify-js": "^1.11.2",
     "turbolinks": "^5.2.0",
     "typescript": "^4.1.3"
