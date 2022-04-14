@@ -72,3 +72,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
+
+# For better_errors to work inside Docker we need 
+# to allow 0.0.0.0 as an IP in development context
+BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
