@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_05_171216) do
+ActiveRecord::Schema.define(version: 2022_04_15_193829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2022_01_05_171216) do
     t.boolean "new"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["question_id"], name: "index_inboxes_on_question_id"
     t.index ["user_id"], name: "index_inboxes_on_user_id"
   end
 
