@@ -143,7 +143,6 @@ Rails.application.routes.draw do
   match '/:username/followers(/p/:page)', to: 'user#followers', via: 'get', as: :show_user_followers, defaults: {page: 1}
   match '/:username/followings(/p/:page)', to: 'user#followings', via: 'get', as: :show_user_followings, defaults: {page: 1}
   match '/:username/friends(/p/:page)', to: redirect('/%{username}/followings/p/%{page}'), via: 'get', defaults: {page: 1}
-  match '/:username/lists(/p/:page)', to: 'user#lists', via: 'get', as: :show_user_lists, defaults: {page: 1}
   match '/:username/questions(/p/:page)', to: 'user#questions', via: 'get', as: :show_user_questions, defaults: {page: 1}
 
   match '/feedback/consent', to: 'feedback#consent', via: 'get', as: 'feedback_consent'
