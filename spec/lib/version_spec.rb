@@ -30,7 +30,7 @@ RSpec.describe Retrospring::Version do
 
   describe "#to_a" do
     it "should return the correct version as array" do
-      expect(Retrospring::Version.to_a).to eq(["1984", "0101", "0"])
+      expect(Retrospring::Version.to_a).to eq(%w[1984 0101 0])
     end
   end
 end
