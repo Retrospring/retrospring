@@ -1,4 +1,6 @@
 Sentry.init do |config|
+  config.release = Retrospring::Version.to_s
+
   config.dsn = APP_CONFIG[:sentry_dsn]
   config.breadcrumbs_logger = [:active_support_logger, :http_logger]
 
