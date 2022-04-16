@@ -1,7 +1,7 @@
 .text-center.text-muted.pb-3
   &copy;
   = Date.today.year
-  = APP_CONFIG['site_name']
+  %span{ title: Retrospring::Version.to_s }= APP_CONFIG['site_name']
   ·
   = link_to t('views.general.about'), about_path
   ·
