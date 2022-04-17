@@ -9,6 +9,12 @@ email_from: "noreply@justask.rrerr.net"
 # Name of the "Anonymous" user. (e.g. "Anonymous Coward", "Arno Nym", "Mr. X", ...)
 anonymous_name: "Anonymous"
 
+# Text shown on the about page (Markdown can be used here)
+about: |
+  # About
+
+  Use this space to describe your Retrospring instance!
+
 # How many items (questions, answers, ...) do you want to show per page?
 items_per_page: 10
 
