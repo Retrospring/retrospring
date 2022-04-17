@@ -274,37 +274,6 @@ en:
       admin: "Kontrollzentrum"
       sidekiq: "Sidekiq"
       moderation: "Moderation Panel"
-    about:
-      subtitle: "About our service, features and other information"
-      links:
-        title: "Links"
-        desc: "Important pages and social media profiles from the %{app_title} team, which are recommended to visit!"
-      opensource:
-        title: "Open Source"
-        warning: "%{app_title} is running on unfinished code, full of bugs. Caveat emptor."
-        desc: "Want to contribute? If you are a Ruby developer, TypeScript coder or frontend designer, you can now help %{app_title} to get the features everyone wanted by forking our %{github}. If that's not the case, you can still report bugs and request features at our %{bugtracker}."
-        github: "Github repository"
-        bugtracker: "bug tracker"
-      repository:
-        title: "Main Repository"
-        desc: "The place where all the code magic and fixing happens!"
-      contributors:
-        title: "Contributors"
-        desc: "These people have contributed to %{app_title}'s source code."
-        howto: "Want to get listed here? %{fork} and create a new pull request with your changes."
-        fork: "Fork this repo"
-      team:
-        title: "The Team"
-        desc: "The people behind %{app_title}!"
-      moderators:
-        title: "Moderators"
-        desc: "The people on %{app_title} that look after you!"
-      funding:
-        title: "Funding"
-        desc: "People which (previously) donated to %{app_title}!"
-      statistics:
-        title: "Statistics"
-        desc: "All-time statistics for %{app_title}, updated every time you refresh the page!"
     discover:
       title: "Discover"
       subtitle: "The perfect place to find interesting content from the last week on %{app_title}!"
