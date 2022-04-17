@@ -22,7 +22,6 @@ class StaticController < ApplicationController
       .where(permanently_banned: false)
       .where(banned_until: nil)
       .where('answered_count > 0')
-      .where('asked_count > 0')
       .count
 
     @questions = Question.count

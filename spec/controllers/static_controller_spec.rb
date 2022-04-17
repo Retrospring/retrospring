@@ -7,7 +7,7 @@ describe StaticController, type: :controller do
     subject { get :about }
     
     before(:each) {
-      FactoryBot.create(:user, { confirmed_at: Time.now, answered_count: 1, asked_count: 1 })
+      FactoryBot.create(:user, { confirmed_at: Time.now, answered_count: 1 })
       FactoryBot.create(:user, { permanently_banned: true })
       FactoryBot.create(:user, { banned_until: Time.now + 10.days })
       FactoryBot.create(:user, { confirmed_at: Time.now })
