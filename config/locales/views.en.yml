@@ -175,6 +175,13 @@ en:
         accent:
           example: "Some text on top of a accented area on a raised element!"
   static:
+    about:
+      title: "About"
+      subtitle: "About our service, features and other information"
+      about_missing: "The site owner decided not to describe this Retrospring instance, how mysterious!"
+      statistics:
+        header: "Statistics"
+        body: "All-time statistics for %{app_name}, updated every time you refresh the page!"
     front:
       subtitle: "Ask questions, give answers and learn more about your friends."
       register: "Register now"

@@ -4,6 +4,15 @@ en:
       announcement:
         one: "Announcement"
         other: "Announcements"
+      answer:
+        one: "Answer"
+        other: "Answers"
+      question:
+        one: "Question"
+        other: "Questions"
+      user:
+        one: "User"
+        other: "Users"
     attributes:
       announcement:
         content: "Content"
