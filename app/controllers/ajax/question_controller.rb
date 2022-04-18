@@ -1,3 +1,5 @@
+require 'errors'
+
 class Ajax::QuestionController < AjaxController
   def destroy
     params.require :question
@@ -53,21 +55,25 @@ class Ajax::QuestionController < AjaxController
     if params[:rcpt] == 'followers'
       QuestionWorker.perform_async(current_user.id, question.id) unless current_user.nil?
     else
-      u = User.find_by_id(params[:rcpt])
-      if u.nil?
+      target_user = User.find_by(id: params[:rcpt])
+
+      raise Errors::AskingOtherBlockedSelf if target_user.blocking?(current_user)
+      raise Errors::AskingSelfBlockedOther if current_user.blocking?(target_user)
+
+      if target_user.nil?
         @response[:status] = :not_found
         @response[:message] = I18n.t('messages.question.create.not_found')
         question.delete
         return
       end
 
-      if !u.privacy_allow_anonymous_questions && question.author_is_anonymous
+      if !target_user.privacy_allow_anonymous_questions && question.author_is_anonymous
         question.delete
         return
       end
 
-      unless MuteRule.where(user: u).any? { |rule| rule.applies_to? question }
-        Inbox.create!(user_id: u.id, question_id: question.id, new: true)
+      unless MuteRule.where(user: target_user).any? { |rule| rule.applies_to? question }
+        Inbox.create!(user_id: target_user.id, question_id: question.id, new: true)
       end
     end
 

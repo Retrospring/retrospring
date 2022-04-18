@@ -66,6 +66,18 @@ class AjaxController < ApplicationController
     return_response
   end
 
+  rescue_from(Errors::Base) do |e|
+    Sentry.capture_exception(e)
+
+    @response = {
+      success: false,
+      message: I18n.t(e.locale_tag),
+      status:  e.code
+    }
+
+    return_response
+  end
+
   def find_active_announcements
     # We do not need announcements here
   end
@@ -86,7 +98,7 @@ class AjaxController < ApplicationController
     #
     # Q: Why do we always return 200?
     # A: Because JQuery might not do things we want it to if we don't.
-    response.status = 200
+    response.status = @status || 200
     response.headers["Content-Type"] = "application/json"
     response.body = @response.to_json
   end
