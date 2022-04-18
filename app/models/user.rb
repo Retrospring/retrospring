@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include User::Relationship
   include User::Relationship::Follow
+  include User::Relationship::Block
   include User::AnswerMethods
   include User::InboxMethods
   include User::QuestionMethods
