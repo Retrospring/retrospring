@@ -174,6 +174,12 @@ en:
         body: "Raised content basically describes all the different boxes and panels you can see across the site."
         accent:
           example: "Some text on top of a accented area on a raised element!"
+  shared:
+    links:
+      about: "About"
+      source: "Source code"
+      terms: "Terms of Service"
+      privacy: "Privacy Policy"
   static:
     about:
       title: "About"
