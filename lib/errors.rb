@@ -42,4 +42,36 @@ module Errors
 
   class UserNotFound < NotFound
   end
+
+  # region User Blocking
+  class Blocked < Forbidden
+  end
+
+  class OtherBlockedSelf < Blocked
+  end
+
+  class BlockingSelf < SelfAction
+  end
+
+  class AskingOtherBlockedSelf < OtherBlockedSelf
+  end
+
+  class FollowingOtherBlockedSelf < OtherBlockedSelf
+  end
+
+  class SelfBlockedOther < Blocked
+  end
+
+  class AskingSelfBlockedOther < SelfBlockedOther
+  end
+
+  class FollowingSelfBlockedOther < SelfBlockedOther
+  end
+
+  class AnsweringOtherBlockedSelf < OtherBlockedSelf
+  end
+
+  class AnsweringSelfBlockedOther < SelfBlockedOther
+  end
+  # endregion
 end
