@@ -219,9 +219,6 @@ en:
       timeline: "Timeline"
       public: "Public"
       user: "User"
-      terms: "Terms of Service"
-      privacy: "Privacy Policy"
-      about: "About"
     list:
       title: "List"
       members: "Members"
