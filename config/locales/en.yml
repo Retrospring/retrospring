@@ -161,7 +161,6 @@ en:
     locale:
       languages: "Languages"
     placeholder:
-      inbox: "Write your answer here..."
       comment: "Comment..."
       question: "Type your question here…"
     notifications:
@@ -189,26 +188,6 @@ en:
         comment: "Comments"
         commentsmile: "Comment Smiles"
         relationship: "Followers"
-    inbox:
-      empty: "Nothing to see here."
-      sidebar:
-        questions:
-          title: "Out of questions?"
-          button: "Get new question"
-        share:
-          title: "Share"
-          button: "Share on %{service}"
-        actions:
-          title: "Actions"
-          button: "Delete all questions"
-      entry:
-        asked: "%{user} asked %{time} ago"
-        response: "response"
-        sharing:
-          title: "Sharing"
-          post: "Post to %{service}"
-          none: "You have not connected any services yet. Visit your %{settings} to connect one."
-          settings: "service settings"
     general:
       answer: "Answer"
       question: "Question"
