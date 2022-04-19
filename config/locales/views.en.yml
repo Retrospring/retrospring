@@ -29,6 +29,9 @@ en:
       title: "Bugs – Feedback"
     features:
       title: "Feature Requests – Feedback"
+  inbox:
+    show:
+      empty: "Nothing to see here."
   modal:
     password:
       title: "Save account changes"
