@@ -20,7 +20,7 @@ class InboxController < ApplicationController
 
         if @inbox_author.empty?
           @empty = true
-          flash.now[:info] = "No questions from @#{params[:author]} found, showing default entries instead!"
+          flash.now[:info] = t(".author.info", author: params[:author])
         else
           @inbox = @inbox_author
           @inbox_count = @inbox_author_count
@@ -33,7 +33,7 @@ class InboxController < ApplicationController
         end
       rescue => e
         Sentry.capture_exception(e)
-        flash.now[:error] = "No user with the name @#{params[:author]} found, showing default entries instead!"
+        flash.now[:error] = t(".author.error", author: params[:author])
         @not_found = true
       end
     end
