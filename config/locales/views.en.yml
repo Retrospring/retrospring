@@ -245,6 +245,12 @@ en:
       prompt:
         header: "What are you waiting for?"
         body: "Registering takes less than 5 minutes!"
+    linkfilter:
+      heading: "You're leaving %{app_name}"
+      subheading: "The link you are visiting is not trusted by %{app_name}"
+      body: Never enter your passwords or other private information on an untrusted website. %{app_name} will only ever ask for your password on a site that is on the domain %{hostname}
+      url: "URL:"
+      confirm: "I understand the risk, proceed!"
   tabs:
     settings:
       account: "Account"
