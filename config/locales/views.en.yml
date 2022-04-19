@@ -32,6 +32,20 @@ en:
   inbox:
     show:
       empty: "Nothing to see here."
+    sidebar:
+      actions:
+        heading: "Actions"
+        delete: "Delete all questions"
+      author:
+        heading: "Show author"
+        button: "Show"
+        placeholder: "username"
+      questions:
+        heading: "Out of questions?"
+        button: "Get new question"
+      share:
+        heading: "Share"
+        button: "Share on %{service}"
   modal:
     password:
       title: "Save account changes"
