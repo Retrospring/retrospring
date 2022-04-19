@@ -1,19 +1,10 @@
 .container.pt-3
   .card
     .card-body
-      %h1
-        You're leaving
-        = APP_CONFIG['site_name']
-      %p.lead
-        The link you are visiting is not trusted by
-        = APP_CONFIG['site_name']
-      %p
-        Never enter your passwords or other private information on an untrusted website.
-        = APP_CONFIG['site_name']
-        will only ever ask for your password on a site that is on the domain
-        = APP_CONFIG['hostname']
-
-      %p.font-weight-bold.mb-0 URL:
+      %h1= t(".heading", app_name: APP_CONFIG["site_name"])
+      %p.lead= t(".subheading", app_name: APP_CONFIG["site_name"])
+      %p= t(".subheading", app_name: APP_CONFIG["site_name"], hostname: APP_CONFIG["hostname"])
+      %p.font-weight-bold.mb-0= t(".url")
       %pre.bg-light.text-dark.p-3.rounded= @link
 
-      %a.btn.btn-primary{ href: @link, rel: 'nofollow' } I understand the risk, proceed!
+      %a.btn.btn-primary{ href: @link, rel: "nofollow" }= t(".confirm")
