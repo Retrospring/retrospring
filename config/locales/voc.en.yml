@@ -1,15 +1,19 @@
 en:
   voc:
+    answer: "Answer"
     cancel: "Cancel"
     close: "Close"
     confirm: "Are you sure?"
     delete: "Delete"
     edit: "Edit"
+    load: "Load more"
     login: "Sign in"
     save: "Save changes"
     register: "Sign up"
+    report: "Report"
     terms: "Terms of Service"
     update: "Update"
+    view_in_rails_admin: "View in Rails Admin"
   messages:
     noauth: "You must be signed in to do this."
   time:
