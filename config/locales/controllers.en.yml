@@ -25,8 +25,8 @@ en:
       error: "Unable to delete announcement."
   inbox:
     author:
-      info: "No questions from @%{author} found, showing default entries instead!"
-      error: "No user with the name @%{author} found, showing default entries instead!"
+      info: "No questions from @%{author} found, showing entries from all users instead!"
+      error: "No user with the name @%{author} found, showing entries from all users instead!"
   services:
     create:
       success: "Service connected successfully."
