@@ -95,6 +95,9 @@ class Ajax::ListController < AjaxController
 
     target_user = User.find_by_screen_name!(params[:user])
 
+    raise Errors::ListingSelfBlockedOther if current_user.blocking?(target_user)
+    raise Errors::ListingOtherBlockedSelf if target_user.blocking?(current_user)
+
     if add
       list.add_member target_user if list.members.find_by_user_id(target_user.id).nil?
       @response[:checked] = true
