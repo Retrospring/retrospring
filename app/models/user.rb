@@ -150,6 +150,9 @@ class User < ApplicationRecord
   end
 
   def comment(answer, content)
+    raise Errors::CommentingSelfBlockedOther if self.blocking?(answer.user)
+    raise Errors::CommentingOtherBlockedSelf if answer.user.blocking?(self)
+
     Comment.create!(user: self, answer: answer, content: content)
   end
 
