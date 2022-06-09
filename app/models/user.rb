@@ -120,6 +120,9 @@ class User < ApplicationRecord
   # smiles an answer
   # @param answer [Answer] the answer to smile
   def smile(answer)
+    raise Errors::ReactingSelfBlockedOther if self.blocking?(answer.user)
+    raise Errors::ReactingOtherBlockedSelf if answer.user.blocking?(self)
+
     Smile.create!(user: self, answer: answer)
   end
 

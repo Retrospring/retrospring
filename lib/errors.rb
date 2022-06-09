@@ -79,5 +79,11 @@ module Errors
 
   class CommentingOtherBlockedSelf < OtherBlockedSelf
   end
+
+  class ReactingSelfBlockedOther < SelfBlockedOther
+  end
+
+  class ReactingOtherBlockedSelf < OtherBlockedSelf
+  end
   # endregion
 end
