@@ -85,5 +85,11 @@ module Errors
 
   class ReactingOtherBlockedSelf < OtherBlockedSelf
   end
+
+  class ListingSelfBlockedOther < SelfBlockedOther
+  end
+
+  class ListingOtherBlockedSelf < OtherBlockedSelf
+  end
   # endregion
 end
