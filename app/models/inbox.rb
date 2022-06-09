@@ -7,6 +7,9 @@ class Inbox < ApplicationRecord
   end
 
   def answer(answer_content, user)
+    raise Errors::AnsweringOtherBlockedSelf if question.user.blocking?(user)
+    raise Errors::AnsweringSelfBlockedOther if user.blocking?(question.user)
+
     answer = user.answer(self.question, answer_content)
     self.destroy
     answer
