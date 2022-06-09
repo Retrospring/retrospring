@@ -24,9 +24,9 @@ class User
 
         unfollow(target_user) if following?(target_user)
         target_user.unfollow(self) if target_user.following?(self)
-        target_user.inboxes.where(question: { user_id: id }).destroy_all
-        inboxes.where(question: { user_id: target_user.id, author_is_anonymous: false }).destroy_all
-        ListMember.where(list: { user_id: target_user.id }, user_id: id).destroy_all
+        target_user.inboxes.joins(:question).where(question: { user_id: id }).destroy_all
+        inboxes.joins(:question).where(questions: { user_id: target_user.id, author_is_anonymous: false }).destroy_all
+        ListMember.joins(:list).where(list: { user_id: target_user.id }, user_id: id).destroy_all
         create_relationship(active_block_relationships, target_user)
       end
 

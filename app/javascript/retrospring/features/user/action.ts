@@ -3,11 +3,31 @@ import { showNotification, showErrorNotification } from 'utilities/notifications
 import I18n from 'retrospring/i18n';
 
 export function userActionHandler(event: Event): void {
+  event.preventDefault();
   const button: HTMLButtonElement = event.target as HTMLButtonElement;
   const target = button.dataset.target;
   const action = button.dataset.action;
 
-  const targetURL = action === 'follow' ? '/ajax/create_relationship' : '/ajax/destroy_relationship';
+  let targetURL, relationshipType;
+
+  switch (action) {
+    case 'follow':
+      targetURL = '/ajax/create_relationship';
+      relationshipType = 'follow';
+      break;
+    case 'unfollow':
+      targetURL = '/ajax/destroy_relationship';
+      relationshipType = 'follow';
+      break;
+    case 'block':
+      targetURL = '/ajax/create_relationship';
+      relationshipType = 'block';
+      break;
+    case 'unblock':
+      targetURL = '/ajax/destroy_relationship';
+      relationshipType = 'block';
+      break;
+  }
   let success = false;
 
   Rails.ajax({
@@ -15,7 +35,7 @@ export function userActionHandler(event: Event): void {
     type: 'POST',
     data: new URLSearchParams({
       screen_name: target,
-      type: "follow"
+      type: relationshipType,
     }).toString(),
     success: (data) => {
       success = data.success;
@@ -38,6 +58,18 @@ export function userActionHandler(event: Event): void {
         case 'unfollow':
           button.dataset.action = 'follow';
           button.innerText = I18n.translate('views.actions.follow');
+          button.classList.remove('btn-default');
+          button.classList.add('btn-primary');
+          break;
+        case 'block':
+          button.dataset.action = 'unblock';
+          button.querySelector('span').innerText = I18n.translate('views.actions.unblock');
+          button.classList.remove('btn-primary');
+          button.classList.add('btn-default');
+          break;
+        case 'unblock':
+          button.dataset.action = 'block';
+          button.querySelector('span').innerText = I18n.translate('views.actions.block');
           button.classList.remove('btn-default');
           button.classList.add('btn-primary');
           break;
