@@ -227,6 +227,8 @@ en:
       y: "Yes"
       n: "No"
       remove: "Remove"
+      block: "Block"
+      unblock: "Unblock"
     sessions:
       destroy: "Logout"
       create: "Sign in"

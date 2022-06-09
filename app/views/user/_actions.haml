@@ -17,6 +17,14 @@
         %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
           %i.fa.fa-list
           = t 'views.actions.list'
+        - if current_user.blocking?(user)
+          %a.dropdown-item{ href: '#', data: { action: :unblock, target: user.screen_name } }
+            %i.fa.fa-minus-circle
+            %span.pe-none= t 'views.actions.unblock'
+        - else
+          %a.dropdown-item{ href: '#', data: { action: :block, target: user.screen_name } }
+            %i.fa.fa-minus-circle
+            %span.pe-none= t 'views.actions.block'
         %a.dropdown-item{ href: '#', data: { action: 'report-user', target: user.screen_name } }
           %i.fa.fa-exclamation-triangle
           = t 'views.actions.report'
