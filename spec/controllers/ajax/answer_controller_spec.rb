@@ -139,6 +139,38 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
 
             include_examples "does not create the answer"
           end
+
+          context "when user is blocked by the question author" do
+            let!(:block) { Relationships::Block.create(source_id: question.user.id, target_id: user.id) }
+            let(:shared_services) { %w[] }
+            let(:answer) { "u suck >:3" }
+
+            let(:expected_response) do
+              {
+                "success" => false,
+                "status" => "answering_other_blocked_self",
+                "message" => I18n.t("errors.answering_other_blocked_self")
+              }
+            end
+
+            include_examples "returns the expected response"
+          end
+
+          context "when question author is blocked by the user" do
+            let!(:block) { Relationships::Block.create(source_id: user.id, target_id: question.user.id) }
+            let(:shared_services) { %w[] }
+            let(:answer) { "u suck >:3" }
+
+            let(:expected_response) do
+              {
+                "success" => false,
+                "status" => "answering_self_blocked_other",
+                "message" => I18n.t("errors.answering_self_blocked_other")
+              }
+            end
+
+            include_examples "returns the expected response"
+          end
         end
       end
 
