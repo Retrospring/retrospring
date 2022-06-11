@@ -56,16 +56,14 @@ export function userActionHandler(event: Event): void {
           button.classList.add('btn-default');
           break;
         case 'unfollow':
-          button.dataset.action = 'follow';
-          button.innerText = I18n.translate('views.actions.follow');
-          button.classList.remove('btn-default');
-          button.classList.add('btn-primary');
+          resetFollowButton(button);
           break;
         case 'block':
           button.dataset.action = 'unblock';
           button.querySelector('span').innerText = I18n.translate('views.actions.unblock');
           button.classList.remove('btn-primary');
           button.classList.add('btn-default');
+          resetFollowButton(document.querySelector<HTMLButtonElement>('button[data-action="unfollow"]'));
           break;
         case 'unblock':
           button.dataset.action = 'block';
@@ -76,4 +74,11 @@ export function userActionHandler(event: Event): void {
       }
      }
   });
+}
+
+function resetFollowButton(button: HTMLButtonElement) {
+  button.dataset.action = 'follow';
+  button.innerText = I18n.translate('views.actions.follow');
+  button.classList.remove('btn-default');
+  button.classList.add('btn-primary');
 }
