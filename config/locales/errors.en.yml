@@ -11,8 +11,10 @@ en:
     asking_other_blocked_self: "You have been blocked from asking this user questions"
     following_other_blocked_self: "You have been blocked from following this user"
     self_blocked_other: "You cannot do this while blocking this user"
-    asking_self_blocked_other: "You cannot ask an user who you are currently blocking"
-    following_self_blocked_other: "You cannot follow an user who you are currently blocking"
+    asking_self_blocked_other: "You cannot ask a user who you are currently blocking"
+    following_self_blocked_other: "You cannot follow a user who you are currently blocking"
+    answering_self_blocked_other: "You cannot answer a question from a user who you are currently blocking"
+    answering_other_blocked_self: "You cannot answer this question as you have been blocked its author"
     self_action: "You cannot do this to yourself"
     following_self: "You cannot follow yourself"
 
