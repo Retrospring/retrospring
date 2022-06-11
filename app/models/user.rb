@@ -106,6 +106,9 @@ class User < ApplicationRecord
   # @param question [Question] the question to answer
   # @param content [String] the answer content
   def answer(question, content)
+    raise Errors::AnsweringOtherBlockedSelf if question.user.blocking?(self)
+    raise Errors::AnsweringSelfBlockedOther if self.blocking?(question.user)
+
     Answer.create!(content: content,
                    user: self,
                    question: question)
