@@ -32,20 +32,11 @@ class Ajax::AnswerController < AjaxController
       return
     end
 
-    answer = nil
-
-    begin
-      answer = if inbox
-                 inbox_entry.answer params[:answer], current_user
-               else
-                 current_user.answer question, params[:answer]
-               end
-    rescue => e
-      Sentry.capture_exception(e)
-      @response[:status] = :err
-      @response[:message] = I18n.t('messages.error')
-      return
-    end
+    answer = if inbox
+               inbox_entry.answer params[:answer], current_user
+             else
+               current_user.answer question, params[:answer]
+             end
 
     services = JSON.parse params[:share]
     services.each do |service|
