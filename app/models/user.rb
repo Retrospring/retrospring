@@ -142,6 +142,11 @@ class User < ApplicationRecord
   # smiles a comment
   # @param comment [Comment] the comment to smile
   def smile_comment(comment)
+    # rubocop:disable Style/RedundantSelf
+    raise Errors::ReactingSelfBlockedOther if self.blocking?(comment.user)
+    raise Errors::ReactingOtherBlockedSelf if comment.user.blocking?(self)
+    # rubocop:enable Style/RedundantSelf
+
     CommentSmile.create!(user: self, comment: comment)
   end
 
