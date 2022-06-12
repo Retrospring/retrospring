@@ -6,6 +6,10 @@ class Ajax::SmileController < AjaxController
 
     begin
       current_user.smile answer
+    rescue Errors::Base => e
+      @response[:status] = e.code
+      @response[:message] = e.locale_tag
+      return
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
@@ -44,6 +48,10 @@ class Ajax::SmileController < AjaxController
 
     begin
       current_user.smile_comment comment
+    rescue Errors::Base => e
+      @response[:status] = e.code
+      @response[:message] = e.locale_tag
+      return
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail

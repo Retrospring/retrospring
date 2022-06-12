@@ -81,15 +81,19 @@ module Errors
   end
 
   class ReactingSelfBlockedOther < SelfBlockedOther
+    @locale_tag = "errors.self_blocked_other"
   end
 
   class ReactingOtherBlockedSelf < OtherBlockedSelf
+    @locale_tag = "errors.other_blocked_self"
   end
 
   class ListingSelfBlockedOther < SelfBlockedOther
+    @locale_tag = "errors.self_blocked_other"
   end
 
   class ListingOtherBlockedSelf < OtherBlockedSelf
+    @locale_tag = "errors.other_blocked_self"
   end
   # endregion
 end

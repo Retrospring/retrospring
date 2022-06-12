@@ -81,6 +81,54 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
 
       include_examples "returns the expected response"
     end
+
+    context "when blocked by the answer's author" do
+      let(:other_user) { FactoryBot.create(:user) }
+      let(:answer) { FactoryBot.create(:answer, user: other_user) }
+      let(:answer_id) { answer.id }
+
+      before do
+        other_user.block(user)
+      end
+
+      let(:expected_response) do
+        {
+          "success" => false,
+          "status" => "fail",
+          "message" => anything
+        }
+      end
+
+      it "does not create a smile" do
+        expect { subject }.not_to(change { Smile.count })
+      end
+
+      include_examples "returns the expected response"
+    end
+
+    context "when blocking the answer's author" do
+      let(:other_user) { FactoryBot.create(:user) }
+      let(:answer) { FactoryBot.create(:answer, user: user) }
+      let(:answer_id) { answer.id }
+
+      before do
+        user.block(other_user)
+      end
+
+      let(:expected_response) do
+        {
+          "success" => false,
+          "status" => "fail",
+          "message" => anything
+        }
+      end
+
+      it "does not create a smile" do
+        expect { subject }.not_to(change { Smile.count })
+      end
+
+      include_examples "returns the expected response"
+    end
   end
 
   describe "#destroy" do
