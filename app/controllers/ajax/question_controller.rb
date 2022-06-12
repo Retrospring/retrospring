@@ -57,15 +57,15 @@ class Ajax::QuestionController < AjaxController
     else
       target_user = User.find_by(id: params[:rcpt])
 
-      raise Errors::AskingOtherBlockedSelf if target_user.blocking?(current_user)
-      raise Errors::AskingSelfBlockedOther if current_user.blocking?(target_user)
-
       if target_user.nil?
         @response[:status] = :not_found
         @response[:message] = I18n.t('messages.question.create.not_found')
         question.delete
         return
       end
+
+      raise Errors::AskingOtherBlockedSelf if target_user.blocking?(current_user)
+      raise Errors::AskingSelfBlockedOther if current_user&.blocking?(target_user)
 
       if !target_user.privacy_allow_anonymous_questions && question.author_is_anonymous
         question.delete
