@@ -56,6 +56,12 @@ describe Ajax::RelationshipController, type: :controller do
         include_examples "valid relationship type"
       end
 
+      context "type = 'block'" do
+        let(:type) { "block" }
+
+        include_examples "valid relationship type"
+      end
+
       context "type = 'dick'" do
         let(:type) { "dick" }
 
@@ -105,6 +111,12 @@ describe Ajax::RelationshipController, type: :controller do
 
       context "type = 'follow'" do
         let(:type) { "follow" }
+
+        include_examples "valid relationship type"
+      end
+
+      context "type = 'block'" do
+        let(:type) { "block" }
 
         include_examples "valid relationship type"
       end
