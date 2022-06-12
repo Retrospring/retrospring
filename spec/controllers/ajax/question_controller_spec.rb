@@ -127,6 +127,42 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
             include_examples "creates the question"
           end
         end
+
+        context "when the sender is blocked by the user" do
+          before(:each) do
+            target_user.block(user)
+          end
+
+          let(:anonymous_question) { "false" }
+          let(:user_allows_anonymous_questions) { true }
+          let(:expected_response) do
+            {
+              "message" => I18n.t("errors.asking_other_blocked_self"),
+              "status"  => "asking_other_blocked_self",
+              "success" => false
+            }
+          end
+
+          include_examples "does not create the question", check_for_inbox: false
+        end
+
+        context "when the sender is blocking the user" do
+          before(:each) do
+            user.block(target_user)
+          end
+
+          let(:anonymous_question) { "false" }
+          let(:user_allows_anonymous_questions) { true }
+          let(:expected_response) do
+            {
+              "message" => I18n.t("errors.asking_self_blocked_other"),
+              "status"  => "asking_self_blocked_other",
+              "success" => false
+            }
+          end
+
+          include_examples "does not create the question", check_for_inbox: false
+        end
       end
 
       context "when rcpt is followers" do
