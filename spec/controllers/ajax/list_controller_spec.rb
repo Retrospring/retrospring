@@ -332,7 +332,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         {
           "success" => false,
           "status"  => "other_blocking_self",
-          "message" => anything,
+          "message" => anything
         }
       end
 
@@ -348,7 +348,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         {
           "success" => false,
           "status"  => "self_blocking_other",
-          "message" => anything,
+          "message" => anything
         }
       end
 

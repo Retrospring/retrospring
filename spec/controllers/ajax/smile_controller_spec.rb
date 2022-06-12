@@ -94,7 +94,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "fail",
+          "status"  => "fail",
           "message" => anything
         }
       end
@@ -118,7 +118,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "fail",
+          "status"  => "fail",
           "message" => anything
         }
       end
