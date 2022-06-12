@@ -66,8 +66,14 @@ class Ajax::QuestionController < AjaxController
         return
       end
 
-      raise Errors::AskingOtherBlockedSelf if target_user.blocking?(current_user)
-      raise Errors::AskingSelfBlockedOther if current_user&.blocking?(target_user)
+      if target_user.blocking?(current_user)
+        question.delete
+        raise Errors::AskingOtherBlockedSelf
+      end
+      if current_user&.blocking?(target_user)
+        question.delete
+        raise Errors::AskingSelfBlockedOther
+      end
 
       if !target_user.privacy_allow_anonymous_questions && question.author_is_anonymous
         question.delete
