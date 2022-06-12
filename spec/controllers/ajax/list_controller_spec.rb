@@ -325,6 +325,38 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
       end
     end
 
+    context "when the target user is blocking the current user" do
+      let(:members) { [user] }
+      let(:add_param) { "add" }
+      let(:expected_response) do
+        {
+          "success" => false,
+          "status"  => "other_blocking_self",
+          "message" => anything,
+        }
+      end
+
+      it "does not add the user to the list" do
+        expect { subject }.not_to(change { list.members })
+      end
+    end
+
+    context "when the user being added is blocking the current user" do
+      let(:members) { [user] }
+      let(:add_param) { "add" }
+      let(:expected_response) do
+        {
+          "success" => false,
+          "status"  => "self_blocking_other",
+          "message" => anything,
+        }
+      end
+
+      it "does not add the user to the list" do
+        expect { subject }.not_to(change { list.members })
+      end
+    end
+
     context "when user is not signed in" do
       let(:add_param) { "whatever" }
       let(:expected_response) do
