@@ -106,8 +106,10 @@ class User < ApplicationRecord
   # @param question [Question] the question to answer
   # @param content [String] the answer content
   def answer(question, content)
+    # rubocop:disable Style/RedundantSelf
     raise Errors::AnsweringOtherBlockedSelf if question.user.blocking?(self)
     raise Errors::AnsweringSelfBlockedOther if self.blocking?(question.user)
+    # rubocop:enable Style/RedundantSelf
 
     Answer.create!(content: content,
                    user: self,
@@ -123,8 +125,10 @@ class User < ApplicationRecord
   # smiles an answer
   # @param answer [Answer] the answer to smile
   def smile(answer)
+    # rubocop:disable Style/RedundantSelf
     raise Errors::ReactingSelfBlockedOther if self.blocking?(answer.user)
     raise Errors::ReactingOtherBlockedSelf if answer.user.blocking?(self)
+    # rubocop:enable Style/RedundantSelf
 
     Smile.create!(user: self, answer: answer)
   end
@@ -156,8 +160,10 @@ class User < ApplicationRecord
   end
 
   def comment(answer, content)
+    # rubocop:disable Style/RedundantSelf
     raise Errors::CommentingSelfBlockedOther if self.blocking?(answer.user)
     raise Errors::CommentingOtherBlockedSelf if answer.user.blocking?(self)
+    # rubocop:enable Style/RedundantSelf
 
     Comment.create!(user: self, answer: answer, content: content)
   end

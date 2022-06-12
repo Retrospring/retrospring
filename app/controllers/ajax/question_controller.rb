@@ -1,4 +1,6 @@
-require 'errors'
+# frozen_string_literal: true
+
+require "errors"
 
 class Ajax::QuestionController < AjaxController
   def destroy
@@ -72,9 +74,11 @@ class Ajax::QuestionController < AjaxController
         return
       end
 
+      # rubocop:disable Style/IfUnlessModifier
       unless MuteRule.where(user: target_user).any? { |rule| rule.applies_to? question }
         Inbox.create!(user_id: target_user.id, question_id: question.id, new: true)
       end
+      # rubocop:enable Style/IfUnlessModifier
     end
 
     @response[:status] = :okay

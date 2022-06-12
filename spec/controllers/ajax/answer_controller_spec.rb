@@ -148,7 +148,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "answering_other_blocked_self",
+                "status"  => "answering_other_blocked_self",
                 "message" => I18n.t("errors.answering_other_blocked_self")
               }
             end
@@ -164,7 +164,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "answering_self_blocked_other",
+                "status"  => "answering_self_blocked_other",
                 "message" => I18n.t("errors.answering_self_blocked_other")
               }
             end

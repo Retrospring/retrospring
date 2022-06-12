@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'errors'
+require "errors"
 
 class User
   module Relationship
@@ -22,11 +22,7 @@ class User
       def block(target_user)
         raise Errors::BlockingSelf if target_user == self
 
-        unfollow(target_user) if following?(target_user)
-        target_user.unfollow(self) if target_user.following?(self)
-        target_user.inboxes.joins(:question).where(question: { user_id: id }).destroy_all
-        inboxes.joins(:question).where(questions: { user_id: target_user.id, author_is_anonymous: false }).destroy_all
-        ListMember.joins(:list).where(list: { user_id: target_user.id }, user_id: id).destroy_all
+        unfollow_and_remove(target_user)
         create_relationship(active_block_relationships, target_user)
       end
 
@@ -38,6 +34,16 @@ class User
       # Is <tt>self</tt> blocking <tt>target_user</tt>?
       def blocking?(target_user)
         relationship_active?(blocked_users, target_user)
+      end
+
+      private
+
+      def unfollow_and_remove(target_user)
+        unfollow(target_user) if following?(target_user)
+        target_user.unfollow(self) if target_user.following?(self)
+        target_user.inboxes.joins(:question).where(question: { user_id: id }).destroy_all
+        inboxes.joins(:question).where(questions: { user_id: target_user.id, author_is_anonymous: false }).destroy_all
+        ListMember.joins(:list).where(list: { user_id: target_user.id }, user_id: id).destroy_all
       end
     end
   end
