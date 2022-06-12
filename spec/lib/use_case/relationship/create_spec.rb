@@ -7,20 +7,8 @@ require "errors"
 
 describe UseCase::Relationship::Create do
   shared_examples_for "valid relationship type" do
-    context "source_user does not exist" do
-      let(:source_user) { "Schweinsbraten" }
-
-      include_examples "raises an error", Errors::UserNotFound
-    end
-
-    context "target_user does not exist" do
-      let(:target_user)  { "peterwitzig" }
-
-      include_examples "raises an error", Errors::UserNotFound
-    end
-
     context "target_user is source_user" do
-      let(:target_user)  { user1.screen_name }
+      let(:target_user)  { user1 }
 
       include_examples "raises an error", Errors::SelfAction
     end
@@ -62,8 +50,21 @@ describe UseCase::Relationship::Create do
     include_examples "valid relationship type"
 
     context "using screen names" do
-      let(:source_user) { user1.screen_name }
-      let(:target_user) { user2.screen_name }
+      let(:source_user) { user1 }
+      let(:target_user) { user2 }
+
+      include_examples "valid relationship type"
+    end
+  end
+
+  context "type = 'block'" do
+    let(:type) { "block" }
+
+    include_examples "valid relationship type"
+
+    context "using screen names" do
+      let(:source_user) { user1 }
+      let(:target_user) { user2 }
 
       include_examples "valid relationship type"
     end

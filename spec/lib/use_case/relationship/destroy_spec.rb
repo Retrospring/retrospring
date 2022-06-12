@@ -25,20 +25,6 @@ describe UseCase::Relationship::Destroy do
         expect { subject }.to change { Relationship.count }.by(0)
       end
     end
-
-    context "source_user does not exist" do
-      let(:source_user) { "Schweinsbraten" }
-      let(:target_user) { user2.screen_name }
-
-      include_examples "raises an error", Errors::UserNotFound
-    end
-
-    context "target_user does not exist" do
-      let(:source_user) { user1.screen_name }
-      let(:target_user) { "peterwitzig" }
-
-      include_examples "raises an error", Errors::UserNotFound
-    end
   end
 
   let(:base_params) do
@@ -65,8 +51,21 @@ describe UseCase::Relationship::Destroy do
     include_examples "valid relationship type"
 
     context "using screen names" do
-      let(:source_user) { user1.screen_name }
-      let(:target_user) { user2.screen_name }
+      let(:source_user) { user1 }
+      let(:target_user) { user2 }
+
+      include_examples "valid relationship type"
+    end
+  end
+
+  context "type = 'block'" do
+    let(:type) { "block" }
+
+    include_examples "valid relationship type"
+
+    context "using screen names" do
+      let(:source_user) { user1 }
+      let(:target_user) { user2 }
 
       include_examples "valid relationship type"
     end
