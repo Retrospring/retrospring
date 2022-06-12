@@ -66,6 +66,40 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
 
             include_examples "does not create the comment"
           end
+
+          context "when the user is blocked by the answer's author" do
+            before do
+              answer.user.block(user)
+            end
+
+            let(:comment) { ">:3" }
+            let(:expected_response) do
+              {
+                "success" => false,
+                "status"  => "commenting_other_blocked_self",
+                "message" => I18n.t("errors.commenting_other_blocked_self")
+              }
+            end
+
+            include_examples "does not create the comment"
+          end
+
+          context "when the user is blocking the answer's author" do
+            before do
+              user.block(answer.user)
+            end
+
+            let(:comment) { "heast" }
+            let(:expected_response) do
+              {
+                "success" => false,
+                "status"  => "commenting_self_blocked_other",
+                "message" => I18n.t("errors.commenting_self_blocked_other")
+              }
+            end
+
+            include_examples "does not create the comment"
+          end
         end
 
         context "when answer does not exist" do
