@@ -8,8 +8,12 @@ module Errors
       @code ||= self.class.name.sub('Errors::', '').underscore
     end
 
+    def locale_code
+      code
+    end
+
     def locale_tag
-      @locale_tag ||= "errors.#{code}"
+      @locale_tag ||= "errors.#{locale_code}"
     end
   end
 
@@ -81,19 +85,27 @@ module Errors
   end
 
   class ReactingSelfBlockedOther < SelfBlockedOther
-    @locale_tag = "errors.self_blocked_other"
+    def locale_code
+      "self_blocked_other"
+    end
   end
 
   class ReactingOtherBlockedSelf < OtherBlockedSelf
-    @locale_tag = "errors.other_blocked_self"
+    def locale_code
+      "other_blocked_self"
+    end
   end
 
   class ListingSelfBlockedOther < SelfBlockedOther
-    @locale_tag = "errors.self_blocked_other"
+    def locale_code
+      "self_blocked_other"
+    end
   end
 
   class ListingOtherBlockedSelf < OtherBlockedSelf
-    @locale_tag = "errors.other_blocked_self"
+    def locale_code
+      "other_blocked_self"
+    end
   end
   # endregion
 end
