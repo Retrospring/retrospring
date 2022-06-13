@@ -214,7 +214,6 @@ en:
       ask_question: "Ask a question"
       answer: "Answer"
       options: "Options"
-      anonymous: "Hide your name"
       delete: "Delete"
       report: "Report"
       return: "Return to Inbox"
@@ -289,16 +288,6 @@ en:
       no_smile: "No one smiled this, yet."
       no_comment: "There are no comments yet."
       commentsmile: "People who smiled this comment"
-    questionbox:
-      title: "Ask something!"
-      banned: "This user got hit with ye olde banhammer."
-      required: "This user does not want to get asked by strangers.  Why don't you %{signup}?"
-      load: "Asking..."
-      promote:
-        message: "Your question has been sent."
-        create: "Create an account"
-        another: "Ask another question"
-        join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
     modal:
       ask:
         title: "Ask your followers"
