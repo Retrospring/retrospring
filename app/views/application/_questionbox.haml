@@ -8,6 +8,12 @@
     - if user.banned?
       .text-center
         %strong= t(".status.banned")
+    - elsif user_signed_in? && current_user.blocking?(user)
+      .text-center
+        %strong= t(".status.blocking")
+    - elsif user_signed_in? && user.blocking?(current_user)
+      .text-center
+        %strong= t(".status.blocked")
     - else
       - if user_signed_in? || user.privacy_allow_anonymous_questions?
         #question-box
