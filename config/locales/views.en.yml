@@ -26,6 +26,8 @@ en:
         join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
       status:
         banned: "This user got hit with ye olde banhammer."
+        blocking: "You are blocking this user."
+        blocked: "This user has blocked you."
   devise:
     registrations:
       edit:
