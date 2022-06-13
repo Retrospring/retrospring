@@ -6,16 +6,18 @@ class AjaxController < ApplicationController
 
   respond_to :json
 
-  rescue_from(StandardError) do |e|
-    Sentry.capture_exception(e)
+  unless Rails.env.development?
+    rescue_from(StandardError) do |e|
+      Sentry.capture_exception(e)
 
-    @response = {
-      success: false,
-      message: "Something went wrong",
-      status:  :err
-    }
+      @response = {
+        success: false,
+        message: "Something went wrong",
+        status:  :err
+      }
 
-    return_response
+      return_response
+    end
   end
 
   rescue_from(KeyError) do |e|
