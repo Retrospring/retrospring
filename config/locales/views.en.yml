@@ -12,6 +12,20 @@ en:
       title: "Create Announcement"
     edit:
       title: "Edit Announcement"
+  application:
+    questionbox:
+      title: "Ask something!"
+      required: "This user does not want to get asked by strangers.  Why don't you %{signup}?"
+      placeholder: "Type your question here…"
+      anonymous: "Hide your name"
+      load: "Asking…"
+      promote:
+        message: "Your question has been sent."
+        create: "Create an account"
+        another: "Ask another question"
+        join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
+      status:
+        banned: "This user got hit with ye olde banhammer."
   devise:
     registrations:
       edit:
