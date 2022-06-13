@@ -107,7 +107,7 @@ class User < ApplicationRecord
   # @param content [String] the answer content
   def answer(question, content)
     # rubocop:disable Style/RedundantSelf
-    raise Errors::AnsweringOtherBlockedSelf if question.user.blocking?(self)
+    raise Errors::AnsweringOtherBlockedSelf if question.user&.blocking?(self)
     raise Errors::AnsweringSelfBlockedOther if self.blocking?(question.user)
     # rubocop:enable Style/RedundantSelf
 
