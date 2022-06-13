@@ -18,11 +18,11 @@ module Retrospring
     end
 
     def month
-      4
+      6
     end
 
     def day
-      27
+      13
     end
 
     def patch
