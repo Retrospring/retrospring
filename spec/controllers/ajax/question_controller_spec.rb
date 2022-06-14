@@ -37,6 +37,18 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       include_examples "returns the expected response"
     end
 
+    shared_examples "creates the question but doesn't send it to the user's inbox" do
+      it "creates the question" do
+        expect { subject }.to(change { Question.count }.by(1))
+      end
+
+      it "does not add the question to the target users' inbox" do
+        expect { subject }.not_to(change { target_user.inboxes.count })
+      end
+
+      include_examples "returns the expected response"
+    end
+
     shared_examples "enqueues a QuestionWorker job" do |expected_rcpt|
       it "enqueues a QuestionWorker job" do
         allow(QuestionWorker).to receive(:perform_async)
@@ -237,6 +249,28 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
             end
 
             include_examples "does not create the question"
+          end
+
+          context "when question contains a muted term" do
+            before do
+              MuteRule.create(user: target_user, muted_phrase: "Preis")
+            end
+
+            include_examples "creates the question but doesn't send it to the user's inbox"
+          end
+
+          context "when sender is blocked by the user" do
+            before do
+              identifier = AnonymousBlock.get_identifier("0.0.0.0")
+              dummy_question = FactoryBot.create(:question, author_is_anonymous: true, author_identifier: identifier)
+              AnonymousBlock.create(
+                user:       target_user,
+                identifier: identifier,
+                question:   dummy_question,
+              )
+            end
+
+            include_examples "creates the question but doesn't send it to the user's inbox"
           end
         end
 
