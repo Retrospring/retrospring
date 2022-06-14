@@ -13,12 +13,23 @@ class Ajax::AnonymousBlockController < AjaxController
     question.inboxes.first.destroy
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.block.create.okay')
+    @response[:message] = I18n.t("messages.block.create.okay")
     @response[:success] = true
+  end
 
-  rescue Errors::Base => e
-    @response[:status] = e.code
-    @response[:message] = I18n.t(e.locale_tag)
-    @response[:success] = false
+  def destroy
+    params.require :id
+
+    block = AnonymousBlock.find(params[:id])
+    if current_user != block.user
+      @response[:status] = :nopriv
+      @response[:message] = I18n.t("messages.block.destroy.nopriv")
+    end
+
+    block.destroy!
+
+    @response[:status] = :okay
+    @response[:message] = I18n.t("messages.block.create.okay")
+    @response[:success] = true
   end
 end

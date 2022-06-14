@@ -86,6 +86,7 @@ en:
       destroy:
         fail: "You are not blocking that user."
         okay: "Successfully unblocked user."
+        nopriv: "Cannot remove a block belonging to someone else."
     list:
       create:
         noname: "Please give that list a name."
