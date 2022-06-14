@@ -54,6 +54,32 @@ describe Ajax::AnonymousBlockController, :ajax_controller, type: :controller do
   end
 
   describe "#destroy" do
-    pending
+    subject { delete(:destroy, params: params) }
+
+    context "user signed in" do
+      let(:user) { FactoryBot.create(:user) }
+
+      before do
+        sign_in(user)
+      end
+
+      context "when all parameters are given" do
+        let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
+        let(:block) { AnonymousBlock.create(user: user, identifier: "someidentifier", question: question) }
+        let(:params) do
+          { id: block.id }
+        end
+
+        let(:expected_response) do
+          {
+            "success" => true,
+            "status"  => "okay",
+            "message" => anything
+          }
+        end
+
+        include_examples "returns the expected response"
+      end
+    end
   end
 end
