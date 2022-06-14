@@ -33,11 +33,12 @@ class Ajax::QuestionController < AjaxController
     params.require :rcpt
 
     is_never_anonymous = user_signed_in? && params[:rcpt] == 'followers'
+    author_is_anonymous = is_never_anonymous ? false : params[:anonymousQuestion]
 
     begin
       question = Question.create!(content:             params[:question],
-                                  author_is_anonymous: is_never_anonymous ? false : params[:anonymousQuestion],
-                                  author_identifier:   Digest::SHA2.new(512).hexdigest(Rails.application.secret_key_base + request.ip),
+                                  author_is_anonymous: author_is_anonymous,
+                                  author_identifier:   AnonymousBlock.get_identifier(request.ip),
                                   user:                current_user,
                                   direct:              params[:rcpt] != 'followers')
     rescue ActiveRecord::RecordInvalid => e
@@ -82,11 +83,10 @@ class Ajax::QuestionController < AjaxController
         return
       end
 
-      # rubocop:disable Style/IfUnlessModifier
-      unless MuteRule.where(user: target_user).any? { |rule| rule.applies_to? question }
+      unless MuteRule.where(user: target_user).any? { |rule| rule.applies_to? question } ||
+          (author_is_anonymous && AnonymousBlock.where(identifier: AnonymousBlock.get_identifier(request.ip)).any?)
         Inbox.create!(user_id: target_user.id, question_id: question.id, new: true)
       end
-      # rubocop:enable Style/IfUnlessModifier
     end
 
     @response[:status] = :okay
