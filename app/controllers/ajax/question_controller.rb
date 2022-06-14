@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "digest"
 require "errors"
 
 class Ajax::QuestionController < AjaxController
@@ -34,10 +35,11 @@ class Ajax::QuestionController < AjaxController
     is_never_anonymous = user_signed_in? && params[:rcpt] == 'followers'
 
     begin
-      question = Question.create!(content: params[:question],
+      question = Question.create!(content:             params[:question],
                                   author_is_anonymous: is_never_anonymous ? false : params[:anonymousQuestion],
-                                  user: current_user,
-                                  direct: params[:rcpt] != 'followers')
+                                  author_identifier:   Digest::SHA2.new(512).hexdigest(Rails.application.secret_key_base + request.ip),
+                                  user:                current_user,
+                                  direct:              params[:rcpt] != 'followers')
     rescue ActiveRecord::RecordInvalid => e
       Sentry.capture_exception(e)
       @response[:status] = :rec_inv
