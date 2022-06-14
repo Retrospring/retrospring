@@ -119,6 +119,7 @@ Rails.application.routes.draw do
     match '/mute/:id', to: 'mute_rule#update', via: :post, as: :update_mute_rule
     match '/mute/:id', to: 'mute_rule#destroy', via: :delete, as: :delete_mute_rule
     match '/block_anon', to: 'anonymous_block#create', via: :post, as: :block_anon
+    match '/block_anon/:id', to: 'anonymous_block#destroy', via: :delete, as: :unblock_anon
   end
 
   match '/discover', to: 'discover#index', via: :get, as: :discover
