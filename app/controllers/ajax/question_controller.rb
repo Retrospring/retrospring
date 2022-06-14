@@ -40,7 +40,7 @@ class Ajax::QuestionController < AjaxController
                                   author_is_anonymous: author_is_anonymous,
                                   author_identifier:   AnonymousBlock.get_identifier(request.ip),
                                   user:                current_user,
-                                  direct:              params[:rcpt] != 'followers')
+                                  direct:              params[:rcpt] != "followers")
     rescue ActiveRecord::RecordInvalid => e
       Sentry.capture_exception(e)
       @response[:status] = :rec_inv

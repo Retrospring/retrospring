@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAnonymousBlocks < ActiveRecord::Migration[6.1]
   def change
     create_table :anonymous_blocks do |t|
