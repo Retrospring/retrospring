@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_221551) do
+ActiveRecord::Schema.define(version: 2022_06_14_141439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 2022_06_13_221551) do
     t.index ["user_id"], name: "index_announcements_on_user_id"
   end
 
+  create_table "anonymous_blocks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "identifier"
+    t.bigint "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["identifier"], name: "index_anonymous_blocks_on_identifier"
+    t.index ["question_id"], name: "index_anonymous_blocks_on_question_id"
+    t.index ["user_id"], name: "index_anonymous_blocks_on_user_id"
+  end
+
   create_table "answers", id: :bigint, default: -> { "gen_timestamp_id('answers'::text)" }, force: :cascade do |t|
     t.text "content"
     t.bigint "question_id"
@@ -37,18 +48,6 @@ ActiveRecord::Schema.define(version: 2022_06_13_221551) do
     t.integer "smile_count", default: 0, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
-  end
-
-  create_table "appendables", force: :cascade do |t|
-    t.string "type", null: false
-    t.bigint "user_id", null: false
-    t.bigint "parent_id", null: false
-    t.string "parent_type", null: false
-    t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["parent_id", "parent_type"], name: "index_appendables_on_parent_id_and_parent_type"
-    t.index ["user_id", "created_at"], name: "index_appendables_on_user_id_and_created_at"
   end
 
   create_table "comment_smiles", id: :bigint, default: -> { "gen_timestamp_id('comment_smiles'::text)" }, force: :cascade do |t|
@@ -336,6 +335,8 @@ ActiveRecord::Schema.define(version: 2022_06_13_221551) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "anonymous_blocks", "questions"
+  add_foreign_key "anonymous_blocks", "users"
   add_foreign_key "mute_rules", "users"
   add_foreign_key "profiles", "users"
 end
