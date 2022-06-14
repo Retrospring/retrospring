@@ -266,7 +266,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
               AnonymousBlock.create(
                 user:       target_user,
                 identifier: identifier,
-                question:   dummy_question,
+                question:   dummy_question
               )
             end
 

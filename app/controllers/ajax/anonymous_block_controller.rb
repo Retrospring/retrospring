@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ajax::AnonymousBlockController < AjaxController
   def create
     params.require :question
@@ -7,7 +9,7 @@ class Ajax::AnonymousBlockController < AjaxController
     AnonymousBlock.create!(
       user:       current_user,
       identifier: AnonymousBlock.get_identifier(question.author_identifier),
-      question:   question,
+      question:   question
     )
 
     question.inboxes.first.destroy

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "rails_helper"
 
 describe Ajax::AnonymousBlockController, :ajax_controller, type: :controller do
