@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_15_193829) do
+ActiveRecord::Schema.define(version: 2022_06_13_221551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2022_04_15_193829) do
     t.integer "smile_count", default: 0, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
+  end
+
+  create_table "appendables", force: :cascade do |t|
+    t.string "type", null: false
+    t.bigint "user_id", null: false
+    t.bigint "parent_id", null: false
+    t.string "parent_type", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["parent_id", "parent_type"], name: "index_appendables_on_parent_id_and_parent_type"
+    t.index ["user_id", "created_at"], name: "index_appendables_on_user_id_and_created_at"
   end
 
   create_table "comment_smiles", id: :bigint, default: -> { "gen_timestamp_id('comment_smiles'::text)" }, force: :cascade do |t|
@@ -143,7 +155,7 @@ ActiveRecord::Schema.define(version: 2022_04_15_193829) do
     t.string "content"
     t.boolean "author_is_anonymous"
     t.string "author_name"
-    t.string "author_email"
+    t.string "author_identifier"
     t.bigint "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
