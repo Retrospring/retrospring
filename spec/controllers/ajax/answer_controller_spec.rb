@@ -268,6 +268,12 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         it "returns the question back to the user's inbox" do
           expect { subject }.to(change { Inbox.where(question_id: answer.question.id, user_id: user.id).count }.by(1))
         end
+
+        it "returns the question back to the user's inbox when the user has anonymous questions disabled" do
+          user.privacy_allow_anonymous_questions = false
+          user.save
+          expect { subject }.to(change { Inbox.where(question_id: answer.question.id, user_id: user.id).count }.by(1))
+        end
       end
 
       context "when the answer exists and was not made by the current user" do

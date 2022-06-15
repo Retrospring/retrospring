@@ -2,8 +2,13 @@ class Inbox < ApplicationRecord
   belongs_to :user
   belongs_to :question
 
+  attr_accessor :returning
+
   before_create do
-    raise "User does not want to receive anonymous questions" if self.question.author_is_anonymous and self.question.author_name != 'justask' and !self.user.privacy_allow_anonymous_questions?
+    raise "User does not want to receive anonymous questions" if !returning &&
+      question.author_is_anonymous &&
+      (question.author_name != "justask") &&
+      !user.privacy_allow_anonymous_questions?
   end
 
   def answer(answer_content, user)
