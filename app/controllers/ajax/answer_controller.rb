@@ -66,8 +66,8 @@ class Ajax::AnswerController < AjaxController
     end
 
     if answer.user == current_user
-      Inbox.create!(user: answer.user, question: answer.question, new: true)
-    end # TODO: decide what happens with the question
+      Inbox.create!(user: answer.user, question: answer.question, new: true, returning: true)
+    end
     answer.destroy
 
     @response[:status] = :okay
