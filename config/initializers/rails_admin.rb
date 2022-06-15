@@ -29,6 +29,7 @@ RailsAdmin.config do |config|
 
   config.included_models = %w[
     Answer
+    AnonymousBlock
     Comment
     List
     ListMember
@@ -38,6 +39,8 @@ RailsAdmin.config do |config|
     Profile
     Question
     Relationship
+    Relationships::Follow
+    Relationships::Block
     Report
     Service
     Services::Twitter
