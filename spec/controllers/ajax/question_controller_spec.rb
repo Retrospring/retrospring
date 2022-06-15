@@ -274,6 +274,24 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           end
         end
 
+        context "when the sender is blocked by another user" do
+          let(:user_allows_anonymous_questions) { true }
+          let(:expected_question_user) { nil }
+          let(:expected_question_direct) { true }
+
+          before do
+            identifier = AnonymousBlock.get_identifier("0.0.0.0")
+            dummy_question = FactoryBot.create(:question, author_is_anonymous: true, author_identifier: identifier)
+            AnonymousBlock.create(
+              user:       FactoryBot.create(:user),
+              identifier: identifier,
+              question:   dummy_question
+            )
+          end
+
+          include_examples "creates the question"
+        end
+
         context "when user does not allow anonymous questions" do
           let(:user_allows_anonymous_questions) { false }
           let(:expected_response) do

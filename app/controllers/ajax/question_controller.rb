@@ -83,8 +83,8 @@ class Ajax::QuestionController < AjaxController
         return
       end
 
-      unless MuteRule.where(user: target_user).any? { |rule| rule.applies_to? question } ||
-          (author_is_anonymous && AnonymousBlock.where(identifier: AnonymousBlock.get_identifier(request.ip)).any?)
+      unless target_user.mute_rules.any? { |rule| rule.applies_to? question } ||
+          (author_is_anonymous && target_user.anonymous_blocks.where(identifier: AnonymousBlock.get_identifier(request.ip)).any?)
         Inbox.create!(user_id: target_user.id, question_id: question.id, new: true)
       end
     end
