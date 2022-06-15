@@ -22,11 +22,11 @@ module Retrospring
     end
 
     def day
-      13
+      15
     end
 
     def patch
-      1
+      0
     end
 
     def suffix
