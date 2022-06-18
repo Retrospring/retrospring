@@ -74,9 +74,10 @@ class UserController < ApplicationController
   def followers
     @title = 'Followers'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
-    @users = @user.cursored_followers(last_id: params[:last_id])
-    @users_last_id = @users.map(&:id).min
-    @more_data_available = !@user.cursored_followers(last_id: @users_last_id, size: 1).count.zero?
+    @relationships = @user.cursored_follower_relationships(last_id: params[:last_id])
+    @relationships_last_id = @relationships.map(&:id).min
+    @more_data_available = !@user.cursored_follower_relationships(last_id: @relationships_last_id, size: 1).count.zero?
+    @users = @relationships.map(&:source)
     @type = :friend
 
     respond_to do |format|
@@ -89,9 +90,10 @@ class UserController < ApplicationController
   def followings
     @title = 'Following'
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
-    @users = @user.cursored_followings(last_id: params[:last_id])
-    @users_last_id = @users.map(&:id).min
-    @more_data_available = !@user.cursored_followings(last_id: @users_last_id, size: 1).count.zero?
+    @relationships = @user.cursored_following_relationships(last_id: params[:last_id])
+    @relationships_last_id = @relationships.map(&:id).min
+    @more_data_available = !@user.cursored_following_relationships(last_id: @relationships_last_id, size: 1).count.zero?
+    @users = @relationships.map(&:target)
     @type = :friend
 
     respond_to do |format|
