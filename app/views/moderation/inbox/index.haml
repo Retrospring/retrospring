@@ -1,0 +1,25 @@
+- provide(:title, generate_title(t(".title", user: @user.screen_name)))
+
+.card.question--fixed
+  .container
+    .card-body
+      .media
+        %a.pull-left{ href: show_user_profile_path(@user.screen_name) }
+          %img.answerbox__question-user-avatar.avatar-md{ src: @user.profile_picture.url(:medium) }
+        .media-body
+          Viewing inbox for
+          %br
+          %strong= @user.screen_name
+          = " (##{@user.id})"
+.container-lg.container--main
+  #entries
+    - @inboxes.each do |i|
+      = render "inbox/entry", i: i
+
+  = render "shared/cursored_pagination_dummy", more_data_available: @more_data_available, last_id: @inbox_last_id
+
+  - if @more_data_available
+
+    .d-flex.justify-content-center.justify-content-sm-start
+      %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @inbox_last_id } }
+        = t("voc.load")

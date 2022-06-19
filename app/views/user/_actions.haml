@@ -36,6 +36,10 @@
             %a.dropdown-item{ href: '#', data: { target: '#modal-ban', toggle: :modal } }
               %i.fa.fa-ban
               = t 'views.actions.ban'
+        - if current_user.mod? && user != current_user
+          %a.dropdown-item{ href: mod_inbox_index_path(user: user.screen_name) }
+            %i.fa.fa-inbox
+            View inbox
         - if current_user.has_role? :administrator
           %a.dropdown-item{ href: rails_admin_path_for_resource(user), target: '_blank' }
             %i.fa.fa-cogs

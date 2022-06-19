@@ -322,3 +322,7 @@ en:
       title: "Theme Settings"
     export:
       title: "Export"
+  moderation:
+    inbox:
+      index:
+        title: "Inbox for %{user}"
