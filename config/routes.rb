@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
     match '/moderation/ip/:user_id', to: 'moderation#ip', via: :get, as: :moderation_ip
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}
+    match '/moderation/inbox/:user', to: 'moderation/inbox#index', via: :get, as: :mod_inbox_index
     namespace :ajax do
       match '/mod/destroy_report', to: 'moderation#destroy_report', via: :post, as: :mod_destroy_report
       match '/mod/create_comment', to: 'moderation#create_comment', via: :post, as: :mod_create_comment
