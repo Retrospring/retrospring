@@ -21,6 +21,7 @@ en:
         starts_at: "Start time"
         ends_at: "End time"
       profile:
+        anon_display_name: "Name for anonymous users"
         description: "Biography"
         display_name: "Your name"
         location: "Location"
@@ -77,6 +78,7 @@ en:
         email: "Don't forget to check your spam folder in case our mail might have landed there!"
         current_password: "We need your current password to confirm your changes"
       profile:
+        anon_display_name: "This name will be used for questions asked to you by anonymous users."
         motivation_header: "Shown in the header of the question box on your profile. Motivate users to ask you questions!"
       services/twitter:
         post_tag: "Automatically append a tag to your shared answers. A # symbol is not automatically prepended."
