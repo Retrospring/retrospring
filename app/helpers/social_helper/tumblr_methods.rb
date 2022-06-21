@@ -3,7 +3,7 @@ require 'cgi'
 module SocialHelper::TumblrMethods
   def tumblr_title(answer)
     asker = if answer.question.author_is_anonymous?
-              answer.user.profile.anon_display_name.presence || APP_CONFIG['anonymous_name']
+              answer.user.profile.anon_display_name.presence || APP_CONFIG["anonymous_name"]
             else
               answer.question.user.profile.safe_name
             end
