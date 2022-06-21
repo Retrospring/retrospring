@@ -42,7 +42,7 @@ class UserController < ApplicationController
   end
 
   def update_profile
-    profile_attributes = params.require(:profile).permit(:display_name, :motivation_header, :website, :location, :description)
+    profile_attributes = params.require(:profile).permit(:display_name, :motivation_header, :website, :location, :description, :anon_display_name)
 
     if current_user.profile.update(profile_attributes)
       flash[:success] = t(".success")
