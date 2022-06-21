@@ -93,7 +93,7 @@ describe UserController, type: :controller do
     subject { patch :update, params: { user: avatar_params } }
     let(:avatar_params) do
       {
-          profile_picture: fixture_file_upload("files/banana_racc.jpg", "image/jpeg")
+        profile_picture: fixture_file_upload("banana_racc.jpg", "image/jpeg")
       }
     end
 
@@ -168,7 +168,7 @@ describe UserController, type: :controller do
     subject { patch :update, params: { user: header_params } }
     let(:header_params) do
       {
-          profile_header: fixture_file_upload("files/banana_racc.jpg", "image/jpeg")
+        profile_header: fixture_file_upload("banana_racc.jpg", "image/jpeg")
       }
     end
 
