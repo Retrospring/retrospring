@@ -23,6 +23,8 @@
                   %i.fa.fa-gears
                   View in Kontrollzentrum
       %h6.text-muted.media-heading.answerbox__question-user
+        - if a.question.author_is_anonymous
+          %i.fa.fa-user-secret{ title: 'This question was asked anonymously' }
         = raw t('views.answerbox.asked', user: user_screen_name(a.question.user, context_user: a.user, anonymous: a.question.author_is_anonymous), time: time_tooltip(a.question))
         - if !a.question.author_is_anonymous && !a.question.direct
           ·
