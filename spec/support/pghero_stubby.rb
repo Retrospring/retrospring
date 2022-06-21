@@ -12,6 +12,8 @@ class PgHero::HomeController
   end
 
   def set_database; end
+
   def set_query_stats_enabled; end
+
   def set_show_details; end
 end
