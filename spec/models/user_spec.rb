@@ -73,20 +73,31 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@protonmail.con"
     # neither is .coom
     include_examples "invalid email", "fritz.fantom@gmail.coom"
+    # nor .cmo
+    include_examples "invalid email", "gustav.geldsack@gmail.cmo"
     # nor .mail (.email is, however)
     include_examples "invalid email", "fritz.fantom@proton.mail"
     # common typos:
     include_examples "invalid email", "fritz.fantom@fmail.com"
+    include_examples "invalid email", "fritz.fantom@gamil.com"
     include_examples "invalid email", "fritz.fantom@gemail.com"
+    include_examples "invalid email", "fritz.fantom@gmail.cm"
     include_examples "invalid email", "fritz.fantom@gmail.co"
     include_examples "invalid email", "fritz.fantom@gmailcom"
     include_examples "invalid email", "fritz.fantom@gmaile.com"
     include_examples "invalid email", "fritz.fantom@gmaill.com"
     include_examples "invalid email", "fritz.fantom@gmali.com"
+    include_examples "invalid email", "fritz.fantom@hotamil.com"
     include_examples "invalid email", "fritz.fantom@hotmailcom"
     include_examples "invalid email", "fritz.fantom@hotmaill.com"
+    include_examples "invalid email", "fritz.fantom@iclooud.com"
     include_examples "invalid email", "fritz.fantom@iclould.com"
     include_examples "invalid email", "fritz.fantom@icluod.com"
+    # gail.com would be a valid email address, but enough people typo it
+    #
+    # if you're the owner of that TLD and would like to use your email on
+    # retrospring, feel free to open a PR that removes this ;-)
+    include_examples "invalid email", "fritz.fantom@gail.com"
     # no TLD
     include_examples "invalid email", "fritz.fantom@gmail"
     include_examples "invalid email", "fritz.fantom@protonmail"

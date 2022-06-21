@@ -6,17 +6,23 @@ class TypoedEmailValidator < ActiveModel::EachValidator
     # without @:
     ".con",
     ".coom",
+    ".cmo",
     ".mail",
 
     # with @:
     *%w[
       fmail.com
+      gail.com
+      gamil.com
       gemail.com
+      gmail.cm
       gmail.co
       gmaile.com
       gmaill.com
       gmali.com
+      hotamil.com
       hotmaill.com
+      iclooud.com
       iclould.com
       icluod.com
     ].map { "@#{_1}" }
