@@ -12,6 +12,9 @@ en:
       title: "Create Announcement"
     edit:
       title: "Edit Announcement"
+  answerbox:
+    header:
+      anon_hint: :inbox.entry.anon_hint
   application:
     questionbox:
       title: "Ask something!"
@@ -48,6 +51,7 @@ en:
   inbox:
     entry:
       asked_html: "%{user} asked %{time} ago"
+      anon_hint: "This question was asked anonymously."
       answers:
         one: "1 answer"
         other: "%{count} answers"
