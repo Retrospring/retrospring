@@ -1,9 +1,7 @@
 .card
   .card-body
-    %h2 Blocks
-    %p 
-      Here every user you are currently blocking is listed with a quick option to unblock them. You can block users on their profile using the "Actions" dropdown.
-
+    %h2= t(".section.blocks.heading")
+    %p= t(".section.blocks.body")
     %ul.list-group
       - @blocks.each do |block|
         %li.list-group-item
@@ -11,30 +9,22 @@
             %img.avatar-md.d-none.d-sm-inline.mr-2{ src: block.target.profile_picture.url(:small) }
             %div
               %p.mb-0= user_screen_name(block.target)
-              %p.text-muted.mb-0
-                blocked
-                = time_ago_in_words(block.created_at)
-                ago
+              %p.text-muted.mb-0= t(".blocked", time: time_ago_in_words(block.created_at))
             .ml-auto.d-inline-flex
               %button.btn.btn-default.align-self-center{ data: { action: :unblock, target: block.target.screen_name } }
-                %span.pe-none Unblock
+                %span.pe-none= t("views.actions.unblock")
 .card
   .card-body
-    %h2 Anonymous Blocks
-    %p
-      Here every anonymous user you are blocking is listed with a quick option to unblock them. Anonymous users can be blocked from questions in your inbox. To provide
-      more context on who you blocked, the question they asked you is provided as context.
+    %h2= t(".section.anon_blocks.heading")
+    %p= t(".section.anon_blocks.body")
     %ul.list-group
       - @anonymous_blocks.each do |block|
         %li.list-group-item
           .d-flex
             %div
               %p.mb-0= block.question.content
-              %p.text-muted.mb-0
-                blocked
-                = time_ago_in_words(block.created_at)
-                ago
+              %p.text-muted.mb-0= t(".blocked", time: time_ago_in_words(block.created_at))
             .ml-auto.d-inline-flex
               %button.btn.btn-default.align-self-center{ data: { action: "anon-unblock", target: block.id } }
-                %span.pe-none Unblock
+                %span.pe-none= t("views.actions.unblock")
 
