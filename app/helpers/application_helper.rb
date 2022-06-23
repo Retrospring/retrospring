@@ -42,6 +42,10 @@ module ApplicationHelper
     false
   end
 
+  def moderation_view?
+    current_user.mod? && session[:moderation_view] == true
+  end
+
   def rails_admin_path_for_resource(resource)
     [rails_admin_path, resource.model_name.param_key, resource.id].join("/")
   end

@@ -66,6 +66,11 @@ class ModerationController < ApplicationController
     render template: 'moderation/priority'
   end
 
+  def toggle_unmask
+    session[:moderation_view] = !session[:moderation_view]
+    redirect_back fallback_location: root_path
+  end
+
   private
 
   def list_reports(type:, last_id:, size: nil)
