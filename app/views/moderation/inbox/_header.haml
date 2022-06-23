@@ -1,0 +1,8 @@
+.card.question--fixed{ class: hidden ? 'question--hidden' : '', tabindex: hidden ? -1 : '', aria: { hidden: hidden } }
+  .container
+    .card-body
+      .media
+        %a.pull-left{ href: show_user_profile_path(user.screen_name) }
+          %img.answerbox__question-user-avatar.avatar-md{ src: user.profile_picture.url(:medium) }
+        .media-body
+          = t(".title_html", screen_name: user.screen_name, user_id: user.id)

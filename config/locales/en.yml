@@ -221,6 +221,7 @@ en:
       subscribe: "Subscribe"
       unsubscribe: "Unsubscribe"
       view: "View comment smiles"
+      view_inbox: "View inbox"
       load: "Load more"
       follow: "Follow"
       unfollow: "Unfollow"

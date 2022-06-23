@@ -324,5 +324,7 @@ en:
       title: "Export"
   moderation:
     inbox:
+      header:
+        title_html: "Viewing inbox for <br><strong>%{screen_name}</strong> (#%{user_id})"
       index:
         title: "Inbox for %{user}"
