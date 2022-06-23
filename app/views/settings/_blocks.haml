@@ -1,0 +1,40 @@
+.card
+  .card-body
+    %h2 Blocks
+    %p 
+      Here every user you are currently blocking is listed with a quick option to unblock them. You can block users on their profile using the "Actions" dropdown.
+
+    %ul.list-group
+      - @blocks.each do |block|
+        %li.list-group-item
+          .d-flex
+            %img.avatar-md.d-none.d-sm-inline.mr-2{ src: block.target.profile_picture.url(:small) }
+            %div
+              %p.mb-0= user_screen_name(block.target)
+              %p.text-muted.mb-0
+                blocked
+                = time_ago_in_words(block.created_at)
+                ago
+            .ml-auto.d-inline-flex
+              %button.btn.btn-default.align-self-center{ data: { action: :unblock, target: block.target.screen_name } }
+                %span.pe-none Unblock
+.card
+  .card-body
+    %h2 Anonymous Blocks
+    %p
+      Here every anonymous user you are blocking is listed with a quick option to unblock them. Anonymous users can be blocked from questions in your inbox. To provide
+      more context on who you blocked, the question they asked you is provided as context.
+    %ul.list-group
+      - @anonymous_blocks.each do |block|
+        %li.list-group-item
+          .d-flex
+            %div
+              %p.mb-0= block.question.content
+              %p.text-muted.mb-0
+                blocked
+                = time_ago_in_words(block.created_at)
+                ago
+            .ml-auto.d-inline-flex
+              %button.btn.btn-default.align-self-center{ data: { action: "anon-unblock", target: block.id } }
+                %span.pe-none Unblock
+
