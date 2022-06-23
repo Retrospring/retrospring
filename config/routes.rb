@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   # Moderation panel
   constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
                         req.env["warden"].user.mod? } do
+    match '/moderation/unmask', to: 'moderation#toggle_unmask', via: :post, as: :moderation_toggle_unmask
     match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
     match '/moderation/ip/:user_id', to: 'moderation#ip', via: :get, as: :moderation_ip
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}

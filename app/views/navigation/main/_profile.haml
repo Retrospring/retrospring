@@ -28,6 +28,14 @@
         Announcements
       .dropdown-divider
     - if current_user.mod?
+      - if moderation_view?
+        = link_to moderation_toggle_unmask_path, method: :post, class: "dropdown-item" do
+          %i.fa.fa-toggle-on
+          Disable Moderation View
+      - else
+        = link_to moderation_toggle_unmask_path, method: :post, class: "dropdown-item" do
+          %i.fa.fa-toggle-off
+          Enable Moderation View
       %a.dropdown-item{ href: moderation_path }
         %i.fa.fa-fw.fa-gavel
         = t("views.navigation.moderation")
