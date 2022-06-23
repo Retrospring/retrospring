@@ -31,7 +31,7 @@ class Ajax::AnonymousBlockController < AjaxController
     block.destroy!
 
     @response[:status] = :okay
-    @response[:message] = I18n.t("messages.block.create.okay")
+    @response[:message] = I18n.t("messages.block.destroy.okay")
     @response[:success] = true
   end
 end

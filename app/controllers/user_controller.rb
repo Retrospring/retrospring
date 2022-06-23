@@ -223,4 +223,9 @@ class UserController < ApplicationController
     @rules = MuteRule.where(user: current_user)
   end
   # endregion
+
+  def edit_blocks
+    @blocks = Relationships::Block.where(source: current_user)
+    @anonymous_blocks = AnonymousBlock.where(user: current_user)
+  end
 end
