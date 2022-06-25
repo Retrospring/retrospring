@@ -4,6 +4,7 @@ require "rails_helper"
 
 describe ApplicationHelper::TitleMethods, type: :helper do
   let(:user) { FactoryBot.create(:user) }
+  let(:current_user) { user } # we can't use the `current_user` helper here, because it's not defined in the helper we're testing
 
   before do
     stub_const("APP_CONFIG", {
