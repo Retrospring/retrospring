@@ -61,15 +61,19 @@ export function userActionHandler(event: Event): void {
         case 'block':
           button.dataset.action = 'unblock';
           button.querySelector('span').innerText = I18n.translate('views.actions.unblock');
-          button.classList.remove('btn-primary');
-          button.classList.add('btn-default');
+          if (button.classList.contains('btn')) {
+            button.classList.remove('btn-primary');
+            button.classList.add('btn-default');
+          }
           resetFollowButton(document.querySelector<HTMLButtonElement>('button[data-action="unfollow"]'));
           break;
         case 'unblock':
           button.dataset.action = 'block';
           button.querySelector('span').innerText = I18n.translate('views.actions.block');
-          button.classList.remove('btn-default');
-          button.classList.add('btn-primary');
+          if (button.classList.contains('btn')) {
+            button.classList.remove('btn-default');
+            button.classList.add('btn-primary');
+          }
           break;
       }
      }
