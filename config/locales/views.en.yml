@@ -94,6 +94,7 @@ en:
         heading: "Unsatisfied?"
     blocks:
       blocked: "blocked %{time} ago"
+      none: "No one has been blocked yet"
       section:
         blocks:
           heading: "Blocks"
