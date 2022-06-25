@@ -18,6 +18,6 @@ module UserHelper
   private
 
   def anonymous_name(context_user)
-    sanitize(context_user&.profile&.anon_display_name.presence || APP_CONFIG["anonymous_name"])
+    sanitize(context_user&.profile&.anon_display_name.presence || APP_CONFIG["anonymous_name"], tags: [])
   end
 end
