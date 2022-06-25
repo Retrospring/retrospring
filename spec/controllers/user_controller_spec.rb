@@ -325,7 +325,6 @@ describe UserController, type: :controller do
 
         expect(assigns(:anonymous_blocks)).to eq(user.anonymous_blocks)
       end
-
     end
   end
 end
