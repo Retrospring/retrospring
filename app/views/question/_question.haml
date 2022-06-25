@@ -29,5 +29,5 @@
             - if hidden
               = user_screen_name question.user, anonymous: question.author_is_anonymous, url: false
             - else
-              = raw t('views.answerbox.asked', user: user_screen_name(question.user, anonymous: question.author_is_anonymous), time: time_tooltip(question))
+              = raw t('views.answerbox.asked', user: user_screen_name(question.user, author_identifier: question.author_identifier), time: time_tooltip(question))
           .answerbox__question-text= question_markdown question.content
