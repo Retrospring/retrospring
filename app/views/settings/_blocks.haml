@@ -13,6 +13,9 @@
             .ml-auto.d-inline-flex
               %button.btn.btn-default.align-self-center{ data: { action: :unblock, target: block.target.screen_name } }
                 %span.pe-none= t("views.actions.unblock")
+
+      - if @blocks.empty?
+        %p.text-muted.text-center= t(".none")
 .card
   .card-body
     %h2= t(".section.anon_blocks.heading")
@@ -28,3 +31,5 @@
               %button.btn.btn-default.align-self-center{ data: { action: "anon-unblock", target: block.id } }
                 %span.pe-none= t("views.actions.unblock")
 
+      - if @anonymous_blocks.empty?
+        %p.text-muted.text-center= t(".none")
