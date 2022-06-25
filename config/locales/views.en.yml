@@ -101,7 +101,7 @@ en:
           body: "Each user you've blocked is listed here, along with a way to unblock them.  To block someone, use the 'Actions' dropdown on their profile page."
         anon_blocks:
           heading: "Anonymous Blocks"
-          body: "Here every anonymous user you are blocking is listed with a quick option to unblock them. Anonymous users can be blocked from questions in your inbox. To provide more context on who you blocked, the question they asked you is shown."
+          body: "Each anonymous user you've blocked is listed here, along with a way to unblock them.  We also display the question they asked you to add some more context.  You can block anonymous users directly from the question in your inbox."
     data:
       heading: "Your Profile Data"
       body: "Everything we have about you! Really, not that much as you might expect."
