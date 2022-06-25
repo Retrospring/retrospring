@@ -27,17 +27,17 @@ module ApplicationHelper::TitleMethods
 
   def question_title(question)
     context_user = question.answers&.first&.user if question.direct
-    name = user_screen_name question.user, context_user: context_user, anonymous: question.author_is_anonymous, url: false
+    name = user_screen_name question.user, context_user: context_user, author_identifier: question.author_identifier, url: false
     generate_title name, "asked", question.content
   end
 
   def answer_title(answer)
-    name = user_screen_name answer.user, anonymous: false, url: false
+    name = user_screen_name answer.user, url: false
     generate_title name, "answered", answer.question.content
   end
 
   def user_title(user, junction = nil)
-    name = user_screen_name user, anonymous: false, url: false
+    name = user_screen_name user, url: false
     generate_title name, junction, nil, !junction.nil?
   end
 
