@@ -98,10 +98,10 @@ en:
       section:
         blocks:
           heading: "Blocks"
-          body: "Here every user you are currently blocking is listed with a quick option to unblock them. You can block users on their profile using the 'Actions' dropdown."
+          body: "Here every user you are currently blocking is listed with a quick option to unblock them. You can block users on their profile from the 'Actions' dropdown."
         anon_blocks:
           heading: "Anonymous Blocks"
-          body: "Here every anonymous user you are blocking is listed with a quick option to unblock them. Anonymous users can be blocked from questions in your inbox. To provide more context on who you blocked, the question they asked you is provided as context."
+          body: "Here every anonymous user you are blocking is listed with a quick option to unblock them. Anonymous users can be blocked from questions in your inbox. To provide more context on who you blocked, the question they asked you is shown."
     data:
       heading: "Your Profile Data"
       body: "Everything we have about you! Really, not that much as you might expect."
