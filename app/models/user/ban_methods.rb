@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module User::BanMethods
   def permanently_banned?
     bans.current.first&.permanent? || false
   end
 
   def banned?
-    self.bans.current.count > 0
+    bans.current.count.positive?
   end
 
   def unban
