@@ -40,6 +40,17 @@ en:
     destroy:
       success: "Service removed successfully."
   settings:
+    profile:
+      update:
+        success: "Profile updated successfully."
+        error: "Unable to update profile."
+    profile_picture:
+      update:
+        success: :settings.profile.update.success
+        error: :settings.profile.update.error
+        notice:
+          profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
+          profile_header: " It might take a few minutes until your new profile header is shown everywhere."
     theme:
       update:
         success: "Theme saved successfully."

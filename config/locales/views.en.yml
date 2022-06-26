@@ -151,9 +151,11 @@ en:
         add: "Add"
         remove: "Remove"
     profile:
-      adjust:
-        profile_picture: "Adjust your new profile picture"
-        profile_header: "Adjust your new profile header"
+      edit:
+        title: "Profile Settings"
+        adjust:
+          profile_picture: "Adjust your new profile picture"
+          profile_header: "Adjust your new profile header"
     security:
       heading: "Two-factor authentication"
       recovery_keys:
@@ -326,8 +328,6 @@ en:
   user:
     data:
       title: "Your Data"
-    edit:
-      title: "Profile Settings"
     edit_blocks:
       title: "Blocks"
     edit_mute:
