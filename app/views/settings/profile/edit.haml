@@ -1,6 +1,6 @@
 .card
   .card-body
-    = bootstrap_form_for(current_user, url: { action: :edit }, html: { multipart: true }, method: :patch) do |f|
+    = bootstrap_form_for(current_user, url: settings_profile_picture_path, html: { multipart: true }, method: :patch) do |f|
 
       .media#profile-picture-media
         .pull-left
@@ -35,7 +35,7 @@
       = f.primary
 .card
   .card-body
-    = bootstrap_form_for(current_user.profile, url: { action: :update_profile }, html: { multipart: true }, method: :patch) do |f|
+    = bootstrap_form_for(current_user.profile, html: { multipart: true }, method: :patch) do |f|
 
       = f.text_field :display_name
 
