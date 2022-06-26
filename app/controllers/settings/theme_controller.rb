@@ -3,23 +3,22 @@ class Settings::ThemeController < ApplicationController
 
   before_action :authenticate_user!
 
-  def edit
-  end
+  def edit; end
 
   def update
-    update_attributes = params.require(:theme).permit([
-      :primary_color, :primary_text,
-      :danger_color, :danger_text,
-      :success_color, :success_text,
-      :warning_color, :warning_text,
-      :info_color, :info_text,
-      :dark_color, :dark_text,
-      :light_color, :light_text,
-      :raised_background, :raised_accent,
-      :background_color, :body_text, 
-      :muted_text, :input_color, 
-      :input_text
-    ])
+    update_attributes = params.require(:theme).permit(%i[
+                                                        primary_color primary_text
+                                                        danger_color danger_text
+                                                        success_color success_text
+                                                        warning_color warning_text
+                                                        info_color info_text
+                                                        dark_color dark_text
+                                                        light_color light_text
+                                                        raised_background raised_accent
+                                                        background_color body_text
+                                                        muted_text input_color
+                                                        input_text
+                                                      ])
 
     if current_user.theme.nil?
       current_user.theme = Theme.new update_attributes
