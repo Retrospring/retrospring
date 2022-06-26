@@ -18,7 +18,7 @@ module UserHelper
   end
 
   def moderation_view?
-    current_user.mod? && session[:moderation_view] == true
+    current_user&.mod? && session[:moderation_view] == true
   end
 
   private
