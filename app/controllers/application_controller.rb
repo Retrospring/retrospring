@@ -26,11 +26,11 @@ class ApplicationController < ActionController::Base
       flash[:notice] = t('flash.ban.error', name: name)
       current_ban = current_user.bans.current.first
       unless current_ban&.reason.nil?
-        flash[:notice] += "\n#{t('flash.ban.reason', reason: current_user.bans.current.first.reason)}"
+        flash[:notice] += "\n#{t('flash.ban.reason', reason: current_ban.reason)}"
       end
-      unless current_ban&.permanently_banned?
+      unless current_ban&.permanent?
         # TODO format banned_until
-        flash[:notice] += "\n#{t('flash.ban.until', time: current_user.banned_until)}"
+        flash[:notice] += "\n#{t('flash.ban.until', time: current_ban.expires_at)}"
       end
       sign_out current_user
       redirect_to new_user_session_path
