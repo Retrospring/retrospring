@@ -27,7 +27,7 @@
                         = t 'views.actions.report'
           %h6.text-muted.media-heading.answerbox__question-user
             - if hidden
-              = user_screen_name question.user, anonymous_identifier: question.author_identifier, url: false
+              = user_screen_name question.user, author_identifier: question.author_identifier, url: false
             - else
               = raw t('views.answerbox.asked', user: user_screen_name(question.user, author_identifier: question.author_identifier), time: time_tooltip(question))
           .answerbox__question-text= question_markdown question.content
