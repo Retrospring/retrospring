@@ -229,6 +229,10 @@ class User < ApplicationRecord
   end
   # endregion
 
+  def permanently_banned?
+    bans.current.first&.permanent? || false
+  end
+
   def banned?
     self.bans.current.count > 0
   end
