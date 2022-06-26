@@ -22,7 +22,7 @@ describe Settings::ProfileController, type: :controller do
     subject { patch :update, params: { profile: profile_params } }
     let(:profile_params) do
       {
-        display_name: 'sneaky cune'
+        display_name: "sneaky cune"
       }
     end
 
@@ -32,7 +32,7 @@ describe Settings::ProfileController, type: :controller do
       before(:each) { sign_in user }
 
       it "updates the user's profile" do
-        expect { subject }.to change{ user.profile.reload.display_name }.to('sneaky cune')
+        expect { subject }.to change { user.profile.reload.display_name }.to("sneaky cune")
       end
 
       it "redirects to the edit_user_profile page" do
