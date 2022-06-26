@@ -49,4 +49,4 @@
               .col-xs-12.col-sm-10.offset-sm-1.text-center
                 %small= t(".promote.join", app_title: APP_CONFIG["site_name"])
         - else
-          %p= raw t(".required"), signup: link_to(t("views.sessions.new"), new_user_registration_path)
+          %p= raw t(".required", signup: link_to(t("views.sessions.new"), new_user_registration_path))
