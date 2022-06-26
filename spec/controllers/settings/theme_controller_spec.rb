@@ -21,31 +21,31 @@ describe Settings::ThemeController, type: :controller do
   describe "#update" do
     let(:user) { FactoryBot.create(:user) }
 
-    let(:update_attributes) do 
-      { 
+    let(:update_attributes) do
+      {
         theme: {
-          primary_color: 6174129,
-          primary_text: 16777215,
-          danger_color: 14431557,
-          danger_text: 16777215,
-          success_color: 2664261,
-          success_text: 16777215,
-          warning_color: 16761095,
-          warning_text: 2697513,
-          info_color: 1548984,
-          info_text: 16777215,
-          dark_color: 3422784,
-          dark_text: 15658734,
-          light_color: 16316922,
-          light_text: 0,
+          primary_color:     6174129,
+          primary_text:      16777215,
+          danger_color:      14431557,
+          danger_text:       16777215,
+          success_color:     2664261,
+          success_text:      16777215,
+          warning_color:     16761095,
+          warning_text:      2697513,
+          info_color:        1548984,
+          info_text:         16777215,
+          dark_color:        3422784,
+          dark_text:         15658734,
+          light_color:       16316922,
+          light_text:        0,
           raised_background: 16777215,
-          raised_accent: 16250871,
-          background_color: 15789556,
-          body_text: 0,
-          muted_text: 7107965,
-          input_color: 15789556,
-          input_text: 0
-        } 
+          raised_accent:     16250871,
+          background_color:  15789556,
+          body_text:         0,
+          muted_text:        7107965,
+          input_color:       15789556,
+          input_text:        0
+        }
       }
     end
 
