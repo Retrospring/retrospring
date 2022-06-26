@@ -6,7 +6,7 @@ let previewTimeout = null;
 const previewTheme = (): void => {
   const payload = {};
 
-  Array.from(document.querySelectorAll('#update_theme .color')).forEach((color: HTMLInputElement) => {
+  Array.from(document.querySelectorAll('#update .color')).forEach((color: HTMLInputElement) => {
     const name = color.name.substring(6, color.name.length - 1);
     payload[name] = parseInt(color.value.substr(1, 6), 16);
   });
@@ -67,7 +67,7 @@ const getDecimalTripletsFromHex = (hex: string): string => {
 }
 
 export function themeDocumentHandler(): void {
-  if (!document.querySelector('#update_theme')) return;
+  if (!document.querySelector('[action="/settings/theme"]')) return;
   if (document.querySelector('#clr-picker')) return;
 
   previewStyle = document.createElement('style');
@@ -76,7 +76,7 @@ export function themeDocumentHandler(): void {
 
   Coloris.init();
 
-  Array.from(document.querySelectorAll('#update_theme .color')).forEach((color: HTMLInputElement) => {
+  Array.from(document.querySelectorAll('#update .color')).forEach((color: HTMLInputElement) => {
     // If there already is a hex-color in the input, skip
     if (color.value.startsWith('#')) return;
 
@@ -108,7 +108,7 @@ export function themeDocumentHandler(): void {
 }
 
 export function themeSubmitHandler(): void {
-  Array.from(document.querySelectorAll('#update_theme .color')).forEach((color: HTMLInputElement) => {
+  Array.from(document.querySelectorAll('#update .color')).forEach((color: HTMLInputElement) => {
     color.value = String(parseInt(color.value.substr(1, 6), 16));
   });
 }
