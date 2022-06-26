@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Settings::ThemeController < ApplicationController
   include ThemeHelper
 
