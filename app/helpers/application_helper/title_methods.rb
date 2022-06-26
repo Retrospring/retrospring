@@ -28,9 +28,9 @@ module ApplicationHelper::TitleMethods
   def question_title(question)
     context_user = question.answers&.first&.user if question.direct
     name = user_screen_name question.user,
-                            context_user: context_user,
+                            context_user:      context_user,
                             author_identifier: question.author_is_anonymous ? question.author_identifier : nil,
-                            url: false
+                            url:               false
     generate_title name, "asked", question.content
   end
 
