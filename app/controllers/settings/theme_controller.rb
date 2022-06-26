@@ -36,11 +36,11 @@ class Settings::ThemeController < ApplicationController
     else
       flash[:error] = t(".error", errors: current_user.theme.errors.messages.flatten.join(" "))
     end
-    redirect_to edit_user_theme_path
+    redirect_to settings_theme_path
   end
 
   def destroy
     current_user.theme.destroy!
-    redirect_to edit_user_theme_path
+    redirect_to settings_theme_path
   end
 end
