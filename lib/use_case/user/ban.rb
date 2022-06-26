@@ -15,12 +15,7 @@ module UseCase
       option :reason, type: Types::Coercible::String.optional
 
       def call
-        ban = ::UserBan.create!(
-          user: target_user,
-          expires_at: expiry,
-          banned_by: source_user,
-          reason: reason
-        )
+        ban = target_user.ban(expiry, reason, source_user)
 
         if reason == REASON_SPAM
           target_user.update!(

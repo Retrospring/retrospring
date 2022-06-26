@@ -421,10 +421,10 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
             let(:duration_unit) { pb == '0' ? 'hours' : nil }
 
             context "when user is already banned" do
-              before { target_user.ban(nil) }
+              before { target_user.ban }
 
               it "unbans the user" do
-                 expect { subject }.to change { target_user.reload.banned? }.from(true).to(false)
+                expect { subject }.to change { target_user.reload.banned? }.from(true).to(false)
               end
 
               include_examples "returns the expected response"

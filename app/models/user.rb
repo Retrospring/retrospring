@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+require "use_case/user/ban"
+require "use_case/user/unban"
+
 class User < ApplicationRecord
   include User::Relationship
   include User::Relationship::Follow
@@ -233,21 +238,15 @@ class User < ApplicationRecord
   end
 
   # Bans a user.
-  # @param duration [Integer?] Ban duration
-  # @param duration_unit [String, nil] Unit for the <code>duration</code> parameter. Accepted units: hours, days, weeks, months
-  # @param reason [String] Reason for the ban. This is displayed to the user.
+  # @param expiry [DateTime, nil] the expiry time of the ban
+  # @param reason [String, nil] Reason for the ban. This is displayed to the user.
   # @param banned_by [User] User who instated the ban
-  def ban(duration, duration_unit = 'hours', reason = nil, banned_by = nil)
-    if duration
-      expiry = duration.public_send(duration_unit)
-    else
-      expiry = nil
-    end
-    UseCase::User::Ban.call(
-      target_user_id: id,
-      expiry: expiry,
-      reason: reason,
-      source_user_id: banned_by&.id
+  def ban(expiry = nil, reason = nil, banned_by = nil)
+    ::UserBan.create!(
+      user:       self,
+      expires_at: expiry,
+      banned_by:  banned_by,
+      reason:     reason
     )
   end
 
