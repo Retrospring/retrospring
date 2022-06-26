@@ -36,7 +36,7 @@ export function banFormHandler(event: Event): void {
 
   if (checkbox && checkbox.checked) {
     data['ban'] = '1';
-    data['reason'] = form.elements['user'].value;
+    data['reason'] = form.elements['reason'].value;
 
     if (!permaCheckbox.checked) {
       data['duration'] = form.elements['duration'].value.trim();
