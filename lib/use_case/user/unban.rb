@@ -8,10 +8,11 @@ module UseCase
       param :target_user_id, type: Types::Coercible::Integer
 
       def call
-        UserBan.current.where(user_id: target_user_id).update_all(
-          # -1s to account for flakyness with timings in tests
-          expires_at: DateTime.now - 1.second
-        )
+        target_user.unban
+      end
+
+      def target_user
+        @target_user ||= ::User.find(target_user_id)
       end
     end
   end
