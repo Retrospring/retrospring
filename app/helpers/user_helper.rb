@@ -41,7 +41,7 @@ module UserHelper
     sanitize(context_user&.profile&.anon_display_name.presence || APP_CONFIG["anonymous_name"], tags: [])
   end
 
-  def anonymous?(user, anonymous)
-    user.nil? || anonymous
+  def anonymous?(user, author_identifier)
+    user.nil? || author_identifier.present?
   end
 end

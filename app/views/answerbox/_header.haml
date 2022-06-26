@@ -25,7 +25,7 @@
       %h6.text-muted.media-heading.answerbox__question-user
         - if a.question.author_is_anonymous
           %i.fa.fa-user-secret{ title: t('.anon_hint') }
-        = raw t('views.answerbox.asked', user: user_screen_name(a.question.user, context_user: a.user, author_identifier: a.question.author_identifier), time: time_tooltip(a.question))
+        = raw t('views.answerbox.asked', user: user_screen_name(a.question.user, context_user: a.user, author_identifier: a.question.author_is_anonymous ? a.question.author_identifier: nil), time: time_tooltip(a.question))
         - if !a.question.author_is_anonymous && !a.question.direct
           ·
           %a{ href: show_user_question_path(a.question.user.screen_name, a.question.id) }
