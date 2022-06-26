@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 describe User::SessionsController do
   before do
@@ -70,6 +72,32 @@ describe User::SessionsController do
           expect(subject).to redirect_to :new_user_session
           expect(flash[:error]).to eq I18n.t("errors.invalid_otp")
         end
+      end
+    end
+
+    context "permanently banned user sign in attempt" do
+      before do
+        user.ban(nil, "Do not feed the animals")
+      end
+
+      it "redirects to the sign in page" do
+        expect(subject).to redirect_to :new_user_session
+        expect(flash[:notice]).to eq "#{I18n.t('flash.ban.error', name: user.screen_name)}\n#{I18n.t('flash.ban.reason', reason: 'Do not feed the animals')}"
+      end
+    end
+
+    context "temporarily banned user sign in attempt" do
+      let(:expiry) { DateTime.now.utc + 3.hours }
+
+      before do
+        user.ban(expiry, "Do not feed the animals")
+      end
+
+      it "redirects to the sign in page" do
+        expect(subject).to redirect_to :new_user_session
+        expect(flash[:notice]).to eq I18n.t("flash.ban.error", name: user.screen_name) +
+          "\n#{I18n.t('flash.ban.reason', reason: 'Do not feed the animals')}" \
+          "\n#{I18n.t('flash.ban.until', time: expiry)}"
       end
     end
   end
