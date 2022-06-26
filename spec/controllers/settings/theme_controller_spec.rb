@@ -56,7 +56,7 @@ describe Settings::ThemeController, type: :controller do
 
       context "user has no theme" do
         it "creates a new theme" do
-          expect { subject }.to(change{ user.reload.theme })
+          expect { subject }.to(change { user.reload.theme })
         end
 
         it "renders the edit template" do
@@ -70,7 +70,7 @@ describe Settings::ThemeController, type: :controller do
         let(:theme) { FactoryBot.create(:theme, user: user) }
 
         it "updates the theme" do
-          expect { subject }.to(change{ theme.reload.attributes })
+          expect { subject }.to(change { theme.reload.attributes })
         end
 
         it "renders the edit template" do
