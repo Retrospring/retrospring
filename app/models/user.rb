@@ -234,9 +234,9 @@ class User < ApplicationRecord
   end
 
   def unban
-    UserBan.current.where(user_id: self.id).update_all(
+    bans.current.update(
       # -1s to account for flakyness with timings in tests
-      expires_at: DateTime.now - 1.second
+      expires_at: DateTime.now.utc - 1.second
     )
   end
 
