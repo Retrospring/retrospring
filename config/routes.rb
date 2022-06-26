@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
   namespace :settings do
     get :theme, to: redirect('/settings/theme/edit')
-    resource :theme, controller: :theme, only: %i[edit update delete]
+    resource :theme, controller: :theme, only: %i[edit update destroy]
   end
   resolve('Theme') { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
 
