@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "use_case/user/ban"
-require "use_case/user/unban"
-
 class User < ApplicationRecord
   include User::Relationship
   include User::Relationship::Follow
