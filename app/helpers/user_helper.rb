@@ -27,14 +27,14 @@ module UserHelper
     link_to(user.profile.safe_name, show_user_profile_path(user.screen_name), class: ("user--banned" if user.banned?).to_s)
   end
 
-  def should_unmask?(anonymous_identifier)
-    moderation_view? && anonymous_identifier.present?
+  def should_unmask?(author_identifier)
+    moderation_view? && author_identifier.present?
   end
 
-  def unmask(user, context_user, anonymous_identifier)
+  def unmask(user, context_user, author_identifier)
     return profile_link(user) if user.present?
 
-    content_tag(:abbr, anonymous_name(context_user), title: anonymous_identifier)
+    content_tag(:abbr, anonymous_name(context_user), title: author_identifier)
   end
 
   def anonymous_name(context_user)
