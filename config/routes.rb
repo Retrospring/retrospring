@@ -67,7 +67,9 @@ Rails.application.routes.draw do
     resource :theme, controller: :theme, only: %i[edit update destroy]
 
     get :profile, to: redirect('/settings/profile/edit')
-    resource :profile, controller: :profile, only: %i[edit update update_profile]
+    resource :profile, controller: :profile, only: %i[edit update]
+
+    resource :profile_picture, controller: :profile_picture, only: %i[update]
   end
   resolve('Theme') { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
   resolve('Profile') { [:settings_profile] }
