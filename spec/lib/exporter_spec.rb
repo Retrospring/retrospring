@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-require 'exporter'
+require "rails_helper"
+require "exporter"
 
 RSpec.describe Exporter do
   let(:params) { {
     answered_count: 144,
     asked_count: 72,
-    ban_reason: nil,
-    banned_until: nil,
     comment_smiled_count: 15,
     commented_count: 12,
     confirmation_sent_at: 2.weeks.ago.utc,
@@ -19,7 +17,6 @@ RSpec.describe Exporter do
     last_sign_in_at: 1.hour.ago,
     last_sign_in_ip: '192.0.2.14',
     locale: 'en',
-    permanently_banned: false,
     privacy_allow_anonymous_questions: true,
     privacy_allow_public_timeline: false,
     privacy_allow_stranger_answers: false,
