@@ -65,9 +65,11 @@ Rails.application.routes.draw do
   match '/settings/profile', to: 'user#update', via: 'patch', as: :update_user_profile
   match '/settings/profile_info', to: 'user#update_profile', via: 'patch', as: :update_user_profile_info
 
-  match '/settings/theme', to: 'settings/theme#edit', via: 'get', as: :edit_user_theme
-  match '/settings/theme', to: 'settings/theme#update', via: 'patch', as: :update_user_theme
-  match '/settings/theme/delete', to: 'settings/theme#destroy', via: 'delete', as: :delete_user_theme
+  namespace :settings do
+    get :theme, to: redirect('/settings/theme/edit')
+    resource :theme, controller: :theme, only: %i[edit update delete]
+  end
+  resolve('Theme') { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
 
   match '/settings/security', to: 'user#edit_security', via: :get, as: :edit_user_security
   match '/settings/security/2fa', to: 'user#update_2fa', via: :patch, as: :update_user_2fa
