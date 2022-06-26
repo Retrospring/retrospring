@@ -17,13 +17,19 @@ class StaticController < ApplicationController
   end
 
   def about
-    @users = User
-      .where.not(confirmed_at: nil)
-      .where(permanently_banned: false)
-      .where(banned_until: nil)
-      .where('answered_count > 0')
-      .count
+    user_count = User
+                 .where.not(confirmed_at: nil)
+                 .where("answered_count > 0")
+                 .count
 
+    current_ban_count = UserBan
+                        .current
+                        .joins(:user)
+                        .where.not("users.confirmed_at": nil)
+                        .where("users.answered_count > 0")
+                        .count
+
+    @users = user_count - current_ban_count
     @questions = Question.count
     @answers = Answer.count
     @comments = Comment.count

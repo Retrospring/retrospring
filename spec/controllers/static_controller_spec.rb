@@ -5,12 +5,12 @@ require "rails_helper"
 describe StaticController, type: :controller do
   describe "#about" do
     subject { get :about }
-    
+
     before(:each) {
       FactoryBot.create(:user, { confirmed_at: Time.current, answered_count: 1 })
-      FactoryBot.create(:user, { permanently_banned: true })
-      FactoryBot.create(:user, { banned_until: Time.current + 10.days })
+      FactoryBot.create(:user, { confirmed_at: Time.current, answered_count: 1 }).ban
       FactoryBot.create(:user, { confirmed_at: Time.current })
+      FactoryBot.create(:user, { confirmed_at: Time.current }).ban
     }
 
     it "shows the correct user count" do
