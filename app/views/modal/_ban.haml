@@ -14,8 +14,8 @@
           .modal-body
             = f.check_box :ban, label: t('views.modal.bancontrol.ban'), checked: user.banned?
             #ban-controls{ class: user.banned? ? '' : 'd-none' }
-              = f.check_box :permaban, label: t('views.modal.bancontrol.permanent'), checked: user.permanent?
-              #ban-controls-time{ class: user.permanent? ? 'd-none' : '' }
+              = f.check_box :permaban, label: t('views.modal.bancontrol.permanent'), checked: user.permanently_banned?
+              #ban-controls-time{ class: user.permanently_banned? ? 'd-none' : '' }
                 = f.text_field :duration, label: '', required: true
                 .form-check.form-check-inline
                   = f.radio_button :duration_unit, 'hours', label: 'Hours', checked: true
