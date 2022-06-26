@@ -34,7 +34,7 @@ module UserHelper
   def unmask(user, context_user, anonymous_identifier)
     return profile_link(user) if user.present?
 
-    "<abbr title='#{anonymous_identifier}'>#{anonymous_name(context_user)}</abbr>"
+    content_tag(:abbr, anonymous_name(context_user), title: anonymous_identifier)
   end
 
   def anonymous_name(context_user)
