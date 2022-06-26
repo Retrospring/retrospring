@@ -63,19 +63,6 @@ describe UserController, type: :controller do
     end
   end
 
-  describe "#edit" do
-    subject { get :edit }
-
-    context "user signed in" do
-      before(:each) { sign_in user }
-
-      it "renders the user/edit template" do
-        subject
-        expect(response).to render_template("user/edit")
-      end
-    end
-  end
-
   describe "#edit_privacy" do
     subject { get :edit_privacy }
 
@@ -85,51 +72,6 @@ describe UserController, type: :controller do
       it "renders the user/edit_privacy template" do
         subject
         expect(response).to render_template("user/edit_privacy")
-      end
-    end
-  end
-
-  describe "#update" do
-    subject { patch :update, params: { user: avatar_params } }
-    let(:avatar_params) do
-      {
-        profile_picture: fixture_file_upload("banana_racc.jpg", "image/jpeg")
-      }
-    end
-
-    context "user signed in" do
-      before(:each) { sign_in user }
-
-      it "enqueues a Sidekiq job to process the uploaded profile picture" do
-        subject
-        expect(::CarrierWave::Workers::ProcessAsset).to have_enqueued_sidekiq_job("User", user.id.to_s, "profile_picture")
-      end
-
-      it "redirects to the edit_user_profile page" do
-        subject
-        expect(response).to redirect_to(:edit_user_profile)
-      end
-    end
-  end
-
-  describe "#update_profile" do
-    subject { patch :update_profile, params: { profile: profile_params } }
-    let(:profile_params) do
-      {
-        display_name: 'sneaky cune'
-      }
-    end
-
-    context "user signed in" do
-      before(:each) { sign_in user }
-
-      it "updates the user's profile" do
-        expect { subject }.to change{ user.profile.reload.display_name }.to('sneaky cune')
-      end
-
-      it "redirects to the edit_user_profile page" do
-        subject
-        expect(response).to redirect_to(:edit_user_profile)
       end
     end
   end
@@ -160,29 +102,6 @@ describe UserController, type: :controller do
       it "redirects to the edit_user_profile page" do
         subject
         expect(response).to redirect_to(:edit_user_privacy)
-      end
-    end
-  end
-
-  describe "#update" do
-    subject { patch :update, params: { user: header_params } }
-    let(:header_params) do
-      {
-        profile_header: fixture_file_upload("banana_racc.jpg", "image/jpeg")
-      }
-    end
-
-    context "user signed in" do
-      before(:each) { sign_in user }
-
-      it "enqueues a Sidekiq job to process the uploaded profile header" do
-        subject
-        expect(::CarrierWave::Workers::ProcessAsset).to have_enqueued_sidekiq_job("User", user.id.to_s, "profile_header")
-      end
-
-      it "redirects to the edit_user_profile page" do
-        subject
-        expect(response).to redirect_to(:edit_user_profile)
       end
     end
   end
