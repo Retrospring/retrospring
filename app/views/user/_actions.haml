@@ -1,7 +1,7 @@
 .profile__actions
   - type ||= :nil
   - if user_signed_in? && user == current_user
-    %a.btn.btn-dark.btn-block{ href: edit_user_profile_path } Edit profile
+    %a.btn.btn-dark.btn-block{ href: settings_profile_path } Edit profile
   - elsif user_signed_in?
     - if current_user.following? user
       %button.btn.btn-primary.btn-block{ type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name } }
