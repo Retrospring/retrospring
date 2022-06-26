@@ -39,6 +39,11 @@ en:
       error: :errors.base
     destroy:
       success: "Service removed successfully."
+  settings:
+    theme:
+      update:
+        success: "Theme saved successfully."
+        error: "Theme saving failed. %{errors}"
   user:
     export:
       info: "An export is currently in progress for this account."
@@ -61,9 +66,6 @@ en:
     update_profile:
       success: :user.update.success
       error: :user.update.error
-    update_theme:
-      success: "Theme saved successfully."
-      error: "Theme saving failed. %{errors}"
     sessions:
       create:
         info: "You have %{count} recovery codes remaining."
