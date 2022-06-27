@@ -63,49 +63,6 @@ describe UserController, type: :controller do
     end
   end
 
-  describe "#edit_privacy" do
-    subject { get :edit_privacy }
-
-    context "user signed in" do
-      before(:each) { sign_in user }
-
-      it "renders the user/edit_privacy template" do
-        subject
-        expect(response).to render_template("user/edit_privacy")
-      end
-    end
-  end
-
-  describe "#update_privacy" do
-    subject { patch :update_privacy, params: { user: user_params } }
-    let(:user_params) do
-      {
-        privacy_allow_anonymous_questions: false,
-        privacy_allow_public_timeline: false,
-        privacy_allow_stranger_answers: false,
-        privacy_show_in_search: false,
-      }
-    end
-
-    context "user signed in" do
-      before(:each) { sign_in user }
-
-      it "updates the user's profile" do
-        subject
-        user.reload
-        expect(user.privacy_allow_anonymous_questions).to eq(false)
-        expect(user.privacy_allow_public_timeline).to eq(false)
-        expect(user.privacy_allow_stranger_answers).to eq(false)
-        expect(user.privacy_show_in_search).to eq(false)
-      end
-
-      it "redirects to the edit_user_profile page" do
-        subject
-        expect(response).to redirect_to(:edit_user_privacy)
-      end
-    end
-  end
-
   describe "#edit_security" do
     subject { get :edit_security }
 
