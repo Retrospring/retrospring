@@ -40,6 +40,10 @@ en:
     destroy:
       success: "Service removed successfully."
   settings:
+    privacy:
+      update:
+        success: :settings.profile.update.success
+        error: :settings.profile.update.error
     profile:
       update:
         success: "Profile updated successfully."
@@ -61,22 +65,10 @@ en:
     begin_export:
       success: "Your account is currently being exported. This will take a little while."
       error: "Exporting is currently not possible."
-    update:
-      success: "Profile updated successfully."
-      error: "Unable to update profile."
-      notice:
-        profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
-        profile_header: " It might take a few minutes until your new profile header is shown everywhere."
     update_2fa:
       error: :errors.invalid_otp
     destroy_2fa:
       success: "Two factor authentication has been disabled for your account."
-    update_privacy:
-      success: :user.update.success
-      error: :user.update.error
-    update_profile:
-      success: :user.update.success
-      error: :user.update.error
     sessions:
       create:
         info: "You have %{count} recovery codes remaining."
