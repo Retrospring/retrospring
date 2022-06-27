@@ -70,6 +70,9 @@ Rails.application.routes.draw do
     resource :profile, controller: :profile, only: %i[edit update]
 
     resource :profile_picture, controller: :profile_picture, only: %i[update]
+
+    get :privacy, to: redirect('/settings/privacy/edit')
+    resource :privacy, controller: :privacy, only: %i[edit update]
   end
   resolve('Theme') { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
   resolve('Profile') { [:settings_profile] }
@@ -91,9 +94,6 @@ Rails.application.routes.draw do
       get :failure
     end
   end
-
-  match '/settings/privacy', to: 'user#edit_privacy', via: :get, as: :edit_user_privacy
-  match '/settings/privacy', to: 'user#update_privacy', via: :patch, as: :update_user_privacy
 
   match '/settings/data', to: 'user#data', via: :get, as: :user_data
   match '/settings/export', to: 'user#export', via: :get, as: :user_export

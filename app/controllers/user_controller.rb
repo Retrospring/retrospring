@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :authenticate_user!, only: %w[edit_privacy update_privacy data export begin_export edit_security update_2fa destroy_2fa reset_user_recovery_codes edit_mute edit_blocks]
+  before_action :authenticate_user!, only: %w[data export begin_export edit_security update_2fa destroy_2fa reset_user_recovery_codes edit_mute edit_blocks]
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
@@ -20,24 +20,6 @@ class UserController < ApplicationController
       format.js { render layout: false }
     end
   end
-
-  # region Privacy settings
-  def edit_privacy
-  end
-
-  def update_privacy
-    user_attributes = params.require(:user).permit(:privacy_allow_anonymous_questions,
-                                                   :privacy_allow_public_timeline,
-                                                   :privacy_allow_stranger_answers,
-                                                   :privacy_show_in_search)
-    if current_user.update(user_attributes)
-      flash[:success] = t(".success")
-    else
-      flash[:error] = t(".error")
-    end
-    redirect_to edit_user_privacy_path
-  end
-  # endregion
 
   def followers
     @title = 'Followers'
