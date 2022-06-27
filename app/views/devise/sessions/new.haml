@@ -8,8 +8,8 @@
           %h1.mb-3.mt-0= t(".title")
           = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-            = f.text_field :login, autofocus: true
-            = f.password_field :password, autocomplete: :off
+            = f.text_field :login, autofocus: true, autocomplete: :username
+            = f.password_field :password, autocomplete: "current-password"
 
             - if devise_mapping.rememberable?
               = f.check_box :remember_me

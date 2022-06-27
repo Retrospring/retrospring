@@ -9,10 +9,10 @@
             = render "devise/shared/error_messages", resource: resource
             = render "layouts/messages"
 
-            = f.text_field :screen_name, autofocus: true
-            = f.email_field :email, autofocus: false
-            = f.password_field :password, autocomplete: :off
-            = f.password_field :password_confirmation, autocomplete: :off
+            = f.text_field :screen_name, autofocus: true, autocomplete: :username
+            = f.email_field :email, autofocus: false, autocomplete: :email
+            = f.password_field :password, autocomplete: "new-password"
+            = f.password_field :password_confirmation, autocomplete: "new-password"
 
             - if APP_CONFIG.dig(:hcaptcha, :enabled)
               = hcaptcha_tags
