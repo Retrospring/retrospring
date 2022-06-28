@@ -23,9 +23,9 @@ describe Settings::PrivacyController, type: :controller do
     let(:user_params) do
       {
         privacy_allow_anonymous_questions: false,
-        privacy_allow_public_timeline: false,
-        privacy_allow_stranger_answers: false,
-        privacy_show_in_search: false,
+        privacy_allow_public_timeline:     false,
+        privacy_allow_stranger_answers:    false,
+        privacy_show_in_search:            false
       }
     end
 
