@@ -37,15 +37,15 @@
   .card-body
     = bootstrap_form_for(current_user.profile, html: { multipart: true }, method: :patch) do |f|
 
-      = f.text_field :display_name
+      = f.text_field :display_name, autocomplete: :name
 
       = f.text_field :motivation_header
 
-      = f.text_field :anon_display_name, placeholder: APP_CONFIG["anonymous_name"]
+      = f.text_field :anon_display_name, placeholder: APP_CONFIG["anonymous_name"], autocomplete: :off
 
-      = f.text_field :website
+      = f.url_field :website, autocomplete: :url
 
-      = f.text_field :location
+      = f.text_field :location, autocomplete: "address-level2"
 
       = f.text_area :description
 
