@@ -65,11 +65,13 @@ en:
       update:
         success: "Theme saved successfully."
         error: "Theme saving failed. %{errors}"
+    two_factor_authentication:
+      otp_authentication:
+        update:
+          error: :errors.invalid_otp
+        destroy:
+          success: "Two factor authentication has been disabled for your account."
   user:
-    update_2fa:
-      error: :errors.invalid_otp
-    destroy_2fa:
-      success: "Two factor authentication has been disabled for your account."
     sessions:
       create:
         info: "You have %{count} recovery codes remaining."
