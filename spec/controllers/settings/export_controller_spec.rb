@@ -17,4 +17,24 @@ describe Settings::ExportController, type: :controller do
       end
     end
   end
+
+  describe "#create" do
+    subject { post :create }
+
+    context "user signed in" do
+      let(:user) { FactoryBot.create(:user) }
+
+      before { sign_in user }
+
+      it "enqueues an ExportWorker job" do
+        subject
+        expect(ExportWorker).to have_enqueued_sidekiq_job(user.id)
+      end
+      
+      it "redirects to the export page" do
+        subject
+        expect(response).to redirect_to(:settings_export)
+      end
+    end
+  end
 end
