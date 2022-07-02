@@ -101,6 +101,7 @@ en:
         issued_by: "Issued by %{user}"
         permanent: "Permanent"
         until: "Until %{until}"
+        expired: "Expired at %{until}"
   services:
     index:
       title: "Service Settings"

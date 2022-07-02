@@ -7,4 +7,8 @@ class UserBan < ApplicationRecord
   def permanent?
     expires_at.nil?
   end
+
+  def current?
+    permanent? || expires_at > Time.now.utc
+  end
 end
