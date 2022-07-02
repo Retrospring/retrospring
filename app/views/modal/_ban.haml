@@ -11,20 +11,22 @@
       = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: :novalidate }) do |f|
         = f.hidden_field :user, value: user.screen_name
         - if current_ban.nil?
-          .modal-body
-            = f.check_box :ban, label: t('.is_banned'), checked: user.banned?
-            #ban-controls{ class: user.banned? ? '' : 'd-none' }
-              = f.check_box :permaban, label: t('.is_permanent'), checked: user.permanently_banned?
-              #ban-controls-time{ class: user.permanently_banned? ? 'd-none' : '' }
-                .form-row
-                  = f.number_field :duration, label: '', inputmode: :numeric, required: true, wrapper: { class: 'col-md-2' }
-                  .form-check.form-check-inline.mt-3
-                    - for unit in %i[hours days weeks months]
-                      = f.radio_button :duration_unit, unit, label: unit, checked: true
-              = f.text_field :reason, placeholder: t('.reason')
-          .modal-footer
-            %button.btn.btn-default{ name: 'stop-time', type: :button, data: { dismiss: :modal } }= t 'views.actions.close'
-            = f.submit t('.hammertime'), class: 'btn btn-primary', name: 'hammer-time'
+          - if user.bans.count > 1
+            %div{ role: :tabpanel }
+              %ul.nav.nav-tabs.mt-1{ role: :tablist }
+                %li.nav-item{ role: 'presentation' }
+                  %a.nav-link.active{ href: '#ban-controls', aria: { controls: 'ban-controls' }, data: { toggle: :tab }, role: :tab }
+                    = t '.tabs.controls'
+                %li.nav-item{ role: 'presentation' }
+                  %a.nav-link{ href: '#ban-history', aria: { controls: 'ban-history' }, data: { toggle: :tab }, role: :tab }
+                    = t '.tabs.history'
+            .tab-content
+              .tab-pane.active{ role: :tabpanel, id: 'ban-controls' }
+                = render 'modal/ban/controls', f: f, user: user
+              .tab-pane{ role: :tabpanel, id: 'ban-history' }
+                = render 'modal/ban/history', user: user
+          - else
+            = render 'modal/ban/controls', f: f, user: user
         - else
           = f.hidden_field :ban, value: '0'
           .modal-body
