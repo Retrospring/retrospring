@@ -4,7 +4,7 @@
     = t(".body_html")
 
     - if current_user.can_export?
-      %form{ action: begin_user_export_path, method: :post }
+      %form{ action: settings_export_path, method: :post }
         %p.text-center
           %button.btn.btn-lg.btn-primary#export-btn{ type: :submit }= t(".export")
         = hidden_field_tag :authenticity_token, form_authenticity_token
@@ -18,3 +18,6 @@
         = t(".export_url.present", time: current_user.export_created_at)
         %a{ href: current_user.export_url }
           = File.basename current_user.export_url
+
+- provide(:title, generate_title(t(".title")))
+- parent_layout "user/settings"
