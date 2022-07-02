@@ -40,6 +40,12 @@ en:
     destroy:
       success: "Service removed successfully."
   settings:
+    export:
+      index:
+        info: "An export is currently in progress for this account."
+      create:
+        success: "Your account is currently being exported. This will take a little while."
+        error: "Exporting is currently not possible."
     privacy:
       update:
         success: :settings.profile.update.success
@@ -60,11 +66,6 @@ en:
         success: "Theme saved successfully."
         error: "Theme saving failed. %{errors}"
   user:
-    export:
-      info: "An export is currently in progress for this account."
-    begin_export:
-      success: "Your account is currently being exported. This will take a little while."
-      error: "Exporting is currently not possible."
     update_2fa:
       error: :errors.invalid_otp
     destroy_2fa:
