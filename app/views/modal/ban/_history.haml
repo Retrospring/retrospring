@@ -2,13 +2,13 @@
   %p= t '.count', user: user.screen_name, count: user.bans.count
   .list-group
     - user.bans.each do |ban|
-      .list-group-item
+      .list-group-item{ class: ban.current? ? 'list-group-item-success' : '' }
         .d-flex.w-100.justify-content-between
           %h5.mb-1= ban.reason
           %small.text-muted= time_ago_in_words ban.created_at
         - if ban.banned_by.present?
           %p= t('.issued_by', user: ban.banned_by.screen_name)
         - if ban.expires_at.present?
-          %small= t('.until', until: ban.expires_at.strftime('%Y-%m-%d %H:%M:%S'))
+          %small= t(ban.expires_at.past? ? '.expired' : '.until', until: ban.expires_at.strftime('%Y-%m-%d %H:%M:%S'))
         - else
           %small= t('.permanent')
