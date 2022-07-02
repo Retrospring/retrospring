@@ -295,12 +295,6 @@ en:
         title: "Ask your followers"
         choose: "Choose list:"
         loading: "Asking..."
-      bancontrol:
-        title: "Ban Control Center"
-        ban: "Ban?"
-        permanent: "Permanently?"
-        reason: "Reason"
-        hammertime: "Hammer Time"
       list:
         title: "Manage list memberships"
         tabs:
