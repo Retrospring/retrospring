@@ -3,9 +3,11 @@
 require "rails_helper"
 
 describe Settings::TwoFactorAuthentication::OtpAuthenticationController, type: :controller do
-  let(:user) { FactoryBot.create :user,
-                                 otp_module: :disabled,
-                                 otp_secret_key: "EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3" }
+  let(:user) do
+    FactoryBot.create :user,
+                      otp_module:     :disabled,
+                      otp_secret_key: "EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3"
+  end
 
   describe "#index" do
     subject { get :index }
@@ -40,12 +42,12 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController, type: :
       context "user enters the incorrect code" do
         let(:update_params) do
           {
-              user: { otp_validation: 123456 }
+            user: { otp_validation: 123456 }
           }
         end
 
         it "shows an error if the user enters the incorrect code" do
-          Timecop.freeze(Time.at(1603290888)) do
+          Timecop.freeze(Time.at(1603290888).utc) do
             subject
             expect(response).to redirect_to :settings_two_factor_authentication_otp_authentication
             expect(flash[:error]).to eq("The code you entered was invalid.")
@@ -56,12 +58,12 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController, type: :
       context "user enters the correct code" do
         let(:update_params) do
           {
-              user: { otp_validation: 187894 }
+            user: { otp_validation: 187894 }
           }
         end
 
         it "enables 2FA for the logged in user and generates recovery keys" do
-          Timecop.freeze(Time.at(1603290888)) do
+          Timecop.freeze(Time.at(1603290888).utc) do
             subject
             expect(response).to have_rendered(:recovery_keys)
 
@@ -70,7 +72,7 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController, type: :
         end
 
         it "shows an error if the user attempts to use the code once it has expired" do
-          Timecop.freeze(Time.at(1603290950)) do
+          Timecop.freeze(Time.at(1603290950).utc) do
             subject
             expect(response).to redirect_to :settings_two_factor_authentication_otp_authentication
             expect(flash[:error]).to eq(I18n.t("errors.invalid_otp"))
