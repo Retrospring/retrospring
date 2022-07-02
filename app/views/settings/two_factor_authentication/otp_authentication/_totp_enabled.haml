@@ -1,0 +1,6 @@
+%p= t(".body")
+%p= t(".recovery_code_count", count: recovery_code_count)
+= button_to t(".remove.action"), settings_two_factor_authentication_otp_authentication_path, class: "btn btn-danger", method: "delete",
+          data: { confirm: t(".remove.confirm") }
+= button_to t(".regenerate.action"), settings_two_factor_authentication_otp_authentication_reset_path, class: "btn btn-primary", method: "delete",
+          data: { confirm: t(".regenerate.confirm") }

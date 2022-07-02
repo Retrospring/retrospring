@@ -1,0 +1,10 @@
+.card
+  .card-body
+    %h2= t(".heading")
+    - if current_user.otp_module_disabled?
+      = render partial: "settings/two_factor_authentication/otp_authentication/totp_setup", locals: { qr_svg: @qr_svg }
+    - else
+      = render partial: "settings/two_factor_authentication/otp_authentication/totp_enabled", locals: { recovery_code_count: @recovery_code_count }
+
+- provide(:title, generate_title(t(".title")))
+- parent_layout "user/settings"

@@ -8,7 +8,7 @@
           = t(".setup_key")
           %code= current_user.otp_secret_key.scan(/.{4}/).flatten.join(" ")
     .totp-setup__content.col
-      = bootstrap_form_for(current_user, url: { action: :update_2fa, method: :post }) do |f|
+      = bootstrap_form_for(current_user, url: settings_two_factor_authentication_otp_authentication_path) do |f|
         %p= t(".app.none")
         %ul.list-unstyled.pl-3
           %li
