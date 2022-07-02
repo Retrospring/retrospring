@@ -30,7 +30,7 @@ describe Settings::ExportController, type: :controller do
         subject
         expect(ExportWorker).to have_enqueued_sidekiq_job(user.id)
       end
-      
+
       it "redirects to the export page" do
         subject
         expect(response).to redirect_to(:settings_export)
