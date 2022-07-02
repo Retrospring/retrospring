@@ -1,0 +1,14 @@
+.modal-body
+  = f.check_box :ban, label: t('.is_banned'), checked: user.banned?
+  #ban-controls{ class: user.banned? ? '' : 'd-none' }
+    = f.check_box :permaban, label: t('.is_permanent'), checked: user.permanently_banned?
+    #ban-controls-time{ class: user.permanently_banned? ? 'd-none' : '' }
+      .form-row
+        = f.number_field :duration, label: '', inputmode: :numeric, required: true, wrapper: { class: 'col-md-2' }
+        .form-check.form-check-inline.mt-3
+          - for unit in %i[hours days weeks months]
+            = f.radio_button :duration_unit, unit, label: unit, checked: true
+    = f.text_field :reason, placeholder: t('.reason')
+.modal-footer
+  %button.btn.btn-default{ name: 'stop-time', type: :button, data: { dismiss: :modal } }= t 'views.actions.close'
+  = f.submit t('.hammertime'), class: 'btn btn-primary', name: 'hammer-time'
