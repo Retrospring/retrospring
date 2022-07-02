@@ -1,7 +1,7 @@
 .modal-body
   %p= t '.count', user: user.screen_name, count: user.bans.count
   .list-group
-    - user.bans.each do |ban|
+    - user.bans.order(:created_at).reverse_order.each do |ban|
       .list-group-item{ class: ban.current? ? 'list-group-item-success' : '' }
         .d-flex.w-100.justify-content-between
           %h5.mb-1= ban.reason
