@@ -18,3 +18,7 @@ en:
     noauth: "You must be signed in to do this."
   time:
     distance_ago: "%{time} ago"
+    hours: "hours"
+    days: "days"
+    weeks: "weeks"
+    months: "months"
