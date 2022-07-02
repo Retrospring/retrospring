@@ -73,6 +73,9 @@ Rails.application.routes.draw do
 
     get :privacy, to: redirect('/settings/privacy/edit')
     resource :privacy, controller: :privacy, only: %i[edit update]
+
+    get :export, to: 'export#index'
+    post :export, to: 'export#create'
   end
   resolve('Theme') { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
   resolve('Profile') { [:settings_profile] }
@@ -96,8 +99,6 @@ Rails.application.routes.draw do
   end
 
   match '/settings/data', to: 'user#data', via: :get, as: :user_data
-  match '/settings/export', to: 'user#export', via: :get, as: :user_export
-  match '/settings/export', to: 'user#begin_export', via: :post, as: :begin_user_export
 
   namespace :ajax do
     match '/ask', to: 'question#create', via: :post, as: :ask
