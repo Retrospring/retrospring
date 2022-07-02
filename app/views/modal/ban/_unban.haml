@@ -1,0 +1,11 @@
+= f.hidden_field :ban, value: '0'
+.modal-body
+  - if current_ban.expires_at.nil?
+    = t '.banned_permanently_html', reason: current_ban.reason
+  - else
+    = t '.banned_temporarily_html', reason: current_ban.reason, until: current_ban.expires_at.strftime('%Y-%m-%d %H:%M:%S')
+  - if current_ban.banned_by.present?
+    %br
+    = t '.banned_by_html', user: current_ban.banned_by.screen_name, on: current_ban.created_at.strftime('%Y-%m-%d %H:%M:%S')
+.modal-footer
+  = f.submit t '.unban', class: 'btn btn-primary', name: 'hammer-time'
