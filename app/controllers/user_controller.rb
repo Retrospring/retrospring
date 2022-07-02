@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :authenticate_user!, only: %w[data export begin_export edit_security update_2fa destroy_2fa reset_user_recovery_codes edit_mute edit_blocks]
+  before_action :authenticate_user!, only: %w[data edit_security update_2fa destroy_2fa reset_user_recovery_codes edit_mute edit_blocks]
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
@@ -67,23 +67,6 @@ class UserController < ApplicationController
   end
 
   def data
-  end
-
-  def export
-    if current_user.export_processing
-      flash[:info] = t(".info")
-    end
-  end
-
-  def begin_export
-    if current_user.can_export?
-      ExportWorker.perform_async(current_user.id)
-      flash[:success] = t(".success")
-    else
-      flash[:error] = t(".error")
-    end
-
-    redirect_to user_export_path
   end
 
   def edit_security
