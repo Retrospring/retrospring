@@ -131,17 +131,19 @@ en:
             retina: "Retina"
             original: "Original image"
     export:
-      heading: "Export your data"
-      body_html: |
-        <p>The data is inside a <code>.tar.gz</code> archive and available in three formats: YAML, JSON, and XML. 
-        The archive also contains a copy of your profile picture and header picture in all sizes.</p>
-        <p>Please note that you can only export your data once a week. Exporting your data
-        will take a while, so please be patient. You will receive a question once exporting
-        is done.</p>
-      export: "Export"
-      export_url:
-        none: "Once exporting your account is done, a download link will appear here."
-        present: "Here's your export from %{time}"
+      index:
+        title: "Export"
+        heading: "Export your data"
+        body_html: |
+          <p>The data is inside a <code>.tar.gz</code> archive and available in three formats: YAML, JSON, and XML. 
+          The archive also contains a copy of your profile picture and header picture in all sizes.</p>
+          <p>Please note that you can only export your data once a week. Exporting your data
+          will take a while, so please be patient. You will receive a question once exporting
+          is done.</p>
+        export: "Export"
+        export_url:
+          none: "Once exporting your account is done, a download link will appear here."
+          present: "Here's your export from %{time}"
     muted:
       heading: "Muted words"
       body: "Muting words (or longer phrases) will prevent questions containing those to appear in your inbox."
@@ -336,9 +338,7 @@ en:
     edit_mute:
       title: "Muted Words"      
     edit_security:
-      title: "Security Settings"
-    export:
-      title: "Export"
+      title: "Security Settings"  
   moderation:
     inbox:
       header:
