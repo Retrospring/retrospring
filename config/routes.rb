@@ -76,14 +76,17 @@ Rails.application.routes.draw do
 
     get :export, to: 'export#index'
     post :export, to: 'export#create'
+
+    namespace :two_factor_authentication do
+      get :otp_authentication, to: 'otp_authentication#index'
+      patch :otp_authentication, to: 'otp_authentication#update'
+      delete :otp_authentication, to: 'otp_authentication#destroy'
+      match 'otp_authentication/reset', to: 'otp_authentication#reset', via: :delete
+    end
   end
   resolve('Theme') { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
   resolve('Profile') { [:settings_profile] }
 
-  match '/settings/security', to: 'user#edit_security', via: :get, as: :edit_user_security
-  match '/settings/security/2fa', to: 'user#update_2fa', via: :patch, as: :update_user_2fa
-  match '/settings/security/2fa', to: 'user#destroy_2fa', via: :delete, as: :destroy_user_2fa
-  match '/settings/security/recovery', to: 'user#reset_user_recovery_codes', via: :delete, as: :reset_user_recovery_codes
   match '/settings/muted', to: 'user#edit_mute', via: :get, as: :edit_user_mute_rules
   match '/settings/blocks', to: 'user#edit_blocks', via: :get, as: :edit_user_blocks
 

@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :authenticate_user!, only: %w[data edit_security update_2fa destroy_2fa reset_user_recovery_codes edit_mute edit_blocks]
+  before_action :authenticate_user!, only: %w[data edit_mute edit_blocks]
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
@@ -67,48 +67,6 @@ class UserController < ApplicationController
   end
 
   def data
-  end
-
-  def edit_security
-    if current_user.otp_module_disabled?
-      current_user.otp_secret_key = User.otp_random_secret(25)
-      current_user.save
-
-      qr_code = RQRCode::QRCode.new(current_user.provisioning_uri("Retrospring:#{current_user.screen_name}", issuer: "Retrospring"))
-
-      @qr_svg = qr_code.as_svg({ offset: 4, module_size: 4, color: "000;fill:var(--primary)" }).html_safe
-    else
-      @recovery_code_count = current_user.totp_recovery_codes.count
-    end
-  end
-
-  def update_2fa
-    req_params = params.require(:user).permit(:otp_validation)
-    current_user.otp_module = :enabled
-
-    if current_user.authenticate_otp(req_params[:otp_validation], drift: APP_CONFIG.fetch(:otp_drift_period, 30).to_i)
-      @recovery_keys = TotpRecoveryCode.generate_for(current_user)
-      current_user.save!
-
-      render "settings/security/recovery_keys"
-    else
-      flash[:error] = t(".error")
-      redirect_to edit_user_security_path
-    end
-  end
-
-  def destroy_2fa
-    current_user.otp_module = :disabled
-    current_user.save!
-    current_user.totp_recovery_codes.delete_all
-    flash[:success] = t(".success")
-    redirect_to edit_user_security_path
-  end
-
-  def reset_user_recovery_codes
-    current_user.totp_recovery_codes.delete_all
-    @recovery_keys = TotpRecoveryCode.generate_for(current_user)
-    render 'settings/security/recovery_keys'
   end
 
   # region Muting
