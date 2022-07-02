@@ -91,10 +91,16 @@ en:
       tabs:
         controls: "Ban"
         history: "History"
-      banned_permanently_html: "This user is currently permanently banned for <strong>%{reason}</strong>"
-      banned_temporarily_html: "This user is currently banned until <strong>%{until}</strong> for <strong>%{reason}</strong>"
-      banned_by_html: "This ban was instated by <strong>%{user}</strong> on <strong>%{on}</strong>"
-      unban: "Unban"
+      unban:
+        banned_permanently_html: "This user is currently permanently banned for <strong>%{reason}</strong>"
+        banned_temporarily_html: "This user is currently banned until <strong>%{until}</strong> for <strong>%{reason}</strong>"
+        banned_by_html: "This ban was instated by <strong>%{user}</strong> on <strong>%{on}</strong>"
+        unban: "Unban"
+      history:
+        count: "%{user} has been banned %{count} times."
+        issued_by: "Issued by %{user}"
+        permanent: "Permanent"
+        until: "Until %{until}"
   services:
     index:
       title: "Service Settings"
