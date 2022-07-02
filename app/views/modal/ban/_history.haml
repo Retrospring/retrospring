@@ -5,7 +5,7 @@
       .list-group-item{ class: ban.current? ? 'list-group-item-success' : '' }
         .d-flex.w-100.justify-content-between
           %h5.mb-1= ban.reason
-          %small.text-muted= time_ago_in_words ban.created_at
+          %small.text-muted= t('time.distance_ago', time: time_ago_in_words(ban.created_at))
         - if ban.banned_by.present?
           %p= t('.issued_by', user: ban.banned_by.screen_name)
         - if ban.expires_at.present?
