@@ -16,12 +16,11 @@
             #ban-controls{ class: user.banned? ? '' : 'd-none' }
               = f.check_box :permaban, label: t('.is_permanent'), checked: user.permanently_banned?
               #ban-controls-time{ class: user.permanently_banned? ? 'd-none' : '' }
-                = f.text_field :duration, label: '', required: true
-                .form-check.form-check-inline
-                  = f.radio_button :duration_unit, t('time.hours'), label: 'Hours', checked: true
-                  = f.radio_button :duration_unit, t('time.days'), label: 'Days'
-                  = f.radio_button :duration_unit, t('time.weeks'), label: 'Weeks'
-                  = f.radio_button :duration_unit, t('time.months'), label: 'Months'
+                .form-row
+                  = f.number_field :duration, label: '', inputmode: :numeric, required: true, wrapper: { class: 'col-md-2' }
+                  .form-check.form-check-inline.mt-3
+                    - for unit in %i[hours days weeks months]
+                      = f.radio_button :duration_unit, unit, label: unit, checked: true
               = f.text_field :reason, placeholder: t('.reason'), value: user.bans.current.first&.reason
           .modal-footer
             %button.btn.btn-default{ name: 'stop-time', type: :button, data: { dismiss: :modal } }= t 'views.actions.close'
