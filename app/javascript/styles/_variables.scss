@@ -1,5 +1,9 @@
 // Font settings
 $lato-font-path: "~lato-font/fonts";
+$lato-variants: (
+  "normal"   : 400,
+  "bold"     : 600,
+);
 
 $fa-font-path: "~font-awesome/fonts";
 
