@@ -10,22 +10,25 @@
           %span.sr-only= t 'views.actions.close'
       = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: :novalidate }) do |f|
         = f.hidden_field :user, value: user.screen_name
-        - if current_ban.nil?
-          - if user.bans.count > 1
-            %div{ role: :tabpanel }
-              %ul.nav.nav-tabs.mt-1{ role: :tablist }
-                %li.nav-item{ role: 'presentation' }
-                  %a.nav-link.active{ href: '#ban-controls', aria: { controls: 'ban-controls' }, data: { toggle: :tab }, role: :tab }
-                    = t '.tabs.controls'
-                %li.nav-item{ role: 'presentation' }
-                  %a.nav-link{ href: '#ban-history', aria: { controls: 'ban-history' }, data: { toggle: :tab }, role: :tab }
-                    = t '.tabs.history'
-            .tab-content
-              .tab-pane.active{ role: :tabpanel, id: 'ban-controls' }
+        - if user.bans.count > 1
+          %div{ role: :tabpanel }
+            %ul.nav.nav-tabs.mt-1{ role: :tablist }
+              %li.nav-item{ role: 'presentation' }
+                %a.nav-link.active{ href: '#ban-controls-tab', aria: { controls: 'ban-controls-tab' }, data: { toggle: :tab }, role: :tab }
+                  = t '.tabs.controls'
+              %li.nav-item{ role: 'presentation' }
+                %a.nav-link{ href: '#ban-history', aria: { controls: 'ban-history' }, data: { toggle: :tab }, role: :tab }
+                  = t '.tabs.history'
+          .tab-content
+            .tab-pane.active{ role: :tabpanel, id: 'ban-controls-tab' }
+              - if current_ban.nil?
                 = render 'modal/ban/controls', f: f, user: user
-              .tab-pane{ role: :tabpanel, id: 'ban-history' }
-                = render 'modal/ban/history', user: user
-          - else
-            = render 'modal/ban/controls', f: f, user: user
+              - else
+                = render 'modal/ban/unban', f: f, user: user, current_ban: current_ban
+            .tab-pane{ role: :tabpanel, id: 'ban-history' }
+              = render 'modal/ban/history', user: user
         - else
-          = render 'modal/ban/unban', user: user
+          - if current_ban.nil?
+            = render 'modal/ban/controls', f: f, user: user
+          - else
+            = render 'modal/ban/unban', f: f, user: user, current_ban: current_ban
