@@ -4,9 +4,7 @@ class Settings::ExportController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if current_user.export_processing
-      flash[:info] = t(".info")
-    end
+    flash[:info] = t(".info") if current_user.export_processing
   end
 
   def create
