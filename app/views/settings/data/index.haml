@@ -102,3 +102,6 @@
             = " (#{t('time.distance_ago', time: time_ago_in_words(current_user.updated_at))})"
           - else
             = t(".none")
+
+- provide(:title, generate_title(t(".title")))
+- parent_layout "user/settings"
