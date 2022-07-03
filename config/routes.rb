@@ -79,6 +79,8 @@ Rails.application.routes.draw do
 
     get :blocks, to: 'blocks#index'
 
+    get :data, to: 'data#index'
+
     namespace :two_factor_authentication do
       get :otp_authentication, to: 'otp_authentication#index'
       patch :otp_authentication, to: 'otp_authentication#update'
@@ -88,8 +90,6 @@ Rails.application.routes.draw do
   end
   resolve('Theme') { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
   resolve('Profile') { [:settings_profile] }
-
-  match '/settings/blocks', to: 'user#edit_blocks', via: :get, as: :edit_user_blocks
 
   # resources :services, only: [:index, :destroy]
   match '/settings/services', to: 'services#index', via: 'get', as: :services
@@ -101,8 +101,6 @@ Rails.application.routes.draw do
       get :failure
     end
   end
-
-  match '/settings/data', to: 'user#data', via: :get, as: :user_data
 
   namespace :ajax do
     match '/ask', to: 'question#create', via: :post, as: :ask
