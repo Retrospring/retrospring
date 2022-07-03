@@ -11,7 +11,6 @@ gem "pg"
 gem "jbuilder", "~> 2.10"
 gem "sass-rails", "~> 5.0"
 gem "turbolinks", "~> 2.5.3"
-gem "uglifier", ">= 1.3.0"
 
 gem "bcrypt", "~> 3.1.7"
 
