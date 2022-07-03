@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :authenticate_user!, only: %w[data edit_mute edit_blocks]
+  before_action :authenticate_user!, only: %w[data edit_blocks]
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
@@ -68,12 +68,6 @@ class UserController < ApplicationController
 
   def data
   end
-
-  # region Muting
-  def edit_mute
-    @rules = MuteRule.where(user: current_user)
-  end
-  # endregion
 
   def edit_blocks
     @blocks = Relationships::Block.where(source: current_user)
