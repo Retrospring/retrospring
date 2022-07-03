@@ -165,13 +165,15 @@ en:
         export_url:
           none: "Once exporting your account is done, a download link will appear here."
           present: "Here's your export from %{time}"
-    muted:
-      heading: "Muted words"
-      body: "Muting words (or longer phrases) will prevent questions containing those to appear in your inbox."
-      note: "Note: Filtered questions are discarded completely from your inbox, and won't reappear if you remove a filter later on."
-      placeholder: "Add a new muted word..."
-      actions:
-        add: "Add"
+    mutes:
+      index:
+        title: "Muted Words"
+        heading: "Muted words"
+        body: "Muting words (or longer phrases) will prevent questions containing those to appear in your inbox."
+        note: "Note: Filtered questions are discarded completely from your inbox, and won't reappear if you remove a filter later on."
+        placeholder: "Add a new muted word..."
+        actions:
+          add: "Add"
         remove: "Remove"
     privacy:
       edit:
@@ -359,8 +361,6 @@ en:
       title: "Your Data"
     edit_blocks:
       title: "Blocks"
-    edit_mute:
-      title: "Muted Words"
   moderation:
     inbox:
       header:
