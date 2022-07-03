@@ -2,9 +2,8 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   start = Time.now
 
-  # Sidekiq
-  constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
-                        req.env["warden"].user.has_role?(:administrator) } do
+  # Routes only accessible by admins (admin panels, sidekiq, pghero)
+  authenticate :user, ->(user) { user.has_role?(:administrator) } do
     # Admin panel
     mount RailsAdmin::Engine => "/justask_admin", as: "rails_admin"
 
@@ -19,9 +18,8 @@ Rails.application.routes.draw do
     match "/admin/announcements/:id", to: "announcement#destroy", via: :delete, as: :announcement_destroy
   end
 
-  # Moderation panel
-  constraints ->(req) { req.env["warden"].authenticate?(scope: :user) &&
-                        req.env["warden"].user.mod? } do
+  # Routes only accessible by moderators (moderation panel)
+  authenticate :user, ->(user) { user.mod? } do
     match '/moderation/unmask', to: 'moderation#toggle_unmask', via: :post, as: :moderation_toggle_unmask
     match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
     match '/moderation/ip/:user_id', to: 'moderation#ip', via: :get, as: :moderation_ip

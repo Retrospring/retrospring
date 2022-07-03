@@ -6,8 +6,9 @@ require "support/pghero_stubby"
 describe "role-constrained routes", type: :request do
   shared_examples_for "fails to access route" do
     it "fails to access route" do
+      # 302 = redirect to login
       # 404 = no user found -- we have a fallback route if something could not be matched
-      expect(subject).to eq 404
+      expect(subject).to be_in [302, 404]
     end
   end
 
