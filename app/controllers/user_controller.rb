@@ -1,6 +1,4 @@
 class UserController < ApplicationController
-  before_action :authenticate_user!, only: %w[data]
-
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @answers = @user.cursored_answers(last_id: params[:last_id])
@@ -64,8 +62,5 @@ class UserController < ApplicationController
       format.html
       format.js { render layout: false }
     end
-  end
-
-  def data
   end
 end
