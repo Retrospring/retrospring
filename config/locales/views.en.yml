@@ -187,12 +187,12 @@ en:
         index:
           title: "Security Settings"
           heading: "Two-factor authentication"
-          recovery_keys:
-            heading: "Your %{app_name} recovery codes"
-            generated_at: "These codes were generated at %{time}"
-            recommendation: "We recommend storing these in a password manager or printing them out on paper."
-            print: "Print"
-            consideration: "Please consider the environment before printing this page."
+        recovery_keys:
+          heading: "Your %{app_name} recovery codes"
+          generated_at: "These codes were generated at %{time}"
+          recommendation: "We recommend storing these in a password manager or printing them out on paper."
+          print: "Print"
+          consideration: "Please consider the environment before printing this page."
         totp_enabled:
           body: "Your account is set up to require the use of a one-time password in order to log in."
           recovery_code_count: "You currently have %{count} unused recovery codes."
