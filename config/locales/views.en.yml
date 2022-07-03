@@ -126,33 +126,35 @@ en:
             heading: "Anonymous Blocks"
             body: "Each anonymous user you've blocked is listed here, along with a way to unblock them.  We also display the question they asked you to add some more context.  You can block anonymous users directly from the question in your inbox."
     data:
-      heading: "Your Profile Data"
-      body: "Everything we have about you! Really, not that much as you might expect."
-      none: "None set!"
-      section:
-        general: "General"
-        profile: "Profile"
-        pictures: "Pictures"
-        ip: "IP"
-        miscellaneous: "Miscellaneous"
-        dates: "Dates"
-        sign_in: "Sign In"
-        create_update: "Create/Update"
-      pictures:
-        profile_picture:
-          heading: "Profile picture"
-          size:
-            small: "Small"
-            medium: "Medium"
-            large: "Large"
-            original: "Original image"
-        profile_header:
-          heading: "Profile header"
-          size:
-            mobile: "Mobile"
-            web: "Web"
-            retina: "Retina"
-            original: "Original image"
+      index:
+        title: "Your Data"
+        heading: "Your Profile Data"
+        body: "Everything we have about you! Really, not that much as you might expect."
+        none: "None set!"
+        section:
+          general: "General"
+          profile: "Profile"
+          pictures: "Pictures"
+          ip: "IP"
+          miscellaneous: "Miscellaneous"
+          dates: "Dates"
+          sign_in: "Sign In"
+          create_update: "Create/Update"
+        pictures:
+          profile_picture:
+            heading: "Profile picture"
+            size:
+              small: "Small"
+              medium: "Medium"
+              large: "Large"
+              original: "Original image"
+          profile_header:
+            heading: "Profile header"
+            size:
+              mobile: "Mobile"
+              web: "Web"
+              retina: "Retina"
+              original: "Original image"
     export:
       index:
         title: "Export"
@@ -358,9 +360,6 @@ en:
       theme: "Theme"
       data: "Your Data"
       export: "Export"
-  user:
-    data:
-      title: "Your Data"
   moderation:
     inbox:
       header:
