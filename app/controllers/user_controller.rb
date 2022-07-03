@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :authenticate_user!, only: %w[data edit_blocks]
+  before_action :authenticate_user!, only: %w[data]
 
   def show
     @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
@@ -67,10 +67,5 @@ class UserController < ApplicationController
   end
 
   def data
-  end
-
-  def edit_blocks
-    @blocks = Relationships::Block.where(source: current_user)
-    @anonymous_blocks = AnonymousBlock.where(user: current_user)
   end
 end
