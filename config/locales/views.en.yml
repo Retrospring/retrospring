@@ -114,15 +114,17 @@ en:
         action: "Delete my account"
         heading: "Unsatisfied?"
     blocks:
-      blocked: "blocked %{time} ago"
-      none: "You are not blocking anyone."
-      section:
-        blocks:
-          heading: "Blocks"
-          body: "Each user you've blocked is listed here, along with a way to unblock them.  To block someone, use the 'Actions' dropdown on their profile page."
-        anon_blocks:
-          heading: "Anonymous Blocks"
-          body: "Each anonymous user you've blocked is listed here, along with a way to unblock them.  We also display the question they asked you to add some more context.  You can block anonymous users directly from the question in your inbox."
+      index:
+        title: "Blocks"
+        blocked: "blocked %{time} ago"
+        none: "You are not blocking anyone."
+        section:
+          blocks:
+            heading: "Blocks"
+            body: "Each user you've blocked is listed here, along with a way to unblock them.  To block someone, use the 'Actions' dropdown on their profile page."
+          anon_blocks:
+            heading: "Anonymous Blocks"
+            body: "Each anonymous user you've blocked is listed here, along with a way to unblock them.  We also display the question they asked you to add some more context.  You can block anonymous users directly from the question in your inbox."
     data:
       heading: "Your Profile Data"
       body: "Everything we have about you! Really, not that much as you might expect."
@@ -359,8 +361,6 @@ en:
   user:
     data:
       title: "Your Data"
-    edit_blocks:
-      title: "Blocks"
   moderation:
     inbox:
       header:
