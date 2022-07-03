@@ -22,3 +22,6 @@
       %input.form-control{ disabled: true }
       .input-group-append
         %button.btn.btn-danger{ type: "button" }= t(".actions.remove")
+
+- provide(:title, generate_title(t(".title")))
+- parent_layout "user/settings"
