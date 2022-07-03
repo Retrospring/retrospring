@@ -77,6 +77,8 @@ Rails.application.routes.draw do
 
     get :muted, to: 'mutes#index'
 
+    get :blocks, to: 'blocks#index'
+
     namespace :two_factor_authentication do
       get :otp_authentication, to: 'otp_authentication#index'
       patch :otp_authentication, to: 'otp_authentication#update'
