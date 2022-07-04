@@ -2,6 +2,7 @@
 
 # workaround to get pagination right
 RailsAdmin.config do |config|
+  config.asset_source = :webpacker
   config.main_app_name = ['justask', 'Kontrollzentrum']
   config.parent_controller = '::ApplicationController'
 
