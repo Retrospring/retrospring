@@ -29,6 +29,8 @@ RailsAdmin.config do |config|
   end
 
   config.included_models = %w[
+    Appendable
+    Appendable::Reaction
     Answer
     AnonymousBlock
     Comment
@@ -45,7 +47,6 @@ RailsAdmin.config do |config|
     Report
     Service
     Services::Twitter
-    Smile
     Theme
     User
     UserBan
