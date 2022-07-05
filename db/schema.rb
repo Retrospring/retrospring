@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 2022_06_26_134554) do
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
   end
 
+  create_table "appendables", force: :cascade do |t|
+    t.string "type", null: false
+    t.bigint "user_id", null: false
+    t.bigint "parent_id", null: false
+    t.string "parent_type", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["parent_id", "parent_type"], name: "index_appendables_on_parent_id_and_parent_type"
+    t.index ["user_id", "created_at"], name: "index_appendables_on_user_id_and_created_at"
+  end
+
   create_table "comment_smiles", id: :bigint, default: -> { "gen_timestamp_id('comment_smiles'::text)" }, force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "comment_id"

@@ -5,8 +5,8 @@ module User::ReactionMethods
   # @param item [ApplicationRecord] the answer/comment to smile
   def smile(item)
     # rubocop:disable Style/RedundantSelf
-    raise Errors::ReactingSelfBlockedOther if self.blocking?(answer.user)
-    raise Errors::ReactingOtherBlockedSelf if answer.user.blocking?(self)
+    raise Errors::ReactingSelfBlockedOther if self.blocking?(item.user)
+    raise Errors::ReactingOtherBlockedSelf if item.user.blocking?(self)
     # rubocop:enable Style/RedundantSelf
 
     ::Appendable::Reaction.create!(user: self, parent: item, content: "🙂")
