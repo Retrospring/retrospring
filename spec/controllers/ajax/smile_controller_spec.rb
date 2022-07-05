@@ -100,7 +100,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
       end
 
       it "does not create a smile" do
-        expect { subject }.not_to(change { Smile.count })
+        expect { subject }.not_to(change { Appendable::Reaction.count })
       end
 
       include_examples "returns the expected response"
@@ -124,7 +124,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
       end
 
       it "does not create a smile" do
-        expect { subject }.not_to(change { Smile.count })
+        expect { subject }.not_to(change { Appendable::Reaction.count })
       end
 
       include_examples "returns the expected response"
