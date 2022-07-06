@@ -25,7 +25,7 @@ describe Ajax::SubscriptionController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => true,
-            "status" => 418,
+            "status" => "okay",
             "message" => anything
           }
         end
@@ -96,7 +96,7 @@ describe Ajax::SubscriptionController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => true,
-            "status" => 418,
+            "status" => "okay",
             "message" => anything
           }
         end
@@ -116,7 +116,7 @@ describe Ajax::SubscriptionController, :ajax_controller, type: :controller do
           let(:expected_response) do
             {
               "success" => false,
-              "status" => 418,
+              "status" => "okay",
               "message" => anything
             }
           end
