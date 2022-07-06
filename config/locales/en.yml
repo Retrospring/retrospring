@@ -79,14 +79,6 @@ en:
         notfound: "List not found."
         add: "Successfully added user to list."
         remove: "Successfully removed user from list."
-    inbox:
-      create:
-        okay: "Successfully added new question."
-      remove:
-        fail: "question not in your inbox"
-        okay: "Successfully deleted question."
-      remove_all:
-        okay: "Successfully deleted questions."
     moderation:
       vote:
         fail: "You have already voted on this report."

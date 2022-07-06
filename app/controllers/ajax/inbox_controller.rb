@@ -2,7 +2,7 @@ class Ajax::InboxController < AjaxController
   def create
     unless user_signed_in?
       @response[:status] = :noauth
-      @response[:message] = I18n.t('messages.noauth')
+      @response[:message] = t(".noauth")
       return
     end
 
@@ -14,7 +14,7 @@ class Ajax::InboxController < AjaxController
     inbox = Inbox.create!(user: current_user, question_id: question.id, new: true)
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.inbox.create.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
     @response[:render] = render_to_string(partial: 'inbox/entry', locals: { i: inbox })
     inbox.update(new: false)
@@ -27,7 +27,7 @@ class Ajax::InboxController < AjaxController
 
     unless current_user == inbox.user
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.inbox.remove.fail')
+      @response[:message] = t(".error")
       return
     end
 
@@ -36,12 +36,12 @@ class Ajax::InboxController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :err
-      @response[:message] = I18n.t('messages.error')
+      @response[:message] = t("errors.base")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.inbox.remove.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -53,12 +53,12 @@ class Ajax::InboxController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :err
-      @response[:message] = I18n.t('messages.error')
+      @response[:message] = t("errors.base")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.inbox.remove_all.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -71,12 +71,12 @@ class Ajax::InboxController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :err
-      @response[:message] = I18n.t('messages.error')
+      @response[:message] = t("errors.base")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.inbox.remove_all.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 end
