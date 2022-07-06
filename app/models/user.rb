@@ -17,7 +17,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :async, :registerable,
          :recoverable, :rememberable, :trackable,
-         :validatable, :confirmable, :authentication_keys => [:login]
+         :validatable, :confirmable, :zxcvbnable,
+         authentication_keys: [:login]
 
   has_one_time_password
   enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true
