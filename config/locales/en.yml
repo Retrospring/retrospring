@@ -65,20 +65,6 @@ en:
       destroy:
         nopriv: "can't delete other people's answers"
         okay: "Successfully deleted answer."
-    list:
-      create:
-        noname: "Please give that list a name."
-        toolong: "List name too long (30 characters max.)"
-        notfound: "Could not find user."
-        exists: "List already exists."
-        okay: "Successfully created list."
-      destroy:
-        notfound: "Could not find list."
-        okay: "Successfully deleted list."
-      membership:
-        notfound: "List not found."
-        add: "Successfully added user to list."
-        remove: "Successfully removed user from list."
     moderation:
       vote:
         fail: "You have already voted on this report."
