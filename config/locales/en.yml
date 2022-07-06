@@ -59,31 +59,6 @@ en:
     placeholder:
       comment: "Comment..."
       question: "Type your question here…"
-    notifications:
-      show: "Show all notifications"
-      mark: " and mark them as read"
-      answer:
-        body: "answered %{question} %{time} ago"
-        question: "your question"
-      relationship:
-        body: "followed you %{time} ago"
-      smile:
-        body: "smiled at %{content} %{time} ago" # see below for 'content' vvvv
-        answer: "your answer" # content if smile, 'smiled at your answer'
-        comment: "your comment" # content if commentsmile, 'smiled at your comment'
-      comment:
-        body: "commented on %{content} %{time} ago" # see below for 'content' vvvv
-        your: "your answer" # 'commented on your answer'
-        their: "their answer" # 'commented on their answer'
-        user: "%{user}'s answer" # 'commented on user's asnwer'
-        # all three have the 'user' variable
-      tabs:
-        all: "All notifications"
-        answer: "Answers"
-        smile: "Smiles"
-        comment: "Comments"
-        commentsmile: "Comment Smiles"
-        relationship: "Followers"
     general:
       answer: "Answer"
       question: "Question"
