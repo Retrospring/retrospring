@@ -110,6 +110,7 @@ en:
         new: "Show all new notifications"
   notifications:
     index:
+      title: "Notifications"
       none_filtered: "No notifications."
       none: "No new notifications."
     type:
