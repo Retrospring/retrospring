@@ -10,12 +10,12 @@ class Ajax::CommentController < AjaxController
     rescue ActiveRecord::RecordInvalid => e
       Sentry.capture_exception(e)
       @response[:status] = :rec_inv
-      @response[:message] = I18n.t('messages.comment.create.rec_inv')
+      @response[:message] = t(".invalid")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.comment.create.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
     @response[:render] = render_to_string(partial: 'answerbox/comments', locals: { a: answer })
     @response[:count] = answer.comment_count
@@ -29,7 +29,7 @@ class Ajax::CommentController < AjaxController
 
     unless (current_user == comment.user) or (current_user == comment.answer.user) or (privileged? comment.user)
       @response[:status] = :nopriv
-      @response[:message] = I18n.t('messages.comment.destroy.nopriv')
+      @response[:message] = t(".nopriv")
       return
     end
 
@@ -37,7 +37,7 @@ class Ajax::CommentController < AjaxController
     comment.destroy
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.comment.destroy.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 end

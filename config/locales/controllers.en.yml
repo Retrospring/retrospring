@@ -6,6 +6,13 @@ en:
       destroy:
         nopriv: "Cannot remove a block belonging to someone else."
         success: :ajax.relationship.destroy.block.success
+    comment:
+      create:
+        invalid: "Your comment is too long."
+        success: "Comment posted successfully."
+      destroy:
+        nopriv: "Can't delete other people's comments."
+        success: "Successfully deleted comment."
     mute_rule:
       nopriv: "Can't edit other people's rules"
       create:
