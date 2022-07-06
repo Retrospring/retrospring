@@ -5,13 +5,14 @@ class Ajax::ReportController < AjaxController
 
     @response[:status] = :err
 
-    if current_user.nil?
-      @response[:message] = I18n.t('messages.report.create.login')
+    unless user_signed_in?
+      @response[:status] = :noauth
+      @response[:message] = t(".noauth")
       return
     end
 
     unless %w(answer comment question user).include? params[:type]
-      @response[:message] = I18n.t('messages.report.create.unknown')
+      @response[:message] = t(".unknown")
       return
     end
 
@@ -31,14 +32,14 @@ class Ajax::ReportController < AjaxController
       end
 
     if object.nil?
-      @response[:message] = I18n.t('messages.report.create.not_found', parameter: params[:type])
+      @response[:message] = t(".notfound", parameter: params[:type])
       return
     end
 
     current_user.report object, params[:reason]
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.report.create.okay', parameter: params[:type])
+    @response[:message] = t(".success", parameter: params[:type])
     @response[:success] = true
   end
 end
