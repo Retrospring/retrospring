@@ -56,15 +56,6 @@ en:
     error: "An error occurred."
     parameter_error: "%{parameter} is required."
     noauth: "requires authentication"
-    answer:
-      create:
-        fail: "Question is not in your inbox."
-        privacy_stronk: "This user does not want other users to answer their question."
-        peter_dinklage: "Answer is too short."
-        okay: "Successfully answered question."
-      destroy:
-        nopriv: "can't delete other people's answers"
-        okay: "Successfully deleted answer."
     report:
       create:
         login: "login required"
