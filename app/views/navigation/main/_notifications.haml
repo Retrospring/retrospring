@@ -6,16 +6,16 @@
       %i.fa.fa-bell-o
     - else
       %i.fa.fa-bell
-    %span.sr-only Notifications
+    %span.sr-only= t('views.navigation.notifications')
     %span.badge= notification_count
   .dropdown-menu.dropdown-menu-right.notification-dropdown
     - if notifications.count.zero?
       .dropdown-item.text-center.p-2
         %i.fa.fa-bell-o.notification__bell-icon
-        %p No new notifications.
+        %p= t(".none")
       %a.dropdown-item.text-center{ href: notifications_path('all') }
         %i.fa.fa-fw.fa-chevron-right
-        Show all notifications
+        = t(".all")
     - else
       - notifications.each do |notification|
         .dropdown-item
@@ -23,4 +23,4 @@
 
       %a.dropdown-item.text-center{ href: notifications_path }
         %i.fa.fa-fw.fa-chevron-right
-        Show all new notifications
+        = t(".new")
