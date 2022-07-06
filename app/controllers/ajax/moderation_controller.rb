@@ -14,13 +14,13 @@ class Ajax::ModerationController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.moderation.vote.fail')
+      @response[:message] = t(".error")
       return
     end
 
     @response[:count] = report.votes
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.moderation.vote.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -34,13 +34,13 @@ class Ajax::ModerationController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.moderation.destroy_vote.fail')
+      @response[:message] = t(".error")
       return
     end
 
     @response[:count] = report.votes
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.moderation.destroy_vote.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -55,12 +55,12 @@ class Ajax::ModerationController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.moderation.destroy_report.fail')
+      @response[:message] = t(".error")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.moderation.destroy_report.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -76,12 +76,12 @@ class Ajax::ModerationController < AjaxController
     rescue ActiveRecord::RecordInvalid => e
       Sentry.capture_exception(e)
       @response[:status] = :rec_inv
-      @response[:message] = I18n.t('messages.moderation.create_comment.rec_inv')
+      @response[:message] = t(".invalid")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.moderation.create_comment.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
     @response[:render] = render_to_string(partial: 'moderation/discussion', locals: { report: report })
     @response[:count] = report.moderation_comments.all.count
@@ -95,20 +95,20 @@ class Ajax::ModerationController < AjaxController
 
     unless current_user == comment.user
       @response[:status] = :nopriv
-      @response[:message] = I18n.t('messages.moderation.destroy_comment.nopriv')
+      @response[:message] = t(".nopriv")
       return
     end
 
     comment.destroy
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.moderation.destroy_comment.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
   def ban
     @response[:status] = :err
-    @response[:message] = I18n.t('messages.moderation.ban.error')
+    @response[:message] = t(".error")
 
     params.require :user
     params.require :ban
@@ -122,18 +122,18 @@ class Ajax::ModerationController < AjaxController
 
     if !unban && target_user.has_role?(:administrator)
       @response[:status] = :nopriv
-      @response[:message] = I18n.t('messages.moderation.ban.nopriv')
+      @response[:message] = t(".nopriv")
       return
     end
 
     if unban
       UseCase::User::Unban.call(target_user.id)
-      @response[:message] = I18n.t('messages.moderation.ban.unban')
+      @response[:message] = t(".success.unban")
       @response[:success] = true
       @response[:status]  = :okay
       return
     elsif perma
-      @response[:message] = I18n.t('messages.moderation.ban.perma')
+      @response[:message] = t(".success.permanent")
       expiry = nil
     else
       params.require :duration
@@ -142,7 +142,7 @@ class Ajax::ModerationController < AjaxController
       raise Errors::InvalidBanDuration unless %w[hours days weeks months].include? duration_unit
 
       expiry = DateTime.now + duration.public_send(duration_unit)
-      @response[:message] = I18n.t('messages.moderation.ban.temp', date: expiry.to_s)
+      @response[:message] = I18n.t(".success.temporary", date: expiry.to_s)
     end
 
     UseCase::User::Ban.call(
@@ -168,12 +168,12 @@ class Ajax::ModerationController < AjaxController
 
     target_user = User.find_by_screen_name!(params[:user])
 
-    @response[:message] = I18n.t('messages.moderation.privilege.nope')
+    @response[:message] = t(".error")
     return unless %w(moderator admin).include? params[:type].downcase
 
     unless current_user.has_role?(:administrator)
       @response[:status] = :nopriv
-      @response[:message] = I18n.t('messages.moderation.privilege.nopriv')
+      @response[:message] = t(".nopriv")
       return
     end
 
@@ -188,7 +188,7 @@ class Ajax::ModerationController < AjaxController
     end
     target_user.save!
 
-    @response[:message] = I18n.t('messages.moderation.privilege.checked', privilege: params[:type])
+    @response[:message] = t(".success", privilege: params[:type])
 
     @response[:status] = :okay
     @response[:success] = true

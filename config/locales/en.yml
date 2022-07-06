@@ -65,32 +65,6 @@ en:
       destroy:
         nopriv: "can't delete other people's answers"
         okay: "Successfully deleted answer."
-    moderation:
-      vote:
-        fail: "You have already voted on this report."
-        okay: "Successfully voted on report."
-      destroy_vote:
-        fail: "You have not voted on that report."
-        okay: "Successfully removed vote from report."
-      destroy_report:
-        fail: "Something bad happened!"
-        okay: "WHERE DID IT GO??? OH NO!!!"
-      create_comment:
-        rec_inv: "Your comment is too long."
-        okay: "Comment posted successfully."
-      destroy_comment:
-        nopriv: "can't delete other people's comments"
-        okay: "Successfully deleted comment."
-      ban:
-        error: "Weird..."
-        nopriv: "You cannot ban an administrator!"
-        unban: "Unbanned user."
-        perma: "Permanently banned user."
-        temp: "Banned user until %{date}"
-      privilege:
-        nope: "nope!"
-        nopriv: "You'd better check YOUR privileges first!"
-        checked: "Successfully checked this user's %{privilege} privilege."
     question:
       destroy:
         not_found: "Question does not exist"
