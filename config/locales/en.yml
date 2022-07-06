@@ -135,19 +135,6 @@ en:
         unknown: "unknown type"
         not_found: "Could not find %{parameter}"
         okay: "%{parameter} reported.  A moderator will decide what happens with the %{parameter}."
-    smile:
-      create:
-        fail: "You have already smiled that answer."
-        okay: "Successfully smiled answer."
-      destroy:
-        fail: "You have not smiled that answer."
-        okay: "Successfully unsmiled answer."
-      create_comment:
-        fail: "You have already smiled that comment."
-        okay: "Successfully smiled comment."
-      destroy_comment:
-        fail: "You have not smiled that comment."
-        okay: "Successfully unsmiled comment."
     subscription:
       torpedo: "418 I'm a torpedo"
   views:

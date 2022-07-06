@@ -34,6 +34,19 @@ en:
         follow:
           success: "Successfully unfollowed user."
           error: "You are not following that user."
+    smile:
+      create:
+        success: "Successfully smiled answer."
+        error: "You have already smiled that answer."
+      create_comment:
+        success: "Successfully smiled comment."
+        error: "You have already smiled that comment."
+      destroy:
+        success: "Successfully unsmiled answer."
+        error: "You have not smiled that answer."
+      destroy_comment:
+        success: "Successfully unsmiled comment."
+        error: "You have not smiled that comment."
   announcement:
     create:
       success: "Announcement created successfully."
