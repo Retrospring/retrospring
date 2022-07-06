@@ -13,12 +13,12 @@ class Ajax::SmileController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.smile.create.fail')
+      @response[:message] = t(".error")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.smile.create.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -32,12 +32,12 @@ class Ajax::SmileController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.smile.destroy.fail')
+      @response[:message] = t(".error")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.smile.destroy.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -55,12 +55,12 @@ class Ajax::SmileController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.smile.create_comment.fail')
+      @response[:message] = t(".error")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.smile.create_comment.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -74,12 +74,12 @@ class Ajax::SmileController < AjaxController
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :fail
-      @response[:message] = I18n.t('messages.smile.destroy_comment.fail')
+      @response[:message] = t(".error")
       return
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.smile.destroy_comment.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 end
