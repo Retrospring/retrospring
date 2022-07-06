@@ -10,7 +10,7 @@ class ExportWorker
     exporter.export
     question = Question.create(content: "Your #{APP_CONFIG['site_name']} data export is ready!  You can download it " +
         "from the settings page under the \"Export\" tab.", author_is_anonymous: true,
-        author_identifier: "retrospring_exporter")
+                               author_identifier: "retrospring_exporter")
     Inbox.create(user_id: user_id, question_id: question.id, new: true)
   end
 end
