@@ -23,7 +23,7 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
         allow(QuestionGenerator).to receive(:generate).and_return("Is Mayonnaise an instrument?")
         expect { subject }.to(change { user.inboxes.count }.by(1))
         expect(user.inboxes.last.question.author_is_anonymous).to eq(true)
-        expect(user.inboxes.last.question.author_name).to eq("justask")
+        expect(user.inboxes.last.question.author_identifier).to eq("justask")
         expect(user.inboxes.last.question.user).to eq(user)
         expect(user.inboxes.last.question.content).to eq("Is Mayonnaise an instrument?")
       end
