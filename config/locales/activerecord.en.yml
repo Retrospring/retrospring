@@ -7,6 +7,9 @@ en:
       answer:
         one: "Answer"
         other: "Answers"
+      comment:
+        one: "Comment"
+        other: "Comments"
       question:
         one: "Question"
         other: "Questions"
