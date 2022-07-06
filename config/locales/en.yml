@@ -56,8 +56,6 @@ en:
     error: "An error occurred."
     parameter_error: "%{parameter} is required."
     noauth: "requires authentication"
-    subscription:
-      torpedo: "418 I'm a torpedo"
   views:
     locale:
       languages: "Languages"
