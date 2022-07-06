@@ -22,3 +22,5 @@
       .d-flex.justify-content-center.justify-content-sm-start
         %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @notifications_last_id } }
           = t("voc.load")
+
+- provide(:title, generate_title(t(".title")))
