@@ -15,7 +15,7 @@ class Ajax::AnonymousBlockController < AjaxController
     question.inboxes.first.destroy
 
     @response[:status] = :okay
-    @response[:message] = I18n.t("messages.block.create.okay")
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -25,13 +25,13 @@ class Ajax::AnonymousBlockController < AjaxController
     block = AnonymousBlock.find(params[:id])
     if current_user != block.user
       @response[:status] = :nopriv
-      @response[:message] = I18n.t("messages.block.destroy.nopriv")
+      @response[:message] = t(".nopriv")
     end
 
     block.destroy!
 
     @response[:status] = :okay
-    @response[:message] = I18n.t("messages.block.destroy.okay")
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 end

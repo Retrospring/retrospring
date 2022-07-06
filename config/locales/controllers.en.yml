@@ -1,5 +1,11 @@
 en:
   ajax:
+    anonymous_block:
+      create:
+        success: :ajax.relationship.create.block.success
+      destroy:
+        nopriv: "Cannot remove a block belonging to someone else."
+        success: :ajax.relationship.destroy.block.success
     mute_rule:
       nopriv: "Can't edit other people's rules"
       create:
@@ -13,6 +19,21 @@ en:
         noauth: :messages.noauth
         nopriv: :ajax.mute_rule.nopriv
         success: "Rule deleted successfully."
+    relationship:
+      create:
+        block:
+          success: "Successfully blocked user."
+          error: "You are already blocking that user."
+        follow:
+          success: "Successfully followed user."
+          error: "You are already following that user."
+      destroy:
+        block:
+          success: "Successfully unblocked user."
+          error: "You are not blocking that user."
+        follow:
+          success: "Successfully unfollowed user."
+          error: "You are not following that user."
   announcement:
     create:
       success: "Announcement created successfully."
