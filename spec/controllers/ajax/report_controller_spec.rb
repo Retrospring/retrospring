@@ -136,7 +136,7 @@ describe Ajax::ReportController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "noauth",
+          "status" =>  "noauth",
           "message" => anything
         }
       end
