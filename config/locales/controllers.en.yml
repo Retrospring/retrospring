@@ -6,6 +6,14 @@ en:
       destroy:
         nopriv: "Cannot remove a block belonging to someone else."
         success: :ajax.relationship.destroy.block.success
+    answer:
+      create:
+        privacy: "This user does not want other users to answer their question."
+        success: "Successfully answered question."
+        error: "Question is not in your inbox."
+      destroy:
+        nopriv: "Can't delete other people's answers."
+        success: "Successfully deleted answer."
     comment:
       create:
         invalid: "Your comment is too long."

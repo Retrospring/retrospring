@@ -12,7 +12,7 @@ class Ajax::AnswerController < AjaxController
 
       unless current_user == inbox_entry.user
         @response[:status] = :fail
-        @response[:message] = I18n.t('messages.answer.create.fail')
+        @response[:message] = t(".error")
         return
       end
     else
@@ -20,16 +20,9 @@ class Ajax::AnswerController < AjaxController
 
       unless question.user.privacy_allow_stranger_answers
         @response[:status] = :privacy_stronk
-        @response[:message] = I18n.t('messages.answer.create.privacy_stronk')
+        @response[:message] = t(".privacy")
         return
       end
-    end
-
-    # this should never trigger because empty params throw ParameterMissing
-    unless params[:answer].length > 0
-      @response[:status] = :peter_dinklage
-      @response[:message] = I18n.t('messages.answer.create.peter_dinklage')
-      return
     end
 
     answer = if inbox
@@ -45,7 +38,7 @@ class Ajax::AnswerController < AjaxController
 
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.answer.create.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
     unless inbox
       # this assign is needed because shared/_answerbox relies on it, I think
@@ -61,7 +54,7 @@ class Ajax::AnswerController < AjaxController
 
     unless (current_user == answer.user) or (privileged? answer.user)
       @response[:status] = :nopriv
-      @response[:message] = I18n.t('messages.answer.destroy.nopriv')
+      @response[:message] = t(".nopriv")
       return
     end
 
@@ -71,7 +64,7 @@ class Ajax::AnswerController < AjaxController
     answer.destroy
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.answer.destroy.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 end
