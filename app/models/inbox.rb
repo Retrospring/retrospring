@@ -7,7 +7,7 @@ class Inbox < ApplicationRecord
   before_create do
     raise "User does not want to receive anonymous questions" if !returning &&
       question.author_is_anonymous &&
-      (question.author_name != "justask") &&
+      (question.author_identifier != "justask") &&
       !user.privacy_allow_anonymous_questions?
   end
 
