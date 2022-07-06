@@ -152,6 +152,9 @@ GEM
       devise (>= 4.0)
     devise-i18n (1.10.1)
       devise (>= 4.8.0)
+    devise_zxcvbn (6.0.0)
+      devise
+      zxcvbn (~> 0.1.7)
     diff-lcs (1.5.0)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -570,6 +573,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.0)
+    zxcvbn (0.1.7)
 
 PLATFORMS
   ruby
@@ -591,6 +595,7 @@ DEPENDENCIES
   devise (~> 4.0)
   devise-async
   devise-i18n
+  devise_zxcvbn
   dry-initializer (~> 3.0)
   dry-types (~> 1.4)
   factory_bot_rails
