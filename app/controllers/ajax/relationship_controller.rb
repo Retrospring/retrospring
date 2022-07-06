@@ -16,7 +16,7 @@ class Ajax::RelationshipController < AjaxController
       type:        params[:type]
     )
     @response[:success] = true
-    @response[:message] = t("messages.#{params[:type]}.create.okay")
+    @response[:message] = t(".#{params[:type]}.success")
   rescue Errors::Base => e
     @response[:message] = t(e.locale_tag)
   ensure
@@ -30,7 +30,7 @@ class Ajax::RelationshipController < AjaxController
       type:        params[:type]
     )
     @response[:success] = true
-    @response[:message] = t("messages.#{params[:type]}.destroy.okay")
+    @response[:message] = t(".#{params[:type]}.success")
   rescue Errors::Base => e
     @response[:message] = t(e.locale_tag)
   ensure
