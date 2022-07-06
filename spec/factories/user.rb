@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :user do
     sequence(:screen_name) { |i| "#{Faker::Internet.username(specifier: 0..12, separators: %w[_])}#{i}" }
     sequence(:email) { |i| "#{i}#{Faker::Internet.email}" }
-    password { 'P4s5w0rD' }
+    password { "S€cur3P4s5w0rD!" }
     confirmed_at { Time.now.utc }
 
     transient do

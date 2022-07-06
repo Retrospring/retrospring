@@ -23,7 +23,7 @@ describe "role-constrained routes", type: :request do
 
     roles.each do |role|
       context "signed in user without #{role} role" do
-        let(:user) { FactoryBot.create(:user, password: "test1234") }
+        let(:user) { FactoryBot.create(:user) }
 
         before(:each) do
           post "/sign_in", params: { user: { login: user.email, password: user.password } }
@@ -33,7 +33,7 @@ describe "role-constrained routes", type: :request do
       end
 
       context "signed in user with #{role} role" do
-        let(:user) { FactoryBot.create(:user, password: "test1234", roles: [role]) }
+        let(:user) { FactoryBot.create(:user, roles: [role]) }
 
         before(:each) do
           post "/sign_in", params: { user: { login: user.email, password: user.password } }
