@@ -65,15 +65,6 @@ en:
       destroy:
         nopriv: "can't delete other people's answers"
         okay: "Successfully deleted answer."
-    question:
-      destroy:
-        not_found: "Question does not exist"
-        not_authorized: "You are not allowed to delete this question"
-        okay: "Successfully deleted question."
-      create:
-        rec_inv: "Your question is too long."
-        not_found: "List not found"
-        okay: "Question asked successfully."
     report:
       create:
         login: "login required"

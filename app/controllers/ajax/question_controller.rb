@@ -10,20 +10,20 @@ class Ajax::QuestionController < AjaxController
     question = Question.find params[:question]
     if question.nil?
       @response[:status] = :not_found
-      @response[:message] = I18n.t('messages.question.destroy.not_found')
+      @response[:message] = t(".notfound")
       return
     end
 
     if not (current_user.mod? or question.user == current_user)
       @response[:status] = :not_authorized
-      @response[:message] = I18n.t('messages.question.destroy.not_authorized')
+      @response[:message] = t(".noauth")
       return
     end
 
     question.destroy!
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.question.destroy.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 
@@ -44,7 +44,7 @@ class Ajax::QuestionController < AjaxController
     rescue ActiveRecord::RecordInvalid => e
       Sentry.capture_exception(e)
       @response[:status] = :rec_inv
-      @response[:message] = I18n.t('messages.question.create.rec_inv')
+      @response[:message] = t(".invalid")
       return
     end
 
@@ -64,7 +64,7 @@ class Ajax::QuestionController < AjaxController
 
       if target_user.nil?
         @response[:status] = :not_found
-        @response[:message] = I18n.t('messages.question.create.not_found')
+        @response[:message] = t(".notfound")
         question.delete
         return
       end
@@ -90,7 +90,7 @@ class Ajax::QuestionController < AjaxController
     end
 
     @response[:status] = :okay
-    @response[:message] = I18n.t('messages.question.create.okay')
+    @response[:message] = t(".success")
     @response[:success] = true
   end
 end
