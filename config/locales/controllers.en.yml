@@ -82,6 +82,15 @@ en:
         noauth: :messages.noauth
         nopriv: :ajax.mute_rule.nopriv
         success: "Rule deleted successfully."
+    question:
+      create:
+        invalid: "Your question is too long."
+        notfound: "User not found."
+        success: "Question asked successfully."
+      destroy:
+        notfound: "Question does not exist."
+        noauth: "You are not allowed to delete this question."
+        success: "Successfully deleted question."
     relationship:
       create:
         block:
