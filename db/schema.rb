@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_26_134554) do
+ActiveRecord::Schema.define(version: 2022_07_06_172257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,16 +221,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_134554) do
     t.datetime "updated_at"
     t.string "post_tag", limit: 20
     t.index ["user_id"], name: "index_services_on_user_id"
-  end
-
-  create_table "smiles", id: :bigint, default: -> { "gen_timestamp_id('smiles'::text)" }, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "answer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["answer_id"], name: "index_smiles_on_answer_id"
-    t.index ["user_id", "answer_id"], name: "index_smiles_on_user_id_and_answer_id", unique: true
-    t.index ["user_id"], name: "index_smiles_on_user_id"
   end
 
   create_table "subscriptions", id: :serial, force: :cascade do |t|
