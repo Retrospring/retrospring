@@ -114,6 +114,12 @@ en:
         follow:
           success: "Successfully unfollowed user."
           error: "You are not following that user."
+    report:
+      create:
+        noauth: :messages.noauth
+        unknown: "You can't report this entity."
+        notfound: "Could not find %{parameter}"
+        success: "%{parameter} reported.  A moderator will decide what happens with the %{parameter}."
     smile:
       create:
         success: "Successfully smiled answer."

@@ -56,12 +56,6 @@ en:
     error: "An error occurred."
     parameter_error: "%{parameter} is required."
     noauth: "requires authentication"
-    report:
-      create:
-        login: "login required"
-        unknown: "unknown type"
-        not_found: "Could not find %{parameter}"
-        okay: "%{parameter} reported.  A moderator will decide what happens with the %{parameter}."
     subscription:
       torpedo: "418 I'm a torpedo"
   views:
