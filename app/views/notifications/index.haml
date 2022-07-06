@@ -6,9 +6,9 @@
           %i.fa.fa-bell-o.notification__bell-icon
         %p
           - if params[:type] == 'all'
-            No notifications.
+            = t(".none_filtered")
           - else
-            No new notifications.
+            = t(".none")
     - else
       - @notifications.each do |notification|
         %li.list-group-item
@@ -21,4 +21,4 @@
     - if @more_data_available
       .d-flex.justify-content-center.justify-content-sm-start
         %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @notifications_last_id } }
-          = t 'views.actions.load'
+          = t("voc.load")
