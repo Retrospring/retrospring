@@ -12,7 +12,7 @@ class AjaxController < ApplicationController
 
       @response = {
         success: false,
-        message: "Something went wrong",
+        message: t("errors.base"),
         status:  :err
       }
 
@@ -25,7 +25,7 @@ class AjaxController < ApplicationController
 
     @response = {
       success: false,
-      message: "Missing parameter: #{e.key}",
+      message: t("errors.parameter_error", parameter: e.key),
       status:  :err
     }
 
@@ -37,7 +37,7 @@ class AjaxController < ApplicationController
 
     @response = {
       success: false,
-      message: "Invalid parameter",
+      message: t("errors.invalid_parameter"),
       status:  :err
     }
 
@@ -49,7 +49,7 @@ class AjaxController < ApplicationController
 
     @response = {
       success: false,
-      message: "Record not found",
+      message: t("errors.record_not_found"),
       status:  :not_found
     }
 
@@ -61,7 +61,7 @@ class AjaxController < ApplicationController
 
     @response = {
       success: false,
-      message: I18n.t("messages.parameter_error", parameter: e.param.capitalize),
+      message: t("errors.parameter_error", parameter: e.param.capitalize),
       status:  :parameter_error
     }
 

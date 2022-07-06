@@ -53,9 +53,6 @@ en:
       until: "Banned until: %{time}"
   messages:
     noscript: "Please activate JavaScript."
-    error: "An error occurred."
-    parameter_error: "%{parameter} is required."
-    noauth: "requires authentication"
   views:
     locale:
       languages: "Languages"
