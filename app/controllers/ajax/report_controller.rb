@@ -39,7 +39,7 @@ class Ajax::ReportController < AjaxController
     current_user.report object, params[:reason]
 
     @response[:status] = :okay
-    @response[:message] = t(".success", parameter: params[:type])
+    @response[:message] = t(".success", parameter: params[:type].titleize)
     @response[:success] = true
   end
 end
