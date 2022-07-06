@@ -102,6 +102,41 @@ en:
         permanent: "Permanent"
         until: "Until %{until}"
         expired: "Expired at %{until}"
+  navigation:
+    main:
+      notifications:
+        none: :notifications.index.none
+        all: "Show all notifications"
+        new: "Show all new notifications"
+  notifications:
+    index:
+      none_filtered: "No notifications."
+      none: "No new notifications."
+    type:
+      answer:
+        heading_html: "%{user} answered %{question} %{time} ago"
+        link_text: "your question"
+      comment:
+        heading: "%{user} commented on %{answer} %{time} ago"
+        active:
+          heading_html: :notifications.type.comment.heading
+          link_text: "your answer"
+        passive:
+          heading_html: :notifications.type.comment.heading
+          link_text: "their answer"
+        other:
+          heading_html: :notifications.type.comment.heading
+          link_text: "%{user}'s answer"
+      reaction:
+        heading: "%{user} smiled %{type} %{time} ago"
+        answer:
+          heading_html: :notifications.type.reaction.heading
+          link_text: "your answer"
+        comment:
+          heading_html: :notifications.type.reaction.heading
+          link_text: "your comment"
+      follow:
+        heading_html: "followed you %{time} ago"
   services:
     index:
       title: "Service Settings"
@@ -350,6 +385,14 @@ en:
       url: "URL:"
       confirm: "I understand the risk, proceed!"
   tabs:
+    notifications:
+      all: "All notifications"
+      new: "New notifications"
+      answer: "Answers"
+      smile: "Smiles"
+      comment: "Comments"
+      commentsmile: "Comment Smiles"
+      relationship: "Followers"
     settings:
       account: "Account"
       profile: "Profile"
