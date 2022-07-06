@@ -32,7 +32,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :inboxes, dependent: :destroy
   has_many :smiles, class_name: "Appendable::Reaction", dependent: :destroy
-  has_many :comment_smiles, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
   has_many :reports, dependent: :destroy
