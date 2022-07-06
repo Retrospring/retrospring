@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_06_174120) do
+ActiveRecord::Schema.define(version: 2022_07_06_174816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,16 +60,6 @@ ActiveRecord::Schema.define(version: 2022_07_06_174120) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["parent_id", "parent_type"], name: "index_appendables_on_parent_id_and_parent_type"
     t.index ["user_id", "created_at"], name: "index_appendables_on_user_id_and_created_at"
-  end
-
-  create_table "comment_smiles", id: :bigint, default: -> { "gen_timestamp_id('comment_smiles'::text)" }, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "comment_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["comment_id"], name: "index_comment_smiles_on_comment_id"
-    t.index ["user_id", "comment_id"], name: "index_comment_smiles_on_user_id_and_comment_id", unique: true
-    t.index ["user_id"], name: "index_comment_smiles_on_user_id"
   end
 
   create_table "comments", id: :bigint, default: -> { "gen_timestamp_id('comments'::text)" }, force: :cascade do |t|
