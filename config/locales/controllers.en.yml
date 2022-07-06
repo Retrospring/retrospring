@@ -13,6 +13,17 @@ en:
       destroy:
         nopriv: "Can't delete other people's comments."
         success: "Successfully deleted comment."
+    inbox:
+      create:
+        noauth: :messages.noauth
+        success: "Successfully added new question."
+      remove:
+        success: "Successfully deleted question."
+        error: "Question is not in your inbox."
+      remove_all:
+        success: "Successfully deleted questions."
+      remove_all_author:
+        success: :ajax.inbox.remove_all.success
     mute_rule:
       nopriv: "Can't edit other people's rules"
       create:
