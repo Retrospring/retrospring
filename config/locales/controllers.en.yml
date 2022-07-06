@@ -24,6 +24,24 @@ en:
         success: "Successfully deleted questions."
       remove_all_author:
         success: :ajax.inbox.remove_all.success
+    list:
+      create:
+        noauth: :messages.noauth
+        noname: "Please give that list a name."
+        toolong: "List name too long (30 characters max.)"
+        notfound: "Could not find user."
+        exists: "List already exists."
+        success: "Successfully created list."
+      destroy:
+        noauth: :messages.noauth
+        notfound: "Could not find list."
+        success: "Successfully deleted list."
+      membership:
+        noauth: :messages.noauth
+        notfound: "List not found."
+        success:
+          add: "Successfully added user to list."
+          remove: "Successfully removed user from list."
     mute_rule:
       nopriv: "Can't edit other people's rules"
       create:

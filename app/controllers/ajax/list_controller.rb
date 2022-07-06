@@ -4,7 +4,7 @@ class Ajax::ListController < AjaxController
 
     unless user_signed_in?
       @response[:status] = :noauth
-      @response[:message] = I18n.t('messages.noauth')
+      @response[:message] = t(".noauth")
       return
     end
 
@@ -13,7 +13,7 @@ class Ajax::ListController < AjaxController
     rescue ActionController::ParameterMissing => e
       Sentry.capture_exception(e)
       @response[:status] = :toolong
-      @response[:message] = I18n.t('messages.list.create.noname')
+      @response[:message] = t(".noname")
       return
     end
     params.require :user
@@ -24,23 +24,23 @@ class Ajax::ListController < AjaxController
     rescue ActiveRecord::RecordInvalid => e
       Sentry.capture_exception(e)
       @response[:status] = :toolong
-      @response[:message] = I18n.t('messages.list.create.toolong')
+      @response[:message] = t(".toolong")
       return
     rescue ActiveRecord::RecordNotFound => e
       Sentry.capture_exception(e)
       @response[:status] = :notfound
-      @response[:message] = I18n.t('messages.list.create.notfound')
+      @response[:message] = t(".notfound")
       return
     rescue ActiveRecord::RecordNotUnique => e
       Sentry.capture_exception(e)
       @response[:status] = :exists
-      @response[:message] = I18n.t('messages.list.create.exists')
+      @response[:message] = t(".exists")
       return
     end
 
     @response[:status] = :okay
     @response[:success] = true
-    @response[:message] = I18n.t('messages.list.create.okay')
+    @response[:message] = t(".success")
     @response[:render] = render_to_string(partial: 'modal/list/item', locals: { list: list, user: target_user })
   end
 
@@ -49,7 +49,7 @@ class Ajax::ListController < AjaxController
 
     unless user_signed_in?
       @response[:status] = :noauth
-      @response[:message] = I18n.t('messages.noauth')
+      @response[:message] = t(".noauth")
       return
     end
 
@@ -60,13 +60,13 @@ class Ajax::ListController < AjaxController
     rescue ActiveRecord::RecordNotFound => e
       Sentry.capture_exception(e)
       @response[:status] = :notfound
-      @response[:message] = I18n.t('messages.list.destroy.notfound')
+      @response[:message] = t(".notfound")
       return
     end
 
     @response[:status] = :okay
     @response[:success] = true
-    @response[:message] = I18n.t('messages.list.destroy.okay')
+    @response[:message] = t(".success")
   end
 
   def membership
@@ -74,7 +74,7 @@ class Ajax::ListController < AjaxController
 
     unless user_signed_in?
       @response[:status] = :noauth
-      @response[:message] = I18n.t('messages.noauth')
+      @response[:message] = t(".noauth")
       return
     end
 
@@ -89,7 +89,7 @@ class Ajax::ListController < AjaxController
     rescue ActiveRecord::RecordNotFound => e
       Sentry.capture_exception(e)
       @response[:status] = :notfound
-      @response[:message] = I18n.t('messages.list.membership.notfound')
+      @response[:message] = t(".notfound")
       return
     end
 
@@ -101,11 +101,11 @@ class Ajax::ListController < AjaxController
     if add
       list.add_member target_user if list.members.find_by_user_id(target_user.id).nil?
       @response[:checked] = true
-      @response[:message] = I18n.t('messages.list.membership.add')
+      @response[:message] = t(".success.add")
     else
       list.remove_member target_user unless list.members.find_by_user_id(target_user.id).nil?
       @response[:checked] = false
-      @response[:message] = I18n.t('messages.list.membership.remove')
+      @response[:message] = t(".success.remove")
     end
 
     @response[:status] = :okay
