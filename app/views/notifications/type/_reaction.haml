@@ -5,12 +5,12 @@
     .notification__heading
       %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small) }
       - if notification.target.parent_type == 'Answer'
-        = t(".#{notification.target.parent_type.downcase}.heading_html",
+        = t(".heading_html",
               user: user_screen_name(notification.target.user),
               type: link_to(t(".#{notification.target.parent_type.downcase}.link_text"), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.parent.id)),
               time: time_tooltip(notification.target))
       - elsif notification.target.parent_type == 'Comment'
-        = t(".#{notification.target.parent_type.downcase}.heading_html",
+        = t(".heading_html",
               user: user_screen_name(notification.target.user),
               type: link_to(t(".#{notification.target.parent_type.downcase}.link_text"), show_user_answer_path(username: notification.target.user.screen_name, id: notification.target.parent.answer.id)),
               time: time_tooltip(notification.target))

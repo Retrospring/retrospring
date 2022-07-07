@@ -118,23 +118,18 @@ en:
         heading_html: "%{user} answered %{question} %{time} ago"
         link_text: "your question"
       comment:
-        heading: "%{user} commented on %{answer} %{time} ago"
+        heading_html: "%{user} commented on %{answer} %{time} ago"
         active:
-          heading_html: :notifications.type.comment.heading
           link_text: "your answer"
         passive:
-          heading_html: :notifications.type.comment.heading
           link_text: "their answer"
         other:
-          heading_html: :notifications.type.comment.heading
           link_text: "%{user}'s answer"
       reaction:
-        heading: "%{user} smiled %{type} %{time} ago"
+        heading_html: "%{user} smiled %{type} %{time} ago"
         answer:
-          heading_html: :notifications.type.reaction.heading
           link_text: "your answer"
         comment:
-          heading_html: :notifications.type.reaction.heading
           link_text: "your comment"
       follow:
         heading_html: "followed you %{time} ago"
