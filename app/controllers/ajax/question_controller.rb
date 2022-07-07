@@ -3,25 +3,16 @@
 require "errors"
 require "use_case/question/create"
 require "use_case/question/create_followers"
+require "use_case/question/destroy"
 
 class Ajax::QuestionController < AjaxController
   def destroy
     params.require :question
 
-    question = Question.find params[:question]
-    if question.nil?
-      @response[:status] = :not_found
-      @response[:message] = t(".notfound")
-      return
-    end
-
-    unless current_user&.mod? || question.user == current_user
-      @response[:status] = :not_authorized
-      @response[:message] = t(".noauth")
-      return
-    end
-
-    question.destroy!
+    UseCase::Question::Destroy.call(
+      question_id:  params[:question],
+      current_user: current_user
+    )
 
     @response[:status] = :okay
     @response[:message] = t(".success")

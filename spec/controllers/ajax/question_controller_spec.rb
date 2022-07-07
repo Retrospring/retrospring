@@ -428,7 +428,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       context "when the question exists and was not made by the current user" do
         let(:question_user) { FactoryBot.create(:user) }
 
-        include_examples "does not delete the question", "not_authorized"
+        include_examples "does not delete the question", "forbidden"
 
         %i[moderator administrator].each do |privileged_role|
           context "when the current user is a #{privileged_role}" do
@@ -446,7 +446,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       context "when the question exists and was not made by any registered user" do
         let(:question_user) { nil }
 
-        include_examples "does not delete the question", "not_authorized"
+        include_examples "does not delete the question", "forbidden"
 
         %i[moderator administrator].each do |privileged_role|
           context "when the current user is a #{privileged_role}" do
@@ -470,12 +470,14 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       context "when the question is an invalid value" do
         let(:question_id) { "sonic_the_hedgehog" }
 
-        include_examples "does not delete the question", "not_found"
+        # This case returns an invalid parameter error in the use case due to a type constraint
+        include_examples "does not delete the question", "err"
       end
     end
 
     context "when user is not signed in" do
-      include_examples "does not delete the question", "not_authorized"
+      # This case returns an invalid parameter error in the use case due to a type constraint
+      include_examples "does not delete the question", "err"
     end
   end
 end
