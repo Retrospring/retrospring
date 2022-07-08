@@ -7,8 +7,8 @@ require "use_case/question/create_followers"
 describe UseCase::Question::CreateFollowers do
   subject do
     UseCase::Question::CreateFollowers.call(
-      source_user_id: source_user.id,
-      content: content,
+      source_user_id:    source_user.id,
+      content:           content,
       author_identifier: author_identifier
     )
   end
