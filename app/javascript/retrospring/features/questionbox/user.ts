@@ -5,7 +5,12 @@ import I18n from 'retrospring/i18n';
 export function questionboxUserHandler(event: Event): void {
   const button = event.target as HTMLButtonElement;
   const promote = button.dataset.promote === "true";
-  const anonymousQuestion = document.querySelector<HTMLInputElement>('input[name=qb-anonymous]')?.checked;
+  const anonymousInput = document.querySelector<HTMLInputElement>('input[name=qb-anonymous]');
+  let anonymousQuestion = true;
+
+  if (anonymousInput) {
+    anonymousQuestion = anonymousInput.checked;
+  }
 
   document.querySelector<HTMLInputElement>('textarea[name=qb-question]').readOnly = true;
   button.disabled = true;
