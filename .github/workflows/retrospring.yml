@@ -74,6 +74,7 @@ jobs:
         env:
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
           REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
+          DISABLE_WEBPACK_IN_TESTS: 1
       - name: Lint TypeScript
         run: yarn run lint
       - uses: codecov/codecov-action@v1
