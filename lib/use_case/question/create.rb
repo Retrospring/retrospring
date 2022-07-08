@@ -23,9 +23,9 @@ module UseCase
           user:                source_user_id.nil? ? nil : source_user
         )
 
-        increment_asked_count
-
         return if filtered?(question)
+
+        increment_asked_count
 
         inbox = ::Inbox.create!(user: target_user, question: question, new: true)
 
@@ -62,6 +62,7 @@ module UseCase
         end
 
         source_user.increment(:asked_count)
+        source_user.save
       end
 
       def filtered?(question)
