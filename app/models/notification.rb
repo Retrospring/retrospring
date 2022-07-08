@@ -31,7 +31,7 @@ class Notification < ApplicationRecord
       notif_type = target.notification_type
       return nil unless notif_type
 
-      notif = notif_type.find_by(recipient: recipient, target: target)
+      notif = Notification.find_by(recipient: recipient, target: target)
       notif.destroy unless notif.nil?
     end
 
@@ -39,7 +39,6 @@ class Notification < ApplicationRecord
 
       def make_notification(recipient, target, notification_type)
         n = notification_type.new(target: target,
-                                  target_type: target.class.name,  # To ensure we don't get a type of 'Appenddable'
                                   recipient: recipient,
                                   new: true)
         n.save!
