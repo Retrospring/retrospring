@@ -26,7 +26,7 @@ gem "fog-aws"
 gem "fog-core"
 gem "fog-local"
 gem "haml", "~> 5.0"
-gem "hcaptcha", "~> 6.0"
+gem "hcaptcha", "~> 7.0"
 gem "mini_magick"
 gem "rqrcode"
 
