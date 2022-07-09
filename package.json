@@ -14,7 +14,7 @@
     "font-awesome": "4.7.0",
     "i18n-js": "^3.8.0",
     "jquery": "^3.5.1",
-    "js-cookie": "2.2.1",
+    "js-cookie": "3.0.1",
     "lato-font": "^3.0.0",
     "popper.js": "^1.16.1",
     "rails_admin": "3.0.0",
