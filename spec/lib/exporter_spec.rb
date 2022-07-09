@@ -38,6 +38,11 @@ RSpec.describe Exporter do
   let(:user) { FactoryBot.create(:user, **user_params) }
   let(:instance) { described_class.new(user) }
 
+  after do
+    filename = instance.instance_variable_get(:@export_dirname)
+    FileUtils.rm_r(filename) if File.exist?(filename)
+  end
+
   describe "#collect_user_info" do
     subject { instance.send(:collect_user_info) }
 
@@ -94,6 +99,51 @@ RSpec.describe Exporter do
                                                                          }
                                                                        }
                                                                      end)
+      end
+    end
+  end
+
+  describe "#finalize" do
+    before do
+      instance.instance_variable_set(:@obj, {
+                                       some: {
+                                         sample: {
+                                           data: "Text"
+                                         }
+                                       }
+                                     })
+    end
+
+    subject { instance.send(:finalize) }
+
+    context "exporting a user" do
+      let(:dir) { instance.instance_variable_get(:@export_dirname) }
+      let(:name) { instance.instance_variable_get(:@export_filename) }
+
+      it "prepares files to be archived" do
+        subject
+        expect(File.directory?(Rails.root.join("public/export"))).to eq(true)
+        expect(File.directory?("#{dir}/pictures")).to eq(true)
+      end
+
+      it "outputs JSON" do
+        subject
+        path = "#{dir}/#{name}.json"
+        expect(File.exist?(path)).to eq(true)
+        expect(JSON.load_file(path, symbolize_names: true)).to eq(instance.instance_variable_get(:@obj))
+      end
+
+      it "outputs YAML" do
+        subject
+        path = "#{dir}/#{name}.yml"
+        expect(File.exist?(path)).to eq(true)
+        expect(YAML.load_file(path)).to eq(instance.instance_variable_get(:@obj))
+      end
+
+      it "outputs XML" do
+        subject
+        path = "#{dir}/#{name}.xml"
+        expect(File.exist?(path)).to eq(true)
       end
     end
   end
