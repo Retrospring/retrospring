@@ -97,7 +97,7 @@ GEM
     bootstrap_form (5.0.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    brakeman (5.2.0)
+    brakeman (5.2.3)
     buftok (0.2.0)
     builder (3.2.4)
     bullet (7.0.1)
