@@ -238,6 +238,7 @@ GEM
       rubocop (>= 0.50.0)
       sysexits (~> 1.1)
     hashie (5.0.0)
+    hexe (0.0.666)
     http (4.4.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -603,6 +604,7 @@ DEPENDENCIES
   haml (~> 5.0)
   haml_lint
   hcaptcha (~> 6.0)!
+  hexe (~> 0.0.666)
   httparty
   i18n-js (= 3.6)
   jbuilder (~> 2.10)
