@@ -26,7 +26,7 @@ gem "fog-aws"
 gem "fog-core"
 gem "fog-local"
 gem "haml", "~> 5.0"
-gem "hcaptcha", "~> 6.0", git: "https://github.com/Retrospring/hcaptcha.git", ref: "v6.0.2"
+gem "hcaptcha", "~> 6.0"
 gem "mini_magick"
 gem "rqrcode"
 

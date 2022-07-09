@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/Retrospring/hcaptcha.git
-  revision: 9feac4908097e3dc2afd6f08d07cbfbaa1073a1d
-  ref: v6.0.2
-  specs:
-    hcaptcha (6.0.2)
-      json
-
-GIT
   remote: https://github.com/mltnhm/carrierwave_backgrounder.git
   revision: 8fe468957f047ad7039f07679e5952a534d07b6d
   specs:
@@ -237,6 +229,8 @@ GEM
       rubocop (>= 0.50.0)
       sysexits (~> 1.1)
     hashie (5.0.0)
+    hcaptcha (7.1.0)
+      json
     http (4.4.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -262,7 +256,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.6.1)
+    json (2.6.2)
     jwt (2.4.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -600,7 +594,7 @@ DEPENDENCIES
   guard-brakeman
   haml (~> 5.0)
   haml_lint
-  hcaptcha (~> 6.0)!
+  hcaptcha (~> 6.0)
   httparty
   i18n-js (= 3.9.2)
   jbuilder (~> 2.10)
