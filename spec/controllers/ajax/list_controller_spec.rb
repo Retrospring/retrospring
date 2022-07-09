@@ -21,9 +21,9 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => true,
-          "status" => "okay",
+          "status"  => "okay",
           "message" => anything,
-          "render" => anything
+          "render"  => anything
         }
       end
 
@@ -40,7 +40,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "parameter_error",
+            "status"  => "parameter_error",
             "message" => anything
           }
         end
@@ -57,7 +57,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "not_found",
+            "status"  => "not_found",
             "message" => anything
           }
         end
@@ -74,7 +74,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "err",
+            "status"  => "err",
             "message" => anything
           }
         end
@@ -91,7 +91,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "err",
+            "status"  => "err",
             "message" => anything
           }
         end
@@ -137,7 +137,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => true,
-          "status" => "okay",
+          "status"  => "okay",
           "message" => anything
         }
       end
@@ -156,7 +156,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "parameter_error",
+            "status"  => "parameter_error",
             "message" => anything
           }
         end
@@ -173,7 +173,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "err",
+            "status"  => "err",
             "message" => anything
           }
         end
@@ -218,7 +218,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
       {
         "list" => list_param,
         "user" => target_user_param,
-        "add" => add_param
+        "add"  => add_param
       }
     end
 
@@ -228,7 +228,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => true,
-          "status" => "okay",
+          "status"  => "okay",
           "message" => anything,
           "checked" => expected_checked
         }
@@ -242,7 +242,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
 
         it "does not do anything" do
           expect { subject }.not_to(change { list.members })
-          expect(list.members.map { |gm| gm.user.id }.sort ).to eq([])
+          expect(list.members.map { |gm| gm.user.id }.sort).to eq([])
         end
 
         include_examples "returns the expected response"
@@ -273,7 +273,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
 
           it "does not add the user to the list again" do
             expect { subject }.not_to(change { list.members })
-            expect(list.members.map { |gm| gm.user.id }.sort ).to eq([target_user.id])
+            expect(list.members.map { |gm| gm.user.id }.sort).to eq([target_user.id])
           end
 
           include_examples "returns the expected response"
@@ -286,7 +286,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "not_found",
+            "status"  => "not_found",
             "message" => anything
           }
         end
@@ -300,7 +300,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "not_found",
+            "status"  => "not_found",
             "message" => anything
           }
         end

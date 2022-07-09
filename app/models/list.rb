@@ -7,14 +7,14 @@ class List < ApplicationRecord
   has_many :list_members, dependent: :destroy
 
   validates :name,
-            length: { minimum: 1 },
+            length:     { minimum: 1 },
             uniqueness: { scope: :user_id }
   validates :display_name, length: { maximum: 30 }
 
   before_validation do
-    self.display_name.strip!
-    self.name = self.display_name.parameterize
-    self.name = '-followers-' if self.name == 'followers'
+    display_name.strip!
+    self.name = display_name.parameterize
+    self.name = "-followers-" if name == "followers"
   end
 
   alias members list_members
