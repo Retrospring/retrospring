@@ -11,7 +11,7 @@ class Exporter
     @user = user
     @obj = {}
     @export_dirname = Dir.mktmpdir("rs-export-")
-    @export_filename = File.basename(@export_dirname) + ".tar.gz"
+    @export_filename = "#{File.basename(@export_dirname)}.tar.gz"
   end
 
   def export
