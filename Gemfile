@@ -10,7 +10,7 @@ gem "pg"
 
 gem "jbuilder", "~> 2.10"
 gem "sass-rails", "~> 5.0"
-gem "turbolinks", "~> 2.5.3"
+gem "turbolinks", "~> 5.2.1"
 
 gem "bcrypt", "~> 3.1.7"
 
