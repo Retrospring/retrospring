@@ -1,42 +1,13 @@
 class Ajax::ListController < AjaxController
+  before_action :authenticate_user!
+
   def create
+    params.require :name
+
     @response[:status] = :err
 
-    unless user_signed_in?
-      @response[:status] = :noauth
-      @response[:message] = t(".noauth")
-      return
-    end
-
-    begin
-      params.require :name
-    rescue ActionController::ParameterMissing => e
-      Sentry.capture_exception(e)
-      @response[:status] = :toolong
-      @response[:message] = t(".noname")
-      return
-    end
-    params.require :user
-
-    begin
-      target_user = User.find_by_screen_name!(params[:user])
-      list = List.create! user: current_user, display_name: params[:name]
-    rescue ActiveRecord::RecordInvalid => e
-      Sentry.capture_exception(e)
-      @response[:status] = :toolong
-      @response[:message] = t(".toolong")
-      return
-    rescue ActiveRecord::RecordNotFound => e
-      Sentry.capture_exception(e)
-      @response[:status] = :notfound
-      @response[:message] = t(".notfound")
-      return
-    rescue ActiveRecord::RecordNotUnique => e
-      Sentry.capture_exception(e)
-      @response[:status] = :exists
-      @response[:message] = t(".exists")
-      return
-    end
+    target_user = User.find_by_screen_name!(params[:user])
+    list = List.create! user: current_user, display_name: params[:name]
 
     @response[:status] = :okay
     @response[:success] = true
@@ -45,24 +16,11 @@ class Ajax::ListController < AjaxController
   end
 
   def destroy
-    @response[:status] = :err
-
-    unless user_signed_in?
-      @response[:status] = :noauth
-      @response[:message] = t(".noauth")
-      return
-    end
-
     params.require :list
 
-    begin
-      List.where(user: current_user, name: params[:list]).first.destroy!
-    rescue ActiveRecord::RecordNotFound => e
-      Sentry.capture_exception(e)
-      @response[:status] = :notfound
-      @response[:message] = t(".notfound")
-      return
-    end
+    @response[:status] = :err
+
+    List.where(user: current_user, name: params[:list]).first.destroy!
 
     @response[:status] = :okay
     @response[:success] = true
@@ -70,30 +28,16 @@ class Ajax::ListController < AjaxController
   end
 
   def membership
-    @response[:status] = :err
-
-    unless user_signed_in?
-      @response[:status] = :noauth
-      @response[:message] = t(".noauth")
-      return
-    end
-
     params.require :user
     params.require :list
     params.require :add
 
+    @response[:status] = :err
+
     add = params[:add] == 'true'
 
-    begin
-      list = current_user.lists.find_by_name!(params[:list])
-    rescue ActiveRecord::RecordNotFound => e
-      Sentry.capture_exception(e)
-      @response[:status] = :notfound
-      @response[:message] = t(".notfound")
-      return
-    end
-
     target_user = User.find_by_screen_name!(params[:user])
+    list = current_user.lists.find_by_name!(params[:list])
 
     raise Errors::ListingSelfBlockedOther if current_user.blocking?(target_user)
     raise Errors::ListingOtherBlockedSelf if target_user.blocking?(current_user)
