@@ -310,7 +310,7 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
-    minitest (5.16.1)
+    minitest (5.16.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -388,9 +388,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
-    rails-i18n (6.0.0)
+    rails-i18n (7.0.5)
       i18n (>= 0.7, < 2)
-      railties (>= 6.0.0, < 7)
+      railties (>= 6.0.0, < 8)
     rails_admin (3.0.0)
       activemodel-serializers-xml (>= 1.0)
       kaminari (>= 0.14, < 2.0)
@@ -620,7 +620,7 @@ DEPENDENCIES
   questiongenerator (~> 1.0)
   rails (~> 6.1)
   rails-controller-testing
-  rails-i18n (~> 6.0)
+  rails-i18n (~> 7.0)
   rails_admin
   rake
   redcarpet
