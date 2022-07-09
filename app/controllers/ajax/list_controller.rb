@@ -5,6 +5,7 @@ class Ajax::ListController < AjaxController
 
   def create
     params.require :name
+    params.require :user
 
     @response[:status] = :err
 
