@@ -197,10 +197,10 @@ GEM
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
-    fog-core (2.2.4)
+    fog-core (2.3.0)
       builder
       excon (~> 0.71)
-      formatador (~> 0.2)
+      formatador (>= 0.2, < 2.0)
       mime-types
     fog-json (1.2.0)
       fog-core
@@ -210,7 +210,7 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    formatador (0.3.0)
+    formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     guard (2.18.0)
