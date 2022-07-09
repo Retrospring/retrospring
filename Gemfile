@@ -32,7 +32,7 @@ gem "rqrcode"
 
 gem "rolify", "~> 5.2"
 
-gem "dry-initializer", "~> 3.0"
+gem "dry-initializer", "~> 3.1"
 gem "dry-types", "~> 1.4"
 
 gem "ruby-progressbar"
