@@ -30,7 +30,7 @@ gem "hcaptcha", "~> 6.0", git: "https://github.com/Retrospring/hcaptcha.git", re
 gem "mini_magick"
 gem "rqrcode"
 
-gem "rolify", "~> 5.2"
+gem "rolify", "~> 6.0"
 
 gem "dry-initializer", "~> 3.1"
 gem "dry-types", "~> 1.4"
