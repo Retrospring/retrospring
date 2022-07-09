@@ -12,7 +12,7 @@ gem "jbuilder", "~> 2.10"
 gem "sass-rails", "~> 5.0"
 gem "turbolinks", "~> 2.5.3"
 
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.18"
 
 gem "active_model_otp"
 gem "bootstrap_form"
