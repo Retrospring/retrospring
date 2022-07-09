@@ -40,7 +40,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "toolong",
+            "status" => "parameter_error",
             "message" => anything
           }
         end
@@ -57,7 +57,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "notfound",
+            "status" => "not_found",
             "message" => anything
           }
         end
@@ -74,7 +74,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "toolong",
+            "status" => "err",
             "message" => anything
           }
         end
@@ -91,7 +91,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "exists",
+            "status" => "err",
             "message" => anything
           }
         end
@@ -117,15 +117,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
     end
 
     context "when user is not signed in" do
-      let(:expected_response) do
-        {
-          "success" => false,
-          "status" => "noauth",
-          "message" => anything
-        }
-      end
-
-      include_examples "returns the expected response"
+      it_behaves_like "requires login"
     end
   end
 
@@ -212,15 +204,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
     end
 
     context "when user is not signed in" do
-      let(:expected_response) do
-        {
-          "success" => false,
-          "status" => "noauth",
-          "message" => anything
-        }
-      end
-
-      include_examples "returns the expected response"
+      it_behaves_like "requires login"
     end
   end
 
@@ -302,7 +286,7 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "notfound",
+            "status" => "not_found",
             "message" => anything
           }
         end
@@ -359,15 +343,8 @@ describe Ajax::ListController, :ajax_controller, type: :controller do
 
     context "when user is not signed in" do
       let(:add_param) { "whatever" }
-      let(:expected_response) do
-        {
-          "success" => false,
-          "status" => "noauth",
-          "message" => anything
-        }
-      end
 
-      include_examples "returns the expected response"
+      it_behaves_like "requires login"
     end
   end
 end
