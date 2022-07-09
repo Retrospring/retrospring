@@ -134,7 +134,7 @@ class Exporter
 
   def publish
     `tar czvf #{Rails.root.join "public", "export", "#{@export_filename}.tar.gz"} -C /tmp/rs_export #{@export_dirname}`
-    url = "https://retrospring.net/export/#{@export_filename}"
+    url = "#{APP_CONFIG[:https] ? 'https' : 'http'}://#{APP_CONFIG[:hostname]}/export/#{@export_filename}"
     @user.export_processing = false
     @user.export_url = url
     @user.export_created_at = Time.now
