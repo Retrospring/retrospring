@@ -342,7 +342,7 @@ GEM
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
-    pg (1.2.3)
+    pg (1.4.1)
     pghero (2.8.3)
       activerecord (>= 5)
     poltergeist (1.18.1)
