@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "i18n-js", "= 3.6"
+gem "i18n-js", "3.9.2"
 gem "rails", "~> 6.1"
 gem "rails-i18n", "~> 6.0"
 
@@ -12,7 +12,7 @@ gem "jbuilder", "~> 2.10"
 gem "sass-rails", "~> 5.0"
 gem "turbolinks", "~> 2.5.3"
 
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.18"
 
 gem "active_model_otp"
 gem "bootstrap_form"
@@ -32,7 +32,7 @@ gem "rqrcode"
 
 gem "rolify", "~> 5.2"
 
-gem "dry-initializer", "~> 3.0"
+gem "dry-initializer", "~> 3.1"
 gem "dry-types", "~> 1.4"
 
 gem "ruby-progressbar"
@@ -63,7 +63,7 @@ gem "redis"
 
 gem "fake_email_validator"
 
-gem "jwt", "~> 2.3"
+gem "jwt", "~> 2.4"
 
 group :development do
   gem "binding_of_caller"
@@ -90,7 +90,7 @@ group :development, :test do
   gem "rake"
   gem "rspec-its", "~> 1.3"
   gem "rspec-mocks"
-  gem "rspec-rails", "~> 4.0"
+  gem "rspec-rails", "~> 5.1"
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem "rubocop", "~> 1.22", ">= 1.22.1"
   gem "rubocop-rails", "~> 2.13", ">= 2.13.1"
