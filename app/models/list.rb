@@ -6,7 +6,9 @@ class List < ApplicationRecord
   belongs_to :user
   has_many :list_members, dependent: :destroy
 
-  validates :name, length: { minimum: 1 }
+  validates :name,
+            length: { minimum: 1 },
+            uniqueness: { scope: :user_id }
   validates :display_name, length: { maximum: 30 }
 
   before_validation do
