@@ -594,7 +594,7 @@ DEPENDENCIES
   guard-brakeman
   haml (~> 5.0)
   haml_lint
-  hcaptcha (~> 6.0)
+  hcaptcha (~> 7.0)
   httparty
   i18n-js (= 3.9.2)
   jbuilder (~> 2.10)
