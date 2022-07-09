@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/Retrospring/hcaptcha.git
-  revision: 9feac4908097e3dc2afd6f08d07cbfbaa1073a1d
-  ref: v6.0.2
-  specs:
-    hcaptcha (6.0.2)
-      json
-
-GIT
   remote: https://github.com/mltnhm/carrierwave_backgrounder.git
   revision: 8fe468957f047ad7039f07679e5952a534d07b6d
   specs:
@@ -86,7 +78,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
-    bcrypt (3.1.16)
+    bcrypt (3.1.18)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -94,7 +86,7 @@ GEM
     bindex (0.8.1)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    bootstrap_form (5.0.0)
+    bootstrap_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     brakeman (5.2.3)
@@ -104,7 +96,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (11.1.3)
-    capybara (3.36.0)
+    capybara (3.37.1)
       addressable
       matrix
       mini_mime (>= 0.1.3)
@@ -177,7 +169,7 @@ GEM
       dry-logic (~> 1.0, >= 1.0.2)
     equalizer (0.0.11)
     erubi (1.10.0)
-    excon (0.89.0)
+    excon (0.92.3)
     execjs (2.8.1)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -193,25 +185,24 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    fog-aws (3.12.0)
+    fog-aws (3.14.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
-      ipaddress (~> 0.8)
-    fog-core (2.2.4)
+    fog-core (2.3.0)
       builder
       excon (~> 0.71)
-      formatador (~> 0.2)
+      formatador (>= 0.2, < 2.0)
       mime-types
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-local (0.7.0)
+    fog-local (0.8.0)
       fog-core (>= 1.27, < 3.0)
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    formatador (0.3.0)
+    formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     guard (2.18.0)
@@ -238,6 +229,8 @@ GEM
       rubocop (>= 0.50.0)
       sysexits (~> 1.1)
     hashie (5.0.0)
+    hcaptcha (7.1.0)
+      json
     http (4.4.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -260,11 +253,10 @@ GEM
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    ipaddress (0.8.3)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.6.1)
+    json (2.6.2)
     jwt (2.4.1)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -325,9 +317,9 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.5.8)
-    omniauth (2.0.4)
+    omniauth (2.1.0)
       hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
+      rack (>= 2.2.3)
       rack-protection
     omniauth-oauth (1.2.0)
       oauth
@@ -339,10 +331,10 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     orm_adapter (0.5.0)
-    parallel (1.21.0)
-    parser (3.1.0.0)
+    parallel (1.22.1)
+    parser (3.1.2.0)
       ast (~> 2.4.1)
-    pg (1.2.3)
+    pg (1.4.1)
     pghero (2.8.3)
       activerecord (>= 5)
     poltergeist (1.18.1)
@@ -410,34 +402,34 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.1)
     redis (4.5.1)
-    regexp_parser (2.2.0)
+    regexp_parser (2.5.0)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
-    rolify (5.3.0)
+    rolify (6.0.0)
     rotp (6.2.0)
     rqrcode (2.1.1)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
     rqrcode_core (1.2.0)
-    rspec-core (3.10.1)
-      rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.1)
+    rspec-core (3.11.0)
+      rspec-support (~> 3.11.0)
+    rspec-expectations (3.11.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
+      rspec-support (~> 3.11.0)
     rspec-its (1.3.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.10.2)
+    rspec-mocks (3.11.1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.10.0)
-    rspec-rails (4.1.2)
-      actionpack (>= 4.2)
-      activesupport (>= 4.2)
-      railties (>= 4.2)
+      rspec-support (~> 3.11.0)
+    rspec-rails (5.1.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      railties (>= 5.2)
       rspec-core (~> 3.10)
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
@@ -445,7 +437,7 @@ GEM
     rspec-sidekiq (3.1.0)
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
-    rspec-support (3.10.3)
+    rspec-support (3.11.0)
     rubocop (1.24.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -455,9 +447,9 @@ GEM
       rubocop-ast (>= 1.15.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.15.1)
-      parser (>= 3.0.1.1)
-    rubocop-rails (2.13.1)
+    rubocop-ast (1.18.0)
+      parser (>= 3.1.1.0)
+    rubocop-rails (2.15.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -511,7 +503,7 @@ GEM
       json
       simplecov
     simplecov_json_formatter (0.1.3)
-    spring (2.1.1)
+    spring (4.0.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -550,7 +542,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
-    unicode-display_width (2.1.0)
+    unicode-display_width (2.2.0)
     uniform_notifier (1.16.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -576,7 +568,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_otp
-  bcrypt (~> 3.1.7)
+  bcrypt (~> 3.1.18)
   better_errors
   binding_of_caller
   bootstrap_form
@@ -602,7 +594,7 @@ DEPENDENCIES
   guard-brakeman
   haml (~> 5.0)
   haml_lint
-  hcaptcha (~> 6.0)!
+  hcaptcha (~> 7.0)
   httparty
   i18n-js (= 3.9.2)
   jbuilder (~> 2.10)
@@ -625,14 +617,14 @@ DEPENDENCIES
   rake
   redcarpet
   redis
-  rolify (~> 5.2)
+  rolify (~> 6.0)
   rqrcode
   rspec-its (~> 1.3)
   rspec-mocks
-  rspec-rails (~> 4.0)
+  rspec-rails (~> 5.1)
   rspec-sidekiq (~> 3.0)
   rubocop (~> 1.22, >= 1.22.1)
-  rubocop-rails (~> 2.13, >= 2.13.1)
+  rubocop-rails (~> 2.15)
   ruby-progressbar
   sanitize
   sass-rails (~> 5.0)
@@ -644,7 +636,7 @@ DEPENDENCIES
   simplecov
   simplecov-cobertura
   simplecov-json
-  spring (~> 2.0)
+  spring (~> 4.0)
   timecop
   turbolinks (~> 2.5.3)
   twitter

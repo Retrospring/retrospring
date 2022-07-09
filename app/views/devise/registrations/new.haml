@@ -15,7 +15,7 @@
             = f.password_field :password_confirmation, autocomplete: "new-password"
 
             - if APP_CONFIG.dig(:hcaptcha, :enabled)
-              = hcaptcha_tags
+              = hcaptcha_tags theme: :light
 
             %p= raw t(".info", terms: link_to(t("voc.terms"), terms_path))
             = f.primary

@@ -12,7 +12,7 @@ gem "jbuilder", "~> 2.10"
 gem "sass-rails", "~> 5.0"
 gem "turbolinks", "~> 2.5.3"
 
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.18"
 
 gem "active_model_otp"
 gem "bootstrap_form"
@@ -26,11 +26,11 @@ gem "fog-aws"
 gem "fog-core"
 gem "fog-local"
 gem "haml", "~> 5.0"
-gem "hcaptcha", "~> 6.0", git: "https://github.com/Retrospring/hcaptcha.git", ref: "v6.0.2"
+gem "hcaptcha", "~> 7.0"
 gem "mini_magick"
 gem "rqrcode"
 
-gem "rolify", "~> 5.2"
+gem "rolify", "~> 6.0"
 
 gem "dry-initializer", "~> 3.1"
 gem "dry-types", "~> 1.4"
@@ -68,7 +68,7 @@ gem "jwt", "~> 2.4"
 group :development do
   gem "binding_of_caller"
   gem "byebug"
-  gem "spring", "~> 2.0"
+  gem "spring", "~> 4.0"
   gem "web-console", "~> 4.0"
 end
 
@@ -90,10 +90,10 @@ group :development, :test do
   gem "rake"
   gem "rspec-its", "~> 1.3"
   gem "rspec-mocks"
-  gem "rspec-rails", "~> 4.0"
+  gem "rspec-rails", "~> 5.1"
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem "rubocop", "~> 1.22", ">= 1.22.1"
-  gem "rubocop-rails", "~> 2.13", ">= 2.13.1"
+  gem "rubocop-rails", "~> 2.15"
   gem "shoulda-matchers", "~> 5.0"
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false
