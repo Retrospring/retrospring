@@ -76,17 +76,17 @@ RSpec.describe Exporter do
         expect(instance.instance_variable_get(:@obj)[:smiles]).to eq(smiles.map do |s|
                                                                        {
                                                                          id:         s.id,
-                                                                         created_at: s.created_at,
+                                                                         created_at: s.reload.created_at,
                                                                          answer:     {
                                                                            comment_count: s.parent.comment_count,
                                                                            content:       s.parent.content,
-                                                                           created_at:    s.parent.created_at,
+                                                                           created_at:    s.parent.reload.created_at,
                                                                            id:            s.parent.id,
                                                                            question:      {
                                                                              answer_count:        s.parent.question.answer_count,
                                                                              author_is_anonymous: s.parent.question.author_is_anonymous,
                                                                              content:             s.parent.question.content,
-                                                                             created_at:          s.parent.question.created_at,
+                                                                             created_at:          s.parent.question.reload.created_at,
                                                                              id:                  s.parent.question.id,
                                                                              user:                nil # we're not populating this in the factory
                                                                            },
