@@ -177,7 +177,7 @@ GEM
       dry-logic (~> 1.0, >= 1.0.2)
     equalizer (0.0.11)
     erubi (1.10.0)
-    excon (0.89.0)
+    excon (0.92.3)
     execjs (2.8.1)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -206,7 +206,7 @@ GEM
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
-    fog-local (0.7.0)
+    fog-local (0.8.0)
       fog-core (>= 1.27, < 3.0)
     fog-xml (0.1.4)
       fog-core
