@@ -254,7 +254,7 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
-    i18n-js (3.6.0)
+    i18n-js (3.9.2)
       i18n (>= 0.6.6)
     idn-ruby (0.1.4)
     image_processing (1.12.2)
@@ -604,7 +604,7 @@ DEPENDENCIES
   haml_lint
   hcaptcha (~> 6.0)!
   httparty
-  i18n-js (= 3.6)
+  i18n-js (= 3.9.2)
   jbuilder (~> 2.10)
   jwt (~> 2.4)
   letter_opener
