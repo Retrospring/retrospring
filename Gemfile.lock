@@ -325,9 +325,9 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.5.8)
-    omniauth (2.0.4)
+    omniauth (2.1.0)
       hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
+      rack (>= 2.2.3)
       rack-protection
     omniauth-oauth (1.2.0)
       oauth
