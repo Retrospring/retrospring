@@ -68,7 +68,7 @@ gem "jwt", "~> 2.3"
 group :development do
   gem "binding_of_caller"
   gem "byebug"
-  gem "spring", "~> 2.0"
+  gem "spring", "~> 4.0"
   gem "web-console", "~> 4.0"
 end
 
