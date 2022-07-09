@@ -227,7 +227,7 @@ class Exporter
     end
 
     type = smile.parent.class.name.downcase
-    sobj[type.to_sym] = send(:"process_#{type}", smile.parent, include_comments: false)
+    sobj[type.to_sym] = send(:"process_#{type}", smile.parent, include_comments: false, include_user: false)
 
     sobj
   end
