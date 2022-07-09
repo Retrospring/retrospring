@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'yaml'
-require 'httparty'
-require 'securerandom'
+require "json"
+require "yaml"
+require "httparty"
 
 class Exporter
-  EXPORT_ROLES = [:administrator, :moderator].freeze
+  EXPORT_ROLES = %i[administrator moderator].freeze
 
   def initialize(user)
     @user = user
     @obj = {}
-    @export_dirname = "export_#{@user.screen_name}_#{Time.now.to_i}_#{SecureRandom.base64.gsub(/[+=\/]/, '')}"
-    @export_filename = @user.screen_name
+    @export_dirname = Dir.mktmpdir("rs-export-")
+    @export_filename = File.basename(@export_dirname) + ".tar.gz"
   end
 
   def export
@@ -29,6 +28,8 @@ class Exporter
     Sentry.capture_exception(e)
     @user.export_processing = false
     @user.save validate: false
+  ensure
+    FileUtils.remove_dir(@export_dirname)
   end
 
   private
@@ -45,7 +46,7 @@ class Exporter
     end
 
     @obj[:profile] = {}
-    %i(display_name motivation_header website location description).each do |f|
+    %i[display_name motivation_header website location description].each do |f|
       @obj[:profile][f] = @user.profile.send f
     end
 
@@ -84,16 +85,16 @@ class Exporter
 
   def finalize
     `mkdir -p "#{Rails.root.join "public", "export"}"`
-    `mkdir -p /tmp/rs_export/#{@export_dirname}/pictures`
+    `mkdir -p #{@export_dirname}/pictures`
 
     if @user.profile_picture_file_name
-      %i(large medium small original).each do |s|
+      %i[large medium small original].each do |s|
         url = @user.profile_picture.url(s)
-        target_file = "/tmp/rs_export/#{@export_dirname}/pictures/picture_#{s}_#{@user.profile_picture_file_name}"
-        File.open target_file, 'wb' do |f|
+        target_file = "#{@export_dirname}/pictures/picture_#{s}_#{@user.profile_picture_file_name}"
+        File.open target_file, "wb" do |f|
           f.binmode
-          data = if url.start_with?('/system')
-                   File.read(Rails.root.join('public', url.sub(%r(\A/+), '')))
+          data = if url.start_with?("/system")
+                   File.read(Rails.root.join("public", url.sub(%r{\A/+}, "")))
                  else
                    HTTParty.get(url).parsed_response
                  end
@@ -103,13 +104,13 @@ class Exporter
     end
 
     if @user.profile_header_file_name
-      %i(web mobile retina original).each do |s|
+      %i[web mobile retina original].each do |s|
         url = @user.profile_header.url(s)
-        target_file = "/tmp/rs_export/#{@export_dirname}/pictures/header_#{s}_#{@user.profile_header_file_name}"
-        File.open target_file, 'wb' do |f|
+        target_file = "#{@export_dirname}/pictures/header_#{s}_#{@user.profile_header_file_name}"
+        File.open target_file, "wb" do |f|
           f.binmode
-          data = if url.start_with?('/system')
-                   File.read(Rails.root.join('public', url.sub(%r(\A/+), '')))
+          data = if url.start_with?("/system")
+                   File.read(Rails.root.join("public", url.sub(%r{\A/+}, "")))
                  else
                    HTTParty.get(url).parsed_response
                  end
@@ -118,22 +119,22 @@ class Exporter
       end
     end
 
-    File.open "/tmp/rs_export/#{@export_dirname}/#{@export_filename}.json", 'w' do |f|
+    File.open "#{@export_dirname}/#{@export_filename}.json", "w" do |f|
       f.puts @obj.to_json
     end
 
-    File.open "/tmp/rs_export/#{@export_dirname}/#{@export_filename}.yml", 'w' do |f|
+    File.open "#{@export_dirname}/#{@export_filename}.yml", "w" do |f|
       f.puts @obj.to_yaml
     end
 
-    File.open "/tmp/rs_export/#{@export_dirname}/#{@export_filename}.xml", 'w' do |f|
+    File.open "#{@export_dirname}/#{@export_filename}.xml", "w" do |f|
       f.puts @obj.to_xml
     end
   end
 
   def publish
-    `tar czvf #{Rails.root.join "public", "export", "#{@export_dirname}.tar.gz"} -C /tmp/rs_export #{@export_dirname}`
-    url = "https://retrospring.net/export/#{@export_dirname}.tar.gz"
+    `tar czvf #{Rails.root.join "public", "export", "#{@export_filename}.tar.gz"} -C /tmp/rs_export #{@export_dirname}`
+    url = "https://retrospring.net/export/#{@export_filename}"
     @user.export_processing = false
     @user.export_url = url
     @user.export_created_at = Time.now
@@ -148,7 +149,7 @@ class Exporter
     }.merge(options)
 
     qobj = {}
-    %i(answer_count author_is_anonymous content created_at id).each do |f|
+    %i[answer_count author_is_anonymous content created_at id].each do |f|
       qobj[f] = question.send f
     end
 
@@ -174,7 +175,7 @@ class Exporter
     }.merge(options)
 
     aobj = {}
-    %i(comment_count content created_at id smile_count).each do |f|
+    %i[comment_count content created_at id smile_count].each do |f|
       aobj[f] = answer.send f
     end
 
@@ -203,7 +204,7 @@ class Exporter
     }.merge(options)
 
     cobj = {}
-    %i(content created_at id).each do |f|
+    %i[content created_at id].each do |f|
       cobj[f] = comment.send f
     end
 
@@ -221,11 +222,12 @@ class Exporter
   def process_smile(smile)
     sobj = {}
 
-    %i(id created_at).each do |f|
+    %i[id created_at].each do |f|
       sobj[f] = smile.send f
     end
 
-    sobj[:answer] = process_answer(smile.answer, include_comments: false)
+    type = smile.parent.class.name.downcase
+    sobj[type.to_sym] = send(:"process_#{type}", smile.parent, include_comments: false)
 
     sobj
   end
@@ -238,7 +240,7 @@ class Exporter
     end
 
     uobj[:profile] = {}
-    %i(display_name motivation_header website location description).each do |f|
+    %i[display_name motivation_header website location description].each do |f|
       uobj[:profile][f] = user.profile.send f
     end
 
