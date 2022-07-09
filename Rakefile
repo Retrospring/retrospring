@@ -10,23 +10,6 @@ task :default do
 end
 
 namespace :justask do
-  desc "Regenerate themes"
-  task themes: :environment do
-    format = '%t (%c/%C) [%b>%i] %e'
-
-    all = Theme.all
-
-    progress = ProgressBar.create title: 'Processing themes', format: format, starting_at: 0, total: all.count
-
-    all.each do |theme|
-      theme.touch
-      theme.save!
-      progress.increment
-    end
-
-    puts "regenerated #{all.count} themes"
-  end
-
   desc "Upload to AWS"
   task paperclaws: :environment do
     if APP_CONFIG["fog"]["credentials"].nil? or APP_CONFIG["fog"]["credentials"]["provider"] != "AWS"
@@ -243,24 +226,6 @@ namespace :justask do
         .where("confirmation_sent_at < ?", DateTime.now.utc - 3.months)
         .destroy_all.count
     puts "Removed #{removed} users"
-  end
-
-  desc "Fixes the notifications"
-  task fix_notifications: :environment do
-    format = '%t (%c/%C) [%b>%i] %e'
-    total = Notification.count
-    progress = ProgressBar.create title: 'Processing notifications', format: format, starting_at: 0, total: total
-    destroyed_count = 0
-
-    Notification.all.each do |n|
-      if n.target.nil?
-        n.destroy
-        destroyed_count += 1
-      end
-      progress.increment
-    end
-
-    puts "Purged #{destroyed_count} dead notifications."
   end
 
   desc "Subscribes everyone to their answers"
