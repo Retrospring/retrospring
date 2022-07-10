@@ -104,6 +104,8 @@ RSpec.describe Exporter do
   end
 
   describe "#finalize" do
+    let(:fake_rails_root) { Pathname(Dir.mktmpdir) }
+
     before do
       instance.instance_variable_set(:@obj, {
                                        some: {
@@ -112,6 +114,7 @@ RSpec.describe Exporter do
                                          }
                                        }
                                      })
+      allow(Rails).to receive(:root).and_return(fake_rails_root)
     end
 
     subject { instance.send(:finalize) }
@@ -122,7 +125,7 @@ RSpec.describe Exporter do
 
       it "prepares files to be archived" do
         subject
-        expect(File.directory?(Rails.root.join("public/export"))).to eq(true)
+        expect(File.directory?(fake_rails_root.join("public/export"))).to eq(true)
         expect(File.directory?("#{dir}/pictures")).to eq(true)
       end
 
