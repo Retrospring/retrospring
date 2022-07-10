@@ -121,6 +121,30 @@ RSpec.describe Exporter do
     end
   end
 
+  describe "#collect_answers" do
+    let!(:answers) { FactoryBot.create_list(:answer, 25, user: user) }
+
+    subject { instance.send(:collect_answers) }
+
+    it "collects answers" do
+      subject
+      expect(instance.instance_variable_get(:@obj)[:answers]).to eq(answers.map do |a|
+                                                                      {
+                                                                        comment_count: 0,
+                                                                        comments:      [],
+                                                                        content:       a.content,
+                                                                        created_at:    a.reload.created_at,
+                                                                        id:            a.id,
+                                                                        question:      instance.send(:process_question,
+                                                                                                     a.question.reload,
+                                                                                                     include_user:    true,
+                                                                                                     include_answers: false),
+                                                                        smile_count:   0
+                                                                      }
+                                                                    end)
+    end
+  end
+
   describe "#collect_smiles" do
     let!(:smiles) { FactoryBot.create_list(:smile, 25, user: user) }
 
