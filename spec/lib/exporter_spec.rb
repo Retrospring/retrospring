@@ -38,6 +38,15 @@ RSpec.describe Exporter do
   let(:user) { FactoryBot.create(:user, **user_params) }
   let(:instance) { described_class.new(user) }
 
+  before do
+    stub_const("APP_CONFIG", {
+                 "hostname"       => "example.com",
+                 "https"          => true,
+                 "items_per_page" => 5,
+                 "fog"            => {}
+               })
+  end
+
   after do
     filename = instance.instance_variable_get(:@export_dirname)
     FileUtils.rm_r(filename) if File.exist?(filename)
@@ -201,6 +210,8 @@ RSpec.describe Exporter do
 
   describe "#finalize" do
     let(:fake_rails_root) { Pathname(Dir.mktmpdir) }
+    let(:dir) { instance.instance_variable_get(:@export_dirname) }
+    let(:name) { instance.instance_variable_get(:@export_filename) }
 
     before do
       instance.instance_variable_set(:@obj, {
@@ -210,15 +221,15 @@ RSpec.describe Exporter do
                                          }
                                        }
                                      })
+
+      Dir.mkdir("#{fake_rails_root}/public")
+      FileUtils.cp_r(Rails.root.join('public/images'), "#{fake_rails_root}/public/images")
       allow(Rails).to receive(:root).and_return(fake_rails_root)
     end
 
     subject { instance.send(:finalize) }
 
     context "exporting a user without a profile picture or header" do
-      let(:dir) { instance.instance_variable_get(:@export_dirname) }
-      let(:name) { instance.instance_variable_get(:@export_filename) }
-
       it "prepares files to be archived" do
         subject
         expect(File.directory?(fake_rails_root.join("public/export"))).to eq(true)
@@ -243,6 +254,19 @@ RSpec.describe Exporter do
         subject
         path = "#{dir}/#{name}.xml"
         expect(File.exist?(path)).to eq(true)
+      end
+    end
+
+    context "exporting a user with a profile header" do
+      before do
+        user.profile_header = Rack::Test::UploadedFile.new(File.open("#{file_fixture_path}/banana_racc.jpg"))
+        user.save!
+      end
+
+      it "exports the header image" do
+        subject
+        dirname = instance.instance_variable_get(:@export_dirname)
+        expect(File.exist?("#{dirname}/pictures/header_web_banana_racc.jpg")).to eq(true)
       end
     end
   end

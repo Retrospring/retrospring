@@ -93,7 +93,7 @@ class Exporter
         target_file = "#{@export_dirname}/pictures/picture_#{s}_#{@user.profile_picture_file_name}"
         File.open target_file, "wb" do |f|
           f.binmode
-          data = if url.start_with?("/system")
+          data = if url.start_with?("/")
                    File.read(Rails.root.join("public", url.sub(%r{\A/+}, "")))
                  else
                    HTTParty.get(url).parsed_response
@@ -109,7 +109,7 @@ class Exporter
         target_file = "#{@export_dirname}/pictures/header_#{s}_#{@user.profile_header_file_name}"
         File.open target_file, "wb" do |f|
           f.binmode
-          data = if url.start_with?("/system")
+          data = if url.start_with?("/")
                    File.read(Rails.root.join("public", url.sub(%r{\A/+}, "")))
                  else
                    HTTParty.get(url).parsed_response
