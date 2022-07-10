@@ -46,27 +46,25 @@ RSpec.describe Exporter do
   describe "#collect_user_info" do
     subject { instance.send(:collect_user_info) }
 
-    context "exporting a user" do
-      it "collects user info" do
-        subject
-        expect(instance.instance_variable_get(:@obj)).to eq(user_params.merge({
-                                                                                administrator:             false,
-                                                                                moderator:                 false,
-                                                                                id:                        user.id,
-                                                                                updated_at:                user.updated_at,
-                                                                                profile_header:            user.profile_header,
-                                                                                profile_header_file_name:  nil,
-                                                                                profile_header_h:          nil,
-                                                                                profile_header_w:          nil,
-                                                                                profile_header_x:          nil,
-                                                                                profile_header_y:          nil,
-                                                                                profile_picture_file_name: nil,
-                                                                                profile_picture_h:         nil,
-                                                                                profile_picture_w:         nil,
-                                                                                profile_picture_x:         nil,
-                                                                                profile_picture_y:         nil
-                                                                              }))
-      end
+    it "collects user info" do
+      subject
+      expect(instance.instance_variable_get(:@obj)).to eq(user_params.merge({
+                                                                              administrator:             false,
+                                                                              moderator:                 false,
+                                                                              id:                        user.id,
+                                                                              updated_at:                user.updated_at,
+                                                                              profile_header:            user.profile_header,
+                                                                              profile_header_file_name:  nil,
+                                                                              profile_header_h:          nil,
+                                                                              profile_header_w:          nil,
+                                                                              profile_header_x:          nil,
+                                                                              profile_header_y:          nil,
+                                                                              profile_picture_file_name: nil,
+                                                                              profile_picture_h:         nil,
+                                                                              profile_picture_w:         nil,
+                                                                              profile_picture_x:         nil,
+                                                                              profile_picture_y:         nil
+                                                                            }))
     end
   end
 
@@ -175,31 +173,29 @@ RSpec.describe Exporter do
 
     subject { instance.send(:collect_smiles) }
 
-    context "exporting a user" do
-      it "collects reactions" do
-        subject
-        expect(instance.instance_variable_get(:@obj)[:smiles]).to eq(smiles.map do |s|
-                                                                       {
-                                                                         id:         s.id,
-                                                                         created_at: s.reload.created_at,
-                                                                         answer:     {
-                                                                           comment_count: s.parent.comment_count,
-                                                                           content:       s.parent.content,
-                                                                           created_at:    s.parent.reload.created_at,
-                                                                           id:            s.parent.id,
-                                                                           question:      {
-                                                                             answer_count:        s.parent.question.answer_count,
-                                                                             author_is_anonymous: s.parent.question.author_is_anonymous,
-                                                                             content:             s.parent.question.content,
-                                                                             created_at:          s.parent.question.reload.created_at,
-                                                                             id:                  s.parent.question.id,
-                                                                             user:                nil # we're not populating this in the factory
-                                                                           },
-                                                                           smile_count:   s.parent.smile_count
-                                                                         }
+    it "collects reactions" do
+      subject
+      expect(instance.instance_variable_get(:@obj)[:smiles]).to eq(smiles.map do |s|
+                                                                     {
+                                                                       id:         s.id,
+                                                                       created_at: s.reload.created_at,
+                                                                       answer:     {
+                                                                         comment_count: s.parent.comment_count,
+                                                                         content:       s.parent.content,
+                                                                         created_at:    s.parent.reload.created_at,
+                                                                         id:            s.parent.id,
+                                                                         question:      {
+                                                                           answer_count:        s.parent.question.answer_count,
+                                                                           author_is_anonymous: s.parent.question.author_is_anonymous,
+                                                                           content:             s.parent.question.content,
+                                                                           created_at:          s.parent.question.reload.created_at,
+                                                                           id:                  s.parent.question.id,
+                                                                           user:                nil # we're not populating this in the factory
+                                                                         },
+                                                                         smile_count:   s.parent.smile_count
                                                                        }
-                                                                     end)
-      end
+                                                                     }
+                                                                   end)
     end
   end
 
@@ -219,7 +215,7 @@ RSpec.describe Exporter do
 
     subject { instance.send(:finalize) }
 
-    context "exporting a user" do
+    context "exporting a user without a profile picture or header" do
       let(:dir) { instance.instance_variable_get(:@export_dirname) }
       let(:name) { instance.instance_variable_get(:@export_filename) }
 
