@@ -84,7 +84,7 @@ RSpec.describe Exporter do
                                                                             answers:             [],
                                                                             author_is_anonymous: q.author_is_anonymous,
                                                                             content:             q.content,
-                                                                            created_at:          q.created_at,
+                                                                            created_at:          q.reload.created_at,
                                                                             id:                  q.id
                                                                           }
                                                                         end)
