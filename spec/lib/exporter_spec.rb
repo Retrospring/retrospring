@@ -223,7 +223,7 @@ RSpec.describe Exporter do
                                      })
 
       Dir.mkdir("#{fake_rails_root}/public")
-      FileUtils.cp_r(Rails.root.join('public/images'), "#{fake_rails_root}/public/images")
+      FileUtils.cp_r(Rails.root.join("public/images"), "#{fake_rails_root}/public/images")
       allow(Rails).to receive(:root).and_return(fake_rails_root)
     end
 
@@ -266,7 +266,9 @@ RSpec.describe Exporter do
       it "exports the header image" do
         subject
         dirname = instance.instance_variable_get(:@export_dirname)
-        expect(File.exist?("#{dirname}/pictures/header_web_banana_racc.jpg")).to eq(true)
+        %i[web mobile retina original].each do |size|
+          expect(File.exist?("#{dirname}/pictures/header_#{size}_banana_racc.jpg")).to eq(true)
+        end
       end
     end
   end
