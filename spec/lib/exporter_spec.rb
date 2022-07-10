@@ -70,6 +70,57 @@ RSpec.describe Exporter do
     end
   end
 
+  describe "#collect_questions" do
+    subject { instance.send(:collect_questions) }
+
+    context "exporting a user with several questions" do
+      let!(:questions) { FactoryBot.create_list(:question, 25, user: user) }
+
+      it "collects questions" do
+        subject
+        expect(instance.instance_variable_get(:@obj)[:questions]).to eq(questions.map do |q|
+                                                                          {
+                                                                            answer_count:        0,
+                                                                            answers:             [],
+                                                                            author_is_anonymous: q.author_is_anonymous,
+                                                                            content:             q.content,
+                                                                            created_at:          q.created_at,
+                                                                            id:                  q.id
+                                                                          }
+                                                                        end)
+      end
+    end
+
+    context "exporting a user with a question which has been answered" do
+      let!(:question) { FactoryBot.create(:question, user: user, author_is_anonymous: false) }
+      let!(:answers) { FactoryBot.create_list(:answer, 5, question: question, user: FactoryBot.create(:user)) }
+
+      it "collects questions and answers" do
+        subject
+        expect(instance.instance_variable_get(:@obj)[:questions]).to eq([
+                                                                          {
+                                                                            answer_count:        5,
+                                                                            answers:             answers.map do |a|
+                                                                              {
+                                                                                comment_count: 0,
+                                                                                comments:      [],
+                                                                                content:       a.content,
+                                                                                created_at:    a.reload.created_at,
+                                                                                id:            a.id,
+                                                                                smile_count:   a.smile_count,
+                                                                                user:          instance.send(:user_stub, a.user)
+                                                                              }
+                                                                            end,
+                                                                            author_is_anonymous: false,
+                                                                            content:             question.content,
+                                                                            created_at:          question.reload.created_at,
+                                                                            id:                  question.id
+                                                                          }
+                                                                        ])
+      end
+    end
+  end
+
   describe "#collect_smiles" do
     let!(:smiles) { FactoryBot.create_list(:smile, 25, user: user) }
 
