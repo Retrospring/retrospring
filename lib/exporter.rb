@@ -133,11 +133,11 @@ class Exporter
   end
 
   def publish
-    `tar czvf #{Rails.root.join "public", "export", "#{@export_filename}.tar.gz"} -C /tmp/rs_export #{@export_dirname}`
-    url = "#{APP_CONFIG[:https] ? 'https' : 'http'}://#{APP_CONFIG[:hostname]}/export/#{@export_filename}"
+    `tar czvf #{Rails.root.join "public", "export", @export_filename} -C /tmp/rs_export #{@export_dirname}`
+    url = "#{APP_CONFIG['https'] ? 'https' : 'http'}://#{APP_CONFIG['hostname']}/export/#{@export_filename}"
     @user.export_processing = false
     @user.export_url = url
-    @user.export_created_at = Time.now
+    @user.export_created_at = Time.now.utc
     @user.save validate: false
     url
   end

@@ -227,6 +227,10 @@ RSpec.describe Exporter do
       allow(Rails).to receive(:root).and_return(fake_rails_root)
     end
 
+    after do
+      FileUtils.rm_r(fake_rails_root)
+    end
+
     subject { instance.send(:finalize) }
 
     context "exporting a user without a profile picture or header" do
@@ -284,6 +288,35 @@ RSpec.describe Exporter do
         %i[large medium small original].each do |size|
           expect(File.exist?("#{dirname}/pictures/picture_#{size}_banana_racc.jpg")).to eq(true)
         end
+      end
+    end
+  end
+
+  describe "#publish" do
+    let(:fake_rails_root) { Pathname(Dir.mktmpdir) }
+    let(:name) { instance.instance_variable_get(:@export_filename) }
+
+    before do
+      FileUtils.mkdir_p("#{fake_rails_root}/public/export")
+      allow(Rails).to receive(:root).and_return(fake_rails_root)
+
+      user.export_processing = true
+      user.save!
+    end
+
+    after do
+      FileUtils.rm_r(fake_rails_root)
+    end
+
+    subject { instance.send(:publish) }
+
+    it "publishes an archive" do
+      Timecop.freeze do
+        expect { subject }.to change { user.export_processing }.from(true).to(false)
+        expect(File.exist?("#{fake_rails_root}/public/export/#{name}")).to eq(true)
+        expect(user.export_url).to eq("https://example.com/export/#{name}")
+        expect(user.export_created_at).to eq(Time.now.utc)
+        expect(user).to be_persisted
       end
     end
   end
