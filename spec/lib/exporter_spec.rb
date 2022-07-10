@@ -313,8 +313,8 @@ RSpec.describe Exporter do
     it "publishes an archive" do
       Timecop.freeze do
         expect { subject }.to change { user.export_processing }.from(true).to(false)
-        expect(File.exist?("#{fake_rails_root}/public/export/#{name}")).to eq(true)
-        expect(user.export_url).to eq("https://example.com/export/#{name}")
+        expect(File.exist?("#{fake_rails_root}/public/export/#{name}.tar.gz")).to eq(true)
+        expect(user.export_url).to eq("https://example.com/export/#{name}.tar.gz")
         expect(user.export_created_at).to eq(Time.now.utc)
         expect(user).to be_persisted
       end

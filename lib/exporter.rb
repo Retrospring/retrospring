@@ -11,7 +11,7 @@ class Exporter
     @user = user
     @obj = {}
     @export_dirname = Dir.mktmpdir("rs-export-")
-    @export_filename = "#{File.basename(@export_dirname)}.tar.gz"
+    @export_filename = "#{File.basename(@export_dirname)}"
   end
 
   def export
@@ -133,8 +133,8 @@ class Exporter
   end
 
   def publish
-    `tar czvf #{Rails.root.join "public", "export", @export_filename} -C /tmp/rs_export #{@export_dirname}`
-    url = "#{APP_CONFIG['https'] ? 'https' : 'http'}://#{APP_CONFIG['hostname']}/export/#{@export_filename}"
+    `tar czvf #{Rails.root.join "public", "export", "#{@export_filename}.tar.gz"} -C /tmp/rs_export #{@export_dirname}`
+    url = "#{APP_CONFIG['https'] ? 'https' : 'http'}://#{APP_CONFIG['hostname']}/export/#{@export_filename}.tar.gz"
     @user.export_processing = false
     @user.export_url = url
     @user.export_created_at = Time.now.utc
