@@ -1,6 +1,6 @@
 class ProfilePictureUploader < BaseUploader
   def default_url(*args)
-    "/images/" + [version_name, "no_avatar.png"].compact.join('/')
+    "/images/#{[version_name || args.first, 'no_avatar.png'].compact.join('/')}"
   end
 
   version :large do
