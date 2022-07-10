@@ -271,5 +271,20 @@ RSpec.describe Exporter do
         end
       end
     end
+
+    context "exporting a user with a profile picture" do
+      before do
+        user.profile_picture = Rack::Test::UploadedFile.new(File.open("#{file_fixture_path}/banana_racc.jpg"))
+        user.save!
+      end
+
+      it "exports the header image" do
+        subject
+        dirname = instance.instance_variable_get(:@export_dirname)
+        %i[large medium small original].each do |size|
+          expect(File.exist?("#{dirname}/pictures/picture_#{size}_banana_racc.jpg")).to eq(true)
+        end
+      end
+    end
   end
 end
