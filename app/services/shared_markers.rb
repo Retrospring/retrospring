@@ -19,7 +19,8 @@ module SharedMarkers
                               })
     end
 
-    content_tag(:a, text.nil? ? link : text, options)
+    # Marking the text content as HTML safe as <tt>content_tag</tt> already escapes it for us
+    content_tag(:a, text.nil? ? link : text.html_safe, options)
   rescue
     link
   end
