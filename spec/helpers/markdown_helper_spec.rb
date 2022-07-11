@@ -22,6 +22,15 @@ describe MarkdownHelper, type: :helper do
     it "should transform mentions into links" do
       expect(markdown("@jake_weary")).to eq('<p><a href="/jake_weary">@jake_weary</a></p>')
     end
+
+    it "should escape text in links" do
+      expect(markdown("[It's a link](https://example.com)")).to eq('<p><a href="/linkfilter?url=https%3A%2F%2Fexample.com" target="_blank" rel="nofollow">It\'s a link</a></p>')
+      expect(markdown("[It's >a link](https://example.com)")).to eq('<p><a href="/linkfilter?url=https%3A%2F%2Fexample.com" target="_blank" rel="nofollow">It\'s &gt;a link</a></p>')
+    end
+
+    it "should escape HTML tags" do
+      expect(markdown("I'm <h1>a test</h1>")).to eq("<p>I'm &lt;h1&gt;a test&lt;/h1&gt;</p>")
+    end
   end
 
   describe "#strip_markdown" do
