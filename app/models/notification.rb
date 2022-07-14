@@ -26,6 +26,7 @@ class Notification < ApplicationRecord
     end
 
     def denotify(recipient, target)
+      return nil if recipient.blank?
       return nil unless target.respond_to? :notification_type
 
       notif_type = target.notification_type
