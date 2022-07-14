@@ -8,6 +8,12 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
   def destroy
+    if resource.export_processing
+      flash[:error] = t(".export_pending")
+      redirect_to edit_user_registration_path
+      return
+    end
+
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     resource.destroy
     set_flash_message :notice, :destroyed if is_flashing_format?

@@ -197,3 +197,6 @@ en:
       create:
         info: "You have %{count} recovery codes remaining."
         error: :errors.invalid_otp
+    registrations:
+      destroy:
+        export_pending: "You may not delete your account while account data is currently being exported."
