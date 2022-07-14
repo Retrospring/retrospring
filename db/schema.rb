@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_08_204200) do
+ActiveRecord::Schema.define(version: 2022_07_14_212414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 2022_07_08_204200) do
   end
 
   create_table "anonymous_blocks", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "identifier"
-    t.bigint "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "question_id"
     t.index ["identifier"], name: "index_anonymous_blocks_on_identifier"
     t.index ["question_id"], name: "index_anonymous_blocks_on_question_id"
     t.index ["user_id"], name: "index_anonymous_blocks_on_user_id"
@@ -122,10 +122,10 @@ ActiveRecord::Schema.define(version: 2022_07_08_204200) do
   end
 
   create_table "mute_rules", id: :bigint, default: -> { "gen_timestamp_id('mute_rules'::text)" }, force: :cascade do |t|
-    t.bigint "user_id"
     t.string "muted_phrase"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_mute_rules_on_user_id"
   end
 
