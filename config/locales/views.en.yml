@@ -156,6 +156,7 @@ en:
           anon_blocks:
             heading: "Anonymous Blocks"
             body: "Each anonymous user you've blocked is listed here, along with a way to unblock them.  We also display the question they asked you to add some more context.  You can block anonymous users directly from the question in your inbox."
+        deleted_question: "Deleted question"
     data:
       index:
         title: "Your Data"
