@@ -25,7 +25,10 @@
         %li.list-group-item
           .d-flex
             %div
-              %p.mb-0= block.question.content
+              - if block.question.present?
+                %p.mb-0= block.question.content
+              - else
+                %p.mb-0.text-muted.font-italic= t('.deleted_question')
               %p.text-muted.mb-0= t(".blocked", time: time_ago_in_words(block.created_at))
             .ml-auto.d-inline-flex
               %button.btn.btn-default.align-self-center{ data: { action: "anon-unblock", target: block.id } }
