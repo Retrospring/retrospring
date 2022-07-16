@@ -124,7 +124,7 @@ en:
         passive:
           link_text: "their answer"
         other:
-          link_text: "%{user}'s answer"
+          link_text_html: "%{user}'s answer"
       reaction:
         heading_html: "%{user} smiled %{type} %{time} ago"
         answer:
