@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_07_14_212414) do
     t.string "identifier"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
     t.bigint "question_id"
+    t.bigint "user_id"
     t.index ["identifier"], name: "index_anonymous_blocks_on_identifier"
     t.index ["question_id"], name: "index_anonymous_blocks_on_question_id"
     t.index ["user_id"], name: "index_anonymous_blocks_on_user_id"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 2022_07_14_212414) do
     t.string "muted_phrase"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_mute_rules_on_user_id"
   end
 
@@ -324,8 +324,8 @@ ActiveRecord::Schema.define(version: 2022_07_14_212414) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "anonymous_blocks", "questions"
-  add_foreign_key "anonymous_blocks", "users"
-  add_foreign_key "mute_rules", "users"
+  add_foreign_key "anonymous_blocks", "questions", on_delete: :cascade
+  add_foreign_key "anonymous_blocks", "users", on_delete: :cascade
+  add_foreign_key "mute_rules", "users", on_delete: :cascade
   add_foreign_key "profiles", "users"
 end
