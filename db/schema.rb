@@ -324,8 +324,5 @@ ActiveRecord::Schema.define(version: 2022_07_14_212414) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "anonymous_blocks", "questions", on_delete: :cascade
-  add_foreign_key "anonymous_blocks", "users", on_delete: :cascade
-  add_foreign_key "mute_rules", "users", on_delete: :cascade
   add_foreign_key "profiles", "users"
 end

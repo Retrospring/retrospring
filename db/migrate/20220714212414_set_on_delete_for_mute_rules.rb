@@ -3,7 +3,7 @@
 class SetOnDeleteForMuteRules < ActiveRecord::Migration[6.1]
   def change
     change_table :mute_rules do |t|
-      t.foreign_key :users, on_delete: :cascade
+      t.remove_foreign_key :users
     end
   end
 end
