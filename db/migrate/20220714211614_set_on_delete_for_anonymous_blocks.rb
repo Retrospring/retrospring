@@ -3,8 +3,8 @@
 class SetOnDeleteForAnonymousBlocks < ActiveRecord::Migration[6.1]
   def change
     change_table :anonymous_blocks do |t|
-      t.foreign_key :users, on_delete: :cascade
-      t.foreign_key :questions, on_delete: :cascade
+      t.remove_foreign_key :users
+      t.remove_foreign_key :questions
     end
   end
 end
