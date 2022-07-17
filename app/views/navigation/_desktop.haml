@@ -13,8 +13,23 @@
           %a.nav-link{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
             %i.fa.fa-list.hidden-xs
             %span.d-none.d-sm-inline.d-md-none= t('views.actions.list')
-      = render 'navigation/main/notifications'
+      = nav_entry t('views.navigation.notifications'), notifications_path, badge: notification_count, class: 'd-block d-sm-none'
+      %li.nav-item.dropdown.d-none.d-sm-block
+        %a.nav-link.dropdown-toggle{ href: '#', data: { toggle: :dropdown } }
+          - if notification_count.nil?
+            %i.fa.fa-bell-o
+          - else
+            %i.fa.fa-bell
+          %span.sr-only= t('views.navigation.notifications')
+          %span.badge= notification_count
+        = render 'navigation/dropdown/notifications', notifications: notifications, size: "desktop"
       %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.ask_question') }
         %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { target: '#modal-ask-followers', toggle: :modal } }
           %i.fa.fa-pencil-square-o
-      = render 'navigation/main/profile'
+      %li.nav-item.dropdown.profile--image-dropdown
+        %a.nav-link.dropdown-toggle.p-sm-0{ href: "#", data: { toggle: :dropdown } }
+          %img.avatar-md.d-none.d-sm-inline{ src: current_user.profile_picture.url(:small) }
+          %span.d-inline.d-sm-none
+            = current_user.screen_name
+            %b.caret
+        = render 'navigation/dropdown/profile', size: "desktop"
