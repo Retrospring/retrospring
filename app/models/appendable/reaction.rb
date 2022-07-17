@@ -9,7 +9,7 @@ class Appendable::Reaction < Appendable
   end
 
   before_destroy do
-    Notification.denotify parent.user, self
+    Notification.denotify parent&.user, self
     user&.decrement! :smiled_count
     parent&.decrement! :smile_count
   end

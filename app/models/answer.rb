@@ -38,7 +38,7 @@ class Answer < ApplicationRecord
       comment.user&.decrement! :commented_count
       Subscription.denotify comment, self
     end
-    Notification.denotify self.question.user, self
+    Notification.denotify question&.user, self
     Subscription.destruct self
   end
   # rubocop:enable Rails/SkipsModelValidations
