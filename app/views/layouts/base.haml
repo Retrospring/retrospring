@@ -10,10 +10,10 @@
     - else
       %meta{ name: 'theme-color', content: theme_color }
     %link{ rel: 'manifest', href: '/manifest.json', crossorigin: 'use-credentials' }
-    %link{ rel: 'apple-touch-icon', href: '/apple-touch-icon-precomposed.png' }
+    %link{ rel: 'apple-touch-icon', href: '/icons/maskable_icon_x192.png' }
     %link{ rel: 'mask-icon', href: '/icons/icon.svg', color: theme_color }
     %link{ rel: 'icon', href: '/images/favicon/favicon-16.png', sizes: '16x16' }
-    %link{ rel: 'icon', href: '/icon-152.png', sizes: '152x152' }
+    %link{ rel: 'icon', href: '/icons/maskable_icon_x192.png', sizes: '192x192' }
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
     = stylesheet_pack_tag 'application', data: { 'turbolinks-track': 'reload' }
