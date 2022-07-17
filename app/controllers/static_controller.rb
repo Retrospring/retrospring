@@ -70,7 +70,7 @@ class StaticController < ApplicationController
       ],
       icons:            webapp_icons,
       theme_color:      theme_color,
-      background_color: mobile_theme_color,
+      background_color: mobile_theme_color
     }
   end
 
