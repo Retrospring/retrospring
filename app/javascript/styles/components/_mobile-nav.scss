@@ -27,10 +27,22 @@
   }
 }
 
-#rs-mobile-nav-profile {
-  position: fixed;
-  bottom: unquote("calc(env(safe-area-inset-bottom) + #{$navbar-height + 2px})");
-  right: unquote("calc(env(safe-area-inset-right) + 15px)");
-  left: unset;
-  top: unset;
+@include media-breakpoint-down("md") {
+  .notification-dropdown,
+  .profile-dropdown {
+    bottom: unquote("calc(env(safe-area-inset-bottom) + #{$navbar-height + 2px})");
+    position: fixed;
+    top: unset;
+  }
+
+  .profile-dropdown {
+    left: unset;
+    right: unquote("calc(env(safe-area-inset-right) + 15px)");
+  }
+
+  .notification-dropdown {
+    left: unquote("calc(env(safe-area-inset-left) + 8px)");
+    right: unquote("calc(env(safe-area-inset-right) + 8px)");
+    width: calc(100vw - 16px);
+  }
 }

@@ -1,0 +1,16 @@
+.dropdown-menu.dropdown-menu-right.notification-dropdown{ id: "rs-#{size}-nav-notifications" }
+  - if notifications.count.zero?
+    .dropdown-item.text-center.p-2
+      %i.fa.fa-bell-o.notification__bell-icon
+      %p= t(".none")
+    %a.dropdown-item.text-center{ href: notifications_path('all') }
+      %i.fa.fa-fw.fa-chevron-right
+      = t(".all")
+  - else
+    - notifications.each do |notification|
+      .dropdown-item
+        = render "notifications/type/#{notification.target.class.name.downcase.split('::').last}", notification: notification
+
+    %a.dropdown-item.text-center{ href: notifications_path }
+      %i.fa.fa-fw.fa-chevron-right
+      = t(".new")

@@ -103,7 +103,7 @@ en:
         until: "Until %{until}"
         expired: "Expired at %{until}"
   navigation:
-    main:
+    dropdown:
       notifications:
         none: :notifications.index.none
         all: "Show all notifications"
