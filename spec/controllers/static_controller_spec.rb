@@ -47,7 +47,7 @@ describe StaticController, type: :controller do
                    "site_name"      => "Specspring",
                    "hostname"       => "test.host",
                    "https"          => false,
-                   "items_per_page" => 5,
+                   "items_per_page" => 5
                  })
     end
 
