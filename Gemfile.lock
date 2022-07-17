@@ -350,6 +350,8 @@ GEM
     questiongenerator (1.0.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-attack (6.6.1)
+      rack (>= 1.0, < 3)
     rack-protection (2.2.0)
       rack
     rack-proxy (0.7.2)
@@ -610,6 +612,7 @@ DEPENDENCIES
   poltergeist
   puma
   questiongenerator (~> 1.0)
+  rack-attack
   rails (~> 6.1)
   rails-controller-testing
   rails-i18n (~> 6.0)

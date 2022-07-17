@@ -22,6 +22,8 @@ module Justask
     # Use Sidekiq for background jobs
     config.active_job.queue_adapter = :sidekiq
 
+    config.middleware.use Rack::Attack
+
     config.i18n.default_locale = "en"
     config.i18n.fallbacks = [I18n.default_locale]
     config.i18n.enforce_available_locales = false
