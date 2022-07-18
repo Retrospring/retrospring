@@ -52,12 +52,6 @@ en:
           add: "Successfully added user to list."
           remove: "Successfully removed user from list."
     moderation:
-      vote:
-        success: "Successfully voted on report."
-        error: "You have already voted on this report."
-      destroy_vote:
-        success: "Successfully removed vote from report."
-        error: "You have not voted on that report."
       destroy_report:
         success: "Successfully removed report."
         error: :errors.base
