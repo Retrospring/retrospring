@@ -55,12 +55,6 @@ en:
       destroy_report:
         success: "Successfully removed report."
         error: :errors.base
-      create_comment:
-        invalid: "Your comment is too long."
-        success: "Comment posted successfully."
-      destroy_comment:
-        nopriv: "Can't delete other people's comments."
-        success: "Successfully deleted comment."
       ban:
         nopriv: "You cannot ban an administrator!"
         success:
