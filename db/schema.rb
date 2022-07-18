@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_14_212414) do
+ActiveRecord::Schema.define(version: 2022_07_18_201541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,17 +108,6 @@ ActiveRecord::Schema.define(version: 2022_07_14_212414) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id", "created_at"], name: "index_moderation_comments_on_user_id_and_created_at"
-  end
-
-  create_table "moderation_votes", id: :serial, force: :cascade do |t|
-    t.integer "report_id", null: false
-    t.bigint "user_id", null: false
-    t.boolean "upvote", default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["report_id"], name: "index_moderation_votes_on_report_id"
-    t.index ["user_id", "report_id"], name: "index_moderation_votes_on_user_id_and_report_id", unique: true
-    t.index ["user_id"], name: "index_moderation_votes_on_user_id"
   end
 
   create_table "mute_rules", id: :bigint, default: -> { "gen_timestamp_id('mute_rules'::text)" }, force: :cascade do |t|
