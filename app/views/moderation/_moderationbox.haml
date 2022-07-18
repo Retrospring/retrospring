@@ -33,10 +33,5 @@
             %a.btn.btn-primary{ href: moderation_ip_path(report.target.user.id) }
               IP
         .col-md-4.col-sm-4.col-xs-4.text-right
-          %button.btn.btn-primary.btn-sm{ type: :button, name: 'mod-comments', data: { id: report.id, state: :hidden } }
-            %i.fa.fa-comments
-            %span{ id: "mod-comment-count-#{report.id}" }= report.moderation_comments.all.count
           %button.btn.btn-default.btn-sm{ type: :button, name: 'mod-delete-report', data: { id: report.id } }
             %i.fa.fa-trash-o
-    .card-footer.d-none{ id: "mod-comments-section-#{report.id}" }
-      %div{ id: "mod-comments-#{report.id}" }= render 'moderation/discussion', report: report
