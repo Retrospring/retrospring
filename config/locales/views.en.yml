@@ -143,6 +143,13 @@ en:
       share:
         heading: "Share"
         button: "Share on %{service}"
+  link_filter:
+    index:
+      heading: "You're leaving %{app_name}"
+      subheading: "The link you are visiting is not trusted by %{app_name}"
+      body: Never enter your passwords or other private information on an untrusted website. %{app_name} will only ever ask for your password on a site that is on the domain %{hostname}
+      url: "URL:"
+      confirm: "I understand the risk, proceed!"
   modal:
     password:
       title: "Save account changes"
@@ -375,13 +382,6 @@ en:
       source: "Source code"
       terms: "Terms of Service"
       privacy: "Privacy Policy"
-  static:
-    linkfilter:
-      heading: "You're leaving %{app_name}"
-      subheading: "The link you are visiting is not trusted by %{app_name}"
-      body: Never enter your passwords or other private information on an untrusted website. %{app_name} will only ever ask for your password on a site that is on the domain %{hostname}
-      url: "URL:"
-      confirm: "I understand the risk, proceed!"
   tabs:
     notifications:
       all: "All notifications"
