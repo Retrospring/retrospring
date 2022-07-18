@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   match '/privacy', to: 'static#privacy_policy', via: 'get', as: :privacy_policy
   match '/terms', to: 'static#terms', via: 'get', as: :terms
   match '/linkfilter', to: 'static#linkfilter', via: 'get', as: :linkfilter
-  match '/manifest.json', to: 'static#webapp_manifest', via: 'get', as: :webapp_manifest
+  match '/manifest.json', to: 'manifests#show', via: 'get', as: :webapp_manifest
 
   # Devise routes
   devise_for :users, path: 'user', skip: [:sessions, :registrations]
