@@ -1,6 +1,5 @@
 class Report < ApplicationRecord
   belongs_to :user
-  has_many :moderation_comments, dependent: :destroy
   validates :type, presence: true
   validates :target_id, presence: true
   validates :user_id, presence: true
