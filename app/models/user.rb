@@ -35,7 +35,6 @@ class User < ApplicationRecord
   has_many :services, dependent: :destroy_async
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy_async
   has_many :reports, dependent: :destroy_async
-  has_many :moderation_comments, dependent: :destroy_async
   has_many :lists, dependent: :destroy_async
   has_many :list_memberships, class_name: "ListMember", dependent: :destroy_async
   has_many :mute_rules, dependent: :destroy_async
@@ -153,10 +152,6 @@ class User < ApplicationRecord
     else
       existing
     end
-  end
-
-  def report_comment(report, content)
-    ModerationComment.create!(user: self, report: report, content: content)
   end
   # endregion
 
