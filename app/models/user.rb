@@ -36,7 +36,6 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy_async
   has_many :reports, dependent: :destroy_async
   has_many :moderation_comments, dependent: :destroy_async
-  has_many :moderation_votes, dependent: :destroy_async
   has_many :lists, dependent: :destroy_async
   has_many :list_memberships, class_name: "ListMember", dependent: :destroy_async
   has_many :mute_rules, dependent: :destroy_async
@@ -154,30 +153,6 @@ class User < ApplicationRecord
     else
       existing
     end
-  end
-
-  # @param upvote [Boolean]
-  def report_vote(report, upvote = false)
-    return unless mod?
-    ModerationVote.create!(user: self, report: report, upvote: upvote)
-  end
-
-  def report_unvote(report)
-    return unless mod?
-    ModerationVote.find_by(user: self, report: report).destroy
-  end
-
-  def report_voted?(report)
-    return false unless mod?
-    report.moderation_votes.each { |s| return true if s.user_id == self.id }
-    false
-  end
-
-  # @param upvote [Boolean]
-  def report_x_voted?(report, upvote)
-    return false unless mod?
-    report.moderation_votes.where(upvote: upvote).each { |s| return true if s.user_id == self.id }
-    false
   end
 
   def report_comment(report, content)
