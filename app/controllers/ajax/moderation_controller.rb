@@ -3,47 +3,6 @@ require 'use_case/user/unban'
 require 'errors'
 
 class Ajax::ModerationController < AjaxController
-  def vote
-    params.require :id
-    params.require :upvote
-
-    report = Report.find(params[:id])
-
-    begin
-      current_user.report_vote(report, params[:upvote])
-    rescue => e
-      Sentry.capture_exception(e)
-      @response[:status] = :fail
-      @response[:message] = t(".error")
-      return
-    end
-
-    @response[:count] = report.votes
-    @response[:status] = :okay
-    @response[:message] = t(".success")
-    @response[:success] = true
-  end
-
-  def destroy_vote
-    params.require :id
-
-    report = Report.find(params[:id])
-
-    begin
-      current_user.report_unvote report
-    rescue => e
-      Sentry.capture_exception(e)
-      @response[:status] = :fail
-      @response[:message] = t(".error")
-      return
-    end
-
-    @response[:count] = report.votes
-    @response[:status] = :okay
-    @response[:message] = t(".success")
-    @response[:success] = true
-  end
-
   def destroy_report
     params.require :id
 
