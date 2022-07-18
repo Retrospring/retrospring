@@ -34,7 +34,13 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'static#index'
+  unauthenticated :user do
+    root to: 'about#index'
+  end
+
+  authenticate :user do
+    root to: 'timeline#index', as: :timeline
+  end
 
   match '/about', to: 'static#about', via: 'get'
   match '/privacy', to: 'static#privacy_policy', via: 'get', as: :privacy_policy
