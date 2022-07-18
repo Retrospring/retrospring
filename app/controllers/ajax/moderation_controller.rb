@@ -23,48 +23,6 @@ class Ajax::ModerationController < AjaxController
     @response[:success] = true
   end
 
-  def create_comment
-    params.require :id
-    params.require :comment
-
-    report = Report.find(params[:id])
-
-
-    begin
-      current_user.report_comment(report, params[:comment])
-    rescue ActiveRecord::RecordInvalid => e
-      Sentry.capture_exception(e)
-      @response[:status] = :rec_inv
-      @response[:message] = t(".invalid")
-      return
-    end
-
-    @response[:status] = :okay
-    @response[:message] = t(".success")
-    @response[:success] = true
-    @response[:render] = render_to_string(partial: 'moderation/discussion', locals: { report: report })
-    @response[:count] = report.moderation_comments.all.count
-  end
-
-  def destroy_comment
-    params.require :comment
-
-    @response[:status] = :err
-    comment = ModerationComment.find(params[:comment])
-
-    unless current_user == comment.user
-      @response[:status] = :nopriv
-      @response[:message] = t(".nopriv")
-      return
-    end
-
-    comment.destroy
-
-    @response[:status] = :okay
-    @response[:message] = t(".success")
-    @response[:success] = true
-  end
-
   def ban
     @response[:status] = :err
     @response[:message] = t(".error")
