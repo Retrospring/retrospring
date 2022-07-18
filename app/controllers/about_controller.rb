@@ -23,8 +23,6 @@ class AboutController < ApplicationController
     @smiles = Appendable::Reaction.count
   end
 
-  def faq; end
-
   def privacy_policy; end
 
   def terms; end
