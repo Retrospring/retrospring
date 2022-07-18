@@ -33,19 +33,6 @@
             %a.btn.btn-primary{ href: moderation_ip_path(report.target.user.id) }
               IP
         .col-md-4.col-sm-4.col-xs-4.text-right
-          %span.mod-count{ id: "mod-count-#{report.id}" }
-            = report.votes
-          .btn-group
-            %button.btn.btn-success.btn-sm{ type: :button,
-              name: 'mod-vote',
-              disabled: current_user.report_x_voted?(report, true) ? :disabled : nil,
-              data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'upvote' } }
-              %i.fa.fa-thumbs-up
-            %button.btn.btn-danger.btn-sm{ type: :button,
-              name: 'mod-vote',
-              disabled: current_user.report_x_voted?(report, false) ? :disabled : nil,
-              data: { id: report.id, action: current_user.report_voted?(report) ? 'unvote' : 'vote', vote_type: 'downvote' } }
-              %i.fa.fa-thumbs-down
           %button.btn.btn-primary.btn-sm{ type: :button, name: 'mod-comments', data: { id: report.id, state: :hidden } }
             %i.fa.fa-comments
             %span{ id: "mod-comment-count-#{report.id}" }= report.moderation_comments.all.count
