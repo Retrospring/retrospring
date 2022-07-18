@@ -42,9 +42,9 @@ Rails.application.routes.draw do
     root to: 'timeline#index', as: :timeline
   end
 
-  match '/about', to: 'static#about', via: 'get'
-  match '/privacy', to: 'static#privacy_policy', via: 'get', as: :privacy_policy
-  match '/terms', to: 'static#terms', via: 'get', as: :terms
+  match '/about', to: 'about#about', via: 'get'
+  match '/privacy', to: 'about#privacy_policy', via: 'get', as: :privacy_policy
+  match '/terms', to: 'about#terms', via: 'get', as: :terms
   match '/linkfilter', to: 'static#linkfilter', via: 'get', as: :linkfilter
   match '/manifest.json', to: 'manifests#show', via: 'get', as: :webapp_manifest
 

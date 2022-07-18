@@ -57,6 +57,13 @@ en:
       prompt:
         header: "What are you waiting for?"
         body: "Registering takes less than 5 minutes!"
+    about:
+      title: "About"
+      subtitle: "About our service, features and other information"
+      about_missing: "The site owner decided not to describe this Retrospring instance, how mysterious!"
+      statistics:
+        header: "Statistics"
+        body: "All-time statistics for %{app_name}, updated every time you refresh the page!"
   auth:
     two_factor_authentication:
       heading: "Two-factor authentication"
@@ -369,13 +376,6 @@ en:
       terms: "Terms of Service"
       privacy: "Privacy Policy"
   static:
-    about:
-      title: "About"
-      subtitle: "About our service, features and other information"
-      about_missing: "The site owner decided not to describe this Retrospring instance, how mysterious!"
-      statistics:
-        header: "Statistics"
-        body: "All-time statistics for %{app_name}, updated every time you refresh the page!"
     linkfilter:
       heading: "You're leaving %{app_name}"
       subheading: "The link you are visiting is not trusted by %{app_name}"
