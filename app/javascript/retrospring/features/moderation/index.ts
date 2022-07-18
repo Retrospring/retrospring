@@ -1,5 +1,4 @@
 import registerEvents from 'utilities/registerEvents';
-import registerCommentEvents from './comment';
 import { banCheckboxHandler, banFormHandler, permanentBanCheckboxHandler } from './ban';
 import { destroyReportHandler } from './destroy';
 import { privilegeCheckHandler } from './privilege';
@@ -12,6 +11,4 @@ export default (): void => {
     { type: 'change', target: '[name="permaban"][type="checkbox"]', handler: permanentBanCheckboxHandler, global: true },
     { type: 'submit', target: '#modal-ban form', handler: banFormHandler, global: true }
   ]);
-
-  registerCommentEvents();
 }
