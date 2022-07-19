@@ -98,7 +98,6 @@ group :development, :test do
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false
   gem "simplecov-json", require: false
-  gem "timecop"
 end
 
 group :production do

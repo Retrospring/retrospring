@@ -516,7 +516,6 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    timecop (0.9.5)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -637,7 +636,6 @@ DEPENDENCIES
   simplecov-cobertura
   simplecov-json
   spring (~> 4.0)
-  timecop
   turbolinks (~> 2.5.3)
   twitter
   twitter-text

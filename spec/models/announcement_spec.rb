@@ -3,6 +3,8 @@
 require "rails_helper"
 
 RSpec.describe(Announcement, type: :model) do
+  include ActiveSupport::Testing::TimeHelpers
+
   let!(:user) { FactoryBot.create :user }
   let!(:me) do
     Announcement.new(
@@ -19,15 +21,15 @@ RSpec.describe(Announcement, type: :model) do
     end
 
     it "returns false when the current time is before starts_at" do
-      Timecop.freeze(me.starts_at - 1.second)
+      travel_to(me.starts_at - 1.second)
       expect(me.active?).to be(false)
-      Timecop.return
+      travel_back
     end
 
     it "returns false when the current time is after ends_at" do
-      Timecop.freeze(me.ends_at)
+      travel_to(me.ends_at + 1.second)
       expect(me.active?).to be(false)
-      Timecop.return
+      travel_back
     end
   end
 
