@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   # Routes only accessible by moderators (moderation panel)
   authenticate :user, ->(user) { user.mod? } do
     match '/moderation/unmask', to: 'moderation#toggle_unmask', via: :post, as: :moderation_toggle_unmask
-    match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}
     match '/moderation/inbox/:user', to: 'moderation/inbox#index', via: :get, as: :mod_inbox_index
     namespace :ajax do
