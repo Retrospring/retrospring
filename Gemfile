@@ -15,6 +15,7 @@ gem "turbolinks", "~> 2.5.3"
 gem "bcrypt", "~> 3.1.18"
 
 gem "active_model_otp"
+gem "bootsnap", require: false
 gem "bootstrap_form"
 gem "carrierwave", "~> 2.0"
 gem "carrierwave_backgrounder", git: "https://github.com/mltnhm/carrierwave_backgrounder.git"
