@@ -55,17 +55,6 @@ class ModerationController < ApplicationController
     end
   end
 
-  def ip
-    @user_id = params[:user_id]
-    @host = User.find(@user_id)
-    @users = []
-    return if @host.nil?
-    @users = User.where('(current_sign_in_ip = ? OR last_sign_in_ip = ?) AND id != ?', @host.current_sign_in_ip, @host.last_sign_in_ip, @user_id).to_a
-    @users.unshift @host
-
-    render template: 'moderation/priority'
-  end
-
   def toggle_unmask
     session[:moderation_view] = !session[:moderation_view]
     redirect_back fallback_location: root_path
