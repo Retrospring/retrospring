@@ -188,3 +188,6 @@ en:
     registrations:
       destroy:
         export_pending: "You may not delete your account while account data is currently being exported."
+  timeline:
+    public:
+      title: "Public Timeline"

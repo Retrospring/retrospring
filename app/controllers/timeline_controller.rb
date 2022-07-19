@@ -14,7 +14,7 @@ class TimelineController < ApplicationController
   end
 
   def public
-    @title = generate_title("Public Timeline")
+    @title = generate_title(t(".title"))
     paginate_timeline { |args| Answer.cursored_public_timeline(**args) }
   end
 
