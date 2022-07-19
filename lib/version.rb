@@ -22,7 +22,7 @@ module Retrospring
     end
 
     def day
-      17
+      19
     end
 
     def patch
