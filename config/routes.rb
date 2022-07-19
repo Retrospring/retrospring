@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   authenticate :user, ->(user) { user.mod? } do
     match '/moderation/unmask', to: 'moderation#toggle_unmask', via: :post, as: :moderation_toggle_unmask
     match '/moderation/priority(/:user_id)', to: 'moderation#priority', via: :get, as: :moderation_priority
-    match '/moderation/ip/:user_id', to: 'moderation#ip', via: :get, as: :moderation_ip
     match '/moderation(/:type)', to: 'moderation#index', via: :get, as: :moderation, defaults: {type: 'all'}
     match '/moderation/inbox/:user', to: 'moderation/inbox#index', via: :get, as: :mod_inbox_index
     namespace :ajax do
