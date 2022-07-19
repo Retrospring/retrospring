@@ -30,8 +30,6 @@
               = t('views.moderation.moderationbox.view', content: t('views.general.user'))
             %a.btn.btn-primary{ href: moderation_priority_path(report.target.user.id) }
               Reports
-            %a.btn.btn-primary{ href: moderation_ip_path(report.target.user.id) }
-              IP
         .col-md-4.col-sm-4.col-xs-4.text-right
           %button.btn.btn-default.btn-sm{ type: :button, name: 'mod-delete-report', data: { id: report.id } }
             %i.fa.fa-trash-o
