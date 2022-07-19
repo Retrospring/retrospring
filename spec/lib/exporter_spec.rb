@@ -4,6 +4,8 @@ require "rails_helper"
 require "exporter"
 
 RSpec.describe Exporter do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:user_params) do
     {
       answered_count:                    144,
@@ -311,7 +313,7 @@ RSpec.describe Exporter do
     subject { instance.send(:publish) }
 
     it "publishes an archive" do
-      Timecop.freeze do
+      freeze_time do
         expect { subject }.to change { user.export_processing }.from(true).to(false)
         expect(File.exist?("#{fake_rails_root}/public/export/#{name}.tar.gz")).to eq(true)
         expect(user.export_url).to eq("https://example.com/export/#{name}.tar.gz")

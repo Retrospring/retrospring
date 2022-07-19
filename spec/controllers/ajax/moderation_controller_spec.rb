@@ -4,6 +4,8 @@
 require "rails_helper"
 
 describe Ajax::ModerationController, :ajax_controller, type: :controller do
+  include ActiveSupport::Testing::TimeHelpers
+
   shared_examples "fails when report does not exist" do
     let(:report_id) { "Burgenland" }
     let(:expected_response) do
@@ -147,7 +149,7 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
           let(:duration_unit) { 'hours' }
 
           it "bans the user for 3 hours" do
-            Timecop.freeze do
+            freeze_time do
               expect { subject }.to change { target_user.reload.banned? }.from(false).to(true)
               expect(target_user.bans.current.first.reason).to eq("just a prank, bro")
               expect(target_user.bans.current.first.expires_at.to_i).to eq((Time.now.utc + 3.hours).to_i)

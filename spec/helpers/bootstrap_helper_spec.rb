@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe BootstrapHelper, :type => :helper do
+  include ActiveSupport::Testing::TimeHelpers
+
   describe '#nav_entry' do
     it 'should return a HTML navigation item which links to a given address' do
       allow(self).to receive(:current_page?).and_return(false)
@@ -88,9 +90,9 @@ describe BootstrapHelper, :type => :helper do
 
   describe "#time_tooltip" do
     it 'should return a tooltip with proper time values' do
-      Timecop.freeze(Time.utc(1984)) do
+      travel_to(Time.utc(1984)) do
         @user = FactoryBot.create(:user)
-        Timecop.travel(Time.now.utc + 10.minutes)
+        travel 10.minutes
 
         expect(time_tooltip(@user)).to eq("<span title=\"Sun, 01 Jan 1984 00:00:00 +0000\" data-toggle=\"tooltip\" data-placement=\"bottom\">10 minutes</span>")
       end
