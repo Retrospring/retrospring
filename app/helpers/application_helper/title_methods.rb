@@ -61,6 +61,6 @@ module ApplicationHelper::TitleMethods
   end
 
   def list_title(list)
-    generate_title list.name
+    generate_title list.display_name
   end
 end
