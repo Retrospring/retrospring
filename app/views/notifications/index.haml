@@ -1,7 +1,7 @@
 %ul.list-group#notifications
   - if @notifications.count.zero?
-    .card
-      %li.list-group-item.text-center
+    %li.card.text-center
+      .card-body
         .notifications--none
           %i.fa.fa-bell-o.notification__bell-icon
         %p
@@ -11,8 +11,8 @@
             = t(".none")
   - else
     - @notifications.each do |notification|
-      .card
-        %li.list-group-item
+      %li.card
+        .card-body
           .media
             = render "notifications/type/#{notification.target.class.name.downcase.split('::').last}", notification: notification
 
