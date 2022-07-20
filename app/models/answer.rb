@@ -44,6 +44,6 @@ class Answer < ApplicationRecord
   # rubocop:enable Rails/SkipsModelValidations
 
   def notification_type(*_args)
-    Notifications::QuestionAnswered
+    Notification::QuestionAnswered
   end
 end

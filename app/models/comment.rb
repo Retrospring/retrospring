@@ -31,6 +31,6 @@ class Comment < ApplicationRecord
   # rubocop:enable Rails/SkipsModelValidations
 
   def notification_type(*_args)
-    Notifications::Commented
+    Notification::Commented
   end
 end

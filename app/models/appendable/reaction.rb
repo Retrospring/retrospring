@@ -16,6 +16,6 @@ class Appendable::Reaction < Appendable
   # rubocop:enable Rails/SkipsModelValidations
 
   def notification_type(*_args)
-    Notifications::Smiled
+    Notification::Smiled
   end
 end
