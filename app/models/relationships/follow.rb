@@ -10,6 +10,6 @@ class Relationships::Follow < Relationship
   end
 
   def notification_type(*_args)
-    Notifications::StartedFollowing
+    Notification::StartedFollowing
   end
 end
