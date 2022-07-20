@@ -1,13 +1,14 @@
 %ul.list-group#notifications
   - if @notifications.count.zero?
-    %li.list-group-item.text-center
-      .notifications--none
-        %i.fa.fa-bell-o.notification__bell-icon
-      %p
-        - if params[:type] == 'all'
-          = t(".none_filtered")
-        - else
-          = t(".none")
+    .card
+      %li.list-group-item.text-center
+        .notifications--none
+          %i.fa.fa-bell-o.notification__bell-icon
+        %p
+          - if params[:type] == 'all'
+            = t(".none_filtered")
+          - else
+            = t(".none")
   - else
     - @notifications.each do |notification|
       .card
