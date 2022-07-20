@@ -40,20 +40,20 @@
     right: unquote("calc(env(safe-area-inset-right) + 15px)");
   }
 
-  .notification-dropdown {
+  .dropdown-menu.notification-dropdown {
     left: unquote("calc(env(safe-area-inset-left) + 8px)");
-    width: unquote("calc(100vw - (8px + env(safe-area-inset-right)) - (8px + env(safe-area-inset-left)))");
     max-width: unquote("calc(100vw - (8px + env(safe-area-inset-right)) - (8px + env(safe-area-inset-left)))");
-    min-width: unset !important;
+    min-width: unset;
     right: unquote("calc(env(safe-area-inset-right) + 8px)");
+    width: unquote("calc(100vw - (8px + env(safe-area-inset-right)) - (8px + env(safe-area-inset-left)))");
 
     .dropdown-item {
       padding: 8px;
+    }
 
-      & > .notification {
-        padding: 0;
-        white-space: normal;
-      }
+    .notification {
+      padding: 0;
+      white-space: normal;
     }
   }
 }
