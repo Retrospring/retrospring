@@ -14,7 +14,7 @@
         %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-notifications' }, aria: { controls: 'rs-mobile-nav-notifications', expanded: 'false' } }
           %i.fa{ class: "fa-#{notifications_icon}" }
           %span.sr-only= t('views.navigation.notifications')
-          %span.badge= notification_count
+          %span.badge.badge-pill.badge-primary= notification_count
       %li.nav-item.profile--image-dropdown
         %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
           %img.avatar-md.d-inline{ src: current_user.profile_picture.url(:small) }
