@@ -27,22 +27,21 @@
   }
 }
 
-@include media-breakpoint-down("md") {
-  .notification-dropdown,
-  .profile-dropdown {
-    bottom: unquote("calc(env(safe-area-inset-bottom) + #{$navbar-height + 2px})");
-    position: fixed;
-    top: unset;
-  }
+#rs-mobile-nav-notifications,
+#rs-mobile-nav-profile {
+  bottom: unquote("calc(env(safe-area-inset-bottom) + #{$navbar-height + 2px})");
+  position: fixed;
+  top: unset;
+}
 
-  .profile-dropdown {
-    left: unset;
-    right: unquote("calc(env(safe-area-inset-right) + 15px)");
-  }
+#rs-mobile-nav-profile {
+  left: unset;
+  right: unquote("calc(env(safe-area-inset-right) + 15px)");
+}
 
-  .notification-dropdown {
-    left: unquote("calc(env(safe-area-inset-left) + 8px)");
-    right: unquote("calc(env(safe-area-inset-right) + 8px)");
-    width: calc(100vw - 16px);
-  }
+#rs-mobile-nav-notifications {
+  left: unquote("calc(env(safe-area-inset-left) + 8px)");
+  right: unquote("calc(env(safe-area-inset-right) + 8px)");
+  max-width: unquote("calc(100vw - (8px + env(safe-area-inset-right)) - (8px + env(safe-area-inset-left)))");
+  min-width: unset;
 }
