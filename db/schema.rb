@@ -116,9 +116,10 @@ ActiveRecord::Schema.define(version: 2022_07_20_190421) do
     t.boolean "new"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "type"
+    t.string "type", null: false
     t.index ["new"], name: "index_notifications_on_new"
     t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
+    t.index ["type"], name: "index_notifications_on_type"
   end
 
   create_table "profiles", force: :cascade do |t|
