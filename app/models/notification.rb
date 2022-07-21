@@ -13,7 +13,7 @@ class Notification < ApplicationRecord
     end
 
     def for_type(recipient, type, options={})
-      self.where(options.merge!(recipient: recipient)).where('LOWER(target_type) = ?', type).order(:created_at).reverse_order
+      self.where(options.merge!(recipient: recipient)).where(type: type).order(:created_at).reverse_order
     end
 
     def notify(recipient, target)
@@ -38,12 +38,12 @@ class Notification < ApplicationRecord
 
     private
 
-      def make_notification(recipient, target, notification_type)
-        n = notification_type.new(target: target,
-                                  recipient: recipient,
-                                  new: true)
-        n.save!
-        n
-      end
+    def make_notification(recipient, target, notification_type)
+      n = notification_type.new(target: target,
+                                recipient: recipient,
+                                new: true)
+      n.save!
+      n
+    end
   end
 end

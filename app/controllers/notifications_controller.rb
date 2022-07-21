@@ -4,8 +4,11 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   TYPE_MAPPINGS = {
-    "smile"    => "appendable::reaction",
-    "reaction" => "appendable::reaction"
+    "answer"       => Notification::QuestionAnswered.name,
+    "comment"      => Notification::Commented.name,
+    "commentsmile" => Notification::CommentSmiled.name,
+    "relationship" => Notification::StartedFollowing.name,
+    "smile"        => Notification::Smiled.name,
   }.freeze
 
   def index
