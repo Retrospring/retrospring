@@ -16,6 +16,7 @@ class Appendable::Reaction < Appendable
   # rubocop:enable Rails/SkipsModelValidations
 
   def notification_type(*_args)
+    Notification::CommentSmiled if parent.instance_of?(Comment)
     Notification::Smiled
   end
 end
