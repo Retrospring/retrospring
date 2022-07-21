@@ -9,5 +9,5 @@
     %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @timeline_last_id } }
       = t 'views.actions.load'
 
-- provide(:title, @title ||= APP_CONFIG["site_name"])
+- provide(:title, @title || APP_CONFIG["site_name"])
 - parent_layout 'feed'
