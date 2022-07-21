@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
     "comment"      => Notification::Commented.name,
     "commentsmile" => Notification::CommentSmiled.name,
     "relationship" => Notification::StartedFollowing.name,
-    "smile"        => Notification::Smiled.name,
+    "smile"        => Notification::Smiled.name
   }.freeze
 
   def index
