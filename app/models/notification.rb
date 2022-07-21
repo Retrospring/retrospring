@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Notification < ApplicationRecord
-  belongs_to :recipient, class_name: 'User'
+  belongs_to :recipient, class_name: "User"
   belongs_to :target, polymorphic: true
 
   class << self
@@ -8,12 +10,12 @@ class Notification < ApplicationRecord
     define_cursor_paginator :cursored_for, :for
     define_cursor_paginator :cursored_for_type, :for_type
 
-    def for(recipient, options={})
-      self.where(options.merge!(recipient: recipient)).order(:created_at).reverse_order
+    def for(recipient, options = {})
+      where(options.merge!(recipient: recipient)).order(:created_at).reverse_order
     end
 
-    def for_type(recipient, type, options={})
-      self.where(options.merge!(recipient: recipient)).where(type: type).order(:created_at).reverse_order
+    def for_type(recipient, type, options = {})
+      where(options.merge!(recipient: recipient)).where(type: type).order(:created_at).reverse_order
     end
 
     def notify(recipient, target)
@@ -33,15 +35,15 @@ class Notification < ApplicationRecord
       return nil unless notif_type
 
       notif = Notification.find_by(recipient: recipient, target: target)
-      notif.destroy unless notif.nil?
+      notif&.destroy
     end
 
     private
 
     def make_notification(recipient, target, notification_type)
-      n = notification_type.new(target: target,
+      n = notification_type.new(target:    target,
                                 recipient: recipient,
-                                new: true)
+                                new:       true)
       n.save!
       n
     end
