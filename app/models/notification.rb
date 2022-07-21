@@ -10,12 +10,12 @@ class Notification < ApplicationRecord
     define_cursor_paginator :cursored_for, :for
     define_cursor_paginator :cursored_for_type, :for_type
 
-    def for(recipient, options = {})
-      where(options.merge!(recipient: recipient)).order(:created_at).reverse_order
+    def for(recipient, **kwargs)
+      where(kwargs.merge!(recipient: recipient)).order(:created_at).reverse_order
     end
 
-    def for_type(recipient, type, options = {})
-      where(options.merge!(recipient: recipient)).where(type: type).order(:created_at).reverse_order
+    def for_type(recipient, type, **kwargs)
+      where(kwargs.merge!(recipient: recipient)).where(type: type).order(:created_at).reverse_order
     end
 
     def notify(recipient, target)
