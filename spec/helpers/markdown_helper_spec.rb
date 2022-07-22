@@ -20,7 +20,7 @@ describe MarkdownHelper, type: :helper do
     end
 
     it "should transform mentions into links" do
-      expect(markdown("@jake_weary")).to eq('<p><a href="/jake_weary">@jake_weary</a></p>')
+      expect(markdown("@jake_weary")).to eq('<p><a href="/@jake_weary">@jake_weary</a></p>')
     end
 
     it "should escape text in links" do

@@ -18,7 +18,7 @@ describe ApplicationHelper::GraphMethods, :type => :helper do
           <meta property="og:title" content="Cunes">
           <meta property="og:type" content="profile">
           <meta property="og:image" content="http://test.host/images/large/no_avatar.png">
-          <meta property="og:url" content="http://test.host/raccoons">
+          <meta property="og:url" content="http://test.host/@raccoons">
           <meta property="og:description" content="A bunch of raccoons in a trenchcoat.">
           <meta property="og:site_name" content="pineapplespring">
           <meta property="profile:username" content="raccoons">
@@ -66,7 +66,7 @@ describe ApplicationHelper::GraphMethods, :type => :helper do
           <meta property="og:title" content="raccoons answered: #{answer.question.content}">
           <meta property="og:type" content="article">
           <meta property="og:image" content="http://test.host/images/large/no_avatar.png">
-          <meta property="og:url" content="http://test.host/raccoons/a/#{answer.id}">
+          <meta property="og:url" content="http://test.host/@raccoons/a/#{answer.id}">
           <meta property="og:description" content="#{answer.content}">
           <meta property="og:site_name" content="pineapplespring">
         EOS
