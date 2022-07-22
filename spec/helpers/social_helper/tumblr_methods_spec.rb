@@ -54,7 +54,7 @@ describe SocialHelper::TumblrMethods, :type => :helper do
     subject { tumblr_share_url(answer) }
 
     it 'should return a proper share link' do
-        expect(subject).to eq("https://www.tumblr.com/widgets/share/tool?shareSource=legacy&posttype=text&title=#{CGI.escape(tumblr_title(answer))}&url=#{CGI.escape("https://example.com/@#{answer.user.screen_name}/a/#{answer.id}")}&caption=&content=#{CGI.escape(tumblr_body(answer))}")
+      expect(subject).to eq("https://www.tumblr.com/widgets/share/tool?shareSource=legacy&posttype=text&title=#{CGI.escape(tumblr_title(answer))}&url=#{CGI.escape("https://example.com/@#{answer.user.screen_name}/a/#{answer.id}")}&caption=&content=#{CGI.escape(tumblr_body(answer))}")
     end
   end
 end
