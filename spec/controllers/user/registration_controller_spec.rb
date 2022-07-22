@@ -6,6 +6,17 @@ describe User::RegistrationsController, type: :controller do
   before do
     # Required for devise to register routes
     @request.env["devise.mapping"] = Devise.mappings[:user]
+
+    stub_const("APP_CONFIG", {
+                 "hostname"               => "example.com",
+                 "https"                  => true,
+                 "items_per_page"         => 5,
+                 "forbidden_screen_names" => %w[
+                   justask_admin retrospring_admin admin justask retrospring
+                   moderation moderator mod administrator siteadmin site_admin
+                   help retro_spring retroospring retrosprlng
+                 ]
+               })
   end
 
   describe "#create" do
@@ -17,12 +28,12 @@ describe User::RegistrationsController, type: :controller do
 
       let :registration_params do
         {
-            user: {
-                screen_name: 'dio',
-                email: 'the-world-21@somewhere.everywhere',
-                password: 'AReallySecurePassword456!',
-                password_confirmation: 'AReallySecurePassword456!'
-            }
+          user: {
+            screen_name:           "dio",
+            email:                 "the-world-21@somewhere.everywhere",
+            password:              "AReallySecurePassword456!",
+            password_confirmation: "AReallySecurePassword456!"
+          }
         }
       end
 
@@ -55,12 +66,12 @@ describe User::RegistrationsController, type: :controller do
       context "when registration params are empty" do
         let(:registration_params) do
           {
-              user: {
-                  screen_name: '',
-                  email: '',
-                  password: '',
-                  password_confirmation: ''
-              }
+            user: {
+              screen_name:           "",
+              email:                 "",
+              password:              "",
+              password_confirmation: ""
+            }
           }
         end
 
@@ -70,14 +81,16 @@ describe User::RegistrationsController, type: :controller do
       end
 
       context "when username contains invalid characters" do
-        let(:registration_params) { {
+        let(:registration_params) do
+          {
             user: {
-                screen_name: 'Dio Brando',
-                email: 'the-world-21@somewhere.everywhere',
-                password: 'AReallySecurePassword456!',
-                password_confirmation: 'AReallySecurePassword456!'
+              screen_name:           "Dio Brando",
+              email:                 "the-world-21@somewhere.everywhere",
+              password:              "AReallySecurePassword456!",
+              password_confirmation: "AReallySecurePassword456!"
             }
-        } }
+          }
+        end
 
         it "does not create a user" do
           expect { subject }.not_to(change { User.count })
@@ -85,14 +98,16 @@ describe User::RegistrationsController, type: :controller do
       end
 
       context "when username is forbidden" do
-        let(:registration_params) { {
+        let(:registration_params) do
+          {
             user: {
-                screen_name: 'inbox',
-                email: 'the-world-21@somewhere.everywhere',
-                password: 'AReallySecurePassword456!',
-                password_confirmation: 'AReallySecurePassword456!'
+              screen_name:           "moderator",
+              email:                 "the-world-21@somewhere.everywhere",
+              password:              "AReallySecurePassword456!",
+              password_confirmation: "AReallySecurePassword456!"
             }
-        } }
+          }
+        end
 
         it "does not create a user" do
           expect { subject }.not_to(change { User.count })
