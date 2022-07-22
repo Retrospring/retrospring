@@ -9,6 +9,23 @@ email_from: "noreply@justask.rrerr.net"
 # Name of the "Anonymous" user. (e.g. "Anonymous Coward", "Arno Nym", "Mr. X", ...)
 anonymous_name: "Anonymous"
 
+forbidden_screen_names:
+  - justask_admin
+  - retrospring_admin
+  - admin
+  - justask
+  - retrospring
+  - moderation
+  - moderator
+  - mod
+  - administrator
+  - siteadmin
+  - site_admin
+  - help
+  - retro_spring
+  - retroospring
+  - retrosprlng
+
 # Text shown on the about page (Markdown can be used here)
 about: |
   # About

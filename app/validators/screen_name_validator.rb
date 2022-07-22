@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class ScreenNameValidator < ActiveModel::EachValidator
-  FORBIDDEN_SCREEN_NAMES = %w[justask_admin retrospring_admin admin justask retrospring about public
-                              notifications inbox sign_in sign_up sidekiq moderation moderator mod administrator
-                              siteadmin site_admin help retro_spring retroospring retrosprlng niisding nllsding
-                              pixeidesu plxeldesu plxeidesu terms privacy linkfilter feedback].freeze
+  FORBIDDEN_SCREEN_NAMES = APP_CONFIG["forbidden_screen_names"].freeze
   FORBIDDEN_SCREEN_NAME_REGEXPS = [/wreciap\z/i].freeze
 
   def validate_each(record, attribute, value)
