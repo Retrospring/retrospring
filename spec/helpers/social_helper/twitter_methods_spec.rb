@@ -23,7 +23,7 @@ describe SocialHelper::TwitterMethods, :type => :helper do
       subject { prepare_tweet(answer) }
 
       it 'should return a properly formatted tweet' do
-        expect(subject).to eq("#{'q' * 123}… — #{'a' * 124}… https://example.com/#{user.screen_name}/a/#{answer.id}")
+        expect(subject).to eq("#{'q' * 123}… — #{'a' * 124}… https://example.com/@#{user.screen_name}/a/#{answer.id}")
       end
     end
 
@@ -34,7 +34,7 @@ describe SocialHelper::TwitterMethods, :type => :helper do
       subject { prepare_tweet(answer, '#askracc') }
 
       it 'should include the suffix after the link' do
-        expect(subject).to eq("question — answer #askracc https://example.com/#{user.screen_name}/a/#{answer.id}")
+        expect(subject).to eq("question — answer #askracc https://example.com/@#{user.screen_name}/a/#{answer.id}")
       end
     end
 
@@ -42,7 +42,7 @@ describe SocialHelper::TwitterMethods, :type => :helper do
       subject { prepare_tweet(answer, '#askracc') }
 
       it 'should shorten the tweet while keeping the suffix intact' do
-        expect(subject).to eq("#{'q' * 120}… — #{'a' * 120}… #askracc https://example.com/#{user.screen_name}/a/#{answer.id}")
+        expect(subject).to eq("#{'q' * 120}… — #{'a' * 120}… #askracc https://example.com/@#{user.screen_name}/a/#{answer.id}")
       end
     end
 
@@ -57,7 +57,7 @@ describe SocialHelper::TwitterMethods, :type => :helper do
       subject { prepare_tweet(answer) }
 
       it 'should return a properly formatted tweet' do
-        expect(subject).to eq("#{answer.question.content} — #{answer.content} https://example.com/#{user.screen_name}/a/#{answer.id}")
+        expect(subject).to eq("#{answer.question.content} — #{answer.content} https://example.com/@#{user.screen_name}/a/#{answer.id}")
       end
     end
   end

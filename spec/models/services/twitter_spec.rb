@@ -29,7 +29,7 @@ describe Services::Twitter do
     it "posts a shortened tweet" do
       service.post(answer)
 
-      expect(twitter_client).to have_received(:update!).with("#{'q' * 123}… — #{'a' * 124}… https://example.com/#{user.screen_name}/a/#{answer.id}")
+      expect(twitter_client).to have_received(:update!).with("#{'q' * 123}… — #{'a' * 124}… https://example.com/@#{user.screen_name}/a/#{answer.id}")
     end
     
     it "posts an un-shortened tweet" do
@@ -40,7 +40,7 @@ describe Services::Twitter do
 
       service.post(answer)
 
-      expect(twitter_client).to have_received(:update!).with("#{answer.question.content} — #{answer.content} https://example.com/#{user.screen_name}/a/#{answer.id}")
+      expect(twitter_client).to have_received(:update!).with("#{answer.question.content} — #{answer.content} https://example.com/@#{user.screen_name}/a/#{answer.id}")
     end
   end
 end
