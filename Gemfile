@@ -111,3 +111,5 @@ gem "webpacker", "~> 5.2"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem "net-smtp"
+gem "net-imap"
+gem "net-pop"
