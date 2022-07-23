@@ -23,7 +23,8 @@ module UseCase
         QuestionWorker.perform_async(source_user_id, question.id)
 
         {
-          question: question
+          status:   201,
+          resource: question
         }
       end
 
