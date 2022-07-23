@@ -43,7 +43,7 @@ describe UseCase::Relationship::Destroy do
   let!(:user1) { FactoryBot.create(:user, screen_name: "timallen") }
   let!(:user2) { FactoryBot.create(:user, screen_name: "joehilyar") }
 
-  subject { described_class.call(params) }
+  subject { described_class.call(**params) }
 
   context "type = 'follow'" do
     let(:type) { "follow" }

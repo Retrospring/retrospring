@@ -42,14 +42,14 @@ describe UseCase::Relationship::Create do
   let!(:user1) { FactoryBot.create(:user, screen_name: "timallen") }
   let!(:user2) { FactoryBot.create(:user, screen_name: "joehilyar") }
 
-  subject { described_class.call(params) }
+  subject { described_class.call(**params) }
 
   context "type = 'follow'" do
     let(:type) { "follow" }
 
     include_examples "valid relationship type"
 
-    context "using screen names" do
+    context "using User model instances" do
       let(:source_user) { user1 }
       let(:target_user) { user2 }
 
@@ -62,7 +62,7 @@ describe UseCase::Relationship::Create do
 
     include_examples "valid relationship type"
 
-    context "using screen names" do
+    context "using User model instances" do
       let(:source_user) { user1 }
       let(:target_user) { user2 }
 
