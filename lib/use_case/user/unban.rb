@@ -9,6 +9,14 @@ module UseCase
 
       def call
         target_user.unban
+
+        {
+          status:   204,
+          resource: nil,
+          extra:    {
+            target_user: target_user
+          }
+        }
       end
 
       def target_user
