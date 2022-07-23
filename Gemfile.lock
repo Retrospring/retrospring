@@ -312,6 +312,7 @@ GEM
     naught (1.1.0)
     nenv (0.3.0)
     nested_form (0.3.2)
+    net-smtp (0.1.0)
     nio4r (2.5.8)
     nokogiri (1.13.7)
       mini_portile2 (~> 2.8.0)
@@ -606,6 +607,7 @@ DEPENDENCIES
   letter_opener
   lograge
   mini_magick
+  net-smtp
   oj
   omniauth
   omniauth-rails_csrf_protection (~> 1.0)
