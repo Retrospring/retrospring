@@ -1,6 +1,6 @@
 .dropdown-menu.profile-dropdown{ id: "rs-#{size}-nav-profile" }
   %h6.dropdown-header.d-none.d-sm-block= current_user.screen_name
-  %a.dropdown-item{ href: show_user_profile_path(current_user.screen_name) }
+  %a.dropdown-item{ href: user_path(current_user) }
     %i.fa.fa-fw.fa-user
     = t("views.navigation.show")
   %a.dropdown-item{ href: edit_user_registration_path }

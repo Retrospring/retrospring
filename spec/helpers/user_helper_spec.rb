@@ -37,7 +37,7 @@ describe UserHelper, type: :helper do
 
           context "user is not banned" do
             it "unmasks the author" do
-              expect(subject).to eq(link_to(user.profile.safe_name, show_user_profile_path(user.screen_name), class: ""))
+              expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: ""))
             end
           end
 
@@ -47,7 +47,7 @@ describe UserHelper, type: :helper do
             end
 
             it "unmasks the author" do
-              expect(subject).to eq(link_to(user.profile.safe_name, show_user_profile_path(user.screen_name), class: "user--banned"))
+              expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: "user--banned"))
             end
           end
         end
@@ -114,7 +114,7 @@ describe UserHelper, type: :helper do
             let(:link_only) { true }
 
             it "returns the url to the user's profile" do
-              expect(subject).to eq(show_user_profile_path(user.screen_name))
+              expect(subject).to eq(user_path(user))
             end
           end
 
@@ -123,7 +123,7 @@ describe UserHelper, type: :helper do
 
             context "user is not banned" do
               it "returns a link tag to the user's profile" do
-                expect(subject).to eq(link_to(user.profile.safe_name, show_user_profile_path(user.screen_name), class: ""))
+                expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: ""))
               end
             end
 
@@ -133,7 +133,7 @@ describe UserHelper, type: :helper do
               end
 
               it "returns a link tag to the user's profile" do
-                expect(subject).to eq(link_to(user.profile.safe_name, show_user_profile_path(user.screen_name), class: "user--banned"))
+                expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: "user--banned"))
               end
             end
           end

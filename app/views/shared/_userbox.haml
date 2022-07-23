@@ -3,7 +3,7 @@
   %img.userbox__header{ src: user.profile_header.url(:mobile) }
   .card-body
     %img.userbox__avatar{ src: user.profile_picture.url(:small) }
-    %a.profile__name{ href: show_user_profile_path(user.screen_name) }
+    %a.profile__name{ href: user_path(user) }
       - unless user.profile.display_name.blank?
         .profile__display-name
           = user.profile.display_name

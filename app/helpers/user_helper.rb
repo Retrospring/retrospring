@@ -10,7 +10,7 @@ module UserHelper
     return anonymous_name(context_user) if anonymous?(user, author_identifier.present?)
 
     if url
-      return show_user_profile_path(user.screen_name) if link_only
+      return user_path(user) if link_only
 
       return profile_link(user)
     end
@@ -24,7 +24,7 @@ module UserHelper
   private
 
   def profile_link(user)
-    link_to(user.profile.safe_name, show_user_profile_path(user.screen_name), class: ("user--banned" if user.banned?).to_s)
+    link_to(user.profile.safe_name, user_path(user), class: ("user--banned" if user.banned?).to_s)
   end
 
   def should_unmask?(author_identifier)

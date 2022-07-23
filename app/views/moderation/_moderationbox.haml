@@ -26,7 +26,7 @@
           %a.btn.btn-primary{ href: content_url(report) }
             = t('views.moderation.moderationbox.view', content: report.type.sub('Reports::', ''))
           - if report.target.respond_to?(:user) && report.target.user
-            %a.btn.btn-primary{ href: show_user_profile_path(report.target.user.screen_name) }
+            %a.btn.btn-primary{ href: user_path(report.target.user) }
               = t('views.moderation.moderationbox.view', content: t('views.general.user'))
         .col-md-4.col-sm-4.col-xs-4.text-right
           %button.btn.btn-default.btn-sm{ type: :button, name: 'mod-delete-report', data: { id: report.id } }

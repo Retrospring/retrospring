@@ -13,6 +13,6 @@
           %ul.smiles__user-list
             - comment.smiles.all.each do |smile|
               %li.smiles__user-list-entry
-                %a{ href: show_user_profile_path(smile.user.screen_name) }
+                %a{ href: user_path(smile.user) }
                   %img{ src: smile.user.profile_picture.url(:small), alt: user_screen_name(smile.user, url: false) }
                   %span= user_screen_name(smile.user, url: false)
