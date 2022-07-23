@@ -13,36 +13,20 @@ module Retrospring
   module Version
     module_function
 
-    def year
-      2022
-    end
+    def year = 2022
 
-    def month
-      7
-    end
+    def month = 7
 
-    def day
-      23
-    end
+    def day = 23
 
-    def patch
-      0
-    end
+    def patch = 0
 
-    def suffix
-      ""
-    end
+    def suffix = ""
 
-    def minor
-      [month.to_s.rjust(2, "0"), day.to_s.rjust(2, "0")].join
-    end
+    def minor = [month.to_s.rjust(2, "0"), day.to_s.rjust(2, "0")].join
 
-    def to_a
-      [year.to_s, minor, patch.to_s]
-    end
+    def to_a = [year.to_s, minor, patch.to_s]
 
-    def to_s
-      [to_a.join("."), suffix].join
-    end
+    def to_s = [to_a.join("."), suffix].join
   end
 end
