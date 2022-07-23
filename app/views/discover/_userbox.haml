@@ -2,15 +2,15 @@
   .card-body
     .media
       .pull-left
-        %a{ href: show_user_profile_path(u.screen_name) }
+        %a{ href: user_path(u) }
           %img.avatar-md.mr-2{ src: u.profile_picture.url(:medium) }
       .media-body
         %h6.media-heading.answerbox__question-user
           - if u.profile.display_name.blank?
-            %a{ href: show_user_profile_path(u.screen_name) }
+            %a{ href: user_path(u) }
               = u.screen_name
           - else
-            %a{ href: show_user_profile_path(u.screen_name) }
+            %a{ href: user_path(u) }
               = u.profile.display_name
             %span.text-muted= u.screen_name
         %p.answerbox__question-text

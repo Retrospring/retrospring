@@ -81,6 +81,9 @@ class User < ApplicationRecord
     Profile.create(user_id: id) if Profile.where(user_id: id).count.zero?
   end
 
+  # use the screen name as parameter for url helpers
+  def to_param = screen_name
+
   def login=(login)
     @login = login
   end

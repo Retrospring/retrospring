@@ -8,7 +8,7 @@ module SocialHelper::TwitterMethods
     original_question_length = question_content.length
     answer_content = twitter_markdown answer.content
     original_answer_length = answer_content.length
-    answer_url = show_user_answer_url(
+    answer_url = answer_url(
       id: answer.id,
       username: answer.user.screen_name,
       host: APP_CONFIG['hostname'],

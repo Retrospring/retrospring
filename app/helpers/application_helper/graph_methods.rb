@@ -19,7 +19,7 @@ module ApplicationHelper::GraphMethods
                           "og:title":         user.profile.safe_name,
                           "og:type":          "profile",
                           "og:image":         full_profile_picture_url(user),
-                          "og:url":           show_user_profile_url(user.screen_name),
+                          "og:url":           user_url(user),
                           "og:description":   user.profile.description,
                           "og:site_name":     APP_CONFIG["site_name"],
                           "profile:username": user.screen_name
@@ -43,7 +43,7 @@ module ApplicationHelper::GraphMethods
                           "og:title":       "#{answer.user.profile.safe_name} answered: #{answer.question.content}",
                           "og:type":        "article",
                           "og:image":       full_profile_picture_url(answer.user),
-                          "og:url":         show_user_answer_url(answer.user.screen_name, answer.id),
+                          "og:url":         answer_url(answer.user.screen_name, answer.id),
                           "og:description": answer.content,
                           "og:site_name":   APP_CONFIG["site_name"]
                         })

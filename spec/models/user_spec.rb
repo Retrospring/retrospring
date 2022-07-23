@@ -103,6 +103,12 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@protonmail"
   end
 
+  describe "#to_param" do
+    subject { me.to_param }
+
+    it { is_expected.to eq me.screen_name }
+  end
+
   # -- User::TimelineMethods --
 
   shared_examples_for "result is blank" do

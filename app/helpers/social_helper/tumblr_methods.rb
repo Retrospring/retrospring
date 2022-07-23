@@ -12,7 +12,7 @@ module SocialHelper::TumblrMethods
   end
 
   def tumblr_body(answer)
-    answer_url = show_user_answer_url(
+    answer_url = answer_url(
         id: answer.id,
         username: answer.user.screen_name,
         host: APP_CONFIG['hostname'],
@@ -23,7 +23,7 @@ module SocialHelper::TumblrMethods
   end
 
   def tumblr_share_url(answer)
-    answer_url = show_user_answer_url(
+    answer_url = answer_url(
       id: answer.id,
       username: answer.user.screen_name,
       host: APP_CONFIG['hostname'],
