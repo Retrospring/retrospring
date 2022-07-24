@@ -25,6 +25,10 @@
                       %a.dropdown-item{ href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: question.id } }
                         %i.fa.fa-exclamation-triangle
                         = t 'views.actions.report'
+                    - if current_user.has_role? :administrator
+                      %a.dropdown-item{ href: rails_admin_path_for_resource(question) }
+                        %i.fa.fa-gears
+                        = t("voc.view_in_rails_admin")
           %h6.text-muted.media-heading.answerbox__question-user
             - identifier = question.author_is_anonymous ? question.author_identifier : nil
             - if hidden

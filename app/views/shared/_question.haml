@@ -21,6 +21,10 @@
                   %a.dropdown-item{ href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id } }
                     %i.fa.fa-exclamation-triangle
                     = t 'views.actions.report'
+                - if current_user.has_role? :administrator
+                  %a.dropdown-item{ href: rails_admin_path_for_resource(q) }
+                    %i.fa.fa-gears
+                    = t("voc.view_in_rails_admin")
         %h6.media-heading.text-muted.answerbox__question-user
           = raw t('views.answerbox.asked', user: user_screen_name(q.user), time: time_tooltip(q))
           - if q.answer_count > 1
