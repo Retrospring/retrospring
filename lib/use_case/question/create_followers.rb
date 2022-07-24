@@ -14,7 +14,8 @@ module UseCase
           content:             content,
           author_is_anonymous: false,
           author_identifier:   author_identifier,
-          user:                source_user
+          user:                source_user,
+          direct:              false
         )
 
         increment_asked_count
