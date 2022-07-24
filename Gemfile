@@ -67,6 +67,8 @@ gem "fake_email_validator"
 
 gem "jwt", "~> 2.4"
 
+gem "rack-attack"
+
 group :development do
   gem "binding_of_caller"
   gem "byebug"
