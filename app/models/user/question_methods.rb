@@ -7,7 +7,7 @@ module User::QuestionMethods
 
   def ordered_questions(author_is_anonymous: nil, direct: nil)
     questions
-      .where({ author_is_anonymous: author_is_anonymous, direct: direct }.compact)
+      .where({ author_is_anonymous:, direct: }.compact)
       .order(:created_at)
       .reverse_order
   end
