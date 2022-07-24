@@ -15,32 +15,6 @@ class Ajax::MuteRuleController < AjaxController
     @response[:id] = rule.id
   end
 
-  def update
-    params.require :id
-    params.require :muted_phrase
-
-    unless user_signed_in?
-      @response[:status] = :noauth
-      @response[:message] = t(".noauth")
-      return
-    end
-
-    rule = MuteRule.find(params[:id])
-
-    if rule.user_id != current_user.id
-      @response[:status] = :nopriv
-      @response[:message] = t(".nopriv")
-      return
-    end
-
-    rule.muted_phrase = params[:muted_phrase]
-    rule.save!
-
-    @response[:status] = :okay
-    @response[:message] = t(".success")
-    @response[:success] = true
-  end
-
   def destroy
     params.require :id
 

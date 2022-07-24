@@ -31,33 +31,6 @@ describe Ajax::MuteRuleController, :ajax_controller, type: :controller do
     end
   end
 
-  describe "#update" do
-    subject { post(:update, params: params) }
-
-    context "when user is signed in" do
-      before(:each) { sign_in(user) }
-
-      let(:rule) { MuteRule.create(user: user, muted_phrase: 'test') }
-      let(:params) { { id: rule.id, muted_phrase: 'dogs' } }
-      let(:expected_response) do
-        {
-          "success" => true,
-          "status" => "okay",
-          "message" => "Rule updated successfully."
-        }
-      end
-
-      it "updates a mute rule" do
-        subject
-        expect(response).to have_http_status(:success)
-
-        expect(rule.reload.muted_phrase).to eq('dogs')
-      end
-
-      include_examples "returns the expected response"
-    end
-  end
-
   describe "#destroy" do
     subject { delete(:destroy, params: params) }
 

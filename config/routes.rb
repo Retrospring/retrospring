@@ -129,7 +129,6 @@ Rails.application.routes.draw do
     post "/subscribe", to: "subscription#subscribe", as: :subscribe_answer
     post "/unsubscribe", to: "subscription#unsubscribe", as: :unsubscribe_answer
     post "/mute", to: "mute_rule#create", as: :create_mute_rule
-    post "/mute/:id", to: "mute_rule#update", as: :update_mute_rule
     delete "/mute/:id", to: "mute_rule#destroy", as: :delete_mute_rule
     post "/block_anon", to: "anonymous_block#create", as: :block_anon
     delete "/block_anon/:id", to: "anonymous_block#destroy", as: :unblock_anon
