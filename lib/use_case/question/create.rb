@@ -20,7 +20,8 @@ module UseCase
           content:             content,
           author_is_anonymous: anonymous,
           author_identifier:   author_identifier,
-          user:                source_user_id.nil? ? nil : source_user
+          user:                source_user_id.nil? ? nil : source_user,
+          direct:              true
         )
 
         return if filtered?(question)
