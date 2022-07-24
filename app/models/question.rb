@@ -17,7 +17,7 @@ class Question < ApplicationRecord
     end
 
     # rubocop:disable Rails/SkipsModelValidations
-    user&.decrement! :asked_count unless author_is_anonymous
+    user&.decrement! :asked_count unless author_is_anonymous || direct
     # rubocop:enable Rails/SkipsModelValidations
   end
 
