@@ -11,6 +11,7 @@ module UseCase
       option :content, type: Types::Coercible::String
       option :anonymous, type: Types::Params::Bool, default: proc { false }
       option :author_identifier, type: Types::Coercible::String | Types::Nil
+      option :direct, type: Types::Params::Bool, default: proc { true }
 
       def call
         check_anonymous_rules
@@ -21,7 +22,7 @@ module UseCase
           author_is_anonymous: anonymous,
           author_identifier:   author_identifier,
           user:                source_user_id.nil? ? nil : source_user,
-          direct:              true
+          direct:              direct
         )
 
         return if filtered?(question)
@@ -56,7 +57,7 @@ module UseCase
       end
 
       def increment_asked_count
-        unless source_user_id && !anonymous
+        unless source_user_id && !anonymous && !direct
           # Only increment the asked count of the source user if the question
           # is not anonymous, and we actually have a source user
           return
