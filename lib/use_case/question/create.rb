@@ -59,7 +59,7 @@ module UseCase
       def increment_asked_count
         unless source_user_id && !anonymous && !direct
           # Only increment the asked count of the source user if the question
-          # is not anonymous, and we actually have a source user
+          # is not anonymous, and is not direct, and we actually have a source user
           return
         end
 
