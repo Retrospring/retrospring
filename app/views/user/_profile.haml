@@ -1,12 +1,14 @@
-.card#profile
-  %img.profile__avatar{ src: user.profile_picture.url(:large) }
+.card.profile#profile
+  .d-flex.d-sm-block
+    %img.profile__avatar{ src: user.profile_picture.url(:large) }
+    .profile__name-container
+      .profile__name
+        - unless user.profile.display_name.blank?
+          .profile__display-name
+            = user.profile.display_name
+        .profile__screen-name
+          = user.screen_name
   .card-body
-    .profile__name
-      - unless user.profile.display_name.blank?
-        .profile__display-name
-          = user.profile.display_name
-      .profile__screen-name
-        = user.screen_name
     .profile__badge-container
       - if user.banned?
         %span.badge.badge-dark
