@@ -22,6 +22,7 @@ describe UseCase::Question::Create do
       expect(question.content).to eq(content)
       expect(question.author_is_anonymous).to eq(anonymous)
       expect(question.author_identifier).to eq(author_identifier)
+      expect(question.direct).to eq(true)
 
       if should_send_to_inbox
         expect(target_user.inboxes.first.question_id).to eq(question.id)
