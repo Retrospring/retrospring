@@ -47,7 +47,6 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
           bundler-cache: true
       - name: Set up Node 12
         uses: actions/setup-node@v3
@@ -76,9 +75,26 @@ jobs:
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
           REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
           DISABLE_WEBPACK_IN_TESTS: 1
-      - name: Lint TypeScript
-        run: yarn run lint
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/coverage.xml
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rubocop
+        uses: reviewdog/action-rubocop@v2
+        with:
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile
+          reporter: github-pr-check
+      - run: yarn install
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-check
+          eslint_flags: '--ext .ts app/javascript'
