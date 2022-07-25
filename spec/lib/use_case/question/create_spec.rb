@@ -119,8 +119,8 @@ describe UseCase::Question::Create do
           it_behaves_like "creates the question"
           it_behaves_like "validates content"
 
-          it "increments the source user's asked count" do
-            expect { subject }.to change { source_user.reload.asked_count }.by(1)
+          it "doesn't increment the source user's asked count" do
+            expect { subject }.not_to(change { source_user.reload.asked_count })
           end
         end
       end
