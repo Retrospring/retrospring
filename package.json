@@ -7,7 +7,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@melloware/coloris": "^0.14.0",
     "@rails/ujs": "^6.1.6",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.2",
     "cheet.js": "^0.3.3",
     "core-js": "^3.23.5",
     "croppr": "^2.3.1",
