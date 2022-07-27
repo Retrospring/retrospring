@@ -10,7 +10,7 @@
     .media-body
       .list-group-item-heading= list.display_name
       .list-group-item-text.text-muted
-        %span{ id: "#{list.name}-members", data: { count: list.members.count, i18n: t(".members") } }= t(".members", count: list.members.count)
+        %span{ id: "#{list.name}-members", data: { count: list.members.count } }= t(".members", count: list.members.count)
         ·
         %a.text-danger#delete-list{ href: "#", data: { list: list.name } }
           %i.fa.fa-close
