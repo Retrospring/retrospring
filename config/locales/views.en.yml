@@ -159,6 +159,15 @@ en:
     comment_smiles:
       title: "People who smiled this comment"
       none: "No one smiled this comment, yet!"
+    list:
+      title: "Manage list memberships"
+      tab:
+        list:
+          title: "Lists"
+        create: 
+          title: "Create new list"
+          action: "Create list"
+          placeholder: "List name"
     password:
       title: "Save account changes"
     ban:
