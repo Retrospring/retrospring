@@ -168,6 +168,8 @@ en:
           title: "Create new list"
           action: "Create list"
           placeholder: "List name"
+      item:
+        members: "%{count} members"
     password:
       title: "Save account changes"
     ban:
