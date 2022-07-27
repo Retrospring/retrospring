@@ -152,23 +152,6 @@ en:
       time: "%{time} ago"
       no_smile: "No one smiled this, yet."
       no_comment: "There are no comments yet."
-      commentsmile: "People who smiled this comment"
-    modal:
-      ask:
-        title: "Ask your followers"
-        choose: "Choose list:"
-        loading: "Asking..."
-      list:
-        title: "Manage list memberships"
-        tabs:
-          main: "Lists"
-          create: "Create new list"
-        create: "Create list"
-        name: "List name"
-        members: "members"
-      privilege:
-        moderator: "Someone trustworthy enough to help managing reports."
-        admin: "This user is part of the core team."
     user:
       follows_you: "Follows you"
       title:
