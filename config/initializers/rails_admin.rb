@@ -12,6 +12,14 @@ RailsAdmin.config do |config|
   end
   config.current_user_method(&:current_user)
 
+  %w[Answer Appendable Comment Question User].each do |model_name|
+    config.model model_name do
+      list do
+        scopes [nil, :with_deleted, :only_deleted]
+      end
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
