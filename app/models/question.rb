@@ -1,6 +1,8 @@
 class Question < ApplicationRecord
   include Question::AnswerMethods
 
+  acts_as_paranoid
+
   belongs_to :user, optional: true
   has_many :answers, dependent: :destroy
   has_many :inboxes, dependent: :destroy

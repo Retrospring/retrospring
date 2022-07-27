@@ -1,6 +1,8 @@
 class Answer < ApplicationRecord
   extend Answer::TimelineMethods
 
+  acts_as_paranoid
+
   belongs_to :user
   belongs_to :question
   has_many :comments, dependent: :destroy
@@ -21,7 +23,7 @@ class Answer < ApplicationRecord
 
   before_destroy do
     # mark a report as deleted if it exists
-    rep = Report.where(target_id: self.id, type: 'Reports::Answer')
+    rep = Report.where(target_id: id, type: "Reports::Answer")
     rep.each do |r|
       unless r.nil?
         r.deleted = true
