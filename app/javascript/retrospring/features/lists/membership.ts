@@ -23,7 +23,7 @@ export function listMembershipHandler(event: Event): void {
     success: (data) => {
       if (data.success) {
         checkbox.checked = data.checked;
-        memberCountElement.innerHTML = memberCountElement.dataset.i18n.replace('%{count}', memberCount.toString());
+        memberCountElement.innerHTML = I18n.t('frontend.list.item.members', { count: memberCount });
         memberCountElement.dataset.count = memberCount.toString();
       }
 
