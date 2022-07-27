@@ -22,8 +22,9 @@
             .col-6
               - if user_signed_in?
                 - if user.privacy_allow_anonymous_questions?
-                  %input{ name: "qb-anonymous", type: :checkbox }/
-                  = t(".anonymous")
+                  %label
+                    %input{ name: "qb-anonymous", type: :checkbox }
+                    = t(".anonymous")
                   %br/
                 - else
                   %input{ name: "qb-anonymous", type: :hidden, value: false }/
