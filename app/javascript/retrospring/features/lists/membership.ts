@@ -5,7 +5,8 @@ import I18n from 'retrospring/i18n';
 export function listMembershipHandler(event: Event): void {
   const checkbox = event.target as HTMLInputElement;
   const list = checkbox.dataset.list;
-  let memberCount = Number(document.querySelector(`span#${list}-members`).innerHTML);
+  const memberCountElement: HTMLElement = document.querySelector(`span#${list}-members`);
+  let memberCount = Number(memberCountElement.dataset.count);
 
   checkbox.setAttribute('disabled', 'disabled');
 
@@ -22,7 +23,8 @@ export function listMembershipHandler(event: Event): void {
     success: (data) => {
       if (data.success) {
         checkbox.checked = data.checked;
-        document.querySelector(`span#${list}-members`).innerHTML = memberCount.toString();
+        memberCountElement.innerHTML = memberCountElement.dataset.i18n.replace('%{count}', memberCount.toString());
+        memberCountElement.dataset.count = memberCount.toString();
       }
 
       showNotification(data.message, data.success);
