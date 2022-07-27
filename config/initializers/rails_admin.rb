@@ -51,4 +51,73 @@ RailsAdmin.config do |config|
     User
     UserBan
   ]
+
+  # set up icons for some models
+  {
+    "AnonymousBlock"        => "user-secret",
+    "Answer"                => "exclamation",
+    "Appendable"            => "paperclip",
+    "Appendable::Reaction"  => "smile",
+    "Comment"               => "comment",
+    "Inbox"                 => "inbox",
+    "List"                  => "list",
+    "ListMember"            => "users",
+    "MuteRule"              => "volume-mute",
+    "Notification"          => "bell",
+    "Profile"               => "id-card",
+    "Question"              => "question",
+    "Relationship"          => "people-arrows",
+    "Relationships::Block"  => "user-slash",
+    "Relationships::Follow" => "user-friends",
+    "Report"                => "exclamation-triangle",
+    "Service"               => "network-wired",
+    "Services::Twitter"     => "dumpster-fire",
+    "Theme"                 => "paint-brush",
+    "User"                  => "user",
+    "UserBan"               => "user-lock"
+  }.each do |model, icon|
+    config.model model do
+      navigation_icon "fa fa-fw fa-#{icon} me-1"
+    end
+  end
+
+  # set up custom parents for certain models to group them nicely together
+  {
+    "AnonymousBlock" => User,
+    "Inbox"          => User,
+    "List"           => User,
+    "MuteRule"       => User,
+    "Notification"   => User,
+    "Profile"        => User,
+    "Relationship"   => User,
+    "Service"        => User,
+    "Theme"          => User,
+
+    "ListMember"     => List
+  }.each do |model, parent_model|
+    config.model model do
+      parent parent_model
+    end
+  end
+
+  # create groups inside nav tree
+  {
+    "User content" => %w[
+      Answer
+      Appendable
+      Comment
+      Question
+      User
+    ],
+    "Global"       => %w[
+      Report
+      UserBan
+    ]
+  }.each do |label, models|
+    models.each do |model|
+      config.model model do
+        navigation_label label
+      end
+    end
+  end
 end
