@@ -170,6 +170,11 @@ en:
           placeholder: "List name"
       item:
         members: "%{count} members"
+    privileges:
+      title: "Manage roles for %{user}"
+      role:
+        moderator: "Someone trustworthy enough to help managing reports."
+        admin: "This user is part of the core team."
     password:
       title: "Save account changes"
     ban:
