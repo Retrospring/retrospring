@@ -156,6 +156,9 @@ en:
       placeholder: "Type your question here…"
       action: "Ask"
       loading: "Asking..."
+    comment_smiles:
+      title: "People who smiled this comment"
+      none: "No one smiled this comment, yet!"
     password:
       title: "Save account changes"
     ban:

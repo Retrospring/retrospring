@@ -1,14 +1,14 @@
-.modal.fade{ id: "modal-view-comment#{comment.id}-smiles", aria: { hidden: true, labelledby: 'modal-commentsmile-label' }, role: :dialog, tabindex: -1 }
+.modal.fade{ id: "modal-view-comment#{comment.id}-smiles", aria: { hidden: true, labelledby: "modal-commentsmile-label" }, role: :dialog, tabindex: -1 }
   .modal-dialog
     .modal-content
       .modal-header
-        %h5.modal-title#modal-commentsmile-label= t 'views.answerbox.commentsmile'
+        %h5.modal-title#modal-commentsmile-label= t(".title")
         %button.close{ data: { dismiss: :modal }, type: :button }
           %span{ aria: { hidden: true } } ×
           %span.sr-only Close
       .modal-body
         - if comment.smiles.all.count.zero?
-          = t 'views.answerbox.no_smile'
+          = t(".none")
         - else
           %ul.smiles__user-list
             - comment.smiles.all.each do |smile|
