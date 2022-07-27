@@ -158,7 +158,7 @@ en:
       loading: "Asking..."
     comment_smiles:
       title: "People who smiled this comment"
-      none: "No one smiled this comment, yet!"
+      none: "No one has smiled this comment yet."
     list:
       title: "Manage list memberships"
       tab:
@@ -173,7 +173,7 @@ en:
     privileges:
       title: "Manage roles for %{user}"
       role:
-        moderator: "Someone trustworthy enough to help managing reports."
+        moderator: "Someone trustworthy enough to help manage reports."
         admin: "This user is part of the core team."
     password:
       title: "Save account changes"
