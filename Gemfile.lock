@@ -148,6 +148,8 @@ GEM
       devise (>= 4.8.0)
     diff-lcs (1.5.0)
     digest (3.1.0)
+    discard (1.2.1)
+      activerecord (>= 4.2, < 8)
     docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -602,6 +604,7 @@ DEPENDENCIES
   devise (~> 4.0)
   devise-async
   devise-i18n
+  discard
   dry-initializer (~> 3.1)
   dry-types (~> 1.4)
   factory_bot_rails
