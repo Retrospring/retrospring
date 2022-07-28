@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  include Discard::Model
+
   belongs_to :user
   belongs_to :answer
   validates :user_id, presence: true

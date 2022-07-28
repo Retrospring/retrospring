@@ -12,6 +12,7 @@ class User < ApplicationRecord
   include User::RelationshipMethods
   include User::TimelineMethods
   include ActiveModel::OneTimePassword
+  include Discard::Model
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
