@@ -1,37 +1,37 @@
-- provide(:title, generate_title('Discover'))
+- provide(:title, generate_title(t(".title")))
 
 .jumbotron
   .jumbotron__content
-    %h1= t 'views.discover.title'
-    %p= t('views.discover.subtitle', app_title: APP_CONFIG['site_name'])
+    %h1= t(".heading")
+    %p= t(".subheading", app_title: APP_CONFIG['site_name'])
 .container
   .row
     .col-md-7.col-sm-6
-      %h2= t 'views.discover.content.title'
-      %p= t 'views.discover.content.desc'
+      %h2= t(".content.heading")
+      %p= t(".content.description")
       %div{ role: :tabpanel }
         %ul.nav.nav-tabs{ role: :tablist }
           %li.nav-item{ role: 'presentation' }
-            %a.nav-link.active{ href: '#answers', role: :tab, aria: { controls: 'answers' }, data: { toggle: :tab } }= t 'views.discover.content.tab.answers'
+            %a.nav-link.active{ href: '#answers', role: :tab, aria: { controls: 'answers' }, data: { toggle: :tab } }= t(".content.tab.answers")
           %li.nav-item{ role: 'presentation' }
-            %a.nav-link{ href: '#questions', role: :tab, aria: { controls: 'questions' }, data: { toggle: :tab } }= t 'views.discover.content.tab.questions'
+            %a.nav-link{ href: '#questions', role: :tab, aria: { controls: 'questions' }, data: { toggle: :tab } }= t(".content.tab.questions")
           %li.nav-item{ role: 'presentation' }
-            %a.nav-link{ href: '#comments', role: :tab, aria: { controls: 'comments' }, data: { toggle: :tab } }= t 'views.discover.content.tab.comments'
+            %a.nav-link{ href: '#comments', role: :tab, aria: { controls: 'comments' }, data: { toggle: :tab } }= t(".content.tab.comments")
         .tab-content.mt-3
           = render 'discover/tab_answers', answers: @popular_answers
           = render 'discover/tab_questions', questions: @popular_questions
           = render 'discover/tab_discussed', comments: @most_discussed
     .col-md-5.col-sm-6
-      %h2= t 'views.discover.people.title'
-      %p= t 'views.discover.people.desc'
+      %h2= t(".people.heading")
+      %p= t(".people.description")
       %div{ role: :tabpanel }
         %ul.nav.nav-tabs{ role: :tablist }
           %li.nav-item{ role: 'presentation' }
-            %a.nav-link.active{ href: '#new', role: :tab, aria: { controls: 'new' }, data: { toggle: :tab } }= t 'views.discover.people.tab.new'
+            %a.nav-link.active{ href: '#new', role: :tab, aria: { controls: 'new' }, data: { toggle: :tab } }= t(".people.tab.new")
           %li.nav-item{ role: 'presentation' }
-            %a.nav-link{ href: '#asked', role: :tab, aria: { controls: 'asked' }, data: { toggle: :tab } }= t 'views.discover.people.tab.questions'
+            %a.nav-link{ href: '#asked', role: :tab, aria: { controls: 'asked' }, data: { toggle: :tab } }= t(".people.tab.questions")
           %li.nav-item{ role: 'presentation' }
-            %a.nav-link{ href: '#answered', role: :tab, aria: { controls: 'answered' }, data: { toggle: :tab } }= t 'views.discover.people.tab.answers'
+            %a.nav-link{ href: '#answered', role: :tab, aria: { controls: 'answered' }, data: { toggle: :tab } }= t(".people.tab.answers")
         .tab-content.mt-3
           = render 'discover/tab_new', new: @new_users
           = render 'discover/tab_asked', asked: @users_with_most_questions
