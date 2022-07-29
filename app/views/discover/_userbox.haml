@@ -13,11 +13,4 @@
             %a{ href: user_path(u) }
               = u.profile.display_name
             %span.text-muted= u.screen_name
-        %p.answerbox__question-text
-          - case type
-          - when 'new'
-            = t('views.discover.userbox.new', time: time_ago_in_words(u.created_at))
-          - when 'most'
-            = t('views.discover.userbox.answers', questions: pluralize(a, t('views.general.question')))
-          - else
-            = t('views.discover.userbox.questions', questions: pluralize(q, t('views.general.question')))
+        %p.answerbox__question-text= t(".#{type}", value: value, count: value)
