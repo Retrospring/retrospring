@@ -128,11 +128,11 @@ en:
     userbox:
       new: "registered %{value} ago"
       most:
-        zero: "answered 0 questions"
+        zero: "answered no questions"
         one: "answered 1 question"
         other: "answered %{count} questions"
       asked:
-        zero: "asked 0 questions"
+        zero: "didn't ask any question"
         one: "asked 1 question"
         other: "asked %{count} questions"
   feedback:
