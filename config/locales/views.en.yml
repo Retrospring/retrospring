@@ -106,6 +106,35 @@ en:
     sessions:
       new:
         title: "Sign in"
+  discover:
+    index:
+      title: "Discover"
+      heading: "Discover"
+      subheading: "The perfect place to find interesting content from the last week on %{app_title}!"
+      content:
+        heading: "Popular Content"
+        description: "Answers with most smiles and most answered questions"
+        tab:
+          answers: "Most Smiled"
+          questions: "Most Answers"
+          comments: "Most Discussed"
+      people:
+        heading: "People"
+        description: "Newcomers and people who asked the most questions"
+        tab:
+          new: "New Users"
+          questions: "Active Askers"
+          answers: "Most Answers"
+    userbox:
+      new: "registered %{value} ago"
+      most:
+        zero: "answered 0 questions"
+        one: "answered 1 question"
+        other: "answered %{count} questions"
+      asked:
+        zero: "asked 0 questions"
+        one: "asked 1 question"
+        other: "asked %{count} questions"
   feedback:
     consent:
       title: "Feedback"
