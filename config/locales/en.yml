@@ -77,27 +77,6 @@ en:
       admin: "Kontrollzentrum"
       sidekiq: "Sidekiq"
       moderation: "Moderation Panel"
-    discover:
-      title: "Discover"
-      subtitle: "The perfect place to find interesting content from the last week on %{app_title}!"
-      content:
-        title: "Popular Content"
-        desc: "Answers with most smiles and most answered questions"
-        tab:
-          answers: "Most Liked"
-          questions: "Most Answers"
-          comments: "Most Controversial"
-      people:
-        title: "People"
-        desc: "Newcomers and people who asked the most questions"
-        tab:
-          new: "New Users"
-          questions: "Active Askers"
-          answers: "Most Answers"
-      userbox:
-        new: "registered %{time} ago"
-        answers: "answered %{questions}"
-        questions: "asked %{questions}"
     answerbox:
       asked: "%{user} asked %{time} ago"
       read: "Read the entire answer"
