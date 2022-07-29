@@ -18,9 +18,9 @@
           %li.nav-item{ role: 'presentation' }
             %a.nav-link{ href: '#comments', role: :tab, aria: { controls: 'comments' }, data: { toggle: :tab } }= t(".content.tab.comments")
         .tab-content.mt-3
-          = render 'discover/tab_answers', answers: @popular_answers
-          = render 'discover/tab_questions', questions: @popular_questions
-          = render 'discover/tab_discussed', comments: @most_discussed
+          = render 'discover/tab/answers', answers: @popular_answers
+          = render 'discover/tab/questions', questions: @popular_questions
+          = render 'discover/tab/discussed', comments: @most_discussed
     .col-md-5.col-sm-6
       %h2= t(".people.heading")
       %p= t(".people.description")
@@ -33,7 +33,7 @@
           %li.nav-item{ role: 'presentation' }
             %a.nav-link{ href: '#answered', role: :tab, aria: { controls: 'answered' }, data: { toggle: :tab } }= t(".people.tab.answers")
         .tab-content.mt-3
-          = render 'discover/tab_new', new: @new_users
-          = render 'discover/tab_asked', asked: @users_with_most_questions
-          = render 'discover/tab_most', answered: @users_with_most_answers
+          = render 'discover/tab/new', new: @new_users
+          = render 'discover/tab/asked', asked: @users_with_most_questions
+          = render 'discover/tab/most', answered: @users_with_most_answers
   = render 'shared/links'
