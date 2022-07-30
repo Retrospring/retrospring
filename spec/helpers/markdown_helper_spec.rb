@@ -59,6 +59,10 @@ describe MarkdownHelper, type: :helper do
         expect(twitter_markdown("@test")).to eq("test")
       end
     end
+
+    it "should not strip weird hearts" do
+      expect(twitter_markdown("<///3")).to eq("<///3")
+    end
   end
 
   describe "#question_markdown" do
