@@ -78,7 +78,7 @@ en:
         updated_at: "Account updated at"
     help:
       user:
-        email: "Don't forget to check your spam folder in case our mail might have landed there!"
+        email: "Don't forget to check your spam folder in case our email might have landed there!"
         current_password: "We need your current password to confirm your changes"
       profile:
         anon_display_name: "This name will be used for questions asked to you by anonymous users."
