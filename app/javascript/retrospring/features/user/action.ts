@@ -51,7 +51,7 @@ export function userActionHandler(event: Event): void {
       switch (action) {
         case 'follow':
           button.dataset.action = 'unfollow';
-          button.innerText = I18n.translate('views.actions.unfollow');
+          button.innerText = I18n.translate('voc.unfollow');
           button.classList.remove('btn-primary');
           button.classList.add('btn-default');
           break;
@@ -82,7 +82,7 @@ export function userActionHandler(event: Event): void {
 
 function resetFollowButton(button: HTMLButtonElement) {
   button.dataset.action = 'follow';
-  button.innerText = I18n.translate('views.actions.follow');
+  button.innerText = I18n.translate('voc.follow');
   button.classList.remove('btn-default');
   button.classList.add('btn-primary');
 }

@@ -7,6 +7,7 @@ en:
     confirm: "Are you sure?"
     delete: "Delete"
     edit: "Edit"
+    follow: "Follow"
     load: "Load more"
     login: "Sign in"
     save: "Save changes"
@@ -14,6 +15,7 @@ en:
     report: "Report"
     terms: "Terms of Service"
     unblock: "Unblock"
+    unfollow: "Unfollow"
     update: "Update"
     view_in_rails_admin: "View in Rails Admin"
     y: Yes

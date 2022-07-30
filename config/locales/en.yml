@@ -15,8 +15,6 @@ en:
       title: "List"
       members: "Members"
     actions:
-      follow: "Follow"
-      unfollow: "Unfollow"
       list: "Manage list memberships"
     sessions:
       destroy: "Logout"

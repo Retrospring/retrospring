@@ -5,10 +5,10 @@
   - elsif user_signed_in?
     - if current_user.following? user
       %button.btn.btn-primary.btn-block{ type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name } }
-        = t 'views.actions.unfollow'
+        = t("voc.unfollow")
     - else
       %button.btn.btn-primary.btn-block{ type: :button, name: 'user-action', data: { action: :follow, type: type, target: user.screen_name } }
-        = t 'views.actions.follow'
+        = t("voc.follow")
     .btn-group.btn-block
       %button.btn.btn-light.btn-block.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
         = t(".title")
