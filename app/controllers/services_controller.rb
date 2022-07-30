@@ -10,14 +10,15 @@ class ServicesController < ApplicationController
   def create
     service = Service.initialize_from_omniauth(omniauth_hash)
     service.user = current_user
+    service_name = service.type.split("::").last.titleize
 
     if service.save
-      flash[:success] = t(".success")
+      flash[:success] = t(".success", service: service_name)
     else
       flash[:error] = if service.errors.details[:uid]&.any? { |err| err[:error] == :taken }
-                        t(".duplicate", service: service.type.split("::").last.titleize, app: APP_CONFIG["site_name"])
+                        t(".duplicate", service: service_name, app: APP_CONFIG["site_name"])
                       else
-                        t(".error")
+                        t(".error", service: service_name)
                       end
     end
 
@@ -43,8 +44,9 @@ class ServicesController < ApplicationController
 
   def destroy
     @service = current_user.services.find(params[:id])
+    service_name = @service.type.split("::").last.titleize
     @service.destroy
-    flash[:success] = t(".success")
+    flash[:success] = t(".success", service: service_name)
     redirect_to services_path
   end
 
