@@ -249,6 +249,7 @@ en:
         new: "Show all new notifications"
     desktop:
       ask_question: "Ask a question"
+      list: :user.actions.list
   notifications:
     index:
       title: "Notifications"
@@ -494,3 +495,4 @@ en:
       privilege: "Check %{user}'s privileges"
       ban: "Ban Control"
       title: "Actions"
+      list: "Manage list memberships"
