@@ -439,6 +439,12 @@ en:
       terms: "Terms of Service"
       privacy: "Privacy Policy"
   tabs:
+    moderation:
+      all: "All reports"
+      answers: :activerecord.models.answer.other
+      comments: :activerecord.models.comment.other
+      users: :activerecord.models.user.other
+      questions: :activerecord.models.question.other
     notifications:
       all: "All notifications"
       new: "New notifications"
@@ -463,3 +469,9 @@ en:
         title_html: "Viewing inbox for <br><strong>%{screen_name}</strong> (#%{user_id})"
       index:
         title: "Inbox for %{user}"
+    moderationbox:
+      reported_html: "%{user} reported a %{content} %{time} ago"
+      reason: 
+        heading: "Reason:"
+        none: "No reason provided"
+      view: "View reported %{content}"

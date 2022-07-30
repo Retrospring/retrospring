@@ -58,13 +58,6 @@ en:
       destroy: "Logout"
       create: "Sign in"
       new: "Sign up"
-    moderation:
-      tabs:
-        all: "All reports"
-      moderationbox:
-        reported: "%{user} reported a %{content} %{time} ago"
-        reason: "Reason:"
-        view: "View reported %{content}"
     question:
       title: "This question was not in your inbox? Answer it here!"
     navigation:
