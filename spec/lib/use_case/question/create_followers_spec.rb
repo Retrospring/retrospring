@@ -19,11 +19,11 @@ describe UseCase::Question::CreateFollowers do
     let(:author_identifier) { nil }
 
     it "creates question" do
-      expect(subject[:question]).to be_persisted
+      expect(subject[:resource]).to be_persisted
     end
 
     it "enqueues a QuestionWorker job" do
-      expect(QuestionWorker).to have_enqueued_sidekiq_job(source_user.id, subject[:question].id)
+      expect(QuestionWorker).to have_enqueued_sidekiq_job(source_user.id, subject[:resource].id)
     end
   end
 end
