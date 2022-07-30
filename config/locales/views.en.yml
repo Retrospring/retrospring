@@ -71,7 +71,7 @@ en:
   announcement:
     index:
       title: :activerecord.models.announcement.other
-      confirm: "Are you sure you want to delete this announcement?"
+      confirm_delete: "Are you sure you want to delete this announcement?"
       new: "Add Announcement"
     new:
       title: "Create Announcement"
@@ -102,7 +102,7 @@ en:
         title: "Account Settings"
       new:
         title: "Sign up"
-        info: "With signing up you accept our %{terms}"
+        info: "By signing up you accept our %{terms}"
     sessions:
       new:
         title: "Sign in"
@@ -150,7 +150,7 @@ en:
         one: "1 answer"
         other: "%{count} answers"
       options: "Options"
-      placeholder: "Write your answer here..."
+      placeholder: "Write your answer here…"
       sharing:
         heading: "Sharing"
         post_to: "Post to %{service}"
@@ -184,7 +184,7 @@ en:
       title: "Ask your followers"
       placeholder: "Type your question here…"
       action: "Ask"
-      loading: "Asking..."
+      loading: "Asking…"
     comment_smiles:
       title: "People who smiled this comment"
       none: "No one has smiled this comment yet."
@@ -270,7 +270,8 @@ en:
       help:
         password: "Leave this blank if you don't want to change it"
       delete:
-        action: "Delete my account"
+        action: "Permanently delete account"
+        confirm: "Are you sure? This deleting your account is IRREVERSIBLE."
         heading: "Unsatisfied?"
     blocks:
       index:
@@ -279,7 +280,7 @@ en:
         none: "You are not blocking anyone."
         section:
           blocks:
-            heading: "Blocks"
+            heading: "Blocked Users"
             body: "Each user you've blocked is listed here, along with a way to unblock them.  To block someone, use the 'Actions' dropdown on their profile page."
           anon_blocks:
             heading: "Anonymous Blocks"
@@ -331,14 +332,14 @@ en:
           present: "Here's your export from %{time}"
     mutes:
       index:
-        title: "Muted Words"
-        heading: "Muted words"
+        title: "Muted Terms"
+        heading: "Muted Terms"
         body: "Muting words (or longer phrases) will prevent questions containing those to appear in your inbox."
         note: "Note: Filtered questions are discarded completely from your inbox, and won't reappear if you remove a filter later on."
-        placeholder: "Add a new muted word..."
+        placeholder: "Add a new muted term…"
         actions:
           add: "Add"
-        remove: "Remove"
+          remove: "Remove"
     privacy:
       edit:
         title: "Privacy Settings"
@@ -370,7 +371,7 @@ en:
             confirm: "Are you sure? This will disable your previous set of recovery codes."
         totp_setup:
           setup_key: "If you cannot scan the QR code, use the following key instead:"
-          setup_qr: "Once you have downloaded an authenticator app, add your %{app_name} account by scanning the QR code displayed on the left."
+          setup_qr: "Once you have downloaded an authenticator app, add your %{app_name} account by scanning the QR code displayed on this page."
           otp_validation: "Enter the code displayed in the app here:"
           app:
             none: "If you do not have an authenticator app already installed on your device, we suggest one of the following:"
@@ -426,10 +427,10 @@ en:
             example: "Some muted text"
         forms:
           heading: "Forms and Inputs"
-          body: "Styles for form inputs, like text fields."
+          body: "Styles for form inputs, such as text fields."
         raised:
           heading: "Raised Content"
-          body: "Raised content basically describes all the different boxes and panels you can see across the site."
+          body: "Raised content includes all the different boxes and panels you can see across the site."
           accent:
             example: "Some text on top of a accented area on a raised element!"
   shared:
@@ -459,7 +460,7 @@ en:
       privacy: "Privacy"
       sharing: "Sharing"
       security: "Security"
-      mutes: "Muted words"
+      mutes: "Muted Terms"
       theme: "Theme"
       data: "Your Data"
       export: "Export"
