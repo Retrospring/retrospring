@@ -4,7 +4,7 @@ en:
     success:
       title: "Success!"
     error:
-      title: "Uh-oh..."
+      title: "Uh-oh…"
       message: "An error occurred, a developer should check the console for details"
     subscription:
       subscribe: "Successfully subscribed."
@@ -14,40 +14,39 @@ en:
         unsubscribe: "Failed to unsubscribe from answer."
     list:
       confirm:
-        title: "Really delete this list?"
+        title: :voc.confirm
         text: "You will not be able to recover this list."
+      item:
+        members:
+          zero: "No members"
+          one: "1 member"
+          other: "%{count} members"
     destroy_question:
       confirm:
-        title: "Are you sure?"
+        title: :voc.confirm
         text: "The question will be moved back to your inbox, but it won't delete any posts to social media."
     destroy_comment:
       confirm:
-        title: "Really delete?"
+        title: :voc.confirm
         text: "You will not be able to recover this comment."
     destroy_report:
       confirm:
-        title: "Really delete?"
+        title: :voc.confirm
         text: "You will not be able to recover this report."
     destroy_own:
       confirm:
-        title: "Are you sure?"
+        title: :voc.confirm
         text: "The question will be removed."
     inbox:
       empty: "Nothing to see here."
       confirm_all:
-        title: "Really delete %{count} questions?"
+        title: "Are you sure you want to delete %{count} questions?"
         text: "They will be gone forever."
       confirm:
-        title: "Really delete?"
+        title: :voc.confirm
         text: "This question will be gone forever."
     report:
       confirm:
-        title: "Really report this %{type}?"
-        text: "A moderator will review your report and decide what happens.\nIf you'd like, you can also specify a reason."
-        input: "Specify a reason..."
-    list:
-      item:
-        members:
-          zero: "0 members"
-          one: "1 member"
-          other: "%{count} members"
+        title: "Are you sure you want to report this %{type}?"
+        text: "A moderator will review your report and decide what happens.\nYou can optionally specify a reason."
+        input: "Specify a reason…"
