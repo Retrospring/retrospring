@@ -271,7 +271,7 @@ en:
         password: "Leave this blank if you don't want to change it"
       delete:
         action: "Permanently delete account"
-        confirm: "Are you sure? This deleting your account is IRREVERSIBLE."
+        confirm: "Are you sure? Deleting your account is IRREVERSIBLE."
         heading: "Unsatisfied?"
     blocks:
       index:
