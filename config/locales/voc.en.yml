@@ -15,7 +15,7 @@ en:
     update: "Update"
     view_in_rails_admin: "View in Rails Admin"
   messages:
-    noauth: "You must be signed in to do this."
+    noauth: "You need to be logged in to perform this action."
   time:
     distance_ago: "%{time} ago"
     hours: "hours"
