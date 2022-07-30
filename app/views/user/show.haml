@@ -8,7 +8,7 @@
 - if @more_data_available
   .d-flex.justify-content-center.justify-content-sm-start
     %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @answers_last_id } }
-      = t 'views.actions.load'
+      = t("voc.load")
 
 :ruby
   provide(:title, user_title(@user))

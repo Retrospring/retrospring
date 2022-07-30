@@ -1,6 +1,7 @@
 en:
   voc:
     answer: "Answer"
+    block: "Block"
     cancel: "Cancel"
     close: "Close"
     confirm: "Are you sure?"
@@ -12,8 +13,11 @@ en:
     register: "Sign up"
     report: "Report"
     terms: "Terms of Service"
+    unblock: "Unblock"
     update: "Update"
     view_in_rails_admin: "View in Rails Admin"
+    y: Yes
+    n: No
   messages:
     noauth: "You must be signed in to do this."
   time:

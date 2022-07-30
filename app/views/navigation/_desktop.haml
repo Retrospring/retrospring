@@ -23,7 +23,7 @@
           %span.sr-only= t('views.navigation.notifications')
           %span.badge= notification_count
         = render 'navigation/dropdown/notifications', notifications: notifications, size: "desktop"
-      %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('views.actions.ask_question') }
+      %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('.ask_question') }
         %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { target: '#modal-ask-followers', toggle: :modal } }
           %i.fa.fa-pencil-square-o
       %li.nav-item.dropdown.profile--image-dropdown

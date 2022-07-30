@@ -38,15 +38,15 @@
                 .dropdown-menu.dropdown-menu-right{ role: :menu }
                   %a.dropdown-item{ href: "#", data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
                     %i.fa.fa-fw.fa-smile-o
-                    = t "views.actions.view"
+                    = t(".actions.view_smiles")
                   - if privileged?(comment.user) || privileged?(a.user)
                     %a.dropdown-item.text-danger{ href: "#", data: { action: "ab-comment-destroy", c_id: comment.id } }
                       %i.fa.fa-fw.fa-trash-o
-                      = t "views.actions.delete"
+                      = t("voc.delete")
                   - unless comment.user == current_user
                     %a.dropdown-item{ href: "#", data: { action: "ab-comment-report", c_id: comment.id } }
                       %i.fa.fa-fw.fa-exclamation-triangle
-                      = t "views.acions.report"
+                      = t("voc.report")
 - if user_signed_in?
   .form-group.has-feedback.comment__input-group{ name: "ab-comment-new-group", data: { a_id: a.id } }
     %input.form-control.comment__input{ type: :text, placeholder: t("views.placeholder.comment"), name: "ab-comment-new", data: { a_id: a.id } }
