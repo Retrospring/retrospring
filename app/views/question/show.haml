@@ -11,7 +11,7 @@
   - if @more_data_available
     .d-flex.justify-content-center.justify-content-sm-start
       %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @answers_last_id } }
-        = t 'views.actions.load'
+        = t("voc.load")
 
   - if user_signed_in? && !current_user.answered?(@question) && current_user != @question.user && @question.user&.privacy_allow_stranger_answers
     .card#q-answer-box
@@ -20,7 +20,7 @@
         %textarea.form-control#q-answer-text{ placeholder: t("inbox.entry.placeholder"), data: { id: @question.id } }
         %br/
         %button.btn.btn-success#q-answer-btn{ data: { q_id: @question.id } }
-          = t('views.actions.answer')
+          = t("voc.answer")
         - current_user.services.each do |service|
           %label
             %input{ type: 'checkbox', name: 'share', checked: :checked, data: { q_id: @question.id, service: service.provider } }

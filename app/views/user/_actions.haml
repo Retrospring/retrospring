@@ -5,42 +5,42 @@
   - elsif user_signed_in?
     - if current_user.following? user
       %button.btn.btn-primary.btn-block{ type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name } }
-        = t 'views.actions.unfollow'
+        = t("voc.unfollow")
     - else
       %button.btn.btn-primary.btn-block{ type: :button, name: 'user-action', data: { action: :follow, type: type, target: user.screen_name } }
-        = t 'views.actions.follow'
+        = t("voc.follow")
     .btn-group.btn-block
       %button.btn.btn-light.btn-block.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
-        = t 'views.actions.title'
+        = t(".title")
         %span.caret
       .dropdown-menu
         %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
           %i.fa.fa-list
-          = t 'views.actions.list'
+          = t(".list")
         - if current_user.blocking?(user)
           %a.dropdown-item{ href: '#', data: { action: :unblock, target: user.screen_name } }
             %i.fa.fa-minus-circle
-            %span.pe-none= t 'views.actions.unblock'
+            %span.pe-none= t("voc.unblock")
         - else
           %a.dropdown-item{ href: '#', data: { action: :block, target: user.screen_name } }
             %i.fa.fa-minus-circle
-            %span.pe-none= t 'views.actions.block'
+            %span.pe-none= t("voc.block")
         %a.dropdown-item{ href: '#', data: { action: 'report-user', target: user.screen_name } }
           %i.fa.fa-exclamation-triangle
-          = t 'views.actions.report'
+          = t("voc.report")
         - if current_user.mod?
           %a.dropdown-item{ href: '#', data: { target: '#modal-privileges', toggle: :modal } }
             %i.fa.fa-wrench
-            = raw t('views.actions.privilege', user: user.screen_name)
+            = raw t(".privilege", user: user.screen_name)
           - unless user.has_role?(:administrator)
             %a.dropdown-item{ href: '#', data: { target: '#modal-ban', toggle: :modal } }
               %i.fa.fa-ban
-              = t 'views.actions.ban'
+              = t(".ban")
         - if current_user.mod? && user != current_user
           %a.dropdown-item{ href: mod_inbox_index_path(user: user.screen_name) }
             %i.fa.fa-inbox
-            = t("views.actions.view_inbox")
+            = t(".view_inbox")
         - if current_user.has_role? :administrator
           %a.dropdown-item{ href: rails_admin_path_for_resource(user), target: '_blank' }
             %i.fa.fa-cogs
-            View in Kontrollzentrum
+            = t("voc.view_in_rails_admin")

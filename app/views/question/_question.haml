@@ -20,11 +20,11 @@
                           q_id: question.id,
                           redirect: question.author_is_anonymous? ? '/' : show_user_questions_path(question.user.screen_name) } }
                         %i.fa.fa-trash-o
-                        = t 'views.actions.delete'
+                        = t("voc.delete")
                     - unless question.user == current_user
                       %a.dropdown-item{ href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: question.id } }
                         %i.fa.fa-exclamation-triangle
-                        = t 'views.actions.report'
+                        = t("voc.report")
                     - if current_user.has_role? :administrator
                       %a.dropdown-item{ href: rails_admin_path_for_resource(question) }
                         %i.fa.fa-gears

@@ -16,11 +16,11 @@
                 - if current_user.mod? || q.user == current_user
                   %a.dropdown-item.text-danger{ href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: q.id } }
                     %i.fa.fa-trash-o
-                    = t 'views.actions.delete'
+                    = t("voc.delete")
                 - unless q.user == current_user
                   %a.dropdown-item{ href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id } }
                     %i.fa.fa-exclamation-triangle
-                    = t 'views.actions.report'
+                    = t("voc.report")
                 - if current_user.has_role? :administrator
                   %a.dropdown-item{ href: rails_admin_path_for_resource(q) }
                     %i.fa.fa-gears
@@ -30,6 +30,6 @@
           - if q.answer_count > 1
             ·
             %a{ href: question_path(q.user.screen_name, q.id) }
-              = pluralize(q.answer_count, t('views.general.answer'))
+              = pluralize(q.answer_count, t("voc.answer"))
         .answerbox__question-text
           = question_markdown q.content

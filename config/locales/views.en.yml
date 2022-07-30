@@ -80,6 +80,17 @@ en:
   answerbox:
     header:
       anon_hint: :inbox.entry.anon_hint
+    actions:
+      share:
+        twitter: "Share on Twitter"
+        tumblr: "Share on Tumblr"
+        other: "Share on other apps..."
+      subscribe: "Subscribe"
+      unsubscribe: "Unsubscribe"
+      return: "Return to Inbox"
+    comments:
+      actions:
+        view_smiles: "View comment smiles"
   application:
     questionbox:
       title: "Ask something!"
@@ -236,6 +247,9 @@ en:
         none: :notifications.index.none
         all: "Show all notifications"
         new: "Show all new notifications"
+    desktop:
+      ask_question: "Ask a question"
+      list: :user.actions.list
   notifications:
     index:
       title: "Notifications"
@@ -476,3 +490,10 @@ en:
         heading: "Reason:"
         none: "No reason provided"
       view: "View reported %{content}"
+  user:
+    actions:
+      view_inbox: "View inbox"
+      privilege: "Check %{user}'s privileges"
+      ban: "Ban Control"
+      title: "Actions"
+      list: "Manage list memberships"

@@ -11,8 +11,8 @@ export function reportDialog(type: string, target: string): void {
     type: 'input',
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
-    confirmButtonText: I18n.translate('views.actions.report'),
-    cancelButtonText: I18n.translate('views.actions.cancel'),
+    confirmButtonText: I18n.translate('voc.report'),
+    cancelButtonText: I18n.translate('voc.cancel'),
     closeOnConfirm: true,
     inputPlaceholder: I18n.translate('frontend.report.confirm.input')
   }, (returnValue) => {

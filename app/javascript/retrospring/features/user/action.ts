@@ -51,7 +51,7 @@ export function userActionHandler(event: Event): void {
       switch (action) {
         case 'follow':
           button.dataset.action = 'unfollow';
-          button.innerText = I18n.translate('views.actions.unfollow');
+          button.innerText = I18n.translate('voc.unfollow');
           button.classList.remove('btn-primary');
           button.classList.add('btn-default');
           break;
@@ -60,7 +60,7 @@ export function userActionHandler(event: Event): void {
           break;
         case 'block':
           button.dataset.action = 'unblock';
-          button.querySelector('span').innerText = I18n.translate('views.actions.unblock');
+          button.querySelector('span').innerText = I18n.translate('voc.unblock');
           if (button.classList.contains('btn')) {
             button.classList.remove('btn-primary');
             button.classList.add('btn-default');
@@ -69,7 +69,7 @@ export function userActionHandler(event: Event): void {
           break;
         case 'unblock':
           button.dataset.action = 'block';
-          button.querySelector('span').innerText = I18n.translate('views.actions.block');
+          button.querySelector('span').innerText = I18n.translate('voc.block');
           if (button.classList.contains('btn')) {
             button.classList.remove('btn-default');
             button.classList.add('btn-primary');
@@ -82,7 +82,7 @@ export function userActionHandler(event: Event): void {
 
 function resetFollowButton(button: HTMLButtonElement) {
   button.dataset.action = 'follow';
-  button.innerText = I18n.translate('views.actions.follow');
+  button.innerText = I18n.translate('voc.follow');
   button.classList.remove('btn-default');
   button.classList.add('btn-primary');
 }

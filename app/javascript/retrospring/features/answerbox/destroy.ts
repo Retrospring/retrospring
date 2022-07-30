@@ -15,8 +15,8 @@ export function answerboxDestroyHandler(event: Event): void {
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
-    confirmButtonText: I18n.translate('views.actions.y'),
-    cancelButtonText: I18n.translate('views.actions.n'),
+    confirmButtonText: I18n.translate('voc.y'),
+    cancelButtonText: I18n.translate('voc.n'),
     closeOnConfirm: true
   }, (returnValue) => {
     if (returnValue === false) {

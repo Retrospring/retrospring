@@ -27,7 +27,7 @@
               - if i.question.author_is_anonymous && i.question.author_identifier.present?
                 %a.dropdown-item{ name: "ib-block-anon", data: { q_id: i.question.id } }
                   %i.fa.fa-minus-circle
-                  = t("views.actions.block")
+                  = t("voc.block")
               - if current_user.has_role? :administrator
                 %a.dropdown-item{ href: rails_admin_path_for_resource(i) }
                   %i.fa.fa-gears

@@ -19,8 +19,8 @@ export function deleteEntryHandler(event: Event): void {
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
-    confirmButtonText: I18n.translate('views.actions.delete'),
-    cancelButtonText: I18n.translate('views.actions.cancel'),
+    confirmButtonText: I18n.translate('voc.delete'),
+    cancelButtonText: I18n.translate('voc.cancel'),
     closeOnConfirm: true
   }, (returnValue) => {
     if (returnValue === false) {
