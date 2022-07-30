@@ -5,9 +5,6 @@ en:
   views:
     locale:
       languages: "Languages"
-    placeholder:
-      comment: "Comment..."
-      question: "Type your question here…"
     general:
       timeline: "Timeline"
       public: "Public"
@@ -32,14 +29,6 @@ en:
       admin: "Kontrollzentrum"
       sidekiq: "Sidekiq"
       moderation: "Moderation Panel"
-    answerbox:
-      asked: "%{user} asked %{time} ago"
-      read: "Read the entire answer"
-      answered: "%{hide} %{user}" # resolves into "Answered by %{user}"
-      hide: "Answered by" # ^
-      time: "%{time} ago"
-      no_smile: "No one smiled this, yet."
-      no_comment: "There are no comments yet."
     user:
       follows_you: "Follows you"
       title:
