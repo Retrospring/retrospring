@@ -1,6 +1,6 @@
 en:
   ajax:
-    noauth: "You need to be logged in to perform this action."
+    noauth: :messages.noauth
     anonymous_block:
       create:
         success: :ajax.relationship.create.block.success
@@ -9,18 +9,18 @@ en:
         success: :ajax.relationship.destroy.block.success
     answer:
       create:
-        privacy: "This user does not want other users to answer their question."
+        privacy: "This user does not want other users to answer their questions."
         success: "Successfully answered question."
         error: "Question is not in your inbox."
       destroy:
-        nopriv: "Can't delete other people's answers."
+        nopriv: "You cannot delete other people's answers."
         success: "Successfully deleted answer."
     comment:
       create:
         invalid: "Your comment is too long."
         success: "Comment posted successfully."
       destroy:
-        nopriv: "Can't delete other people's comments."
+        nopriv: "You cannot delete other people's comments."
         success: "Successfully deleted comment."
     inbox:
       create:
@@ -36,7 +36,7 @@ en:
     list:
       create:
         noauth: :ajax.noauth
-        noname: "Please give that list a name."
+        noname: "List must have a name."
         toolong: "List name too long (30 characters max.)"
         notfound: "Could not find user."
         exists: "List already exists."
@@ -67,7 +67,7 @@ en:
         success: "Successfully adjusted this users %{privilege} role."
         error: "Something went wrong while adjusting this role."
     mute_rule:
-      nopriv: "Can't edit other people's rules"
+      nopriv: "You cannot edit other people's rules."
       create:
         noauth: :ajax.noauth
         success: "Rule added successfully."
@@ -186,7 +186,9 @@ en:
         banned: "I'm sorry, %{name}, I'm afraid I can't do that."
         reason: "Ban reason: %{reason}"
         until: "Banned until: %{time}"
-        info: "You have %{count} recovery codes remaining."
+        info:
+          one: "You have only one recovery code remaining. Please regenerate your recovery codes from the security settings to avoid being locked out!"
+          other: "You have %{count} recovery codes remaining."
         error: :errors.invalid_otp
     registrations:
       destroy:
