@@ -1,10 +1,5 @@
 en:
   language: 'English (US)'
-  flash:
-    ban:
-      error: "I'm sorry, %{name}, I'm afraid I can't do that."
-      reason: "Ban reason: %{reason}"
-      until: "Banned until: %{time}"
   messages:
     noscript: "Please activate JavaScript."
   views:
