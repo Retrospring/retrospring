@@ -27,6 +27,6 @@ export_i18n_js: false
 
 translations:
   - file: 'app/javascript/retrospring/i18n.ts'
-    only: ['voc.*', '*.frontend.*', '*.views.actions.*']
+    only: ['*.voc.*', '*.frontend.*', '*.views.actions.*']
     prefix: "import I18n from 'i18n-js'\nimport Cookies from 'js-cookie'\n"
     suffix: "I18n.defaultLocale = 'en';\nI18n.locale = Cookies.get('hl') || 'en';\nexport default I18n"
