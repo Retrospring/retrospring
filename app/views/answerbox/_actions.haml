@@ -1,32 +1,32 @@
 %span.d-none.d-sm-inline.text-muted
   - if !user_signed_in? && a.smiles.count.positive?
-    %button.btn.btn-info.btn-sm{ name: 'ab-smile', disabled: true }
+    %button.btn.btn-info.btn-sm{ name: "ab-smile", disabled: true }
       %i.fa.fa-smile-o
       %span{ id: "ab-smile-count-#{a.id}" }= a.smiles.count
 - if user_signed_in?
   - if current_user.smiled? a
-    %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile', data: { a_id: a.id, action: :unsmile } }
+    %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile", data: { a_id: a.id, action: :unsmile } }
       %i.fa.fa-fw.fa-frown-o
       %span{ id: "ab-smile-count-#{a.id}" }= a.smiles.count
   - else
-    %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-smile', data: { a_id: a.id, action: :smile } }
+    %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile", data: { a_id: a.id, action: :smile } }
       %i.fa.fa-fw.fa-smile-o
       %span{ id: "ab-smile-count-#{a.id}" }= a.smiles.count
 - unless display_all
-  %button.btn.btn-link.answerbox__action{ type: :button, name: 'ab-comments', data: { a_id: a.id, state: :hidden } }
+  %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-comments", data: { a_id: a.id, state: :hidden } }
     %i.fa.fa-fw.fa-comments
     %span{ id: "ab-comment-count-#{a.id}" }= a.comment_count
 .btn-group
   %button.btn.btn-link.answerbox__action{ data: { toggle: :dropdown }, aria: { expanded: false } }
-    %i.fa.fa-fw.fa-share-alt{ title: 'Share' }
+    %i.fa.fa-fw.fa-share-alt{ title: "Share" }
   .dropdown-menu.dropdown-menu-right{ role: :menu }
-    %a.dropdown-item{ href: twitter_share_url(a), target: '_blank' }
+    %a.dropdown-item{ href: twitter_share_url(a), target: "_blank" }
       %i.fa.fa-fw.fa-twitter
       = t(".share.twitter")
-    %a.dropdown-item{ href: tumblr_share_url(a), target: '_blank' }
+    %a.dropdown-item{ href: tumblr_share_url(a), target: "_blank" }
       %i.fa.fa-fw.fa-tumblr
       = t(".share.tumblr")
-    %a.dropdown-item{ href: '#', name: 'ab-share' }
+    %a.dropdown-item{ href: "#", name: "ab-share" }
       = t(".share.other")
 - if user_signed_in?
   .btn-group
@@ -35,22 +35,22 @@
     .dropdown-menu.dropdown-menu-right{ role: :menu }
       - if Subscription.is_subscribed(current_user, a)
         -#                                            fun joke    should subscribe?
-        %a.dropdown-item{ href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: 'no' } }
+        %a.dropdown-item{ href: "#", data: { a_id: a.id, action: "ab-submarine", torpedo: "no" } }
           %i.fa.fa-anchor
           = t(".unsubscribe")
       - else
-        %a.dropdown-item{ href: '#', data: { a_id: a.id, action: 'ab-submarine', torpedo: 'yes' } }
+        %a.dropdown-item{ href: "#", data: { a_id: a.id, action: "ab-submarine", torpedo: "yes" } }
           %i.fa.fa-anchor
           = t(".subscribe")
       - if privileged? a.user
-        %a.dropdown-item.text-danger{ href: '#', data: { a_id: a.id, action: 'ab-destroy' } }
+        %a.dropdown-item.text-danger{ href: "#", data: { a_id: a.id, action: "ab-destroy" } }
           %i.fa.fa-trash-o
           = t(".return")
       - unless a.user == current_user
-        %a.dropdown-item{ href: '#', data: { a_id: a.id, action: 'ab-report' } }
+        %a.dropdown-item{ href: "#", data: { a_id: a.id, action: "ab-report" } }
           %i.fa.fa-exclamation-triangle
           = t("voc.report")
       - if current_user.has_role? :administrator
-        %a.dropdown-item{ href: rails_admin_path_for_resource(a), target: '_blank' }
+        %a.dropdown-item{ href: rails_admin_path_for_resource(a), target: "_blank" }
           %i.fa.fa-gears
           = t("voc.view_in_rails_admin")

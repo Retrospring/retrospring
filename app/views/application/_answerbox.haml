@@ -1,7 +1,7 @@
 - display_all ||= nil
 .card.answerbox{ data: { id: a.id, q_id: a.question.id } }
   - if @question.nil?
-    = render 'answerbox/header', a: a
+    = render "answerbox/header", a: a
   .card-body
     - if display_all.nil?
       .answerbox__answer-text
@@ -23,18 +23,18 @@
                 %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:medium) }
             .media-body
               %h6.media-heading.answerbox__answer-user
-                = raw t(".answered", hide: hidespan(t(".hide"), 'd-none d-sm-inline'), user: user_screen_name(a.user))
+                = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
               .answerbox__answer-date
                 = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id))
         .col-md-6.d-flex.d-md-block.answerbox__actions
-          = render 'answerbox/actions', a: a, display_all: display_all
+          = render "answerbox/actions", a: a, display_all: display_all
     - else
       .row
         .col-md-6.text-left.text-muted
           %i.fa.fa-clock-o
-          = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), class: 'answerbox__permalink')
+          = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), class: "answerbox__permalink")
         .col-md-6.d-md-flex.answerbox__actions
-          = render 'answerbox/actions', a: a, display_all: display_all
-  .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? 'd-none' : nil }
-    %div{ id: "ab-smiles-#{a.id}" }= render 'answerbox/smiles', a: a
-    %div{ id: "ab-comments-#{a.id}" }= render 'answerbox/comments', a: a
+          = render "answerbox/actions", a: a, display_all: display_all
+  .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? "d-none" : nil }
+    %div{ id: "ab-smiles-#{a.id}" }= render "answerbox/smiles", a: a
+    %div{ id: "ab-comments-#{a.id}" }= render "answerbox/comments", a: a
