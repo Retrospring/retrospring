@@ -469,3 +469,9 @@ en:
         title_html: "Viewing inbox for <br><strong>%{screen_name}</strong> (#%{user_id})"
       index:
         title: "Inbox for %{user}"
+    moderationbox:
+      reported_html: "%{user} reported a %{content} %{time} ago"
+      reason: 
+        heading: "Reason:"
+        none: "No reason provided"
+      view: "View reported %{content}"

@@ -2,7 +2,7 @@
   .card.moderationbox{ data: { id: report.id } }
     .card-header
       %img.avatar-sm{ src: report.user.profile_picture.url(:medium) }
-      = raw t('views.moderation.moderationbox.reported',
+      = t('.reported_html',
         user: user_screen_name(report.user),
         content: report.type.sub('Reports::', ''),
         time: time_tooltip(report))
@@ -13,10 +13,10 @@
         - else
           = report.target.content
       %p
-        %b= t 'views.moderation.moderationbox.reason'
+        %b= t('.reason.heading')
         %br
           - if report.reason.nil? || report.reason.strip.blank?
-            No reason provided
+            = t('.reason.none')
           - else
             - report.reason.lines.each do |reason|
               - next if reason.strip.blank?
@@ -24,10 +24,10 @@
       .row
         .col-md-8.col-sm-8.col-xs-8.text-left
           %a.btn.btn-primary{ href: content_url(report) }
-            = t('views.moderation.moderationbox.view', content: report.type.sub('Reports::', ''))
+            = t('.view', content: report.type.sub('Reports::', ''))
           - if report.target.respond_to?(:user) && report.target.user
             %a.btn.btn-primary{ href: user_path(report.target.user) }
-              = t('views.moderation.moderationbox.view', content: t('views.general.user'))
+              = t('.view', content: t('activerecord.models.user.one'))
         .col-md-4.col-sm-4.col-xs-4.text-right
           %button.btn.btn-default.btn-sm{ type: :button, name: 'mod-delete-report', data: { id: report.id } }
             %i.fa.fa-trash-o
