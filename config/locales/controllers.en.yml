@@ -183,6 +183,9 @@ en:
   user:
     sessions:
       create:
+        banned: "I'm sorry, %{name}, I'm afraid I can't do that."
+        reason: "Ban reason: %{reason}"
+        until: "Banned until: %{time}"
         info: "You have %{count} recovery codes remaining."
         error: :errors.invalid_otp
     registrations:

@@ -23,14 +23,14 @@ class ApplicationController < ActionController::Base
     if current_user.present? && current_user.banned?
       name = current_user.screen_name
       # obligatory '2001: A Space Odyssey' reference
-      flash[:notice] = t('flash.ban.error', name: name)
+      flash[:notice] = t(".banned", name: name)
       current_ban = current_user.bans.current.first
       unless current_ban&.reason.nil?
-        flash[:notice] += "\n#{t('flash.ban.reason', reason: current_ban.reason)}"
+        flash[:notice] += "\n#{t('.reason', reason: current_ban.reason)}"
       end
       unless current_ban&.permanent?
         # TODO format banned_until
-        flash[:notice] += "\n#{t('flash.ban.until', time: current_ban.expires_at)}"
+        flash[:notice] += "\n#{t('.until', time: current_ban.expires_at)}"
       end
       sign_out current_user
       redirect_to new_user_session_path
