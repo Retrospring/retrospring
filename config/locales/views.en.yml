@@ -439,6 +439,12 @@ en:
       terms: "Terms of Service"
       privacy: "Privacy Policy"
   tabs:
+    moderation:
+      all: "All reports"
+      answers: :activerecord.models.answer.other
+      comments: :activerecord.models.comment.other
+      users: :activerecord.models.user.other
+      questions: :activerecord.models.question.other
     notifications:
       all: "All notifications"
       new: "New notifications"
