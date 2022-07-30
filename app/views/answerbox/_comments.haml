@@ -1,5 +1,5 @@
 - if a.comments.all.count.zero?
-  = t "views.answerbox.no_comment"
+  = t(".none")
 - else
   %ul.comment__container
     - a.comments.order(:created_at).each do |comment|
@@ -49,5 +49,5 @@
                       = t("voc.report")
 - if user_signed_in?
   .form-group.has-feedback.comment__input-group{ name: "ab-comment-new-group", data: { a_id: a.id } }
-    %input.form-control.comment__input{ type: :text, placeholder: t("views.placeholder.comment"), name: "ab-comment-new", data: { a_id: a.id } }
+    %input.form-control.comment__input{ type: :text, placeholder: t(".placeholder"), name: "ab-comment-new", data: { a_id: a.id } }
     %span.text-muted.form-control-feedback.comment__character-count{ id: "ab-comment-charcount-#{a.id}" } 160

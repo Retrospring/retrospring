@@ -3,7 +3,7 @@
     %i.fa.fa-smile-o
   .media-body
     - if a.smiles.all.count.zero?
-      = t 'views.answerbox.no_smile'
+      = t(".none")
     - else
       - a.smiles.all.each do |smile|
         %a{ href: user_path(smile.user),
