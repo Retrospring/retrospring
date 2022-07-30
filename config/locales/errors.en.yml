@@ -17,7 +17,7 @@ en:
     answering_other_blocked_self: "You cannot answer this question as you have been blocked its author"
     commenting_self_blocked_other: "You cannot comment on this answer as you have blocked its author"
     commenting_other_blocked_self: "You cannot comment on this answer as you have been blocked by its author"
-    self_action: "You cannot do this to yourself"
+    self_action: "You cannot perform this action on yourself"
     following_self: "You cannot follow yourself"
     blocking_self: "You cannot block yourself"
 
