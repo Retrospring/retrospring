@@ -9,7 +9,7 @@ describe User::SessionsController do
   end
 
   describe "#create" do
-    let(:user) { FactoryBot.create(:user, password: '/bin/animals64') }
+    let(:user) { FactoryBot.create(:user, password: "/bin/animals64") }
 
     subject { post :create, params: { user: { login: user.email, password: user.password } } }
 
@@ -21,13 +21,13 @@ describe User::SessionsController do
       user.otp_module = :enabled
       user.save
 
-      expect(subject).to have_rendered('auth/two_factor_authentication')
+      expect(subject).to have_rendered("auth/two_factor_authentication")
     end
 
     context "2fa sign in attempt" do
       subject do
         post :create,
-             params: { user: { otp_attempt: code_input } },
+             params:  { user: { otp_attempt: code_input } },
              session: { user_sign_in_uid: user.id }
       end
 
@@ -53,10 +53,10 @@ describe User::SessionsController do
       end
 
       context "correct recovery code" do
-        let(:code_input) { 'raccoons' }
+        let(:code_input) { "raccoons" }
 
         before do
-          user.totp_recovery_codes << TotpRecoveryCode.create(code: 'raccoons')
+          user.totp_recovery_codes << TotpRecoveryCode.create(code: "raccoons")
         end
 
         it "consumes the recovery code" do
@@ -66,7 +66,7 @@ describe User::SessionsController do
       end
 
       context "incorrect recovery code" do
-        let(:code_input) { 'abcdefgh' }
+        let(:code_input) { "abcdefgh" }
 
         it "redirects to the sign in page" do
           expect(subject).to redirect_to :new_user_session
@@ -82,7 +82,7 @@ describe User::SessionsController do
 
       it "redirects to the sign in page" do
         expect(subject).to redirect_to :new_user_session
-        expect(flash[:notice]).to eq "#{I18n.t("user.sessions.create.banned", name: user.screen_name)}\n#{I18n.t("user.sessions.create.reason", reason: 'Do not feed the animals')}"
+        expect(flash[:notice]).to eq "#{I18n.t('user.sessions.create.banned', name: user.screen_name)}\n#{I18n.t('user.sessions.create.reason', reason: 'Do not feed the animals')}"
       end
     end
 
@@ -96,8 +96,8 @@ describe User::SessionsController do
       it "redirects to the sign in page" do
         expect(subject).to redirect_to :new_user_session
         expect(flash[:notice]).to eq I18n.t("user.sessions.create.banned", name: user.screen_name) +
-          "\n#{I18n.t("user.sessions.create.reason", reason: 'Do not feed the animals')}" \
-          "\n#{I18n.t("user.sessions.create.until", time: expiry)}"
+          "\n#{I18n.t('user.sessions.create.reason', reason: 'Do not feed the animals')}" \
+          "\n#{I18n.t('user.sessions.create.until', time: expiry)}"
       end
     end
   end

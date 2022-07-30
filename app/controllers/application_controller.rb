@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     if current_user.present? && current_user.banned?
       name = current_user.screen_name
       # obligatory '2001: A Space Odyssey' reference
-      flash[:notice] = t(".banned", name: name)
+      flash[:notice] = t(".banned", name:)
       current_ban = current_user.bans.current.first
       unless current_ban&.reason.nil?
         flash[:notice] += "\n#{t('.reason', reason: current_ban.reason)}"
