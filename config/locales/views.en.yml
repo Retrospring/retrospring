@@ -485,6 +485,11 @@ en:
       comment: "Comments"
       commentsmile: "Comment Smiles"
       relationship: "Followers"
+    profile:
+      answers: :activerecord.models.answer.other
+      questions: :activerecord.models.question.other
+      followers: "Followers"
+      following: "Following"
     settings:
       account: "Account"
       profile: "Profile"
