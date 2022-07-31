@@ -14,7 +14,7 @@ en:
         unsubscribe: "Failed to unsubscribe from answer."
     list:
       confirm:
-        title: :voc.confirm
+        title: "Are you sure?"
         text: "You will not be able to recover this list."
       item:
         members:
@@ -23,19 +23,19 @@ en:
           other: "%{count} members"
     destroy_question:
       confirm:
-        title: :voc.confirm
+        title: "Are you sure?"
         text: "The question will be moved back to your inbox, but it won't delete any posts to social media."
     destroy_comment:
       confirm:
-        title: :voc.confirm
+        title: "Are you sure?"
         text: "You will not be able to recover this comment."
     destroy_report:
       confirm:
-        title: :voc.confirm
+        title: "Are you sure?"
         text: "You will not be able to recover this report."
     destroy_own:
       confirm:
-        title: :voc.confirm
+        title: "Are you sure?"
         text: "The question will be removed."
     inbox:
       empty: "Nothing to see here."
@@ -43,7 +43,7 @@ en:
         title: "Are you sure you want to delete %{count} questions?"
         text: "They will be gone forever."
       confirm:
-        title: :voc.confirm
+        title: "Are you sure?"
         text: "This question will be gone forever."
     report:
       confirm:
