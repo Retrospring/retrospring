@@ -470,6 +470,10 @@ en:
       source: "Source code"
       terms: "Terms of Service"
       privacy: "Privacy Policy"
+    sidebar:
+      list:
+        title: "Members"
+        none: "No members yet."
   tabs:
     feed:
       public: "Public"
