@@ -1,13 +1,13 @@
 .jumbotron.jumbotron--particles
   .jumbotron__particles#particles
   .jumbotron__content
-    %h1 Feedback
+    %h1= t(".heading")
 .container
   - unless params[:action] == "consent"
     .card
       .list-group.list-group-horizontal-sm.text-center
-        = list_group_item "Bugs", feedback_bugs_path
-        = list_group_item "Feature Requests", feedback_features_path
+        = list_group_item t(".tab.bugs"), feedback_bugs_path
+        = list_group_item t(".tab.features"), feedback_features_path
   .card
     .card-body
       = yield

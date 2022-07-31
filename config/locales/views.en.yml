@@ -163,6 +163,21 @@ en:
   feedback:
     consent:
       title: "Feedback"
+      heading: "Notice"
+      notice_html: |
+        <p>
+          %{app_name} uses Canny to collect feedback or bug reports on the following pages.
+        </p>
+        <p>
+          Canny collects the username, user ID and email address for these purposes.
+          Unless you specifically consent to this,
+          %{app_name}
+          will not send your data to Canny, but you can't use the feedback forms either.
+        </p>
+      privacy: "Canny's Privacy Policy"
+      consent: "Consent and proceed"
+      alternative: "Alternatively, you can send us bug reports and feature requests directly on GitHub."
+      issues: "GitHub Issues"
     bugs:
       title: "Bugs – Feedback"
     features:
@@ -198,6 +213,11 @@ en:
         heading: "Share"
         button: "Share on %{service}"
   layouts:
+    feedback:
+      heading: "Feedback"
+      tab:
+        bugs: "Bugs"
+        features: "Feature Requests"
     messages:
       noscript: "Please activate JavaScript."
   link_filter:
