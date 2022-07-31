@@ -15,6 +15,11 @@ module UseCase
         raise Errors::Forbidden unless current_user&.mod? || question.user == current_user
 
         question.destroy!
+
+        {
+          status:   204,
+          resource: nil,
+        }
       end
     end
   end

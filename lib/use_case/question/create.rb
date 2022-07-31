@@ -32,8 +32,11 @@ module UseCase
         inbox = ::Inbox.create!(user: target_user, question: question, new: true)
 
         {
-          question: question,
-          inbox:    inbox
+          status:   201,
+          resource: question,
+          extra:    {
+            inbox:
+          }
         }
       end
 

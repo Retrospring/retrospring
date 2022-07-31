@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'use_case/base'
+require "use_case/base"
 
 module UseCase
   module User
     class Ban < UseCase::Base
-      REASON_SPAM = 'Spam'
-      REASON_HARASSMENT = 'Harassment'
-      REASON_BAN_EVASION = 'Ban evasion'
+      REASON_SPAM = "Spam"
+      REASON_HARASSMENT = "Harassment"
+      REASON_BAN_EVASION = "Ban evasion"
 
       option :target_user_id, type: Types::Coercible::Integer
       option :expiry, types: Types::Nominal::DateTime.optional
@@ -20,18 +20,22 @@ module UseCase
         if reason == REASON_SPAM
           target_user.update!(
             profile_picture: nil,
-            profile_header: nil
+            profile_header:  nil
           )
           target_user.profile.update!(
             display_name: nil,
-            description: '',
-            location: '',
-            website: '',
+            description:  "",
+            location:     "",
+            website:      ""
           )
         end
 
         {
-          ban: ban
+          status:   201,
+          resource: ban,
+          extra:    {
+            target_user:
+          }
         }
       end
 
@@ -40,11 +44,7 @@ module UseCase
       end
 
       def source_user
-        if source_user_id
-          @source_user ||= ::User.find(source_user_id)
-        else
-          nil
-        end
+        @source_user ||= ::User.find(source_user_id) if source_user_id
       end
     end
   end
