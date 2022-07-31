@@ -580,10 +580,11 @@ en:
       title: "Actions"
       list: "Manage list memberships"
     profile:
-      admin: "Admin"
-      banned: "Banned"
-      follows_you: "Follows you"
-      moderator: "Moderator"
+      badge:
+        admin: "Admin"
+        banned: "Banned"
+        follows_you: "Follows you"
+        moderator: "Moderator"
   question:
     show:
       questionbox:
