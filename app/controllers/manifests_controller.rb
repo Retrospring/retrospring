@@ -13,7 +13,7 @@ class ManifestsController < ApplicationController
       categories:       %w[social],
       lang:             I18n.locale,
       shortcuts:        [
-        webapp_shortcut(inbox_url, t("views.navigation.inbox"), "inbox")
+        webapp_shortcut(inbox_url, t("navigation.inbox"), "inbox")
       ],
       icons:            webapp_icons,
       theme_color:      theme_color,
