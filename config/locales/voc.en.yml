@@ -18,8 +18,8 @@ en:
     unfollow: "Unfollow"
     update: "Update"
     view_in_rails_admin: "View in Rails Admin"
-    y: "Yes"
-    n: "No"
+    "y": "Yes"
+    "n": "No"
   messages:
     noauth: "You need to be logged in to perform this action."
   time:
