@@ -514,3 +514,7 @@ en:
       ban: "Ban Control"
       title: "Actions"
       list: "Manage list memberships"
+  question:
+    show:
+      questionbox:
+        title: "This question was not in your inbox? Answer it here!"
