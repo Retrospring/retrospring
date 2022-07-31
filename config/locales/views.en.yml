@@ -1,4 +1,5 @@
 en:
+  language: "English (US)"
   about:
     index:
       subtitle: "Ask questions, give answers and learn more about your friends."
@@ -279,11 +280,31 @@ en:
         until: "Until %{until}"
         expired: "Expired at %{until}"
   navigation:
+    toggle: "Toggle navigation"
+    timeline: "Timeline"
+    inbox: "Inbox"
+    discover: "Discover"
+    notifications: "Notifications"
     dropdown:
       notifications:
         none: :notifications.index.none
         all: "Show all notifications"
         new: "Show all new notifications"
+      profile:
+        profile: "Show profile"
+        settings: "Settings"
+        admin: "Rails Admin"
+        sidekiq: "Sidekiq"
+        pghero: "Database Monitor"
+        announcements: "Announcements"
+        unmask:
+          enable: "Enable Moderation View"
+          disable: "Disable Moderation View"
+        moderation: "Moderation Panel"
+        feedback:
+          heading: "Feedback"
+          bugs: "Bugs"
+          features: "Feature Requests"
     desktop:
       ask_question: "Ask a question"
       list: :user.actions.list

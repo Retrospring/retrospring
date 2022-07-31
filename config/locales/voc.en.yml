@@ -10,6 +10,7 @@ en:
     follow: "Follow"
     load: "Load more"
     login: "Sign in"
+    logout: "Logout"
     save: "Save changes"
     register: "Sign up"
     report: "Report"
