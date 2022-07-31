@@ -1,24 +1,14 @@
 en:
   language: 'English (US)'
-  messages:
-    noscript: "Please activate JavaScript."
   views:
     locale:
       languages: "Languages"
-    general:
-      timeline: "Timeline"
-      public: "Public"
-    list:
-      title: "List"
-      members: "Members"
     actions:
       list: "Manage list memberships"
     sessions:
       destroy: "Logout"
       create: "Sign in"
       new: "Sign up"
-    question:
-      title: "This question was not in your inbox? Answer it here!"
     navigation:
       timeline: "Timeline"
       inbox: "Inbox"
@@ -29,9 +19,3 @@ en:
       admin: "Kontrollzentrum"
       sidekiq: "Sidekiq"
       moderation: "Moderation Panel"
-    user:
-      follows_you: "Follows you"
-      title:
-        admin: "Admin"
-        moderator: "Moderator"
-        banned: "Banned"
