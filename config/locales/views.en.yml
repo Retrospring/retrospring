@@ -87,6 +87,7 @@ en:
       asked: "%{user} asked %{time} ago"
     actions:
       share:
+        title: "Share"
         twitter: "Share on Twitter"
         tumblr: "Share on Tumblr"
         other: "Share on other apps..."
