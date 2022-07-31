@@ -514,6 +514,11 @@ en:
       ban: "Ban Control"
       title: "Actions"
       list: "Manage list memberships"
+    profile:
+      admin: "Admin"
+      banned: "Banned"
+      follows_you: "Follows you"
+      moderator: "Moderator"
   question:
     show:
       questionbox:

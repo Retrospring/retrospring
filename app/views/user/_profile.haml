@@ -13,19 +13,19 @@
       - if user.banned?
         %span.badge.badge-dark
           %i.fa.fa-fw.fa-ban
-          = t 'views.user.title.banned'
+          = t('.badge.banned')
       - if user.following? current_user
         .badge.badge-light
-          = t 'views.user.follows_you'
+          = t('.badge.follows_you')
       - if user_signed_in? && current_user.has_role?(:administrator)
         - if user.has_role?(:administrator)
           %span.badge.badge-danger
             %i.fa.fa-fw.fa-flask
-            = t 'views.user.title.admin'
+            = t('.badge.admin')
         - if user.has_role?(:moderator)
           %span.badge.badge-success
             %i.fa.fa-fw.fa-users
-            = t 'views.user.title.moderator'
+            = t('.badge.moderator')
     - unless user.profile.description.blank?
       .profile__biography
         = markdown user.profile.description
