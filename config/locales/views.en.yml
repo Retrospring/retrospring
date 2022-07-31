@@ -471,6 +471,21 @@ en:
       terms: "Terms of Service"
       privacy: "Privacy Policy"
   tabs:
+    feed:
+      public: "Public"
+      timeline: "Your Timeline"
+      lists:
+        title: "Lists"
+        notice_html: |
+          <p>Looks like you don't have any lists yet.</p>
+          <p>
+            You can create lists and add users to them using the <i class="fa fa-fw fa-list"></i>
+            icon in the navigation on user profiles that are not yours.
+          </p>
+          <p>
+            Once you have done that, the lists will be shown here.
+            When you select a list you'll get a timeline view of all users within that list.
+          </p>
     moderation:
       all: "All reports"
       answers: :activerecord.models.answer.other
