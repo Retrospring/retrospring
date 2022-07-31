@@ -197,6 +197,9 @@ en:
       share:
         heading: "Share"
         button: "Share on %{service}"
+  layouts:
+    messages:
+      noscript: "Please activate JavaScript."
   link_filter:
     index:
       heading: "You're leaving %{app_name}"
