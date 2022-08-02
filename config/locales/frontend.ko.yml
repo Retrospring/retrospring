@@ -1,0 +1,50 @@
+ko:
+  frontend:
+    load: "Load more"
+    success:
+      title: "Success!"
+    error:
+      title: "Uh-oh…"
+      message: "An error occurred, a developer should check the console for details"
+    subscription:
+      subscribe: "Successfully subscribed."
+      unsubscribe: "Successfully unsubscribed."
+      fail:
+        subscribe: "Failed to subscribe to answer."
+        unsubscribe: "Failed to unsubscribe from answer."
+    list:
+      confirm:
+        title: "Are you sure?"
+        text: "You will not be able to recover this list."
+      item:
+        members:
+          other: "%{count} members"
+    destroy_question:
+      confirm:
+        title: "Are you sure?"
+        text: "The question will be moved back to your inbox, but it won't delete any posts to social media."
+    destroy_comment:
+      confirm:
+        title: "Are you sure?"
+        text: "You will not be able to recover this comment."
+    destroy_report:
+      confirm:
+        title: "Are you sure?"
+        text: "You will not be able to recover this report."
+    destroy_own:
+      confirm:
+        title: "Are you sure?"
+        text: "The question will be removed."
+    inbox:
+      empty: "Nothing to see here."
+      confirm_all:
+        title: "Are you sure you want to delete %{count} questions?"
+        text: "They will be gone forever."
+      confirm:
+        title: "Are you sure?"
+        text: "This question will be gone forever."
+    report:
+      confirm:
+        title: "Are you sure you want to report this %{type}?"
+        text: "A moderator will review your report and decide what happens.\nYou can optionally specify a reason."
+        input: "Specify a reason…"
