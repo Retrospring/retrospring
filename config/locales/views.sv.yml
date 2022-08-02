@@ -1,0 +1,586 @@
+sv:
+  language: "English (US)"
+  about:
+    index:
+      subtitle: "Ask questions, give answers and learn more about your friends."
+      register: "Register now"
+      already_member: "Already a member?"
+      more_features: "But wait, there's more!"
+      questions:
+        header: "Receive and ask questions"
+        body_html: |
+          <p>After registering on %{app_name} share your unique link to your profile and
+          receive questions in your inbox to answer
+          them right away.</p>
+
+          <p>You can of course also use your account to ask anyone else on the site
+          questions, and once you accumulated followers you can send out questions to all of them
+          at once.</p>
+      discussions:
+        header: "Keep the discussion going"
+        body_html: |
+          <p>Someone answered your question and maybe not everything is cleared up? Use comments!
+          On %{app_name} you can leave comments on answers to keep the discussion going.</p>
+
+          <p>Don't need to say anything, but still like the answer? Leave a smile (our form of likes) on an answer!</p>
+      share:
+        header: "Share your answers"
+        body_html: |
+          <p>Want your followers on another platform to see your %{app_name} answers?
+          You can configure automatic sharing to your favorite platforms easily.</p>
+
+          <p class="text-muted">Not sure if it's a favorite, but at the moment only
+          <b>Twitter</b> is supported.</p>
+      customize:
+        header: "Customize your experience"
+        body_html: |
+          <p>Make your %{app_name} profile your own with the ability to set a custom
+          profile picture and header image.</p>
+
+          <p>Going a step further, you can customize all colors of
+          %{app_name} to your own liking. Don't like purple? Make it blue, red or green!</p>
+
+          <p>For a quick demonstration, you can try this out here with a few presets:</p>
+        themes:
+          green: "Green"
+          orange: "Orange"
+          red: "Red"
+          reset: "Reset"
+      open_source:
+        header: "Open Source"
+        body: "You heard it right! %{app_name} and all of it's core components are open source! Everyone can help and improve the service!"
+      no_ads:
+        header: "No Ads"
+        body: "We don't like them ourselves, really. They make websites slow and are (for the most part) annoying. So there's none!"
+      your_data:
+        header: "Your data is yours"
+        body: "Today the most precious things on the internet is your data. %{app_name} doesn't sell any data that is collected. It remains encrypted on our servers!"
+      prompt:
+        header: "What are you waiting for?"
+        body: "Registering takes less than 5 minutes!"
+    about:
+      title: "About"
+      subtitle: "About our service, features and other information"
+      about_missing: "The site owner decided not to describe this Retrospring instance, how mysterious!"
+      statistics:
+        header: "Statistics"
+        body: "All-time statistics for %{app_name}, updated every time you refresh the page!"
+  auth:
+    two_factor_authentication:
+      heading: "Two-factor authentication"
+      otp_attempt: "Please enter the code from your authenticator app"
+  announcement:
+    index:
+      title: ':activerecord.models.announcement.other'
+      confirm_delete: "Are you sure you want to delete this announcement?"
+      new: "Add Announcement"
+    new:
+      title: "Create Announcement"
+    edit:
+      title: "Edit Announcement"
+  answerbox:
+    header:
+      anon_hint: ':inbox.entry.anon_hint'
+      answers:
+        one: "1 answer"
+        other: "%{count} answers"
+      asked: "%{user} asked %{time} ago"
+    actions:
+      share:
+        title: "Share"
+        twitter: "Share on Twitter"
+        tumblr: "Share on Tumblr"
+        other: "Share on other apps..."
+      subscribe: "Subscribe"
+      unsubscribe: "Unsubscribe"
+      return: "Return to Inbox"
+    comments:
+      none: "There are no comments yet."
+      placeholder: "Comment..."
+      actions:
+        view_smiles: "View comment smiles"
+    smiles:
+      none: "No one smiled this yet."
+  application:
+    answerbox:
+      read: "Read the entire answer"
+      answered: "%{hide} %{user}" #resolves into "Answered by %{user}"
+      hide: "Answered by"
+    questionbox:
+      title: "Ask something!"
+      required: "This user does not want to get asked by strangers.  Why don't you %{signup}?"
+      placeholder: "Type your question here…"
+      anonymous: "Hide your name"
+      load: "Asking…"
+      promote:
+        message: "Your question has been sent."
+        create: "Create an account"
+        another: "Ask another question"
+        join: "Join %{app_title} today!  You'll be able to follow and ask people you know and a lot more."
+      status:
+        banned: "This user got hit with ye olde banhammer."
+        blocking: "You are blocking this user."
+        blocked: "This user has blocked you."
+  devise:
+    registrations:
+      edit:
+        title: "Account Settings"
+      new:
+        title: "Sign up"
+        info: "By signing up you accept our %{terms}"
+    sessions:
+      new:
+        title: "Sign in"
+  discover:
+    index:
+      title: "Discover"
+      heading: "Discover"
+      subheading: "The perfect place to find interesting content from the last week on %{app_title}!"
+      content:
+        heading: "Popular Content"
+        description: "Answers with most smiles and most answered questions"
+        tab:
+          answers: "Most Smiled"
+          questions: "Most Answers"
+          comments: "Most Discussed"
+      people:
+        heading: "People"
+        description: "Newcomers and people who asked the most questions"
+        tab:
+          new: "New Users"
+          questions: "Active Askers"
+          answers: "Most Answers"
+    userbox:
+      new: "registered %{value} ago"
+      most:
+        one: "answered 1 question"
+        other: "answered %{count} questions"
+      asked:
+        one: "asked 1 question"
+        other: "asked %{count} questions"
+  feedback:
+    consent:
+      title: "Feedback"
+      heading: "Notice"
+      notice_html: |
+        <p>
+          %{app_name} uses Canny to collect feedback or bug reports on the following pages.
+        </p>
+        <p>
+          Canny collects the username, user ID and email address for these purposes.
+          Unless you specifically consent to this,
+          %{app_name}
+          will not send your data to Canny, but you can't use the feedback forms either.
+        </p>
+      privacy: "Canny's Privacy Policy"
+      consent: "Consent and proceed"
+      alternative: "Alternatively, you can send us bug reports and feature requests directly on GitHub."
+      issues: "GitHub Issues"
+    bugs:
+      title: "Bugs – Feedback"
+    features:
+      title: "Feature Requests – Feedback"
+  inbox:
+    entry:
+      asked_html: "%{user} asked %{time} ago"
+      anon_hint: "This question was asked anonymously."
+      answers:
+        one: "1 answer"
+        other: "%{count} answers"
+      options: "Options"
+      placeholder: "Write your answer here…"
+      sharing:
+        heading: "Sharing"
+        post_to: "Post to %{service}"
+        none_html: "You have not connected any services yet. Visit your %{settings} to connect one."
+        settings: "service settings"
+    show:
+      empty: "Nothing to see here."
+    sidebar:
+      actions:
+        heading: "Actions"
+        delete: "Delete all questions"
+      author:
+        heading: "Show author"
+        button: "Show"
+        placeholder: "username"
+      questions:
+        heading: "Out of questions?"
+        button: "Get new question"
+      share:
+        heading: "Share"
+        button: "Share on %{service}"
+  layouts:
+    feedback:
+      heading: "Feedback"
+      tab:
+        bugs: "Bugs"
+        features: "Feature Requests"
+    messages:
+      noscript: "Please activate JavaScript."
+  link_filter:
+    index:
+      heading: "You're leaving %{app_name}"
+      subheading: "The link you are visiting is not trusted by %{app_name}"
+      body: Never enter your passwords or other private information on an untrusted website. %{app_name} will only ever ask for your password on a site that is on the domain %{hostname}
+      url: "URL:"
+      confirm: "I understand the risk, proceed!"
+  modal:
+    ask:
+      title: "Ask your followers"
+      placeholder: "Type your question here…"
+      action: "Ask"
+      loading: "Asking…"
+    comment_smiles:
+      title: "People who smiled this comment"
+      none: "No one has smiled this comment yet."
+    list:
+      title: "Manage list memberships"
+      tab:
+        list:
+          title: "Lists"
+        create:
+          title: "Create new list"
+          action: "Create list"
+          placeholder: "List name"
+      item:
+        members:
+          one: "1 member"
+          other: "%{count} members"
+    privileges:
+      title: "Manage roles for %{user}"
+      role:
+        moderator: "Someone trustworthy enough to help manage reports."
+        admin: "This user is part of the core team."
+    password:
+      title: "Save account changes"
+    ban:
+      title: "Ban Control Center"
+      controls:
+        reason: "Reason"
+        is_banned: "Ban?"
+        is_permanent: "Permanently?"
+        hammertime: "Hammer Time"
+      tabs:
+        controls: "Ban"
+        history: "History"
+      unban:
+        banned_permanently_html: "This user is currently permanently banned for <strong>%{reason}</strong>"
+        banned_temporarily_html: "This user is currently banned until <strong>%{until}</strong> for <strong>%{reason}</strong>"
+        banned_by_html: "This ban was instated by <strong>%{user}</strong> on <strong>%{on}</strong>"
+        unban: "Unban"
+      history:
+        count: "%{user} has been banned %{count} times."
+        issued_by: "Issued by %{user}"
+        permanent: "Permanent"
+        until: "Until %{until}"
+        expired: "Expired at %{until}"
+  navigation:
+    toggle: "Toggle navigation"
+    timeline: "Timeline"
+    inbox: "Inbox"
+    discover: "Discover"
+    notifications: "Notifications"
+    dropdown:
+      notifications:
+        none: ':notifications.index.none'
+        all: "Show all notifications"
+        new: "Show all new notifications"
+      profile:
+        profile: "Show profile"
+        settings: "Settings"
+        admin: "Rails Admin"
+        sidekiq: "Sidekiq"
+        pghero: "Database Monitor"
+        announcements: "Announcements"
+        unmask:
+          enable: "Enable Moderation View"
+          disable: "Disable Moderation View"
+        moderation: "Moderation Panel"
+        feedback:
+          heading: "Feedback"
+          bugs: "Bugs"
+          features: "Feature Requests"
+    desktop:
+      ask_question: "Ask a question"
+      list: ':user.actions.list'
+  notifications:
+    index:
+      title: "Notifications"
+      none_filtered: "No notifications."
+      none: "No new notifications."
+    type:
+      answer:
+        heading_html: "%{user} answered %{question} %{time} ago"
+        link_text: "your question"
+      comment:
+        heading_html: "%{user} commented on %{answer} %{time} ago"
+        active:
+          link_text: "your answer"
+        passive:
+          link_text: "their answer"
+        other:
+          link_text_html: "%{user}'s answer"
+      reaction:
+        heading_html: "%{user} smiled %{type} %{time} ago"
+        answer:
+          link_text: "your answer"
+        comment:
+          link_text: "your comment"
+      follow:
+        heading_html: "followed you %{time} ago"
+  services:
+    index:
+      title: "Service Settings"
+  settings:
+    account:
+      email_confirm: "Currently awaiting confirmation for %{resource}"
+      help:
+        password: "Leave this blank if you don't want to change it"
+      delete:
+        action: "Permanently delete account"
+        confirm: "Are you sure? Deleting your account is IRREVERSIBLE."
+        heading: "Unsatisfied?"
+    blocks:
+      index:
+        title: "Blocks"
+        blocked: "blocked %{time} ago"
+        none: "You are not blocking anyone."
+        section:
+          blocks:
+            heading: "Blocked Users"
+            body: "Each user you've blocked is listed here, along with a way to unblock them.  To block someone, use the 'Actions' dropdown on their profile page."
+          anon_blocks:
+            heading: "Anonymous Blocks"
+            body: "Each anonymous user you've blocked is listed here, along with a way to unblock them.  We also display the question they asked you to add some more context.  You can block anonymous users directly from the question in your inbox."
+        deleted_question: "Deleted question"
+    data:
+      index:
+        title: "Your Data"
+        heading: "Your Profile Data"
+        body: "Everything we have about you! Really, not that much as you might expect."
+        none: "None set!"
+        section:
+          general: "General"
+          profile: "Profile"
+          pictures: "Pictures"
+          ip: "IP"
+          miscellaneous: "Miscellaneous"
+          dates: "Dates"
+          sign_in: "Sign In"
+          create_update: "Create/Update"
+        pictures:
+          profile_picture:
+            heading: "Profile picture"
+            size:
+              small: "Small"
+              medium: "Medium"
+              large: "Large"
+              original: "Original image"
+          profile_header:
+            heading: "Profile header"
+            size:
+              mobile: "Mobile"
+              web: "Web"
+              retina: "Retina"
+              original: "Original image"
+    export:
+      index:
+        title: "Export"
+        heading: "Export your data"
+        body_html: |
+          <p>The data is inside a <code>.tar.gz</code> archive and available in three formats: YAML, JSON, and XML.
+          The archive also contains a copy of your profile picture and header picture in all sizes.</p>
+          <p>Please note that you can only export your data once a week. Exporting your data
+          will take a while, so please be patient. You will receive a question once exporting
+          is done.</p>
+        export: "Export"
+        export_url:
+          none: "Once exporting your account is done, a download link will appear here."
+          present: "Here's your export from %{time}"
+    mutes:
+      index:
+        title: "Muted Terms"
+        heading: "Muted Terms"
+        body: "Muting words (or longer phrases) will prevent questions containing those to appear in your inbox."
+        note: "Note: Filtered questions are discarded completely from your inbox, and won't reappear if you remove a filter later on."
+        placeholder: "Add a new muted term…"
+        actions:
+          add: "Add"
+          remove: "Remove"
+    privacy:
+      edit:
+        title: "Privacy Settings"
+    profile:
+      edit:
+        title: "Profile Settings"
+        adjust:
+          profile_picture: "Adjust your new profile picture"
+          profile_header: "Adjust your new profile header"
+    two_factor_authentication:
+      otp_authentication:
+        index:
+          title: "Security Settings"
+          heading: "Two-factor authentication"
+        recovery_keys:
+          heading: "Your %{app_name} recovery codes"
+          generated_at: "These codes were generated at %{time}"
+          recommendation: "We recommend storing these in a password manager or printing them out on paper."
+          print: "Print"
+          consideration: "Please consider the environment before printing this page."
+        totp_enabled:
+          body: "Your account is set up to require the use of a one-time password in order to log in."
+          recovery_code_count: "You currently have %{count} unused recovery codes."
+          remove:
+            action: "Remove Two-factor authentication"
+            confirm: "Are you sure you want to disable two-factor authentication?"
+          regenerate:
+            action: "Regenerate recovery codes"
+            confirm: "Are you sure? This will disable your previous set of recovery codes."
+        totp_setup:
+          setup_key: "If you cannot scan the QR code, use the following key instead:"
+          setup_qr: "Once you have downloaded an authenticator app, add your %{app_name} account by scanning the QR code displayed on this page."
+          otp_validation: "Enter the code displayed in the app here:"
+          app:
+            none: "If you do not have an authenticator app already installed on your device, we suggest one of the following:"
+            aegis: "Aegis Authenticator for Android"
+            strongbox: "Strongbox Authenticator for iOS"
+            microsoft: "Microsoft Authenticator"
+          source:
+            app_store: "App Store"
+            fdroid: "F-Droid"
+            google_play: "Google Play"
+            code: "Source Code"
+    services:
+      services:
+        one: "Sharing is enabled for the following service:"
+        other: "Sharing is enabled for the following services:"
+      connect: "Connect to %{service}"
+      disconnect: "Disconnect"
+      confirm: "Really disconnect service %{service}?"
+    theme:
+      edit:
+        title: "Theme Settings"
+        heading: "Theming"
+        lead: "Welcome to the Theme Editor!"
+        body_html: |
+          <p>Here you'll be able to modify your Retrospring experience by adjusting all available colors.
+          To further help you with adjusting needs, there are a few example elements using the specified colors, and sections will include
+          descriptions on their general use on the site!</p>
+          <p>And with that: <b>Happy Theming!</b>
+        delete: "Delete Theme"
+        general:
+          heading: "General"
+          body: "Here you'll find general page values that are basically visible all across the page."
+        colors:
+          heading: "Colors"
+          body: |
+            Colors you can find used on the site. The names of the colors usually describe the context.
+            The "text" colors for all styles represent the color that text on top of these colors has.
+          alert:
+            example: "A simple %{type} alert — check it out!"
+            type:
+              danger: "danger"
+              info: "info"
+              primary: "primary"
+              success: "success"
+              warning: "warning"
+          button:
+            example: "A %{type} button"
+            type:
+              dark: "dark"
+              light: "light"
+          text:
+            example: "Some muted text"
+        forms:
+          heading: "Forms and Inputs"
+          body: "Styles for form inputs, such as text fields."
+        raised:
+          heading: "Raised Content"
+          body: "Raised content includes all the different boxes and panels you can see across the site."
+          accent:
+            example: "Some text on top of a accented area on a raised element!"
+  shared:
+    links:
+      about: "About"
+      source: "Source code"
+      terms: "Terms of Service"
+      privacy: "Privacy Policy"
+    sidebar:
+      list:
+        title: "Members"
+        none: "No members yet."
+  tabs:
+    feed:
+      public: "Public"
+      timeline: "Your Timeline"
+      lists:
+        title: "Lists"
+        notice_html: |
+          <p>Looks like you don't have any lists yet.</p>
+          <p>
+            You can create lists and add users to them using the <i class="fa fa-fw fa-list"></i>
+            icon in the navigation on user profiles that are not yours.
+          </p>
+          <p>
+            Once you have done that, the lists will be shown here.
+            When you select a list you'll get a timeline view of all users within that list.
+          </p>
+    moderation:
+      all: "All reports"
+      answers: ':activerecord.models.answer.other'
+      comments: ':activerecord.models.comment.other'
+      users: ':activerecord.models.user.other'
+      questions: ':activerecord.models.question.other'
+    notifications:
+      all: "All notifications"
+      new: "New notifications"
+      answer: "Answers"
+      smile: "Smiles"
+      comment: "Comments"
+      commentsmile: "Comment Smiles"
+      relationship: "Followers"
+    profile:
+      answers: ':activerecord.models.answer.other'
+      questions: ':activerecord.models.question.other'
+      followers: "Followers"
+      following: "Following"
+    settings:
+      account: "Account"
+      profile: "Profile"
+      privacy: "Privacy"
+      sharing: "Sharing"
+      security: "Security"
+      mutes: "Muted Terms"
+      theme: "Theme"
+      data: "Your Data"
+      export: "Export"
+  moderation:
+    inbox:
+      header:
+        title_html: "Viewing inbox for <br><strong>%{screen_name}</strong> (#%{user_id})"
+      index:
+        title: "Inbox for %{user}"
+    moderationbox:
+      reported_html: "%{user} reported a %{content} %{time} ago"
+      reason:
+        heading: "Reason:"
+        none: "No reason provided"
+      view: "View reported %{content}"
+  user:
+    actions:
+      view_inbox: "View inbox"
+      privilege: "Check %{user}'s privileges"
+      ban: "Ban Control"
+      title: "Actions"
+      list: "Manage list memberships"
+    profile:
+      badge:
+        admin: "Admin"
+        banned: "Banned"
+        follows_you: "Follows you"
+        moderator: "Moderator"
+  question:
+    show:
+      questionbox:
+        title: "This question was not in your inbox? Answer it here!"
