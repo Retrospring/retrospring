@@ -1,0 +1,104 @@
+sv:
+  activerecord:
+    models:
+      announcement:
+        one: "Announcement"
+        other: "Announcements"
+      answer:
+        one: "Answer"
+        other: "Answers"
+      comment:
+        one: "Comment"
+        other: "Comments"
+      question:
+        one: "Question"
+        other: "Questions"
+      user:
+        one: "User"
+        other: "Users"
+    attributes:
+      announcement:
+        content: "Content"
+        link_href: "Link URL"
+        link_text: "Link text"
+        starts_at: "Start time"
+        ends_at: "End time"
+      profile:
+        anon_display_name: "Name for anonymous users"
+        description: "Biography"
+        display_name: "Your name"
+        location: "Location"
+        motivation_header: "Motivation header"
+        website: "Website"
+      service:
+        post_tag: "Tag"
+      theme:
+        background_color: "Background color"
+        body_text: "Body text color"
+        dark_color: "Dark color"
+        dark_text: "Dark text color"
+        danger_color: "Danger color"
+        danger_text: "Danger text color"
+        info_color: "Info color"
+        info_text: "Info text color"
+        input_color: "Input color"
+        input_text: "Input text color"
+        light_color: "Light color"
+        light_text: "Light text color"
+        muted_text: "Muted text color"
+        primary_color: "Primary color"
+        primary_text: "Primary text color"
+        raised_accent: "Raised accent color"
+        raised_background: "Raised background color"
+        success_color: "Success color"
+        success_text: "Success text color"
+        warning_color: "Warning color"
+        warning_text: "Warning text color"
+      user:
+        created_at: "Account created at"
+        current_password: "Current password"
+        current_sign_in_at: "Current sign in at"
+        current_sign_in_ip: "Current sign in IP"
+        email: "Email"
+        last_sign_in_at: "Last sign in at"
+        last_sign_in_ip: "Last sign in IP"
+        locale: "Language"
+        login: "Username or Email"
+        remember_created_at: "Remember me set at"
+        password: "Password"
+        password_confirmation: "Confirm your password"
+        privacy_allow_anonymous_questions: "Allow anonymous questions"
+        privacy_allow_public_timeline: "Show your answers in the public timeline"
+        privacy_allow_stranger_answers: "Allow other people to answer your questions"
+        profile_picture: "Profile picture"
+        profile_header: "Profile header"
+        sign_in_count: "Sign in count"
+        screen_name: "Username"
+        show_foreign_themes: "Render other user themes when visiting their profile"
+        updated_at: "Account updated at"
+    help:
+      user:
+        email: "Don't forget to check your spam folder in case our email might have landed there!"
+        current_password: "We need your current password to confirm your changes"
+      profile:
+        anon_display_name: "This name will be used for questions asked to you by anonymous users."
+        motivation_header: "Shown in the header of the question box on your profile. Motivate users to ask you questions!"
+      services/twitter:
+        post_tag: "Automatically append a tag to your shared answers. A # symbol is not automatically prepended."
+      theme:
+        danger_color: "Color used for errors or critical actions like deleting something."
+        info_color: "Color used for informational popups or messages."
+        primary_color: "The primary/brand color of the site, used for navigation, links, etc."
+        success_color: "Color used for messages if something went through successfully."
+        warning_color: "Color used for warnings if something non-critical has happened."
+  helpers:
+    submit:
+      user:
+        new: "Sign in"
+        create: ':voc.register'
+        update: ':voc.save'
+      profile:
+        update: ':voc.save'
+      theme:
+        create: ':voc.save'
+        update: ':voc.save'
