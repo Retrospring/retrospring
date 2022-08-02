@@ -1,1 +1,13 @@
-files: []
+files:
+  - source: /config/locales/activerecord.en.yml
+    translation: /config/locales/activerecord.%two_letters_code%.yml
+  - source: /config/locales/controllers.en.yml
+    translation: /config/locales/controllers.%two_letters_code%.yml
+  - source: /config/locales/errors.en.yml
+    translation: /config/locales/errors.%two_letters_code%.yml
+  - source: /config/locales/frontend.en.yml
+    translation: /config/locales/frontend.%two_letters_code%.yml
+  - source: /config/locales/views.en.yml
+    translation: /config/locales/views.%two_letters_code%.yml
+  - source: /config/locales/voc.en.yml
+    translation: /config/locales/voc.%two_letters_code%.yml
