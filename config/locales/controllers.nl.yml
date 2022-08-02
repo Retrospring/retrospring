@@ -1,0 +1,198 @@
+nl:
+  ajax:
+    noauth: ':messages.noauth'
+    anonymous_block:
+      create:
+        success: ':ajax.relationship.create.block.success'
+      destroy:
+        nopriv: "Cannot remove a block belonging to someone else."
+        success: ':ajax.relationship.destroy.block.success'
+    answer:
+      create:
+        privacy: "This user does not want other users to answer their questions."
+        success: "Successfully answered question."
+        error: "Question is not in your inbox."
+      destroy:
+        nopriv: "You cannot delete other people's answers."
+        success: "Successfully deleted answer."
+    comment:
+      create:
+        invalid: "Your comment is too long."
+        success: "Comment posted successfully."
+      destroy:
+        nopriv: "You cannot delete other people's comments."
+        success: "Successfully deleted comment."
+    inbox:
+      create:
+        noauth: ':ajax.noauth'
+        success: "Successfully added new question."
+      remove:
+        success: "Successfully deleted question."
+        error: "Question is not in your inbox."
+      remove_all:
+        success: "Successfully deleted questions."
+      remove_all_author:
+        success: ':ajax.inbox.remove_all.success'
+    list:
+      create:
+        noauth: ':ajax.noauth'
+        noname: "List must have a name."
+        toolong: "List name too long (30 characters max.)"
+        notfound: "Could not find user."
+        exists: "List already exists."
+        success: "Successfully created list."
+      destroy:
+        noauth: ':ajax.noauth'
+        notfound: "Could not find list."
+        success: "Successfully deleted list."
+      membership:
+        noauth: ':ajax.noauth'
+        notfound: "List not found."
+        success:
+          add: "Successfully added user to list."
+          remove: "Successfully removed user from list."
+    moderation:
+      destroy_report:
+        success: "Successfully removed report."
+        error: ':errors.base'
+      ban:
+        nopriv: "You cannot ban an administrator!"
+        success:
+          unban: "Unbanned user."
+          permanent: "Permanently banned user."
+          temporary: "Banned user until %{date}"
+        error: "Something went wrong while banning this user."
+      privilege:
+        nopriv: "You can't change the role of this user."
+        success: "Successfully adjusted this users %{privilege} role."
+        error: "Something went wrong while adjusting this role."
+    mute_rule:
+      nopriv: "You cannot edit other people's rules."
+      create:
+        noauth: ':ajax.noauth'
+        success: "Rule added successfully."
+      update:
+        noauth: ':ajax.noauth'
+        nopriv: ':ajax.mute_rule.nopriv'
+        success: "Rule updated successfully."
+      destroy:
+        noauth: ':ajax.noauth'
+        nopriv: ':ajax.mute_rule.nopriv'
+        success: "Rule deleted successfully."
+    question:
+      create:
+        invalid: "Your question is too long."
+        notfound: "User not found."
+        success: "Question asked successfully."
+      destroy:
+        notfound: "Question does not exist."
+        noauth: "You are not allowed to delete this question."
+        success: "Successfully deleted question."
+    relationship:
+      create:
+        block:
+          success: "Successfully blocked user."
+          error: "You are already blocking that user."
+        follow:
+          success: "Successfully followed user."
+          error: "You are already following that user."
+      destroy:
+        block:
+          success: "Successfully unblocked user."
+          error: "You are not blocking that user."
+        follow:
+          success: "Successfully unfollowed user."
+          error: "You are not following that user."
+    report:
+      create:
+        noauth: ':ajax.noauth'
+        unknown: "You can't report this entity."
+        notfound: "Could not find %{parameter}"
+        success: "%{parameter} reported.  A moderator will decide what happens with the %{parameter}."
+    smile:
+      create:
+        success: "Successfully smiled answer."
+        error: "You have already smiled that answer."
+      create_comment:
+        success: "Successfully smiled comment."
+        error: "You have already smiled that comment."
+      destroy:
+        success: "Successfully unsmiled answer."
+        error: "You have not smiled that answer."
+      destroy_comment:
+        success: "Successfully unsmiled comment."
+        error: "You have not smiled that comment."
+  announcement:
+    create:
+      success: "Announcement created successfully."
+      error: "Unable to create announcement."
+    update:
+      success: "Announcement updated successfully."
+      error: "Unable to save announcement."
+    destroy:
+      success: "Announcement has been deleted successfully."
+      error: "Unable to delete announcement."
+  inbox:
+    author:
+      info: "No questions from @%{author} found, showing entries from all users instead!"
+      error: "No user with the name @%{author} found, showing entries from all users instead!"
+  services:
+    create:
+      success: "%{service} connected successfully."
+      duplicate: "The %{service} account you are trying to connect is already connected to another %{app} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
+      error: "Unable to connect to %{service}."
+    update:
+      success: "Service updated successfully."
+      error: "Unable to update service."
+    failure:
+      error: ':errors.base'
+    destroy:
+      success: "%{service} disconnected successfully."
+  settings:
+    export:
+      index:
+        info: "An export is currently in progress for this account."
+      create:
+        success: "Your account is currently being exported. This will take a little while."
+        error: "Exporting is currently not possible."
+    privacy:
+      update:
+        success: ':settings.profile.update.success'
+        error: ':settings.profile.update.error'
+    profile:
+      update:
+        success: "Profile updated successfully."
+        error: "Unable to update profile."
+    profile_picture:
+      update:
+        success: ':settings.profile.update.success'
+        error: ':settings.profile.update.error'
+        notice:
+          profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
+          profile_header: " It might take a few minutes until your new profile header is shown everywhere."
+    theme:
+      update:
+        success: "Theme saved successfully."
+        error: "Theme saving failed. %{errors}"
+    two_factor_authentication:
+      otp_authentication:
+        update:
+          error: ':errors.invalid_otp'
+        destroy:
+          success: "Two factor authentication has been disabled for your account."
+  user:
+    sessions:
+      create:
+        banned: "I'm sorry, %{name}, I'm afraid I can't do that."
+        reason: "Ban reason: %{reason}"
+        until: "Banned until: %{time}"
+        info:
+          one: "You have only one recovery code remaining. Please regenerate your recovery codes from the security settings to avoid being locked out!"
+          other: "You have %{count} recovery codes remaining."
+        error: ':errors.invalid_otp'
+    registrations:
+      destroy:
+        export_pending: "You may not delete your account while account data is currently being exported."
+  timeline:
+    public:
+      title: "Public Timeline"
