@@ -79,6 +79,18 @@ describe UseCase::Question::Create do
 
       it_behaves_like "creates the question", false
     end
+
+    context "question is from an anon who is blocked globally" do
+      before do
+        AnonymousBlock.create!(
+          identifier:  author_identifier,
+          question_id: FactoryBot.create(:question).id,
+          user_id:     nil
+        )
+      end
+
+      it_behaves_like "creates the question", false
+    end
   end
 
   context "user signed in" do
