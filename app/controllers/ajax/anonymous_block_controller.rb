@@ -6,10 +6,12 @@ class Ajax::AnonymousBlockController < AjaxController
 
     question = Question.find(params[:question])
 
+    raise Errors::Forbidden if params[:global] && !current_user.has_role?(:moderator)
+
     AnonymousBlock.create!(
-      user:       current_user,
+      user:       params[:global] ? nil : current_user,
       identifier: question.author_identifier,
-      question:   question
+      question:,
     )
 
     question.inboxes.first.destroy

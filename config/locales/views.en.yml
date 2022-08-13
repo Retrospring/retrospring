@@ -305,6 +305,7 @@ en:
           heading: "Feedback"
           bugs: "Bugs"
           features: "Feature Requests"
+        site_wide_blocks: "Site-wide anonymous blocks"
     desktop:
       ask_question: "Ask a question"
       list: :user.actions.list
@@ -348,7 +349,6 @@ en:
     blocks:
       index:
         title: "Blocks"
-        blocked: "blocked %{time} ago"
         none: "You are not blocking anyone."
         section:
           blocks:
@@ -357,7 +357,6 @@ en:
           anon_blocks:
             heading: "Anonymous Blocks"
             body: "Each anonymous user you've blocked is listed here, along with a way to unblock them.  We also display the question they asked you to add some more context.  You can block anonymous users directly from the question in your inbox."
-        deleted_question: "Deleted question"
     data:
       index:
         title: "Your Data"
@@ -511,6 +510,9 @@ en:
       source: "Source code"
       terms: "Terms of Service"
       privacy: "Privacy Policy"
+    anonymous_block:
+      deleted_question: "Deleted question"
+      blocked: "blocked %{time} ago"
     sidebar:
       list:
         title: "Members"
@@ -572,6 +574,10 @@ en:
         heading: "Reason:"
         none: "No reason provided"
       view: "View reported %{content}"
+    anonymous_block:
+      index:
+        title: "Site-wide anonymous blocks"
+        empty: "There are currently no users blocked site-wide."
   user:
     actions:
       view_inbox: "View inbox"

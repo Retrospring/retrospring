@@ -13,7 +13,7 @@ describe Ajax::AnonymousBlockController, :ajax_controller, type: :controller do
         sign_in(user)
       end
 
-      context "when all parameters are given" do
+      context "when all required parameters are given" do
         let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
         let!(:inbox) { FactoryBot.create(:inbox, user: user, question: question) }
         let(:params) do
@@ -33,6 +33,51 @@ describe Ajax::AnonymousBlockController, :ajax_controller, type: :controller do
         end
 
         include_examples "returns the expected response"
+      end
+
+      context "when blocking a user globally" do
+        let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
+        let!(:inbox) { FactoryBot.create(:inbox, user: user, question: question) }
+        let(:params) do
+          { question: question.id, global: "true" }
+        end
+
+        context "as a moderator" do
+          let(:expected_response) do
+            {
+              "success" => true,
+              "status"  => "okay",
+              "message" => anything
+            }
+          end
+
+          before do
+            user.add_role(:moderator)
+          end
+
+          it "creates an site-wide anonymous block" do
+            expect { subject }.to(change { AnonymousBlock.count }.by(1))
+            expect(AnonymousBlock.last.user_id).to be_nil
+          end
+
+          include_examples "returns the expected response"
+        end
+
+        context "as a regular user" do
+          let(:expected_response) do
+            {
+              "success" => false,
+              "status"  => "forbidden",
+              "message" => anything
+            }
+          end
+
+          it "does not create an anonymous block" do
+            expect { subject }.not_to(change { AnonymousBlock.count })
+          end
+
+          include_examples "returns the expected response"
+        end
       end
 
       context "when parameters are missing" do

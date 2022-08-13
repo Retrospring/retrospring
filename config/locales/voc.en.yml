@@ -2,6 +2,7 @@ en:
   voc:
     answer: "Answer"
     block: "Block"
+    block_site_wide: "Block user site-wide"
     cancel: "Cancel"
     close: "Close"
     confirm: "Are you sure?"
