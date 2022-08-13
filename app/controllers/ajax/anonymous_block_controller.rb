@@ -11,7 +11,7 @@ class Ajax::AnonymousBlockController < AjaxController
     AnonymousBlock.create!(
       user:       params[:global] ? nil : current_user,
       identifier: question.author_identifier,
-      question:,
+      question:
     )
 
     question.inboxes.first.destroy

@@ -15,7 +15,7 @@ describe Ajax::AnonymousBlockController, :ajax_controller, type: :controller do
 
       context "when all required parameters are given" do
         let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
-        let!(:inbox) { FactoryBot.create(:inbox, user: user, question: question) }
+        let!(:inbox) { FactoryBot.create(:inbox, user:, question:) }
         let(:params) do
           { question: question.id }
         end
@@ -37,7 +37,7 @@ describe Ajax::AnonymousBlockController, :ajax_controller, type: :controller do
 
       context "when blocking a user globally" do
         let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
-        let!(:inbox) { FactoryBot.create(:inbox, user: user, question: question) }
+        let!(:inbox) { FactoryBot.create(:inbox, user:, question:) }
         let(:params) do
           { question: question.id, global: "true" }
         end
