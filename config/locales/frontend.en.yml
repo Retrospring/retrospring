@@ -45,6 +45,10 @@ en:
       confirm:
         title: "Are you sure?"
         text: "This question will be gone forever."
+    mod_mute:
+      confirm:
+        title: "Are you sure?"
+        text: "This will block this user for everyone."
     report:
       confirm:
         title: "Are you sure you want to report this %{type}?"
