@@ -87,6 +87,7 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@gmaile.com"
     include_examples "invalid email", "fritz.fantom@gmaill.com"
     include_examples "invalid email", "fritz.fantom@gmali.com"
+    include_examples "invalid email", "fritz.fantom@gnail.com"
     include_examples "invalid email", "fritz.fantom@hotamil.com"
     include_examples "invalid email", "fritz.fantom@hotmai.com"
     include_examples "invalid email", "fritz.fantom@hotmailcom"
@@ -94,7 +95,9 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@iclooud.com"
     include_examples "invalid email", "fritz.fantom@iclould.com"
     include_examples "invalid email", "fritz.fantom@icluod.com"
+    include_examples "invalid email", "fritz.fantom@xn--gmail-xk1c.com"
     include_examples "invalid email", "fritz.fantom@yahooo.com"
+    include_examples "invalid email", "fritz.fantom@☺gmail.com"
     # gail.com would be a valid email address, but enough people typo it
     #
     # if you're the owner of that TLD and would like to use your email on

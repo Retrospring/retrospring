@@ -20,13 +20,16 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       gmaile.com
       gmaill.com
       gmali.com
+      gnail.com
       hotamil.com
       hotmai.com
       hotmaill.com
       iclooud.com
       iclould.com
       icluod.com
+      xn--gmail-xk1c.com
       yahooo.com
+      ☺gmail.com
     ].map { "@#{_1}" }
   ].freeze
 
