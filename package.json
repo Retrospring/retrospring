@@ -35,6 +35,6 @@
     "eslint": "^7.16.0",
     "eslint-plugin-import": "^2.26.0",
     "webpack": "^4",
-    "webpack-dev-server": "^4.7.3"
+    "webpack-dev-server": "^4.10.0"
   }
 }
