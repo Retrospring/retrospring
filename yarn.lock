@@ -1136,10 +1136,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@melloware/coloris@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@melloware/coloris/-/coloris-0.15.0.tgz#3acb7f3f91ce9f51c97bd736b1006dab1276378a"
-  integrity sha512-MtRn0QfxXkis6o47f97DR7NgHOYjtf04Fqx1b/rj6afEzwiPaStrVn3yYoxI4PDtGI2dQZOrsNNzPlTlpM3Wtg==
+"@melloware/coloris@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@melloware/coloris/-/coloris-0.16.0.tgz#be1cfa84705db444c6abf942ab57e21f88adfa11"
+  integrity sha512-/aGlfbR3GvRUOvYnhrhE0qi55EIwJLa+DqnHPhefPfSljibNZrrcWrlW5cRvhvUD+jR/TYR41YWfOrQX9E3VwA==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
