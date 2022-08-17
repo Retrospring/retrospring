@@ -21,6 +21,10 @@ module UserHelper
     current_user&.mod? && session[:moderation_view] == true
   end
 
+  def belongs_to_current_user?
+    @user == current_user
+  end
+
   private
 
   def profile_link(user)
