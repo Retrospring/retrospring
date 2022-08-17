@@ -85,7 +85,7 @@ en:
         zero: "0 answers"
         one: "1 answer"
         other: "%{count} answers"
-      asked: "%{user} asked %{time} ago"
+      asked_html: "%{user} asked %{time} ago"
     actions:
       share:
         title: "Share"
