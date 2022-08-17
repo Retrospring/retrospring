@@ -24,7 +24,7 @@
                 %a.dropdown-item{ name: "ib-report", data: { q_id: i.question.id } }
                   %i.fa.fa-fw.fa-warning
                   = t("voc.report")
-              - if current_user.has_role?(:moderator) && i.question.anonymous? && !i.question.generated?
+              - if current_user.mod? && i.question.anonymous? && !i.question.generated?
                 %a.dropdown-item{ name: "mod-block-anon", data: { q_id: i.question.id } }
                   %i.fa.fa-fw.fa-volume-off
                   = t("voc.block_site_wide")
