@@ -63,4 +63,8 @@ class UserController < ApplicationController
       format.js { render layout: false }
     end
   end
+
+  private
+
+  def belongs_to_current_user? = @user == current_user
 end
