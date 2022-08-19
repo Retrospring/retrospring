@@ -149,31 +149,4 @@ describe UserHelper, type: :helper do
       end
     end
   end
-
-  describe "#belongs_to_current_user?" do
-    context "user is logged in" do
-      let(:user) { FactoryBot.create(:user) }
-
-      before do
-        sign_in user
-        @user = user
-      end
-
-      it "returns the correct value" do
-        expect(helper.belongs_to_current_user?).to eq(true)
-      end
-    end
-
-    context "user is not logged in" do
-      let(:user) { FactoryBot.create(:user) }
-
-      before do
-        @user = user
-      end
-
-      it "returns the correct value" do
-        expect(helper.belongs_to_current_user?).to eq(false)
-      end
-    end
-  end
 end
