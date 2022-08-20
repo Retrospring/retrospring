@@ -22,15 +22,18 @@
             .dropdown-menu.dropdown-menu-right{ role: :menu }
               - if i.question.user_id != current_user.id
                 %a.dropdown-item{ name: "ib-report", data: { q_id: i.question.id } }
-                  %i.fa.fa-warning
+                  %i.fa.fa-fw.fa-warning
                   = t("voc.report")
-              - if i.question.author_is_anonymous && i.question.author_identifier.present?
+              - if current_user.mod? && i.question.anonymous? && !i.question.generated?
+                %a.dropdown-item{ name: "mod-block-anon", data: { q_id: i.question.id } }
+                  %i.fa.fa-fw.fa-volume-off
+                  = t("voc.block_site_wide")
                 %a.dropdown-item{ name: "ib-block-anon", data: { q_id: i.question.id } }
-                  %i.fa.fa-minus-circle
+                  %i.fa.fa-fw.fa-minus-circle
                   = t("voc.block")
               - if current_user.has_role? :administrator
                 %a.dropdown-item{ href: rails_admin_path_for_resource(i) }
-                  %i.fa.fa-gears
+                  %i.fa.fa-fw.fa-gears
                   = t("voc.view_in_rails_admin")
   - if current_user == i.user
     .card-body

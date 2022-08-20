@@ -1,0 +1,10 @@
+- provide(:title, generate_title(t(".title")))
+
+.container-lg.container--main
+  .card
+    .card-body
+      #entries
+        - if @anonymous_blocks.empty?
+          .text-center= t(".empty")
+        - @anonymous_blocks.each do |block|
+          = render "shared/anonymous_block", block:

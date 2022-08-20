@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # Routes only accessible by moderators (moderation panel)
   authenticate :user, ->(user) { user.mod? } do
     post "/moderation/unmask", to: "moderation#toggle_unmask", as: :moderation_toggle_unmask
+    get "/moderation/blocks", to: "moderation/anonymous_block#index", as: :mod_anon_block_index
     get "/moderation(/:type)", to: "moderation#index", as: :moderation, defaults: { type: "all" }
     get "/moderation/inbox/:user", to: "moderation/inbox#index", as: :mod_inbox_index
     namespace :ajax do

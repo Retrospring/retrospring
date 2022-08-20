@@ -26,4 +26,8 @@ class Question < ApplicationRecord
     return false if Inbox.where(question: self).count > 1
     true
   end
+
+  def generated? = %w[justask retrospring_exporter].include?(author_identifier)
+
+  def anonymous? = author_is_anonymous && author_identifier.present?
 end

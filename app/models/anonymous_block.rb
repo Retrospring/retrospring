@@ -3,7 +3,7 @@
 require "digest"
 
 class AnonymousBlock < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :question, optional: true
 
   def self.get_identifier(ip)
