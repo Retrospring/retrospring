@@ -12,7 +12,7 @@ describe Moderation::ReportsController, type: :controller do
       sign_in user
     end
 
-    it "renders the user/questions template" do
+    it "renders the moderation/reports/index template" do
       subject
       expect(response).to render_template("moderation/reports/index")
     end
