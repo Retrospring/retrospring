@@ -5,6 +5,8 @@ import { showErrorNotification, showNotification } from "utilities/notifications
 import I18n from "retrospring/i18n";
 
 export function blockAnonEventHandler(event: Event): void {
+    event.preventDefault();
+    
     swal({
         title: I18n.translate('frontend.mod_mute.confirm.title'),
         text: I18n.translate('frontend.mod_mute.confirm.text'),
