@@ -26,7 +26,7 @@
                     %i.fa.fa-gears
                     = t("voc.view_in_rails_admin")
         %h6.media-heading.text-muted.answerbox__question-user
-          = raw t('views.answerbox.asked', user: user_screen_name(q.user), time: time_tooltip(q))
+          = t("answerbox.header.asked_html", user: user_screen_name(q.user), time: time_tooltip(q))
           - if q.answer_count > 1
             ·
             %a{ href: question_path(q.user.screen_name, q.id) }

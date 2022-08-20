@@ -10,12 +10,12 @@
         = current_user.screen_name
 - unless @list.nil?
   .card
-    .card-header= t('views.list.members')
+    .card-header= t(".list.title")
     .card-body
       - if @list.members.empty?
-        %p.text-muted No members yet.
+        %p.text-muted= t(".list.none")
       - @list.members.each do |member|
         %a{ href: user_path(member.user), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top } }
           %img.avatar-xs{ src: member.user.profile_picture.url(:medium) }
 
-= render 'shared/links'
+= render "shared/links"

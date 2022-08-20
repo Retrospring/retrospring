@@ -2,47 +2,48 @@
   %h6.dropdown-header.d-none.d-sm-block= current_user.screen_name
   %a.dropdown-item{ href: user_path(current_user) }
     %i.fa.fa-fw.fa-user
-    = t("views.navigation.show")
+    = t(".profile")
   %a.dropdown-item{ href: edit_user_registration_path }
     %i.fa.fa-fw.fa-cog
-    = t("views.navigation.settings")
+    = t(".settings")
   .dropdown-divider
   - if current_user.has_role?(:administrator)
     %a.dropdown-item{ href: rails_admin_path }
       %i.fa.fa-fw.fa-cogs
-      = t("views.navigation.admin")
+      = t(".admin")
     %a.dropdown-item{ href: sidekiq_web_path }
       %i.fa.fa-fw.fa-bar-chart
-      = t("views.navigation.sidekiq")
+      = t(".sidekiq")
     %a.dropdown-item{ href: pghero_path }
       %i.fa.fa-fw.fa-database
-      Database Monitor
+      = t(".pghero")
     %a.dropdown-item{ href: announcement_index_path }
       %i.fa.fa-fw.fa-info
-      Announcements
+      = t(".announcements")
     .dropdown-divider
   - if current_user.mod?
     - if moderation_view?
       = link_to moderation_toggle_unmask_path, method: :post, class: "dropdown-item" do
         %i.fa.fa-toggle-on
-        Disable Moderation View
+        = t(".unmask.disable")
     - else
       = link_to moderation_toggle_unmask_path, method: :post, class: "dropdown-item" do
         %i.fa.fa-toggle-off
-        Enable Moderation View
+        = t(".unmask.enable")
     %a.dropdown-item{ href: moderation_path }
       %i.fa.fa-fw.fa-gavel
-      = t("views.navigation.moderation")
+      = t(".moderation")
     .dropdown-divider
   - if APP_CONFIG["canny"]
-    %h6.dropdown-header.d-none.d-sm-block Feedback
+    %h6.dropdown-header.d-none.d-sm-block
+      = t(".feedback.heading")
     %a.dropdown-item{ href: feedback_bugs_path }
       %i.fa.fa-fw.fa-bug
-      Bugs
+      = t(".feedback.bugs")
     %a.dropdown-item{ href: feedback_features_path }
       %i.fa.fa-fw.fa-flask
-      Feature Requests
+      = t(".feedback.features")
     .dropdown-divider
   = button_to destroy_user_session_path, method: "delete", class: "dropdown-item" do
     %i.fa.fa-fw.fa-sign-out
-    = t("views.sessions.destroy")
+    = t("voc.logout")

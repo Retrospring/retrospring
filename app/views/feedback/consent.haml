@@ -1,26 +1,16 @@
 - provide(:title, generate_title(t('.title')))
 
 .text-center.mx-sm-5
-  %h2 Notice
+  %h2= t(".heading")
+
+  = t(".notice_html", app_name: APP_CONFIG["site_name"])
 
   %p
-    = APP_CONFIG["site_name"]
-    uses Canny to collect feedback or bug reports on the following pages.
+    %a.text-muted{ href: "https://canny.io/privacy" }= t(".privacy")
 
   %p
-    Canny collects the username, user ID and email address for these purposes.
-    Unless you specifically consent to this,
-    = APP_CONFIG["site_name"]
-    will not send your data to Canny, but you can't use the feedback forms either.
+    = button_to t(".consent"), feedback_consent_update_path, class: "btn btn-primary", method: :post, params: { consent: true }
 
+  %p= t(".alternative")
   %p
-    %a.text-muted{ href: "https://canny.io/privacy" } Canny's Privacy Policy
-
-  %p
-    = button_to "Consent and proceed", feedback_consent_update_path, class: "btn btn-primary", method: :post, params: { consent: true }
-
-  %p
-    Alternatively, you can send us bug reports and feature requests directly on GitHub.
-
-  %p
-    %a.btn.btn-outline-primary{ href: "https://github.com/Retrospring/retrospring/issues" } GitHub Issues
+    %a.btn.btn-outline-primary{ href: "https://github.com/Retrospring/retrospring/issues" }= t(".issues")
