@@ -3,9 +3,11 @@
 require "rails_helper"
 
 describe UserController, type: :controller do
-  let(:user) { FactoryBot.create :user,
-                                 otp_module: :disabled,
-                                 otp_secret_key: 'EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3'}
+  let(:user) do
+    FactoryBot.create :user,
+                      otp_module:     :disabled,
+                      otp_secret_key: "EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3"
+  end
 
   describe "#show" do
     subject { get :show, params: { username: user.screen_name } }
@@ -50,7 +52,7 @@ describe UserController, type: :controller do
   end
 
   describe "#questions" do
-    let!(:question) { FactoryBot.create(:question, user: user, direct: true, author_is_anonymous: false) }
+    let!(:question) { FactoryBot.create(:question, user:, direct: true, author_is_anonymous: false) }
     subject { get :questions, params: { username: user.screen_name } }
 
     it "renders the user/questions template" do
