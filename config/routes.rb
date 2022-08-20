@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   authenticate :user, ->(user) { user.mod? } do
     post "/moderation/unmask", to: "moderation#toggle_unmask", as: :moderation_toggle_unmask
     get "/moderation/blocks", to: "moderation/anonymous_block#index", as: :mod_anon_block_index
-    get "/moderation(/:type)", to: "moderation#index", as: :moderation, defaults: { type: "all" }
+    get "/moderation/reports(/:type)", to: "moderation/reports#index", as: :moderation_reports, defaults: { type: "all" }
     get "/moderation/inbox/:user", to: "moderation/inbox#index", as: :mod_inbox_index
     namespace :ajax do
       post "/mod/destroy_report", to: "moderation#destroy_report", as: :mod_destroy_report
