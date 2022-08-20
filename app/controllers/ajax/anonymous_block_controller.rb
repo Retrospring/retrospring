@@ -14,7 +14,7 @@ class Ajax::AnonymousBlockController < AjaxController
       question:
     )
 
-    question.inboxes.first.destroy
+    question.inboxes.first&.destroy
 
     @response[:status] = :okay
     @response[:message] = t(".success")
