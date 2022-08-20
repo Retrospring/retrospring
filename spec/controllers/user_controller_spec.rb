@@ -61,7 +61,7 @@ describe UserController, type: :controller do
       expect(response).to render_template("user/questions")
     end
 
-    context "current user signed in" do
+    context "when the current user is the question author" do
       before do
         sign_in user
       end
@@ -72,7 +72,7 @@ describe UserController, type: :controller do
       end
     end
 
-    context "user signed in" do
+    context "when the current user is someone else" do
       let(:another_user) { FactoryBot.create :user }
 
       before do
@@ -85,7 +85,7 @@ describe UserController, type: :controller do
       end
     end
 
-    context "moderator unmasked" do
+    context "when a moderator uses unmask" do
       let(:another_user) { FactoryBot.create :user, roles: ["moderator"] }
 
       before do
@@ -99,7 +99,7 @@ describe UserController, type: :controller do
       end
     end
 
-    context "user not signed in" do
+    context "when user is not signed in" do
       it "contains no questions" do
         subject
         expect(assigns(:questions).size).to eq(0)
