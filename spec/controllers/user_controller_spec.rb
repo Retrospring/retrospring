@@ -50,15 +50,57 @@ describe UserController, type: :controller do
   end
 
   describe "#questions" do
+    let!(:question) { FactoryBot.create(:question, user: user, direct: true, author_is_anonymous: false) }
     subject { get :questions, params: { username: user.screen_name } }
 
-    context "user signed in" do
-      before(:each) { sign_in user }
+    it "renders the user/questions template" do
+      subject
+      expect(assigns(:user)).to eq(user)
+      expect(response).to render_template("user/questions")
+    end
 
-      it "renders the user/questions template" do
+    context "current user signed in" do
+      before do
+        sign_in user
+      end
+
+      it "renders all questions" do
         subject
-        expect(assigns(:user)).to eq(user)
-        expect(response).to render_template("user/questions")
+        expect(assigns(:questions).size).to eq(1)
+      end
+    end
+
+    context "user signed in" do
+      let(:another_user) { FactoryBot.create :user }
+
+      before do
+        sign_in another_user
+      end
+
+      it "renders no questions" do
+        subject
+        expect(assigns(:questions).size).to eq(0)
+      end
+    end
+
+    context "moderator unmasked" do
+      let(:another_user) { FactoryBot.create :user, roles: ["moderator"] }
+
+      before do
+        sign_in another_user
+        allow_any_instance_of(UserHelper).to receive(:moderation_view?) { true }
+      end
+
+      it "contains all questions" do
+        subject
+        expect(assigns(:questions).size).to eq(1)
+      end
+    end
+
+    context "user not signed in" do
+      it "contains no questions" do
+        subject
+        expect(assigns(:questions).size).to eq(0)
       end
     end
   end

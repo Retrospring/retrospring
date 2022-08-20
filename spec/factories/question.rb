@@ -5,5 +5,6 @@ FactoryBot.define do
     user { nil }
     content { Faker::Lorem.sentence }
     author_is_anonymous { true }
+    direct { true }
   end
 end
