@@ -5,9 +5,8 @@
   .card-body
     - if display_all.nil?
       .answerbox__answer-text
-        = markdown a.content[0..640]
+        = markdown a.content.truncate(640, omission: " [...]", separator: /\s/)
         - if a.content.length > 640
-          [...]
           %p
             %a.btn.btn-primary{ href: answer_path(a.user.screen_name, a.id) }
               = t(".read")
