@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Moderation::ReportsController < ApplicationController
   before_action :authenticate_user!
 
@@ -16,9 +18,9 @@ class Moderation::ReportsController < ApplicationController
   private
 
   def list_reports(type:, last_id:, size: nil)
-    cursor_params = { last_id: last_id, size: size }.compact
+    cursor_params = { last_id:, size: }.compact
 
-    if type == 'all'
+    if type == "all"
       Report.cursored_reports(**cursor_params)
     else
       Report.cursored_reports_of_type(type, **cursor_params)
