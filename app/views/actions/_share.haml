@@ -1,0 +1,9 @@
+.dropdown-menu.dropdown-menu-right{ role: :menu }
+  %a.dropdown-item{ href: twitter_share_url(answer), target: "_blank" }
+    %i.fa.fa-fw.fa-twitter
+    = t(".twitter")
+  %a.dropdown-item{ href: tumblr_share_url(answer), target: "_blank" }
+    %i.fa.fa-fw.fa-tumblr
+    = t(".tumblr")
+  %a.dropdown-item{ href: "#", name: "ab-share" }
+    = t(".other")

@@ -19,22 +19,7 @@
           .btn-group
             %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
               %span.caret
-            .dropdown-menu.dropdown-menu-right{ role: :menu }
-              - if i.question.user_id != current_user.id
-                %a.dropdown-item{ name: "ib-report", data: { q_id: i.question.id } }
-                  %i.fa.fa-fw.fa-warning
-                  = t("voc.report")
-              - if current_user.mod? && i.question.anonymous? && !i.question.generated?
-                %a.dropdown-item{ name: "mod-block-anon", data: { q_id: i.question.id } }
-                  %i.fa.fa-fw.fa-volume-off
-                  = t("voc.block_site_wide")
-                %a.dropdown-item{ name: "ib-block-anon", data: { q_id: i.question.id } }
-                  %i.fa.fa-fw.fa-minus-circle
-                  = t("voc.block")
-              - if current_user.has_role? :administrator
-                %a.dropdown-item{ href: rails_admin_path_for_resource(i) }
-                  %i.fa.fa-fw.fa-gears
-                  = t("voc.view_in_rails_admin")
+            = render "actions/question", question: i.question
   - if current_user == i.user
     .card-body
       %textarea.form-control{ name: "ib-answer", placeholder: t(".placeholder"), data: { id: i.id } }

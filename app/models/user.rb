@@ -141,6 +141,10 @@ class User < ApplicationRecord
     has_role?(:moderator) || has_role?(:administrator)
   end
 
+  def admin?
+    has_role?(:administrator)
+  end
+
   # region stuff used for reporting/moderation
   def report(object, reason = nil)
     existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: self.id, deleted: false)

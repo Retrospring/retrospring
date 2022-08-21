@@ -1,0 +1,12 @@
+.dropdown-menu.dropdown-menu-right{ role: :menu }
+  %a.dropdown-item{ href: "#", data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
+    %i.fa.fa-fw.fa-smile-o
+    = t(".view_smiles")
+  - if privileged?(comment.user) || privileged?(answer.user)
+    %a.dropdown-item.text-danger{ href: "#", data: { action: "ab-comment-destroy", c_id: comment.id } }
+      %i.fa.fa-fw.fa-trash-o
+      = t("voc.delete")
+  - unless comment.user == current_user
+    %a.dropdown-item{ href: "#", data: { action: "ab-comment-report", c_id: comment.id } }
+      %i.fa.fa-fw.fa-exclamation-triangle
+      = t("voc.report")

@@ -9,26 +9,7 @@
           .btn-group
             %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
               %span.caret
-            .dropdown-menu.dropdown-menu-right{ role: :menu }
-              - if current_user.mod? || a.question.user == current_user
-                %a.dropdown-item.text-danger{ href: "#", tabindex: -1, data: { action: "ab-question-destroy", q_id: a.question.id } }
-                  %i.fa.fa-trash-o
-                  = t("voc.delete")
-              - unless a.question.user == current_user
-                %a.dropdown-item{ href: "#", tabindex: -1, data: { action: "ab-question-report", q_id: a.question.id } }
-                  %i.fa.fa-exclamation-triangle
-                  = t("voc.report")
-              - if current_user.mod? && a.question.anonymous? && !a.question.generated?
-                %a.dropdown-item{ href: moderation_questions_path(author_identifier: a.question.author_identifier) }
-                  %i.fa.fa-user-secret
-                  = t("voc.show_anonymous_questions")
-                %a.dropdown-item{ href: "#", name: "mod-block-anon", data: { q_id: a.question.id } }
-                  %i.fa.fa-volume-off
-                  = t("voc.block_site_wide")
-              - if current_user.has_role? :administrator
-                %a.dropdown-item{ href: rails_admin_path_for_resource(a.question), target: "_blank" }
-                  %i.fa.fa-gears
-                  = t("voc.view_in_rails_admin")
+            = render "actions/question", question: a.question
       %h6.text-muted.media-heading.answerbox__question-user
         - if a.question.author_is_anonymous
           %i.fa.fa-user-secret{ title: t(".anon_hint") }

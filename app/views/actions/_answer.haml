@@ -1,0 +1,22 @@
+.dropdown-menu.dropdown-menu-right{ role: :menu }
+  - if Subscription.is_subscribed(current_user, answer)
+    -#                                            fun joke    should subscribe?
+    %a.dropdown-item{ href: "#", data: { a_id: answer.id, action: "ab-submarine", torpedo: "no" } }
+      %i.fa.fa-fw.fa-anchor
+      = t("voc.unsubscribe")
+  - else
+    %a.dropdown-item{ href: "#", data: { a_id: answer.id, action: "ab-submarine", torpedo: "yes" } }
+      %i.fa.fa-fw.fa-anchor
+      = t("voc.subscribe")
+  - if privileged? answer.user
+    %a.dropdown-item.text-danger{ href: "#", data: { a_id: answer.id, action: "ab-destroy" } }
+      %i.fa.fa-fw.fa-trash-o
+      = t(".return")
+  - unless answer.user == current_user
+    %a.dropdown-item{ href: "#", data: { a_id: answer.id, action: "ab-report" } }
+      %i.fa.fa-fw.fa-exclamation-triangle
+      = t("voc.report")
+  - if current_user.admin?
+    %a.dropdown-item{ href: rails_admin_path_for_resource(answer), target: "_blank" }
+      %i.fa.fa-fw.fa-gears
+      = t("voc.view_in_rails_admin")

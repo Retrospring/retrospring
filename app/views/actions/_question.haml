@@ -1,0 +1,24 @@
+.dropdown-menu.dropdown-menu-right{ role: :menu }
+  - if current_user.mod? || question.user == current_user
+    %a.dropdown-item.text-danger{ href: "#", tabindex: -1, data: { action: "ab-question-destroy", q_id: question.id } }
+      %i.fa.fa-fw.fa-trash-o
+      = t("voc.delete")
+  - unless question.user == current_user
+    %a.dropdown-item{ href: "#", tabindex: -1, data: { action: "ab-question-report", q_id: question.id } }
+      %i.fa.fa-fw.fa-exclamation-triangle
+      = t("voc.report")
+  - if question.anonymous? && !question.generated?
+    %a.dropdown-item{ name: "ib-block-anon", data: { q_id: question.id } }
+      %i.fa.fa-fw.fa-minus-circle
+      = t("voc.block")
+    - if current_user.mod?
+      %a.dropdown-item{ href: "#", name: "mod-block-anon", data: { q_id: question.id } }
+        %i.fa.fa-fw.fa-volume-off
+        = t("voc.block_site_wide")
+      %a.dropdown-item{ href: moderation_questions_path(author_identifier: question.author_identifier) }
+        %i.fa.fa-fw.fa-user-secret
+        = t("voc.show_anonymous_questions")
+  - if current_user.admin?
+    %a.dropdown-item{ href: rails_admin_path_for_resource(question), target: "_blank" }
+      %i.fa.fa-fw.fa-gears
+      = t("voc.view_in_rails_admin")
