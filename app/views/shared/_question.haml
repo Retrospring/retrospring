@@ -12,19 +12,7 @@
             .btn-group
               %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
                 %span.caret
-              .dropdown-menu.dropdown-menu-right{ role: :menu }
-                - if current_user.mod? || q.user == current_user
-                  %a.dropdown-item.text-danger{ href: '#', tabindex: -1, data: { action: 'ab-question-destroy', q_id: q.id } }
-                    %i.fa.fa-trash-o
-                    = t("voc.delete")
-                - unless q.user == current_user
-                  %a.dropdown-item{ href: '#', tabindex: -1, data: { action: 'ab-question-report', q_id: q.id } }
-                    %i.fa.fa-exclamation-triangle
-                    = t("voc.report")
-                - if current_user.has_role? :administrator
-                  %a.dropdown-item{ href: rails_admin_path_for_resource(q) }
-                    %i.fa.fa-gears
-                    = t("voc.view_in_rails_admin")
+              = render "actions/question", question: q
         %h6.media-heading.text-muted.answerbox__question-user
           = t("answerbox.header.asked_html", user: user_screen_name(q.user), time: time_tooltip(q))
           - if q.answer_count > 1
