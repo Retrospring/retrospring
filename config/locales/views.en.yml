@@ -69,6 +69,17 @@ en:
     two_factor_authentication:
       heading: "Two-factor authentication"
       otp_attempt: "Please enter the code from your authenticator app"
+  actions:
+    answer:
+      subscribe: "Subscribe"
+      unsubscribe: "Unsubscribe"
+      return: "Return to Inbox"
+    comment:
+      view_smiles: "View comment smiles"
+    share:
+      twitter: "Share on Twitter"
+      tumblr: "Share on Tumblr"
+      other: "Share on other apps..."
   announcement:
     index:
       title: :activerecord.models.announcement.other
@@ -89,17 +100,9 @@ en:
     actions:
       share:
         title: "Share"
-        twitter: "Share on Twitter"
-        tumblr: "Share on Tumblr"
-        other: "Share on other apps..."
-      subscribe: "Subscribe"
-      unsubscribe: "Unsubscribe"
-      return: "Return to Inbox"
     comments:
       none: "There are no comments yet."
-      placeholder: "Comment..."
-      actions:
-        view_smiles: "View comment smiles"
+      placeholder: "Comment..."        
     smiles:
       none: "No one smiled this yet."
   application:
