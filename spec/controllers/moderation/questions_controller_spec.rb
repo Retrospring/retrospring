@@ -5,8 +5,8 @@ require "rails_helper"
 describe Moderation::QuestionsController, type: :controller do
   let(:user) { FactoryBot.create :user, roles: ["moderator"] }
 
-  describe "#index" do
-    subject { get :index, params: }
+  describe "#show" do
+    subject { get :show, params: }
 
     let(:params) { { author_identifier: "test" } }
 
@@ -14,9 +14,9 @@ describe Moderation::QuestionsController, type: :controller do
       sign_in user
     end
 
-    it "renders the moderation/questions/index template" do
+    it "renders the moderation/questions/show template" do
       subject
-      expect(response).to render_template("moderation/questions/index")
+      expect(response).to render_template("moderation/questions/show")
     end
   end
 end
