@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get "/moderation/blocks", to: "moderation/anonymous_block#index", as: :mod_anon_block_index
     get "/moderation/reports(/:type)", to: "moderation/reports#index", as: :moderation_reports, defaults: { type: "all" }
     get "/moderation/inbox/:user", to: "moderation/inbox#index", as: :mod_inbox_index
-    get "/moderation/questions/:author_identifier", to: "moderation/questions#index", as: :moderation_questions
+    get "/moderation/questions/:author_identifier", to: "moderation/questions#show", as: :moderation_questions
     namespace :ajax do
       post "/mod/destroy_report", to: "moderation#destroy_report", as: :mod_destroy_report
       post "/mod/privilege", to: "moderation#privilege", as: :mod_privilege
