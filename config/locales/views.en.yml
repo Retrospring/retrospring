@@ -71,8 +71,6 @@ en:
       otp_attempt: "Please enter the code from your authenticator app"
   actions:
     answer:
-      subscribe: "Subscribe"
-      unsubscribe: "Unsubscribe"
       return: "Return to Inbox"
     comment:
       view_smiles: "View comment smiles"
