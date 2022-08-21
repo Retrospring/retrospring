@@ -6,7 +6,9 @@ describe Moderation::QuestionsController, type: :controller do
   let(:user) { FactoryBot.create :user, roles: ["moderator"] }
 
   describe "#index" do
-    subject { get :index }
+    subject { get :index, params: params }
+
+    let(:params) { { author_identifier: "test" } }
 
     before do
       sign_in user
