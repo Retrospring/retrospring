@@ -1,0 +1,8 @@
+- provide(:title, generate_title(t(".title", author_identifier: params[:author_identifier].truncate(32))))
+
+= render "header", author_identifier: params[:author_identifier], hidden: false
+= render "header", author_identifier: params[:author_identifier], hidden: true
+
+.container-lg.container--main
+  - @questions.each do |q|
+    = render 'shared/question', q: q, type: nil

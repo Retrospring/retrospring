@@ -13,6 +13,7 @@ en:
     login: "Sign in"
     logout: "Sign out"
     save: "Save changes"
+    show_anonymous_questions: "Show all questions from this user"
     register: "Sign up"
     report: "Report"
     terms: "Terms of Service"

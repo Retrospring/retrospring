@@ -1,0 +1,6 @@
+.card.question--fixed{ class: hidden ? 'question--hidden' : '', tabindex: hidden ? -1 : '', aria: { hidden: hidden } }
+  .container
+    .card-body
+      .media
+        .media-body
+          = t(".title_html", author_identifier: author_identifier, short: author_identifier.truncate(32))
