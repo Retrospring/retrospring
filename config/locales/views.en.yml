@@ -578,6 +578,11 @@ en:
       index:
         title: "Site-wide anonymous blocks"
         empty: "There are currently no users blocked site-wide."
+    questions:
+      header:
+        title_html: "Viewing all questions from <br><abbr title=%{author_identifier}>%{short}</abbr>"
+      index:
+        title: "Questions from %{author_identifier}"
   user:
     actions:
       view_inbox: "View inbox"

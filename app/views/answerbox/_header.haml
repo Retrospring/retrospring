@@ -19,6 +19,9 @@
                   %i.fa.fa-exclamation-triangle
                   = t("voc.report")
               - if current_user.mod? && a.question.anonymous? && !a.question.generated?
+                %a.dropdown-item{ href: moderation_questions_path(author_identifier: a.question.author_identifier) }
+                  %i.fa.fa-user-secret
+                  = t("voc.show_anonymous_questions")
                 %a.dropdown-item{ href: "#", name: "mod-block-anon", data: { q_id: a.question.id } }
                   %i.fa.fa-volume-off
                   = t("voc.block_site_wide")
