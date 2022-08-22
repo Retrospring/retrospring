@@ -335,7 +335,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.5.8)
-    oj (3.13.20)
+    oj (3.13.21)
     omniauth (2.1.0)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
