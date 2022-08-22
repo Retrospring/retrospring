@@ -225,7 +225,7 @@ GEM
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
-    haml_lint (0.37.1)
+    haml_lint (0.40.1)
       haml (>= 4.0, < 5.3)
       parallel (~> 1.10)
       rainbow
@@ -533,7 +533,7 @@ GEM
     temple (0.8.2)
     thor (1.2.1)
     thread_safe (0.3.6)
-    tilt (2.0.10)
+    tilt (2.0.11)
     timeout (0.3.0)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
