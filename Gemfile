@@ -65,7 +65,7 @@ gem "redis"
 
 gem "fake_email_validator"
 
-gem "jwt", "~> 2.4"
+gem "jwt", "~> 2.5"
 
 group :development do
   gem "binding_of_caller"
