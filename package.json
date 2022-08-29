@@ -9,7 +9,7 @@
     "@rails/ujs": "^6.1.6",
     "bootstrap": "^4.6.2",
     "cheet.js": "^0.3.3",
-    "core-js": "^3.24.1",
+    "core-js": "^3.25.0",
     "croppr": "^2.3.1",
     "font-awesome": "4.7.0",
     "i18n-js": "^3.9.2",
