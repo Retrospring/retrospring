@@ -47,11 +47,9 @@ export function commentSmileHandler(event: Event): void {
         switch(action) {
           case 'smile':
             button.dataset.action = 'unsmile';
-            button.innerHTML = `<i class="fa fa-fw fa-frown-o"></i> <span id="ab-comment-smile-count-${id}">${count}</span>`;
             break;
           case 'unsmile':
             button.dataset.action = 'smile';
-            button.innerHTML = `<i class="fa fa-fw fa-smile-o"></i> <span id="ab-comment-smile-count-${id}">${count}</span>`;
             break;
         }
       }

@@ -18,19 +18,9 @@
               = markdown comment.content
           .pull-right
             %span.d-none.d-sm-inline.text-muted
-              - if !user_signed_in? && comment.smile_count.positive?
-                %button.btn.btn-link.answerbox__action{ name: "ab-smile-comment", disabled: true }
-                  %i.fa.fa-fw.fa-smile-o
-                  %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
-            - if user_signed_in?
-              - if current_user.smiled? comment
-                %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: :unsmile } }
-                  %i.fa.fa-fw.fa-frown-o
-                  %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
-              - else
-                %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: :smile } }
-                  %i.fa.fa-fw.fa-smile-o
-                  %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
+              %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: current_user&.smiled?(comment) ? :unsmile : :smile }, disabled: !user_signed_in? }
+                %i.fa.fa-fw.fa-smile-o
+                %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
               .btn-group
                 %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
                   %span.caret
