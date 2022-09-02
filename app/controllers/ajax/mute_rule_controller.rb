@@ -12,7 +12,7 @@ class Ajax::MuteRuleController < AjaxController
     @response[:status] = :okay
     @response[:success] = true
     @response[:message] = t(".success")
-    @response[:id] = rule.id
+    @response[:id] = rule.id.to_s # Returning this as a string as JavaScript defines all numbers as floats
   end
 
   def update
