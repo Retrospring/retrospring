@@ -13,7 +13,7 @@ describe Ajax::MuteRuleController, :ajax_controller, type: :controller do
         {
           "success" => true,
           "status" => "okay",
-          "id" => MuteRule.last.id,
+          "id" => MuteRule.last.id.to_s,
           "message" => "Rule added successfully.",
         }
       end
