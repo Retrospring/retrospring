@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import swal from 'sweetalert';
 
 import I18n from 'retrospring/i18n';
@@ -25,24 +25,23 @@ export function commentDestroyHandler(event: Event): void {
       return;
     }
     
-    Rails.ajax({
-      url: '/ajax/destroy_comment',
-      type: 'POST',
-      data: new URLSearchParams({
+    post('/ajax/destroy_comment', {
+      body: {
         comment: id
-      }).toString(),
-      success: (data) => {
-        if (!data.success) return false;
+      },
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
 
         showNotification(data.message);
 
         document.querySelector(`[data-comment-id="${id}"]`).remove();
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
         button.disabled = false;
-      }
-    });
+      });
   });
 }
