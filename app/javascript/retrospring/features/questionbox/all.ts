@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
 import I18n from 'retrospring/i18n';
 
@@ -8,31 +8,32 @@ export function questionboxAllHandler(event: Event): void {
   button.disabled = true;
   document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').readOnly = true;
 
-  Rails.ajax({
-    url: '/ajax/ask',
-    type: 'POST',
-    data: new URLSearchParams({
+  post('/ajax/ask', {
+    body: {
       rcpt: 'followers',
       question: document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').value,
-      anonymousQuestion: 'false'
-    }).toString(),
-    success: (data) => {
+      anonymousQuestion: 'false'      
+    },
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       if (data.success) {
         document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').value = '';
         window['$']('#modal-ask-followers').modal('hide');
       }
       
       showNotification(data.message, data.success);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
-    },
-    complete: () => {
+    })
+    .finally(() => {
       button.disabled = false;
       document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').readOnly = false;
-    }
-  });
+    });
 }
 
 export function questionboxAllInputHandler(event: KeyboardEvent): void {
