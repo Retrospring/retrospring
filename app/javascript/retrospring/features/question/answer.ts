@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 
@@ -22,11 +22,13 @@ export function questionAnswerHandler(event: Event): void {
     inbox: String(false)
   };
 
-  Rails.ajax({
-    url: '/ajax/answer',
-    type: 'POST',
-    data: new URLSearchParams(data).toString(),
-    success: (data) => {
+  post('/ajax/answer', {
+    body: data,
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       if (!data.success) {
         showErrorNotification(data.message);
         button.disabled = false;
@@ -37,13 +39,12 @@ export function questionAnswerHandler(event: Event): void {
       showNotification(data.message);
       document.querySelector('div#answers').insertAdjacentHTML('afterbegin', data.render);
       document.querySelector('div#q-answer-box').remove();
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       button.disabled = false;
       document.querySelector<HTMLInputElement>('textarea#q-answer-text').readOnly = false;
-    }
-  });
+    });
 }
 
 export function questionAnswerInputHandler(event: KeyboardEvent): void {
