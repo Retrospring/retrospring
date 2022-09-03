@@ -1,4 +1,3 @@
-import Rails from '@rails/ujs';
 import { destroy, post } from '@rails/request.js';
 
 function createSubmitEvent(
