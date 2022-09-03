@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 
 import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
@@ -20,13 +20,15 @@ export function answerboxSubscribeHandler(event: Event): void {
     targetUrl = '/ajax/unsubscribe';
   }
 
-  Rails.ajax({
-    url: targetUrl,
-    type: 'POST',
-    data: new URLSearchParams({
+  post(targetUrl, {
+    body: {
       answer: id
-    }).toString(),
-    success: (data) => {
+    },
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       if (data.success) {
         button.dataset.torpedo = ["yes", "no"][torpedo];
         button.children[0].nextSibling.textContent = ' ' + (torpedo ? I18n.translate('voc.unsubscribe') : I18n.translate('voc.subscribe'));
@@ -34,10 +36,9 @@ export function answerboxSubscribeHandler(event: Event): void {
       } else {
         showErrorNotification(I18n.translate(`frontend.subscription.fail.${torpedo ? 'subscribe' : 'unsubscribe'}`));
       }
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
-    }
-  });
+    });
 }

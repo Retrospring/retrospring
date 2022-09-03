@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js'; 
 
 import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
@@ -22,25 +22,27 @@ export function commentSmileHandler(event: Event): void {
 
   button.disabled = true;
 
-  Rails.ajax({
-    url: targetUrl,
-    type: 'POST',
-    data: new URLSearchParams({
+  post(targetUrl, {
+    body: {
       id: id
-    }).toString(),
-    success: (data) => {
+    },
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       success = data.success;
       if (success) {
         document.querySelector(`#ab-comment-smile-count-${id}`).innerHTML = String(count);
       }
 
       showNotification(data.message, data.success);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
-    },
-    complete: () => {
+    })
+    .finally(() => {
       button.disabled = false;
 
       if (success) {
@@ -53,6 +55,5 @@ export function commentSmileHandler(event: Event): void {
             break;
         }
       }
-    }
-  });
+    });
 }
