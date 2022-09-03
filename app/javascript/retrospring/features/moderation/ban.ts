@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 
 import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
@@ -44,16 +44,17 @@ export function banFormHandler(event: Event): void {
     }
   }
 
-  Rails.ajax({
-    url: '/ajax/mod/ban',
-    type: 'POST',
-    data: new URLSearchParams(data).toString(),
-    success: (data) => {
+  post('/ajax/mod/ban', {
+    body: data,
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       showNotification(data.message, data.success);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
-    }
-  });
+    });
 }
