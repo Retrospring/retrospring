@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 import I18n from 'retrospring/i18n';
 
@@ -30,22 +30,24 @@ export function userActionHandler(event: Event): void {
   }
   let success = false;
 
-  Rails.ajax({
-    url: targetURL,
-    type: 'POST',
-    data: new URLSearchParams({
+  post(targetURL, {
+    body: {
       screen_name: target,
       type: relationshipType,
-    }).toString(),
-    success: (data) => {
+    },
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       success = data.success;
       showNotification(data.message, data.success);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
-    },
-    complete: () => {
+    })
+    .finally(() => {
       if (!success) return;
 
       switch (action) {
@@ -76,8 +78,7 @@ export function userActionHandler(event: Event): void {
           }
           break;
       }
-     }
-  });
+    });
 }
 
 function resetFollowButton(button: HTMLButtonElement) {
