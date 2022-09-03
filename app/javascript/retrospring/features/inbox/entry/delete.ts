@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import swal from 'sweetalert';
 
 import I18n from 'retrospring/i18n';
@@ -27,12 +27,14 @@ export function deleteEntryHandler(event: Event): void {
       element.disabled = false;
       return;
     }
-    
-    Rails.ajax({
-      url: '/ajax/delete_inbox',
-      type: 'POST',
-      data: new URLSearchParams(data).toString(),
-      success: (data) => {
+
+    post('/ajax/delete_inbox', {
+      body: data,
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
+
         if (!data.success) return false;
         const inboxEntry: Node = element.closest('.inbox-entry');
 
@@ -40,11 +42,10 @@ export function deleteEntryHandler(event: Event): void {
         showNotification(data.message);
 
         (inboxEntry as HTMLElement).remove();
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      }
-    });
+      });
   })
 }
