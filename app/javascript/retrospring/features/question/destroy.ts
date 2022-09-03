@@ -1,10 +1,10 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
 import swal from 'sweetalert';
 
 import I18n from 'retrospring/i18n';
 
-export function questionboxDestroyHandler(event: Event): void {
+export function questionDestroyHandler(event: Event): void {
   event.preventDefault();
   const button = event.target as HTMLButtonElement;
   const questionId = button.dataset.qId;
@@ -23,14 +23,16 @@ export function questionboxDestroyHandler(event: Event): void {
       button.disabled = false;
       return;
     }
-    
-    Rails.ajax({
-      url: '/ajax/destroy_question',
-      type: 'POST',
-      data: new URLSearchParams({
+
+    post('/ajax/destroy_question', {
+      body: {
         question: questionId
-      }).toString(),
-      success: (data) => {
+      },
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
+
         if (data.success) {
           if (button.dataset.redirect !== undefined) {
             window.location.pathname = button.dataset.redirect;
@@ -43,11 +45,10 @@ export function questionboxDestroyHandler(event: Event): void {
         }
         
         showNotification(data.message, data.success);
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      }
-    });
+      });
   });
 }
