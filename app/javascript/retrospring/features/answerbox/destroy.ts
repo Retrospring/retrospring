@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
 import swal from 'sweetalert';
 
@@ -23,24 +23,25 @@ export function answerboxDestroyHandler(event: Event): void {
       button.disabled = false;
       return;
     }
-    
-    Rails.ajax({
-      url: '/ajax/destroy_answer',
-      type: 'POST',
-      data: new URLSearchParams({
+
+    post('/ajax/destroy_answer', {
+      body: {
         answer: answerId
-      }).toString(),
-      success: (data) => {
+      },
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
+
         if (data.success) {
           document.querySelector(`.answerbox[data-id="${answerId}"]`).remove();
         }
         
         showNotification(data.message, data.success);
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      }
-    });
+      });
   });
 }
