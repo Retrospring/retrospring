@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
 import I18n from 'retrospring/i18n';
 
@@ -15,15 +15,17 @@ export function questionboxUserHandler(event: Event): void {
   document.querySelector<HTMLInputElement>('textarea[name=qb-question]').readOnly = true;
   button.disabled = true;
 
-  Rails.ajax({
-    url: '/ajax/ask',
-    type: 'POST',
-    data: new URLSearchParams({
+  post('/ajax/ask', {
+    body: {
       rcpt: document.querySelector<HTMLInputElement>('input[name=qb-to]').value,
       question: document.querySelector<HTMLInputElement>('textarea[name=qb-question]').value,
-      anonymousQuestion: String(anonymousQuestion)
-    }).toString(),
-    success: (data) => {
+      anonymousQuestion: String(anonymousQuestion)      
+    },
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       if (data.success) {
         document.querySelector<HTMLInputElement>('textarea[name=qb-question]').value = '';
 
@@ -37,16 +39,15 @@ export function questionboxUserHandler(event: Event): void {
       }
       
       showNotification(data.message, data.success);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
-    },
-    complete: () => {
+    })
+    .finally(() => {
       document.querySelector<HTMLInputElement>('textarea[name=qb-question]').readOnly = false;
       button.disabled = false;
-    }
-  });
+    });
 }
 
 export function questionboxPromoteHandler(): void {
