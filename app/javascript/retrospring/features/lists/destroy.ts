@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import swal from 'sweetalert';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 import I18n from 'retrospring/i18n';
@@ -18,13 +18,15 @@ export function destroyListHandler(event: Event): void {
     cancelButtonText: I18n.translate('voc.cancel'),
     closeOnConfirm: true 
   }, () => {
-    Rails.ajax({
-      url: '/ajax/destroy_list',
-      type: 'POST',
-      data: new URLSearchParams({
+    post('/ajax/destroy_list', {
+      body: {
         list: list
-      }).toString(),
-      success: (data) => {
+      },
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
+
         if (data.success) {
           const element = document.querySelector(`li.list-group-item#list-${list}`);
 
@@ -34,11 +36,10 @@ export function destroyListHandler(event: Event): void {
         }
         
         showNotification(data.message, data.success);
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      }
-    });
+      });
   });
 }
