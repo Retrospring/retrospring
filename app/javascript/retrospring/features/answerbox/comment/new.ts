@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 
 import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
@@ -19,14 +19,16 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
 
     input.disabled = true;
 
-    Rails.ajax({
-      url: '/ajax/create_comment',
-      type: 'POST',
-      data: new URLSearchParams({
+    post('/ajax/create_comment', {
+      body: {
         answer: id,
         comment: input.value
-      }).toString(),
-      success: (data) => {
+      },
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
+
         if (data.success) {
           document.querySelector(`#ab-comments-${id}`).innerHTML = data.render;
           document.querySelector(`#ab-comment-count-${id}`).innerHTML = data.count;
@@ -39,14 +41,13 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
         }
 
         showNotification(data.message, data.success);
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      },
-      complete: () => {
+      })
+      .finally(() => {
         input.disabled = false;
-      }
-    });
+      });
   }
 }
