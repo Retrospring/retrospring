@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 import I18n from 'retrospring/i18n';
 
@@ -12,15 +12,17 @@ export function listMembershipHandler(event: Event): void {
 
   memberCount += checkbox.checked ? 1 : -1;
 
-  Rails.ajax({
-    url: '/ajax/list_membership',
-    type: 'POST',
-    data: new URLSearchParams({
+  post('/ajax/list_membership', {
+    body: {
       list: list,
       user: checkbox.dataset.user,
       add: String(checkbox.checked)
-    }).toString(),
-    success: (data) => {
+    },
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       if (data.success) {
         checkbox.checked = data.checked;
         memberCountElement.innerHTML = I18n.t('frontend.list.item.members', { count: memberCount });
@@ -28,13 +30,12 @@ export function listMembershipHandler(event: Event): void {
       }
 
       showNotification(data.message, data.success);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
-    },
-    complete: () => {
+    })
+    .finally(() => {
       checkbox.removeAttribute('disabled');
-    }
-  });
+    });
 }
