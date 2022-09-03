@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import swal from 'sweetalert';
 
 import I18n from 'retrospring/i18n';
@@ -42,22 +42,20 @@ export function deleteAllQuestionsHandler(event: Event): void {
     if (returnValue === false) {
       return;
     }
-    
-    Rails.ajax({
-      url: '/ajax/delete_all_inbox',
-      type: 'POST',
-      dataType: 'json',
-      success: (data) => {
+
+    post('/ajax/delete_all_inbox')
+      .then(async response => {
+        const data = await response.json;
+
         if (!data.success) return false;
 
         updateDeleteButton(false);
         document.querySelector('#entries').innerHTML = 'Nothing to see here!';
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      }
-    });
+      });
   });
 }
 
@@ -76,21 +74,19 @@ export function deleteAllAuthorQuestionsHandler(event: Event): void {
     closeOnConfirm: true
   }, (returnValue) => {
     if (returnValue === null) return false;
-    
-    Rails.ajax({
-      url: `/ajax/delete_all_inbox/${location.pathname.split('/')[2]}`,
-      type: 'POST',
-      dataType: 'json',
-      success: (data) => {
+
+    post(`/ajax/delete_all_inbox/${location.pathname.split('/')[2]}`)
+      .then(async response => {
+        const data = await response.json;
+
         if (!data.success) return false;
 
         updateDeleteButton(false);
         document.querySelector('#entries').innerHTML = 'Nothing to see here!';
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      }
-    });
+      });
   });
 }
