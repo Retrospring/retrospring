@@ -59,7 +59,7 @@ class Ajax::ModerationController < AjaxController
       raise Errors::InvalidBanDuration unless %w[hours days weeks months].include? duration_unit
 
       expiry = DateTime.now + duration.public_send(duration_unit)
-      @response[:message] = I18n.t(".success.temporary", date: expiry.to_s)
+      @response[:message] = t(".success.temporary", date: expiry.to_s)
     end
 
     UseCase::User::Ban.call(
