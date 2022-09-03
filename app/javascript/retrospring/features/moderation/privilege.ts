@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 
 import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
@@ -9,29 +9,29 @@ export function privilegeCheckHandler(event: Event): void {
 
   const privilegeType = checkbox.dataset.type;
 
-  Rails.ajax({
-    url: '/ajax/mod/privilege',
-    type: 'POST',
-    data: new URLSearchParams({
+  post('/ajax/mod/privilege', {
+    body: {
       user: checkbox.dataset.user,
       type: privilegeType,
       status: String(checkbox.checked)
-    }).toString(),
-    success: (data) => {
+    },
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       if (data.success) {
         checkbox.checked = data.checked;
       }
 
       showNotification(data.message, data.success);
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       showErrorNotification(I18n.translate('frontend.error.message'));
       checkbox.checked = false;
-    },
-    complete: () => {
+    })
+    .finally(() => {
       checkbox.disabled = false;
-    }
-  });
-
+    });
 }
