@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 
 import { updateDeleteButton } from '../delete';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
@@ -22,11 +22,13 @@ export function answerEntryHandler(event: Event): void {
     inbox: 'true'
   };
 
-  Rails.ajax({
-    url: '/ajax/answer',
-    type: 'POST',
-    data: new URLSearchParams(data).toString(),
-    success: (data) => {
+  post('/ajax/answer', {
+    body: data,
+    contentType: 'application/json'
+  })
+    .then(async response => {
+      const data = await response.json;
+
       if (!data.success) {
         showErrorNotification(data.message);
         element.disabled = false;
@@ -35,12 +37,11 @@ export function answerEntryHandler(event: Event): void {
       updateDeleteButton(false);
       showNotification(data.message);
       (inboxEntry as HTMLElement).remove();
-    },
-    error: (data, status, xhr) => {
-      console.log(data, status, xhr);
+    })
+    .catch(err => {
+      console.log(err);
       element.disabled = false;
-    }
-  });
+    });
 }
 
 export function answerEntryInputHandler(event: KeyboardEvent): void {
