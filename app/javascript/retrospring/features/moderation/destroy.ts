@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import swal from 'sweetalert';
 
 import I18n from 'retrospring/i18n';
@@ -18,22 +18,24 @@ export function destroyReportHandler(event: Event): void {
     cancelButtonText: I18n.translate('voc.cancel'),
     closeOnConfirm: true
   }, () => {
-    Rails.ajax({
-      url: '/ajax/mod/destroy_report',
-      type: 'POST',
-      data: new URLSearchParams({
+    post('/ajax/mod/destroy_report', {
+      body: {
         id: id
-      }).toString(),
-      success: (data) => {
+      },
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
+
         if (data.success) {
           document.querySelector(`.moderationbox[data-id="${id}"]`).remove();
         }
+
         showNotification(data.message, data.success);
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
+      })
+      .catch(err => {
+        console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
-      }
-    });
+      });
   });
 }
