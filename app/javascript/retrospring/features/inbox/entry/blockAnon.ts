@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 
 import { showErrorNotification, showNotification } from "utilities/notifications";
 import I18n from "retrospring/i18n";
@@ -7,24 +7,25 @@ export function blockAnonEventHandler(event: Event): void {
     const element: HTMLAnchorElement = event.target as HTMLAnchorElement;
 
     const data = {
-        question: element.getAttribute('data-q-id'),
+      question: element.getAttribute('data-q-id'),
     };
 
-    Rails.ajax({
-        url: '/ajax/block_anon',
-        type: 'POST',
-        data: new URLSearchParams(data).toString(),
-        success: (data) => {
-            if (!data.success) return false;
-            const inboxEntry: Node = element.closest('.inbox-entry');
+    post('/ajax/block_anon', {
+      body: data,
+      contentType: 'application/json'
+    })
+      .then(async response => {
+        const data = await response.json;
 
-            showNotification(data.message);
+        if (!data.success) return false;
+        const inboxEntry: Node = element.closest('.inbox-entry');
 
-            (inboxEntry as HTMLElement).remove();
-        },
-        error: (data, status, xhr) => {
-            console.log(data, status, xhr);
-            showErrorNotification(I18n.translate('frontend.error.message'));
-        }
-    });
+        showNotification(data.message);
+
+        (inboxEntry as HTMLElement).remove();
+      })
+      .catch(err => {
+        console.log(err);
+        showErrorNotification(I18n.translate('frontend.error.message'));        
+      });
 }
