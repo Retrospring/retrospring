@@ -11,8 +11,8 @@
             .input-group-append
               %button.btn.btn-danger{ type: "button", data: { id: rule.id } }= t(".actions.remove")
     .form-group
-      %form
-        .input-group
+      %form{ data: { turbo: false } }
+        .input-group 
           %input.form-control#new-rule-text{ placeholder: t(".placeholder") }
           .input-group-append
             %button.btn.btn-primary#new-rule-submit{ type: "submit" }= t(".actions.add")

@@ -1,6 +1,6 @@
 .card
   .card-body
-    = bootstrap_form_for(resource, as: resource_name, url: "/settings/account", html: { method: :put }) do |f|
+    = bootstrap_form_for(resource, as: resource_name, url: "/settings/account", html: { method: :put }, data: { turbo: false}) do |f|
       = render "modal/password", f: f
       = render "devise/shared/error_messages", resource: resource
 
