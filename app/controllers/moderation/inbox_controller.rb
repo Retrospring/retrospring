@@ -12,7 +12,7 @@ class Moderation::InboxController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js { render layout: false }
+      format.turbo_stream
     end
   end
 end

@@ -1,0 +1,8 @@
+= turbo_stream.append "entries" do
+  - @inboxes.each do |i|
+    = render "inbox/entry", i: i
+
+= turbo_stream.update "paginator" do
+  - if @more_data_available
+    = button_to mod_inbox_index_path(@user, last_id: @inbox_last_id), class: "btn btn-light" do
+      = t("voc.load")
