@@ -12,4 +12,4 @@ _ready = ->
   $('.dropdown-toggle').dropdown()
 
 $(document).ready _ready
-$(document).on 'turbolinks:load', _ready
+$(document).on 'turbo:load', _ready

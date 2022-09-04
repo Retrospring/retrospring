@@ -1,4 +1,4 @@
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'ready turbo:load', ->
   if $('#pagination').length > 0
     $('#pagination').hide()
     loading_posts = false
