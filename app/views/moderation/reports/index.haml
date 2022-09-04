@@ -1,11 +1,9 @@
-#reports
-  - @reports.each do |r|
-    = render "moderation/moderationbox", report: r
-
-- unless @reports.count.zero?
-  = render "shared/cursored_pagination_dummy", more_data_available: @more_data_available, last_id: @reports_last_id, permitted_params: %i[type]
+= turbo_frame_tag "moderation_reports" do
+  #reports
+    - @reports.each do |r|
+      = render "moderation/moderationbox", report: r
 
   - if @more_data_available
-    .d-flex.justify-content-center.justify-content-sm-start
-      %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @reports_last_id } }
+    .d-flex.justify-content-center.justify-content-sm-start#paginator
+      = button_to moderation_reports_path(last_id: @reports_last_id, type: params[:type]), class: "btn btn-light" do
         = t("voc.load")

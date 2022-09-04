@@ -1,0 +1,8 @@
+= turbo_stream.append "reports" do
+  - @reports.each do |r|
+    = render "moderation/moderationbox", report: r
+
+= turbo_stream.update "paginator" do
+  - if @more_data_available
+    = button_to moderation_reports_path(last_id: @reports_last_id, type: params[:type]), class: "btn btn-light" do
+      = t("voc.load")
