@@ -1,14 +1,12 @@
-#entries
-  - @inbox.each do |i|
-    = render "inbox/entry", i: i
+= turbo_frame_tag "inbox" do
+  #entries
+    - @inbox.each do |i|
+      = render "inbox/entry", i: i
 
-  - if @inbox.empty?
-    = t(".empty")
+    - if @inbox.empty?
+      = t(".empty")
 
-= render "shared/cursored_pagination_dummy", more_data_available: @more_data_available, last_id: @inbox_last_id
-
-- if @more_data_available
-
-  .d-flex.justify-content-center.justify-content-sm-start
-    %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @inbox_last_id } }
-      = t("voc.load")
+  - if @more_data_available
+    .d-flex.justify-content-center.justify-content-sm-start#paginator
+      = button_to inbox_path(last_id: @inbox_last_id), class: "btn btn-light" do
+        = t("voc.load")
