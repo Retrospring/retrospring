@@ -6,8 +6,8 @@
 
     - if current_user.theme
       .pull-right
-        = button_to t(".delete"), settings_theme_path, data: { confirm: t("voc.confirm") }, tabindex: -1, method: :delete, class: "btn btn-danger"
 = bootstrap_form_for(current_user.theme || Theme.new, html: { id: "update" }, method: :patch) do |f|
+        = link_to t(".delete"), settings_theme_path, data: { turbo_confirm: t("voc.confirm"), turbo_method: :delete }, tabindex: -1, class: "btn btn-danger"
   .card
     .card-body
       %h2= t(".general.heading")
