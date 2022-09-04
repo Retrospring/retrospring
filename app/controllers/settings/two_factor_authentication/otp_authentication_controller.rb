@@ -36,7 +36,7 @@ class Settings::TwoFactorAuthentication::OtpAuthenticationController < Applicati
     current_user.save!
     current_user.totp_recovery_codes.delete_all
     flash[:success] = t(".success")
-    redirect_to settings_two_factor_authentication_otp_authentication_path
+    redirect_to settings_two_factor_authentication_otp_authentication_path, status: :see_other
   end
 
   def reset
