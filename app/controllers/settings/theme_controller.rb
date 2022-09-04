@@ -41,6 +41,6 @@ class Settings::ThemeController < ApplicationController
 
   def destroy
     current_user.theme.destroy!
-    redirect_to settings_theme_path
+    redirect_to edit_settings_theme_path
   end
 end
