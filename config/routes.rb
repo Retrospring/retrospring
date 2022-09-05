@@ -141,7 +141,7 @@ Rails.application.routes.draw do
   get "/public", to: "timeline#public", as: :public_timeline if APP_CONFIG.dig(:features, :public, :enabled)
   get "/list/:list_name", to: "timeline#list", as: :list_timeline
 
-  get "/notifications(/:type)", to: "notifications#index", as: :notifications, defaults: { type: "new" }
+  match "/notifications(/:type)", to: "notifications#index", via: [:get, :post], as: :notifications, defaults: { type: "new" }
 
   match "/inbox(/:author)", via: [:get, :post], to: "inbox#show", as: :inbox
 
