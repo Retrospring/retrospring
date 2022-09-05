@@ -1,0 +1,12 @@
+= turbo_stream.append "notifications" do
+  - @notifications.each do |notification|
+    %li.card
+      .card-body
+        .media
+          = render "notifications/type/#{notification.target.class.name.downcase.split('::').last}", notification: notification
+
+= turbo_stream.update "paginator" do
+  - if @more_data_available
+    = button_to notifications_path(last_id: @notifications_last_id, type: params[:type]), class: "btn btn-light" do
+      = t("voc.load")
+
