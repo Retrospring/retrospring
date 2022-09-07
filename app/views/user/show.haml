@@ -1,14 +1,13 @@
-- unless @user.banned?
-  #answers
-    - @answers.each do |a|
-      = render 'answerbox', a: a
+= turbo_frame_tag "user_answers" do
+  - unless @user.banned?
+    #answers
+      - @answers.each do |a|
+        = render 'answerbox', a: a
 
-= render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @answers_last_id
-
-- if @more_data_available
-  .d-flex.justify-content-center.justify-content-sm-start
-    %button.btn.btn-light#load-more-btn{ type: :button, data: { last_id: @answers_last_id } }
-      = t("voc.load")
+  - if @more_data_available
+    .d-flex.justify-content-center.justify-content-sm-start#paginator
+      = button_to user_path(@user, last_id: @answers_last_id), class: "btn btn-light" do
+        = t("voc.load")
 
 :ruby
   provide(:title, user_title(@user))
