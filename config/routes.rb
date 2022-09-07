@@ -145,8 +145,8 @@ Rails.application.routes.draw do
 
   match "/inbox(/:author)", via: [:get, :post], to: "inbox#show", as: :inbox
 
-  get "/user/:username(/p/:page)", to: "user#show", defaults: { page: 1 }
-  get "/@:username(/p/:page)", to: "user#show", as: :user, defaults: { page: 1 }
+  match "/user/:username(/p/:page)", to: "user#show", via: [:get, :post], defaults: { page: 1 }
+  match "/@:username(/p/:page)", to: "user#show", via: [:get, :post], as: :user, defaults: { page: 1 }
   get "/@:username/a/:id", to: "answer#show", via: "get", as: :answer
   get "/@:username/q/:id", to: "question#show", via: "get", as: :question
   get "/@:username/followers(/p/:page)", to: "user#followers", as: :show_user_followers, defaults: { page: 1 }
