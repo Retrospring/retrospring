@@ -12,7 +12,7 @@ class Moderation::InboxController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.turbo_stream
+      format.turbo_stream { render "index", layout: false, status: :see_other }
     end
   end
 end
