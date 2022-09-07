@@ -17,9 +17,9 @@
             .media
               = render "notifications/type/#{notification.target.class.name.downcase.split('::').last}", notification: notification
 
-    - if @more_data_available
-      .d-flex.justify-content-center.justify-content-sm-start#paginator
-        = button_to notifications_path(last_id: @notifications_last_id, type: params[:type]), class: "btn btn-light" do
-          = t("voc.load")
+  - if @more_data_available
+    .d-flex.justify-content-center.justify-content-sm-start#paginator
+      = button_to notifications_path(last_id: @notifications_last_id, type: params[:type]), class: "btn btn-light" do
+        = t("voc.load")
 
 - provide(:title, generate_title(t(".title")))
