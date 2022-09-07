@@ -1,0 +1,8 @@
+= turbo_stream.append "questions" do
+  - @questions.each do |q|
+    = render 'shared/question', q: q, type: nil
+
+= turbo_stream.update "paginator" do
+  - if @more_data_available
+    = button_to show_user_questions_path(@user, last_id: @questions_last_id), class: "btn btn-light" do
+      = t("voc.load")
