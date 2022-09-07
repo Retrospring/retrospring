@@ -1,17 +1,16 @@
-= turbo_frame_tag "user_#{@type}" do
-  .row.row-cols-1.row-cols-sm-2.row-cols-md-3#users
-    - @users.each do |user|
-      .col.pb-3
-        = render 'shared/userbox', user: user, type: @type
+.row.row-cols-1.row-cols-sm-2.row-cols-md-3#users
+  - @users.each do |user|
+    .col.pb-3
+      = render 'shared/userbox', user: user, type: @type
 
-  - if @more_data_available
-    .d-flex.justify-content-center.justify-content-sm-start#paginator
-      - if @type === :follower
-        = button_to show_user_followers_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
-          = t("voc.load")
-      - else
-        = button_to show_user_followings_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
-          = t("voc.load")
+- if @more_data_available
+  .d-flex.justify-content-center.justify-content-sm-start#paginator
+    - if @type === :follower
+      = button_to show_user_followers_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
+        = t("voc.load")
+    - else
+      = button_to show_user_followings_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
+        = t("voc.load")
 
 - provide(:title, user_title(@user, 'friends and followers'))
 - parent_layout 'user/profile'
