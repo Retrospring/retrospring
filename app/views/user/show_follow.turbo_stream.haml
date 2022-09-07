@@ -1,0 +1,13 @@
+= turbo_stream.append "users" do
+  - @users.each do |user|
+    .col.pb-3
+      = render 'shared/userbox', user: user, type: @type
+
+= turbo_stream.update "paginator" do
+  - if @more_data_available
+    - if @type === :follower
+      = button_to show_user_followers_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
+        = t("voc.load")
+    - else
+      = button_to show_user_followings_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
+        = t("voc.load")

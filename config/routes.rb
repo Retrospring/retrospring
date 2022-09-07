@@ -149,9 +149,9 @@ Rails.application.routes.draw do
   match "/@:username(/p/:page)", to: "user#show", via: [:get, :post], as: :user, defaults: { page: 1 }
   get "/@:username/a/:id", to: "answer#show", via: "get", as: :answer
   get "/@:username/q/:id", to: "question#show", via: "get", as: :question
-  get "/@:username/followers(/p/:page)", to: "user#followers", as: :show_user_followers, defaults: { page: 1 }
-  get "/@:username/followings(/p/:page)", to: "user#followings", as: :show_user_followings, defaults: { page: 1 }
-  get "/@:username/friends(/p/:page)", to: redirect("/@%{username}/followings/p/%{page}"), defaults: { page: 1 }
+  match "/@:username/followers(/p/:page)", to: "user#followers", via: [:get, :post], as: :show_user_followers, defaults: { page: 1 }
+  match "/@:username/followings(/p/:page)", to: "user#followings", via: [:get, :post], as: :show_user_followings, defaults: { page: 1 }
+  match "/@:username/friends(/p/:page)", to: redirect("/@%{username}/followings/p/%{page}"), via: [:get, :post], defaults: { page: 1 }
   match "/@:username/questions(/p/:page)", to: "user#questions", via: [:get, :post], as: :show_user_questions, defaults: { page: 1 }
   get "/:username(/p/:page)", to: "user#show", as: :user_alt, defaults: { page: 1 }
   get "/:username/a/:id", to: "answer#show", as: :answer_alt
