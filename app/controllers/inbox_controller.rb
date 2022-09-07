@@ -49,7 +49,7 @@ class InboxController < ApplicationController
     @disabled = true if @inbox.empty?
     respond_to do |format|
       format.html
-      format.js { render layout: false }
+      format.turbo_stream
     end
   end
 end

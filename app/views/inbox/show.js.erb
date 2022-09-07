@@ -1,9 +1,0 @@
-$('#entries').append('<% @inbox.each do |i|
-  %><%= j render 'inbox/entry', i: i
-%><% end %>');
-<% if @more_data_available %>
-$('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @inbox_last_id %>');
-<% else %>
-$('#pagination, #load-more-btn').remove();
-<% end %>
-<% Inbox.where(id: @inbox.pluck(:id)).update_all(new: false) %>
