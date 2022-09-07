@@ -1,12 +1,11 @@
-= turbo_frame_tag "user_questions" do
-  #questions
-    - @questions.each do |q|
-      = render 'shared/question', q: q, type: nil
+#questions
+  - @questions.each do |q|
+    = render 'shared/question', q: q, type: nil
 
-  - if @more_data_available
-    .d-flex.justify-content-center.justify-content-sm-start#paginator
-      = button_to show_user_questions_path(@user, last_id: @questions_last_id), class: "btn btn-light" do
-        = t("voc.load")
+- if @more_data_available
+  .d-flex.justify-content-center.justify-content-sm-start#paginator
+    = button_to show_user_questions_path(@user, last_id: @questions_last_id), class: "btn btn-light" do
+      = t("voc.load")
 
 - provide(:title, questions_title(@user))
 - parent_layout 'user/profile'
