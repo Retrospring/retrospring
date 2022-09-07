@@ -4,12 +4,11 @@
 = render "header", user: @user, hidden: true
 
 .container-lg.container--main
-  = turbo_frame_tag "moderation_inbox" do
-    #entries
-      - @inboxes.each do |i|
-        = render "inbox/entry", i: i
+  #entries
+    - @inboxes.each do |i|
+      = render "inbox/entry", i: i
 
-    - if @more_data_available
-      .d-flex.justify-content-center.justify-content-sm-start#paginator
-        = button_to mod_inbox_index_path(@user, last_id: @inbox_last_id), class: "btn btn-light" do
-          = t("voc.load")
+  - if @more_data_available
+    .d-flex.justify-content-center.justify-content-sm-start#paginator
+      = button_to mod_inbox_index_path(@user, last_id: @inbox_last_id), class: "btn btn-light" do
+        = t("voc.load")
