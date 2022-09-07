@@ -1,25 +1,24 @@
-= turbo_frame_tag "notification" do
-  %ul.list-unstyled#notifications
-    - if @notifications.count.zero?
-      %li.card.text-center
+%ul.list-unstyled#notifications
+  - if @notifications.count.zero?
+    %li.card.text-center
+      .card-body
+        .notifications--none
+          %i.fa.fa-bell-o.notification__bell-icon
+        %p
+          - if params[:type] == 'all'
+            = t(".none_filtered")
+          - else
+            = t(".none")
+  - else
+    - @notifications.each do |notification|
+      %li.card
         .card-body
-          .notifications--none
-            %i.fa.fa-bell-o.notification__bell-icon
-          %p
-            - if params[:type] == 'all'
-              = t(".none_filtered")
-            - else
-              = t(".none")
-    - else
-      - @notifications.each do |notification|
-        %li.card
-          .card-body
-            .media
-              = render "notifications/type/#{notification.target.class.name.downcase.split('::').last}", notification: notification
+          .media
+            = render "notifications/type/#{notification.target.class.name.downcase.split('::').last}", notification: notification
 
-  - if @more_data_available
-    .d-flex.justify-content-center.justify-content-sm-start#paginator
-      = button_to notifications_path(last_id: @notifications_last_id, type: params[:type]), class: "btn btn-light" do
-        = t("voc.load")
+- if @more_data_available
+  .d-flex.justify-content-center.justify-content-sm-start#paginator
+    = button_to notifications_path(last_id: @notifications_last_id, type: params[:type]), class: "btn btn-light" do
+      = t("voc.load")
 
 - provide(:title, generate_title(t(".title")))
