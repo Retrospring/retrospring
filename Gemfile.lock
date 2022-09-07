@@ -449,7 +449,7 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.11.0)
-    rubocop (1.35.1)
+    rubocop (1.36.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
@@ -636,7 +636,7 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails (~> 5.1)
   rspec-sidekiq (~> 3.0)
-  rubocop (~> 1.35)
+  rubocop (~> 1.36)
   rubocop-rails (~> 2.15)
   ruby-progressbar
   sanitize
