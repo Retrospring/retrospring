@@ -1,12 +1,11 @@
-= turbo_frame_tag "inbox" do
-  #entries
-    - @inbox.each do |i|
-      = render "inbox/entry", i: i
+#entries
+  - @inbox.each do |i|
+    = render "inbox/entry", i: i
 
-    - if @inbox.empty?
-      = t(".empty")
+  - if @inbox.empty?
+    = t(".empty")
 
-  - if @more_data_available
-    .d-flex.justify-content-center.justify-content-sm-start#paginator
-      = button_to inbox_path(last_id: @inbox_last_id), class: "btn btn-light" do
-        = t("voc.load")
+- if @more_data_available
+  .d-flex.justify-content-center.justify-content-sm-start#paginator
+    = button_to inbox_path(last_id: @inbox_last_id), class: "btn btn-light" do
+      = t("voc.load")
