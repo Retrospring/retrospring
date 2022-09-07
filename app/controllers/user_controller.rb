@@ -26,11 +26,11 @@ class UserController < ApplicationController
     @relationships_last_id = @relationships.map(&:id).min
     @more_data_available = !@user.cursored_follower_relationships(last_id: @relationships_last_id, size: 1).count.zero?
     @users = @relationships.map(&:source)
-    @type = :friend
+    @type = :follower
 
     respond_to do |format|
       format.html { render "show_follow" }
-      format.js { render "show_follow", layout: false }
+      format.turbo_stream { render "show_follow" }
     end
   end
 
@@ -46,7 +46,7 @@ class UserController < ApplicationController
 
     respond_to do |format|
       format.html { render "show_follow" }
-      format.js { render "show_follow", layout: false }
+      format.turbo_stream { render "show_follow" }
     end
   end
   # rubocop:enable Metrics/AbcSize
