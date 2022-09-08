@@ -7,7 +7,7 @@ class QuestionController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js { render layout: false }
+      format.turbo_stream { render layout: false, status: :see_other }
     end
   end
 end

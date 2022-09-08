@@ -1,0 +1,8 @@
+= turbo_stream.append "answers" do
+  - @answers.each do |a|
+    = render "answerbox", a: a, show_question: false
+
+= turbo_stream.update "paginator" do
+  - if @more_data_available
+      = button_to question_path(@question.user.screen_name, @question.id, last_id: @answers_last_id), class: "btn btn-light" do
+        = t("voc.load")
