@@ -19,7 +19,7 @@ class NotificationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.turbo_stream
+      format.turbo_stream { render layout: false, status: :see_other }
     end
   end
 
