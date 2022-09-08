@@ -1,8 +1,0 @@
-$('#timeline').append('<% @timeline.each do |answer|
-  %><%= j render 'answerbox', a: answer
-%><% end %>');
-<% if @more_data_available %>
-  $('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @timeline_last_id %>');
-<% else %>
-  $('#pagination, #load-more-btn').remove();
-<% end %>

@@ -27,7 +27,7 @@ class TimelineController < ApplicationController
 
     respond_to do |format|
       format.html { render "timeline/timeline" }
-      format.js { render "timeline/timeline", layout: false }
+      format.turbo_stream { render "timeline/timeline", layout: false, status: :see_other }
     end
   end
 end
