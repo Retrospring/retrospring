@@ -1,0 +1,8 @@
+= turbo_stream.append "timeline" do
+  - @timeline.each do |answer|
+    = render "answerbox", a: answer
+
+= turbo_stream.update "paginator" do
+  - if @more_data_available
+    = button_to "#{request.path}?last_id=#{@timeline_last_id}", class: "btn btn-light" do
+      = t("voc.load")
