@@ -5,8 +5,6 @@ import '../legacy/jquery'
 import 'popper.js'
 import 'bootstrap'
 
-import '../legacy/pagination'
-
 _ready = ->
   $('[data-toggle="tooltip"]').tooltip()
   $('.dropdown-toggle').dropdown()
