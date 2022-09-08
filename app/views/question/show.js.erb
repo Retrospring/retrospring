@@ -1,8 +1,0 @@
-$('#answers').append('<% @answers.each do |answer|
-  %><%= j render 'answerbox', a: answer, show_question: false
-%><% end %>');
-<% if @more_data_available %>
-  $('#pagination').html('<%= j render 'shared/cursored_pagination_dummy', more_data_available: @more_data_available, last_id: @answers_last_id %>');
-<% else %>
-  $('#pagination, #load-more-btn').remove();
-<% end %>

@@ -148,7 +148,7 @@ Rails.application.routes.draw do
   match "/user/:username(/p/:page)", to: "user#show", via: [:get, :post], defaults: { page: 1 }
   match "/@:username(/p/:page)", to: "user#show", via: [:get, :post], as: :user, defaults: { page: 1 }
   get "/@:username/a/:id", to: "answer#show", via: "get", as: :answer
-  get "/@:username/q/:id", to: "question#show", via: "get", as: :question
+  match "/@:username/q/:id", to: "question#show", via: [:get, :post], as: :question
   match "/@:username/followers(/p/:page)", to: "user#followers", via: [:get, :post], as: :show_user_followers, defaults: { page: 1 }
   match "/@:username/followings(/p/:page)", to: "user#followings", via: [:get, :post], as: :show_user_followings, defaults: { page: 1 }
   match "/@:username/friends(/p/:page)", to: redirect("/@%{username}/followings/p/%{page}"), via: [:get, :post], defaults: { page: 1 }
