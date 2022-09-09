@@ -29,6 +29,7 @@ gem "haml", "~> 6.1"
 gem "hcaptcha", "~> 7.0"
 gem "mini_magick"
 gem "oj"
+gem "rpush"
 gem "rqrcode"
 
 gem "rolify", "~> 6.0"
