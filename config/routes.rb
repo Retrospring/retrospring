@@ -132,6 +132,8 @@ Rails.application.routes.draw do
     post "/list_membership", to: "list#membership", as: :list_membership
     post "/subscribe", to: "subscription#subscribe", as: :subscribe_answer
     post "/unsubscribe", to: "subscription#unsubscribe", as: :unsubscribe_answer
+    get "/webpush/key", to: "web_push#key", as: :webpush_key
+    post "/webpush", to: "web_push#subscribe", as: :webpush_subscribe
   end
 
   resource :anonymous_block, controller: :anonymous_block, only: %i[create destroy]
