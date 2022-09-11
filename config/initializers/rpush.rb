@@ -134,3 +134,5 @@ Rpush.reflect do |on|
   # on.error do |error|
   # end
 end
+
+Rails.application.config.active_record.yaml_column_permitted_classes = [Symbol, Hash]
