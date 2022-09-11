@@ -231,6 +231,8 @@ en:
       share:
         heading: "Share"
         button: "Share on %{service}"
+    push_settings:
+      description: "Want to receive push notifications for new questions on your device?"
   layouts:
     feedback:
       heading: "Feedback"

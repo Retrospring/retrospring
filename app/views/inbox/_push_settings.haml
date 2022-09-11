@@ -1,0 +1,5 @@
+.card.push-settings.d-none
+  .card-body
+    = t(".description")
+    %button.btn.btn-primary{ data: { action: "push-enable" } }= t("voc.y")
+    %button.btn{ data: { action: "push-dismiss" } }= t("voc.n")

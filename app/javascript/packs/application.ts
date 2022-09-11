@@ -15,6 +15,7 @@ import initModeration from 'retrospring/features/moderation';
 import initMemes from 'retrospring/features/memes';
 import initLocales from 'retrospring/features/locales';
 import initFront from 'retrospring/features/front';
+import initWebpush from 'retrospring/features/webpush';
 
 start();
 document.addEventListener('DOMContentLoaded', initAnswerbox);
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', initModeration);
 document.addEventListener('DOMContentLoaded', initMemes);
 document.addEventListener('turbo:load', initLocales);
 document.addEventListener('turbo:load', initFront);
+document.addEventListener('DOMContentLoaded', initWebpush);
 
 window['Stimulus'] = Application.start();
 const context = require.context('../retrospring/controllers', true, /\.ts$/);
