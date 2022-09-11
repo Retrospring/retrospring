@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Rpush270Updates < ActiveRecord::Migration[5.0]
   def self.up
     change_column :rpush_notifications, :alert, :text
@@ -9,4 +11,3 @@ class Rpush270Updates < ActiveRecord::Migration[5.0]
     remove_column :rpush_notifications, :notification
   end
 end
-

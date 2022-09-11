@@ -18,7 +18,7 @@ class QuestionWorker
       next if MuteRule.where(user: f).any? { |rule| rule.applies_to? question }
       next if user.muting?(question.user)
 
-      inbox = Inbox.create(user_id: f.id, question_id: question_id, new: true)
+      inbox = Inbox.create(user_id: f.id, question_id:, new: true)
       f.push_notification(webpush_app, inbox)
     end
   rescue StandardError => e

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Rpush320AddApnsP8 < ActiveRecord::Migration[5.0]
   def self.up
     add_column :rpush_apps, :apn_key, :string, null: true

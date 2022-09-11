@@ -34,7 +34,7 @@ class Inbox < ApplicationRecord
         "frontend.push_notifications.inbox.title",
         user: question.author_is_anonymous ? user.profile.display_name : question.author.profile.safe_name
       ),
-      body:  question.content,
+      body:  question.content
     }
   end
 end

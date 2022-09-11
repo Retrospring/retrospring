@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module User::PushNotificationMethods
   def push_notification(app, resource)
     raise ArgumentError("Resource must respond to `as_push_notification`") unless resource.respond_to? :as_push_notification

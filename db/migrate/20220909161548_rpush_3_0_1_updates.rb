@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Rpush301Updates < ActiveRecord::Migration[5.0]
   def self.up
     change_column_null :rpush_notifications, :mutable_content, false

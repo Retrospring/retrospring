@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Rpush331Updates < ActiveRecord::Migration[5.0]
   def self.up
     change_column :rpush_notifications, :device_token, :string, null: true

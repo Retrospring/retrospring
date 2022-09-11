@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Rpush310AddPushy < ActiveRecord::Migration[5.0]
   def self.up
     add_column :rpush_notifications, :external_device_id, :string, null: true
