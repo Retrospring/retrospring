@@ -31,13 +31,7 @@ module UseCase
         inbox = ::Inbox.create!(user: target_user, question: question, new: true)
 
         webpush_app = Rpush::App.find_by(name: "webpush")
-        target_user.web_push_subscriptions.each do |s|
-          n = Rpush::Webpush::Notification.new
-          n.app = webpush_app
-          n.registration_ids = [s.subscription.symbolize_keys]
-          n.data = { message: { title: "New question notif title", body: question.content }.to_json }
-          n.save!
-        end
+        target_user.push_notification(webpush_app, inbox)
 
         {
           status:   201,

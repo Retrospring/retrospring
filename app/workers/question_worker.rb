@@ -18,15 +18,8 @@ class QuestionWorker
       next if MuteRule.where(user: f).any? { |rule| rule.applies_to? question }
       next if user.muting?(question.user)
 
-      Inbox.create(user_id: f.id, question_id: question_id, new: true)
-
-      f.web_push_subscriptions.each do |s|
-        n = Rpush::Webpush::Notification.new
-        n.app = webpush_app
-        n.registration_ids = [s.subscription.symbolize_keys]
-        n.data = { message: { title: "New question notif title", body: question.content }.to_json }
-        n.save!
-      end
+      inbox = Inbox.create(user_id: f.id, question_id: question_id, new: true)
+      f.push_notification(webpush_app, inbox)
     end
   rescue StandardError => e
     logger.info "failed to ask question: #{e.message}"

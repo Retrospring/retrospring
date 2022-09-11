@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Inbox < ApplicationRecord
   belongs_to :user
   belongs_to :question
@@ -23,5 +25,16 @@ class Inbox < ApplicationRecord
   def remove
     self.question.destroy if self.question.can_be_removed?
     self.destroy
+  end
+
+  def as_push_notification
+    {
+      type:  :inbox,
+      title: I18n.t(
+        "frontend.push_notifications.inbox.title",
+        user: question.author_is_anonymous ? user.profile.display_name : question.author.profile.safe_name
+      ),
+      body:  question.content,
+    }
   end
 end

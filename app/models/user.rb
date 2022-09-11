@@ -9,6 +9,7 @@ class User < ApplicationRecord
   include User::BanMethods
   include User::InboxMethods
   include User::QuestionMethods
+  include User::PushNotificationMethods
   include User::ReactionMethods
   include User::RelationshipMethods
   include User::TimelineMethods

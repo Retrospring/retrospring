@@ -58,6 +58,8 @@ en:
           title: Failed to subscribe to push notifications
           body: Please try again later
       setup_fail: Failed to set up push notifications. Please try again later.
+      inbox:
+        title: New question from %{user}
     report:
       confirm:
         title: "Are you sure you want to report this %{type}?"
