@@ -42,6 +42,7 @@ class User < ApplicationRecord
 
   has_many :subscriptions, dependent: :destroy_async
   has_many :totp_recovery_codes, dependent: :destroy_async
+  has_many :web_push_subscriptions, dependent: :destroy_async
 
   has_one :profile, dependent: :destroy
   has_one :theme, dependent: :destroy

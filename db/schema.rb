@@ -382,5 +382,13 @@ ActiveRecord::Schema.define(version: 2022_12_27_065923) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  create_table "web_push_subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.json "subscription"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
+  end
+
   add_foreign_key "profiles", "users"
 end
