@@ -1,4 +1,9 @@
-# Retrospring
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./.github/assets/logo-white.png">
+  <source media="(prefers-color-scheme: light)" srcset="./.github/assets/logo.png">
+  <img alt="The Retrospring logo" src="./composition/png/logo.png">
+</picture>
+
 ![Retrospring](https://github.com/Retrospring/retrospring/workflows/Retrospring/badge.svg)
 
 This is the source code that powers Retrospring. This is a detached fork of
