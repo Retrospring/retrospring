@@ -1170,10 +1170,10 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@melloware/coloris@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@melloware/coloris/-/coloris-0.16.0.tgz#be1cfa84705db444c6abf942ab57e21f88adfa11"
-  integrity sha512-/aGlfbR3GvRUOvYnhrhE0qi55EIwJLa+DqnHPhefPfSljibNZrrcWrlW5cRvhvUD+jR/TYR41YWfOrQX9E3VwA==
+"@melloware/coloris@^0.16.1":
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/@melloware/coloris/-/coloris-0.16.1.tgz#bc94257dbfa31e60591dd2fcc422647cd6e7c1e7"
+  integrity sha512-33Cmes6+ySsTXL6P2/Swu8uuDgNyIZTKlxYxUAh+qyfmd0V8hMHxlRS5ofOXLEl4713YScOKKMOTuAYcyyUfAQ==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
