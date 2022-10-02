@@ -51,7 +51,7 @@ jobs:
       - name: Set up Node 12
         uses: actions/setup-node@v3
         with:
-          node-version: '12'
+          node-version: '18'
       - name: Copy default configuration
         run: |
           cp config/database.yml.postgres config/database.yml
