@@ -4,6 +4,7 @@
     "lint:fix": "yarn run eslint --ext .ts app/javascript --fix"
   },
   "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@hotwired/turbo-rails": "^7.1.3",
     "@melloware/coloris": "^0.16.1",
