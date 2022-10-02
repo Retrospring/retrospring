@@ -1,5 +1,4 @@
-import registerEvents from "retrospring/utilities/registerEvents"
-import { commentCharacterCountHandler } from "./count";
+import registerEvents from "retrospring/utilities/registerEvents";
 import { commentDestroyHandler } from "./destroy";
 import { commentCreateHandler } from "./new";
 import { commentReportHandler } from "./report";
@@ -12,7 +11,6 @@ export default (): void => {
     { type: 'click', target: '[name=ab-smile-comment]', handler: commentSmileHandler, global: true },
     { type: 'click', target: '[data-action=ab-comment-report]', handler: commentReportHandler, global: true },
     { type: 'click', target: '[data-action=ab-comment-destroy]', handler: commentDestroyHandler, global: true },
-    { type: 'keyup', target: '[name=ab-comment-new]', handler: commentCreateHandler, global: true },
-    { type: 'input', target: '[name=ab-comment-new]', handler: commentCharacterCountHandler, global: true }
+    { type: 'keyup', target: '[name=ab-comment-new]', handler: commentCreateHandler, global: true }
   ]);
 }

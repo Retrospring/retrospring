@@ -51,3 +51,12 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
       });
   }
 }
+
+export function commentInputHandler(event: KeyboardEvent): void {
+  const input = event.target as HTMLInputElement;
+  const inboxId = input.dataset.id;
+
+  if (event.keyCode == 13 && (event.ctrlKey || event.metaKey)) {
+    document.querySelector<HTMLButtonElement>(`button[name="ab-comment-new"][data-abc-id="${inboxId}"]`).click();
+  }
+}
