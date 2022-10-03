@@ -217,7 +217,7 @@ GEM
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
-    haml_lint (0.41.0)
+    haml_lint (0.42.0)
       haml (>= 4.0, < 6.1)
       parallel (~> 1.10)
       rainbow
@@ -413,7 +413,7 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.1)
     redis (4.5.1)
-    regexp_parser (2.5.0)
+    regexp_parser (2.6.0)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.0.1)
