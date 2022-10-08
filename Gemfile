@@ -9,7 +9,7 @@ gem "rails-i18n", "~> 6.0"
 gem "pg"
 
 gem "jbuilder", "~> 2.10"
-gem "sass-rails", "~> 5.0"
+gem "sassc-rails"
 gem "turbo-rails"
 
 gem "bcrypt", "~> 3.1.18"
