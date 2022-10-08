@@ -70,7 +70,7 @@ gem "jwt", "~> 2.5"
 group :development do
   gem "binding_of_caller"
   gem "byebug"
-  gem "spring", "~> 4.0"
+  gem "spring", "~> 4.1"
   gem "web-console", "~> 4.0"
 end
 
@@ -96,7 +96,7 @@ group :development, :test do
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem "rubocop", "~> 1.36"
   gem "rubocop-rails", "~> 2.16"
-  gem "shoulda-matchers", "~> 5.0"
+  gem "shoulda-matchers", "~> 5.2"
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false
   gem "simplecov-json", require: false

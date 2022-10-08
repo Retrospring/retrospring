@@ -28,6 +28,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       iclooud.com
       iclould.com
       icluod.com
+      protonail.com
       xn--gmail-xk1c.com
       yahooo.com
       ☺gmail.com
