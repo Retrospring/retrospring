@@ -2,7 +2,7 @@
 .card.h-100.userbox
   %img.userbox__header{ src: user.profile_header.url(:mobile) }
   .card-body
-    %img.userbox__avatar{ src: user.profile_picture.url(:small) }
+    %img.userbox__avatar{ src: user.profile_picture.url(:small), loading: :lazy }
     %a.profile__name{ href: user_path(user) }
       - unless user.profile.display_name.blank?
         .profile__display-name
