@@ -1,6 +1,6 @@
 .media.notification
   .notification__icon
-    %img.avatar-sm{ src: notification.target.source.profile_picture.url(:small) }
+    %img.avatar-sm{ src: notification.target.source.profile_picture.url(:small), loading: :lazy }
   .media-body
     %h6.media-heading.notification__user
       = user_screen_name notification.target.source

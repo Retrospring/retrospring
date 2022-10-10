@@ -3,7 +3,7 @@
     %i.fa.fa-2x.fa-fw.fa-smile-o
   .media-body
     .notification__heading
-      %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small) }
+      %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small), loading: :lazy }
       - if notification.target.parent_type == 'Answer'
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
