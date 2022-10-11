@@ -12,7 +12,7 @@ export function questionboxAllHandler(event: Event): void {
     body: {
       rcpt: 'followers',
       question: document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').value,
-      anonymousQuestion: 'false'      
+      anonymousQuestion: 'false'
     },
     contentType: 'application/json'
   })
@@ -23,7 +23,7 @@ export function questionboxAllHandler(event: Event): void {
         document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').value = '';
         window['$']('#modal-ask-followers').modal('hide');
       }
-      
+
       showNotification(data.message, data.success);
     })
     .catch(err => {
@@ -40,4 +40,8 @@ export function questionboxAllInputHandler(event: KeyboardEvent): void {
   if (event.keyCode == 13 && (event.ctrlKey || event.metaKey)) {
     document.querySelector<HTMLButtonElement>(`button[name=qb-all-ask]`).click();
   }
+}
+
+export function questionboxAllModalAutofocus(): void {
+  document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').focus();
 }
