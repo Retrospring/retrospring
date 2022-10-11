@@ -4,7 +4,7 @@
       .media
         - unless question.author_is_anonymous
           %a.pull-left{ href: unless hidden then user_path(question.user) end }
-            %img.answerbox__question-user-avatar.avatar-md{ src: question.user.profile_picture.url(:medium) }
+            %img.answerbox__question-user-avatar.avatar-md{ src: question.user.profile_picture.url(:small) }
         .media-body
           - if user_signed_in?
             .pull-right

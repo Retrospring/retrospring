@@ -1,6 +1,6 @@
 .card.moderationbox{ data: { id: report.id } }
   .card-header
-    %img.avatar-sm{ src: report.user.profile_picture.url(:medium) }
+    %img.avatar-sm{ src: report.user.profile_picture.url(:small), loading: :lazy }
     = t(".reported_html",
       user: user_screen_name(report.user),
       content: report.type.sub("Reports::", ""),

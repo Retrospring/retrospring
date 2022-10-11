@@ -19,7 +19,7 @@
           .media
             .pull-left
               %a{ href: user_path(a.user) }
-                %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:medium) }
+                %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:small), loading: :lazy }
             .media-body
               %h6.media-heading.answerbox__answer-user
                 = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
