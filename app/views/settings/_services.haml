@@ -4,7 +4,8 @@
 
     - APP_CONFIG["sharing"].each do |service, service_options|
       - if service_options["enabled"] && services.none? { |x| x.provider == service.to_s }
-        %p= button_to t(".connect", service: service.capitalize), "/auth/#{service}", method: :post, class: "btn btn-info"
+        %p= button_to t(".connect", service: service.capitalize), "/auth/#{service}", method: :post, class: "btn btn-info",
+          form: { data: { turbo: false } }
 
   - if services.count.positive?
     %ul.list-group
@@ -18,9 +19,9 @@
             data: { confirm: t(".confirm", service: service.provider.capitalize) },
             method: :delete,
             class: "btn btn-link text-danger",
-            form: { class: "d-inline" }
+            form: { class: "d-inline", data: { turbo: false } }
 
           .col-md-6.mt-2
-            = bootstrap_form_for(service, as: "service", url: update_service_path(service)) do |f|
+            = bootstrap_form_for(service, as: "service", url: update_service_path(service), data: { turbo: false }) do |f|
               = f.text_field :post_tag, label_as_placeholder: true,
                 append: f.submit(t("voc.update"), class: "btn btn-primary"), maxlength: 20, pattern: "^[^@]*$"
