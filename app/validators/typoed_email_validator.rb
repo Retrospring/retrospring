@@ -4,6 +4,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
   # this array contains "forbidden" email address endings
   INVALID_ENDINGS = [
     # without @:
+    ".carrd",
     ".con",
     ".coom",
     ".cmo",

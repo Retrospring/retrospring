@@ -68,10 +68,12 @@ RSpec.describe User, type: :model do
 
     # examples from the real world:
 
-    # .con is not a valid TLD
+    # .carrd is not a valid TLD
+    include_examples "invalid email", "fritz.fantom@gmail.carrd"
+    # neither is .con
     include_examples "invalid email", "fritz.fantom@gmail.con"
     include_examples "invalid email", "fritz.fantom@protonmail.con"
-    # neither is .coom
+    # nor .coom
     include_examples "invalid email", "fritz.fantom@gmail.coom"
     # nor .cmo
     include_examples "invalid email", "gustav.geldsack@gmail.cmo"
