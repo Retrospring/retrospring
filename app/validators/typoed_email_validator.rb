@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
+require "tldv"
+
 class TypoedEmailValidator < ActiveModel::EachValidator
   # this array contains "forbidden" email address endings
   INVALID_ENDINGS = [
-    # without @:
-    ".carrd",
-    ".con",
-    ".coom",
-    ".cmo",
-    ".mail",
-
     # with @:
     *%w[
       fmail.com
@@ -50,7 +45,13 @@ class TypoedEmailValidator < ActiveModel::EachValidator
     return false unless value.include?("@")
 
     # part after the @ needs to have at least one period
-    return false if value.split("@", 2).last.count(".").zero?
+    _prefix, domain = value.split("@", 2)
+    domain_parts = domain.split(".")
+    return false if domain_parts.length == 1
+
+    # check if the TLD is valid
+    tld = domain_parts.last
+    return false unless TLDv.valid?(tld)
 
     # finally, common typos
     return false if INVALID_ENDINGS.any? { value.end_with?(_1) }
