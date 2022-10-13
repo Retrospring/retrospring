@@ -8,14 +8,14 @@
     "@hotwired/stimulus": "^3.1.0",
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
     "@hotwired/turbo-rails": "^7.1.3",
-    "@melloware/coloris": "^0.16.0",
+    "@melloware/coloris": "^0.16.1",
     "@rails/request.js": "^0.0.6",
     "bootstrap": "^4.6.2",
     "cheet.js": "^0.3.3",
-    "core-js": "^3.25.1",
+    "core-js": "^3.25.5",
     "croppr": "^2.3.1",
     "font-awesome": "4.7.0",
-    "i18n-js": "^3.9.2",
+    "i18n-js": "^4.0",
     "jquery": "^3.6.1",
     "js-cookie": "2.2.1",
     "lato-font": "^3.0.0",
@@ -24,11 +24,11 @@
     "regenerator-runtime": "^0.13.7",
     "sweetalert": "1.1.3",
     "toastify-js": "^1.12.0",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.0",
-    "@babel/preset-env": "^7.19.0",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
     "@rails/webpacker": "5.4.3",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
@@ -37,6 +37,6 @@
     "eslint": "^7.16.0",
     "eslint-plugin-import": "^2.26.0",
     "webpack": "^4",
-    "webpack-dev-server": "^4.11.0"
+    "webpack-dev-server": "^4.11.1"
   }
 }

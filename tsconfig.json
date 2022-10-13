@@ -7,6 +7,7 @@
     "lib": ["es6", "dom"],
     "module": "es6",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
         "*": ["node_modules/*", "app/javascript/*"],

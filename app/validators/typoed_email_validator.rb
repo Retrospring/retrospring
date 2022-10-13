@@ -4,6 +4,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
   # this array contains "forbidden" email address endings
   INVALID_ENDINGS = [
     # without @:
+    ".carrd",
     ".con",
     ".coom",
     ".cmo",
@@ -18,6 +19,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       gmaik.com
       gmail.cm
       gmail.co
+      gmail.co.uk
       gmaile.com
       gmaill.com
       gmali.com
@@ -28,6 +30,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       iclooud.com
       iclould.com
       icluod.com
+      protonail.com
       xn--gmail-xk1c.com
       yahooo.com
       ☺gmail.com

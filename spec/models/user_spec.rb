@@ -68,10 +68,12 @@ RSpec.describe User, type: :model do
 
     # examples from the real world:
 
-    # .con is not a valid TLD
+    # .carrd is not a valid TLD
+    include_examples "invalid email", "fritz.fantom@gmail.carrd"
+    # neither is .con
     include_examples "invalid email", "fritz.fantom@gmail.con"
     include_examples "invalid email", "fritz.fantom@protonmail.con"
-    # neither is .coom
+    # nor .coom
     include_examples "invalid email", "fritz.fantom@gmail.coom"
     # nor .cmo
     include_examples "invalid email", "gustav.geldsack@gmail.cmo"
@@ -84,6 +86,7 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@gmaik.com"
     include_examples "invalid email", "fritz.fantom@gmail.cm"
     include_examples "invalid email", "fritz.fantom@gmail.co"
+    include_examples "invalid email", "fritz.fantom@gmail.co.uk"
     include_examples "invalid email", "fritz.fantom@gmailcom"
     include_examples "invalid email", "fritz.fantom@gmaile.com"
     include_examples "invalid email", "fritz.fantom@gmaill.com"
@@ -96,6 +99,7 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@iclooud.com"
     include_examples "invalid email", "fritz.fantom@iclould.com"
     include_examples "invalid email", "fritz.fantom@icluod.com"
+    include_examples "invalid email", "fritz.fantom@protonail.com"
     include_examples "invalid email", "fritz.fantom@xn--gmail-xk1c.com"
     include_examples "invalid email", "fritz.fantom@yahooo.com"
     include_examples "invalid email", "fritz.fantom@☺gmail.com"

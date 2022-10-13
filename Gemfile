@@ -2,21 +2,21 @@
 
 source "https://rubygems.org"
 
-gem "i18n-js", "3.9.2"
+gem "i18n-js", "4.0"
 gem "rails", "~> 6.1"
 gem "rails-i18n", "~> 6.0"
 
 gem "pg"
 
 gem "jbuilder", "~> 2.10"
-gem "sass-rails", "~> 5.0"
+gem "sassc-rails"
 gem "turbo-rails"
 
 gem "bcrypt", "~> 3.1.18"
 
 gem "active_model_otp"
 gem "bootsnap", require: false
-gem "bootstrap_form"
+gem "bootstrap_form", "~> 4.5"
 gem "carrierwave", "~> 2.0"
 gem "carrierwave_backgrounder", git: "https://github.com/mltnhm/carrierwave_backgrounder.git"
 gem "colorize"
@@ -70,7 +70,7 @@ gem "jwt", "~> 2.5"
 group :development do
   gem "binding_of_caller"
   gem "byebug"
-  gem "spring", "~> 4.0"
+  gem "spring", "~> 4.1"
   gem "web-console", "~> 4.0"
 end
 
@@ -96,7 +96,7 @@ group :development, :test do
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem "rubocop", "~> 1.36"
   gem "rubocop-rails", "~> 2.16"
-  gem "shoulda-matchers", "~> 5.0"
+  gem "shoulda-matchers", "~> 5.2"
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false
   gem "simplecov-json", require: false

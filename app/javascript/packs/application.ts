@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', initInbox);
 document.addEventListener('DOMContentLoaded', initUser);
 document.addEventListener('turbo:load', initSettings);
 document.addEventListener('DOMContentLoaded', initLists);
-document.addEventListener('DOMContentLoaded', initQuestionbox);
+document.addEventListener('turbo:load', initQuestionbox);
 document.addEventListener('DOMContentLoaded', initQuestion);
 document.addEventListener('DOMContentLoaded', initModeration);
 document.addEventListener('DOMContentLoaded', initMemes);

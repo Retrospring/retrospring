@@ -3,9 +3,9 @@
     %i.fa.fa-2x.fa-fw.fa-exclamation
   .media-body
     .notification__heading
-      %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small) }
-      = t(".heading_html", 
-          user: user_screen_name(notification.target.user), 
+      %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small), loading: :lazy }
+      = t(".heading_html",
+          user: user_screen_name(notification.target.user),
           question: link_to(t(".link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.id)),
           time: time_tooltip(notification.target))
     .list-group

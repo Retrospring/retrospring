@@ -8,7 +8,7 @@
         .media
           .pull-left
             %a{ href: user_path(comment.user) }
-              %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:medium) }
+              %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:small), loading: :lazy }
           .media-body
             %h6.media-heading.comment__user
               = user_screen_name comment.user
