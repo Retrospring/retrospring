@@ -18,7 +18,7 @@ export default class extends Controller {
   }
 
   update(): void {
-    this.counterTarget.innerHTML = String(`${this.inputTarget.value.length} / ${this.maxValue}`);
+    this.counterTarget.innerHTML = String(`${this.maxValue - this.inputTarget.value.length}`);
 
     if (this.inputTarget.value.length > this.maxValue) {
       if (!this.inputTarget.classList.contains('is-invalid') && !this.actionTarget.disabled) {
