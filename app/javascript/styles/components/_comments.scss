@@ -24,6 +24,10 @@
   &__input {
     z-index: 99;
     padding-right: 2.5rem;
+
+    &.is-invalid {
+      background-image: none;
+    }
   }
 
   &__character-count {
