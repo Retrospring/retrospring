@@ -65,6 +65,9 @@ gem "redis"
 
 gem "fake_email_validator"
 
+# TLD validation
+gem "tldv", "~> 0.1.0"
+
 gem "jwt", "~> 2.5"
 
 group :development do

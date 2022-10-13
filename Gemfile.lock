@@ -518,6 +518,9 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.11)
     timeout (0.3.0)
+    tldv (0.1.0)
+      tldv-data (~> 1.0)
+    tldv-data (1.0.2022101300)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -641,6 +644,7 @@ DEPENDENCIES
   simplecov-cobertura
   simplecov-json
   spring (~> 4.1)
+  tldv (~> 0.1.0)
   turbo-rails
   twitter
   twitter-text
