@@ -1,0 +1,23 @@
+.card.inbox-actions
+  .card-body
+    .d-md-flex
+      = bootstrap_form_tag url: inbox_path, method: :get, html: { class: "d-block" } do |f|
+        = f.text_field :author, value: params[:author], placeholder: t(".author.placeholder"), prepend: "@", hide_label: true,
+          append: f.button(t(".author.button"), name: nil, class: "btn btn-light", id: "ib-author")
+      .d-flex.ml-auto.mt-2.mt-md-0
+        %button.btn.btn-info.mr-auto{ type: :button, id: "ib-generate-question" }
+          = t(".questions.button")
+        .button-group.ml-1
+          %button.btn.btn-default{ data: { toggle: :dropdown }, aria: { expanded: false } }
+            %i.fa.fa-fw.fa-share-alt
+            %span.sr-only= t(".share.heading")
+          .dropdown-menu.dropdown-menu-right{ role: :menu }
+            %a.dropdown-item{ href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{user_url(current_user)}", target: "_blank" }
+              %i.fa.fa-fw.fa-twitter
+              = t(".share.button", service: "Twitter")
+            %a.dropdown-item{ href: "https://www.tumblr.com/share/link?url=#{user_url(current_user)}&name=Ask%20me%20anything%21", target: "_blank" }
+              %i.fa.fa-fw.fa-tumblr
+              = t(".share.button", service: "Tumblr")
+        %button.btn.btn-danger.ml-1{ type: :button, id: delete_id, disabled: (disabled ? :disabled : nil), data: { ib_count: inbox_count } }
+          %i.fa.fa-fw.fa-trash-o
+          %span.sr-only= t(".actions.delete")
