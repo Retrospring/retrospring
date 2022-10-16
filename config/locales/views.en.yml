@@ -100,7 +100,7 @@ en:
         title: "Share"
     comments:
       none: "There are no comments yet."
-      placeholder: "Comment..."        
+      placeholder: "Comment..."
     smiles:
       none: "No one smiled this yet."
   application:
@@ -200,7 +200,7 @@ en:
         settings: "service settings"
     show:
       empty: "Nothing to see here."
-    sidebar:
+    actions:
       actions:
         heading: "Actions"
         delete: "Delete all questions"
