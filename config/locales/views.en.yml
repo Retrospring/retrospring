@@ -202,15 +202,12 @@ en:
       empty: "Nothing to see here."
     actions:
       actions:
-        heading: "Actions"
         delete: "Delete all questions"
       author:
-        heading: "Show author"
         button: "Show"
-        placeholder: "username"
+        placeholder: "Filter by username"
       questions:
-        heading: "Out of questions?"
-        button: "Get new question"
+        button: "Generate question"
       share:
         heading: "Share"
         button: "Share on %{service}"
