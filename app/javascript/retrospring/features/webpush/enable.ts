@@ -14,7 +14,7 @@ export function enableHandler (event: Event): void {
             return;
           }
 
-          post('/ajax/web_push', {
+          post('/ajax/webpush', {
             body: {
               subscription
             },

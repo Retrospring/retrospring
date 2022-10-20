@@ -531,6 +531,18 @@ en:
           body: "Raised content includes all the different boxes and panels you can see across the site."
           accent:
             example: "Some text on top of a accented area on a raised element!"
+    push_notifications:
+      index:
+        title: "Push Notifications"
+      subscription_count:
+        zero: "You are not currently subscribed to push notifications on any devices."
+        one: "You are currently receiving push notifications on one device."
+        other: "You are currently receiving push notifications on %{count} devices."
+      unsupported: "This browser does not support push notifications."
+      current_target: "You are currently receiving push notifications on this device."
+      subscribe: "Enable on this device"
+      unsubscribe_current: "Disable on this device"
+      unsubscribe_all: "Disable on all devices"
   shared:
     links:
       about: "About"
@@ -594,6 +606,8 @@ en:
       theme: "Theme"
       data: "Your Data"
       export: "Export"
+      blocks: "Blocks"
+      push_notifications: "Push Notifications"
   moderation:
     inbox:
       header:

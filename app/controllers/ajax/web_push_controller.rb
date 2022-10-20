@@ -4,6 +4,8 @@ class Ajax::WebPushController < AjaxController
   def key
     certificate = Rpush::Webpush::App.find_by(name: "webpush").certificate
 
+    @response[:status] = :okay
+    @response[:success] = true
     @response[:key] = JSON.parse(certificate)["public_key"]
   end
 

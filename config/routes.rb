@@ -89,6 +89,8 @@ Rails.application.routes.draw do
 
     get :data, to: "data#index"
 
+    resources :push_notifications, only: %i[index]
+
     namespace :two_factor_authentication do
       get :otp_authentication, to: "otp_authentication#index"
       patch :otp_authentication, to: "otp_authentication#update"
