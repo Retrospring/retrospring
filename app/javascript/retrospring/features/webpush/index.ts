@@ -3,15 +3,8 @@ import { enableHandler } from './enable';
 import { dismissHandler } from "./dismiss";
 
 export default (): void => {
-  const swCapable = 'serviceWorker' in navigator;
-  if (swCapable) {
-    document.body.classList.add('cap-service-worker');
-  }
-
-  const notificationCapable = 'Notification' in window;
-  if (notificationCapable) {
-    document.body.classList.add('cap-notification');
-  }
+  const swCapable = document.body.classList.contains('cap-service-worker');
+  const notificationCapable = document.body.classList.contains('cap-notification');
 
   if (swCapable && notificationCapable) {
     navigator.serviceWorker.getRegistration().then(registration => {

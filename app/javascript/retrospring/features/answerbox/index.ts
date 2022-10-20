@@ -7,10 +7,6 @@ import { answerboxSmileHandler } from './smile';
 import { answerboxSubscribeHandler } from './subscribe';
 
 export default (): void => {
-  if ('share' in navigator) {
-    document.body.classList.add('cap-web-share');
-  }
-
   registerEvents([
     { type: 'click', target: '[name=ab-share]', handler: shareEventHandler, global: true },
     { type: 'click', target: '[data-action=ab-submarine]', handler: answerboxSubscribeHandler, global: true },

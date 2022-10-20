@@ -5,6 +5,7 @@ import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
 
 import start from 'retrospring/common';
 import initAnswerbox from 'retrospring/features/answerbox/index';
+import initCapabilities from 'retrospring/features/capabilities';
 import initInbox from 'retrospring/features/inbox/index';
 import initUser from 'retrospring/features/user';
 import initSettings from 'retrospring/features/settings/index';
@@ -18,6 +19,7 @@ import initFront from 'retrospring/features/front';
 import initWebpush from 'retrospring/features/webpush';
 
 start();
+document.addEventListener('turbo:load', initCapabilities);
 document.addEventListener('DOMContentLoaded', initAnswerbox);
 document.addEventListener('DOMContentLoaded', initInbox);
 document.addEventListener('DOMContentLoaded', initUser);
