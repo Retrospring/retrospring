@@ -100,7 +100,7 @@ en:
         title: "Share"
     comments:
       none: "There are no comments yet."
-      placeholder: "Comment..."        
+      placeholder: "Comment..."
     smiles:
       none: "No one smiled this yet."
   application:
@@ -514,10 +514,6 @@ en:
     anonymous_block:
       deleted_question: "Deleted question"
       blocked: "blocked %{time} ago"
-    sidebar:
-      list:
-        title: "Members"
-        none: "No members yet."
   tabs:
     feed:
       public: "Public"
@@ -534,6 +530,9 @@ en:
             Once you have done that, the lists will be shown here.
             When you select a list you'll get a timeline view of all users within that list.
           </p>
+        members:
+          title: "Members"
+          none: "No members yet."
     moderation:
       all: "All reports"
       answers: :activerecord.models.answer.other

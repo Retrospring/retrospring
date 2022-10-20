@@ -10,6 +10,16 @@
       - else
         = t(".lists.title")
     .dropdown-menu.dropdown-menu-right.dropdown-menu--lists
+      - if list
+        %h6.dropdown-header= t(".lists.members.title")
+        - if list.members.empty?
+          %p.text-muted= t(".list.members.none")
+        - else
+          %p.px-4
+            - list.members.each do |member|
+              %a{ href: user_path(member.user), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top } }
+                %img.avatar-xs{ src: member.user.profile_picture.url(:small), loading: :lazy }
+        %li.dropdown-divider
       - if current_user.lists.empty?
         .p-3= t(".lists.notice_html")
       - current_user.lists.each do |list|
