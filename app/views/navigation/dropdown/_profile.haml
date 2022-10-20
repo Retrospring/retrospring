@@ -23,11 +23,11 @@
     .dropdown-divider
   - if current_user.mod?
     - if moderation_view?
-      = link_to moderation_toggle_unmask_path, method: :post, class: "dropdown-item" do
+      = link_to moderation_toggle_unmask_path, class: "dropdown-item", data: { turbo_method: :post } do
         %i.fa.fa-toggle-on
         = t(".unmask.disable")
     - else
-      = link_to moderation_toggle_unmask_path, method: :post, class: "dropdown-item" do
+      = link_to moderation_toggle_unmask_path, class: "dropdown-item", data: { turbo_method: :post } do
         %i.fa.fa-toggle-off
         = t(".unmask.enable")
     %a.dropdown-item{ href: mod_anon_block_index_path }
