@@ -1,8 +1,6 @@
 .container-lg.container--main
   .row
-    .col-md-3.col-sm-4.d-none.d-sm-block
-      = render 'shared/sidebar'
-    .col-md-9.col-xs-12.col-sm-8
+    .col-sm-10.col-md-10.col-lg-9.mx-auto
       = render 'layouts/messages'
       = render 'tabs/feed', list: @list
       = yield
