@@ -18,4 +18,17 @@ class Ajax::WebPushController < AjaxController
     @response[:status] = :okay
     @response[:success] = true
   end
+
+  def unsubscribe
+    params.permit(:endpoint)
+
+    if params.key?(:endpoint)
+      current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy
+    else
+      current_user.web_push_subscriptions.destroy_all
+    end
+
+    @response[:status] = :okay
+    @response[:success] = true
+  end
 end
