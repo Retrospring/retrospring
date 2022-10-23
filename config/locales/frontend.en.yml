@@ -57,6 +57,9 @@ en:
         fail:
           title: Failed to subscribe to push notifications
           body: Please try again later
+      unsubscribe:
+        success: Push notifications disabled successfully.
+        fail: Failed to disable push notifications.
       setup_fail: Failed to set up push notifications. Please try again later.
       inbox:
         title: New question from %{user}
