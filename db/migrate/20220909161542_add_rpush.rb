@@ -41,6 +41,8 @@ class AddRpush < ActiveRecord::Migration[5.0]
     end
   end
 
+  # rubocop:disable Rails/MigrationClassName
+
   class CreateRapnsNotifications < ActiveRecord::Migration[5.0]
     def self.up
       create_table :rapns_notifications do |t|
@@ -335,4 +337,6 @@ class AddRpush < ActiveRecord::Migration[5.0]
       remove_column :rpush_notifications, :fail_after
     end
   end
+
+  # rubocop:enable all
 end
