@@ -8,17 +8,30 @@ export default (): void => {
   const notificationCapable = document.body.classList.contains('cap-notification');
 
   if (swCapable && notificationCapable) {
-    navigator.serviceWorker.getRegistration().then(registration => {
-      if (!registration && localStorage.getItem('dismiss-push-settings-prompt') == null) {
-        document.querySelector('.push-settings').classList.remove('d-none');
-      }
-    })
 
-    registerEvents([
-      {type: 'click', target: '[data-action="push-enable"]', handler: enableHandler, global: true},
-      {type: 'click', target: '[data-action="push-dismiss"]', handler: dismissHandler, global: true},
-      {type: 'click', target: '[data-action="push-disable"]', handler: () => unsubscribeHandler(false), global: true},
-      {type: 'click', target: '[data-action="push-remove-all"]', handler: () => unsubscribeHandler(true), global: true},
-    ]);
+    navigator.serviceWorker.getRegistration().then(registration => {
+      return registration.pushManager.getSubscription().then(subscription => {
+        if (!subscription) {
+          document.querySelector('button[data-action="push-enable"]').classList.remove('d-none');
+        } else {
+          document.querySelector('[data-action="push-disable"]').classList.remove('d-none');
+          if (localStorage.getItem('dismiss-push-settings-prompt') == null) {
+            document.querySelector('.push-settings')?.classList.remove('d-none');
+          }
+        }
+      });
+    });
   }
+
+  registerEvents([
+    {type: 'click', target: '[data-action="push-enable"]', handler: enableHandler, global: true},
+    {type: 'click', target: '[data-action="push-dismiss"]', handler: dismissHandler, global: true},
+    {type: 'click', target: '[data-action="push-disable"]', handler: unsubscribeHandler, global: true},
+    {
+      type: 'click',
+      target: '[data-action="push-remove-all"]',
+      handler: unsubscribeHandler,
+      global: true
+    },
+  ]);
 }

@@ -17,18 +17,23 @@ class Ajax::WebPushController < AjaxController
 
     @response[:status] = :okay
     @response[:success] = true
+    @response[:message] = t(".subscription_count", count: current_user.web_push_subscriptions.count)
   end
 
   def unsubscribe
     params.permit(:endpoint)
 
     if params.key?(:endpoint)
-      current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy
+      current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy_all
     else
       current_user.web_push_subscriptions.destroy_all
     end
 
+    count = current_user.web_push_subscriptions.count
+
     @response[:status] = :okay
     @response[:success] = true
+    @response[:message] = t(".subscription_count", count:)
+    @response[:count] = count
   end
 end

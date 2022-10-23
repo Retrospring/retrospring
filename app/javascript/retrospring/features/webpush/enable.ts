@@ -4,6 +4,7 @@ import { showNotification } from "utilities/notifications";
 
 export function enableHandler (event: Event): void {
   event.preventDefault();
+  const sender = event.target as HTMLButtonElement;
 
   try {
     installServiceWorker()
@@ -26,6 +27,13 @@ export function enableHandler (event: Event): void {
               new Notification(I18n.translate("frontend.push_notifications.subscribe.success.title"), {
                 body: I18n.translate("frontend.push_notifications.subscribe.success.body")
               });
+
+              document.querySelectorAll<HTMLButtonElement>('button[data-action="push-disable"], button[data-action="push-remove-all"]')
+                .forEach(button => button.classList.remove('d-none'));
+
+              sender.classList.add('d-none');
+
+              document.getElementById('subscription-count').textContent = data.message;
             } else {
               new Notification(I18n.translate("frontend.push_notifications.fail.title"), {
                 body: I18n.translate("frontend.push_notifications.fail.body")

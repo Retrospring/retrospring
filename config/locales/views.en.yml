@@ -543,6 +543,7 @@ en:
       subscribe: "Enable on this device"
       unsubscribe_current: "Disable on this device"
       unsubscribe_all: "Disable on all devices"
+      description: "Here you can set up or disable push notifications for new questions in your inbox."
   shared:
     links:
       about: "About"
