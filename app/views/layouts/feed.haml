@@ -2,6 +2,6 @@
   .row
     .col-sm-10.col-md-10.col-lg-9.mx-auto
       = render 'layouts/messages'
-      = render 'tabs/feed', list: @list
+      = render 'tabs/feed', lists: @lists, list: @list
       = yield
   .d-block.d-sm-none= render 'shared/links'
