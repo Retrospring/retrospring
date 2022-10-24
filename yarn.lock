@@ -1093,6 +1093,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/lexend@^4.5.13":
+  version "4.5.13"
+  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.13.tgz#a22076e1393af0f075e945fcffc9ffa514805304"
+  integrity sha512-lJjBMU9Jmi2a/QqLRBhwe862385UyS2RckS3ATr8jHAq1JFLxox2p2gODNzhaWo0ZwTjDxIJ0YfMiEzSdyqZ0w==
+
 "@fortawesome/fontawesome-free@^5.15.4":
   version "5.15.4"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
@@ -4747,11 +4752,6 @@ last-call-webpack-plugin@^3.0.0:
   dependencies:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
-
-lato-font@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/lato-font/-/lato-font-3.0.0.tgz#91b837e2374b668fb7331d44c894d37a2d9f8e11"
-  integrity sha1-kbg34jdLZo+3Mx1EyJTTei2fjhE=
 
 levn@^0.4.1:
   version "0.4.1"

@@ -4,6 +4,7 @@
  Variable definitions, tools and mixins used
  across all styling definitions.
  */
+@use "~@fontsource/lexend/scss/mixins" as Lexend;
 
 @import
 "variables";
@@ -19,9 +20,17 @@
 "~bootstrap/scss/bootstrap",
 "~croppr/dist/croppr",
 "~font-awesome/scss/font-awesome",
-"~lato-font/scss/lato-font",
 "~sweetalert/dist/sweetalert",
 "~toastify-js/src/toastify";
+
+
+@each $weight in $lexend-weights {
+  @include Lexend.fontFace(
+    $weight: $weight,
+    $display: fallback,
+    $fontDir: "~@fontsource/lexend/files"
+  );
+}
 
 /**
  OVERRIDES
