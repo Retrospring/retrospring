@@ -6,6 +6,14 @@
     &:focus {
       color: RGB(var(--primary-text));
     }
+
+    /* svg-logo! \o/ */
+    svg {
+      height: $navbar-brand-font-size;
+      path {
+        fill: RGB(var(--primary-text));
+      }
+    }
   }
 
   .navbar-nav {

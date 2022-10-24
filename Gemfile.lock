@@ -315,7 +315,7 @@ GEM
     net-smtp (0.3.2)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.13.8)
+    nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     notiffany (0.1.3)
@@ -444,17 +444,17 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.11.0)
-    rubocop (1.36.0)
+    rubocop (1.37.1)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.20.1, < 2.0)
+      rubocop-ast (>= 1.23.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.21.0)
+    rubocop-ast (1.23.0)
       parser (>= 3.1.1.0)
     rubocop-rails (2.16.1)
       activesupport (>= 4.2.0)
@@ -518,6 +518,9 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.11)
     timeout (0.3.0)
+    tldv (0.1.0)
+      tldv-data (~> 1.0)
+    tldv-data (1.0.2022101300)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -627,7 +630,7 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails (~> 5.1)
   rspec-sidekiq (~> 3.0)
-  rubocop (~> 1.36)
+  rubocop (~> 1.37)
   rubocop-rails (~> 2.16)
   ruby-progressbar
   sanitize
@@ -641,6 +644,7 @@ DEPENDENCIES
   simplecov-cobertura
   simplecov-json
   spring (~> 4.1)
+  tldv (~> 0.1.0)
   turbo-rails
   twitter
   twitter-text

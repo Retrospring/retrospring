@@ -65,6 +65,9 @@ gem "redis"
 
 gem "fake_email_validator"
 
+# TLD validation
+gem "tldv", "~> 0.1.0"
+
 gem "jwt", "~> 2.5"
 
 group :development do
@@ -94,7 +97,7 @@ group :development, :test do
   gem "rspec-mocks"
   gem "rspec-rails", "~> 5.1"
   gem "rspec-sidekiq", "~> 3.0", require: false
-  gem "rubocop", "~> 1.36"
+  gem "rubocop", "~> 1.37"
   gem "rubocop-rails", "~> 2.16"
   gem "shoulda-matchers", "~> 5.2"
   gem "simplecov", require: false

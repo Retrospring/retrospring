@@ -30,7 +30,7 @@ describe User::RegistrationsController, type: :controller do
         {
           user: {
             screen_name:           "dio",
-            email:                 "the-world-21@somewhere.everywhere",
+            email:                 "the-world-21@somewhere.everywhere.now",
             password:              "AReallySecurePassword456!",
             password_confirmation: "AReallySecurePassword456!"
           }
@@ -85,7 +85,7 @@ describe User::RegistrationsController, type: :controller do
           {
             user: {
               screen_name:           "Dio Brando",
-              email:                 "the-world-21@somewhere.everywhere",
+              email:                 "the-world-21@somewhere.everywhere.now",
               password:              "AReallySecurePassword456!",
               password_confirmation: "AReallySecurePassword456!"
             }
@@ -102,7 +102,7 @@ describe User::RegistrationsController, type: :controller do
           {
             user: {
               screen_name:           "moderator",
-              email:                 "the-world-21@somewhere.everywhere",
+              email:                 "the-world-21@somewhere.everywhere.now",
               password:              "AReallySecurePassword456!",
               password_confirmation: "AReallySecurePassword456!"
             }

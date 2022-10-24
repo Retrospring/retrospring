@@ -2,14 +2,15 @@
 
 class TimelineController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_list, only: %i[list]
+  before_action :set_lists
 
   def index
     paginate_timeline { |args| current_user.cursored_timeline(**args) }
   end
 
   def list
-    @list = current_user.lists.find_by!(name: params[:list_name])
-    @title = list_title(current_user.lists.find_by!(name: params[:list_name]))
+    @title = list_title(@list)
     paginate_timeline { |args| @list.cursored_timeline(**args) }
   end
 
@@ -19,6 +20,15 @@ class TimelineController < ApplicationController
   end
 
   private
+
+  def set_list
+    @list = current_user.lists.find_by!(name: params[:list_name]) if params[:list_name].present?
+  end
+
+  def set_lists
+    @lists = current_user.lists
+    @lists = @lists.where.not(id: @list.id) if @list.present?
+  end
 
   def paginate_timeline
     @timeline = yield(last_id: params[:last_id])
