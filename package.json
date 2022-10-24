@@ -10,7 +10,7 @@
     "@rails/request.js": "^0.0.6",
     "bootstrap": "^4.6.2",
     "cheet.js": "^0.3.3",
-    "core-js": "^3.25.5",
+    "core-js": "^3.26.0",
     "croppr": "^2.3.1",
     "font-awesome": "4.7.0",
     "i18n-js": "^4.0",
