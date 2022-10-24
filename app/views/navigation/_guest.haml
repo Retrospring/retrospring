@@ -1,6 +1,10 @@
 %nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top{ role: :navigation }
   .container{ class: ios_web_app? ? 'ios-web-app' : '' }
-    %a.navbar-brand{ href: '/' }= APP_CONFIG['site_name']
+    %a.navbar-brand{ href: '/', title: APP_CONFIG["site_name"] }
+      - if APP_CONFIG["use_svg_logo"]
+        = render inline: Rails.application.config.justask_svg_logo
+      - else
+        = APP_CONFIG["site_name"]
     %button.navbar-toggler{ data: { target: '#j2-main-navbar-collapse', toggle: :collapse }, type: :button }
       %span.sr-only= t("navigation.toggle")
       %span.navbar-toggler-icon

@@ -1,6 +1,9 @@
 # The site name, shown everywhere.
 site_name: "justask"
 
+# Use the SVG logo from `/public/logo.svg`
+use_svg_logo: false
+
 hostname: "justask.rrerr.net"
 https: true
 
