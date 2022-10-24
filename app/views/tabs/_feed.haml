@@ -15,12 +15,11 @@
         - if list.members.empty?
           %p.text-muted= t(".list.members.none")
         - else
-          %p.px-4
+          %p.px-4.pb-2
             - list.members.each do |member|
               %a{ href: user_path(member.user), title: member.user.screen_name, data: { toggle: :tooltip, placement: :top } }
                 %img.avatar-xs{ src: member.user.profile_picture.url(:small), loading: :lazy }
-        %li.dropdown-divider
-      - if current_user.lists.empty?
+      - if !list && lists.empty?
         .p-3= t(".lists.notice_html")
-      - current_user.lists.each do |list|
+      - lists.each do |list|
         %a.dropdown-item{ href: list_timeline_path(list.name) }= list.display_name
