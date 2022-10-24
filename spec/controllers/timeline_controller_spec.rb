@@ -92,6 +92,11 @@ describe TimelineController do
 
     it { should have_http_status(200) }
     it_behaves_like "paginates", :followed_user_answers
+
+    it "assigns all lists to an instance variable" do
+      subject
+      expect(assigns(:lists)).to eq(user.lists)
+    end
   end
 
   describe "#list" do
@@ -107,6 +112,11 @@ describe TimelineController do
       it "assigns the list to an instance variable" do
         subject
         expect(assigns(:list)).to eq(list)
+      end
+
+      it "excludes the current selected list from the list of lists" do
+        subject
+        expect(assigns(:lists)).not_to include(list)
       end
     end
   end
