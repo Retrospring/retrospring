@@ -5,6 +5,8 @@
     .col-md-9.col-xs-12.col-sm-8
       = yield
 
+.d-block.d-sm-none= render "shared/links"
+
 :ruby
   Notification.for(current_user).update_all(new: false)
   parent_layout 'base'
