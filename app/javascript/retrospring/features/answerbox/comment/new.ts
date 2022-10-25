@@ -3,7 +3,14 @@ import { post } from '@rails/request.js';
 import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 
+let compositionJustEnded = false;
+
 export function commentCreateHandler(event: KeyboardEvent): boolean {
+  if (compositionJustEnded && event.which == 13) {
+    compositionJustEnded = false;
+    return;
+  }
+
   const input = event.target as HTMLInputElement;
   const id = input.dataset.aId;
   const counter = document.querySelector(`#ab-comment-charcount-${id}`);
@@ -50,4 +57,14 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
         input.disabled = false;
       });
   }
+}
+
+export function commentComposeStart(): boolean {
+  compositionJustEnded = false;
+  return true;
+}
+
+export function commentComposeEnd(): boolean {
+  compositionJustEnded = true;
+  return true;
 }
