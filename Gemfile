@@ -95,7 +95,7 @@ group :development, :test do
   gem "rake"
   gem "rspec-its", "~> 1.3"
   gem "rspec-mocks"
-  gem "rspec-rails", "~> 5.1"
+  gem "rspec-rails", "~> 6.0"
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem "rubocop", "~> 1.37"
   gem "rubocop-rails", "~> 2.17"
