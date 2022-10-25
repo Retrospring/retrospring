@@ -9,6 +9,6 @@
       = render "inbox/entry", i: i
 
   - if @more_data_available
-    .d-flex.justify-content-center.justify-content-sm-start#paginator
+    .d-flex.justify-content-center#paginator
       = button_to mod_inbox_index_path(@user, last_id: @inbox_last_id), class: "btn btn-light" do
         = t("voc.load")

@@ -3,7 +3,7 @@
     = render "answerbox", a: answer
 
 - if @more_data_available
-  .d-flex.justify-content-center.justify-content-sm-start#paginator
+  .d-flex.justify-content-center#paginator
     = button_to "#{request.path}?last_id=#{@timeline_last_id}", class: "btn btn-light" do
       = t("voc.load")
 
