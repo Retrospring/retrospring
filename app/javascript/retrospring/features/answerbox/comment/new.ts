@@ -38,7 +38,10 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
 
         if (data.success) {
           document.querySelector(`#ab-comments-${id}`).innerHTML = data.render;
-          document.querySelector(`#ab-comment-count-${id}`).innerHTML = data.count;
+          const commentCount = document.getElementById(`#ab-comment-count-${id}`);
+          if (commentCount) {
+            commentCount.innerHTML = data.count;
+          }
           input.value = '';
           counter.innerHTML = String(160);
 
