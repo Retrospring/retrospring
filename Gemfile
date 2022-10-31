@@ -45,7 +45,7 @@ gem "sentry-rails"
 gem "sentry-ruby"
 gem "sentry-sidekiq"
 
-gem "sidekiq", "< 6" # remove version constraint once we have redis 5
+gem "sidekiq", "< 8" # remove version constraint once we have redis 5
 
 gem "questiongenerator", "~> 1.0"
 
