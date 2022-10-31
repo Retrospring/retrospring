@@ -213,7 +213,7 @@ GEM
       guard (>= 2.0.0)
       guard-compat (~> 1.0)
     guard-compat (1.2.1)
-    haml (6.0.7)
+    haml (6.0.8)
       temple (>= 0.8.2)
       thor
       tilt
