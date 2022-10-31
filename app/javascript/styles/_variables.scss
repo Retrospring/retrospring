@@ -1,14 +1,9 @@
 // Font settings
-$lato-font-path: "~lato-font/fonts";
-$lato-variants: (
-  "normal"   : 400,
-  "semibold" : 500,
-  "bold"     : 600,
-);
+$lexend-font-path: "~@fontsource/lexend/files";
+$lexend-weights:   500, 600;
+$fa-font-path:     "~font-awesome/fonts";
 
-$fa-font-path: "~font-awesome/fonts";
-
-$font-family-sans-serif:  "Lato","Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  "Lexend", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-serif:       Georgia, "DejaVu Serif", "Times New Roman", Times, serif;
 $font-family-monospace:   "PragmataPro", Monaco, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
 $font-family-base:        $font-family-sans-serif;
@@ -41,7 +36,7 @@ $nprogress-color: lighten($primary, 25%);
 
 // Color names for theme generation
 $color-names: (
-  "primary", 
+  "primary",
   "danger",
   "warning",
   "info",
@@ -83,7 +78,7 @@ $spacers: (
    color: RGB(var(--*-text));
 
    And for transparent usage, use:
-   color: rgba(var(--*-text), .7); 
+   color: rgba(var(--*-text), .7);
 
    The uppercase RGB is required because internally
    SassC wants more than one argument for rgb(),

@@ -26,7 +26,7 @@ gem "devise-i18n"
 gem "fog-aws"
 gem "fog-core"
 gem "fog-local"
-gem "haml", "~> 5.0"
+gem "haml", "~> 6.0"
 gem "hcaptcha", "~> 7.0"
 gem "mini_magick"
 gem "oj"
@@ -35,7 +35,7 @@ gem "rqrcode"
 gem "rolify", "~> 6.0"
 
 gem "dry-initializer", "~> 3.1"
-gem "dry-types", "~> 1.4"
+gem "dry-types", "~> 1.6"
 
 gem "ruby-progressbar"
 
@@ -95,10 +95,10 @@ group :development, :test do
   gem "rake"
   gem "rspec-its", "~> 1.3"
   gem "rspec-mocks"
-  gem "rspec-rails", "~> 5.1"
+  gem "rspec-rails", "~> 6.0"
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem "rubocop", "~> 1.37"
-  gem "rubocop-rails", "~> 2.16"
+  gem "rubocop-rails", "~> 2.17"
   gem "shoulda-matchers", "~> 5.2"
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false

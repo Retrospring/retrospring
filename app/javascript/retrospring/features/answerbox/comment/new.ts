@@ -3,7 +3,14 @@ import { post } from '@rails/request.js';
 import I18n from 'retrospring/i18n';
 import { showNotification, showErrorNotification } from 'utilities/notifications';
 
+let compositionJustEnded = false;
+
 export function commentCreateHandler(event: KeyboardEvent): boolean {
+  if (compositionJustEnded && event.which == 13) {
+    compositionJustEnded = false;
+    return;
+  }
+
   const input = event.target as HTMLInputElement;
   const id = input.dataset.aId;
   const counter = document.querySelector(`#ab-comment-charcount-${id}`);
@@ -31,13 +38,16 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
 
         if (data.success) {
           document.querySelector(`#ab-comments-${id}`).innerHTML = data.render;
-          document.querySelector(`#ab-comment-count-${id}`).innerHTML = data.count;
+          const commentCount = document.getElementById(`#ab-comment-count-${id}`);
+          if (commentCount) {
+            commentCount.innerHTML = data.count;
+          }
           input.value = '';
           counter.innerHTML = String(160);
 
           const sub = document.querySelector<HTMLElement>(`[data-action=ab-submarine][data-a-id="${id}"]`);
           sub.dataset.torpedo = "no"
-          sub.children[0].nextSibling.textContent = ' ' + I18n.translate('views.actions.unsubscribe');
+          sub.children[0].nextSibling.textContent = ' ' + I18n.translate('voc.unsubscribe');
         }
 
         showNotification(data.message, data.success);
@@ -52,11 +62,12 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
   }
 }
 
-export function commentInputHandler(event: KeyboardEvent): void {
-  const input = event.target as HTMLInputElement;
-  const inboxId = input.dataset.id;
+export function commentComposeStart(): boolean {
+  compositionJustEnded = false;
+  return true;
+}
 
-  if (event.keyCode == 13 && (event.ctrlKey || event.metaKey)) {
-    document.querySelector<HTMLButtonElement>(`button[name="ab-comment-new"][data-abc-id="${inboxId}"]`).click();
-  }
+export function commentComposeEnd(): boolean {
+  compositionJustEnded = true;
+  return true;
 }
