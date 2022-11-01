@@ -29,4 +29,4 @@ merged in, however please keep the following in mind.
 * If you include a new feature also include tests, and make sure they'll pass.
 * Before submitting a pull-request, clean up the history by going over your
   commits and squashing together minor changes and fixes into the corresponding
-  commits. You can do this using the interactive rebase command.
+  commits. You can do this using the [interactive rebase](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History#_changing_multiple) command.
