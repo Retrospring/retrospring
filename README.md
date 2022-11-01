@@ -6,7 +6,10 @@
 
 ![Retrospring](https://github.com/Retrospring/retrospring/workflows/Retrospring/badge.svg)
 
-Retrospring is a **free, open-source social network** following the Q/A (question and answer) principle of sites like Formspring, ask.fm or CuriousCat. Users can create accounts on Retrospring to receive questions from anyone on the internet anonymously (or from other users with accounts) or ask questions to their followers.
+Retrospring is a **free, open-source social network** following the Q/A (question and answer) principle of sites like
+Formspring, ask.fm or CuriousCat.  Users can create accounts on Retrospring to receive questions from other users of the site
+and/or anonymous people on the Internet.  They can also follow each other on Retrospring to see new answers of their friends in
+the timeline and to ask their followers interesting questions.
 
 ## Installation
 
