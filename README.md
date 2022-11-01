@@ -6,23 +6,33 @@
 
 ![Retrospring](https://github.com/Retrospring/retrospring/workflows/Retrospring/badge.svg)
 
-This is the source code that powers Retrospring. This is a detached fork of
-[nilsding/justask](https://github.com/nilsding/justask), where we continue
-development.
+Retrospring is a **free, open-source social network** following the Q/A (question and answer) principle of sites like Formspring, ask.fm or CuriousCat. Users can create accounts on Retrospring to receive questions from anyone on the internet anonymously (or from other users with accounts) or ask questions to their followers.
 
 ## Installation
 
 You can find all the installation instructions needed for a local/production
-setup of Retrospring in the
-[Wiki](https://github.com/Retrospring/retrospring/wiki/Setup).
+setup of Retrospring in the [Wiki](https://github.com/Retrospring/retrospring/wiki/Setup).
 
 ## Contributing
 
-Guidelines for Pull Requests and general information about how you can help us
-improving Retrospring can be found
-[here](https://github.com/Retrospring/retrospring/blob/master/.github/CONTRIBUTING.md).
+Retrospring is **free, open-source software** licensed under **AGPLv3**.
 
+Our guidelines and general information about how you can help us
+improving Retrospring can be found in the [CONTRIBUTING.md](https://github.com/Retrospring/retrospring/blob/master/.github/CONTRIBUTING.md) file.
 
 ## License
 
-[AGPLv3](https://github.com/Retrospring/retrospring/blob/master/LICENSE).
+Copyright (C) 2014-2022 The Retrospring team and contributors
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see http://www.gnu.org/licenses/.
