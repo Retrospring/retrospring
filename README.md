@@ -23,7 +23,7 @@ Retrospring is **free, open-source software** licensed under **AGPLv3**.
 Our guidelines and general information about how you can help us
 improving Retrospring can be found in the [CONTRIBUTING.md](https://github.com/Retrospring/retrospring/blob/master/.github/CONTRIBUTING.md) file.
 
-## License
+## Licence
 
 Copyright (C) 2014-2022 The Retrospring team and contributors
 
