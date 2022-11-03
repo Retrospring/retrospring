@@ -22,6 +22,10 @@ export function questionboxAllHandler(event: Event): void {
       if (data.success) {
         document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').value = '';
         window['$']('#modal-ask-followers').modal('hide');
+
+        // FIXME: also solve this using a Stimulus controller
+        const characterCount = document.querySelector<HTMLElement>('#modal-ask-followers [data-character-count-max-value]').dataset.characterCountMaxValue;
+        document.querySelector<HTMLElement>('#modal-ask-followers [data-character-count-target="counter"]').innerHTML = characterCount;
       }
 
       showNotification(data.message, data.success);

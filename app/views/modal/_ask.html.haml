@@ -1,13 +1,15 @@
 .modal.fade#modal-ask-followers{ aria: { hidden: true, labelledby: "modal-ask-followers-label" }, role: :dialog, tabindex: -1 }
   .modal-dialog
-    .modal-content
+    .modal-content{ data: { controller: "character-count", "character-count-max-value": 512 }}
       .modal-header
         %h5.modal-title#modal-ask-followers-label= t(".title")
         %button.close{ data: { dismiss: :modal }, type: :button }
           %span{ aria: { hidden: true } } ×
           %span.sr-only= t("voc.close")
       .modal-body
-        %textarea.form-control{ name: "qb-all-question", placeholder: t(".placeholder") }
+        .form-group.has-feedback
+          %textarea.form-control{ name: "qb-all-question", placeholder: t(".placeholder"), data: { "character-count-target": "input" } }
+          %p.text-right.text-muted.form-control-feedback{ data: { "character-count-target": "counter" } } 512
       .modal-footer
         %button.btn.btn-default{ type: :button, data: { dismiss: :modal } }= t("voc.cancel")
-        %button.btn.btn-primary{ name: "qb-all-ask", type: :button, data: { loading_text: t(".loading") } }= t(".action")
+        %button.btn.btn-primary{ name: "qb-all-ask", type: :button, data: { "character-count-target": "action", loading_text: t(".loading") } }= t(".action")
