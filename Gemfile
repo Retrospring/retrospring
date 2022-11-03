@@ -72,22 +72,18 @@ gem "jwt", "~> 2.5"
 
 group :development do
   gem "binding_of_caller"
-  gem "byebug"
   gem "spring", "~> 4.1"
-  gem "web-console", "~> 4.0"
 end
 
 gem "puma"
 
 group :development, :test do
   gem "better_errors"
-  gem "brakeman"
   gem "bullet"
   gem "capybara"
   gem "database_cleaner"
   gem "factory_bot_rails", require: false
   gem "faker"
-  gem "guard-brakeman"
   gem "haml_lint", require: false
   gem "letter_opener" # Use this just in local test environments
   gem "poltergeist"
