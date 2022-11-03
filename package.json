@@ -13,7 +13,7 @@
     "cheet.js": "^0.3.3",
     "core-js": "^3.26.0",
     "croppr": "^2.3.1",
-    "font-awesome": "4.7.0",
+    "fontawesome-free": "npm:@fortawesome/fontawesome-free",
     "i18n-js": "^4.0",
     "jquery": "^3.6.1",
     "js-cookie": "2.2.1",
