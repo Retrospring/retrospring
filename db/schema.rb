@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_20_163035) do
+ActiveRecord::Schema.define(version: 2022_11_06_130744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.string "identifier"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "question_id"
     t.bigint "user_id"
+    t.bigint "question_id"
     t.index ["identifier"], name: "index_anonymous_blocks_on_identifier"
     t.index ["question_id"], name: "index_anonymous_blocks_on_question_id"
     t.index ["user_id"], name: "index_anonymous_blocks_on_user_id"
@@ -46,8 +46,6 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_answers_on_deleted_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
   end
@@ -60,8 +58,6 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_appendables_on_deleted_at"
     t.index ["parent_id", "parent_type"], name: "index_appendables_on_parent_id_and_parent_type"
     t.index ["user_id", "created_at"], name: "index_appendables_on_user_id_and_created_at"
   end
@@ -73,9 +69,7 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
-    t.datetime "deleted_at"
     t.index ["answer_id"], name: "index_comments_on_answer_id"
-    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
   end
 
@@ -108,10 +102,10 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
   end
 
   create_table "mute_rules", id: :bigint, default: -> { "gen_timestamp_id('mute_rules'::text)" }, force: :cascade do |t|
+    t.bigint "user_id"
     t.string "muted_phrase"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.index ["user_id"], name: "index_mute_rules_on_user_id"
   end
 
@@ -150,8 +144,6 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.datetime "updated_at"
     t.integer "answer_count", default: 0, null: false
     t.boolean "direct", default: false, null: false
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_questions_on_deleted_at"
     t.index ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"
   end
 
@@ -200,6 +192,16 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.datetime "updated_at"
     t.string "post_tag", limit: 20
     t.index ["user_id"], name: "index_services_on_user_id"
+  end
+
+  create_table "settings", id: :serial, force: :cascade do |t|
+    t.string "var", null: false
+    t.text "value"
+    t.integer "thing_id"
+    t.string "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
   end
 
   create_table "subscriptions", id: :serial, force: :cascade do |t|
@@ -300,9 +302,8 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.datetime "export_created_at"
     t.string "otp_secret_key"
     t.integer "otp_module", default: 0, null: false
-    t.datetime "deleted_at"
+    t.boolean "privacy_lock_inbox", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["screen_name"], name: "index_users_on_screen_name", unique: true
@@ -316,5 +317,7 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "anonymous_blocks", "questions"
+  add_foreign_key "anonymous_blocks", "users"
   add_foreign_key "profiles", "users"
 end

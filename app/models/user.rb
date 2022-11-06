@@ -169,6 +169,10 @@ class User < ApplicationRecord
     !self.export_processing
   end
 
+  def inbox_locked?
+    privacy_lock_inbox
+  end
+
   # %w[admin moderator].each do |m|
   #   define_method(m) { raise "not allowed: #{m}" }
   #   define_method(m+??) { raise "not allowed: #{m}?"}
