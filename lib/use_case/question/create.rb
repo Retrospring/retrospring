@@ -14,6 +14,7 @@ module UseCase
       option :direct, type: Types::Params::Bool, default: proc { true }
 
       def call
+        check_lock
         check_anonymous_rules
         check_blocks
 
@@ -41,6 +42,10 @@ module UseCase
       end
 
       private
+
+      def check_lock
+        raise Errors::InboxLocked if target_user.inbox_locked?
+      end
 
       def check_anonymous_rules
         if !source_user_id && !anonymous
