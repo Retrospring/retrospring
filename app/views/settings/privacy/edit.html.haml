@@ -1,6 +1,7 @@
 .card
   .card-body
     = bootstrap_form_for(current_user, url: settings_privacy_path, method: :patch, data: { turbo: false }) do |f|
+      = f.check_box :privacy_lock_inbox
       = f.check_box :privacy_allow_anonymous_questions
       = f.check_box :privacy_allow_public_timeline
       = f.check_box :privacy_allow_stranger_answers
