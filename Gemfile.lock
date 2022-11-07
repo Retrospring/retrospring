@@ -140,23 +140,20 @@ GEM
     docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dry-container (0.11.0)
-      concurrent-ruby (~> 1.0)
-    dry-core (0.9.0)
+    dry-core (1.0.0)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
-    dry-inflector (0.3.0)
+    dry-inflector (1.0.0)
     dry-initializer (3.1.1)
-    dry-logic (1.3.0)
+    dry-logic (1.4.0)
       concurrent-ruby (~> 1.0)
-      dry-core (~> 0.9, >= 0.9)
+      dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-types (1.6.1)
+    dry-types (1.7.0)
       concurrent-ruby (~> 1.0)
-      dry-container (~> 0.3)
-      dry-core (~> 0.9, >= 0.9)
-      dry-inflector (~> 0.1, >= 0.1.2)
-      dry-logic (~> 1.3, >= 1.3)
+      dry-core (~> 1.0, < 2)
+      dry-inflector (~> 1.0, < 2)
+      dry-logic (>= 1.4, < 2)
       zeitwerk (~> 2.6)
     equalizer (0.0.11)
     erubi (1.11.0)
@@ -526,7 +523,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.5)
 
 PLATFORMS
   ruby
@@ -548,7 +545,7 @@ DEPENDENCIES
   devise-async
   devise-i18n
   dry-initializer (~> 3.1)
-  dry-types (~> 1.6)
+  dry-types (~> 1.7)
   factory_bot_rails
   fake_email_validator
   faker
