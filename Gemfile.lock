@@ -297,7 +297,7 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth (0.5.8)
-    oj (3.13.21)
+    oj (3.13.23)
     omniauth (2.1.0)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
