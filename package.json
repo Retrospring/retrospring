@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
-    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-env": "^7.20.2",
     "@rails/webpacker": "5.4.3",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
