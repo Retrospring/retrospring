@@ -140,23 +140,20 @@ GEM
     docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dry-container (0.11.0)
-      concurrent-ruby (~> 1.0)
-    dry-core (0.9.0)
+    dry-core (1.0.0)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
-    dry-inflector (0.3.0)
+    dry-inflector (1.0.0)
     dry-initializer (3.1.1)
-    dry-logic (1.3.0)
+    dry-logic (1.4.0)
       concurrent-ruby (~> 1.0)
-      dry-core (~> 0.9, >= 0.9)
+      dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-types (1.6.1)
+    dry-types (1.7.0)
       concurrent-ruby (~> 1.0)
-      dry-container (~> 0.3)
-      dry-core (~> 0.9, >= 0.9)
-      dry-inflector (~> 0.1, >= 0.1.2)
-      dry-logic (~> 1.3, >= 1.3)
+      dry-core (~> 1.0, < 2)
+      dry-inflector (~> 1.0, < 2)
+      dry-logic (>= 1.4, < 2)
       zeitwerk (~> 2.6)
     equalizer (0.0.11)
     erubi (1.11.0)
@@ -169,7 +166,7 @@ GEM
     fake_email_validator (1.0.11)
       activemodel
       mail
-    faker (2.23.0)
+    faker (3.0.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
@@ -297,7 +294,7 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth (0.5.8)
-    oj (3.13.21)
+    oj (3.13.23)
     omniauth (2.1.0)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -413,7 +410,7 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.12.0)
-    rubocop (1.37.1)
+    rubocop (1.38.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
@@ -526,7 +523,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.5)
 
 PLATFORMS
   ruby
@@ -548,7 +545,7 @@ DEPENDENCIES
   devise-async
   devise-i18n
   dry-initializer (~> 3.1)
-  dry-types (~> 1.6)
+  dry-types (~> 1.7)
   factory_bot_rails
   fake_email_validator
   faker
@@ -590,7 +587,7 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails (~> 6.0)
   rspec-sidekiq (~> 3.0)
-  rubocop (~> 1.37)
+  rubocop (~> 1.38)
   rubocop-rails (~> 2.17)
   ruby-progressbar
   sanitize
