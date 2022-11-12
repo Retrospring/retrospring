@@ -13,6 +13,7 @@ class QuestionWorker
 
     user.followers.each do |f|
       next if f.inbox_locked?
+      next if f.banned?
       next if MuteRule.where(user: f).any? { |rule| rule.applies_to? question }
 
       Inbox.create(user_id: f.id, question_id: question_id, new: true)

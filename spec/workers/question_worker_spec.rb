@@ -43,6 +43,18 @@ describe QuestionWorker do
 
     it "respects inbox locks" do
       user.followers.first.update(privacy_lock_inbox: true)
+      
+      
+      expect { subject }
+        .to(
+          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+            .from(0)
+            .to(4)
+        )
+    end
+    
+    it "does not send questions to banned users" do
+      user.followers.first.ban
 
       expect { subject }
         .to(
