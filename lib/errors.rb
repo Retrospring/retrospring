@@ -51,6 +51,9 @@ module Errors
   class Blocked < Forbidden
   end
 
+  class LoginRequired < Forbidden
+  end
+
   class OtherBlockedSelf < Blocked
   end
 
