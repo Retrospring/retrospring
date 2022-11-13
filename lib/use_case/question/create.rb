@@ -14,6 +14,7 @@ module UseCase
       option :direct, type: Types::Params::Bool, default: proc { true }
 
       def call
+        check_user
         check_anonymous_rules
         check_blocks
 
@@ -57,6 +58,10 @@ module UseCase
 
         raise Errors::AskingOtherBlockedSelf if target_user.blocking?(source_user)
         raise Errors::AskingSelfBlockedOther if source_user.blocking?(target_user)
+      end
+
+      def check_user
+        raise Errors::LoginRequired if target_user.privacy_require_user && !source_user_id
       end
 
       def increment_asked_count
