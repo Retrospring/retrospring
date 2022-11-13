@@ -48,10 +48,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Set up Node 12
+      - name: Set up Node 14
         uses: actions/setup-node@v3
         with:
-          node-version: '12'
+          node-version: '14'
       - name: Copy default configuration
         run: |
           cp config/database.yml.postgres config/database.yml

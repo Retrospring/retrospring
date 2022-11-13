@@ -35,6 +35,9 @@ module Errors
   class SelfAction < Forbidden
   end
 
+  class InboxLocked < Forbidden
+  end
+
   class FollowingSelf < SelfAction
   end
 

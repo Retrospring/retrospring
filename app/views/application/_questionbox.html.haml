@@ -14,6 +14,9 @@
     - elsif user_signed_in? && user.blocking?(current_user)
       .text-center
         %strong= t(".status.blocked")
+    - elsif user.inbox_locked?
+      .text-center
+        %strong= t(".status.locked")
     - elsif !user_signed_in? && user.privacy_require_user?
       .text-center
         %strong= t(".status.require_user_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))

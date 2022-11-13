@@ -122,6 +122,7 @@ en:
         banned: "This user got hit with ye olde banhammer."
         blocking: "You are blocking this user."
         blocked: "This user has blocked you."
+        locked: "This user currently does not accept questions."
         require_user_html: |
           This user requires others to be logged in to ask questions. <br/>
           (%{sign_in} or %{sign_up})
