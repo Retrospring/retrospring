@@ -12,6 +12,7 @@ class QuestionWorker
     question = Question.find(question_id)
 
     user.followers.each do |f|
+      next if f.inbox_locked?
       next if f.banned?
       next if MuteRule.where(user: f).any? { |rule| rule.applies_to? question }
 

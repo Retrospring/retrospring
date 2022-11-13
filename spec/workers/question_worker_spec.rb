@@ -6,7 +6,7 @@ describe QuestionWorker do
   describe "#perform" do
     let(:user) { FactoryBot.create(:user) }
     let(:user_id) { user.id }
-    let(:question) { FactoryBot.create(:question, user: user) }
+    let(:question) { FactoryBot.create(:question, user:) }
     let(:question_id) { question.id }
 
     before do
@@ -41,6 +41,18 @@ describe QuestionWorker do
         )
     end
 
+    it "respects inbox locks" do
+      user.followers.first.update(privacy_lock_inbox: true)
+      
+      
+      expect { subject }
+        .to(
+          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+            .from(0)
+            .to(4)
+        )
+    end
+    
     it "does not send questions to banned users" do
       user.followers.first.ban
 

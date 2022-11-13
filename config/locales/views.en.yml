@@ -123,6 +123,7 @@ en:
         banned: "This user got hit with ye olde banhammer."
         blocking: "You are blocking this user."
         blocked: "This user has blocked you."
+        locked: "This user currently does not accept questions."
   devise:
     registrations:
       edit:
