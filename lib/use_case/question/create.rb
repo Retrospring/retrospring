@@ -61,7 +61,7 @@ module UseCase
       end
 
       def check_user
-        raise Errors::LoginRequired if target_user.privacy_require_user && !source_user_id
+        raise Errors::NotAuthorized if target_user.privacy_require_user && !source_user_id
       end
 
       def increment_asked_count

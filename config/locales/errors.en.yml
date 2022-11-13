@@ -34,4 +34,4 @@ en:
 
     record_not_found: "Record not found"
 
-    login_required: "You need to be logged in to perform this action"
+    not_authorized: "You need to be logged in to perform this action"

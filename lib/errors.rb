@@ -44,14 +44,17 @@ module Errors
     end
   end
 
+  class NotAuthorized < Base
+    def status
+      401
+    end
+  end
+
   class UserNotFound < NotFound
   end
 
   # region User Blocking
   class Blocked < Forbidden
-  end
-
-  class LoginRequired < Forbidden
   end
 
   class OtherBlockedSelf < Blocked
