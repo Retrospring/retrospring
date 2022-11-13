@@ -301,6 +301,7 @@ ActiveRecord::Schema.define(version: 2022_08_20_163035) do
     t.string "otp_secret_key"
     t.integer "otp_module", default: 0, null: false
     t.datetime "deleted_at"
+    t.boolean "privacy_require_user", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
