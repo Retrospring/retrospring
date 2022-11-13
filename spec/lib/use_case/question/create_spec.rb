@@ -175,6 +175,19 @@ describe UseCase::Question::Create do
           it_behaves_like "invalid params"
         end
       end
+
+      context "target user does not allow non-logged in questions" do
+        let(:allow_anon) { true }
+        let(:anonymous) { true }
+        let(:content) { "Hello world" }
+        let(:author_identifier) { "qwerty" }
+
+        before do
+          target_user.update!(privacy_require_user: true)
+        end
+
+        it_behaves_like "forbidden"
+      end
     end
   end
 end
