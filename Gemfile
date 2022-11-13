@@ -80,13 +80,11 @@ gem "puma"
 group :development, :test do
   gem "better_errors"
   gem "bullet"
-  gem "capybara"
   gem "database_cleaner"
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "haml_lint", require: false
   gem "letter_opener" # Use this just in local test environments
-  gem "poltergeist"
   gem "rails-controller-testing"
   gem "rake"
   gem "rspec-its", "~> 1.3"
