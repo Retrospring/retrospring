@@ -17,6 +17,9 @@
     - elsif user.inbox_locked?
       .text-center
         %strong= t(".status.locked")
+    - elsif !user_signed_in? && user.privacy_require_user?
+      .text-center
+        %strong= t(".status.require_user_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))
     - else
       - if user_signed_in? || user.privacy_allow_anonymous_questions?
         #question-box{ data: { controller: "character-count", "character-count-max-value": 512 }}
@@ -54,4 +57,5 @@
               .col-xs-12.col-sm-10.offset-sm-1.text-center
                 %small= t(".promote.join", app_title: APP_CONFIG["site_name"])
         - else
-          %p= raw t(".required", signup: link_to(t("voc.register"), new_user_registration_path))
+          .text-center
+            %strong= t(".status.non_anonymous_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))

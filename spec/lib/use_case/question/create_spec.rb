@@ -44,6 +44,12 @@ describe UseCase::Question::Create do
     end
   end
 
+  shared_examples "not authorized" do
+    it "raises an error" do
+      expect { subject }.to raise_error(Errors::NotAuthorized)
+    end
+  end
+
   shared_examples "validates content" do
     context "content is empty" do
       let(:content) { "" }
@@ -174,6 +180,19 @@ describe UseCase::Question::Create do
 
           it_behaves_like "invalid params"
         end
+      end
+
+      context "target user does not allow non-logged in questions" do
+        let(:allow_anon) { true }
+        let(:anonymous) { true }
+        let(:content) { "Hello world" }
+        let(:author_identifier) { "qwerty" }
+
+        before do
+          target_user.update!(privacy_require_user: true)
+        end
+
+        it_behaves_like "not authorized"
       end
     end
   end

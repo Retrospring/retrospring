@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_06_130744) do
+ActiveRecord::Schema.define(version: 2022_11_13_110942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -292,6 +292,8 @@ ActiveRecord::Schema.define(version: 2022_11_06_130744) do
     t.datetime "export_created_at"
     t.string "otp_secret_key"
     t.integer "otp_module", default: 0, null: false
+    t.datetime "deleted_at"
+    t.boolean "privacy_require_user", default: false
     t.boolean "privacy_lock_inbox", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
