@@ -33,3 +33,5 @@ en:
     invalid_parameter: "Invalid parameter"
 
     record_not_found: "Record not found"
+
+    login_required: "You need to be logged in to perform this action"
