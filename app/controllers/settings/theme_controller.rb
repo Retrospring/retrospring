@@ -19,7 +19,7 @@ class Settings::ThemeController < ApplicationController
                                                         raised_background raised_accent
                                                         background_color body_text
                                                         muted_text input_color
-                                                        input_text
+                                                        input_text input_placeholder
                                                       ])
 
     if current_user.theme.nil?
