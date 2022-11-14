@@ -1,27 +1,29 @@
+# frozen_string_literal: true
+
 module ThemeHelper
   ATTRIBUTE_MAP = {
-    'primary_color' => 'primary',
-    'primary_text' => 'primary-text',
-    'danger_color' => 'danger',
-    'danger_text' => 'danger-text',
-    'warning_color' => 'warning',
-    'warning_text' => 'warning-text',
-    'info_color' => 'info',
-    'info_text' => 'info-text',
-    'success_color' => 'success',
-    'success_text' => 'success-text',
-    'dark_color' => 'dark',
-    'dark_text' => 'dark-text',
-    'light_color' => 'light',
-    'light_text' => 'light-text',
-    'raised_background' => 'raised-bg',
-    'raised_accent' => 'raised-accent',
-    'background_color' => 'background',
-    'body_text' => 'body-text',
-    'input_color' => 'input-bg',
-    'input_text' => 'input-text',
-    'input_placeholder' => 'input-placeholder',
-    'muted_text' => 'muted-text'
+    "primary_color"     => "primary",
+    "primary_text"      => "primary-text",
+    "danger_color"      => "danger",
+    "danger_text"       => "danger-text",
+    "warning_color"     => "warning",
+    "warning_text"      => "warning-text",
+    "info_color"        => "info",
+    "info_text"         => "info-text",
+    "success_color"     => "success",
+    "success_text"      => "success-text",
+    "dark_color"        => "dark",
+    "dark_text"         => "dark-text",
+    "light_color"       => "light",
+    "light_text"        => "light-text",
+    "raised_background" => "raised-bg",
+    "raised_accent"     => "raised-accent",
+    "background_color"  => "background",
+    "body_text"         => "body-text",
+    "input_color"       => "input-bg",
+    "input_text"        => "input-text",
+    "input_placeholder" => "input-placeholder",
+    "muted_text"        => "muted-text"
   }.freeze
 
   def render_theme
@@ -34,7 +36,7 @@ module ThemeHelper
     theme.attributes.each do |k, v|
       next unless ATTRIBUTE_MAP.key?(k)
 
-      if k.include? 'text' or k.include? 'placeholder'
+      if k.include?("text") || k.include?("placeholder")
         hex = get_hex_color_from_theme_value(v)
         body += "\t--#{ATTRIBUTE_MAP[k]}: #{get_decimal_triplet_from_hex(hex)};\n"
       else
@@ -43,7 +45,7 @@ module ThemeHelper
     end
     body += "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n"
 
-    body += '}'
+    body += "}"
 
     content_tag(:style, body)
   end
@@ -53,7 +55,7 @@ module ThemeHelper
     if theme
       theme.theme_color
     else
-      '#5e35b1'
+      "#5e35b1"
     end
   end
 
@@ -62,7 +64,7 @@ module ThemeHelper
     if theme
       theme.mobile_theme_color
     else
-      '#f0edf4'
+      "#f0edf4"
     end
   end
 
@@ -93,12 +95,12 @@ module ThemeHelper
   end
 
   def get_hex_color_from_theme_value(value)
-    ("0000000#{value.to_s(16)}")[-6, 6]
+    "0000000#{value.to_s(16)}"[-6, 6]
   end
 
   def get_decimal_triplet_from_hex(value)
-    hexes = value.split(/(.{2})/).reject { |c| c.empty? }
-    hexes.map(&:hex).join(', ')
+    hexes = value.split(/(.{2})/).reject(&:empty?)
+    hexes.map(&:hex).join(", ")
   end
 
   def rgb_values_from_hex(value)
@@ -110,10 +112,10 @@ module ThemeHelper
   end
 
   def rgb_to_hex(rgb_values)
-    rgb_values.map.with_index { |v, i| v << (2 - i) * 8 }.reduce(&:+).to_s(16)
+    rgb_values.map.with_index { |v, i| v << ((2 - i) * 8) }.reduce(&:+).to_s(16)
   end
 
   def lighten(value, amount = 0.25)
-    rgb_to_hex(rgb_values_from_hex(value).map { |v| [(v + 255 * amount).round, 255].min })
+    rgb_to_hex(rgb_values_from_hex(value).map { |v| [(v + (255 * amount)).round, 255].min })
   end
 end
