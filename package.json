@@ -36,7 +36,7 @@
     "coffeescript": "^2.5.1",
     "eslint": "^7.16.0",
     "eslint-plugin-import": "^2.26.0",
-    "webpack": "^4",
+    "webpack": "^5",
     "webpack-dev-server": "^4.11.1"
   }
 }
