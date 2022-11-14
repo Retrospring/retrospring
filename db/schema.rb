@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_13_110942) do
+ActiveRecord::Schema.define(version: 2022_11_14_214508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,7 @@ ActiveRecord::Schema.define(version: 2022_11_13_110942) do
     t.integer "raised_accent", default: 16250871
     t.integer "light_color", default: 16316922
     t.integer "light_text", default: 0
+    t.integer "input_placeholder", default: 7107965, null: false
     t.index ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at"
   end
 
@@ -292,9 +293,8 @@ ActiveRecord::Schema.define(version: 2022_11_13_110942) do
     t.datetime "export_created_at"
     t.string "otp_secret_key"
     t.integer "otp_module", default: 0, null: false
-    t.datetime "deleted_at"
-    t.boolean "privacy_require_user", default: false
     t.boolean "privacy_lock_inbox", default: false
+    t.boolean "privacy_require_user", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
