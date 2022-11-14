@@ -4,11 +4,10 @@ source "https://rubygems.org"
 
 gem "i18n-js", "4.0"
 gem "rails", "~> 6.1"
-gem "rails-i18n", "~> 6.0"
+gem "rails-i18n", "~> 7.0"
 
 gem "pg"
 
-gem "jbuilder", "~> 2.10"
 gem "sassc-rails"
 gem "turbo-rails"
 
@@ -35,7 +34,7 @@ gem "rqrcode"
 gem "rolify", "~> 6.0"
 
 gem "dry-initializer", "~> 3.1"
-gem "dry-types", "~> 1.6"
+gem "dry-types", "~> 1.7"
 
 gem "ruby-progressbar"
 
@@ -80,20 +79,18 @@ gem "puma"
 group :development, :test do
   gem "better_errors"
   gem "bullet"
-  gem "capybara"
   gem "database_cleaner"
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "haml_lint", require: false
   gem "letter_opener" # Use this just in local test environments
-  gem "poltergeist"
   gem "rails-controller-testing"
   gem "rake"
   gem "rspec-its", "~> 1.3"
   gem "rspec-mocks"
   gem "rspec-rails", "~> 6.0"
   gem "rspec-sidekiq", "~> 3.0", require: false
-  gem "rubocop", "~> 1.37"
+  gem "rubocop", "~> 1.39"
   gem "rubocop-rails", "~> 2.17"
   gem "shoulda-matchers", "~> 5.2"
   gem "simplecov", require: false

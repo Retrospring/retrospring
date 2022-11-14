@@ -14,11 +14,17 @@
     - elsif user_signed_in? && user.blocking?(current_user)
       .text-center
         %strong= t(".status.blocked")
+    - elsif user.inbox_locked?
+      .text-center
+        %strong= t(".status.locked")
+    - elsif !user_signed_in? && user.privacy_require_user?
+      .text-center
+        %strong= t(".status.require_user_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))
     - else
       - if user_signed_in? || user.privacy_allow_anonymous_questions?
-        #question-box
-          %textarea.form-control{ name: "qb-question", placeholder: t(".placeholder") }
-          .row{ style: "padding-top: 5px; padding-left: 5px; padding-right: 5px;" }
+        #question-box{ data: { controller: "character-count", "character-count-max-value": 512 }}
+          %textarea.form-control{ name: "qb-question", placeholder: t(".placeholder"), data: { "character-count-target": "input" } }
+          .row{ style: "padding-top: 5px;" }
             .col-6
               - if user_signed_in?
                 - if user.privacy_allow_anonymous_questions?
@@ -30,10 +36,11 @@
                   %input{ name: "qb-anonymous", type: :hidden, value: false }/
             .col-6
               %p.pull-right
+                %span.text-muted.mr-1{ data: { "character-count-target": "counter" } } 512
                 %input{ name: "qb-to", type: "hidden", value: user.id }/
                 %button.btn.btn-primary{ name: "qb-ask",
                   type: :button,
-                  data: { loading_text: t(".load"), promote: user_signed_in? ? "false" : "true" } }
+                  data: { loading_text: t(".load"), promote: user_signed_in? ? "false" : "true", "character-count-target": "action" } }
                   Ask
       - unless user_signed_in?
         - if user.privacy_allow_anonymous_questions?
@@ -50,4 +57,5 @@
               .col-xs-12.col-sm-10.offset-sm-1.text-center
                 %small= t(".promote.join", app_title: APP_CONFIG["site_name"])
         - else
-          %p= raw t(".required", signup: link_to(t("voc.register"), new_user_registration_path))
+          .text-center
+            %strong= t(".status.non_anonymous_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))

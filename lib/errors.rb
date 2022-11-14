@@ -35,12 +35,21 @@ module Errors
   class SelfAction < Forbidden
   end
 
+  class InboxLocked < Forbidden
+  end
+
   class FollowingSelf < SelfAction
   end
 
   class NotFound < Base
     def status
       404
+    end
+  end
+
+  class NotAuthorized < Base
+    def status
+      401
     end
   end
 

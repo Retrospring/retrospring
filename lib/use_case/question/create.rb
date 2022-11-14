@@ -14,6 +14,8 @@ module UseCase
       option :direct, type: Types::Params::Bool, default: proc { true }
 
       def call
+        check_user
+        check_lock
         check_anonymous_rules
         check_blocks
 
@@ -42,6 +44,10 @@ module UseCase
 
       private
 
+      def check_lock
+        raise Errors::InboxLocked if target_user.inbox_locked?
+      end
+
       def check_anonymous_rules
         if !source_user_id && !anonymous
           # We can not create a non-anonymous question without a source user
@@ -57,6 +63,10 @@ module UseCase
 
         raise Errors::AskingOtherBlockedSelf if target_user.blocking?(source_user)
         raise Errors::AskingSelfBlockedOther if source_user.blocking?(target_user)
+      end
+
+      def check_user
+        raise Errors::NotAuthorized if target_user.privacy_require_user && !source_user_id
       end
 
       def increment_asked_count

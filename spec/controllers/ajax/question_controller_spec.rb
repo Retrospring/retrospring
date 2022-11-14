@@ -328,6 +328,23 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
             include_examples "does not create the question"
           end
         end
+
+        context "when users inbox is locked" do
+          let(:user_allows_anonymous_questions) { true }
+          let(:expected_response) do
+            {
+              "success" => false,
+              "status"  => "inbox_locked",
+              "message" => anything
+            }
+          end
+
+          before do
+            target_user.update(privacy_lock_inbox: true)
+          end
+
+          include_examples "does not create the question"
+        end
       end
 
       context "when rcpt is followers" do

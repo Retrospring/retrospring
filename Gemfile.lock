@@ -95,15 +95,6 @@ GEM
     bullet (7.0.3)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    capybara (3.37.1)
-      addressable
-      matrix
-      mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
-      rack (>= 1.6.0)
-      rack-test (>= 0.6.3)
-      regexp_parser (>= 1.5, < 3.0)
-      xpath (~> 3.2)
     carrierwave (2.1.0)
       activemodel (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -112,7 +103,6 @@ GEM
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
     chunky_png (1.4.0)
-    cliver (0.3.2)
     coderay (1.1.3)
     colorize (0.8.1)
     concurrent-ruby (1.1.10)
@@ -140,23 +130,20 @@ GEM
     docile (1.4.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dry-container (0.11.0)
-      concurrent-ruby (~> 1.0)
-    dry-core (0.9.0)
+    dry-core (1.0.0)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
-    dry-inflector (0.3.0)
+    dry-inflector (1.0.0)
     dry-initializer (3.1.1)
-    dry-logic (1.3.0)
+    dry-logic (1.4.0)
       concurrent-ruby (~> 1.0)
-      dry-core (~> 0.9, >= 0.9)
+      dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-types (1.6.1)
+    dry-types (1.7.0)
       concurrent-ruby (~> 1.0)
-      dry-container (~> 0.3)
-      dry-core (~> 0.9, >= 0.9)
-      dry-inflector (~> 0.1, >= 0.1.2)
-      dry-logic (~> 1.3, >= 1.3)
+      dry-core (~> 1.0, < 2)
+      dry-inflector (~> 1.0, < 2)
+      dry-logic (>= 1.4, < 2)
       zeitwerk (~> 2.6)
     equalizer (0.0.11)
     erubi (1.11.0)
@@ -169,7 +156,7 @@ GEM
     fake_email_validator (1.0.11)
       activemodel
       mail
-    faker (2.23.0)
+    faker (3.0.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
@@ -196,7 +183,7 @@ GEM
     glob (0.3.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    haml (6.0.8)
+    haml (6.0.10)
       temple (>= 0.8.2)
       thor
       tilt
@@ -232,9 +219,6 @@ GEM
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     json (2.6.2)
     jwt (2.5.0)
     kaminari (1.2.2)
@@ -264,7 +248,6 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
-    matrix (0.4.2)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (1.0.0)
@@ -297,7 +280,7 @@ GEM
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth (0.5.8)
-    oj (3.13.21)
+    oj (3.13.23)
     omniauth (2.1.0)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -318,10 +301,6 @@ GEM
     pg (1.4.4)
     pghero (3.0.1)
       activerecord (>= 6)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     public_suffix (4.0.7)
     puma (6.0.0)
       nio4r (~> 2.0)
@@ -358,9 +337,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
-    rails-i18n (6.0.0)
+    rails-i18n (7.0.6)
       i18n (>= 0.7, < 2)
-      railties (>= 6.0.0, < 7)
+      railties (>= 6.0.0, < 8)
     rails_admin (3.0.0)
       activemodel-serializers-xml (>= 1.0)
       kaminari (>= 0.14, < 2.0)
@@ -413,7 +392,7 @@ GEM
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
     rspec-support (3.12.0)
-    rubocop (1.37.1)
+    rubocop (1.39.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
@@ -444,13 +423,13 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
-    sentry-rails (5.5.0)
+    sentry-rails (5.6.0)
       railties (>= 5.0)
-      sentry-ruby (~> 5.5.0)
-    sentry-ruby (5.5.0)
+      sentry-ruby (~> 5.6.0)
+    sentry-ruby (5.6.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-sidekiq (5.5.0)
-      sentry-ruby (~> 5.5.0)
+    sentry-sidekiq (5.6.0)
+      sentry-ruby (~> 5.6.0)
       sidekiq (>= 3.0)
     shoulda-matchers (5.2.0)
       activesupport (>= 5.2.0)
@@ -489,7 +468,7 @@ GEM
     tldv (0.1.0)
       tldv-data (~> 1.0)
     tldv-data (1.0.2022101300)
-    turbo-rails (1.1.1)
+    turbo-rails (1.3.2)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
@@ -524,9 +503,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    xpath (3.2.0)
-      nokogiri (~> 1.8)
-    zeitwerk (2.6.1)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
@@ -539,7 +516,6 @@ DEPENDENCIES
   bootsnap
   bootstrap_form (~> 4.5)
   bullet
-  capybara
   carrierwave (~> 2.0)
   carrierwave_backgrounder!
   colorize
@@ -548,7 +524,7 @@ DEPENDENCIES
   devise-async
   devise-i18n
   dry-initializer (~> 3.1)
-  dry-types (~> 1.6)
+  dry-types (~> 1.7)
   factory_bot_rails
   fake_email_validator
   faker
@@ -560,7 +536,6 @@ DEPENDENCIES
   hcaptcha (~> 7.0)
   httparty
   i18n-js (= 4.0)
-  jbuilder (~> 2.10)
   jwt (~> 2.5)
   letter_opener
   lograge
@@ -574,12 +549,11 @@ DEPENDENCIES
   omniauth-twitter
   pg
   pghero
-  poltergeist
   puma
   questiongenerator (~> 1.0)
   rails (~> 6.1)
   rails-controller-testing
-  rails-i18n (~> 6.0)
+  rails-i18n (~> 7.0)
   rails_admin
   rake
   redcarpet
@@ -590,7 +564,7 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails (~> 6.0)
   rspec-sidekiq (~> 3.0)
-  rubocop (~> 1.37)
+  rubocop (~> 1.39)
   rubocop-rails (~> 2.17)
   ruby-progressbar
   sanitize

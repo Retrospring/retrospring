@@ -35,12 +35,12 @@ module.exports = function(api) {
           exclude: ['transform-typeof-symbol']
         }
       ],
-      ['@babel/preset-typescript', { 'allExtensions': true, 'isTSX': true }]
     ].filter(Boolean),
     plugins: [
       'babel-plugin-macros',
       '@babel/plugin-syntax-dynamic-import',
       isTestEnv && 'babel-plugin-dynamic-import-node',
+      ["@babel/plugin-transform-typescript", { 'allExtensions': true, 'isTSX': true, 'allowDeclareFields': true }],
       '@babel/plugin-transform-destructuring',
       [
         '@babel/plugin-proposal-class-properties',

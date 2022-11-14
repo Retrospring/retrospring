@@ -110,7 +110,6 @@ en:
       hide: "Answered by"
     questionbox:
       title: "Ask something!"
-      required: "This user does not want to get asked by strangers.  Why don't you %{signup}?"
       placeholder: "Type your question here…"
       anonymous: "Hide your name"
       load: "Asking…"
@@ -123,6 +122,13 @@ en:
         banned: "This user got hit with ye olde banhammer."
         blocking: "You are blocking this user."
         blocked: "This user has blocked you."
+        locked: "This user currently does not accept questions."
+        require_user_html: |
+          This user requires others to be logged in to ask questions. <br/>
+          (%{sign_in} or %{sign_up})
+        non_anonymous_html: |
+          This user does not want to receive anonymous questions. <br/>
+          (%{sign_in} or %{sign_up})
   devise:
     registrations:
       edit:

@@ -6,6 +6,7 @@ en:
     param_is_missing: "param is missing"
 
     forbidden: "This is illegal, you know"
+    inbox_locked: "This user currently does not accept questions"
     blocked: "You have been blocked from performing this request"
     other_blocked_self: "You have been blocked by this user"
     asking_other_blocked_self: "You have been blocked from asking this user questions"
@@ -33,3 +34,5 @@ en:
     invalid_parameter: "Invalid parameter"
 
     record_not_found: "Record not found"
+
+    not_authorized: "You need to be logged in to perform this action"
