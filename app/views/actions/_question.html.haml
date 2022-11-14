@@ -13,10 +13,10 @@
       = t("voc.block")
     - if current_user.mod?
       %a.dropdown-item{ href: "#", name: "mod-block-anon", data: { q_id: question.id } }
-        %i.fa.fa-fw.fa-volume-off
+        %i.fas.fa-fw.fa-user-slash
         = t("voc.block_site_wide")
       %a.dropdown-item{ href: moderation_questions_path(author_identifier: question.author_identifier) }
-        %i.fa.fa-fw.fa-user-secret
+        %i.fas.fa-fw.fa-mask
         = t("voc.show_anonymous_questions")
   - if current_user.admin?
     %a.dropdown-item{ href: rails_admin_path_for_resource(question), target: "_blank" }
