@@ -8,7 +8,6 @@ gem "rails-i18n", "~> 7.0"
 
 gem "pg"
 
-gem "jbuilder", "~> 2.10"
 gem "sassc-rails"
 gem "turbo-rails"
 
