@@ -20,6 +20,7 @@ module ThemeHelper
     'body_text' => 'body-text',
     'input_color' => 'input-bg',
     'input_text' => 'input-text',
+    'input_placeholder' => 'input-placeholder',
     'muted_text' => 'muted-text'
   }.freeze
 
@@ -33,7 +34,7 @@ module ThemeHelper
     theme.attributes.each do |k, v|
       next unless ATTRIBUTE_MAP.key?(k)
 
-      if k.include? 'text'
+      if k.include? 'text' or k.include? 'placeholder'
         hex = get_hex_color_from_theme_value(v)
         body += "\t--#{ATTRIBUTE_MAP[k]}: #{get_decimal_triplet_from_hex(hex)};\n"
       else
