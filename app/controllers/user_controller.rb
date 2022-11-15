@@ -1,6 +1,8 @@
 class UserController < ApplicationController
+  before_action :set_user
+  before_action :hidden_social_graph_redirect, only: %i[followers followings]
+
   def show
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @answers = @user.cursored_answers(last_id: params[:last_id])
     @answers_last_id = @answers.map(&:id).min
     @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
@@ -21,7 +23,6 @@ class UserController < ApplicationController
 
   def followers
     @title = 'Followers'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @relationships = @user.cursored_follower_relationships(last_id: params[:last_id])
     @relationships_last_id = @relationships.map(&:id).min
     @more_data_available = !@user.cursored_follower_relationships(last_id: @relationships_last_id, size: 1).count.zero?
@@ -37,7 +38,6 @@ class UserController < ApplicationController
   # rubocop:disable Metrics/AbcSize
   def followings
     @title = 'Following'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @relationships = @user.cursored_following_relationships(last_id: params[:last_id])
     @relationships_last_id = @relationships.map(&:id).min
     @more_data_available = !@user.cursored_following_relationships(last_id: @relationships_last_id, size: 1).count.zero?
@@ -53,7 +53,6 @@ class UserController < ApplicationController
 
   def questions
     @title = 'Questions'
-    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
     @questions = @user.cursored_questions(author_is_anonymous: false, direct: belongs_to_current_user? || moderation_view?, last_id: params[:last_id])
     @questions_last_id = @questions.map(&:id).min
     @more_data_available = !@user.cursored_questions(author_is_anonymous: false, direct: belongs_to_current_user? || moderation_view?, last_id: @questions_last_id, size: 1).count.zero?
@@ -65,6 +64,16 @@ class UserController < ApplicationController
   end
 
   private
+
+  def set_user
+    @user = User.where('LOWER(screen_name) = ?', params[:username].downcase).includes(:profile).first!
+  end
+
+  def hidden_social_graph_redirect
+    unless belongs_to_current_user? || !@user.privacy_hide_social_graph
+      redirect_to user_path(@user)
+    end
+  end
 
   def belongs_to_current_user? = @user == current_user
 end
