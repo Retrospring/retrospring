@@ -18,5 +18,21 @@ describe AnswerController do
         expect(response).to render_template("answer/show")
       end
     end
+
+    context "user opts out of search indexing" do
+      render_views
+
+      before(:each) {
+        sign_in user
+        user.privacy_noindex = true
+        user.save
+      }
+
+      it "renders the answer/show template" do
+        subject
+        expect(assigns(:answer)).to eq(answer)
+        expect(response.body).to include("<meta content='noindex' name='robots'>")
+      end
+    end
   end
 end
