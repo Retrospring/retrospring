@@ -25,11 +25,11 @@ describe UserController, type: :controller do
     context "user opts out of search indexing" do
       render_views
 
-      before(:each) {
+      before(:each) do
         sign_in user
         user.privacy_noindex = true
         user.save
-      }
+      end
 
       it "renders the answer/show template" do
         subject
