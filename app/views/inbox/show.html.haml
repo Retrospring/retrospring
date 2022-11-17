@@ -3,7 +3,7 @@
     = render "inbox/entry", i: i
 
   - if @inbox.empty?
-    = t(".empty")
+    %p.empty= t(".empty")
 
 - if @more_data_available
   .d-flex.justify-content-center#paginator
