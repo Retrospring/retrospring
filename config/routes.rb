@@ -143,6 +143,7 @@ Rails.application.routes.draw do
 
   match "/notifications(/:type)", to: "notifications#index", via: [:get, :post], as: :notifications, defaults: { type: "new" }
 
+  post "/inbox/create", to: "inbox#create", as: :inbox_create
   match "/inbox(/:author)", via: [:get, :post], to: "inbox#show", as: :inbox
 
   match "/user/:username(/p/:page)", to: "user#show", via: [:get, :post], defaults: { page: 1 }
