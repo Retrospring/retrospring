@@ -110,7 +110,6 @@ Rails.application.routes.draw do
   namespace :ajax do
     post "/ask", to: "question#create", as: :ask
     post "/destroy_question", to: "question#destroy", as: :destroy_question
-    post "/generate_question", to: "inbox#create", as: :generate_question
     post "/delete_inbox", to: "inbox#remove", as: :delete_inbox
     post "/delete_all_inbox", to: "inbox#remove_all", as: :delete_all_inbox
     post "/delete_all_inbox/:author", to: "inbox#remove_all_author", as: :delete_all_author

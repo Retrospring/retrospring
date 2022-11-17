@@ -4,46 +4,6 @@
 require "rails_helper"
 
 describe Ajax::InboxController, :ajax_controller, type: :controller do
-  describe "#create" do
-    subject { post(:create) }
-
-    context "when user is signed in" do
-      before(:each) { sign_in(user) }
-
-      let(:expected_response) do
-        {
-          "success" => true,
-          "status" => "okay",
-          "message" => anything,
-          "render" => anything
-        }
-      end
-
-      it "creates a generated question to the user's inbox" do
-        allow(QuestionGenerator).to receive(:generate).and_return("Is Mayonnaise an instrument?")
-        expect { subject }.to(change { user.inboxes.count }.by(1))
-        expect(user.inboxes.last.question.author_is_anonymous).to eq(true)
-        expect(user.inboxes.last.question.author_identifier).to eq("justask")
-        expect(user.inboxes.last.question.user).to eq(user)
-        expect(user.inboxes.last.question.content).to eq("Is Mayonnaise an instrument?")
-      end
-
-      include_examples "returns the expected response"
-    end
-
-    context "when user is not signed in" do
-      let(:expected_response) do
-        {
-          "success" => false,
-          "status" => "noauth",
-          "message" => anything
-        }
-      end
-
-      include_examples "returns the expected response"
-    end
-  end
-
   describe "#remove" do
     let(:params) do
       {
