@@ -9,3 +9,7 @@
 .pe-none {
   pointer-events: none;
 }
+
+.empty:not(:only-child) {
+  display: none;
+}
