@@ -52,4 +52,21 @@ class InboxController < ApplicationController
       format.turbo_stream { render "show", layout: false, status: :see_other }
     end
   end
+
+  def create
+    question = Question.create!(content:             QuestionGenerator.generate,
+                                author_is_anonymous: true,
+                                author_identifier:   "justask",
+                                user:                current_user)
+
+    inbox = Inbox.create!(user: current_user, question_id: question.id, new: true)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.prepend("entries", partial: "inbox/entry", locals: { i: inbox })
+      end
+
+      format.html { redirect_to inbox_path }
+    end
+  end
 end

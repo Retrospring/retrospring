@@ -5,7 +5,7 @@
         = f.text_field :author, value: params[:author], placeholder: t(".author.placeholder"), prepend: "@", hide_label: true,
           append: f.button(t(".author.button"), name: nil, class: "btn btn-light", id: "ib-author")
       .d-flex.ml-auto.mt-2.mt-md-0
-        %button.btn.btn-info.mr-auto{ type: :button, id: "ib-generate-question" }
+        = button_to inbox_create_path, class: "btn btn-info mr-auto" do
           = t(".questions.button")
         .button-group.ml-1
           %button.btn.btn-default{ title: t(".share.heading"), data: { toggle: :dropdown }, aria: { expanded: false } }
