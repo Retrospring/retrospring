@@ -109,3 +109,5 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "net-smtp"
 gem "net-imap"
 gem "net-pop"
+
+gem "pundit", "~> 2.2"
