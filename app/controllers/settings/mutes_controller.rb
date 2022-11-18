@@ -21,6 +21,9 @@ class Settings::MutesController < ApplicationController
 
   def destroy
     rule = MuteRule.find(params[:id])
+
+    authorize rule
+
     rule.destroy!
 
     respond_to do |format|
