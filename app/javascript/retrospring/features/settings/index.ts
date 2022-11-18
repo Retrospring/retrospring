@@ -1,12 +1,10 @@
 import registerEvents from "utilities/registerEvents";
-import { muteDocumentHandler } from "./mute";
 import { profileHeaderChangeHandler, profilePictureChangeHandler } from "./crop";
 import { themeDocumentHandler, themeSubmitHandler } from "./theme";
 import { userSubmitHandler } from "./password";
 import { unblockAnonymousHandler } from "./block";
 
 export default (): void => {
-  muteDocumentHandler();
   themeDocumentHandler();
 
   registerEvents([
