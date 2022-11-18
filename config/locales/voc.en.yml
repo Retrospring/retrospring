@@ -1,5 +1,6 @@
 en:
   voc:
+    add: "Add"
     answer: "Answer"
     block: "Block"
     block_site_wide: "Block user site-wide"
@@ -17,6 +18,7 @@ en:
     subscribe: "Subscribe"
     unsubscribe: "Unsubscribe"
     register: "Sign up"
+    remove: "Remove"
     report: "Report"
     terms: "Terms of Service"
     unblock: "Unblock"
