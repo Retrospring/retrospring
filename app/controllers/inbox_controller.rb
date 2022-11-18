@@ -64,6 +64,8 @@ class InboxController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.prepend("entries", partial: "inbox/entry", locals: { i: inbox })
+
+        inbox.update(new: false)
       end
 
       format.html { redirect_to inbox_path }
