@@ -72,6 +72,7 @@ en:
         privacy_require_user: "Require users to be logged in to ask you questions"
         privacy_allow_public_timeline: "Show your answers in the public timeline"
         privacy_allow_stranger_answers: "Allow other people to answer your questions"
+        privacy_hide_social_graph: "Hide your social graph from others"
         profile_picture: "Profile picture"
         profile_header: "Profile header"
         sign_in_count: "Sign in count"
