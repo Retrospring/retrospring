@@ -6,4 +6,16 @@ class Settings::MutesController < ApplicationController
   def index
     @rules = MuteRule.where(user: current_user)
   end
+
+  def create
+    rule = MuteRule.create!(user: current_user, muted_phrase: params[:muted_phrase])
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.append("rules", partial: "settings/mutes/rule", locals: { rule: })
+      end
+
+      format.html { redirect_to settings_muted_path }
+    end
+  end
 end

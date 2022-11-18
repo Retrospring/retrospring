@@ -3,25 +3,15 @@
     %h2= t(".heading")
     %p= t(".body")
     %p= t(".note")
-    .js-rules-list
+    #rules
       - @rules.each do |rule|
-        .form-group
-          .input-group
-            %input.form-control{ disabled: true, value: rule.muted_phrase }
-            .input-group-append
-              %button.btn.btn-danger{ type: "button", data: { id: rule.id } }= t(".actions.remove")
+        = render "settings/mutes/rule", rule: rule
     .form-group
-      %form{ data: { turbo: false } }
-        .input-group 
-          %input.form-control#new-rule-text{ placeholder: t(".placeholder") }
+      %form{ action: settings_muted_path, method: "post" }
+        .input-group
+          %input.form-control#muted_phrase{ name: :muted_phrase, placeholder: t(".placeholder") }
           .input-group-append
-            %button.btn.btn-primary#new-rule-submit{ type: "submit" }= t(".actions.add")
-%template#rule-template
-  .form-group
-    .input-group
-      %input.form-control{ disabled: true }
-      .input-group-append
-        %button.btn.btn-danger{ type: "button" }= t(".actions.remove")
+            %button.btn.btn-primary{ type: "submit" }= t("voc.add")
 
 - provide(:title, generate_title(t(".title")))
 - parent_layout "user/settings"
