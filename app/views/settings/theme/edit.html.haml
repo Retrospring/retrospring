@@ -87,6 +87,14 @@
           = f.text_field :input_color, class: "color", data: { default: 0xFFFFFF }
         .col-sm-6
           = f.text_field :input_text, class: "color", data: { default: 0x000000 }
+
+      .row
+        .col-sm-6
+          = f.text_field :input_placeholder, class: "color", data: { default: 0x6C757D }
+        .col-sm-6
+          .form-group
+            %label Example Input
+            %input.form-control{ placeholder: "A test placeholder" }
   .card
     .card-body
       %h2= t(".raised.heading")

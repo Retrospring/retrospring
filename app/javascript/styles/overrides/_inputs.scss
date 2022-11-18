@@ -9,6 +9,10 @@
     border-color: var(--primary);
     box-shadow: .5px 0 0 0.1rem var(--primary);
   }
+
+  &::placeholder {
+    color: RGB(var(--input-placeholder));
+  }
 }
 
 .input-group-text {

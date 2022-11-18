@@ -36,6 +36,7 @@ const generateTheme = (payload: Record<string, string>): void => {
     'body_text': 'body-text',
     'input_color': 'input-bg',
     'input_text': 'input-text',
+    'input_placeholder': 'input-placeholder',
     'muted_text': 'muted-text'
   };
 
@@ -43,7 +44,7 @@ const generateTheme = (payload: Record<string, string>): void => {
 
   (Object.keys(payload)).forEach((payloadKey) => {
     if (themeAttributeMap[payloadKey]) {
-      if (themeAttributeMap[payloadKey].includes('text')) {
+      if (themeAttributeMap[payloadKey].includes('text') || themeAttributeMap[payloadKey].includes('placeholder')) {
         const hex = getHexColorFromThemeValue(payload[payloadKey]);
         body += `--${themeAttributeMap[payloadKey]}: ${getDecimalTripletsFromHex(hex)};\n`;
       }

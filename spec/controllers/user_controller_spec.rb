@@ -9,6 +9,32 @@ describe UserController, type: :controller do
                       otp_secret_key: "EJFNIJPYXXTCQSRTQY6AG7XQLAT2IDG5H7NGLJE3"
   end
 
+  shared_examples_for "social graph hidden" do
+    context "user has social graph hidden" do
+      before(:each) do
+        user.update(privacy_hide_social_graph: true)
+      end
+
+      it "shows the followers template to the current user" do
+        sign_in user
+        subject
+        expect(assigns(:user)).to eq(user)
+        expect(response).to render_template("user/show_follow")
+      end
+
+      it "redirects to the user profile page if not logged in" do
+        subject
+        expect(response).to redirect_to(user_path(user))
+      end
+
+      it "redirects to the user profile page if logged in as a different user" do
+        sign_in FactoryBot.create(:user)
+        subject
+        expect(response).to redirect_to(user_path(user))
+      end
+    end
+  end
+
   describe "#show" do
     subject { get :show, params: { username: user.screen_name } }
 
@@ -51,6 +77,8 @@ describe UserController, type: :controller do
         expect(response).to render_template("user/show_follow")
       end
     end
+
+    include_examples "social graph hidden"
   end
 
   describe "#followings" do
@@ -65,6 +93,8 @@ describe UserController, type: :controller do
         expect(response).to render_template("user/show_follow")
       end
     end
+
+    include_examples "social graph hidden"
   end
 
   describe "#questions" do

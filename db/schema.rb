@@ -228,6 +228,7 @@ ActiveRecord::Schema.define(version: 2022_11_16_201723) do
     t.integer "raised_accent", default: 16250871
     t.integer "light_color", default: 16316922
     t.integer "light_text", default: 0
+    t.integer "input_placeholder", default: 7107965, null: false
     t.index ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at"
   end
 
