@@ -9,6 +9,8 @@
       %meta{ name: 'theme-color', content: mobile_theme_color, media: '(max-width: 992px)' }
     - else
       %meta{ name: 'theme-color', content: theme_color }
+    - if @user&.privacy_noindex? || @answer&.user&.privacy_noindex? || @question&.user&.privacy_noindex?
+      %meta{ name: 'robots', content: 'noindex' }
     %link{ rel: 'manifest', href: '/manifest.json', crossorigin: 'use-credentials' }
     %link{ rel: 'apple-touch-icon', href: '/icons/maskable_icon_x192.png' }
     %link{ rel: 'mask-icon', href: '/icons/icon.svg', color: theme_color }

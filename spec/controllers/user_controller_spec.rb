@@ -47,6 +47,22 @@ describe UserController, type: :controller do
         expect(response).to render_template("user/show")
       end
     end
+
+    context "user opts out of search indexing" do
+      render_views
+
+      before(:each) do
+        sign_in user
+        user.privacy_noindex = true
+        user.save
+      end
+
+      it "renders the answer/show template" do
+        subject
+        expect(assigns(:user)).to eq(user)
+        expect(response.body).to include("<meta content='noindex' name='robots'>")
+      end
+    end
   end
 
   describe "#followers" do
