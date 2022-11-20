@@ -1,20 +1,21 @@
+- @announcements.each do |announcement|
+  .card
+    .card-body
+      .d-flex.w-100.justify-content-between
+        %p.mb-3= announcement.content
+        %small.text-muted= announcement.starts_at
+
+      .d-flex.w-100
+        = link_to t("voc.edit"), announcement_edit_path(id: announcement.id), class: "btn btn-link text-primary"
+        = button_to t("voc.delete"),
+          announcement_destroy_path(id: announcement.id),
+          method: :delete,
+          class: "btn btn-link text-danger",
+          confirm: t(".confirm_delete")
+
+.row
+  .col-md-12
+    = link_to t(".new"), :announcement_new, class: "btn btn-primary"
+
 - provide(:title, generate_title(t(".title")))
-.container-lg.container--main
-  - @announcements.each do |announcement|
-    .card
-      .card-body
-        .d-flex.w-100.justify-content-between
-          %p.mb-3= announcement.content
-          %small.text-muted= announcement.starts_at
-
-        .d-flex.w-100
-          = link_to t("voc.edit"), announcement_edit_path(id: announcement.id), class: "btn btn-link text-primary"
-          = button_to t("voc.delete"),
-            announcement_destroy_path(id: announcement.id),
-            method: :delete,
-            class: "btn btn-link text-danger",
-            confirm: t(".confirm_delete")
-
-  .row
-    .col-md-12
-      = link_to t(".new"), :announcement_new, class: "btn btn-primary"
+- parent_layout "admin"
