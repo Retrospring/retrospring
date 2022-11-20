@@ -19,7 +19,7 @@ class Admin::AnnouncementController < ApplicationController
       redirect_to action: :index
     else
       flash[:error] = t(".error")
-      render "announcement/new"
+      render "admin/announcement/new"
     end
   end
 
@@ -35,7 +35,7 @@ class Admin::AnnouncementController < ApplicationController
       redirect_to announcement_index_path
     else
       flash[:error] = t(".error")
-      render "announcement/edit"
+      render "admin/announcement/edit"
     end
   end
 
