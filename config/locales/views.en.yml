@@ -297,10 +297,7 @@ en:
       profile:
         profile: "Show profile"
         settings: "Settings"
-        admin: "Rails Admin"
-        sidekiq: "Sidekiq"
-        pghero: "Database Monitor"
-        announcements: "Announcements"
+        admin: "Administration Panel"
         unmask:
           enable: "Enable Moderation View"
           disable: "Disable Moderation View"
@@ -309,7 +306,6 @@ en:
           heading: "Feedback"
           bugs: "Bugs"
           features: "Feature Requests"
-        site_wide_blocks: "Site-wide anonymous blocks"
     desktop:
       ask_question: "Ask a question"
       list: :user.actions.list
@@ -518,6 +514,11 @@ en:
       deleted_question: "Deleted question"
       blocked: "blocked %{time} ago"
   tabs:
+    admin:
+      announcements: "Announcements"
+      rails: "Rails Admin"
+      sidekiq: "Sidekiq"
+      pghero: "Database Monitor"
     feed:
       public: "Public"
       timeline: "Your Timeline"
@@ -542,6 +543,7 @@ en:
       comments: :activerecord.models.comment.other
       users: :activerecord.models.user.other
       questions: :activerecord.models.question.other
+      site_wide_blocks: "Site-wide anonymous blocks"
     notifications:
       all: "All notifications"
       new: "New notifications"
