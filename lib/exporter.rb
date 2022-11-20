@@ -156,6 +156,8 @@ class Exporter
     if opts[:include_answers]
       qobj[:answers] = []
       question.answers.each do |a|
+        next if a.nil?
+
         qobj[:answers] << process_answer(a, include_question: false)
       end
     end
@@ -179,17 +181,19 @@ class Exporter
       aobj[f] = answer.send f
     end
 
-    if opts[:include_user]
+    if opts[:include_user] && answer.user
       aobj[:user] = user_stub(answer.user)
     end
 
-    if opts[:include_question]
+    if opts[:include_question] && answer.question
       aobj[:question] = process_question(answer.question, include_user: true, include_answers: false)
     end
 
     if opts[:include_comments]
       aobj[:comments] = []
       answer.comments.each do |c|
+        next if c.nil?
+
         aobj[:comments] << process_comment(c, include_user: true, include_answer: false)
       end
     end
@@ -212,7 +216,7 @@ class Exporter
       cobj[:user] = user_stub(comment.user)
     end
 
-    if opts[:include_answer]
+    if opts[:include_answer] && comment.answer
       cobj[:answer] = process_answer(comment.answer, include_comments: false)
     end
 
@@ -220,6 +224,8 @@ class Exporter
   end
 
   def process_smile(smile)
+    return unless smile.parent
+
     sobj = {}
 
     %i[id created_at].each do |f|
@@ -233,6 +239,7 @@ class Exporter
   end
 
   def user_stub(user)
+    return nil if user.nil?
     uobj = {}
     %i[answered_count asked_count comment_smiled_count commented_count created_at
        id permanently_banned? screen_name smiled_count].each do |f|
