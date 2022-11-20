@@ -408,6 +408,7 @@ en:
         heading: "Muted Terms"
         body: "Muting words (or longer phrases) will prevent questions containing those to appear in your inbox."
         note: "Note: Filtered questions are discarded completely from your inbox, and won't reappear if you remove a filter later on."
+      form:
         placeholder: "Add a new muted term…"
     privacy:
       edit:

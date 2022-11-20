@@ -12,7 +12,10 @@ class Settings::MutesController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.append("rules", partial: "settings/mutes/rule", locals: { rule: })
+        render turbo_stream: [
+          turbo_stream.replace("form", partial: "settings/mutes/form"),
+          turbo_stream.append("rules", partial: "settings/mutes/rule", locals: { rule: })
+        ]
       end
 
       format.html { redirect_to settings_muted_path }

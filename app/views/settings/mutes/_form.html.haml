@@ -1,0 +1,6 @@
+#form.form-group
+  %form{ action: settings_muted_path, method: "post" }
+    .input-group
+      %input.form-control#muted_phrase{ name: :muted_phrase, placeholder: t(".placeholder"), data: { controller: :autofocus } }
+      .input-group-append
+        %button.btn.btn-primary{ type: "submit" }= t("voc.add")

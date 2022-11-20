@@ -6,12 +6,7 @@
     #rules
       - @rules.each do |rule|
         = render "settings/mutes/rule", rule: rule
-    .form-group
-      %form{ action: settings_muted_path, method: "post" }
-        .input-group
-          %input.form-control#muted_phrase{ name: :muted_phrase, placeholder: t(".placeholder") }
-          .input-group-append
-            %button.btn.btn-primary{ type: "submit" }= t("voc.add")
+    = render "settings/mutes/form"
 
 - provide(:title, generate_title(t(".title")))
 - parent_layout "user/settings"
