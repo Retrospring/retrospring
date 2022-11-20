@@ -1,6 +1,6 @@
 .card
   .card-body
-    = bootstrap_form_for(@announcement, url: { action: "update" }, method: "PATCH") do |f|
+    = bootstrap_form_for(@announcement, url: { action: "update" }, method: "PATCH", data: { turbo: false }) do |f|
       .row
         .col-md-12
           = f.text_area :content
