@@ -13,12 +13,12 @@ Rails.application.routes.draw do
     mount PgHero::Engine, at: "/pghero", as: "pghero"
 
     get "/admin", to: "admin/dashboard#index", as: :admin_dashboard
-    get "/admin/announcements", to: "announcement#index", as: :announcement_index
-    post "/admin/announcements", to: "announcement#create", as: :announcement_create
-    get "/admin/announcements/new", to: "announcement#new", as: :announcement_new
-    get "/admin/announcements/:id/edit", to: "announcement#edit", as: :announcement_edit
-    patch "/admin/announcements/:id", to: "announcement#update", as: :announcement_update
-    delete "/admin/announcements/:id", to: "announcement#destroy", as: :announcement_destroy
+    get "/admin/announcements", to: "admin/announcement#index", as: :announcement_index
+    post "/admin/announcements", to: "admin/announcement#create", as: :announcement_create
+    get "/admin/announcements/new", to: "admin/announcement#new", as: :announcement_new
+    get "/admin/announcements/:id/edit", to: "admin/announcement#edit", as: :announcement_edit
+    patch "/admin/announcements/:id", to: "admin/announcement#update", as: :announcement_update
+    delete "/admin/announcements/:id", to: "admin/announcement#destroy", as: :announcement_destroy
   end
 
   # Routes only accessible by moderators (moderation panel)

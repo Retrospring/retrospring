@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe AnnouncementController, type: :controller do
+describe Admin::AnnouncementController, type: :controller do
   let(:user) { FactoryBot.create(:user, roles: [:administrator]) }
 
   describe "#index" do

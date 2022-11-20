@@ -78,15 +78,16 @@ en:
       twitter: "Share on Twitter"
       tumblr: "Share on Tumblr"
       other: "Share on other apps..."
-  announcement:
-    index:
-      title: :activerecord.models.announcement.other
-      confirm_delete: "Are you sure you want to delete this announcement?"
-      new: "Add Announcement"
-    new:
-      title: "Create Announcement"
-    edit:
-      title: "Edit Announcement"
+  admin:
+    announcement:
+      index:
+        title: :activerecord.models.announcement.other
+        confirm_delete: "Are you sure you want to delete this announcement?"
+        new: "Add Announcement"
+      new:
+        title: "Create Announcement"
+      edit:
+        title: "Edit Announcement"
   answerbox:
     header:
       anon_hint: :inbox.entry.anon_hint
