@@ -6,4 +6,8 @@
     = list_group_item t(".users"), moderation_reports_path("user")
     = list_group_item t(".questions"), moderation_reports_path("question")
 
+.card
+  .list-group
+    = list_group_item t(".site_wide_blocks"), mod_anon_block_index_path
+
 .d-none.d-sm-block= render "shared/links"
