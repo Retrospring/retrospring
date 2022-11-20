@@ -7,20 +7,6 @@
     %i.fa.fa-fw.fa-cog
     = t(".settings")
   .dropdown-divider
-  - if current_user.has_role?(:administrator)
-    %a.dropdown-item{ href: rails_admin_path }
-      %i.fa.fa-fw.fa-cogs
-      = t(".admin")
-    %a.dropdown-item{ href: sidekiq_web_path }
-      %i.fa.fa-fw.fa-bar-chart
-      = t(".sidekiq")
-    %a.dropdown-item{ href: pghero_path }
-      %i.fa.fa-fw.fa-database
-      = t(".pghero")
-    %a.dropdown-item{ href: announcement_index_path }
-      %i.fa.fa-fw.fa-info
-      = t(".announcements")
-    .dropdown-divider
   - if current_user.mod?
     - if moderation_view?
       = link_to moderation_toggle_unmask_path, class: "dropdown-item", data: { turbo_method: :post } do
@@ -36,6 +22,10 @@
     %a.dropdown-item{ href: moderation_reports_path }
       %i.fa.fa-fw.fa-gavel
       = t(".moderation")
+    - if current_user.has_role?(:administrator)
+      %a.dropdown-item{ href: admin_dashboard_path }
+        %i.fa.fa-fw.fa-cogs
+        = t(".admin")
     .dropdown-divider
   - if APP_CONFIG["canny"]
     %h6.dropdown-header.d-none.d-sm-block
