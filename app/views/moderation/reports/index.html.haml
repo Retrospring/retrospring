@@ -6,3 +6,5 @@
   .d-flex.justify-content-center.justify-content-sm-start#paginator
     = button_to moderation_reports_path(last_id: @reports_last_id, type: params[:type]), class: "btn btn-light" do
       = t("voc.load")
+
+- parent_layout "moderation"
