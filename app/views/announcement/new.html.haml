@@ -1,23 +1,24 @@
+.card
+  .card-body
+    = bootstrap_form_for(@announcement, url: { action: "create" }) do |f|
+      .row
+        .col-md-12
+          = f.text_area :content
+      .row
+        .col-md-6
+          = f.url_field :link_href
+        .col-md-6
+          = f.text_field :link_text
+      .row
+        .col-md-6
+          = f.datetime_field :starts_at,
+            data: { target: "#announcement_starts_at", "date-format": "YYYY-MM-DD hh:mm A" }
+        .col-md-6
+          = f.datetime_field :ends_at,
+            data: { target: "#announcement_ends_at", "date-format": "YYYY-MM-DD hh:mm A" }
+      .row
+        .col-md-12.text-right
+          = f.submit class: "btn btn-primary"
+
 - provide(:title, generate_title(t(".title")))
-.container-lg.container--main
-  .card
-    .card-body
-      = bootstrap_form_for(@announcement, url: { action: "create" }) do |f|
-        .row
-          .col-md-12
-            = f.text_area :content
-        .row
-          .col-md-6
-            = f.url_field :link_href
-          .col-md-6
-            = f.text_field :link_text
-        .row
-          .col-md-6
-            = f.datetime_field :starts_at,
-              data: { target: "#announcement_starts_at", "date-format": "YYYY-MM-DD hh:mm A" }
-          .col-md-6
-            = f.datetime_field :ends_at,
-              data: { target: "#announcement_ends_at", "date-format": "YYYY-MM-DD hh:mm A" }
-        .row
-          .col-md-12.text-right
-            = f.submit class: "btn btn-primary"
+- parent_layout "admin"
