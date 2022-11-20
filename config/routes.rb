@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web, at: "/sidekiq"
     mount PgHero::Engine, at: "/pghero", as: "pghero"
 
+    get "/admin", to: "admin/dashboard#index", as: :admin_dashboard
     get "/admin/announcements", to: "announcement#index", as: :announcement_index
     post "/admin/announcements", to: "announcement#create", as: :announcement_create
     get "/admin/announcements/new", to: "announcement#new", as: :announcement_new
