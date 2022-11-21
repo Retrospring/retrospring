@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe AnonymousBlockController, type: :controller do
   describe "#create" do
-    subject { post(:create, params: params) }
+    subject { post(:create, params:) }
 
     context "user signed in" do
       let(:user) { FactoryBot.create(:user) }
@@ -53,7 +53,7 @@ describe AnonymousBlockController, type: :controller do
   end
 
   describe "#destroy" do
-    subject { delete(:destroy, params: params) }
+    subject { delete(:destroy, params:) }
 
     context "user signed in" do
       let(:user) { FactoryBot.create(:user) }
@@ -64,7 +64,7 @@ describe AnonymousBlockController, type: :controller do
 
       context "when all parameters are given" do
         let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
-        let(:block) { AnonymousBlock.create(user: user, identifier: "someidentifier", question: question) }
+        let(:block) { AnonymousBlock.create(user:, identifier: "someidentifier", question:) }
         let(:params) do
           { id: block.id }
         end

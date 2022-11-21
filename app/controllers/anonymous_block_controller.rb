@@ -7,7 +7,6 @@ class AnonymousBlockController < ApplicationController
     params.require :question
 
     question = Question.find(params[:question])
-
     authorize AnonymousBlock, :create_global? if params[:global]
 
     AnonymousBlock.create!(
