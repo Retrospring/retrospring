@@ -132,8 +132,6 @@ Rails.application.routes.draw do
     post "/list_membership", to: "list#membership", as: :list_membership
     post "/subscribe", to: "subscription#subscribe", as: :subscribe_answer
     post "/unsubscribe", to: "subscription#unsubscribe", as: :unsubscribe_answer
-    post "/block_anon", to: "anonymous_block#create", as: :block_anon
-    delete "/block_anon/:id", to: "anonymous_block#destroy", as: :unblock_anon
   end
 
   get "/discover", to: "discover#index", as: :discover
