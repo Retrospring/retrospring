@@ -23,6 +23,8 @@ class AnonymousBlockController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.remove("inbox_#{inbox_id}")
       end
+
+      format.html { redirect_back(fallback_location: inbox_path) }
     end
   end
 
@@ -38,6 +40,8 @@ class AnonymousBlockController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.remove("block_#{params[:id]}")
       end
+
+      format.html { redirect_back(fallback_location: settings_blocks_path) }
     end
   end
 end
