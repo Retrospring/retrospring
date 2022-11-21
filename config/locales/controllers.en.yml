@@ -1,4 +1,15 @@
 en:
+  admin:
+    announcement:
+      create:
+        success: "Announcement created successfully."
+        error: "Unable to create announcement."
+      update:
+        success: "Announcement updated successfully."
+        error: "Unable to save announcement."
+      destroy:
+        success: "Announcement has been deleted successfully."
+        error: "Unable to delete announcement."
   ajax:
     noauth: :messages.noauth
     anonymous_block:
@@ -122,16 +133,6 @@ en:
       destroy_comment:
         success: "Successfully unsmiled comment."
         error: "You have not smiled that comment."
-  announcement:
-    create:
-      success: "Announcement created successfully."
-      error: "Unable to create announcement."
-    update:
-      success: "Announcement updated successfully."
-      error: "Unable to save announcement."
-    destroy:
-      success: "Announcement has been deleted successfully."
-      error: "Unable to delete announcement."
   inbox:
     author:
       info: "No questions from @%{author} found, showing entries from all users instead!"
