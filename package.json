@@ -24,7 +24,7 @@
     "regenerator-runtime": "^0.13.11",
     "sweetalert": "1.1.3",
     "toastify-js": "^1.12.0",
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
