@@ -1,0 +1,43 @@
+# frozen_string_literal: true
+
+class AnonymousBlockController < ApplicationController
+  before_action :authenticate_user!
+
+  def create
+    params.require :question
+
+    question = Question.find(params[:question])
+
+    authorize AnonymousBlock, :create_global? if params[:global]
+
+    AnonymousBlock.create!(
+      user:       params[:global] ? nil : current_user,
+      identifier: question.author_identifier,
+      question:
+    )
+
+    inbox_id = question.inboxes.first.id
+    question.inboxes.first&.destroy
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove("inbox_#{inbox_id}")
+      end
+    end
+  end
+
+  def destroy
+    params.require :id
+
+    block = AnonymousBlock.find(params[:id])
+    authorize block
+
+    block.destroy!
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.remove("block_#{params[:id]}")
+      end
+    end
+  end
+end

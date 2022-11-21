@@ -134,6 +134,8 @@ Rails.application.routes.draw do
     post "/unsubscribe", to: "subscription#unsubscribe", as: :unsubscribe_answer
   end
 
+  resource :anonymous_block, controller: :anonymous_block, only: %i[create destroy]
+
   get "/discover", to: "discover#index", as: :discover
   match "/public", to: "timeline#public", via: [:get, :post], as: :public_timeline if APP_CONFIG.dig(:features, :public, :enabled)
   match "/list/:list_name", to: "timeline#list", via: [:get, :post], as: :list_timeline
