@@ -10,7 +10,7 @@
     "@fontsource/lexend": "^4.5.13",
     "@hotwired/turbo-rails": "^7.2.4",
     "@melloware/coloris": "^0.16.1",
-    "@rails/request.js": "^0.0.6",
+    "@rails/request.js": "^0.0.8",
     "bootstrap": "^4.6.2",
     "cheet.js": "^0.3.3",
     "core-js": "^3.26.1",
