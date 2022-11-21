@@ -1027,14 +1027,7 @@
     "@babel/helper-validator-option" "^7.18.6"
     "@babel/plugin-transform-typescript" "^7.18.6"
 
-"@babel/runtime@^7.15.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
-  version "7.16.7"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
-  integrity sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.16.7":
+"@babel/runtime@^7.15.3", "@babel/runtime@^7.16.7", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.6.tgz#6a1ef59f838debd670421f8c7f2cbb8da9751580"
   integrity sha512-t9wi7/AW6XtKahAe20Yw0/mMljKq0B1r2fPdvaAdV/KPDZewFXdaaa6K7lxmZBZ8FBNpCiAT6iHPmd6QO9bKfQ==
@@ -1100,10 +1093,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.13.tgz#a22076e1393af0f075e945fcffc9ffa514805304"
   integrity sha512-lJjBMU9Jmi2a/QqLRBhwe862385UyS2RckS3ATr8jHAq1JFLxox2p2gODNzhaWo0ZwTjDxIJ0YfMiEzSdyqZ0w==
 
-"@fortawesome/fontawesome-free@^5.15.4":
-  version "5.15.4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
-  integrity sha512-eYm8vijH/hpzr/6/1CJ/V/Eb1xQFW2nnUKArb3z+yUWv7HTwj6M7SP957oMjfZjAHU6qpoNc2wQvIxBLWYa/Jg==
+"@fortawesome/fontawesome-free@^6.1.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.2.1.tgz#344baf6ff9eaad7a73cff067d8c56bfc11ae5304"
+  integrity sha512-viouXhegu/TjkvYQoiRZK3aax69dGXxgEjpvZW81wIJdxm5Fnvp3VVIP4VHKqX4SvFw6qpmkILkD4RJWAdrt7A==
 
 "@gar/promisify@^1.0.1":
   version "1.1.2"
@@ -6482,13 +6475,13 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-rails_admin@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rails_admin/-/rails_admin-3.0.0.tgz#ccd9ef204d29e16370b4daba48761073ec0da0f7"
-  integrity sha512-NmtQX/tSbM9DjC56NUrl7L7qEH20wi8EyW80+P7O3aVvp5QX7DUeJzNvRix7sUPQtHgShOsd3gAAcYy/tsQm9g==
+rails_admin@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/rails_admin/-/rails_admin-3.1.0.tgz#49e0d4dd95f5fae84218e059a1b2832ffe92a589"
+  integrity sha512-K7W+b0YlHbxgM/8gx7ma0s+j78D6uieKumkO6bHtwDZ28aa4RfQqnmv/S71BFwRnPwwtwZzTqOrPvS9i54/OdA==
   dependencies:
     "@babel/runtime" "^7.16.7"
-    "@fortawesome/fontawesome-free" "^5.15.4"
+    "@fortawesome/fontawesome-free" "^6.1.1"
     "@hotwired/turbo-rails" "^7.1.0"
     "@popperjs/core" "^2.11.0"
     "@rails/ujs" "^6.1.4-1"
