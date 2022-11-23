@@ -1,8 +1,8 @@
 .announcement__container
   - @active_announcements.each do |announcement|
-    .alert.announcement.alert-info.alert-dismissable.d-none{ data: { 'announcement-id': announcement.id } }
+    .alert.announcement.alert-info.alert-dismissable.d-none{ data: { controller: 'announcement', "announcement-id-value": announcement.id } }
       .container
-        %button.close{ type: :button, data: { dismiss: :alert } }
+        %button.close{ type: :button, data: { dismiss: :alert, action: "click->announcement#close" } }
           %span{ aria: { hidden: true } } &times;
         %p
           = announcement.content
