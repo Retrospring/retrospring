@@ -12,8 +12,8 @@
         = nav_entry t("navigation.discover"), discover_path, icon: 'compass'
     %ul.nav.navbar-nav
       - if @user.present? && @user != current_user
-        %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t(".list") }
-          %a.nav-link{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
+        %li.nav-item.d-none.d-sm-block
+          = link_to lists_path(@user), class: "nav-link", data: { turbo_frame: :modal_container } do
             %i.fa.fa-list.hidden-xs
             %span.d-none.d-sm-inline.d-md-none= t(".list")
       = nav_entry t("navigation.notifications"), notifications_path, badge: notification_count, class: 'd-block d-sm-none'

@@ -31,6 +31,7 @@
       = render 'navigation/guest'
     = render 'shared/announcements'
     = yield
+    = turbo_frame_tag :modal_container
     - if Rails.env.development?
       #debug
         %hr

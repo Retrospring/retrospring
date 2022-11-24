@@ -1,0 +1,31 @@
+= turbo_frame_tag :modal_container do
+  .modal.show#modal-list-memberships{ aria: { labelledby: "modal-list-memberships-label" }, role: :dialog, tabindex: -1, style: "display: block;" }
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title#modal-list-memberships-label= t(".title")
+          = button_to modal_close_path, class: "close" do
+            %span{ aria: { hidden: true } } ×
+            %span.sr-only= t("voc.close")
+        %div{ role: :tabpanel }
+          %ul.nav.nav-tabs.mt-1{ role: :tablist }
+            %li.nav-item{ role: "presentation" }
+              %a.nav-link.active{ href: "#lists-list", aria: { controls: "lists-list" }, data: { toggle: :tab }, role: :tab }
+                = t(".tab.list.title")
+            %li.nav-item{ role: "presentation" }
+              %a.nav-link{ href: "#create", aria: { controls: "create" }, data: { toggle: :tab }, role: :tab }
+                = t(".tab.create.title")
+
+          .tab-content
+            .tab-pane.active{ role: :tabpanel, id: "lists-list" }
+              %ul.list-group
+                - @lists.each do |list|
+                  = render "modal/list/item", list: list, user: @user
+            .tab-pane{ role: :tabpanel, id: "create" }
+              .modal-body
+                %input.form-control#new-list-name{ type: :text, placeholder: t(".tab.create.placeholder") }
+                %button.btn.btn-primary#create-list{ type: :button }= t(".tab.create.action")
+        .modal-footer
+          = button_to modal_close_path, class: "btn btn-primary" do
+            = t("voc.close")
+  .modal-backdrop.fade.show

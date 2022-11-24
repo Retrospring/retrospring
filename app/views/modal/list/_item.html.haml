@@ -1,4 +1,4 @@
-%li.list-group-item{ id: "list-#{list.name}" }
+%li.list-group-item{ id: "list_#{list.name}" }
   .media
     .pull-left
       .custom-control.custom-checkbox
@@ -12,6 +12,6 @@
       .list-group-item-text.text-muted
         %span{ id: "#{list.name}-members", data: { count: list.members.count } }= t(".members", count: list.members.count)
         ·
-        %a.text-danger#delete-list{ href: "#", data: { list: list.name } }
+        = link_to lists_destroy_path(list), data: { turbo_method: :destroy }, class: "text-danger" do
           %i.fa.fa-close
           = t("voc.delete")
