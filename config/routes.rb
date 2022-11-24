@@ -136,6 +136,9 @@ Rails.application.routes.draw do
     delete "/block_anon/:id", to: "anonymous_block#destroy", as: :unblock_anon
   end
 
+  post "/lists", to: "lists#index", as: :lists
+  delete "/lists/:list", to: "lists#destroy", as: :lists_destroy
+
   get "/discover", to: "discover#index", as: :discover
   match "/public", to: "timeline#public", via: [:get, :post], as: :public_timeline if APP_CONFIG.dig(:features, :public, :enabled)
   match "/list/:list_name", to: "timeline#list", via: [:get, :post], as: :list_timeline
