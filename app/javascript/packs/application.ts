@@ -4,7 +4,6 @@ import { Application } from '@hotwired/stimulus';
 import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
 
 import start from 'retrospring/common';
-import initAnnouncements from 'retrospring/features/announcement';
 import initAnswerbox from 'retrospring/features/answerbox/index';
 import initInbox from 'retrospring/features/inbox/index';
 import initUser from 'retrospring/features/user';
@@ -27,7 +26,6 @@ document.addEventListener('turbo:load', initQuestionbox);
 document.addEventListener('DOMContentLoaded', initQuestion);
 document.addEventListener('DOMContentLoaded', initModeration);
 document.addEventListener('DOMContentLoaded', initMemes);
-document.addEventListener('turbo:load', initAnnouncements);
 document.addEventListener('turbo:load', initLocales);
 document.addEventListener('turbo:load', initFront);
 
