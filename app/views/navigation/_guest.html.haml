@@ -1,5 +1,5 @@
 %nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top{ role: :navigation }
-  .container{ class: ios_web_app? ? 'ios-web-app' : '' }
+  .container
     %a.navbar-brand{ href: '/', title: APP_CONFIG["site_name"] }
       - if APP_CONFIG["use_svg_logo"]
         = render inline: Rails.application.config.justask_svg_logo

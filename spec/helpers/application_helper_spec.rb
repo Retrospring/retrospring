@@ -87,32 +87,6 @@ describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe "#ios_web_app" do
-    context "Non-iOS device" do
-      it "should not return true" do
-        controller.request.user_agent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2;"
-
-        expect(helper.ios_web_app?).to eq(false)
-      end
-    end
-
-    context "iOS device (not in web app mode)" do
-      it "should not return true" do
-        controller.request.user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B435 Safari/600.1.4"
-
-        expect(helper.ios_web_app?).to eq(false)
-      end
-    end
-
-    context "iOS device" do
-      it "should return true" do
-        controller.request.user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B435"
-
-        expect(helper.ios_web_app?).to eq(true)
-      end
-    end
-  end
-
   describe "#rails_admin_path_for_resource" do
     context "user resource" do
       let(:resource) { FactoryBot.create(:user) }
