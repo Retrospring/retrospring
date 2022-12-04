@@ -8,11 +8,11 @@
       %i.fa.fa-fw.fa-exclamation-triangle
       = t("voc.report")
   - if question.anonymous? && !question.generated?
-    %a.dropdown-item{ name: "ib-block-anon", data: { q_id: question.id } }
+    = button_to anonymous_block_path, method: :post, params: { question: question.id }, class: "dropdown-item" do
       %i.fa.fa-fw.fa-minus-circle
       = t("voc.block")
     - if current_user.mod?
-      %a.dropdown-item{ href: "#", name: "mod-block-anon", data: { q_id: question.id } }
+      = button_to anonymous_block_path, method: :post, params: { question: question.id, global: true }, class: "dropdown-item" do
         %i.fa.fa-fw.fa-volume-off
         = t("voc.block_site_wide")
       %a.dropdown-item{ href: moderation_questions_path(author_identifier: question.author_identifier) }

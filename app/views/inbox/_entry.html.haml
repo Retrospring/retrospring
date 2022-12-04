@@ -1,4 +1,4 @@
-.card.inbox-entry{ class: i.new? ? "inbox-entry--new" : "", data: { id: i.id } }
+.card.inbox-entry{ id: "inbox_#{i.id}", class: i.new? ? "inbox-entry--new" : "", data: { id: i.id } }
   .card-header
     .media
       - unless i.question.author_is_anonymous
