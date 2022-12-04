@@ -2,7 +2,7 @@
 = render 'navigation/dropdown/notifications', notifications: notifications, size: "mobile"
 - notifications_icon = notification_count.nil? ? 'bell-o' : 'bell'
 %nav.navbar.navbar-themed.bg-primary.fixed-bottom.d-lg-none.d-block.d-print-none#rs-mobile-nav{ role: :navigation }
-  .container{ class: ios_web_app? ? 'ios-web-app' : '' }
+  .container
     %ul.nav.navbar-nav.navbar-icon-row
       = nav_entry t("navigation.timeline"), root_path, icon: 'home', icon_only: true
       = nav_entry t("navigation.inbox"), '/inbox',

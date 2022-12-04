@@ -33,15 +33,6 @@ module ApplicationHelper
     !current_user.nil? && ((current_user == user) || current_user.mod?)
   end
 
-  def ios_web_app?
-    user_agent = request.env["HTTP_USER_AGENT"] || "Mozilla/5.0"
-    # normal MobileSafari.app UA: Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B435 Safari/600.1.4
-    # webapp UA: Mozilla/5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12B435
-    return true if user_agent.match(/^Mozilla\/\d+\.\d+ \(i(?:Phone|Pad|Pod); CPU(?:.*) like Mac OS X\)(?:.*) Mobile(?:\S*)$/)
-
-    false
-  end
-
   def rails_admin_path_for_resource(resource)
     [rails_admin_path, resource.model_name.param_key, resource.id].join("/")
   end
