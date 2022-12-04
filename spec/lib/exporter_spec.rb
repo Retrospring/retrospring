@@ -296,11 +296,13 @@ RSpec.describe Exporter do
 
   describe "#publish" do
     let(:fake_rails_root) { Pathname(Dir.mktmpdir) }
+    let(:fake_rails_public_path) { fake_rails_root.join('public') }
     let(:name) { instance.instance_variable_get(:@export_filename) }
 
     before do
       FileUtils.mkdir_p("#{fake_rails_root}/public/export")
       allow(Rails).to receive(:root).and_return(fake_rails_root)
+      allow(Rails).to receive(:public_path).and_return(fake_rails_public_path)
 
       user.export_processing = true
       user.save!
