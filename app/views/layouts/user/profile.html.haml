@@ -11,7 +11,6 @@
       = render 'tabs/profile', user: @user
       = yield
 - if user_signed_in?
-  = render 'modal/list', user: @user
   - if current_user.mod? && @user != current_user
     = render 'modal/privileges', user: @user
     = render 'modal/ban', user: @user
