@@ -233,6 +233,20 @@ en:
       body: "Never enter your passwords or other private information on an untrusted website. %{app_name} will only ever ask for your password on a site that is on the domain %{hostname}"
       url: "URL:"
       confirm: "I understand the risk, proceed!"
+  lists:
+    actions:
+      add: "Add to list"
+      remove: "Remove from list"
+    index:
+      title: "Manage list memberships"
+      tab:
+        list:
+          title: "Lists"
+        create:
+          title: "Create new list"
+    form:
+      action: "Create list"
+      placeholder: "List name"
   modal:
     ask:
       title: "Ask your followers"
@@ -242,20 +256,6 @@ en:
     comment_smiles:
       title: "People who smiled this comment"
       none: "No one has smiled this comment yet."
-    list:
-      title: "Manage list memberships"
-      tab:
-        list:
-          title: "Lists"
-        create:
-          title: "Create new list"
-          action: "Create list"
-          placeholder: "List name"
-      item:
-        members:
-          zero: "0 members"
-          one: "1 member"
-          other: "%{count} members"
     privileges:
       title: "Manage roles for %{user}"
       role:

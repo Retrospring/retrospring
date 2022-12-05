@@ -27,6 +27,10 @@ en:
     view_in_rails_admin: "View in Rails Admin"
     "y": "Yes"
     "n": "No"
+    members:
+      zero: "0 members"
+      one: "1 member"
+      other: "%{count} members"
   messages:
     noauth: "You need to be logged in to perform this action."
   time:
