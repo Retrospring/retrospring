@@ -127,15 +127,15 @@ Rails.application.routes.draw do
     post "/create_comment", to: "comment#create", as: :create_comment
     post "/destroy_comment", to: "comment#destroy", as: :destroy_comment
     post "/report", to: "report#create", as: :report
-    post "/create_list", to: "list#create", as: :create_list
-    post "/destroy_list", to: "list#destroy", as: :destroy_list
-    post "/list_membership", to: "list#membership", as: :list_membership
     post "/subscribe", to: "subscription#subscribe", as: :subscribe_answer
     post "/unsubscribe", to: "subscription#unsubscribe", as: :unsubscribe_answer
   end
 
-  post "/lists", to: "lists#index", as: :lists
+  get "/lists", to: "lists#index", as: :lists
+  post "/lists", to: "lists#create", as: :lists_create
+  patch "/lists/:list", to: "lists#update", as: :lists_update
   delete "/lists/:list", to: "lists#destroy", as: :lists_destroy
+
   resource :anonymous_block, controller: :anonymous_block, only: %i[create destroy]
 
   get "/discover", to: "discover#index", as: :discover

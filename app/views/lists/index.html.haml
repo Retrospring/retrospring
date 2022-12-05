@@ -18,13 +18,12 @@
 
           .tab-content
             .tab-pane.active{ role: :tabpanel, id: "lists-list" }
-              %ul.list-group
+              %ul.list-group#lists
                 - @lists.each do |list|
-                  = render "modal/list/item", list: list, user: @user
+                  = render "lists/item", list: list, user: @user
             .tab-pane{ role: :tabpanel, id: "create" }
               .modal-body
-                %input.form-control#new-list-name{ type: :text, placeholder: t(".tab.create.placeholder") }
-                %button.btn.btn-primary#create-list{ type: :button }= t(".tab.create.action")
+                = render "lists/form", user: @user
         .modal-footer
           = button_to modal_close_path, class: "btn btn-primary" do
             = t("voc.close")

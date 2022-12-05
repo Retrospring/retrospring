@@ -1,0 +1,10 @@
+= turbo_stream.update "list_#{@list.id}_membership" do
+  - if @target_user.member_of?(@list)
+    = link_to lists_update_path(@list, user: @target_user, add: false), class: "btn btn-default align-self-center", data: { turbo_method: :patch } do
+      = t("lists.actions.remove")
+  - else
+    = link_to lists_update_path(@list, user: @target_user, add: true), class: "btn btn-primary align-self-center", data: { turbo_method: :patch } do
+      = t("lists.actions.add")
+
+= turbo_stream.update "list_#{@list.id}_members" do
+  = t("voc.members", count: @list.members.count)

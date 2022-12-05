@@ -1,0 +1,4 @@
+%form#create-form{ action: lists_create_path, method: :post }
+  %input{ type: :hidden, name: "user", value: user.screen_name }
+  %input.form-control.mb-2#name{ type: :text, name: "name", placeholder: t(".placeholder") }
+  %input{ type: :submit, class: "btn btn-primary", value: t(".action") }

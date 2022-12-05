@@ -1,0 +1,17 @@
+%li.list-group-item{ id: "list_#{list.id}" }
+  .d-flex
+    %div
+      .list-group-item-heading= list.display_name
+      .list-group-item-text.text-muted
+        %span{ id: "list_#{list.id}_members" }= t("voc.members", count: list.members.count)
+        ·
+        = link_to lists_destroy_path(list), data: { turbo_method: :delete }, class: "text-danger" do
+          %i.fa.fa-close
+          = t("voc.delete")
+    .ml-auto.d-inline-flex{ id: "list_#{list.id}_membership" }
+      - if user.member_of?(list)
+        = link_to lists_update_path(list, user:, add: false), class: "btn btn-default align-self-center", data: { turbo_method: :patch } do
+          = t("lists.actions.remove")
+      - else
+        = link_to lists_update_path(list, user:, add: true), class: "btn btn-primary align-self-center", data: { turbo_method: :patch } do
+          = t("lists.actions.add")
