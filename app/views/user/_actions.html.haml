@@ -14,7 +14,7 @@
         = t(".title")
         %span.caret
       .dropdown-menu
-        %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
+        %a.dropdown-item.d-block.d-sm-none{ href: lists_path(user: user), data: { turbo_frame: :modal_container } }
           %i.fa.fa-list
           = t(".list")
         - if current_user.blocking?(user)
