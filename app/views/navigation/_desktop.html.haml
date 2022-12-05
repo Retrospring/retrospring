@@ -13,7 +13,7 @@
     %ul.nav.navbar-nav
       - if @user.present? && @user != current_user
         %li.nav-item.d-none.d-sm-block
-          = link_to lists_path(@user), class: "nav-link", data: { turbo_frame: :modal_container } do
+          %a.nav-link{ href: lists_path(user: @user), class: "nav-link", data: { turbo_frame: :modal_container } }
             %i.fa.fa-list.hidden-xs
             %span.d-none.d-sm-inline.d-md-none= t(".list")
       = nav_entry t("navigation.notifications"), notifications_path, badge: notification_count, class: 'd-block d-sm-none'
