@@ -133,7 +133,7 @@ class Exporter
   end
 
   def publish
-    `tar czvf #{Rails.root.join "public", "export", "#{@export_filename}.tar.gz"} -C /tmp/rs_export #{@export_dirname}`
+    `tar czvf #{Rails.public_path.join "export", "#{@export_filename}.tar.gz"} #{@export_dirname}`
     url = "#{APP_CONFIG['https'] ? 'https' : 'http'}://#{APP_CONFIG['hostname']}/export/#{@export_filename}.tar.gz"
     @user.export_processing = false
     @user.export_url = url

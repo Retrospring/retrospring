@@ -49,7 +49,11 @@ class InboxController < ApplicationController
     @disabled = true if @inbox.empty?
     respond_to do |format|
       format.html
-      format.turbo_stream { render "show", layout: false, status: :see_other }
+      format.turbo_stream do
+        render "show", layout: false, status: :see_other
+
+        @inbox.update_all(new: false)
+      end
     end
   end
 

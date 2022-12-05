@@ -8,6 +8,6 @@
 = render 'shared/links'
 
 :ruby
-  Inbox.where(id: @inbox.ids).update_all(new: false)
+  @inbox.update_all(new: false)
   provide(:title, generate_title('Inbox'))
   parent_layout 'base'
