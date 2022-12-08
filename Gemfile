@@ -111,3 +111,5 @@ gem "net-imap"
 gem "net-pop"
 
 gem "pundit", "~> 2.2"
+
+gem "rubyzip", "~> 2.3"

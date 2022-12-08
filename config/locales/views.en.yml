@@ -393,7 +393,7 @@ en:
         title: "Export"
         heading: "Export your data"
         body_html: |
-          <p>The data is inside a <code>.tar.gz</code> archive and available in three formats: YAML, JSON, and XML.
+          <p>The data is inside a <code>.zip</code> archive that contains some JSON files.
           The archive also contains a copy of your profile picture and header picture in all sizes.</p>
           <p>Please note that you can only export your data once a week. Exporting your data
           will take a while, so please be patient. You will receive a question once exporting
