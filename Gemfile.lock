@@ -294,6 +294,7 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    openssl (3.0.1)
     orm_adapter (0.5.0)
     parallel (1.22.1)
     parser (3.1.2.1)
@@ -550,6 +551,7 @@ DEPENDENCIES
   omniauth
   omniauth-rails_csrf_protection (~> 1.0)
   omniauth-twitter
+  openssl (~> 3.0, >= 3.0.1)
   pg
   pghero
   puma
