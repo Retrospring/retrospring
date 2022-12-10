@@ -15,6 +15,21 @@ describe Settings::ExportController, type: :controller do
         subject
         expect(response).to render_template(:index)
       end
+
+      context "when user has a new DataExported notification" do
+        let(:notification) do
+          Notification::DataExported.create(
+            target_id:   user.id,
+            target_type: "User::DataExport",
+            recipient:   user,
+            new:         true
+          )
+        end
+
+        it "marks the notification as read" do
+          expect { subject }.to change { notification.reload.new }.from(true).to(false)
+        end
+      end
     end
   end
 
