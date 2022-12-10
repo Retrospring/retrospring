@@ -39,7 +39,12 @@ class Exporter
     Sentry.capture_exception(e)
     @user.export_processing = false
     @user.save validate: false
-    raise # so that e.g. the sidekiq job fails
+
+    # delete zipfile on errors
+    @zipfile.close # so it gets written to disk first
+    File.delete(@zipfile.name)
+
+    raise # let e.g. the sidekiq job fail so it's retryable later
   ensure
     @zipfile.close
   end
