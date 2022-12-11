@@ -65,8 +65,11 @@ redis_url: "redis://localhost:6379"
     # aws_access_key_id: 'ACCESS KEY'
     # aws_secret_access_key: 'SECRET KEY'
     # region: 'space-pluto-1'
-    # URL host, comment out to use default, GENERALLY you don't want to define this
+    ## URL host, comment out to use default, GENERALLY you don't want to define this
     # host: 's3.wherever.com'
+    ## if you want to use Ceph RadosGW, use these options (region doesn't matter)
+    # endpoint: 'http://radosgw.example.com'
+    # path_style: true
   # bucket name, required
   # directory: 'retrospring'
 

@@ -128,3 +128,6 @@ Style/RescueStandardError:
 
 Style/Encoding:
   Enabled: false
+
+Style/EndlessMethod:
+  EnforcedStyle: allow_always

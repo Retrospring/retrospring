@@ -1,0 +1,8 @@
+.media.notification
+  .notification__icon
+    %i.fa.fa-2x.fa-fw.fa-download
+  .media-body
+    %h6.media-heading.notification__user
+      = t(".heading")
+    .notification__text
+      = t(".text_html", settings_export: link_to(t(".settings_export"), settings_export_path))
