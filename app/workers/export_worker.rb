@@ -1,4 +1,7 @@
-require 'exporter'
+# frozen_string_literal: true
+
+require "exporter"
+
 class ExportWorker
   include Sidekiq::Worker
 
@@ -6,11 +9,16 @@ class ExportWorker
 
   # @param user_id [Integer] the user id
   def perform(user_id)
-    exporter = Exporter.new User.find(user_id)
+    user = User.find(user_id)
+
+    exporter = Exporter.new(user)
     exporter.export
-    question = Question.create(content: "Your #{APP_CONFIG['site_name']} data export is ready!  You can download it " +
-        "from the settings page under the \"Export\" tab.", author_is_anonymous: true,
-                               author_identifier: "retrospring_exporter")
-    Inbox.create(user_id: user_id, question_id: question.id, new: true)
+
+    Notification::DataExported.create(
+      target_id:   user.id,
+      target_type: "User::DataExport",
+      recipient:   user,
+      new:         true
+    )
   end
 end
