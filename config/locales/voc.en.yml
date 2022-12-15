@@ -28,7 +28,7 @@ en:
     "y": "Yes"
     "n": "No"
     members:
-      zero: "0 members"
+      zero: "No members"
       one: "1 member"
       other: "%{count} members"
   messages:
