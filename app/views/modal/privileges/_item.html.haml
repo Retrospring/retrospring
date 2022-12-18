@@ -2,7 +2,7 @@
   description ||= ""
   role_mapping = { admin: "administrator" }
   requires_role = %w[admin moderator].include?(privilege)
-  checked = requires_role ? user.has_role?(role_mapping.fetch(privilege, privilege).to_sym) : user.public_send("#{privilege}?")
+  checked = requires_role ? user.has_cached_role?(role_mapping.fetch(privilege, privilege).to_sym) : user.public_send("#{privilege}?")
 %li.list-group-item{ id: "privilege-#{privilege}" }
   .media
     .pull-left

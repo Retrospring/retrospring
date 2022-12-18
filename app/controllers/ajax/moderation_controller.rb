@@ -37,7 +37,7 @@ class Ajax::ModerationController < AjaxController
     unban  = params[:ban] == '0'
     perma  = params[:duration].blank?
 
-    if !unban && target_user.has_role?(:administrator)
+    if !unban && target_user.has_cached_role?(:administrator)
       @response[:status] = :nopriv
       @response[:message] = t(".nopriv")
       return
@@ -88,7 +88,7 @@ class Ajax::ModerationController < AjaxController
     @response[:message] = t(".error")
     return unless %w(moderator admin).include? params[:type].downcase
 
-    unless current_user.has_role?(:administrator)
+    unless current_user.has_cached_role?(:administrator)
       @response[:status] = :nopriv
       @response[:message] = t(".nopriv")
       return

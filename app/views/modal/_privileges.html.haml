@@ -8,7 +8,7 @@
           %span{ aria: { hidden: true } } ×
           %span.sr-only= t("voc.close")
       %ul.list-group
-        - if current_user.has_role?(:administrator)
+        - if current_user.has_cached_role?(:administrator)
           = render "modal/privileges/item", privilege: "moderator", description: t(".role.moderator"), user: user
           = render "modal/privileges/item", privilege: "admin", description: t(".role.admin"), user: user
       .modal-footer

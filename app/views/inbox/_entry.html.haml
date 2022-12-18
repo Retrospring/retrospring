@@ -14,7 +14,7 @@
             %a{ href: question_path(i.question.user.screen_name, i.question.id) }
               = t(".answers", count: i.question.answer_count)
         .answerbox__question-text= question_markdown i.question.content
-      - if i.question.user_id != current_user.id || current_user.has_role?(:administrator)
+      - if i.question.user_id != current_user.id || current_user.has_cached_role?(:administrator)
         .pull-right
           .btn-group
             %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }

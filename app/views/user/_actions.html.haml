@@ -32,7 +32,7 @@
           %a.dropdown-item{ href: '#', data: { target: '#modal-privileges', toggle: :modal } }
             %i.fa.fa-wrench
             = raw t(".privilege", user: user.screen_name)
-          - unless user.has_role?(:administrator)
+          - unless user.has_cached_role?(:administrator)
             %a.dropdown-item{ href: '#', data: { target: '#modal-ban', toggle: :modal } }
               %i.fa.fa-ban
               = t(".ban")
@@ -40,7 +40,7 @@
           %a.dropdown-item{ href: mod_inbox_index_path(user: user.screen_name) }
             %i.fa.fa-inbox
             = t(".view_inbox")
-        - if current_user.has_role? :administrator
+        - if current_user.has_cached_role? :administrator
           %a.dropdown-item{ href: rails_admin_path_for_resource(user), target: '_blank' }
             %i.fa.fa-cogs
             = t("voc.view_in_rails_admin")
