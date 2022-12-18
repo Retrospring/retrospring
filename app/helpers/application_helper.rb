@@ -22,11 +22,10 @@ module ApplicationHelper
   def notification_count
     return 0 unless user_signed_in?
 
-    count = Notification.for(current_user).where(new: true)
-    return nil if count.nil?
-    return nil unless count.count.positive?
+    count = Notification.for(current_user).where(new: true).pluck(:id).size
+    return nil unless count.positive?
 
-    count.count
+    count
   end
 
   def privileged?(user)
