@@ -19,7 +19,7 @@
     %a.dropdown-item{ href: moderation_reports_path }
       %i.fa.fa-fw.fa-gavel
       = t(".moderation")
-    - if current_user.has_role?(:administrator)
+    - if current_user.has_cached_role?(:administrator)
       %a.dropdown-item{ href: admin_dashboard_path }
         %i.fa.fa-fw.fa-cogs
         = t(".admin")

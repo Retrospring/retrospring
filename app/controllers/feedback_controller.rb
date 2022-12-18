@@ -6,7 +6,7 @@ class FeedbackController < ApplicationController
   before_action :canny_consent_given?, only: %w[features bugs]
 
   def consent
-    redirect_to feedback_bugs_path if current_user.has_role? :canny_consent
+    redirect_to feedback_bugs_path if current_user.has_cached_role? :canny_consent
   end
 
   def update
@@ -27,6 +27,6 @@ class FeedbackController < ApplicationController
   end
 
   def canny_consent_given?
-    redirect_to feedback_consent_path unless current_user.has_role? :canny_consent
+    redirect_to feedback_consent_path unless current_user.has_cached_role? :canny_consent
   end
 end

@@ -138,11 +138,11 @@ class User < ApplicationRecord
 
   # @return [Boolean] is the user a moderator?
   def mod?
-    has_role?(:moderator) || has_role?(:administrator)
+    has_cached_role?(:moderator) || has_cached_role?(:administrator)
   end
 
   def admin?
-    has_role?(:administrator)
+    has_cached_role?(:administrator)
   end
 
   # region stuff used for reporting/moderation
