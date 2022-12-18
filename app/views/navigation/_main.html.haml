@@ -1,4 +1,4 @@
-- notifications = Notification.for(current_user).where(new: true).limit(4)
+- notifications = Notification.for(current_user).where(new: true).includes([:target]).limit(4)
 = render 'navigation/desktop', notifications: notifications
 = render 'navigation/mobile', notifications: notifications
 
