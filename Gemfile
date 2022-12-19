@@ -92,7 +92,7 @@ group :development, :test do
   gem "rspec-sidekiq", "~> 3.0", require: false
   gem "rubocop", "~> 1.40"
   gem "rubocop-rails", "~> 2.17"
-  gem "shoulda-matchers", "~> 5.2"
+  gem "shoulda-matchers", "~> 5.3"
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false
   gem "simplecov-json", require: false
