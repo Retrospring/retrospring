@@ -17,7 +17,7 @@
     "croppr": "^2.3.1",
     "font-awesome": "4.7.0",
     "i18n-js": "^4.0",
-    "jquery": "^3.6.1",
+    "jquery": "^3.6.2",
     "js-cookie": "2.2.1",
     "popper.js": "^1.16.1",
     "rails_admin": "3.0.0",
