@@ -16,7 +16,7 @@ class BaseUploader < CarrierWave::Uploader::Base
   end
 
   def paperclip_path
-    return "/system/users/:attachment/:id_partition/:style/:basename.:extension" if APP_CONFIG["fog"].blank?
+    return "/users/:attachment/:id_partition/:style/:basename.:extension" if APP_CONFIG["fog"].blank?
 
     "users/:attachment/:id_partition/:style/:basename.:extension"
   end
