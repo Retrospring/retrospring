@@ -68,12 +68,7 @@ module UseCase
         picture.versions.each do |version, file|
           export_filename = "pictures/#{file.mounted_as}_#{version}_#{file.filename}"
           to[export_filename] = if file.url.start_with?("/")
-                                  begin
-                                    Rails.public_path.join(file.url.sub(%r{\A/+}, "")).read
-                                  rescue
-                                    # TODO: fix image handling in local development environments!!! see #822
-                                    "ceci n'est pas un image\n"
-                                  end
+                                  Rails.public_path.join(file.url.sub(%r{\A/+}, "")).read
                                 else
                                   HTTParty.get(file.url).parsed_response
                                 end
