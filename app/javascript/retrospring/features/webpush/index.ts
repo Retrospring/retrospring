@@ -8,19 +8,22 @@ export default (): void => {
   const notificationCapable = document.body.classList.contains('cap-notification');
 
   if (swCapable && notificationCapable) {
+    const enableBtn = document.querySelector('button[data-action="push-enable"]');
 
-    navigator.serviceWorker.getRegistration().then(registration => {
-      return registration.pushManager.getSubscription().then(subscription => {
-        if (!subscription) {
-          document.querySelector('button[data-action="push-enable"]').classList.remove('d-none');
-        } else {
+    if (!enableBtn) return;
+
+    enableBtn.classList.remove('d-none');
+
+    navigator.serviceWorker.getRegistration().then(registration =>
+      registration?.pushManager.getSubscription().then(subscription => {
+        if (subscription) {
+          document.querySelector('button[data-action="push-enable"]').classList.add('d-none');
           document.querySelector('[data-action="push-disable"]').classList.remove('d-none');
           if (localStorage.getItem('dismiss-push-settings-prompt') == null) {
             document.querySelector('.push-settings')?.classList.remove('d-none');
           }
         }
-      });
-    });
+      }));
   }
 
   registerEvents([
