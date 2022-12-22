@@ -46,6 +46,8 @@
     min-width: unset;
     right: unquote("calc(env(safe-area-inset-right) + 8px)");
     width: unquote("calc(100vw - (8px + env(safe-area-inset-right)) - (8px + env(safe-area-inset-left)))");
+    max-height: calc(100% - 40px - 2rem);
+    overflow-y: scroll;
 
     .dropdown-item {
       padding: 8px;
