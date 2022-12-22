@@ -35,6 +35,11 @@ about: |
 
   Use this space to describe your Retrospring instance!
 
+# Custom links in the footer
+# links:
+  # - text: "Patreon"
+    # url: "https://patreon.com/retrospring"
+
 # How many items (questions, answers, ...) do you want to show per page?
 items_per_page: 10
 

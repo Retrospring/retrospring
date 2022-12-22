@@ -10,3 +10,7 @@
   = link_to t(".terms"), terms_path
   ·
   = link_to t(".privacy"), privacy_policy_path
+  - if APP_CONFIG["links"].present?
+    - APP_CONFIG["links"].each do |link|
+      ·
+      = link_to link["text"], link["url"]
