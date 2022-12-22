@@ -22,7 +22,6 @@
   }
 
   &__input {
-    z-index: 99;
     padding-right: 2.5rem;
 
     &.is-invalid {
@@ -32,7 +31,7 @@
 
   &__character-count {
     position: absolute;
-    z-index: 100;
+    z-index: 5;
     right: .5rem;
     top: .5rem;
   }
