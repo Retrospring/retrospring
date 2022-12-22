@@ -9,7 +9,7 @@ module User::PushNotificationMethods
       n.app = app
       n.registration_ids = [s.subscription.symbolize_keys]
       n.data = {
-        message: resource.as_push_notification
+        message: resource.as_push_notification.to_json
       }
       n.save!
     end
