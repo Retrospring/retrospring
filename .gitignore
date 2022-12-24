@@ -17,6 +17,9 @@ coverage/
 # Curse you, JetBrains!
 .idea/
 
+# Curse you, VS Code!
+.vscode/
+
 /public/assets
 /public/system
 
