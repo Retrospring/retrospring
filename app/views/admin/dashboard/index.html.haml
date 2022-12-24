@@ -1,30 +1,5 @@
 .row
   .col-sm-6
-    .card
-      .card-header
-        %a.d-flex{ href: sidekiq_web_path }
-          %strong Sidekiq
-          %i.fa.fa-chevron-right.ml-auto.align-self-center
-      - unless @sidekiq[:processes].count.positive?
-        .card-body.bg-danger.text-light
-          %strong There are no Sidekiq processes running.
-          Background jobs will not be processed.
-          %br
-          To fix this, run
-          %tt RAILS_ENV=#{Rails.env} bundle exec sidekiq
-
-      .list-group
-        .list-group-item.d-flex
-          %span Processes
-          %span.ml-auto= @sidekiq[:processes].count
-        .list-group-item.d-flex
-          %span Enqueued
-          %span.ml-auto= @sidekiq[:stats].enqueued
-        .list-group-item.d-flex
-          %span Retries
-          %span.ml-auto= @sidekiq[:stats].retry_size
-        .list-group-item.d-flex
-          %span Dead
-          %span.ml-auto= @sidekiq[:stats].dead_size
+    = render "admin/dashboard/sidekiq"
 
 - parent_layout "admin"
