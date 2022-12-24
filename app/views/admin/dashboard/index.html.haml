@@ -1,5 +1,31 @@
 .card
   .card-body
-    No dashboard content yet!
+    %h2
+      Sidekiq
+
+    %a{ href: sidekiq_web_path } View dashboard
+
+    - unless @sidekiq[:processes].count.positive?
+      .alert.alert-danger{ role: :alert }
+        %strong There are no Sidekiq processes running.
+        Background jobs will not be processed.
+        %br
+        To fix this, run
+        %tt RAILS_ENV=#{Rails.env} bundle exec sidekiq
+
+    %table.table
+      %tbody
+        %tr
+          %th Processes
+          %td= @sidekiq[:processes].count
+        %tr
+          %th Enqueued
+          %td= @sidekiq[:stats].enqueued
+        %tr
+          %th Retries
+          %td= @sidekiq[:stats].retry_size
+        %tr
+          %th Dead
+          %td= @sidekiq[:stats].dead_size
 
 - parent_layout "admin"
