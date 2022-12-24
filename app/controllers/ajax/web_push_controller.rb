@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Ajax::WebPushController < AjaxController
+  before_action :authenticate_user!
+
   def key
     certificate = Rpush::Webpush::App.find_by(name: "webpush").certificate
 
@@ -23,7 +25,7 @@ class Ajax::WebPushController < AjaxController
   def unsubscribe
     params.permit(:endpoint)
 
-    if params.key?(:endpoint)
+    removed = if params.key?(:endpoint)
       current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy_all
     else
       current_user.web_push_subscriptions.destroy_all
@@ -31,8 +33,8 @@ class Ajax::WebPushController < AjaxController
 
     count = current_user.web_push_subscriptions.count
 
-    @response[:status] = :okay
-    @response[:success] = true
+    @response[:status] = removed.any? ? :okay : :err
+    @response[:success] = removed.any?
     @response[:message] = t(".subscription_count", count:)
     @response[:count] = count
   end
