@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', initModeration);
 document.addEventListener('DOMContentLoaded', initMemes);
 document.addEventListener('turbo:load', initLocales);
 document.addEventListener('turbo:load', initFront);
-document.addEventListener('DOMContentLoaded', initWebpush);
+document.addEventListener('turbo:load', initWebpush);
 
 window['Stimulus'] = Application.start();
 const context = require.context('../retrospring/controllers', true, /\.ts$/);
