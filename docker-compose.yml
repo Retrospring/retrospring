@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: .docker/ruby/Dockerfile
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && rdebug-ide --skip_wait_for_start --host 0.0.0.0 --port 1234 --dispatcher-port 26162 -- bin/rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - postgres
       - redis
@@ -16,10 +16,11 @@ services:
       - cache:/cache
     ports:
       - 3000:3000
+      - 1234:1234
 
   redis:
     image: redis:3.2.11-alpine
-    ports: 
+    ports:
       - 6379:6379
 
   postgres:
