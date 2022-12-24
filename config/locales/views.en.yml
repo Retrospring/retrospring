@@ -88,6 +88,19 @@ en:
         title: "Create Announcement"
       edit:
         title: "Edit Announcement"
+    dashboard:
+      sidekiq:
+        title: "Sidekiq"
+        error_html: |
+          <strong>There are no Sidekiq processes running.</strong>
+          Background jobs will not be processed.
+          <br/>
+          To fix this, run
+          <tt>RAILS_ENV=%{env} bundle exec sidekiq</tt>
+        processes: "Processes"
+        enqueued: "Enqueued"
+        retries: "Retries"
+        dead: "Dead"
   answerbox:
     header:
       anon_hint: :inbox.entry.anon_hint

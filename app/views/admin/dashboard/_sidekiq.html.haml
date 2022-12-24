@@ -1,0 +1,22 @@
+.card
+  .card-header
+    %a.d-flex{ href: sidekiq_web_path }
+      %strong= t(".title")
+      %i.fa.fa-chevron-right.ml-auto.align-self-center
+  - unless @sidekiq[:processes].count.positive?
+    .card-body.bg-danger.text-light
+      = t(".error_html", env: Rails.env)
+
+  .list-group
+    .list-group-item.d-flex
+      %span= t(".processes")
+      %span.ml-auto= @sidekiq[:processes].count
+    .list-group-item.d-flex
+      %span= t(".enqueued")
+      %span.ml-auto= @sidekiq[:stats].enqueued
+    .list-group-item.d-flex
+      %span= t(".retries")
+      %span.ml-auto= @sidekiq[:stats].retry_size
+    .list-group-item.d-flex
+      %span= t(".dead")
+      %span.ml-auto= @sidekiq[:stats].dead_size
