@@ -22,14 +22,14 @@ class Ajax::WebPushController < AjaxController
     @response[:message] = t(".subscription_count", count: current_user.web_push_subscriptions.count)
   end
 
-  def unsubscribe
+  def unsubscribe # rubocop:disable Metrics/AbcSize
     params.permit(:endpoint)
 
     removed = if params.key?(:endpoint)
-      current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy_all
-    else
-      current_user.web_push_subscriptions.destroy_all
-    end
+                current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy_all
+              else
+                current_user.web_push_subscriptions.destroy_all
+              end
 
     count = current_user.web_push_subscriptions.count
 

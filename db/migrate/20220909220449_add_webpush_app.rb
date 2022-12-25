@@ -7,7 +7,7 @@ class AddWebpushApp < ActiveRecord::Migration[6.1]
     vapid_keypair = Webpush.generate_key.to_hash
     app = Rpush::Webpush::App.new
     app.name = "webpush"
-    app.certificate = vapid_keypair.merge(subject: "user@example.com").to_json # TODO: put an email address here
+    app.certificate = vapid_keypair.merge(subject: APP_CONFIG["contact_email"]).to_json
     app.connections = 1
     app.save!
   end

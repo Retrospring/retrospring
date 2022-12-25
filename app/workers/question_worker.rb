@@ -19,7 +19,7 @@ class QuestionWorker
       next if user.muting?(question.user)
 
       inbox = Inbox.create(user_id: f.id, question_id:, new: true)
-      f.push_notification(webpush_app, inbox)
+      f.push_notification(webpush_app, inbox) if webpush_app
     end
   rescue StandardError => e
     logger.info "failed to ask question: #{e.message}"

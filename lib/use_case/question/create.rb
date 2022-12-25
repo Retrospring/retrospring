@@ -31,7 +31,7 @@ module UseCase
         inbox = ::Inbox.create!(user: target_user, question: question, new: true)
 
         webpush_app = ::Rpush::App.find_by(name: "webpush")
-        target_user.push_notification(webpush_app, inbox)
+        target_user.push_notification(webpush_app, inbox) if webpush_app
 
         {
           status:   201,
