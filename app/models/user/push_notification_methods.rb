@@ -12,6 +12,8 @@ module User::PushNotificationMethods
         message: resource.as_push_notification.to_json
       }
       n.save!
+
+      PushNotificationWorker.perform_async(n.id)
     end
   end
 end
