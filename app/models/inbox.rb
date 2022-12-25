@@ -32,7 +32,11 @@ class Inbox < ApplicationRecord
       type:  :inbox,
       title: I18n.t(
         "frontend.push_notifications.inbox.title",
-        user: question.author_is_anonymous ? user.profile.display_name : question.user.profile.safe_name
+        user: if question.author_is_anonymous
+                user.profile.anon_display_name || APP_CONFIG["anonymous_name"]
+              else
+                question.user.profile.safe_name
+              end
       ),
       body:  question.content
     }
