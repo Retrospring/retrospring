@@ -16,7 +16,10 @@ self.addEventListener('push', function (event) {
 self.addEventListener('notificationclick', async event => {
   if (event.notification.tag === 'inbox') {
     event.preventDefault();
-    return clients.openWindow("/inbox", "_blank");
+    return clients.openWindow("/inbox", "_blank").then(result => {
+      event.notification.close();
+      return result;
+    });
   } else {
     console.warn(`Unhandled notification tag: ${event.notification.tag}`);
   }
