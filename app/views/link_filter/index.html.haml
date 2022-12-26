@@ -3,7 +3,7 @@
     .card-body
       %h1= t(".heading", app_name: APP_CONFIG["site_name"])
       %p.lead= t(".subheading", app_name: APP_CONFIG["site_name"])
-      %p= t(".subheading", app_name: APP_CONFIG["site_name"], hostname: APP_CONFIG["hostname"])
+      %p= t(".body", app_name: APP_CONFIG["site_name"], hostname: APP_CONFIG["hostname"])
       %p.font-weight-bold.mb-0= t(".url")
       %pre.bg-light.text-dark.p-3.rounded= @link
 
