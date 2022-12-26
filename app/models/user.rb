@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
+class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include User::Relationship
   include User::Relationship::Follow
   include User::Relationship::Block

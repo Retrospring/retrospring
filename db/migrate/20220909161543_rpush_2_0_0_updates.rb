@@ -12,7 +12,7 @@ class Rpush200Updates < ActiveRecord::Migration[5.0]
   end
 
   def self.update_type(model, from, to)
-    model.where(type: from).update_all(type: to)
+    model.where(type: from).update_all(type: to) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def self.up

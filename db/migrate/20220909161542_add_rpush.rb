@@ -22,6 +22,7 @@
 # many times, by many people!
 
 class AddRpush < ActiveRecord::Migration[5.0]
+  # rubocop:disable all
   def self.migrations
     [CreateRapnsNotifications, CreateRapnsFeedback,
      AddAlertIsJsonToRapnsNotifications, AddAppToRapns,
@@ -40,8 +41,6 @@ class AddRpush < ActiveRecord::Migration[5.0]
       Rails.logger.debug e
     end
   end
-
-  # rubocop:disable Rails/MigrationClassName
 
   class CreateRapnsNotifications < ActiveRecord::Migration[5.0]
     def self.up

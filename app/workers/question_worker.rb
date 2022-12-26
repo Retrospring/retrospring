@@ -15,7 +15,7 @@ class QuestionWorker
     user.followers.each do |f|
       next if f.inbox_locked?
       next if f.banned?
-      next if MuteRule.where(user: f).any? { |rule| rule.applies_to? question }
+      next if muted?(f, question)
       next if user.muting?(question.user)
 
       inbox = Inbox.create(user_id: f.id, question_id:, new: true)
@@ -24,5 +24,11 @@ class QuestionWorker
   rescue StandardError => e
     logger.info "failed to ask question: #{e.message}"
     Sentry.capture_exception(e)
+  end
+
+  private
+
+  def muted?(user, question)
+    MuteRule.where(user:).any? { |rule| rule.applies_to? question }
   end
 end

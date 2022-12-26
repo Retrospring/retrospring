@@ -44,7 +44,6 @@ describe QuestionWorker do
     it "respects inbox locks" do
       user.followers.first.update(privacy_lock_inbox: true)
 
-
       expect { subject }
         .to(
           change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
@@ -71,15 +70,15 @@ describe QuestionWorker do
         Rpush::Webpush::App.create(
           name:        "webpush",
           certificate: { public_key: "AAAA", private_key: "AAAA", subject: "" }.to_json,
-          connections: 1,
+          connections: 1
         )
 
         WebPushSubscription.create!(
           user:         receiver,
           subscription: {
             endpoint: "This will not be used",
-            keys:     {},
-          },
+            keys:     {}
+          }
         )
         receiver.follow(user)
       end

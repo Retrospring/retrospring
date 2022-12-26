@@ -153,7 +153,7 @@ describe Ajax::WebPushController, :ajax_controller, type: :controller do
         let(:other_user) { FactoryBot.create(:user) }
         let!(:subscription) do
           WebPushSubscription.create(
-            user: other_user,
+            user:         other_user,
             subscription: { endpoint:, keys: {} }
           )
         end
