@@ -115,4 +115,4 @@ gem "pundit", "~> 2.2"
 gem "rubyzip", "~> 2.3"
 
 # to solve https://github.com/jwt/ruby-jwt/issues/526
-gem "openssl", "~> 3.0", ">= 3.0.1"
+gem "openssl", "~> 3.1"
