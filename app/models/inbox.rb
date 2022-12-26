@@ -38,6 +38,7 @@ class Inbox < ApplicationRecord
                 question.user.profile.safe_name
               end
       ),
+      icon:  question.author_is_anonymous ? "/icons/maskable_icon_x128.png" : question.user.profile_picture.url(:small),
       body:  question.content
     }
   end

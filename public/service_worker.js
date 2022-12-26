@@ -6,7 +6,7 @@ self.addEventListener('push', function (event) {
     event.waitUntil(self.registration.showNotification(notification.title, {
       body: notification.body,
       tag: notification.type,
-      icon: "/icons/maskable_icon_x128.png"
+      icon: notification.icon,
     }));
   } else {
     console.error("Push event received, but it didn't contain any data.", event);
