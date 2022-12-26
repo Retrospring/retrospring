@@ -67,7 +67,7 @@ gem "fake_email_validator"
 # TLD validation
 gem "tldv", "~> 0.1.0"
 
-gem "jwt", "~> 2.5"
+gem "jwt", "~> 2.6"
 
 group :development do
   gem "binding_of_caller"
