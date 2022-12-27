@@ -98,7 +98,10 @@ describe UserController, type: :controller do
   end
 
   describe "#questions" do
-    let!(:question) { FactoryBot.create(:question, user:, direct: true, author_is_anonymous: false) }
+    let!(:question_anyone) { FactoryBot.create(:question, user:, direct: false, author_is_anonymous: false) }
+    let!(:question_direct) { FactoryBot.create(:question, user:, direct: true, author_is_anonymous: false) }
+    let!(:question_direct_anon) { FactoryBot.create(:question, user:, direct: true, author_is_anonymous: true) }
+
     subject { get :questions, params: { username: user.screen_name } }
 
     it "renders the user/questions template" do
@@ -112,9 +115,11 @@ describe UserController, type: :controller do
         sign_in user
       end
 
-      it "renders all questions" do
+      it "contains all non-anon questions" do
         subject
-        expect(assigns(:questions).size).to eq(1)
+        expect(assigns(:questions)).to include(question_anyone, question_direct)
+        expect(assigns(:questions)).not_to include(question_direct_anon)
+        expect(assigns(:questions).size).to eq(2)
       end
     end
 
@@ -125,9 +130,11 @@ describe UserController, type: :controller do
         sign_in another_user
       end
 
-      it "renders no questions" do
+      it "contains all non-direct non-anon questions" do
         subject
-        expect(assigns(:questions).size).to eq(0)
+        expect(assigns(:questions)).to include(question_anyone)
+        expect(assigns(:questions)).not_to include(question_direct, question_direct_anon)
+        expect(assigns(:questions).size).to eq(1)
       end
     end
 
@@ -139,16 +146,20 @@ describe UserController, type: :controller do
         allow_any_instance_of(UserHelper).to receive(:moderation_view?) { true }
       end
 
-      it "contains all questions" do
+      it "contains all non-anon questions" do
         subject
-        expect(assigns(:questions).size).to eq(1)
+        expect(assigns(:questions)).to include(question_anyone, question_direct)
+        expect(assigns(:questions)).not_to include(question_direct_anon)
+        expect(assigns(:questions).size).to eq(2)
       end
     end
 
     context "when user is not signed in" do
-      it "contains no questions" do
+      it "contains all non-direct non-anon questions" do
         subject
-        expect(assigns(:questions).size).to eq(0)
+        expect(assigns(:questions)).to include(question_anyone)
+        expect(assigns(:questions)).not_to include(question_direct, question_direct_anon)
+        expect(assigns(:questions).size).to eq(1)
       end
     end
   end

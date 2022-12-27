@@ -53,9 +53,10 @@ class UserController < ApplicationController
 
   def questions
     @title = "Questions"
-    @questions = @user.cursored_questions(author_is_anonymous: false, direct: belongs_to_current_user? || moderation_view?, last_id: params[:last_id])
+
+    @questions = @user.cursored_questions(author_is_anonymous: false, direct: direct_param, last_id: params[:last_id])
     @questions_last_id = @questions.map(&:id).min
-    @more_data_available = !@user.cursored_questions(author_is_anonymous: false, direct: belongs_to_current_user? || moderation_view?, last_id: @questions_last_id, size: 1).count.zero?
+    @more_data_available = !@user.cursored_questions(author_is_anonymous: false, direct: direct_param, last_id: @questions_last_id, size: 1).count.zero?
 
     respond_to do |format|
       format.html
@@ -73,6 +74,16 @@ class UserController < ApplicationController
     return if belongs_to_current_user? || !@user.privacy_hide_social_graph
 
     redirect_to user_path(@user)
+  end
+
+  def direct_param
+    # return `nil` instead of `false` so we retrieve all questions for the user, direct or not.
+    # `cursored_questions` will then remove the `direct` field from the WHERE query.  otherwise the query filters
+    # for `WHERE direct = false` ...
+    return if belongs_to_current_user? || moderation_view?
+
+    # page is not being viewed by the current user, and we're not in the moderation view -> only show public questions
+    false
   end
 
   def belongs_to_current_user? = @user == current_user
