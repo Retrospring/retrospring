@@ -12,7 +12,8 @@ class AnonymousBlockController < ApplicationController
     AnonymousBlock.create!(
       user:       params[:global] ? nil : current_user,
       identifier: question.author_identifier,
-      question:
+      question:,
+      target_user: question.user
     )
 
     inbox_id = question.inboxes.first.id
