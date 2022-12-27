@@ -9,9 +9,9 @@ describe UseCase::Question::Create do
     UseCase::Question::Create.call(
       source_user_id:    source_user&.id,
       target_user_id:    target_user.id,
-      content:           content,
-      anonymous:         anonymous,
-      author_identifier: author_identifier
+      content:,
+      anonymous:,
+      author_identifier:
     )
   end
 
@@ -103,8 +103,8 @@ describe UseCase::Question::Create do
     context "user blocks this anonymized user" do
       before do
         target_user.anonymous_blocks.create!(
-          identifier:  "r4nd0m",
-          question_id: FactoryBot.create(:question).id,
+          identifier:     "r4nd0m",
+          question_id:    FactoryBot.create(:question).id,
           target_user_id: source_user&.id
         )
       end
