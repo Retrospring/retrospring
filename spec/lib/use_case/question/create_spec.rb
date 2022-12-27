@@ -99,6 +99,20 @@ describe UseCase::Question::Create do
     end
   end
 
+  shared_examples "filters signed in questions" do
+    context "user blocks this anonymized user" do
+      before do
+        target_user.anonymous_blocks.create!(
+          identifier:  "r4nd0m",
+          question_id: FactoryBot.create(:question).id,
+          target_user_id: source_user&.id
+        )
+      end
+
+      it_behaves_like "creates the question", false
+    end
+  end
+
   context "user signed in" do
     let!(:source_user) { FactoryBot.create(:user) }
 
@@ -115,6 +129,7 @@ describe UseCase::Question::Create do
 
           context "recipient allows anonymous questions" do
             it_behaves_like "filters questions"
+            it_behaves_like "filters signed in questions"
             it_behaves_like "creates the question"
             it_behaves_like "validates content"
 
