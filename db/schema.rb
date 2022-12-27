@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_002012) do
   create_table "anonymous_blocks", force: :cascade do |t|
     t.bigint "user_id"
     t.string "identifier"
-    t.bigint "question_id", null: false
+    t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "target_user_id"
