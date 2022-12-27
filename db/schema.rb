@@ -387,6 +387,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_065923) do
     t.json "subscription"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "failures", default: 0
     t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
   end
 

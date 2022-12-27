@@ -57,8 +57,14 @@ Rpush.reflect do |on|
 
   # Called when notification delivery failed.
   # Call 'error_code' and 'error_description' on the notification for the cause.
-  # on.notification_failed do |notification|
-  # end
+  on.notification_failed do |notification|
+    # See: https://developer.apple.com/documentation/usernotifications/sending_web_push_notifications_in_safari_and_other_browsers#3994594
+    if %i[403 410].include? notification.error_code
+      subscription = WebPushSubscription::where("subscription ->> 'endpoint' = ?", notification.registration_ids.first[:endpoint])
+      subscription.increment :failures
+      subscription.save
+    end
+  end
 
   # Called when the notification delivery failed and only the notification ID
   # is present in memory.
