@@ -297,8 +297,8 @@ ActiveRecord::Schema.define(version: 2022_12_27_002012) do
     t.integer "otp_module", default: 0, null: false
     t.boolean "privacy_lock_inbox", default: false
     t.boolean "privacy_require_user", default: false
-    t.boolean "privacy_noindex", default: false
     t.boolean "privacy_hide_social_graph", default: false
+    t.boolean "privacy_noindex", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
