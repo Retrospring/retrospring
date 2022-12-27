@@ -59,6 +59,13 @@ describe ShareWorker do
         expect(Sidekiq.logger).to have_received(:info).with("Tried to post answer ##{answer.id} from user ##{user.id} to Twitter but the token has exired or been revoked.")
       end
 
+      it "handles Twitter::Error::Forbidden" do
+        allow_any_instance_of(Services::Twitter).to receive(:post).with(answer).and_raise(Twitter::Error::Forbidden)
+        subject
+        ShareWorker.drain
+        expect(Sidekiq.logger).to have_received(:info).with("Tried to post answer ##{answer.id} from user ##{user.id} to Twitter but the account is suspended.")
+      end
+
       it "retries on unhandled exceptions" do
         expect { subject }.to change(ShareWorker.jobs, :size).by(1)
         expect { ShareWorker.drain }.to raise_error(Twitter::Error::BadRequest)
