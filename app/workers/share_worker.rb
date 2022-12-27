@@ -18,6 +18,10 @@ class ShareWorker
   rescue Twitter::Error::DuplicateStatus
     logger.info "Tried to post answer ##{answer_id} from user ##{user_id} to Twitter but the status was already posted."
     return
+  rescue Twitter::Error::Forbidden
+    # User's Twitter account is suspended
+    logger.info "Tried to post answer ##{answer_id} from user ##{user_id} to Twitter but the account is suspended."
+    return
   rescue Twitter::Error::Unauthorized
     # User's Twitter token has expired or been revoked
     # TODO: Notify user if this happens (https://github.com/Retrospring/retrospring/issues/123)
