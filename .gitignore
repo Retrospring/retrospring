@@ -1,49 +1,72 @@
-/.bundle
+### Ruby/Rails ###
 
-/db/*.sqlite3
-/db/*.sqlite3-journal
+/.bundle
+.byebug_history
+
+/config/database.yml
+
+/coverage
 
 /log/*.log
 /tmp
 
-/config/database.yml
-/config/justask.yml
-.sass-cache/
-coverage/
-*.swp
-
-\#*#
-
-# Curse you, JetBrains!
-.idea/
-
-# Curse you, VS Code!
-.vscode/
-
+# precompiled assets/packs
 /public/assets
-/public/system
-
-# damn vim backup files
-*~
-
-# dont push generated js translations to repository
-/app/javascript/retrospring/i18n.json
-
-# every fucking time, dolphin
-.directory
-# lookin' at you, OS trash
-.DS_Store
-Thumbs.DB
-desktop.ini
-
-# ignore exports
-/public/export
-
-/spec/examples.txt
-
 /public/packs
 /public/packs-test
+
+# RSpec example status persistence, used by e.g. `rspec --only-failures`
+/spec/examples.txt
+
+# node + yarn
 /node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+
+### Retrospring-specific ###
+
+# site configuration
+/config/justask.yml
+
+# local storage
+/public/export
+/public/system
+/public/users
+
+# dont push generated js translations to repository
+/app/javascript/retrospring/i18n.json
+
+
+### Operating systems / desktops ###
+
+# KDE
+.directory
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+
+### Editors ###
+
+# Emacs
+\#*\#
+.projectile
+
+# Kate
+.*.kate-swp
+
+# JetBrains IDEs (e.g. Rubymine)
+.idea/
+
+# vim
+*.swp
+*~
+
+# VS Code
+.vscode/
