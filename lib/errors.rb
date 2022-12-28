@@ -117,4 +117,7 @@ module Errors
     end
   end
   # endregion
+
+  class MutingSelf < SelfAction
+  end
 end
