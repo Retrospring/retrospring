@@ -15,6 +15,7 @@ class QuestionWorker
       next if f.inbox_locked?
       next if f.banned?
       next if MuteRule.where(user: f).any? { |rule| rule.applies_to? question }
+      next if user.muting?(question.user)
 
       Inbox.create(user_id: f.id, question_id: question_id, new: true)
     end
