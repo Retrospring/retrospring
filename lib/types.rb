@@ -5,5 +5,5 @@ require "dry-types"
 module Types
   include Dry.Types()
 
-  RelationshipTypes = Types::String.enum("follow", "block")
+  RelationshipTypes = Types::String.enum("follow", "block", "mute")
 end
