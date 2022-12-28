@@ -27,6 +27,14 @@ export function userActionHandler(event: Event): void {
       targetURL = '/ajax/destroy_relationship';
       relationshipType = 'block';
       break;
+    case 'mute':
+      targetURL = '/ajax/create_relationship';
+      relationshipType = 'mute';
+      break;
+    case 'unmute':
+      targetURL = '/ajax/destroy_relationship';
+      relationshipType = 'mute';
+      break;
   }
   let success = false;
 
@@ -72,6 +80,22 @@ export function userActionHandler(event: Event): void {
         case 'unblock':
           button.dataset.action = 'block';
           button.querySelector('span').innerText = I18n.translate('voc.block');
+          if (button.classList.contains('btn')) {
+            button.classList.remove('btn-default');
+            button.classList.add('btn-primary');
+          }
+          break;
+        case 'mute':
+          button.dataset.action = 'unmute';
+          button.querySelector('span').innerText = I18n.translate('voc.unmute');
+          if (button.classList.contains('btn')) {
+            button.classList.remove('btn-primary');
+            button.classList.add('btn-default');
+          }
+          break;
+        case 'unmute':
+          button.dataset.action = 'mute';
+          button.querySelector('span').innerText = I18n.translate('voc.mute');
           if (button.classList.contains('btn')) {
             button.classList.remove('btn-default');
             button.classList.add('btn-primary');
