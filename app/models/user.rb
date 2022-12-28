@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include User::Relationship
   include User::Relationship::Follow
   include User::Relationship::Block
+  include User::Relationship::Mute
   include User::AnswerMethods
   include User::BanMethods
   include User::InboxMethods
