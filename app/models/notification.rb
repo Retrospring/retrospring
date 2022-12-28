@@ -41,11 +41,25 @@ class Notification < ApplicationRecord
     private
 
     def make_notification(recipient, target, notification_type)
+      return if get_notification_owner(target).present? && recipient.muting?(get_notification_owner(target))
+
       n = notification_type.new(target:    target,
                                 recipient: recipient,
                                 new:       true)
       n.save!
       n
+    end
+
+    def get_notification_owner(target)
+      if target.is_a? User
+        target
+      elsif target&.user.is_a? User
+        target.user
+      elsif target&.source.is_a? User
+        target.source
+      else
+        nil
+      end
     end
   end
 end
