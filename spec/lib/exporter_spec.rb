@@ -4,8 +4,6 @@ require "rails_helper"
 require "support/example_exporter"
 require "base64"
 
-require "exporter"
-
 # This only tests the exporter itself to make sure zip file creation works.
 RSpec.describe Exporter do
   include ActiveSupport::Testing::TimeHelpers
