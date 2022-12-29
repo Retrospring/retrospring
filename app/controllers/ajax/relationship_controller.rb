@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "errors"
-
 class Ajax::RelationshipController < AjaxController
   before_action :authenticate_user!
 

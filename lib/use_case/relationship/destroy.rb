@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "errors"
-
 module UseCase
   module Relationship
     class Destroy < UseCase::Base

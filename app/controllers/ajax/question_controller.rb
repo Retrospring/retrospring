@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "errors"
-
 class Ajax::QuestionController < AjaxController
   def destroy
     params.require :question
