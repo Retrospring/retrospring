@@ -4,19 +4,22 @@ require "fileutils"
 require "securerandom"
 require "zip/filesystem"
 
-require "use_case/data_export/answers"
-require "use_case/data_export/appendables"
-require "use_case/data_export/comments"
-require "use_case/data_export/mute_rules"
-require "use_case/data_export/questions"
-require "use_case/data_export/relationships"
-require "use_case/data_export/theme"
-require "use_case/data_export/user"
+# require all data export use cases via Zeitwerk
+# rubocop:disable Lint/Void
+UseCase::DataExport::Answers
+UseCase::DataExport::Appendables
+UseCase::DataExport::Comments
+UseCase::DataExport::MuteRules
+UseCase::DataExport::Questions
+UseCase::DataExport::Relationships
+UseCase::DataExport::Theme
+UseCase::DataExport::User
+# rubocop:enable all
 
 # the justask data exporter, now with 200% less shelling out to system tools!
 #
 # the data export can be easily extended by subclassing `UseCase::DataExport::Base`
-# and `require`ing it above
+# and letting Zeitwerk know about the subclasses above
 class Exporter
   def initialize(user)
     @user = user
