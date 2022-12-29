@@ -100,6 +100,28 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
 
             include_examples "does not create the comment"
           end
+
+          context "when the answer author is muting the user" do
+            before do
+              answer.user.mute(user)
+            end
+
+            let(:expected_response) do
+              {
+                "success" => true,
+                "status" => "okay",
+                "message" => anything,
+                "render" => anything,
+                "count" => 1
+              }
+            end
+
+            include_examples "creates the comment"
+
+            it "does not create a notification for the author" do
+              expect{ subject }.to change { answer.user.notifications.count }.by(0)
+            end
+          end
         end
 
         context "when answer does not exist" do

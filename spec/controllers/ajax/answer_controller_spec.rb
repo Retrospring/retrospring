@@ -105,6 +105,29 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
 
             it_behaves_like "fails when answer content is empty"
           end
+
+          context "when the question author mutes the user" do
+            let(:inbox_user) { user }
+            let(:expected_response) do
+              {
+                "success" => true,
+                "status" => "okay",
+                "message" => anything
+              }
+            end
+
+            before do
+              question.user.mute(inbox_user)
+            end
+
+            include_examples "creates the answer"
+
+            it_behaves_like "fails when answer content is empty"
+
+            it "does not create a notification for the question author" do
+              expect{ subject }.to change { question.user.notifications.count }.by(0)
+            end
+          end
         end
 
         context "when inbox is false" do
