@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "exporter"
-
 class ExportWorker
   include Sidekiq::Worker
 
