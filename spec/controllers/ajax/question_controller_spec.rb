@@ -155,6 +155,24 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           include_examples "does not create the question", check_for_inbox: false
         end
 
+        context "when the sender is muted by the user" do
+          before(:each) do
+            target_user.mute(user)
+          end
+
+          let(:anonymous_question) { "false" }
+          let(:user_allows_anonymous_questions) { true }
+          let(:expected_response) do
+            {
+              "success" => true,
+              "status"  => "okay",
+              "message" => anything
+            }
+          end
+
+          include_examples "creates the question but doesn't send it to the user's inbox"
+        end
+
         context "when the sender is blocking the user" do
           before(:each) do
             user.block(target_user)

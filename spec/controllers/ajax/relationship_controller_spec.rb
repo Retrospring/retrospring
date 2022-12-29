@@ -54,10 +54,26 @@ describe Ajax::RelationshipController, type: :controller do
         let(:type) { "follow" }
 
         include_examples "valid relationship type"
+
+        context "target user mutes source user" do
+          before do
+            user2.mute(user)
+          end
+
+          it "creates the relationship but no notification" do
+            expect { subject }.to change { Notification.count }.by(0)
+          end
+        end
       end
 
       context "type = 'block'" do
         let(:type) { "block" }
+
+        include_examples "valid relationship type"
+      end
+
+      context "type = 'mute'" do
+        let(:type) { "mute" }
 
         include_examples "valid relationship type"
       end
@@ -117,6 +133,12 @@ describe Ajax::RelationshipController, type: :controller do
 
       context "type = 'block'" do
         let(:type) { "block" }
+
+        include_examples "valid relationship type"
+      end
+
+      context "type = 'mute'" do
+        let(:type) { "mute" }
 
         include_examples "valid relationship type"
       end
