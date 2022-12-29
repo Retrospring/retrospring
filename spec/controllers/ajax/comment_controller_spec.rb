@@ -9,12 +9,12 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
   describe "#create" do
     let(:params) do
       {
-        answer: answer_id,
-        comment: comment
+        answer:  answer_id,
+        comment:
       }.compact
     end
 
-    subject { post(:create, params: params) }
+    subject { post(:create, params:) }
 
     context "when user is signed in" do
       shared_examples "creates the comment" do
@@ -45,10 +45,10 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
           let(:expected_response) do
             {
               "success" => true,
-              "status" => "okay",
+              "status"  => "okay",
               "message" => anything,
-              "render" => anything,
-              "count" => 1
+              "render"  => anything,
+              "count"   => 1
             }
           end
 
@@ -59,7 +59,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "rec_inv",
+                "status"  => "rec_inv",
                 "message" => anything
               }
             end
@@ -109,17 +109,17 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => true,
-                "status" => "okay",
+                "status"  => "okay",
                 "message" => anything,
-                "render" => anything,
-                "count" => 1
+                "render"  => anything,
+                "count"   => 1
               }
             end
 
             include_examples "creates the comment"
 
             it "does not create a notification for the author" do
-              expect{ subject }.to change { answer.user.notifications.count }.by(0)
+              expect { subject }.to change { answer.user.notifications.count }.by(0)
             end
           end
         end
@@ -130,7 +130,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
           let(:expected_response) do
             {
               "success" => false,
-              "status" => anything,
+              "status"  => anything,
               "message" => anything
             }
           end
@@ -146,7 +146,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "parameter_error",
+            "status"  => "parameter_error",
             "message" => anything
           }
         end
@@ -162,7 +162,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "err",
+          "status"  => "err",
           "message" => anything
         }
       end
@@ -175,7 +175,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
     let(:answer_user) { FactoryBot.create(:user) }
     let(:answer) { FactoryBot.create(:answer, user: answer_user) }
     let(:comment_user) { user }
-    let(:comment) { FactoryBot.create(:comment, user: comment_user, answer: answer) }
+    let(:comment) { FactoryBot.create(:comment, user: comment_user, answer:) }
     let(:comment_id) { comment.id }
 
     let(:params) do
@@ -184,16 +184,16 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
       }
     end
 
-    subject { delete(:destroy, params: params) }
+    subject { delete(:destroy, params:) }
 
     context "when user is signed in" do
       shared_examples "deletes the comment" do
         let(:expected_response) do
           {
             "success" => true,
-            "status" => "okay",
+            "status"  => "okay",
             "message" => anything,
-            "count" => 0
+            "count"   => 0
           }
         end
 
@@ -209,7 +209,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "nopriv",
+            "status"  => "nopriv",
             "message" => anything
           }
         end
@@ -258,7 +258,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => anything,
+            "status"  => anything,
             "message" => anything
           }
         end
@@ -271,7 +271,7 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "nopriv",
+          "status"  => "nopriv",
           "message" => anything
         }
       end

@@ -10,14 +10,14 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
   describe "#create" do
     let(:params) do
       {
-        id: id,
-        answer: answer,
-        share: shared_services&.to_json,
-        inbox: inbox
+        id:,
+        answer:,
+        share:  shared_services&.to_json,
+        inbox:
       }.compact
     end
 
-    subject { post(:create, params: params) }
+    subject { post(:create, params:) }
 
     context "when user is signed in" do
       shared_examples "creates the answer" do
@@ -53,7 +53,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           {
             "success" => false,
             # caught by rescue_from, so status is not peter_dinklage
-            "status" => "parameter_error",
+            "status"  => "parameter_error",
             "message" => anything
           }
         end
@@ -73,7 +73,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         let(:shared_services) { %w[twitter] }
 
         context "when inbox is true" do
-          let(:id) { FactoryBot.create(:inbox, user: inbox_user, question: question).id }
+          let(:id) { FactoryBot.create(:inbox, user: inbox_user, question:).id }
           let(:inbox) { true }
 
           context "when the inbox entry belongs to the user" do
@@ -81,7 +81,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => true,
-                "status" => "okay",
+                "status"  => "okay",
                 "message" => anything
               }
             end
@@ -96,7 +96,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "fail",
+                "status"  => "fail",
                 "message" => anything
               }
             end
@@ -111,7 +111,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => true,
-                "status" => "okay",
+                "status"  => "okay",
                 "message" => anything
               }
             end
@@ -125,7 +125,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             it_behaves_like "fails when answer content is empty"
 
             it "does not create a notification for the question author" do
-              expect{ subject }.to change { question.user.notifications.count }.by(0)
+              expect { subject }.to change { question.user.notifications.count }.by(0)
             end
           end
         end
@@ -139,9 +139,9 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => true,
-                "status" => "okay",
+                "status"  => "okay",
                 "message" => anything,
-                "render" => anything
+                "render"  => anything
               }
             end
 
@@ -155,7 +155,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             let(:expected_response) do
               {
                 "success" => false,
-                "status" => "privacy_stronk",
+                "status"  => "privacy_stronk",
                 "message" => anything
               }
             end
@@ -207,7 +207,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           {
             "success" => false,
             # caught by rescue_from, so status is not peter_dinklage
-            "status" => "parameter_error",
+            "status"  => "parameter_error",
             "message" => anything
           }
         end
@@ -225,7 +225,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "err",
+          "status"  => "err",
           "message" => anything
         }
       end
@@ -237,7 +237,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
   describe "#destroy" do
     let(:answer_user) { user }
     let(:question) { FactoryBot.create(:question) }
-    let(:answer) { FactoryBot.create(:answer, user: answer_user, question: question) }
+    let(:answer) { FactoryBot.create(:answer, user: answer_user, question:) }
     let(:answer_id) { answer.id }
 
     let(:params) do
@@ -246,14 +246,14 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
       }
     end
 
-    subject { delete(:destroy, params: params) }
+    subject { delete(:destroy, params:) }
 
     context "when user is signed in" do
       shared_examples "deletes the answer" do
         let(:expected_response) do
           {
             "success" => true,
-            "status" => "okay",
+            "status"  => "okay",
             "message" => anything
           }
         end
@@ -270,7 +270,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "nopriv",
+            "status"  => "nopriv",
             "message" => anything
           }
         end
@@ -322,7 +322,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => anything,
+            "status"  => anything,
             "message" => anything
           }
         end
@@ -335,7 +335,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "nopriv",
+          "status"  => "nopriv",
           "message" => anything
         }
       end
