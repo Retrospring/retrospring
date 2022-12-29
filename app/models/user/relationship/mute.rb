@@ -9,13 +9,13 @@ class User
 
       included do
         has_many :active_mute_relationships, class_name:  "Relationships::Mute",
-                                               foreign_key: "source_id",
-                                               dependent:   :destroy
+                                             foreign_key: "source_id",
+                                             dependent:   :destroy
         has_many :passive_mute_relationships, class_name:  "Relationships::Mute",
-                                                foreign_key: "target_id",
-                                                dependent:   :destroy
+                                              foreign_key: "target_id",
+                                              dependent:   :destroy
         has_many :muted_users, through: :active_mute_relationships, source: :target
-        has_many :muted_by_users,  through: :passive_mute_relationships, source: :source
+        has_many :muted_by_users, through: :passive_mute_relationships, source: :source
       end
 
       def mute(target_user)

@@ -11,11 +11,11 @@ class Notification < ApplicationRecord
     define_cursor_paginator :cursored_for_type, :for_type
 
     def for(recipient, **kwargs)
-      where(kwargs.merge!(recipient: recipient)).order(:created_at).reverse_order
+      where(kwargs.merge!(recipient:)).order(:created_at).reverse_order
     end
 
     def for_type(recipient, type, **kwargs)
-      where(kwargs.merge!(recipient: recipient)).where(type: type).order(:created_at).reverse_order
+      where(kwargs.merge!(recipient:)).where(type:).order(:created_at).reverse_order
     end
 
     def notify(recipient, target)
@@ -34,7 +34,7 @@ class Notification < ApplicationRecord
       notif_type = target.notification_type
       return nil unless notif_type
 
-      notif = Notification.find_by(recipient: recipient, target: target)
+      notif = Notification.find_by(recipient:, target:)
       notif&.destroy
     end
 
@@ -43,8 +43,8 @@ class Notification < ApplicationRecord
     def make_notification(recipient, target, notification_type)
       return if get_notification_owner(target).present? && recipient.muting?(get_notification_owner(target))
 
-      n = notification_type.new(target:    target,
-                                recipient: recipient,
+      n = notification_type.new(target:,
+                                recipient:,
                                 new:       true)
       n.save!
       n
@@ -57,8 +57,6 @@ class Notification < ApplicationRecord
         target.user
       elsif target.try(:source) && target.source.is_a?(User)
         target.source
-      else
-        nil
       end
     end
   end
