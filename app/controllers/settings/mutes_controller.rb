@@ -4,6 +4,7 @@ class Settings::MutesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @users = current_user.muted_users
     @rules = MuteRule.where(user: current_user)
   end
 

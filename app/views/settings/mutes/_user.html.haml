@@ -1,0 +1,6 @@
+.d-flex.mb-2
+  %img.avatar-md.mr-2{ src: user.profile_picture.url(:small), loading: :lazy }
+  %p.align-self-center.m-0= user_screen_name(user, context_user: current_user)
+  .ml-auto.d-inline-flex
+    %button.btn.btn-default.align-self-center{ data: { action: :unmute, target: user.screen_name } }
+      %span.pe-none= t("voc.unmute")
