@@ -21,6 +21,7 @@ en:
     self_action: "You cannot perform this action on yourself"
     following_self: "You cannot follow yourself"
     blocking_self: "You cannot block yourself"
+    muting_self: "You cannot mute yourself"
 
     not_found: "That does not exist"
     user_not_found: "User not found"
