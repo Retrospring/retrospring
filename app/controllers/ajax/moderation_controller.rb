@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'errors'
-
 class Ajax::ModerationController < AjaxController
   def destroy_report
     params.require :id

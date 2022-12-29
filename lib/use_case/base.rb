@@ -2,7 +2,6 @@
 
 require "dry-initializer"
 require "types"
-require "errors"
 
 module UseCase
   class Base

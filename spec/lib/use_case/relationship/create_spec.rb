@@ -2,8 +2,6 @@
 
 require "rails_helper"
 
-require "errors"
-
 describe UseCase::Relationship::Create do
   shared_examples_for "valid relationship type" do
     context "target_user is source_user" do
