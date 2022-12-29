@@ -53,9 +53,9 @@ class Notification < ApplicationRecord
     def get_notification_owner(target)
       if target.is_a? User
         target
-      elsif target&.user.is_a? User
+      elsif target.try(:user) && target.user.is_a?(User)
         target.user
-      elsif target&.source.is_a? User
+      elsif target.try(:source) && target.source.is_a?(User)
         target.source
       else
         nil
