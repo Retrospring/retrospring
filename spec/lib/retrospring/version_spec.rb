@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "version"
-
 RSpec.describe Retrospring::Version do
   before(:each) do
     allow(Retrospring::Version).to receive(:year) { 1984 }

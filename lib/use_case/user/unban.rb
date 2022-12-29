@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'use_case/base'
-
 module UseCase
   module User
     class Unban < UseCase::Base

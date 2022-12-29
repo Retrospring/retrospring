@@ -2,7 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/relationship/destroy"
 require "errors"
 
 describe UseCase::Relationship::Destroy do

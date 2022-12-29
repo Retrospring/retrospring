@@ -2,8 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/data_export/comments"
-
 describe UseCase::DataExport::Comments, :data_export do
   include ActiveSupport::Testing::TimeHelpers
 

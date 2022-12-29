@@ -2,7 +2,6 @@
 
 require "rails_helper"
 require "errors"
-require "use_case/question/destroy"
 
 describe UseCase::Question::Destroy do
   subject do

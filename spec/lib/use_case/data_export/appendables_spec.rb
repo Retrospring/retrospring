@@ -2,8 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/data_export/appendables"
-
 describe UseCase::DataExport::Appendables, :data_export do
   include ActiveSupport::Testing::TimeHelpers
 

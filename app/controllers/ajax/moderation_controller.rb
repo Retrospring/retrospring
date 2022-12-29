@@ -1,5 +1,5 @@
-require 'use_case/user/ban'
-require 'use_case/user/unban'
+# frozen_string_literal: true
+
 require 'errors'
 
 class Ajax::ModerationController < AjaxController

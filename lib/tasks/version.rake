@@ -9,7 +9,7 @@ namespace :version do
     now = Time.now.utc
     today_ymd = %i[year month day].map { now.public_send(_1) }
 
-    version_path = Rails.root.join("lib/version.rb")
+    version_path = Rails.root.join("lib/retrospring/version.rb")
     version_contents = File.read(version_path)
 
     patch_contents = lambda do |key, val|
@@ -35,7 +35,7 @@ namespace :version do
 
   desc "Commit and tag a new release"
   task commit: :environment do
-    version_path = Rails.root.join("lib/version.rb")
+    version_path = Rails.root.join("lib/retrospring/version.rb")
 
     puts "Committing version"
     sh %(git commit -m 'Bump version to #{Retrospring::Version}' -- #{version_path.to_s.inspect})

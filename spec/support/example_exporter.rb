@@ -2,8 +2,6 @@
 
 raise ArgumentError.new("This file should only be required in the 'test' environment!  Current environment: #{Rails.env}") unless Rails.env.test?
 
-require "use_case/data_export/base"
-
 # an example exporter to be used for the tests of `Exporter`
 #
 # this only returning basic files, nothing user-specific.  each exporter should be tested individually.

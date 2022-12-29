@@ -2,8 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/data_export/relationships"
-
 describe UseCase::DataExport::Relationships, :data_export do
   include ActiveSupport::Testing::TimeHelpers
 

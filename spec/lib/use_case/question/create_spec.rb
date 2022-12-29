@@ -2,7 +2,6 @@
 
 require "rails_helper"
 require "errors"
-require "use_case/question/create"
 
 describe UseCase::Question::Create do
   subject do

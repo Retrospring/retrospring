@@ -2,8 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/data_export/user"
-
 describe UseCase::DataExport::User, :data_export do
   let(:user_params) do
     {
