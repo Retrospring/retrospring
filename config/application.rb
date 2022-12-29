@@ -8,8 +8,6 @@ start = Time.now
 Bundler.require(*Rails.groups)
 puts 'processing time of bundler require: ' + "#{(Time.now - start).round(3).to_s.ljust(5, '0')}s".light_green
 
-require_relative "../lib/version"
-
 module Justask
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -17,7 +15,11 @@ module Justask
     # -- all .rb files in that directory are automatically loaded.
 
     config.load_defaults 6.0
-    config.autoload_paths += %W["#{config.root}/app/validators"]
+    # add `lib/` to the autoload paths so zeitwerk can find e.g. our `UseCase`s
+    # without an explicit `require`, and also take care of hot reloading the code
+    # (really useful in development!)
+    config.autoload_paths << config.root.join("lib")
+    config.eager_load_paths << config.root.join("lib")
 
     # Use Sidekiq for background jobs
     config.active_job.queue_adapter = :sidekiq

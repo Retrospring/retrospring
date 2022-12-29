@@ -2,7 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/relationship/create"
 require "errors"
 
 describe UseCase::Relationship::Create do

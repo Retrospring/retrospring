@@ -2,7 +2,6 @@
 
 require "rails_helper"
 require "errors"
-require "use_case/question/create_followers"
 
 describe UseCase::Question::CreateFollowers do
   subject do

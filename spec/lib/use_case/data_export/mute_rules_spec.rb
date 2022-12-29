@@ -2,8 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/data_export/mute_rules"
-
 describe UseCase::DataExport::MuteRules, :data_export do
   include ActiveSupport::Testing::TimeHelpers
 

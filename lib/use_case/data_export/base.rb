@@ -2,8 +2,6 @@
 
 require "json"
 
-require "use_case/base"
-
 module UseCase
   module DataExport
     class Base < UseCase::Base

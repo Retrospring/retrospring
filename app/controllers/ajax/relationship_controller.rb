@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "use_case/relationship/create"
-require "use_case/relationship/destroy"
 require "errors"
 
 class Ajax::RelationshipController < AjaxController
