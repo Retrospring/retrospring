@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "errors"
-
 class User
   module Relationship
     module Mute
