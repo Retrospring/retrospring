@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "use_case/base"
-
 module UseCase
   module Question
     class CreateFollowers < UseCase::Base

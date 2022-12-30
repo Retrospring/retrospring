@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Errors
   class Base < StandardError
     def status
@@ -5,7 +7,7 @@ module Errors
     end
 
     def code
-      @code ||= self.class.name.sub('Errors::', '').underscore
+      @code ||= self.class.name.sub("Errors::", "").underscore
     end
 
     def locale_code

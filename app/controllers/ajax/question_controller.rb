@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require "errors"
-require "use_case/question/create"
-require "use_case/question/create_followers"
-require "use_case/question/destroy"
-
 class Ajax::QuestionController < AjaxController
   def destroy
     params.require :question

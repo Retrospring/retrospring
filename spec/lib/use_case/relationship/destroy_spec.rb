@@ -2,9 +2,6 @@
 
 require "rails_helper"
 
-require "use_case/relationship/destroy"
-require "errors"
-
 describe UseCase::Relationship::Destroy do
   shared_examples_for "valid relationship type" do
     its([:status]) { is_expected.to eq(204) }

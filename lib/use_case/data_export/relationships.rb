@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "use_case/data_export/base"
-
 module UseCase
   module DataExport
     class Relationships < UseCase::DataExport::Base

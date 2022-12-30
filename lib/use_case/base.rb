@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "dry-initializer"
-require "types"
-require "errors"
 
 module UseCase
   class Base

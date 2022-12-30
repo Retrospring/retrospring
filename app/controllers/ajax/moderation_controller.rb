@@ -1,6 +1,4 @@
-require 'use_case/user/ban'
-require 'use_case/user/unban'
-require 'errors'
+# frozen_string_literal: true
 
 class Ajax::ModerationController < AjaxController
   def destroy_report
