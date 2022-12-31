@@ -19,6 +19,8 @@ describe UseCase::DataExport::Relationships, :data_export do
     let(:other_user) { FactoryBot.create(:user) }
     let(:blocked_user) { FactoryBot.create(:user) }
     let(:blocking_user) { FactoryBot.create(:user) }
+    let(:muted_user) { FactoryBot.create(:user) }
+    let(:muted_by_user) { FactoryBot.create(:user) }
 
     let!(:relationships) do
       {
@@ -30,7 +32,13 @@ describe UseCase::DataExport::Relationships, :data_export do
         block:         travel_to(Time.utc(2022, 12, 10, 13, 37, 42)) { user.block(blocked_user) },
 
         # user is blocked by blocking_user
-        blocked_by:    travel_to(Time.utc(2022, 12, 10, 13, 39, 21)) { blocking_user.block(user) }
+        blocked_by:    travel_to(Time.utc(2022, 12, 10, 13, 39, 21)) { blocking_user.block(user) },
+
+        # user muted muted_user
+        mute:          travel_to(Time.utc(2022, 12, 10, 13, 40, 0)) { user.mute(muted_user) },
+
+        # user is muted by muted_by_user
+        muted_by:      travel_to(Time.utc(2022, 12, 10, 13, 40, 42)) { muted_by_user.mute(user) }
       }
     end
 
@@ -53,6 +61,14 @@ describe UseCase::DataExport::Relationships, :data_export do
               created_at: "2022-12-10T13:37:42.000Z",
               updated_at: "2022-12-10T13:37:42.000Z",
               type:       "Relationships::Block"
+            },
+            {
+              id:         relationships[:mute].id,
+              source_id:  user.id,
+              target_id:  muted_user.id,
+              created_at: "2022-12-10T13:40:00.000Z",
+              updated_at: "2022-12-10T13:40:00.000Z",
+              type:       "Relationships::Mute"
             }
           ]
         }
