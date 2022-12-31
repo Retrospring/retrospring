@@ -10,7 +10,8 @@ module UseCase
             # would reveal who e.g. blocked the exported user, which is
             # considered A Bad Idea™
             *user.active_follow_relationships.map(&method(:collect_relationship)),
-            *user.active_block_relationships.map(&method(:collect_relationship))
+            *user.active_block_relationships.map(&method(:collect_relationship)),
+            *user.active_mute_relationships.map(&method(:collect_relationship))
           ]
         )
       }
