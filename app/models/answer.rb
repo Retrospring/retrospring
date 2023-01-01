@@ -8,6 +8,8 @@ class Answer < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :comment_smiles, through: :comments, source: :smiles
 
+  validates :question_id, uniqueness: { scope: :user_id }
+
   # rubocop:disable Rails/SkipsModelValidations
   after_create do
     Inbox.where(user: self.user, question: self.question).destroy_all
