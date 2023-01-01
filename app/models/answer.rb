@@ -8,7 +8,11 @@ class Answer < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :comment_smiles, through: :comments, source: :smiles
 
+  # rubocop:disable Rails/UniqueValidationWithoutIndex
+  # This cop is disabled here because there already are questions with
+  # multiple answers. Adding an index would break things database-side
   validates :question_id, uniqueness: { scope: :user_id }
+  # rubocop:enable Rails/UniqueValidationWithoutIndex
 
   # rubocop:disable Rails/SkipsModelValidations
   after_create do
