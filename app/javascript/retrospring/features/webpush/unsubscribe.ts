@@ -1,4 +1,4 @@
-import { destroy } from '@rails/request.js';
+import { post, destroy } from '@rails/request.js';
 import { showErrorNotification, showNotification } from "utilities/notifications";
 import I18n from "retrospring/i18n";
 
@@ -7,11 +7,25 @@ export function unsubscribeHandler(): void {
     .then(registration => registration.pushManager.getSubscription())
     .then(subscription => unsubscribeClient(subscription))
     .then(subscription => unsubscribeServer(subscription))
-    .then()
     .catch(error => {
       showErrorNotification(I18n.translate("frontend.push_notifications.unsubscribe.error"));
       console.error(error);
     });
+}
+
+export function checkSubscription(subscription: PushSubscription): void {
+  post('/ajax/webpush/check', {
+    body: {
+      endpoint: subscription.endpoint
+    },
+    contentType: 'application/json'
+  }).then(async response => {
+    const data = await response.json();
+
+    if (data.status == 'subscribed') return;
+    if (data.status == 'failed') await unsubscribeServer(subscription);
+    await unsubscribeClient(subscription);
+  })
 }
 
 async function unsubscribeClient(subscription?: PushSubscription): Promise<PushSubscription|null> {

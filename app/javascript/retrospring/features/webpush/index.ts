@@ -1,7 +1,9 @@
 import registerEvents from 'retrospring/utilities/registerEvents';
 import { enableHandler } from './enable';
 import { dismissHandler } from "./dismiss";
-import { unsubscribeHandler } from "retrospring/features/webpush/unsubscribe";
+import { unsubscribeHandler, checkSubscription } from "retrospring/features/webpush/unsubscribe";
+
+let subscriptionChecked = false;
 
 export default (): void => {
   const swCapable = 'serviceWorker' in navigator;
@@ -15,6 +17,11 @@ export default (): void => {
         if (subscription) {
           document.querySelector('button[data-action="push-enable"]')?.classList.add('d-none');
           document.querySelector('[data-action="push-disable"]')?.classList.remove('d-none');
+
+          if (!subscriptionChecked) {
+            checkSubscription(subscription);
+            subscriptionChecked = true;
+          }
         } else {
           enableBtn?.classList.remove('d-none');
 
