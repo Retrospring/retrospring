@@ -14,7 +14,7 @@ class Ajax::WebPushController < AjaxController
   def check
     params.permit(:endpoint)
 
-    found = WebPushSubscription.where("subscription ->> 'endpoint' = ?", params[:endpoint]).first
+    found = current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).first
 
     @response[:status] = if found
                            if found.failures >= 3
