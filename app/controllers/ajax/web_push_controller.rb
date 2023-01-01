@@ -11,6 +11,23 @@ class Ajax::WebPushController < AjaxController
     @response[:key] = JSON.parse(certificate)["public_key"]
   end
 
+  def check
+    params.permit(:endpoint)
+
+    found = WebPushSubscription.where("subscription ->> 'endpoint' = ?", params[:endpoint]).first
+
+    @response[:status] = if found
+                           if found.failures >= 3
+                             :failed
+                           else
+                             :subscribed
+                           end
+                         else
+                           :unsubscribed
+                         end
+    @response[:success] = true
+  end
+
   def subscribe
     WebPushSubscription.create!(
       user:         current_user,
