@@ -9,6 +9,6 @@ describe "Answer uniqueness" do
   subject { 2.times { user.answer(question, "random") } }
 
   it "does not allow answering the same question twice" do
-    expect{ subject }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
   end
 end
