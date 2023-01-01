@@ -44,6 +44,7 @@ RailsAdmin.config do |config|
     Relationship
     Relationships::Follow
     Relationships::Block
+    Relationships::Mute
     Report
     Service
     Services::Twitter
@@ -69,6 +70,7 @@ RailsAdmin.config do |config|
     "Relationship"          => "people-arrows",
     "Relationships::Block"  => "user-slash",
     "Relationships::Follow" => "user-friends",
+    "Relationships::Mute"   => "volume-mute",
     "Report"                => "exclamation-triangle",
     "Service"               => "network-wired",
     "Services::Twitter"     => "dumpster-fire",
