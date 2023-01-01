@@ -63,6 +63,14 @@ Rpush.reflect do |on|
       subscription = WebPushSubscription::where("subscription ->> 'endpoint' = ?", notification.registration_ids.first[:endpoint])
       subscription.increment :failures
       subscription.save
+
+      if subscription.failures > 3
+        Notification::PushSubscriptionError.create(
+          target:      subscription,
+          recipient:   subscription.user,
+          new:         true
+        )
+      end
     end
   end
 

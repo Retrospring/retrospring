@@ -354,6 +354,10 @@ en:
           link_text: "your comment"
       follow:
         heading_html: "followed you %{time} ago"
+      webpushsubscription:
+        heading: "Push notifications are failing to send to one of your devices."
+        text_html: "Please check the %{settings_push} if you still want to be notified."
+        settings_push: "push notification settings"
       expiredtwitterserviceconnection:
         heading: "Twitter connection expired"
         text_html: "If you would like to continue automatically sharing your answers to Twitter, head to %{settings_sharing} and re-connect your account."

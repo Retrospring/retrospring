@@ -1,0 +1,10 @@
+.media.notification
+  .notification__icon
+    %span.fa-stack
+      %i.fa.fa-2x.fa-fw.fa-bell
+      %i.fa.fa-stack-1x.fa-fw.fa-exclamation-triangle.text-danger.pl-2
+  .media-body
+    %h6.media-heading.notification__user
+      = t(".heading")
+    .notification__text
+      = t(".text_html", settings_push: link_to(t(".settings_push"), settings_push_notifications_path))
