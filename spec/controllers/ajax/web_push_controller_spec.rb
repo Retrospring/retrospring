@@ -197,4 +197,67 @@ describe Ajax::WebPushController, :ajax_controller, type: :controller do
       end
     end
   end
+
+  describe "#check" do
+    subject { post :check, params: }
+
+    context "user signed in" do
+      let(:user) { FactoryBot.create(:user) }
+      let(:endpoint) { "https://some.domain/some/webpush/endpoint" }
+      let!(:subscription) do
+        WebPushSubscription.create(
+          user:,
+          subscription: { endpoint:, keys: {} },
+          failures:
+        )
+      end
+      let(:expected_response) do
+        {
+          "message" => "",
+          "status"  => expected_status,
+          "success" => true
+        }
+      end
+
+      before { sign_in user }
+
+      context "subscription exists" do
+        let(:params) do
+          { endpoint: }
+        end
+
+        context "without failures" do
+          let(:failures) { 0 }
+          let(:expected_status) { "subscribed" }
+
+          it_behaves_like "returns the expected response"
+        end
+
+        context "with 2 failures" do
+          let(:failures) { 2 }
+          let(:expected_status) { "subscribed" }
+
+          it_behaves_like "returns the expected response"
+        end
+
+        context "with 3 failures" do
+          let(:failures) { 3 }
+          let(:expected_status) { "failed" }
+
+          it_behaves_like "returns the expected response"
+        end
+      end
+
+      context "subscription doesn't exist" do
+        let(:params) do
+          { endpoint: "https;//some.domain/some/other/endpoint" }
+        end
+
+        let(:failures) { 0 }
+        let(:expected_status) { "unsubscribed" }
+
+        it_behaves_like "returns the expected response"
+      end
+    end
+  end
 end
