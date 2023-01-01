@@ -59,6 +59,18 @@ describe ShareWorker do
         expect(Sidekiq.logger).to have_received(:info).with("Tried to post answer ##{answer.id} from user ##{user.id} to Twitter but the token has exired or been revoked.")
       end
 
+      it "revokes the service connection when Twitter::Error::Unauthorized is raised" do
+        allow_any_instance_of(Services::Twitter).to receive(:post).with(answer).and_raise(Twitter::Error::Unauthorized)
+        subject
+        expect { ShareWorker.drain }.to change { Services::Twitter.count }.by(-1)
+      end
+
+      it "sends the user a notification when Twitter::Error::Unauthorized is raised" do
+        allow_any_instance_of(Services::Twitter).to receive(:post).with(answer).and_raise(Twitter::Error::Unauthorized)
+        subject
+        expect { ShareWorker.drain }.to change { Notification::ServiceTokenExpired.count }.by(1)
+      end
+
       it "handles Twitter::Error::Forbidden" do
         allow_any_instance_of(Services::Twitter).to receive(:post).with(answer).and_raise(Twitter::Error::Forbidden)
         subject

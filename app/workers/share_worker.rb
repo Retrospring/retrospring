@@ -9,8 +9,7 @@ class ShareWorker
   # @param answer_id [Integer] the user id
   # @param service [String] the service to post to
   def perform(user_id, answer_id, service)
-    service_type = "Services::#{service.camelize}"
-    user_service = User.find(user_id).services.find_by(type: service_type)
+    user_service = find_service(user_id, service)
 
     user_service.post(Answer.find(answer_id))
   rescue ActiveRecord::RecordNotFound
@@ -23,11 +22,21 @@ class ShareWorker
     logger.info "Tried to post answer ##{answer_id} from user ##{user_id} to Twitter but the account is suspended."
   rescue Twitter::Error::Unauthorized
     # User's Twitter token has expired or been revoked
-    # TODO: Notify user if this happens (https://github.com/Retrospring/retrospring/issues/123)
     logger.info "Tried to post answer ##{answer_id} from user ##{user_id} to Twitter but the token has exired or been revoked."
+    user_service = find_service(user_id, service)
+    user_service.destroy
+
+    Object.const_get("Notification::ServiceTokenExpired").create(
+      target_id:    user_id,
+      target_type:  "User::Expired#{service.camelize}ServiceConnection",
+      recipient_id: user_id,
+      new:          true
+    )
   rescue => e
     logger.info "failed to post answer #{answer_id} to #{service} for user #{user_id}: #{e.message}"
     Sentry.capture_exception(e)
     raise
   end
+
+  def find_service(user_id, service) = User.find(user_id).services.find_by(type: "Services::#{service.camelize}")
 end
