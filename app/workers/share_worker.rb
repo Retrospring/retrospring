@@ -23,6 +23,14 @@ class ShareWorker
   rescue Twitter::Error::Unauthorized
     # User's Twitter token has expired or been revoked
     logger.info "Tried to post answer ##{answer_id} from user ##{user_id} to Twitter but the token has exired or been revoked."
+    revoke_and_notify(user_id, service)
+  rescue => e
+    logger.info "failed to post answer #{answer_id} to #{service} for user #{user_id}: #{e.message}"
+    Sentry.capture_exception(e)
+    raise
+  end
+
+  def revoke_and_notify(user_id, service)
     user_service = find_service(user_id, service)
     user_service.destroy
 
@@ -32,10 +40,6 @@ class ShareWorker
       recipient_id: user_id,
       new:          true
     )
-  rescue => e
-    logger.info "failed to post answer #{answer_id} to #{service} for user #{user_id}: #{e.message}"
-    Sentry.capture_exception(e)
-    raise
   end
 
   def find_service(user_id, service) = User.find(user_id).services.find_by(type: "Services::#{service.camelize}")
