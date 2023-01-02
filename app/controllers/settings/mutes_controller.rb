@@ -9,13 +9,13 @@ class Settings::MutesController < ApplicationController
   end
 
   def create
-    rule = MuteRule.create!(user: current_user, muted_phrase: params[:muted_phrase])
+    result = UseCase::MuteRule::Create.call(user: current_user, phrase: params[:muted_phrase])
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace("form", partial: "settings/mutes/form"),
-          turbo_stream.append("rules", partial: "settings/mutes/rule", locals: { rule: })
+          turbo_stream.append("rules", partial: "settings/mutes/rule", locals: { rule: result[:resource] })
         ]
       end
 
@@ -28,7 +28,7 @@ class Settings::MutesController < ApplicationController
 
     authorize rule
 
-    rule.destroy!
+    UseCase::MuteRule::Destroy.call(rule:)
 
     respond_to do |format|
       format.turbo_stream do
