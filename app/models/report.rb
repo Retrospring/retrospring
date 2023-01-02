@@ -8,6 +8,14 @@ class Report < ApplicationRecord
     type.sub('Reports::', '').constantize.where(id: target_id).first
   end
 
+  def append_reason(new_reason)
+    if reason.nil?
+      update(reason: new_reason)
+    else
+      update(reason: [reason || "", new_reason].join("\n"))
+    end
+  end
+
   class << self
     include CursorPaginatable
 
