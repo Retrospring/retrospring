@@ -33,7 +33,7 @@ class ShareWorker
   def revoke_and_notify(user_id, service)
     @user_service.destroy
 
-    Object.const_get("Notification::ServiceTokenExpired").create(
+    Notification::ServiceTokenExpired.create(
       target_id:    user_id,
       target_type:  "User::Expired#{service.camelize}ServiceConnection",
       recipient_id: user_id,
