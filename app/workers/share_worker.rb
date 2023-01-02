@@ -9,9 +9,9 @@ class ShareWorker
   # @param answer_id [Integer] the user id
   # @param service [String] the service to post to
   def perform(user_id, answer_id, service)
-    user_service = find_service(user_id, service)
+    @user_service = User.find(user_id).services.find_by(type: "Services::#{service.camelize}")
 
-    user_service.post(Answer.find(answer_id))
+    @user_service.post(Answer.find(answer_id))
   rescue ActiveRecord::RecordNotFound
     logger.info "Tried to post answer ##{answer_id} for user ##{user_id} to #{service.titleize} but the user/answer/service did not exist (likely deleted), will not retry."
     # The question to be posted was deleted
@@ -31,8 +31,7 @@ class ShareWorker
   end
 
   def revoke_and_notify(user_id, service)
-    user_service = find_service(user_id, service)
-    user_service.destroy
+    @user_service.destroy
 
     Object.const_get("Notification::ServiceTokenExpired").create(
       target_id:    user_id,
@@ -41,6 +40,4 @@ class ShareWorker
       new:          true
     )
   end
-
-  def find_service(user_id, service) = User.find(user_id).services.find_by(type: "Services::#{service.camelize}")
 end
