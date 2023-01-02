@@ -3,6 +3,49 @@
 require "rails_helper"
 
 describe ServicesController, type: :controller do
+  describe "#index" do
+    subject { get :index }
+
+    context "user signed in" do
+      let(:user) { FactoryBot.create(:user) }
+
+      before { sign_in user }
+
+      it "renders the services settings page with no services" do
+        subject
+        expect(response).to render_template("index")
+        expect(controller.instance_variable_get(:@services)).to be_empty
+      end
+
+      context "user has a service token expired notification" do
+        let(:notification) do
+          Notification::ServiceTokenExpired.create(
+            target_id:    user.id,
+            target_type:  "User::ExpiredTwitterServiceConnection",
+            recipient_id: user.id,
+            new:          true
+          )
+        end
+
+        it "marks the notification as read" do
+          expect { subject }.to change { notification.reload.new }.from(true).to(false)
+        end
+      end
+
+      context "user has Twitter connected" do
+        before do
+          Services::Twitter.create(user:, uid: 12)
+        end
+
+        it "renders the services settings page" do
+          subject
+          expect(response).to render_template("index")
+          expect(controller.instance_variable_get(:@services)).not_to be_empty
+        end
+      end
+    end
+  end
+
   describe "#create" do
     subject { get :create, params: { provider: "twitter" } }
 
