@@ -23,14 +23,13 @@ export default (): void => {
           checkSubscription(subscription);
           subscriptionChecked = true;
         }
+        return;
       }
 
-      if (!registration) {
-        enableBtn?.classList.remove('d-none');
+      enableBtn?.classList.remove('d-none');
 
-        if (localStorage.getItem('dismiss-push-settings-prompt') == null) {
-          document.querySelector('.push-settings')?.classList.remove('d-none');
-        }
+      if (localStorage.getItem('dismiss-push-settings-prompt') == null) {
+        document.querySelector('.push-settings')?.classList.remove('d-none');
       }
     });
   }
