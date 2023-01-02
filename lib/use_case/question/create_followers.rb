@@ -29,7 +29,7 @@ module UseCase
       private
 
       def increment_asked_count
-        source_user.increment(:asked_count)
+        source_user.increment!(:asked_count)
       end
 
       def source_user
