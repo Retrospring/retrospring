@@ -23,5 +23,9 @@ describe UseCase::Question::CreateFollowers do
     it "enqueues a QuestionWorker job" do
       expect(QuestionWorker).to have_enqueued_sidekiq_job(source_user.id, subject[:resource].id)
     end
+
+    it "increments the asked count" do
+      expect { subject }.to change { source_user.reload.asked_count }.by(1)
+    end
   end
 end
