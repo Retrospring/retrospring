@@ -32,6 +32,8 @@ export function enableHandler (event: Event): void {
                 .forEach(button => button.classList.remove('d-none'));
 
               sender.classList.add('d-none');
+              document.querySelector<HTMLDivElement>('.push-settings')?.classList.add('d-none');
+              localStorage.setItem('dismiss-push-settings-prompt', 'true');
 
               document.getElementById('subscription-count').textContent = data.message;
             } else {
