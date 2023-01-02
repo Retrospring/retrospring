@@ -13,11 +13,11 @@ module Retrospring
   module Version
     module_function
 
-    def year = 2022
+    def year = 2023
 
-    def month = 12
+    def month = 1
 
-    def day = 25
+    def day = 2
 
     def patch = 0
 
