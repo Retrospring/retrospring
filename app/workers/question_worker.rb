@@ -13,10 +13,7 @@ class QuestionWorker
     webpush_app = Rpush::App.find_by(name: "webpush")
 
     user.followers.each do |f|
-      next if f.inbox_locked?
-      next if f.banned?
-      next if muted?(f, question)
-      next if user.muting?(question.user)
+      next if skip_inbox?(f, question, user)
 
       inbox = Inbox.create(user_id: f.id, question_id:, new: true)
       f.push_notification(webpush_app, inbox) if webpush_app
@@ -27,6 +24,15 @@ class QuestionWorker
   end
 
   private
+
+  def skip_inbox?(follower, question, user)
+    return true if follower.inbox_locked?
+    return true if follower.banned?
+    return true if muted?(follower, question)
+    return true if user.muting?(question.user)
+
+    false
+  end
 
   def muted?(user, question)
     MuteRule.where(user:).any? { |rule| rule.applies_to? question }
