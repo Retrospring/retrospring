@@ -8,7 +8,7 @@ class ShareWorker
   # @param user_id [Integer] the user id
   # @param answer_id [Integer] the user id
   # @param service [String] the service to post to
-  def perform(user_id, answer_id, service)
+  def perform(user_id, answer_id, service) # rubocop:disable Metrics/AbcSize
     @user_service = User.find(user_id).services.find_by(type: "Services::#{service.camelize}")
 
     @user_service.post(Answer.find(answer_id))
