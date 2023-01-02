@@ -8,6 +8,7 @@
   &__user,
   &__text {
     margin-bottom: 0;
+    white-space: normal;
   }
 
   &__icon {
@@ -36,7 +37,7 @@
   &-dropdown {
     min-width: 400px;
 
-    & .dropdown-item:hover, 
+    & .dropdown-item:hover,
     & .dropdown-item:active {
       background: transparent;
       color: RGB(var(--body-text));

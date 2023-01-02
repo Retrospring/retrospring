@@ -352,6 +352,10 @@ en:
           link_text: "your comment"
       follow:
         heading_html: "followed you %{time} ago"
+      expiredtwitterserviceconnection:
+        heading: "Twitter connection expired"
+        text_html: "If you would like to continue automatically sharing your answers to Twitter, head to %{settings_sharing} and re-connect your account."
+        settings_services: "Sharing Settings"
   services:
     index:
       title: "Service Settings"
