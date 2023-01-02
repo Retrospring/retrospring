@@ -20,7 +20,7 @@ module UseCase
         increment_asked_count
 
         inbox = ::Inbox.create!(user: target_user, question:, new: true)
-        notify
+        notify(inbox)
 
         {
           status:   201,
@@ -75,7 +75,7 @@ module UseCase
         )
       end
 
-      def notify
+      def notify(inbox)
         webpush_app = ::Rpush::App.find_by(name: "webpush")
         target_user.push_notification(webpush_app, inbox) if webpush_app
       end
