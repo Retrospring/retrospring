@@ -43,8 +43,7 @@ describe QuestionWorker do
 
     it "respects inbox locks" do
       user.followers.first.update(privacy_lock_inbox: true)
-      
-      
+
       expect { subject }
         .to(
           change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
@@ -52,7 +51,7 @@ describe QuestionWorker do
             .to(4)
         )
     end
-    
+
     it "does not send questions to banned users" do
       user.followers.first.ban
 
@@ -62,6 +61,36 @@ describe QuestionWorker do
             .from(0)
             .to(4)
         )
+    end
+
+    context "receiver has push notifications enabled" do
+      let(:receiver) { FactoryBot.create(:user) }
+
+      before do
+        Rpush::Webpush::App.create(
+          name:        "webpush",
+          certificate: { public_key: "AAAA", private_key: "AAAA", subject: "" }.to_json,
+          connections: 1
+        )
+
+        WebPushSubscription.create!(
+          user:         receiver,
+          subscription: {
+            endpoint: "This will not be used",
+            keys:     {}
+          }
+        )
+        receiver.follow(user)
+      end
+
+      it "sends notifications" do
+        expect { subject }
+          .to(
+            change { Rpush::Webpush::Notification.count }
+              .from(0)
+              .to(1)
+          )
+      end
     end
   end
 end

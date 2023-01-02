@@ -231,6 +231,8 @@ en:
       share:
         heading: "Share"
         button: "Share on %{service}"
+    push_settings:
+      description: "Want to receive push notifications for new questions on your device?"
   layouts:
     feedback:
       heading: "Feedback"
@@ -352,6 +354,10 @@ en:
           link_text: "your comment"
       follow:
         heading_html: "followed you %{time} ago"
+      webpushsubscription:
+        heading: "Push notifications are failing to send to one of your devices."
+        text_html: "Please check the %{settings_push} if you still want to be notified."
+        settings_push: "push notification settings"
       expiredtwitterserviceconnection:
         heading: "Twitter connection expired"
         text_html: "If you would like to continue automatically sharing your answers to Twitter, head to %{settings_sharing} and re-connect your account."
@@ -529,6 +535,19 @@ en:
           body: "Raised content includes all the different boxes and panels you can see across the site."
           accent:
             example: "Some text on top of a accented area on a raised element!"
+    push_notifications:
+      index:
+        title: "Push Notifications"
+      subscription_count:
+        zero: "You are not currently subscribed to push notifications on any devices."
+        one: "You are currently receiving push notifications on one device."
+        other: "You are currently receiving push notifications on %{count} devices."
+      unsupported: "This browser does not support push notifications."
+      current_target: "You are currently receiving push notifications on this device."
+      subscribe: "Enable on this device"
+      unsubscribe_current: "Disable on this device"
+      unsubscribe_all: "Disable on all devices"
+      description: "Here you can set up or disable push notifications for new questions in your inbox."
   shared:
     links:
       about: "About"
@@ -592,6 +611,8 @@ en:
       theme: "Theme"
       data: "Your Data"
       export: "Export"
+      blocks: "Blocks"
+      push_notifications: "Push Notifications"
   moderation:
     inbox:
       header:

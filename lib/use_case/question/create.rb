@@ -11,24 +11,16 @@ module UseCase
       option :direct, type: Types::Params::Bool, default: proc { true }
 
       def call
-        check_user
-        check_lock
-        check_anonymous_rules
-        check_blocks
+        do_checks!
 
-        question = ::Question.create!(
-          content:             content,
-          author_is_anonymous: anonymous,
-          author_identifier:   author_identifier,
-          user:                source_user_id.nil? ? nil : source_user,
-          direct:              direct
-        )
+        question = create_question
 
         return if filtered?(question)
 
         increment_asked_count
 
-        inbox = ::Inbox.create!(user: target_user, question: question, new: true)
+        inbox = ::Inbox.create!(user: target_user, question:, new: true)
+        notify
 
         {
           status:   201,
@@ -40,6 +32,13 @@ module UseCase
       end
 
       private
+
+      def do_checks!
+        check_user
+        check_lock
+        check_anonymous_rules
+        check_blocks
+      end
 
       def check_lock
         raise Errors::InboxLocked if target_user.inbox_locked?
@@ -64,6 +63,21 @@ module UseCase
 
       def check_user
         raise Errors::NotAuthorized if target_user.privacy_require_user && !source_user_id
+      end
+
+      def create_question
+        ::Question.create!(
+          content:,
+          author_is_anonymous: anonymous,
+          author_identifier:,
+          user:                source_user_id.nil? ? nil : source_user,
+          direct:
+        )
+      end
+
+      def notify
+        webpush_app = ::Rpush::App.find_by(name: "webpush")
+        target_user.push_notification(webpush_app, inbox) if webpush_app
       end
 
       def increment_asked_count

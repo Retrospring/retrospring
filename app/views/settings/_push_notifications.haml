@@ -1,0 +1,17 @@
+.card.push-notifications-settings
+  .card-body
+    %p= t('.description')
+    %p#subscription-count= t('.subscription_count', count: subscriptions.count)
+
+    .push-notifications-unavailable.text-danger
+      %i.fa.fa-warning
+      = t('.unsupported')
+
+    .push-notifications-current-target.d-none.text-success
+      %i.fa.fa-check
+      = t('.current_target')
+
+    .button-group{ role: 'group' }
+      %button.btn.btn-primary{ data: { action: 'push-enable' }, class: 'd-none' }= t('.subscribe')
+      %button.btn.btn-primary{ data: { action: 'push-disable' }, class: 'd-none' }= t('.unsubscribe_current')
+      %button.btn.btn-danger{ data: { action: 'push-remove-all' }, class: subscriptions.empty? ? 'd-none' : '' }= t('.unsubscribe_all')

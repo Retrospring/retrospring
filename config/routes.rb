@@ -89,6 +89,8 @@ Rails.application.routes.draw do
 
     get :data, to: "data#index"
 
+    resources :push_notifications, only: %i[index]
+
     namespace :two_factor_authentication do
       get :otp_authentication, to: "otp_authentication#index"
       patch :otp_authentication, to: "otp_authentication#update"
@@ -132,6 +134,10 @@ Rails.application.routes.draw do
     post "/list_membership", to: "list#membership", as: :list_membership
     post "/subscribe", to: "subscription#subscribe", as: :subscribe_answer
     post "/unsubscribe", to: "subscription#unsubscribe", as: :unsubscribe_answer
+    get "/webpush/key", to: "web_push#key", as: :webpush_key
+    post "/webpush/check", to: "web_push#check", as: :webpush_check
+    post "/webpush", to: "web_push#subscribe", as: :webpush_subscribe
+    delete "/webpush", to: "web_push#unsubscribe", as: :webpush_unsubscribe
   end
 
   resource :anonymous_block, controller: :anonymous_block, only: %i[create destroy]

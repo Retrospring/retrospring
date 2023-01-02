@@ -197,6 +197,8 @@ GEM
     hashie (5.0.0)
     hcaptcha (7.1.0)
       json
+    hkdf (0.3.0)
+    http-2 (0.11.0)
     http (4.4.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -268,6 +270,10 @@ GEM
     multipart-post (2.1.1)
     naught (1.1.0)
     nested_form (0.3.2)
+    net-http-persistent (4.0.1)
+      connection_pool (~> 2.2)
+    net-http2 (0.18.4)
+      http-2 (~> 0.11)
     net-imap (0.3.4)
       date
       net-protocol
@@ -370,6 +376,16 @@ GEM
     rexml (3.2.5)
     rolify (6.0.0)
     rotp (6.2.0)
+    rpush (7.0.1)
+      activesupport (>= 5.2)
+      jwt (>= 1.5.6)
+      multi_json (~> 1.0)
+      net-http-persistent
+      net-http2 (~> 0.18, >= 0.18.3)
+      railties
+      rainbow
+      thor (>= 0.18.1, < 2.0)
+      webpush (~> 1.0)
     rqrcode (2.1.2)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
@@ -506,6 +522,9 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    webpush (1.1.0)
+      hkdf (~> 0.2)
+      jwt (~> 2.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -567,6 +586,7 @@ DEPENDENCIES
   redcarpet
   redis
   rolify (~> 6.0)
+  rpush
   rqrcode
   rspec-its (~> 1.3)
   rspec-mocks

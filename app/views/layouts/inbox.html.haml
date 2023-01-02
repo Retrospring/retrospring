@@ -2,6 +2,7 @@
   .row
     .col-sm-10.col-md-10.col-lg-9.mx-auto
       = render 'inbox/actions', delete_id: @delete_id, disabled: @disabled, inbox_count: @inbox_count
+      = render 'inbox/push_settings'
       = render 'layouts/messages'
       = yield
 

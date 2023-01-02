@@ -139,6 +139,11 @@ en:
       destroy_comment:
         success: "Successfully unsmiled comment."
         error: "You have not smiled that comment."
+    web_push:
+      subscription_count:
+        zero: "You are not currently subscribed to push notifications on any devices."
+        one: "You are currently receiving push notifications on one device."
+        other: "You are currently receiving push notifications on %{count} devices."
   inbox:
     author:
       info: "No questions from @%{author} found, showing entries from all users instead!"

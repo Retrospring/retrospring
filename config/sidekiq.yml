@@ -12,4 +12,5 @@ production:
   - mailers
   - question
   - export
+  - push_notification
 

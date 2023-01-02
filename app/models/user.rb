@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
+class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include User::Relationship
   include User::Relationship::Follow
   include User::Relationship::Block
@@ -9,6 +9,7 @@ class User < ApplicationRecord
   include User::BanMethods
   include User::InboxMethods
   include User::QuestionMethods
+  include User::PushNotificationMethods
   include User::ReactionMethods
   include User::RelationshipMethods
   include User::TimelineMethods
@@ -42,6 +43,7 @@ class User < ApplicationRecord
 
   has_many :subscriptions, dependent: :destroy_async
   has_many :totp_recovery_codes, dependent: :destroy_async
+  has_many :web_push_subscriptions, dependent: :destroy_async
 
   has_one :profile, dependent: :destroy
   has_one :theme, dependent: :destroy
