@@ -6,9 +6,13 @@ gem "i18n-js", "4.0"
 gem "rails", "~> 6.1"
 gem "rails-i18n", "~> 7.0"
 
+gem "sprockets", "~> 4.1"
+gem "sprockets-rails", :require => "sprockets/railtie"
+gem "sassc-rails"
+gem "cssbundling-rails", "~> 1.1"
+
 gem "pg"
 
-gem "sassc-rails"
 gem "turbo-rails"
 
 gem "bcrypt", "~> 3.1.18"
