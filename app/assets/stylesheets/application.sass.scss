@@ -25,7 +25,7 @@
 @each $weight in $lexend-weights {
   @include Lexend.fontFace($weight: $weight,
     $display: fallback,
-    $fontDir: "assets/"
+    $fontDir: "/assets"
   );
 }
 
