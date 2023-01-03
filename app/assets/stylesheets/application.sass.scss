@@ -6,7 +6,13 @@
  */
 @use "@fontsource/lexend/scss/mixins" as Lexend;
 
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
 @import "variables";
+
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/maps";
 
 /**
   VENDOR
