@@ -1,0 +1,13 @@
+@each $color in $color-names {
+  .bg-#{$color} {
+    background-color: var(--#{$color}) !important;
+  }
+
+  .text-#{$color} {
+    color: var(--#{$color}) !important;
+  }
+}
+
+.text-muted {
+  color: RGB(var(--muted-text)) !important;
+}

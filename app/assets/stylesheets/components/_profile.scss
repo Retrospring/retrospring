@@ -1,0 +1,97 @@
+.profile {
+  &__avatar {
+    display: block;
+    width: map-get($avatar-sizes, "xl");
+    height: map-get($avatar-sizes, "xl");
+    margin: -(map-get($avatar-sizes, "xl") / 2.5) map-get($spacers, 4) 0;
+    border-radius: $avatar-border-radius;
+    box-shadow: $box-shadow;
+
+    @include media-breakpoint-up(sm) {
+      width: map-get($avatar-sizes, "xxl");
+      height: map-get($avatar-sizes, "xxl");
+      margin: -(map-get($avatar-sizes, "xxl") / 2) auto 0;
+    }
+  }
+
+  &__header-card {
+    margin-top: map-get($spacers, 3);
+    overflow: hidden;
+  }
+
+  &__name-container {
+    align-self: center;
+    max-width: 100%;
+    overflow: hidden;
+
+    @include media-breakpoint-up(sm) {
+      padding: map-get($spacers, 4);
+      padding-bottom: 0;
+    }
+  }
+
+  &__header-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.10),
+      rgba(0, 0, 0, 0.10)
+    ) var(--primary);
+    max-height: 440px;
+  }
+
+  &__header-image {
+    display: block;
+    width: 100%;
+  }
+
+  &__biography,
+  &__website,
+  &__location {
+    margin-bottom: map-get($spacers, 3);
+  }
+
+  &__actions,
+  &__biography {
+    margin-top: map-get($spacers, 3);
+  }
+
+  &__display-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include media-breakpoint-up(sm) {
+      white-space: initial;
+    }
+  }
+
+  &__screen-name {
+    &:only-child {
+      @extend .profile__display-name;
+    }
+
+    &:not(:only-child) {
+      font-size: 0.9em;
+      color: RGB(var(--muted-text));
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    &__name {
+      margin-bottom: map-get($spacers, 3);
+    }
+
+    & .card-body {
+      padding-top: 0;
+    }
+  }
+}
+
+.user--banned {
+  text-decoration: line-through !important;
+}

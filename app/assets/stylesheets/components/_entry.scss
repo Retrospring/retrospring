@@ -1,0 +1,22 @@
+.entry {
+  $this: &;
+  margin: map-get($spacers, 4) 0;
+
+  &__value {
+    display: block;
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  &__description {
+    color: var(--primary);
+    display: block;
+    font-size: .8rem;
+    font-weight: bold;
+    margin-top: 0px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}

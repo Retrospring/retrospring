@@ -1,0 +1,15 @@
+.theme-success {
+  --background: #f4fcf6;
+  --primary: var(--success);
+}
+
+.theme-warning {
+  --background: #fcfaf4;
+  --primary: var(--warning);
+  --primary-text: 0, 0, 0;
+}
+
+.theme-danger {
+  --background: #fceff1;
+  --primary: var(--danger);
+}

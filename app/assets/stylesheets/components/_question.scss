@@ -1,0 +1,18 @@
+.question {
+  &--fixed {
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+
+    @include media-breakpoint-up('sm') {
+      position: fixed;
+    }
+  }
+
+  &--hidden {
+    visibility: hidden;
+    position: relative;
+    box-shadow: none;
+    z-index: -1;
+  }
+}

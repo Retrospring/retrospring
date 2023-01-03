@@ -1,0 +1,21 @@
+.list-group-item {
+  background-color: transparent;
+  
+  &.active,
+  &.active:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+
+    a {
+      color: var(--primary-text);
+    }
+  }
+}
+
+.list-group-item-action {
+  color: RGB(var(--body-text));
+  
+  &:hover, &:focus {
+    background-color: var(--raised-accent);
+  }
+}

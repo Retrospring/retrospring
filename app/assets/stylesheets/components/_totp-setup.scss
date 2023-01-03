@@ -1,0 +1,76 @@
+%totp-input {
+  font-family: "Monaco", "Inconsolata", "Cascadia Code", "Consolas", monospace;
+  width: 100px;
+}
+
+.totp-setup {
+  &__card {
+    background: var(--primary);
+    padding: 10px;
+    border-radius: 5px;
+
+    min-width: 256px;
+    max-width: 256px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__card-container {
+    min-width: 276px;
+    max-width: 276px;
+    width: 100%;
+    padding: 0;
+  }
+
+  &__qr {
+    background: white;
+    border-radius: 5px;
+  }
+
+  &__text {
+    background: #000;
+    color: #fff;
+    margin: 10px 0 0 0;
+    padding: 5px;
+    border-radius: 5px;
+
+    code {
+      display: block;
+      color: var(--warning);
+    }
+  }
+
+  &__code-field {
+    @extend %totp-input;
+  }
+
+  &__recovery {
+    &-container {
+      max-width: 455px;
+    }
+
+    &-icon {
+      font-size: .75in;
+    }
+
+    &-title {
+      text-align: left;
+    }
+
+    &-codes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0;
+
+      li {
+        list-style-type: none;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+#user_otp_attempt {
+  @extend %totp-input;
+}

@@ -1,0 +1,119 @@
+/**
+ SETTINGS
+ ----------------------------------------------
+ Variable definitions, tools and mixins used
+ across all styling definitions.
+ */
+@use "@fontsource/lexend/scss/mixins" as Lexend;
+
+@import "variables";
+
+/**
+  VENDOR
+  ----------------------------------------------
+  Imported vendor assets used by Retrospring.
+  */
+
+@import "@melloware/coloris/dist/coloris",
+"bootstrap/scss/bootstrap",
+"croppr/dist/croppr",
+"font-awesome/scss/font-awesome",
+"sweetalert/dist/sweetalert",
+"toastify-js/src/toastify";
+
+
+@each $weight in $lexend-weights {
+  @include Lexend.fontFace($weight: $weight,
+    $display: fallback,
+    $fontDir: "assets/"
+  );
+}
+
+// Using Lexend Light (300) as Regular (400) as Regular is quite thick.
+@each $subset,
+$unicodeRangeValues in Lexend.$unicodeMap {
+  @font-face {
+    font-family: Lexend;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url("/assets/lexend-#{$subset}-300-normal.woff2") format("woff2"),
+    url("/assets/lexend-all-300-normal.woff") format("woff");
+    unicode-range: $unicodeRangeValues;
+  }
+}
+
+/**
+  OVERRIDES
+  ----------------------------------------------
+  The imports from "overrides/" define almost barely
+  any style adjustments but rather override default
+  Bootstrap behaviour.
+
+  The largest change to regular bootstrap is the switch
+  to using the available CSS variables for most elements
+  used on the site, so theming can be done with changing
+  only those.
+  */
+
+@import "overrides/alerts",
+"overrides/badges",
+"overrides/bootstrap-datetimepicker",
+"overrides/buttons",
+"overrides/colors",
+"overrides/card",
+"overrides/dropdown",
+"overrides/inputs",
+"overrides/links",
+"overrides/list-group",
+"overrides/minicolors",
+"overrides/modal",
+"overrides/navbar",
+"overrides/turbolinks",
+"overrides/toasts",
+"overrides/sweet-alert";
+
+/**
+  ELEMENTS
+  ----------------------------------------------
+  Styles directly applied to HTML elements
+  */
+
+@import "elements/body";
+
+/**
+  COMPONENTS
+  ----------------------------------------------
+  Custom components defined for Retrospring.
+  */
+
+@import "components/announcements",
+"components/answerbox",
+"components/avatars",
+"components/buttons",
+"components/comments",
+"components/container",
+"components/entry",
+"components/flags",
+"components/icons",
+"components/inbox-actions",
+"components/inbox-entry",
+"components/jumbotron",
+"components/locales",
+"components/mobile-nav",
+"components/notifications",
+"components/profile",
+"components/push-settings",
+"components/question",
+"components/smiles",
+"components/themes",
+"components/totp-setup",
+"components/userbox";
+
+/**
+  UTILITIES
+  ----------------------------------------------
+  Classes used for very specific cases
+  */
+
+@import "utilities";

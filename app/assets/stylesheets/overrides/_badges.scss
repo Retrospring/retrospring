@@ -1,0 +1,6 @@
+@each $color in $color-names {
+  .badge-#{$color} {
+    color: var(--#{$color});
+    background-color: RGB(var(--#{$color}-text));
+  }
+}

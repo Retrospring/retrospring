@@ -1,0 +1,22 @@
+.form-control {
+  background-color: var(--input-bg);
+  color: RGB(var(--input-text));
+  border: 0;
+
+  &:focus {
+    background-color: var(--input-bg);
+    color: RGB(var(--input-text));
+    border-color: var(--primary);
+    box-shadow: .5px 0 0 0.1rem var(--primary);
+  }
+
+  &::placeholder {
+    color: RGB(var(--input-placeholder));
+  }
+}
+
+.input-group-text {
+  color: RGB(var(--body-text));
+  background-color: var(--raised-accent);
+  border: 0;
+}

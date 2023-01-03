@@ -1,0 +1,10 @@
+.turbolinks-progress-bar {
+  background: var(--turbolinks-progress-color);
+
+  @include media-breakpoint-down('md') {
+    top: unset !important;
+    bottom: calc(45px + env(safe-area-inset-bottom)) !important;
+    position: fixed;
+    left: 0 !important;
+  }
+}
