@@ -1,5 +1,7 @@
+@use "sass:map";
+
 .card {
-  margin-bottom: map-get($spacers, 3);
+  margin-bottom: map.get($spacers, 3);
   box-shadow: $box-shadow-sm;
   background-color: var(--raised-bg);
 
@@ -8,7 +10,7 @@
   }
 
   &--fullheight {
-    height: calc(100% - map-get($spacers, 3));
+    height: calc(100% - #{map.get($spacers, 3)});
   }
 }
 

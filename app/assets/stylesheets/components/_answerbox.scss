@@ -1,13 +1,15 @@
+@use "sass:map";
+
 .answerbox {
-  &__question-text, 
-  &__question-user, 
-  &__answer-user, 
+  &__question-text,
+  &__question-user,
+  &__answer-user,
   &__answer-date {
     margin-bottom: 0;
     overflow: hidden;
     word-break: break-word;
   }
-  
+
   &__answer-date {
     font-size: .8rem;
     line-height: .8;
@@ -15,16 +17,16 @@
   }
 
   &__answer-text {
-    margin-bottom: map-get($spacers, 3);
+    margin-bottom: map.get($spacers, 3);
   }
 
   &__question-user-avatar,
   &__answer-user-avatar {
-    margin-right: map-get($spacers, 2);
+    margin-right: map.get($spacers, 2);
     border-radius: $avatar-border-radius;
   }
 
-  & .text-muted a, 
+  & .text-muted a,
   & .text-muted a:hover {
     color: var(--muted-text);
     text-decoration: none;
@@ -32,7 +34,7 @@
 
   &__action {
     padding-left: 0;
-    padding-right: map-get($spacers, 1);
+    padding-right: map.get($spacers, 1);
 
     & i {
       font-size: 1.4rem;
@@ -55,7 +57,7 @@
 
       &[data-action="unsmile"] {
         color: var(--success);
-        
+
         &:hover {
           color: var(--danger);
         }

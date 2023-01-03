@@ -1,3 +1,5 @@
+@use "sass:map";
+
 .notification {
   word-break: break-word;
 
@@ -12,7 +14,7 @@
   }
 
   &__icon {
-    margin-right: map-get($spacers, 2);
+    margin-right: map.get($spacers, 2);
     min-width: 40px;
   }
 
@@ -49,7 +51,7 @@
   }
 
   .list-group-item {
-    margin-top: map-get($spacers, 2);
+    margin-top: map.get($spacers, 2);
     background-color: var(--raised-accent);
 
     p {
