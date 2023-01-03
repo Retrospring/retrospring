@@ -19,6 +19,9 @@ $font-size-h4: ceil(($font-size-base * 1.25)); // ~18px
 $font-size-h5: $font-size-base;
 $font-size-h6: ceil(($font-size-base * 0.85)); // ~12px
 
+// Bootstrap CSS variable prefix
+$prefix: '';
+
 // Usual navbar height
 $navbar-height: 56px;
 
