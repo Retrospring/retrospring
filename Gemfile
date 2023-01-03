@@ -6,10 +6,10 @@ gem "i18n-js", "4.0"
 gem "rails", "~> 6.1"
 gem "rails-i18n", "~> 7.0"
 
-gem "sprockets", "~> 4.1"
-gem "sprockets-rails", :require => "sprockets/railtie"
-gem "sassc-rails"
 gem "cssbundling-rails", "~> 1.1"
+gem "sassc-rails"
+gem "sprockets", "~> 4.1"
+gem "sprockets-rails", require: "sprockets/railtie"
 
 gem "pg"
 
@@ -111,9 +111,9 @@ gem "webpacker", "~> 5.2"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
-gem "net-smtp"
 gem "net-imap"
 gem "net-pop"
+gem "net-smtp"
 
 gem "pundit", "~> 2.3"
 
