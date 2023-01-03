@@ -17,5 +17,5 @@ Rails.application.config.assets.resolve_assets_in_css_urls = true
 # Include node assets in asset loading
 # This is IMPORTANT because in either environment (especially local) external assets
 # will not be found/resolved otherwise
-Rails.application.config.assets.paths << Rails.root.join("node_modules/font-awesome/fonts")
+Rails.application.config.assets.paths << Rails.root.join("node_modules/@fortawesome/fontawesome-free/webfonts")
 Rails.application.config.assets.paths << Rails.root.join("node_modules/@fontsource/lexend/files")
