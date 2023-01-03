@@ -16,7 +16,7 @@
         %i.fas.fa-fw.fa-user-slash
         = t("voc.block_site_wide")
       %a.dropdown-item{ href: moderation_questions_path(author_identifier: question.author_identifier) }
-        %i.fas.fa-fw.fa-mask
+        %i.fas.fa-fw.fa-user-secret
         = t("voc.show_anonymous_questions")
   - if current_user.admin?
     %a.dropdown-item{ href: rails_admin_path_for_resource(question), target: "_blank" }
