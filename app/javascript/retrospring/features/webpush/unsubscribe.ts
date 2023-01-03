@@ -20,10 +20,19 @@ export function checkSubscription(subscription: PushSubscription): void {
     },
     contentType: 'application/json'
   }).then(async response => {
-    const data = await response.json();
+    const data = await response.json;
 
-    if (data.status == 'subscribed') return;
-    if (data.status == 'failed') await unsubscribeServer(subscription);
+    if (data.status == 'subscribed') {
+      console.info('Push subscription is still valid.');
+      return;
+    }
+
+    if (data.status == 'failed') {
+      console.info('Pushing to this subscription failed too many times, unsubscribing.');
+      await unsubscribeServer(subscription);
+    }
+
+    console.info('Removing push subscription from this browser.');
     await unsubscribeClient(subscription);
   })
 }
