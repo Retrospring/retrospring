@@ -118,8 +118,8 @@ describe Ajax::WebPushController, :ajax_controller, type: :controller do
 
         it "removes the subscription" do
           subject
-          expect { subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
-          expect { other_subscription.reload }.not_to raise_error(ActiveRecord::RecordNotFound)
+          expect(WebPushSubscription.exists?(subscription.id)).to eq(false)
+          expect(WebPushSubscription.exists?(other_subscription.id)).to eq(true)
         end
 
         include_examples "returns the expected response"
