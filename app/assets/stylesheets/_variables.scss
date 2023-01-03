@@ -25,6 +25,12 @@ $navbar-height: 56px;
 // Color overrides for Bootstrap
 $primary: #5e35b1;
 
+$rs-theme-colors: (
+  primary: $primary
+);
+
+$theme-colors: map-merge($theme-colors, $rs-theme-colors);
+
 // Cards
 $card-border-width: 0;
 
@@ -57,9 +63,11 @@ $avatar-sizes: (
   "xxl": 160px,
 );
 
-$spacers: (
+$rs-spacers: (
   10: (1rem * 6)
 );
+
+$spacers: map-merge($rs-spacers, $spacers);
 
 :root {
   --background: #f0edf4;
