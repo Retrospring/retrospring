@@ -1,6 +1,8 @@
+@use "sass:map";
+
 .entry {
   $this: &;
-  margin: map-get($spacers, 4) 0;
+  margin: map.get($spacers, 4) 0;
 
   &__value {
     display: block;

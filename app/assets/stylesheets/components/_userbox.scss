@@ -1,19 +1,21 @@
+@use "sass:map";
+
 .userbox {
   &__header {
     width: 100%;
     height: auto;
     max-height: 70px;
 
-    @include media-breakpoint-up(sm) { 
+    @include media-breakpoint-up(sm) {
       max-height: 60px;
     }
   }
 
   &__avatar {
     display: block;
-    width: map-get($avatar-sizes, "lg");
-    height: map-get($avatar-sizes, "lg");
-    margin-top: -(map-get($avatar-sizes, "lg") / 2);
+    width: map.get($avatar-sizes, "lg");
+    height: map.get($avatar-sizes, "lg");
+    margin-top: -(map.get($avatar-sizes, "lg") / 2);
     margin-left: auto;
     margin-right: auto;
     border-radius: $avatar-border-radius;
@@ -22,7 +24,7 @@
 
   .profile__name {
     display: block;
-    margin: map-get($spacers, 3) 0;
+    margin: map.get($spacers, 3) 0;
     text-align: center;
   }
 

@@ -1,21 +1,23 @@
+@use "sass:map";
+
 .profile {
   &__avatar {
     display: block;
-    width: map-get($avatar-sizes, "xl");
-    height: map-get($avatar-sizes, "xl");
-    margin: -(map-get($avatar-sizes, "xl") / 2.5) map-get($spacers, 4) 0;
+    width: map.get($avatar-sizes, "xl");
+    height: map.get($avatar-sizes, "xl");
+    margin: -(map.get($avatar-sizes, "xl") / 2.5) map.get($spacers, 4) 0;
     border-radius: $avatar-border-radius;
     box-shadow: $box-shadow;
 
     @include media-breakpoint-up(sm) {
-      width: map-get($avatar-sizes, "xxl");
-      height: map-get($avatar-sizes, "xxl");
-      margin: -(map-get($avatar-sizes, "xxl") / 2) auto 0;
+      width: map.get($avatar-sizes, "xxl");
+      height: map.get($avatar-sizes, "xxl");
+      margin: -(map.get($avatar-sizes, "xxl") / 2) auto 0;
     }
   }
 
   &__header-card {
-    margin-top: map-get($spacers, 3);
+    margin-top: map.get($spacers, 3);
     overflow: hidden;
   }
 
@@ -25,7 +27,7 @@
     overflow: hidden;
 
     @include media-breakpoint-up(sm) {
-      padding: map-get($spacers, 4);
+      padding: map.get($spacers, 4);
       padding-bottom: 0;
     }
   }
@@ -50,12 +52,12 @@
   &__biography,
   &__website,
   &__location {
-    margin-bottom: map-get($spacers, 3);
+    margin-bottom: map.get($spacers, 3);
   }
 
   &__actions,
   &__biography {
-    margin-top: map-get($spacers, 3);
+    margin-top: map.get($spacers, 3);
   }
 
   &__display-name {
@@ -83,7 +85,7 @@
 
   @include media-breakpoint-up(sm) {
     &__name {
-      margin-bottom: map-get($spacers, 3);
+      margin-bottom: map.get($spacers, 3);
     }
 
     & .card-body {

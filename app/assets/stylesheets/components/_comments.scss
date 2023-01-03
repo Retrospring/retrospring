@@ -1,6 +1,8 @@
+@use "sass:map";
+
 .comment {
   list-style-type: none;
-  margin-bottom: map-get($spacers, 2);
+  margin-bottom: map.get($spacers, 2);
 
   &__container {
     padding-left: 0;
@@ -13,7 +15,7 @@
   }
 
   &__user-avatar {
-    margin-right: map-get($spacers, 2);
+    margin-right: map.get($spacers, 2);
     border-radius: $avatar-border-radius;
   }
 
