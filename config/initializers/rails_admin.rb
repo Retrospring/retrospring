@@ -51,6 +51,7 @@ RailsAdmin.config do |config|
     Theme
     User
     UserBan
+    WebPushSubscription
   ]
 
   # set up icons for some models
