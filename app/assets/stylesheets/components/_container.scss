@@ -1,0 +1,10 @@
+.container--main {
+  padding-top: map-get($spacers, 3);
+  padding-bottom: map-get($spacers, 3);
+  // Sass doesn't know about the safe-area-inset-* env vars and throws a syntax error
+  // We can get around this by using unquote()
+  // Sass also has its own built-in max() function which is not the same as the CSS one
+  // In order to use the correct one we can write it as Max() instead
+  padding-left: unquote('Max(15px, env(safe-area-inset-left))');
+  padding-right: unquote('Max(15px, env(safe-area-inset-right))');
+}

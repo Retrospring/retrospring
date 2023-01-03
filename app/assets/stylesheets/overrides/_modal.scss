@@ -1,0 +1,13 @@
+.modal-content {
+  background-color: var(--raised-bg);
+  border: 0;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-footer {
+  background-color: var(--raised-accent);
+  border-top: 0;
+}

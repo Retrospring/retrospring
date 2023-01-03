@@ -1,0 +1,28 @@
+.smiles {
+  margin-bottom: map-get($spacers, 2);
+
+  &__user-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+    
+  &__user-list-entry {
+    margin-bottom: map-get($spacers, 3);
+    
+    * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  
+    img {
+      height: map-get($avatar-sizes, "lg");
+      width: map-get($avatar-sizes, "lg");
+      border-radius: $avatar-border-radius;
+    }
+  
+    span {
+      margin-left: 5px;
+    }
+  }
+}

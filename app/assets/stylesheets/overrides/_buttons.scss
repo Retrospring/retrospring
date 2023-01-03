@@ -1,0 +1,64 @@
+.btn {
+  color: RGB(var(--body-text));
+}
+
+.btn-link:hover {
+  color: RGB(var(--body-text));
+}
+
+@each $color in $color-names {
+  .btn-#{$color} {
+
+    color: RGB(var(--#{$color}-text));
+    background-color: var(--#{$color});
+    border-color: var(--#{$color});
+    border-width: 0;
+
+    &:hover {
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.10),
+        rgba(0, 0, 0, 0.10)
+      ) var(--#{$color});
+    }
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+      border: none;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.25),
+        rgba(0, 0, 0, 0.25)
+      ) var(--#{$color});
+
+      &:focus {
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.30),
+          rgba(0, 0, 0, 0.30)
+        ) var(--#{$color});
+        box-shadow: none;
+      }
+    }
+
+    &:focus,
+    &:focus:hover {
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.30),
+        rgba(0, 0, 0, 0.30)
+      ) var(--#{$color});
+      box-shadow: none;
+    }
+  }
+
+  .btn-outline-#{$color} {
+    color: var(--#{$color});
+  }
+}
+
+.btn {
+  .fa {
+    pointer-events: none;
+  }
+}

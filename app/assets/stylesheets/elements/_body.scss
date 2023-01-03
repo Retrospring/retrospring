@@ -1,0 +1,17 @@
+body {
+  overflow-y: scroll;
+  word-wrap: break-word;
+  color: RGB(var(--body-text));
+  background-color: var(--background);
+  @include media-breakpoint-up('lg') {
+    padding-top: $navbar-height;
+  }
+  @include media-breakpoint-down('md') {
+    padding-bottom: calc($navbar-height + unquote('env(safe-area-inset-bottom, 0)'));
+  }
+
+  &.not-logged-in {
+    padding-top: $navbar-height;
+    padding-bottom: 0;
+  }
+}

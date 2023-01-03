@@ -1,0 +1,39 @@
+.comment {
+  list-style-type: none;
+  margin-bottom: map-get($spacers, 2);
+
+  &__container {
+    padding-left: 0;
+  }
+
+  &__user,
+  &__content {
+    margin-bottom: 0;
+    word-break: break-word;
+  }
+
+  &__user-avatar {
+    margin-right: map-get($spacers, 2);
+    border-radius: $avatar-border-radius;
+  }
+
+  &__input-group {
+    position: relative;
+  }
+
+  &__input {
+    padding-right: 2.5rem;
+
+    &.is-invalid {
+      background-image: none;
+    }
+  }
+
+  &__character-count {
+    position: absolute;
+    z-index: 5;
+    right: .5rem;
+    top: .5rem;
+  }
+}
+

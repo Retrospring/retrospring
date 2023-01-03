@@ -1,0 +1,7 @@
+.push-notifications {
+  &-unavailable {
+    body.cap-service-worker.cap-notification & {
+      display: none;
+    }
+  }
+}
