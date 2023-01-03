@@ -1,4 +1,4 @@
-import Rails from '@rails/ujs';
+import { post } from '@rails/request.js';
 import swal from 'sweetalert';
 
 import I18n from 'retrospring/i18n';
@@ -19,22 +19,20 @@ export function reportDialog(type: string, target: string): void {
     if (returnValue === false) {
       return;
     }
-    
-    Rails.ajax({
-      url: '/ajax/report',
-      type: 'POST',
-      data: new URLSearchParams({
+
+    post('/ajax/report', {
+      body: {
         id: String(target),
         type: type,
         reason: returnValue
-      }).toString(),
-      success: (data) => {
-        showNotification(data.message);
-      },
-      error: (data, status, xhr) => {
-        console.log(data, status, xhr);
-        showErrorNotification(I18n.translate('frontend.error.message'));
       }
+    }).then(async response => {
+      const data = await response.json;
+
+      showNotification(data.message, data.success);
+    }).catch(e => {
+      console.error("Failed to submit report", e);
+      showErrorNotification(I18n.translate('frontend.error.message'));
     });
   });
 }
