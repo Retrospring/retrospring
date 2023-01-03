@@ -149,7 +149,7 @@ GEM
       dry-logic (>= 1.4, < 2)
       zeitwerk (~> 2.6)
     equalizer (0.0.11)
-    erubi (1.11.0)
+    erubi (1.12.0)
     excon (0.93.1)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -250,8 +250,11 @@ GEM
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.1)
+    mail (2.8.0)
       mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
     marcel (1.0.2)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -264,7 +267,7 @@ GEM
       rake
     mini_magick (4.12.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
+    mini_portile2 (2.8.1)
     minitest (5.17.0)
     msgpack (1.6.0)
     multi_json (1.15.0)
@@ -318,8 +321,8 @@ GEM
     pundit (2.3.0)
       activesupport (>= 3.0.0)
     questiongenerator (1.0.0)
-    racc (1.6.1)
-    rack (2.2.4)
+    racc (1.6.2)
+    rack (2.2.5)
     rack-protection (2.2.2)
       rack
     rack-proxy (0.7.2)
@@ -353,7 +356,7 @@ GEM
     rails-i18n (7.0.6)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
-    rails_admin (3.0.0)
+    rails_admin (3.1.1)
       activemodel-serializers-xml (>= 1.0)
       kaminari (>= 0.14, < 2.0)
       nested_form (~> 0.3)
