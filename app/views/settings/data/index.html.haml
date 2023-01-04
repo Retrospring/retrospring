@@ -8,28 +8,28 @@
       .col-md-6.col-sm-6.col-xs-12.mb-3
         %h4= t(".section.profile")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.screen_name")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.screen_name")
         %p.text-muted= current_user.screen_name
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.display_name")
+        %p.fw-bold.mb-0= t("activerecord.attributes.profile.display_name")
         %p.text-muted
           = current_user.profile.display_name.presence || t(".none")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.description")
+        %p.fw-bold.mb-0= t("activerecord.attributes.profile.description")
         %p.text-muted
           = current_user.profile.description.presence || t(".none")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.location")
+        %p.fw-bold.mb-0= t("activerecord.attributes.profile.location")
         %p.text-muted
           = current_user.profile.location.presence || t(".none")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.profile.website")
+        %p.fw-bold.mb-0= t("activerecord.attributes.profile.website")
         %p.text-muted
           = current_user.profile.website.presence || t(".none")
 
       .col-md-6.col-sm-6.col-xs-12.mb-3
         %h4= t(".section.pictures")
-        %p.font-weight-bold.mb-0= t(".pictures.profile_picture.heading")
+        %p.fw-bold.mb-0= t(".pictures.profile_picture.heading")
         .media.mb-3
           .pull-left
             %img.profile--img{ src: current_user.profile_picture.url(:medium) }
@@ -44,7 +44,7 @@
               %li
                 %a{ href: current_user.profile_picture.url(:original) }= t(".pictures.profile_picture.size.original")
 
-        %p.font-weight-bold.mb-0= t(".pictures.profile_header.heading")
+        %p.fw-bold.mb-0= t(".pictures.profile_header.heading")
         %img{ src: current_user.profile_header.url(:mobile), style: "width: 100%" }
         %p
           %a{ href: current_user.profile_header.url(:mobile) }= t(".pictures.profile_header.size.mobile")
@@ -57,37 +57,37 @@
     .row
       .col-md-6.col-sm-6.col-xs-12.mb-3
         %h3= t(".section.ip")
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.current_sign_in_ip")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.current_sign_in_ip")
         %p.text-muted= current_user.current_sign_in_ip
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.last_sign_in_ip")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.last_sign_in_ip")
         %p.text-muted= current_user.last_sign_in_ip
       .col-md-6.col-sm-6.col-xs-12.mb-3
         %h3= t(".section.miscellaneous")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.locale")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.locale")
         %p.text-muted
           = current_user.locale.presence || t(".none")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.sign_in_count")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.sign_in_count")
         %p.text-muted= current_user.sign_in_count
     %h3= t(".section.dates")
     .row
       .col-md-6.col-sm-6.col-xs-12
         %h4= t(".section.sign_in")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.current_sign_in_at")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.current_sign_in_at")
         %p.text-muted= current_user.current_sign_in_at ? localize(current_user.current_sign_in_at) : t(".none")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.last_sign_in_at")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.last_sign_in_at")
         %p.text-muted= current_user.last_sign_in_at ? localize(current_user.last_sign_in_at) : t(".none")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.remember_created_at")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.remember_created_at")
         %p.text-muted= current_user.remember_created_at ? localize(current_user.remember_created_at) : t(".none")
       .col-md-6.col-sm-6.col-xs-12
         %h4= t(".section.create_update")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.created_at")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.created_at")
         %p.text-muted
           - if current_user.created_at
             = localize(current_user.created_at)
@@ -95,7 +95,7 @@
           - else
             = t(".none")
 
-        %p.font-weight-bold.mb-0= t("activerecord.attributes.user.updated at")
+        %p.fw-bold.mb-0= t("activerecord.attributes.user.updated at")
         %p.text-muted
           - if current_user.created_at
             = localize(current_user.updated_at)
