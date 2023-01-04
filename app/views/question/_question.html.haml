@@ -1,22 +1,23 @@
 .card.question--fixed{ class: hidden ? 'question--hidden' : '', tabindex: hidden ? -1 : '', aria: { hidden: hidden } }
   .container
     .card-body
-      .media
+      .d-flex
         - unless question.author_is_anonymous
-          %a.pull-left{ href: unless hidden then user_path(question.user) end }
-            %img.answerbox__question-user-avatar.avatar-md{ src: question.user.profile_picture.url(:small) }
-        .media-body
-          - if user_signed_in?
-            .pull-right
-              .btn-group
-                %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-                  %span.caret
-                - unless hidden
-                  = render "actions/question", question: question
-          %h6.text-muted.media-heading.answerbox__question-user
+          .flex-shrink-0
+            %a{ href: unless hidden then user_path(question.user) end }
+              %img.answerbox__question-user-avatar.avatar-md{ src: question.user.profile_picture.url(:small) }
+        .flex-grow-1
+          %h6.text-muted.answerbox__question-user
             - identifier = question.author_is_anonymous ? question.author_identifier : nil
             - if hidden
               = user_screen_name question.user, author_identifier: identifier, url: false
             - else
               = t("answerbox.header.asked_html", user: user_screen_name(question.user, author_identifier: identifier), time: time_tooltip(question))
           .answerbox__question-text= question_markdown question.content
+        - if user_signed_in?
+          .flex-shrink-0.ms-auto
+            .btn-group
+              %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+                %span.caret
+              - unless hidden
+                = render "actions/question", question: question

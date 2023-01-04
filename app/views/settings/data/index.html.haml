@@ -30,10 +30,10 @@
       .col-md-6.col-sm-6.col-xs-12.mb-3
         %h4= t(".section.pictures")
         %p.fw-bold.mb-0= t(".pictures.profile_picture.heading")
-        .media.mb-3
-          .pull-left
+        .d-flex.mb-3
+          .flex-shrink-0
             %img.profile--img{ src: current_user.profile_picture.url(:medium) }
-          .media-body
+          .flex-grow-1
             %ul
               %li
                 %a{ href: current_user.profile_picture.url(:small) }= t(".pictures.profile_picture.size.small")

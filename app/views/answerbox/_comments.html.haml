@@ -5,18 +5,18 @@
     - a.comments.order(:created_at).each do |comment|
       %li.comment{ data: { comment_id: comment.id } }
         %div{ style: "height: 0; width: 0" }= render "modal/comment_smiles", comment: comment
-        .media
-          .pull-left
+        .d-flex
+          .flex-shrink-0
             %a{ href: user_path(comment.user) }
               %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:small), loading: :lazy }
-          .media-body
-            %h6.media-heading.comment__user
+          .flex-grow-1
+            %h6.comment__user
               = user_screen_name comment.user
               %span.text-muted{ title: comment.created_at, data: { bs_toggle: :tooltip, bs_placement: :right } }
                 = t("time.distance_ago", time: time_ago_in_words(comment.created_at))
             .comment__content
               = markdown comment.content
-          .pull-right
+          .flex-shrink-0.ms-auto
             %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: current_user&.smiled?(comment) ? :unsmile : :smile }, disabled: !user_signed_in? }
               %i.fa.fa-fw.fa-smile-o
               %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count

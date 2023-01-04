@@ -1,11 +1,11 @@
 .card{ data: { id: u.id } }
   .card-body
-    .media
-      .pull-left
+    .d-flex
+      .flex-shrink-0
         %a{ href: user_path(u) }
           %img.avatar-md.me-2{ src: u.profile_picture.url(:medium) }
-      .media-body
-        %h6.media-heading.answerbox__question-user
+      .flex-grow-1
+        %h6.answerbox__question-user
           - if u.profile.display_name.blank?
             %a{ href: user_path(u) }
               = u.screen_name

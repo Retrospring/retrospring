@@ -2,7 +2,7 @@
   - @notifications.each do |notification|
     %li.card
       .card-body
-        .media
+        .d-flex
           = render "notifications/type/#{notification.target.class.name.downcase.split('::').last}", notification: notification
 
 = turbo_stream.update "paginator" do

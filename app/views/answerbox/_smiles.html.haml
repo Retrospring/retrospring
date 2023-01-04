@@ -1,7 +1,7 @@
-.media.smiles
-  .pull-left
+.d-flex.smiles
+  .flex-shrink-0.me-1
     %i.fa.fa-smile-o
-  .media-body
+  .flex-grow-1
     - if a.smiles.all.count.zero?
       = t(".none")
     - else
