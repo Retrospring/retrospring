@@ -10,7 +10,7 @@
     .totp-setup__content.col
       = bootstrap_form_for(current_user, url: settings_two_factor_authentication_otp_authentication_path, data: { turbo: false }) do |f|
         %p= t(".app.none")
-        %ul.list-unstyled.pl-3
+        %ul.list-unstyled.ps-3
           %li
             %i.fa.fa-android
             = t(".app.aegis")

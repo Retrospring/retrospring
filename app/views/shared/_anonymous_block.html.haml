@@ -6,6 +6,6 @@
       - else
         %p.mb-0.text-muted.font-italic= t(".deleted_question")
       %p.text-muted.mb-0= t(".blocked", time: time_ago_in_words(block.created_at))
-    .ml-auto.d-inline-flex
+    .ms-auto.d-inline-flex
       = button_to anonymous_block_path, method: :delete, params: { id: block.id }, class: "btn btn-default align-self-center" do
         %span.pe-none= t("voc.unblock")

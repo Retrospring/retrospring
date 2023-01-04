@@ -5,7 +5,7 @@
         = render inline: Rails.application.config.justask_svg_logo
       - else
         = APP_CONFIG["site_name"]
-    %ul.nav.navbar-nav.mr-auto
+    %ul.nav.navbar-nav.me-auto
       = nav_entry t("navigation.timeline"), root_path, icon: 'home'
       = nav_entry t("navigation.inbox"), '/inbox', icon: 'inbox', badge: inbox_count
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
