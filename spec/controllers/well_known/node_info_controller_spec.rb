@@ -33,7 +33,7 @@ describe WellKnown::NodeInfoController do
       expect(messages).to be_empty
     end
 
-    context "version is 2023.0120.1" do
+    context "version is 2023.0102.1" do
       before do
         allow(Retrospring::Version).to receive(:to_s).and_return("2023.0102.1")
       end
