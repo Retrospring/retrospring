@@ -1,7 +1,7 @@
 - provide(:title, APP_CONFIG["site_name"])
-.jumbotron
-  .jumbotron__content
-    .container
+.container
+  .card.bg-primary.my-3.text-bg-primary.text-center
+    .card-body.py-4
       = render "layouts/messages"
       %h1= APP_CONFIG["site_name"]
       %p= t(".subtitle")
@@ -11,7 +11,6 @@
       %small
         = t(".already_member")
         = link_to t("voc.login"), new_user_session_path
-.container
   .row.my-5.my-sm-10
     .col-sm-6.order-12.order-sm-1.text-center.text-sm-right
       %h2.mb-4= t(".questions.header")

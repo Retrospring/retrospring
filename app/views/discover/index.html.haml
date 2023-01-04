@@ -1,10 +1,9 @@
 - provide(:title, generate_title(t(".title")))
-
-.jumbotron
-  .jumbotron__content
-    %h1= t(".heading")
-    %p= t(".subheading", app_title: APP_CONFIG["site_name"])
 .container
+  .card.bg-primary.text-bg-primary.my-3
+    .card-body
+      %h1= t(".heading")
+      %p= t(".subheading", app_title: APP_CONFIG["site_name"])
   .row
     .col-md-7.col-sm-6
       %h2= t(".content.heading")

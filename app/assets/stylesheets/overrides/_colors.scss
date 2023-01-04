@@ -11,3 +11,11 @@
 .text-muted {
   color: RGB(var(--muted-text)) !important;
 }
+
+.text-bg-primary {
+  color: RGB(var(--primary-text)) !important;
+
+  a:not(.btn) {
+    color: inherit !important;
+  }
+}

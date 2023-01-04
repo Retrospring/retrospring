@@ -1,8 +1,7 @@
-.jumbotron.jumbotron--particles
-  .jumbotron__particles#particles
-  .jumbotron__content
-    %h1= t(".heading")
 .container
+  .card.bg-primary.text-bg-primary.my-3
+    .card-body
+      %h1= t(".heading")
   - unless params[:action] == "consent"
     .card
       .list-group.list-group-horizontal-sm.text-center

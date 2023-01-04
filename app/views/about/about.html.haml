@@ -1,8 +1,8 @@
-.jumbotron
-  .jumbotron__content
-    %h1= APP_CONFIG["site_name"]
-    %p= t(".subtitle")
 .container
+  .card.bg-primary.text-bg-primary.my-3
+    .card-body
+      %h1= APP_CONFIG["site_name"]
+      %p= t(".subtitle")
   .row
     .col-sm-8
       .card.card--fullheight
