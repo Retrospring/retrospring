@@ -84,7 +84,7 @@ describe BootstrapHelper, :type => :helper do
 
   describe "#tooltip" do
     it 'should return the proper markup' do
-      expect(tooltip("Example Text", "This is in a tooltip")).to eq("<span title=\"This is in a tooltip\" data-toggle=\"tooltip\" data-placement=\"bottom\">Example Text</span>")
+      expect(tooltip("Example Text", "This is in a tooltip")).to eq("<span title=\"This is in a tooltip\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\">Example Text</span>")
     end
   end
 
@@ -94,7 +94,7 @@ describe BootstrapHelper, :type => :helper do
         @user = FactoryBot.create(:user)
         travel 10.minutes
 
-        expect(time_tooltip(@user)).to eq("<span title=\"Sun, 01 Jan 1984 00:00:00 +0000\" data-toggle=\"tooltip\" data-placement=\"bottom\">10 minutes</span>")
+        expect(time_tooltip(@user)).to eq("<span title=\"Sun, 01 Jan 1984 00:00:00 +0000\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\">10 minutes</span>")
       end
     end
   end
