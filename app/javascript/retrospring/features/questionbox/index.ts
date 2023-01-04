@@ -8,10 +8,7 @@ export default (): void => {
     { type: 'click', target: document.querySelector('#new-question'), handler: questionboxPromoteHandler },
     { type: 'click', target: document.querySelectorAll('[name=qb-all-ask]'), handler: questionboxAllHandler },
     { type: 'keydown', target: document.querySelectorAll('[name=qb-question]'), handler: questionboxUserInputHandler },
-    { type: 'keydown', target: document.querySelectorAll('[name=qb-all-question]'), handler: questionboxAllInputHandler }
+    { type: 'keydown', target: document.querySelectorAll('[name=qb-all-question]'), handler: questionboxAllInputHandler },
+    { type: 'shown.bs.modal', target: document.querySelector('#modal-ask-followers'), handler: questionboxAllModalAutofocus }
   ]);
-
-  // unfortunately Bootstrap 4 relies on jQuery's event model, so I can't use registerEvents here :(
-  // TODO: when upgrading to Bootstrap 5 replace this with a normal DOM event
-  $('#modal-ask-followers').on('shown.bs.modal', questionboxAllModalAutofocus);
 }
