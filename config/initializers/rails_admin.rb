@@ -77,7 +77,8 @@ RailsAdmin.config do |config|
     "Services::Twitter"     => "dumpster-fire",
     "Theme"                 => "paint-brush",
     "User"                  => "user",
-    "UserBan"               => "user-lock"
+    "UserBan"               => "user-lock",
+    "WebPushSubscription"   => "dot-circle"
   }.each do |model, icon|
     config.model model do
       navigation_icon "fa fa-fw fa-#{icon} me-1"
@@ -86,17 +87,18 @@ RailsAdmin.config do |config|
 
   # set up custom parents for certain models to group them nicely together
   {
-    "AnonymousBlock" => User,
-    "Inbox"          => User,
-    "List"           => User,
-    "MuteRule"       => User,
-    "Notification"   => User,
-    "Profile"        => User,
-    "Relationship"   => User,
-    "Service"        => User,
-    "Theme"          => User,
+    "AnonymousBlock"      => User,
+    "Inbox"               => User,
+    "List"                => User,
+    "MuteRule"            => User,
+    "Notification"        => User,
+    "Profile"             => User,
+    "Relationship"        => User,
+    "Service"             => User,
+    "Theme"               => User,
+    "WebPushSubscription" => User,
 
-    "ListMember"     => List
+    "ListMember"          => List
   }.each do |model, parent_model|
     config.model model do
       parent parent_model
