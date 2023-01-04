@@ -16,12 +16,12 @@
     - if @user.nil?
       .row
         .col-sm-6.text-start.text-muted
-          .media
-            .pull-left
+          .d-flex
+            .flex-shrink-0
               %a{ href: user_path(a.user) }
                 %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:small), loading: :lazy }
-            .media-body
-              %h6.media-heading.answerbox__answer-user
+            .flex-grow-1
+              %h6.answerbox__answer-user
                 = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
               .answerbox__answer-date
                 = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id))

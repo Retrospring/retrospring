@@ -1,13 +1,13 @@
 %li.list-group-item{ id: "list-#{list.name}" }
-  .media
-    .pull-left
+  .d-flex
+    .flex-shrink-0
       .custom-control.custom-checkbox
         %input.custom-control-input{ type: :checkbox,
           id: "listCheck#{list.id}",
           name: 'gm-list-check',
           data: { list: list.name, user: user.screen_name }, checked: user.member_of?(list), autocomplete: :off }
         %label.custom-control-label{ for: "listCheck#{list.id}" }
-    .media-body
+    .flex-grow-1
       .list-group-item-heading= list.display_name
       .list-group-item-text.text-muted
         %span{ id: "#{list.name}-members", data: { count: list.members.count } }= t(".members", count: list.members.count)

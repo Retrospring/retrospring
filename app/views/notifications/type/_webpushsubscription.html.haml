@@ -1,10 +1,10 @@
-.media.notification
-  .notification__icon
+.d-flex.notification
+  .flex-shrink-0.notification__icon
     %span.fa-stack
       %i.fa.fa-2x.fa-fw.fa-bell
       %i.fa.fa-stack-1x.fa-fw.fa-exclamation-triangle.text-danger.ps-2
-  .media-body
-    %h6.media-heading.notification__user
+  .flex-grow-1
+    %h6.notification__user
       = t(".heading")
     .notification__text
       = t(".text_html", settings_push: link_to(t(".settings_push"), settings_push_notifications_path))

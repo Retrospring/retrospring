@@ -2,10 +2,10 @@
   .card-body
     = bootstrap_form_for(current_user, url: settings_profile_picture_path, html: { multipart: true }, method: :patch, data: { turbo: false }) do |f|
 
-      .media#profile-picture-media
-        .pull-left
+      .d-flex#profile-picture-media
+        .flex-shrink-0
           %img.avatar-lg.me-3{ src: current_user.profile_picture.url(:medium) }
-        .media-body
+        .flex-grow-1
           = f.file_field :profile_picture, accept: APP_CONFIG[:accepted_image_formats].join(",")
 
       .row.d-none#profile-picture-crop-controls

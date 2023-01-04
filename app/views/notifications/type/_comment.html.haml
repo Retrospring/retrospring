@@ -1,7 +1,7 @@
-.media.notification
-  .notification__icon
+.d-flex.notification
+  .flex-shrink-0.notification__icon
     %i.fa.fa-2x.fa-fw.fa-comments
-  .media-body
+  .flex-grow-1
     .notification__heading
       %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small), loading: :lazy }
       - if notification.target.answer.user == current_user
@@ -21,12 +21,8 @@
               time: time_tooltip(notification.target))
     .list-group
       .list-group-item
-        .media.question-media
-          .media-body
-            %h6.notification__list-heading= t("activerecord.models.answer.one")
-            = markdown notification.target.answer.content[0..60] + (notification.target.answer.content.length > 60 ? '[...]' : '')
+        %h6.notification__list-heading= t("activerecord.models.answer.one")
+        = markdown notification.target.answer.content[0..60] + (notification.target.answer.content.length > 60 ? '[...]' : '')
       .list-group-item
-        .media.question-media
-          .media-body
-            %h6.notification__list-heading= t("activerecord.models.comment.one")
-            = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[...]' : '')
+        %h6.notification__list-heading= t("activerecord.models.comment.one")
+        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[...]' : '')

@@ -1,16 +1,11 @@
 .card-header
-  .media
+  .d-flex
     - unless a.question.author_is_anonymous
-      %a.pull-left{ href: user_path(a.question.user) }
-        %img.answerbox__question-user-avatar.avatar-md{ src: a.question.user.profile_picture.url(:small), loading: :lazy }
-    .media-body
-      - if user_signed_in?
-        .pull-right
-          .btn-group
-            %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-              %span.caret
-            = render "actions/question", question: a.question
-      %h6.text-muted.media-heading.answerbox__question-user
+      .flex-shrink-0
+        %a{ href: user_path(a.question.user) }
+          %img.answerbox__question-user-avatar.avatar-md{ src: a.question.user.profile_picture.url(:small), loading: :lazy }
+    .flex-grow-1
+      %h6.text-muted.answerbox__question-user
         - if a.question.author_is_anonymous
           %i.fas.fa-user-secret{ title: t(".anon_hint") }
         = t(".asked_html", user: user_screen_name(a.question.user, context_user: a.user, author_identifier: a.question.author_is_anonymous ? a.question.author_identifier: nil), time: time_tooltip(a.question))
@@ -20,3 +15,9 @@
             = t(".answers", count: a.question.answer_count)
       .answerbox__question-text
         = question_markdown a.question.content
+    - if user_signed_in?
+      .flex-shrink-0.ms-auto
+        .btn-group
+          %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+            %span.caret
+          = render "actions/question", question: a.question
