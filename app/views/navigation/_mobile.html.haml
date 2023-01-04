@@ -1,5 +1,3 @@
-= render 'navigation/dropdown/profile', size: "mobile"
-= render 'navigation/dropdown/notifications', notifications: notifications, size: "mobile"
 - notifications_icon = notification_count.nil? ? 'bell-o' : 'bell'
 %nav.navbar.navbar-themed.bg-primary.fixed-bottom.d-lg-none.d-block.d-print-none#rs-mobile-nav{ role: :navigation }
   .container
@@ -15,6 +13,8 @@
           %i.fa{ class: "fa-#{notifications_icon}" }
           %span.visually-hidden= t("navigation.notifications")
           %span.badge.badge-pill.badge-primary= notification_count
+        = render 'navigation/dropdown/notifications', notifications: notifications, size: "mobile"
       %li.nav-item.profile--image-dropdown
         %a.nav-link{ href: '#', data: { bs_toggle: 'dropdown', bs_target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
           %img.avatar-md.d-inline{ src: current_user.profile_picture.url(:small) }
+        = render 'navigation/dropdown/profile', size: "mobile"
