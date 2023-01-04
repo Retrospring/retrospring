@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module BootstrapHelper
   def nav_entry(body, path, options = {})
     options = {
-      badge: nil,
+      badge:       nil,
       badge_color: nil,
-      icon: nil,
-      class: ''
+      icon:        nil,
+      class:       ""
     }.merge(options)
 
     classes = [
@@ -14,16 +16,19 @@ module BootstrapHelper
     ].compact.join(" ")
 
     unless options[:icon].nil?
-      if options[:icon_only]
-        body = "#{content_tag(:i, '', class: "fa fa-#{options[:icon]}", title: body)}"
-      else
-        body = "#{content_tag(:i, '', class: "fa fa-#{options[:icon]}")} #{body}"
-      end
+      body = if options[:icon_only]
+               content_tag(:i, "", class: "fa fa-#{options[:icon]}", title: body).to_s
+             else
+               "#{content_tag(:i, '', class: "fa fa-#{options[:icon]}")} #{body}"
+             end
     end
     unless options[:badge].nil?
-      badge_class = "badge"
-      badge_class << " badge-#{options[:badge_color]}" unless options[:badge_color].nil?
-      badge_class << " badge-pill" if options[:badge_pill]
+      badge_class = [
+        "badge",
+        ("badge-#{options[:badge_color]}" unless options[:badge_color].nil?),
+        ("badge-pill" if options[:badge_pill])
+      ].compact.join(" ")
+
       body += " #{content_tag(:span, options[:badge], class: badge_class)}"
     end
 
@@ -32,9 +37,9 @@ module BootstrapHelper
 
   def list_group_item(body, path, options = {})
     options = {
-      badge: nil,
+      badge:       nil,
       badge_color: nil,
-      class: ''
+      class:       ""
     }.merge(options)
 
     classes = [
@@ -44,19 +49,19 @@ module BootstrapHelper
       options[:class]
     ].compact.join(" ")
 
-    unless options[:badge].nil? or options[:badge] == 0
+    unless options[:badge].nil? || (options[:badge]).zero?
       # TODO: make this prettier?
       body << " #{
-        content_tag(:span, options[:badge], class: ("badge#{
+        content_tag(:span, options[:badge], class: "badge#{
           " badge-#{options[:badge_color]}" unless options[:badge_color].nil?
-        }"))}"
+        }")}"
     end
 
     content_tag(:a, body.html_safe, href: path, class: classes)
   end
 
   def tooltip(body, tooltip_content, placement = "bottom")
-    content_tag(:span, body, {title: tooltip_content, "data-bs-toggle" => "tooltip", "data-bs-placement" => placement} )
+    content_tag(:span, body, { :title => tooltip_content, "data-bs-toggle" => "tooltip", "data-bs-placement" => placement })
   end
 
   def time_tooltip(subject, placement = "bottom")
@@ -69,7 +74,7 @@ module BootstrapHelper
 
   ##
   #
-  def bootstrap_color c
+  def bootstrap_color(c)
     case c
     when "error", "alert"
       "danger"
