@@ -47,13 +47,17 @@
         .card-body
           .row.mx-n2
             .col.px-2
-              %button.btn.btn-block.btn-success.js-theme-button{ data: { theme: "theme-success" } }= t(".customize.themes.green")
+              .d-grid
+                %button.btn.btn-success.js-theme-button{ data: { theme: "theme-success" } }= t(".customize.themes.green")
             .col.px-2
-              %button.btn.btn-block.btn-warning.js-theme-button{ data: { theme: "theme-warning" } }= t(".customize.themes.orange")
+              .d-grid
+                %button.btn.btn-warning.js-theme-button{ data: { theme: "theme-warning" } }= t(".customize.themes.orange")
             .col.px-2
-              %button.btn.btn-block.btn-danger.js-theme-button{ data: { theme: "theme-danger" } }= t(".customize.themes.red")
+              .d-grid
+                %button.btn.btn-danger.js-theme-button{ data: { theme: "theme-danger" } }= t(".customize.themes.red")
             .col.px-2
-              %button.btn.btn-block.btn-default.js-theme-button{ data: { theme: "reset" } }= t(".customize.themes.reset")
+              .d-grid
+                %button.btn.btn-default.js-theme-button{ data: { theme: "reset" } }= t(".customize.themes.reset")
 
 .container.text-center
   %h2.mb-4= t(".more_features")

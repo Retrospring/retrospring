@@ -1,54 +1,56 @@
 .profile__actions
   - type ||= :nil
   - if user_signed_in? && user == current_user
-    %a.btn.btn-dark.btn-block{ href: settings_profile_path } Edit profile
+    .d-grid
+      %a.btn.btn-dark{ href: settings_profile_path } Edit profile
   - elsif user_signed_in?
-    - if current_user.following? user
-      %button.btn.btn-primary.btn-block{ type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name } }
-        = t("voc.unfollow")
-    - else
-      %button.btn.btn-primary.btn-block{ type: :button, name: 'user-action', data: { action: :follow, type: type, target: user.screen_name } }
-        = t("voc.follow")
-    .btn-group.btn-block
-      %button.btn.btn-light.btn-block.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-        = t(".title")
-        %span.caret
-      .dropdown-menu
-        %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
-          %i.fa.fa-list.fa-fw
-          = t(".list")
-        - if current_user.blocking?(user)
-          %a.dropdown-item{ href: '#', data: { action: :unblock, target: user.screen_name } }
-            %i.fa.fa-minus-circle.fa-fw
-            %span.pe-none= t("voc.unblock")
-        - else
-          %a.dropdown-item{ href: '#', data: { action: :block, target: user.screen_name } }
-            %i.fa.fa-minus-circle.fa-fw
-            %span.pe-none= t("voc.block")
-        - if current_user.muting?(user)
-          %a.dropdown-item{ href: '#', data: { action: :unmute, target: user.screen_name } }
-            %i.fa.fa-volume-off.fa-fw
-            %span.pe-none= t("voc.unmute")
-        - else
-          %a.dropdown-item{ href: '#', data: { action: :mute, target: user.screen_name } }
-            %i.fa.fa-volume-off.fa-fw
-            %span.pe-none= t("voc.mute")
-        %a.dropdown-item{ href: '#', data: { action: 'report-user', target: user.screen_name } }
-          %i.fa.fa-exclamation-triangle.fa-fw
-          = t("voc.report")
-        - if current_user.mod?
-          %a.dropdown-item{ href: '#', data: { bs_target: '#modal-privileges', bs_toggle: :modal } }
-            %i.fa.fa-wrench.fa-fw
-            = raw t(".privilege", user: user.screen_name)
-          - unless user.has_cached_role?(:administrator)
-            %a.dropdown-item{ href: '#', data: { bs_target: '#modal-ban', bs_toggle: :modal } }
-              %i.fa.fa-ban.fa-fw
-              = t(".ban")
-        - if current_user.mod? && user != current_user
-          %a.dropdown-item{ href: mod_inbox_index_path(user: user.screen_name) }
-            %i.fa.fa-inbox.fa-fw
-            = t(".view_inbox")
-        - if current_user.has_cached_role? :administrator
-          %a.dropdown-item{ href: rails_admin_path_for_resource(user), target: '_blank' }
-            %i.fa.fa-cogs.fa-fw
-            = t("voc.view_in_rails_admin")
+    .d-grid.gap-2
+      - if current_user.following? user
+        %button.btn.btn-primary{ type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name } }
+          = t("voc.unfollow")
+      - else
+        %button.btn.btn-primary{ type: :button, name: 'user-action', data: { action: :follow, type: type, target: user.screen_name } }
+          = t("voc.follow")
+      .btn-group
+        %button.btn.btn-light.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+          = t(".title")
+          %span.caret
+        .dropdown-menu
+          %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
+            %i.fa.fa-list.fa-fw
+            = t(".list")
+          - if current_user.blocking?(user)
+            %a.dropdown-item{ href: '#', data: { action: :unblock, target: user.screen_name } }
+              %i.fa.fa-minus-circle.fa-fw
+              %span.pe-none= t("voc.unblock")
+          - else
+            %a.dropdown-item{ href: '#', data: { action: :block, target: user.screen_name } }
+              %i.fa.fa-minus-circle.fa-fw
+              %span.pe-none= t("voc.block")
+          - if current_user.muting?(user)
+            %a.dropdown-item{ href: '#', data: { action: :unmute, target: user.screen_name } }
+              %i.fa.fa-volume-off.fa-fw
+              %span.pe-none= t("voc.unmute")
+          - else
+            %a.dropdown-item{ href: '#', data: { action: :mute, target: user.screen_name } }
+              %i.fa.fa-volume-off.fa-fw
+              %span.pe-none= t("voc.mute")
+          %a.dropdown-item{ href: '#', data: { action: 'report-user', target: user.screen_name } }
+            %i.fa.fa-exclamation-triangle.fa-fw
+            = t("voc.report")
+          - if current_user.mod?
+            %a.dropdown-item{ href: '#', data: { bs_target: '#modal-privileges', bs_toggle: :modal } }
+              %i.fa.fa-wrench.fa-fw
+              = raw t(".privilege", user: user.screen_name)
+            - unless user.has_cached_role?(:administrator)
+              %a.dropdown-item{ href: '#', data: { bs_target: '#modal-ban', bs_toggle: :modal } }
+                %i.fa.fa-ban.fa-fw
+                = t(".ban")
+          - if current_user.mod? && user != current_user
+            %a.dropdown-item{ href: mod_inbox_index_path(user: user.screen_name) }
+              %i.fa.fa-inbox.fa-fw
+              = t(".view_inbox")
+          - if current_user.has_cached_role? :administrator
+            %a.dropdown-item{ href: rails_admin_path_for_resource(user), target: '_blank' }
+              %i.fa.fa-cogs.fa-fw
+              = t("voc.view_in_rails_admin")
