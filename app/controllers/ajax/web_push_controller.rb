@@ -42,8 +42,6 @@ class Ajax::WebPushController < AjaxController
   end
 
   def unsubscribe # rubocop:disable Metrics/AbcSize
-    params.require(:endpoint)
-
     removed = if params.key?(:endpoint)
                 current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy_all
               else
