@@ -11,7 +11,7 @@
           %button.btn.btn-default{ title: t(".share.heading"), data: { bs_toggle: :dropdown }, aria: { expanded: false } }
             %i.fa.fa-fw.fa-share-alt
             %span.visually-hidden= t(".share.heading")
-          .dropdown-menu.dropdown-menu-right{ role: :menu }
+          .dropdown-menu.dropdown-menu-end{ role: :menu }
             %a.dropdown-item{ href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{user_url(current_user)}", target: "_blank" }
               %i.fa.fa-fw.fa-twitter
               = t(".share.button", service: "Twitter")
