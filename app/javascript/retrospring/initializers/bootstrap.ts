@@ -13,5 +13,29 @@ export default function (): void {
 
     const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
     [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+
+    // HACK/BUG?: Bootstrap disables dropdowns in navbars, here we re-enable and "kinda" fix it
+    // By the time Bootstrap 6 releases this probably won't be needed anymore
+    const navigationElementList = document.querySelectorAll('#rs-mobile-nav .nav-link[data-bs-toggle="dropdown"]');
+    [...navigationElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl, {
+      popperConfig(defaultPopperConfig) {
+        return {
+          ...defaultPopperConfig,
+          strategy: 'fixed',
+          modifiers: [
+            {
+              name: 'applyStyles',
+              enabled: true
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                boundary: document.querySelector('body')
+              }
+            },
+          ]
+        }
+      }
+    }));
   });
 }
