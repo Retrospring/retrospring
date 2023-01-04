@@ -50,9 +50,11 @@
                 %strong= t(".promote.message")
             .row
               .col-sm-5.offset-sm-1
-                %button.btn.btn-block.btn-primary#create-account= t(".promote.create")
+                .d-grid
+                  %button.btn.btn-primary#create-account= t(".promote.create")
               .col-sm-5
-                %button.btn.btn-block.btn-default#new-question= t(".promote.another")
+                .d-grid
+                  %button.btn.btn-default#new-question= t(".promote.another")
             .row
               .col-xs-12.col-sm-10.offset-sm-1.text-center
                 %small= t(".promote.join", app_title: APP_CONFIG["site_name"])
