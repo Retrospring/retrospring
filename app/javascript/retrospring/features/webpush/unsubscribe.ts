@@ -14,6 +14,9 @@ export function unsubscribeHandler(): void {
 }
 
 export function checkSubscription(subscription: PushSubscription): void {
+  // We can have a subscription active for any user while not logged in.
+  if (document.body.classList.contains('not-logged-in')) return;
+
   post('/ajax/webpush/check', {
     body: {
       endpoint: subscription.endpoint
