@@ -13,7 +13,7 @@
       %li.nav-item
         %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-notifications' }, aria: { controls: 'rs-mobile-nav-notifications', expanded: 'false' } }
           %i.fa{ class: "fa-#{notifications_icon}" }
-          %span.sr-only= t("navigation.notifications")
+          %span.visually-hidden= t("navigation.notifications")
           %span.badge.badge-pill.badge-primary= notification_count
       %li.nav-item.profile--image-dropdown
         %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
