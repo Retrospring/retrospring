@@ -12,7 +12,7 @@ class Ajax::WebPushController < AjaxController
   end
 
   def check
-    params.permit(:endpoint)
+    params.require(:endpoint)
 
     found = current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).first
 
@@ -29,6 +29,8 @@ class Ajax::WebPushController < AjaxController
   end
 
   def subscribe
+    params.require(:subscription)
+
     WebPushSubscription.create!(
       user:         current_user,
       subscription: params[:subscription]
@@ -40,7 +42,7 @@ class Ajax::WebPushController < AjaxController
   end
 
   def unsubscribe # rubocop:disable Metrics/AbcSize
-    params.permit(:endpoint)
+    params.require(:endpoint)
 
     removed = if params.key?(:endpoint)
                 current_user.web_push_subscriptions.where("subscription ->> 'endpoint' = ?", params[:endpoint]).destroy_all
