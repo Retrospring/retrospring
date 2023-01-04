@@ -5,7 +5,7 @@
         %h5.modal-title#modal-commentsmile-label= t(".title")
         %button.close{ data: { dismiss: :modal }, type: :button }
           %span{ aria: { hidden: true } } ×
-          %span.sr-only Close
+          %span.visually-hidden Close
       .modal-body
         - if comment.smiles.all.count.zero?
           = t(".none")

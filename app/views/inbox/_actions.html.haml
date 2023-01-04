@@ -10,7 +10,7 @@
         .button-group.ms-1
           %button.btn.btn-default{ title: t(".share.heading"), data: { toggle: :dropdown }, aria: { expanded: false } }
             %i.fa.fa-fw.fa-share-alt
-            %span.sr-only= t(".share.heading")
+            %span.visually-hidden= t(".share.heading")
           .dropdown-menu.dropdown-menu-right{ role: :menu }
             %a.dropdown-item{ href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{user_url(current_user)}", target: "_blank" }
               %i.fa.fa-fw.fa-twitter
@@ -20,4 +20,4 @@
               = t(".share.button", service: "Tumblr")
         %button.btn.btn-danger.ms-1{ type: :button, title: t(".actions.delete"), id: delete_id, disabled: (disabled ? :disabled : nil), data: { ib_count: inbox_count } }
           %i.fa.fa-fw.fa-trash-o
-          %span.sr-only= t(".actions.delete")
+          %span.visually-hidden= t(".actions.delete")

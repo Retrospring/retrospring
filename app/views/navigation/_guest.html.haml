@@ -6,7 +6,7 @@
       - else
         = APP_CONFIG["site_name"]
     %button.navbar-toggler{ data: { target: '#j2-main-navbar-collapse', toggle: :collapse }, type: :button }
-      %span.sr-only= t("navigation.toggle")
+      %span.visually-hidden= t("navigation.toggle")
       %span.navbar-toggler-icon
     .collapse.navbar-collapse#j2-main-navbar-collapse
       %ul.nav.navbar-nav.ms-auto
