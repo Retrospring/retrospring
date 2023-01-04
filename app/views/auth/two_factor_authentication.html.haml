@@ -5,7 +5,7 @@
       .card.mt-3
         .card-body
           %h1.mb-3.mt-0= t(".heading")
-          = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post, data: { turbo: false }) do |f|
+          = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post, html: { id: '2fa-form' }, data: { turbo: false }) do |f|
             = f.text_field :otp_attempt, autofocus: true, inputmode: :numeric, label: t(".otp_attempt")
             = f.submit t("voc.login"), class: "btn btn-primary mt-3 mb-3"
 
