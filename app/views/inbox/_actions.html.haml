@@ -2,7 +2,7 @@
   .card-body
     .d-md-flex
       = bootstrap_form_tag url: inbox_path, method: :get, html: { class: "d-block" } do |f|
-        = f.text_field :author, value: params[:author], placeholder: t(".author.placeholder"), prepend: "@", hide_label: true,
+        = f.text_field :author, value: params[:author], placeholder: t(".author.placeholder"), prepend: "@", hide_label: true, wrapper: { class: "" },
           append: f.button(t(".author.button"), name: nil, class: "btn btn-light", id: "ib-author")
       .d-flex.ms-auto.mt-2.mt-md-0
         = button_to inbox_create_path, class: "btn btn-info me-auto" do
