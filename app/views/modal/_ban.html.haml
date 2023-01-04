@@ -6,7 +6,6 @@
         %h5.modal-title#modal-ban-label
           = t '.title'
         %button.btn-close{ data: { dismiss: :modal }, type: :button }
-          %span{ aria: { hidden: true } } ×
           %span.visually-hidden= t("voc.close")
       = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: :novalidate }) do |f|
         = f.hidden_field :user, value: user.screen_name
