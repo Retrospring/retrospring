@@ -172,7 +172,12 @@ Rails.application.routes.draw do
   get "/feedback/bugs(/*any)", to: "feedback#bugs", as: "feedback_bugs"
   get "/feedback/feature_requests(/*any)", to: "feedback#features", as: "feedback_features"
 
-  get "/.well-known/change-password", to: redirect("/settings/account")
+  namespace :well_known, path: "/.well-known" do
+    get "/change-password", to: redirect("/settings/account")
+    get "/nodeinfo", to: "node_info#discovery"
+  end
+
+  get "/nodeinfo/2.1", to: "well_known/node_info#nodeinfo", as: :node_info
 
   puts "processing time of routes.rb: #{"#{(Time.zone.now - start).round(3).to_s.ljust(5, '0')}s".light_green}"
 end

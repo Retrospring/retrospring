@@ -56,7 +56,7 @@ features:
 # OAuth tokens
 sharing:
   twitter:
-    enabled: true
+    enabled: false
     # Get the tokens from https://apps.twitter.com
     consumer_key: ''
     consumer_secret: ''
