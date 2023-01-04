@@ -74,14 +74,14 @@ module BootstrapHelper
 
   ##
   #
-  def bootstrap_color(c)
-    case c
+  def bootstrap_color(color)
+    case color
     when "error", "alert"
       "danger"
     when "notice"
       "info"
     else
-      c
+      color
     end
   end
 end
