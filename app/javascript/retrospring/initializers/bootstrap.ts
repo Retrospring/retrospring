@@ -1,4 +1,3 @@
-import * as Popper from '@popperjs/core';
 import * as bootstrap from 'bootstrap';
 
 /**
@@ -10,9 +9,9 @@ import * as bootstrap from 'bootstrap';
 export default function (): void {
   document.addEventListener('turbo:load', () => {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
     const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
-    const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+    [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
   });
 }
