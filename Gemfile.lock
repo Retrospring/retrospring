@@ -87,7 +87,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
-    bootstrap_form (4.5.0)
+    bootstrap_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     buftok (0.2.0)
@@ -544,7 +544,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
-  bootstrap_form (~> 4.5)
+  bootstrap_form (~> 5.0)
   bullet
   carrierwave (~> 2.0)
   carrierwave_backgrounder!
