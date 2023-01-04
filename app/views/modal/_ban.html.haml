@@ -5,7 +5,7 @@
       .modal-header
         %h5.modal-title#modal-ban-label
           = t '.title'
-        %button.close{ data: { dismiss: :modal }, type: :button }
+        %button.btn-close{ data: { dismiss: :modal }, type: :button }
           %span{ aria: { hidden: true } } ×
           %span.visually-hidden= t("voc.close")
       = bootstrap_form_tag(url: '/mod/ban', html: { method: :post, novalidate: :novalidate }) do |f|
