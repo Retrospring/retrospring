@@ -34,6 +34,10 @@ $rs-theme-colors: (
 
 $theme-colors: map-merge($theme-colors, $rs-theme-colors);
 
+// Container overrides for Bootstrap
+
+$container-max-widths: map-remove($container-max-widths, xxl);
+
 // Cards
 $card-border-width: 0;
 
