@@ -13,7 +13,7 @@
       = f.password_field :password, autocomplete: "new-password", help: t(".help.password")
       = f.password_field :password_confirmation, autocomplete: "new-password"
 
-      %button.btn.btn-primary{ data: { target: "#modal-passwd", toggle: :modal, type: :button } }
+      %button.btn.btn-primary{ data: { bs_target: "#modal-passwd", bs_toggle: :modal, type: :button } }
         = t("voc.save")
 
       %hr/

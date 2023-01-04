@@ -14,10 +14,10 @@
           %div{ role: :tabpanel }
             %ul.nav.nav-tabs.mt-1{ role: :tablist }
               %li.nav-item{ role: 'presentation' }
-                %a.nav-link.active{ href: '#ban-controls-tab', aria: { controls: 'ban-controls-tab' }, data: { toggle: :tab }, role: :tab }
+                %a.nav-link.active{ href: '#ban-controls-tab', aria: { controls: 'ban-controls-tab' }, data: { bs_toggle: :tab }, role: :tab }
                   = t '.tabs.controls'
               %li.nav-item{ role: 'presentation' }
-                %a.nav-link{ href: '#ban-history', aria: { controls: 'ban-history' }, data: { toggle: :tab }, role: :tab }
+                %a.nav-link{ href: '#ban-history', aria: { controls: 'ban-history' }, data: { bs_toggle: :tab }, role: :tab }
                   = t '.tabs.history'
           .tab-content
             .tab-pane.active{ role: :tabpanel, id: 'ban-controls-tab' }

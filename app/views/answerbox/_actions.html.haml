@@ -6,11 +6,11 @@
     %i.fa.fa-fw.fa-comments
     %span{ id: "ab-comment-count-#{a.id}" }= a.comment_count
 .btn-group
-  %button.btn.btn-link.answerbox__action{ data: { toggle: :dropdown }, aria: { expanded: false } }
+  %button.btn.btn-link.answerbox__action{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
     %i.fa.fa-fw.fa-share-alt{ title: t(".share.title") }
   = render "actions/share", answer: a
 - if user_signed_in?
   .btn-group
-    %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
+    %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
       %span.caret
     = render "actions/answer", answer: a

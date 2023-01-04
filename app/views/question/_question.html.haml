@@ -9,7 +9,7 @@
           - if user_signed_in?
             .pull-right
               .btn-group
-                %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
+                %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
                   %span.caret
                 - unless hidden
                   = render "actions/question", question: question

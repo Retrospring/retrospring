@@ -8,7 +8,7 @@
         = button_to inbox_create_path, class: "btn btn-info me-auto" do
           = t(".questions.button")
         .button-group.ms-1
-          %button.btn.btn-default{ title: t(".share.heading"), data: { toggle: :dropdown }, aria: { expanded: false } }
+          %button.btn.btn-default{ title: t(".share.heading"), data: { bs_toggle: :dropdown }, aria: { expanded: false } }
             %i.fa.fa-fw.fa-share-alt
             %span.visually-hidden= t(".share.heading")
           .dropdown-menu.dropdown-menu-right{ role: :menu }

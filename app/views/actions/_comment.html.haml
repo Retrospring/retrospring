@@ -1,5 +1,5 @@
 .dropdown-menu.dropdown-menu-right{ role: :menu }
-  %a.dropdown-item{ href: "#", data: { target: "#modal-view-comment#{comment.id}-smiles", toggle: :modal } }
+  %a.dropdown-item{ href: "#", data: { bs_target: "#modal-view-comment#{comment.id}-smiles", bs_toggle: :modal } }
     %i.fa.fa-fw.fa-smile-o
     = t(".view_smiles")
   - if privileged?(comment.user) || privileged?(answer.user)

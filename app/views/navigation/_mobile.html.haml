@@ -11,10 +11,10 @@
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t("navigation.discover"), discover_path, icon: 'compass', icon_only: true
       %li.nav-item
-        %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-notifications' }, aria: { controls: 'rs-mobile-nav-notifications', expanded: 'false' } }
+        %a.nav-link{ href: '#', data: { bs_toggle: 'dropdown', bs_target: '#rs-mobile-nav-notifications' }, aria: { controls: 'rs-mobile-nav-notifications', expanded: 'false' } }
           %i.fa{ class: "fa-#{notifications_icon}" }
           %span.visually-hidden= t("navigation.notifications")
           %span.badge.badge-pill.badge-primary= notification_count
       %li.nav-item.profile--image-dropdown
-        %a.nav-link{ href: '#', data: { toggle: 'dropdown', target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
+        %a.nav-link{ href: '#', data: { bs_toggle: 'dropdown', bs_target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
           %img.avatar-md.d-inline{ src: current_user.profile_picture.url(:small) }

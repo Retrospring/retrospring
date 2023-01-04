@@ -7,7 +7,7 @@
       - if user_signed_in?
         .pull-right
           .btn-group
-            %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
+            %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
               %span.caret
             = render "actions/question", question: a.question
       %h6.text-muted.media-heading.answerbox__question-user
