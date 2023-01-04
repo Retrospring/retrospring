@@ -1,4 +1,5 @@
 import { post } from '@rails/request.js';
+import { Modal } from 'bootstrap';
 import { showErrorNotification, showNotification } from 'utilities/notifications';
 import I18n from 'retrospring/i18n';
 
@@ -21,7 +22,8 @@ export function questionboxAllHandler(event: Event): void {
 
       if (data.success) {
         document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').value = '';
-        window['$']('#modal-ask-followers').modal('hide');
+        const modal = Modal.getInstance(document.querySelector('#modal-ask-followers'));
+        modal.hide();
 
         // FIXME: also solve this using a Stimulus controller
         const characterCount = document.querySelector<HTMLElement>('#modal-ask-followers [data-character-count-max-value]').dataset.characterCountMaxValue;
