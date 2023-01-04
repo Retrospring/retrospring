@@ -1,4 +1,4 @@
-.dropdown-menu.dropdown-menu-right{ role: :menu }
+.dropdown-menu.dropdown-menu-end{ role: :menu }
   - if current_user.mod? || question.user == current_user
     %a.dropdown-item.text-danger{ href: "#", tabindex: -1, data: { action: "ab-question-destroy", q_id: question.id } }
       %i.fa.fa-fw.fa-trash-o
