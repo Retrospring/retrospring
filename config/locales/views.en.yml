@@ -451,6 +451,7 @@ en:
         adjust:
           profile_picture: "Adjust your new profile picture"
           profile_header: "Adjust your new profile header"
+        submit_picture: "Save pictures"
     two_factor_authentication:
       otp_authentication:
         index:
