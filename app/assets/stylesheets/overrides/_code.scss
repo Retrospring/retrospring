@@ -1,0 +1,4 @@
+// BUG: We removed the prefix and Bootstrap still tried to load --bs-font-monospace
+pre, code, kbd, samp {
+  font-family: var(--font-monospace);
+}
