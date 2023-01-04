@@ -21,12 +21,12 @@
             - next if reason.strip.blank?
             = reason.strip
     .row
-      .col-md-8.col-sm-8.col-xs-8.text-left
+      .col-md-8.col-sm-8.col-xs-8.text-start
         %a.btn.btn-primary{ href: content_url(report) }
           = t(".view", content: report.type.sub("Reports::", ""))
         - if report.target.respond_to?(:user) && report.target.user
           %a.btn.btn-primary{ href: user_path(report.target.user) }
             = t(".view", content: t("activerecord.models.user.one"))
-      .col-md-4.col-sm-4.col-xs-4.text-right
+      .col-md-4.col-sm-4.col-xs-4.text-end
         %button.btn.btn-default.btn-sm{ type: :button, name: "mod-delete-report", data: { id: report.id } }
           %i.fa.fa-trash-o

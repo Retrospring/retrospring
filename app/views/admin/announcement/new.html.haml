@@ -17,7 +17,7 @@
           = f.datetime_field :ends_at,
             data: { target: "#announcement_ends_at", "date-format": "YYYY-MM-DD hh:mm A" }
       .row
-        .col-md-12.text-right
+        .col-md-12.text-end
           = f.submit class: "btn btn-primary"
 
 - provide(:title, generate_title(t(".title")))

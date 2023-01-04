@@ -15,7 +15,7 @@
         = markdown a.content
     - if @user.nil?
       .row
-        .col-sm-6.text-left.text-muted
+        .col-sm-6.text-start.text-muted
           .media
             .pull-left
               %a{ href: user_path(a.user) }
@@ -29,7 +29,7 @@
           = render "answerbox/actions", a: a, display_all: display_all
     - else
       .row
-        .col-md-6.text-left.text-muted
+        .col-md-6.text-start.text-muted
           %i.fa.fa-clock-o
           = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), class: "answerbox__permalink")
         .col-md-6.d-md-flex.answerbox__actions
