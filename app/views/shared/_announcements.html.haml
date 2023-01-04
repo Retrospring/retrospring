@@ -2,7 +2,7 @@
   - @active_announcements.each do |announcement|
     .alert.announcement.alert-info.alert-dismissable.d-none{ data: { controller: 'announcement', "announcement-id-value": announcement.id } }
       .container
-        %button.btn-close{ type: :button, data: { dismiss: :alert, action: "click->announcement#close" } }
+        %button.btn-close{ type: :button, data: { bs_dismiss: :alert, action: "click->announcement#close" } }
         %p
           = announcement.content
           - if announcement.link_present?
