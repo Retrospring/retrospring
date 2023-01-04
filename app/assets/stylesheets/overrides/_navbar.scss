@@ -28,6 +28,10 @@
       &.disabled {
         color: rgba(var(--primary-text), .25);
       }
+
+      .badge:not(.badge-primary) {
+        color: inherit;
+      }
     }
 
     .show > .nav-link,
