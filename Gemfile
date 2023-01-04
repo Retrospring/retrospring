@@ -19,7 +19,7 @@ gem "bcrypt", "~> 3.1.18"
 
 gem "active_model_otp"
 gem "bootsnap", require: false
-gem "bootstrap_form", "~> 4.5"
+gem "bootstrap_form", "~> 5.0"
 gem "carrierwave", "~> 2.0"
 gem "carrierwave_backgrounder", git: "https://github.com/mltnhm/carrierwave_backgrounder.git"
 gem "colorize"
