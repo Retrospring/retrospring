@@ -8,5 +8,5 @@
       - a.smiles.all.each do |smile|
         %a{ href: user_path(smile.user),
           title: user_screen_name(smile.user, url: false),
-          data: { toggle: :tooltip, placement: :top, smile_id: smile.id } }
+          data: { bs_toggle: :tooltip, bs_placement: :top, smile_id: smile.id } }
           %img.avatar-xs{ src: smile.user.profile_picture.url(:small), loading: :lazy }

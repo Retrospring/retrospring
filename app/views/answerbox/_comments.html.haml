@@ -12,7 +12,7 @@
           .media-body
             %h6.media-heading.comment__user
               = user_screen_name comment.user
-              %span.text-muted{ title: comment.created_at, data: { toggle: :tooltip, placement: :right } }
+              %span.text-muted{ title: comment.created_at, data: { bs_toggle: :tooltip, bs_placement: :right } }
                 = t("time.distance_ago", time: time_ago_in_words(comment.created_at))
             .comment__content
               = markdown comment.content
@@ -21,7 +21,7 @@
               %i.fa.fa-fw.fa-smile-o
               %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
             .btn-group
-              %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
+              %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
                 %span.caret
               = render "actions/comment", comment: comment, answer: a
 - if user_signed_in?

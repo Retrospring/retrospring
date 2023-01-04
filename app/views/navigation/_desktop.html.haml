@@ -12,13 +12,13 @@
         = nav_entry t("navigation.discover"), discover_path, icon: 'compass'
     %ul.nav.navbar-nav
       - if @user.present? && @user != current_user
-        %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t(".list") }
-          %a.nav-link{ href: '#', data: { target: '#modal-list-memberships', toggle: :modal } }
+        %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t(".list") }
+          %a.nav-link{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
             %i.fa.fa-list.hidden-xs
             %span.d-none.d-sm-inline.d-md-none= t(".list")
       = nav_entry t("navigation.notifications"), notifications_path, badge: notification_count, class: 'd-block d-sm-none'
       %li.nav-item.dropdown.d-none.d-sm-block
-        %a.nav-link.dropdown-toggle{ href: '#', data: { toggle: :dropdown } }
+        %a.nav-link.dropdown-toggle{ href: '#', data: { bs_toggle: :dropdown } }
           - if notification_count.nil?
             %i.fa.fa-bell-o
           - else
@@ -26,11 +26,11 @@
           %span.visually-hidden= t("navigation.notifications")
           %span.badge= notification_count
         = render 'navigation/dropdown/notifications', notifications: notifications, size: "desktop"
-      %li.nav-item.d-none.d-sm-block{ data: { toggle: 'tooltip', placement: 'bottom' }, title: t('.ask_question') }
-        %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { target: '#modal-ask-followers', toggle: :modal } }
+      %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t('.ask_question') }
+        %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { bs_target: '#modal-ask-followers', bs_toggle: :modal } }
           %i.fa.fa-pencil-square-o
       %li.nav-item.dropdown.profile--image-dropdown
-        %a.nav-link.dropdown-toggle.p-sm-0{ href: "#", data: { toggle: :dropdown } }
+        %a.nav-link.dropdown-toggle.p-sm-0{ href: "#", data: { bs_toggle: :dropdown } }
           %img.avatar-md.d-none.d-sm-inline{ src: current_user.profile_picture.url(:small) }
           %span.d-inline.d-sm-none
             = current_user.screen_name

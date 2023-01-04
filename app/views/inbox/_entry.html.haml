@@ -17,7 +17,7 @@
       - if i.question.user_id != current_user.id || current_user.has_cached_role?(:administrator)
         .pull-right
           .btn-group
-            %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { toggle: :dropdown }, aria: { expanded: false } }
+            %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
               %span.caret
             = render "actions/question", question: i.question
   - if current_user == i.user

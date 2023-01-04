@@ -56,7 +56,7 @@ module BootstrapHelper
   end
 
   def tooltip(body, tooltip_content, placement = "bottom")
-    content_tag(:span, body, {title: tooltip_content, "data-toggle" => "tooltip", "data-placement" => placement} )
+    content_tag(:span, body, {title: tooltip_content, "data-bs-toggle" => "tooltip", "data-bs-placement" => placement} )
   end
 
   def time_tooltip(subject, placement = "bottom")

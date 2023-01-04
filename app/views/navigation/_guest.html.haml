@@ -5,7 +5,7 @@
         = render inline: Rails.application.config.justask_svg_logo
       - else
         = APP_CONFIG["site_name"]
-    %button.navbar-toggler{ data: { target: '#j2-main-navbar-collapse', toggle: :collapse }, type: :button }
+    %button.navbar-toggler{ data: { bs_target: '#j2-main-navbar-collapse', bs_toggle: :collapse }, type: :button }
       %span.visually-hidden= t("navigation.toggle")
       %span.navbar-toggler-icon
     .collapse.navbar-collapse#j2-main-navbar-collapse

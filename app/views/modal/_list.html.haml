@@ -9,10 +9,10 @@
       %div{ role: :tabpanel }
         %ul.nav.nav-tabs.mt-1{ role: :tablist }
           %li.nav-item{ role: "presentation" }
-            %a.nav-link.active{ href: "#lists-list", aria: { controls: "lists-list" }, data: { toggle: :tab }, role: :tab }
+            %a.nav-link.active{ href: "#lists-list", aria: { controls: "lists-list" }, data: { bs_toggle: :tab }, role: :tab }
               = t(".tab.list.title")
           %li.nav-item{ role: "presentation" }
-            %a.nav-link{ href: "#create", aria: { controls: "create" }, data: { toggle: :tab }, role: :tab }
+            %a.nav-link{ href: "#create", aria: { controls: "create" }, data: { bs_toggle: :tab }, role: :tab }
               = t(".tab.create.title")
 
         .tab-content
