@@ -10,5 +10,5 @@
             = f.radio_button :duration_unit, unit, label: unit, checked: true
     = f.text_field :reason, placeholder: t('.reason')
 .modal-footer
-  %button.btn.btn-default{ name: 'stop-time', type: :button, data: { dismiss: :modal } }= t("voc.close")
+  %button.btn.btn-default{ name: 'stop-time', type: :button, data: { bs_dismiss: :modal } }= t("voc.close")
   = f.submit t('.hammertime'), class: 'btn btn-primary', name: 'hammer-time'

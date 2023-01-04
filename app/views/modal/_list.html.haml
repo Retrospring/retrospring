@@ -3,7 +3,7 @@
     .modal-content
       .modal-header
         %h5.modal-title#modal-list-memberships-label= t(".title")
-        %button.btn-close{ data: { dismiss: :modal }, type: :button }
+        %button.btn-close{ data: { bs_dismiss: :modal }, type: :button }
           %span.visually-hidden= t("voc.close")
       %div{ role: :tabpanel }
         %ul.nav.nav-tabs.mt-1{ role: :tablist }
@@ -24,4 +24,4 @@
               %input.form-control#new-list-name{ type: :text, placeholder: t(".tab.create.placeholder") }
               %button.btn.btn-primary#create-list{ type: :button, data: { user: user.screen_name } }= t(".tab.create.action")
       .modal-footer
-        %button.btn.btn-primary{ name: "gm-save", type: :button, data: { dismiss: :modal } }= t("voc.close")
+        %button.btn.btn-primary{ name: "gm-save", type: :button, data: { bs_dismiss: :modal } }= t("voc.close")

@@ -3,12 +3,12 @@
     .modal-content{ data: { controller: "character-count", "character-count-max-value": 512 }}
       .modal-header
         %h5.modal-title#modal-ask-followers-label= t(".title")
-        %button.btn-close{ data: { dismiss: :modal }, type: :button }
+        %button.btn-close{ data: { bs_dismiss: :modal }, type: :button }
           %span.visually-hidden= t("voc.close")
       .modal-body
         .form-group.has-feedback
           %textarea.form-control{ name: "qb-all-question", placeholder: t(".placeholder"), data: { "character-count-target": "input" } }
           %p.text-end.text-muted.form-control-feedback{ data: { "character-count-target": "counter" } } 512
       .modal-footer
-        %button.btn.btn-default{ type: :button, data: { dismiss: :modal } }= t("voc.cancel")
+        %button.btn.btn-default{ type: :button, data: { bs_dismiss: :modal } }= t("voc.cancel")
         %button.btn.btn-primary{ name: "qb-all-ask", type: :button, data: { "character-count-target": "action", loading_text: t(".loading") } }= t(".action")

@@ -3,7 +3,7 @@
     .modal-content
       .modal-header
         %h5.modal-title#modal-commentsmile-label= t(".title")
-        %button.btn-close{ data: { dismiss: :modal }, type: :button }
+        %button.btn-close{ data: { bs_dismiss: :modal }, type: :button }
           %span.visually-hidden Close
       .modal-body
         - if comment.smiles.all.count.zero?

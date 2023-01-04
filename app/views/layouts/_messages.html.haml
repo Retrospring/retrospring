@@ -4,6 +4,6 @@
 
 - flash.each do |key, value|
   .alert.alert-dismissible{ class: "alert-#{bootstrap_color key}", role: :alert }
-    %button.btn-close{ type: :button, data: { dismiss: :alert } }
+    %button.btn-close{ type: :button, data: { bs_dismiss: :alert } }
       %span.visually-hidden= t("voc.close")
     = value
