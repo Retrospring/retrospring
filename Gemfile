@@ -88,6 +88,7 @@ group :development, :test do
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "haml_lint", require: false
+  gem "json-schema"
   gem "letter_opener" # Use this just in local test environments
   gem "rails-controller-testing"
   gem "rake"
