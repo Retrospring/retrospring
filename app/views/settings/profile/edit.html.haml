@@ -4,7 +4,7 @@
 
       .media#profile-picture-media
         .pull-left
-          %img.avatar-lg.mr-3{ src: current_user.profile_picture.url(:medium) }
+          %img.avatar-lg.me-3{ src: current_user.profile_picture.url(:medium) }
         .media-body
           = f.file_field :profile_picture, accept: APP_CONFIG[:accepted_image_formats].join(",")
 
@@ -15,8 +15,8 @@
 
       .row.mb-2#profile-header-media
         .col
-          %img.mw-100.mr-3{ src: current_user.profile_header.url(:mobile) }
-        .col-xs-12.mt-3.mt-sm-0.pl-3.pr-3
+          %img.mw-100.me-3{ src: current_user.profile_header.url(:mobile) }
+        .col-xs-12.mt-3.mt-sm-0.ps-3.pe-3
           = f.file_field :profile_header, accept: APP_CONFIG[:accepted_image_formats].join(",")
 
       .row.d-none#profile-header-crop-controls

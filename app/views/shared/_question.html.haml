@@ -5,7 +5,7 @@
       - if type == 'discover'
         .pull-left
           %a{ href: user_screen_name(q.user, link_only: true) }
-            %img.avatar-md.mr-2{ src: q.user&.profile_picture&.url(:small), loading: :lazy }
+            %img.avatar-md.me-2{ src: q.user&.profile_picture&.url(:small), loading: :lazy }
       .media-body
         - if user_signed_in?
           .pull-right
