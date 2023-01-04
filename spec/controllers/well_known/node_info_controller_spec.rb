@@ -45,7 +45,7 @@ describe WellKnown::NodeInfoController do
                                            "name"       => "Retrospring",
                                            "version"    => "2023.0102.1",
                                            "repository" => "https://github.com/Retrospring/retrospring"
-                                        })
+                                         })
       end
     end
 
@@ -57,7 +57,7 @@ describe WellKnown::NodeInfoController do
                          "enabled" => true
                        }
                      }
-                  })
+                   })
       end
 
       it "includes Twitter in outbound services" do
@@ -75,7 +75,7 @@ describe WellKnown::NodeInfoController do
                          "enabled" => false
                        }
                      }
-                  })
+                   })
       end
 
       it "includes Twitter in outbound services" do
