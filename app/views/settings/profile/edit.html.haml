@@ -32,7 +32,7 @@
       - %i[profile_header_x profile_header_y profile_header_w profile_header_h].each do |attrib|
         = f.hidden_field attrib, id: attrib
 
-      = f.primary
+      = f.primary t(".submit_picture")
 .card
   .card-body
     = bootstrap_form_for(current_user.profile, html: { multipart: true }, method: :patch, data: { turbo: false }) do |f|
