@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:math";
 
 .userbox {
   &__header {
@@ -15,7 +16,7 @@
     display: block;
     width: map.get($avatar-sizes, "lg");
     height: map.get($avatar-sizes, "lg");
-    margin-top: -(map.get($avatar-sizes, "lg") / 2);
+    margin-top: -(math.div(map.get($avatar-sizes, "lg"), 2));
     margin-left: auto;
     margin-right: auto;
     border-radius: $avatar-border-radius;
