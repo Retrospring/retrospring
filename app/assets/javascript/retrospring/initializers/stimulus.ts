@@ -8,5 +8,5 @@ export default function (): void {
   window.Stimulus = Application.start();
   window.Stimulus.register('announcement', AnnouncementController);
   window.Stimulus.register('autofocus', AutofocusController);
-  window.Stimulus.register('character_count', CharacterCountController);
+  window.Stimulus.register('character-count', CharacterCountController);
 }
