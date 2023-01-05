@@ -19,7 +19,7 @@
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
     = stylesheet_link_tag 'application', data: { 'turbo-track': 'reload' }
-    = javascript_pack_tag 'application', data: { 'turbo-track': 'reload' }
+    = javascript_include_tag 'application', data: { 'turbo-track': 'reload' }
     = csrf_meta_tags
     = yield(:og)
     = yield(:meta)

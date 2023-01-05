@@ -10,12 +10,12 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-        "*": ["node_modules/*", "app/javascript/*"],
-        "retrospring/*": ["app/javascript/retrospring/*"],
-        "utilities/*": ["app/javascript/retrospring/utilities/*"]
+        "*": ["node_modules/*", "app/assets/javascript/*"],
+        "retrospring/*": ["app/assets/javascript/retrospring/*"],
+        "utilities/*": ["app/assets/javascript/retrospring/utilities/*"]
     },
     "sourceMap": true,
-    "target": "es5",
+    "target": "es6",
     "noEmit": true
   },
   "exclude": [
