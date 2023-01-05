@@ -6,17 +6,23 @@ class ApplicationController < ActionController::Base
 
   before_action :sentry_user_context
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :check_locale
+  around_action :switch_locale
   before_action :banned?
   before_action :find_active_announcements
 
   # check if user wants to read
-  def check_locale
-    return I18n.locale = "en" if Rails.env.test?
+  def switch_locale(&action)
+    return I18n.with_locale("en", &action) if Rails.env.test?
 
-    I18n.locale = "en"
+    locale = params[:lang] || current_user&.locale || cookies[:lang] || "en"
+    if params[:lang] && current_user.present?
+      current_user.locale = locale
+      current_user.save
+    end
 
-    cookies[:lang] = I18n.locale
+    cookies[:lang] = locale
+
+    I18n.with_locale(locale, &action)
   end
 
   # check if user got hit by the banhammer of doom
