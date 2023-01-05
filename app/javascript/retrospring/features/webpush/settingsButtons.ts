@@ -20,6 +20,7 @@ export default (): void => {
         if (!subscriptionChecked) {
           checkSubscription(subscription);
           subscriptionChecked = true;
+          return;
         }
       }
 
