@@ -38,7 +38,7 @@ yarn-debug.log*
 /public/users
 
 # dont push generated js translations to repository
-/app/javascript/retrospring/i18n.json
+/app/assets/javascript/retrospring/i18n.json
 
 
 ### Operating systems / desktops ###
