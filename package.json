@@ -2,7 +2,7 @@
   "scripts": {
     "lint": "yarn run eslint --ext .ts app/javascript",
     "lint:fix": "yarn run eslint --ext .ts app/javascript --fix",
-    "build:js": "esbuild app/assets/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
+    "build": "esbuild app/assets/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
     "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "dependencies": {
