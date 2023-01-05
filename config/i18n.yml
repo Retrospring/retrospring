@@ -22,7 +22,7 @@
 # like this:
 #
 translations:
-  - file: 'app/javascript/retrospring/i18n.json'
+  - file: 'app/assets/javascript/retrospring/i18n.json'
     patterns:
       - '*.voc.*'
       - '*.frontend.*'

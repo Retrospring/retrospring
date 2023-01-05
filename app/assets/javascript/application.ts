@@ -2,11 +2,11 @@ import { Application } from '@hotwired/stimulus';
 import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
 
 import start from 'retrospring/common';
-import initAnswerbox from 'retrospring/features/answerbox/index';
+import initAnswerbox from 'retrospring/features/answerbox';
 import initCapabilities from 'retrospring/features/capabilities';
-import initInbox from 'retrospring/features/inbox/index';
+import initInbox from 'retrospring/features/inbox';
 import initUser from 'retrospring/features/user';
-import initSettings from 'retrospring/features/settings/index';
+import initSettings from 'retrospring/features/settings';
 import initLists from 'retrospring/features/lists';
 import initQuestionbox from 'retrospring/features/questionbox';
 import initQuestion from 'retrospring/features/question';
