@@ -109,7 +109,6 @@ group :production do
   gem "lograge"
 end
 
-gem "webpacker", "~> 5.2"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
