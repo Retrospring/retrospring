@@ -14,7 +14,7 @@ import initModeration from 'retrospring/features/moderation';
 import initMemes from 'retrospring/features/memes';
 import initFront from 'retrospring/features/front';
 import initWebpush from 'retrospring/features/webpush';
-import initWebpushSubscriptionCheck from 'retrospring/features/webpush/subscriptionCheck';
+import initWebpushSettingsButtons from 'retrospring/features/webpush/settingsButtons';
 
 start();
 document.addEventListener('turbo:load', initCapabilities);
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', initModeration);
 document.addEventListener('DOMContentLoaded', initMemes);
 document.addEventListener('turbo:load', initFront);
 document.addEventListener('DOMContentLoaded', initWebpush);
-document.addEventListener('turbo:load', initWebpushSubscriptionCheck);
+document.addEventListener('turbo:load', initWebpushSettingsButtons);
 
 window['Stimulus'] = Application.start();
 const context = require.context('../retrospring/controllers', true, /\.ts$/);
