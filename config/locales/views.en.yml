@@ -27,9 +27,9 @@ en:
         header: "Share your answers"
         body_html: |
           <p>Want your followers on another platform to see your %{app_name} answers?
-          You can configure automatic sharing to your favorite platforms easily.</p>
+          You can configure automatic sharing to your favourite platforms easily.</p>
 
-          <p class="text-muted">Not sure if it's a favorite, but at the moment only
+          <p class="text-muted">Not sure if it's a favourite, but at the moment only
           <b>Twitter</b> is supported.</p>
       customize:
         header: "Customise your experience"
