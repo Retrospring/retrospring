@@ -42,11 +42,5 @@ module Justask
     config.i18n.enforce_available_locales = false
 
     config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
-
-    config.after_initialize do
-      Dir.glob Rails.root.join('config/late_initializers/*.rb') do |f|
-        require f
-      end
-    end
   end
 end

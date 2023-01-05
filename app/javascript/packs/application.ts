@@ -12,7 +12,6 @@ import initQuestionbox from 'retrospring/features/questionbox';
 import initQuestion from 'retrospring/features/question';
 import initModeration from 'retrospring/features/moderation';
 import initMemes from 'retrospring/features/memes';
-import initLocales from 'retrospring/features/locales';
 import initFront from 'retrospring/features/front';
 import initWebpush from 'retrospring/features/webpush';
 
@@ -27,7 +26,6 @@ document.addEventListener('turbo:load', initQuestionbox);
 document.addEventListener('DOMContentLoaded', initQuestion);
 document.addEventListener('DOMContentLoaded', initModeration);
 document.addEventListener('DOMContentLoaded', initMemes);
-document.addEventListener('turbo:load', initLocales);
 document.addEventListener('turbo:load', initFront);
 document.addEventListener('turbo:load', initWebpush);
 
