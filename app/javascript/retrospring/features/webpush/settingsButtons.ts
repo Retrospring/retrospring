@@ -14,6 +14,7 @@ export default (): void => {
     navigator.serviceWorker.getRegistration().then(async registration => {
       const subscription = await registration?.pushManager.getSubscription();
       if (subscription) {
+        document.querySelector('.push-settings')?.classList.add('d-none');
         document.querySelector('button[data-action="push-enable"]')?.classList.add('d-none');
         document.querySelector('[data-action="push-disable"]')?.classList.remove('d-none');
 
