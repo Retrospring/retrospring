@@ -17,9 +17,9 @@ module Retrospring
 
     def month = 1
 
-    def day = 2
+    def day = 5
 
-    def patch = 1
+    def patch = 0
 
     def suffix = ""
 
