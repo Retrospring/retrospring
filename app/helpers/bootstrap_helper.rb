@@ -29,7 +29,7 @@ module BootstrapHelper
         ("badge-pill" if options[:badge_pill])
       ].compact.join(" ")
 
-      body += " #{content_tag(:span, options[:badge], class: badge_class)}"
+      body += " #{content_tag(:span, options[:badge], class: badge_class)}".html_safe
     end
 
     content_tag(:li, link_to(body.html_safe, path, class: "nav-link"), class: classes)
