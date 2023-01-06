@@ -1,48 +1,46 @@
 # frozen_string_literal: true
 
+module TestLocaleTransformer
+  SUBSTITUTIONS = {
+    "a" => "åä",
+    "e" => "éê",
+    "i" => "ïí",
+    "o" => "öø",
+    "u" => "üǔ"
+  }.freeze
+
+  refine String do
+    def test_locale_destroy
+      SUBSTITUTIONS.inject(self) do |val, (from, to)|
+        val.gsub(from, to).gsub(from.upcase, to.upcase)
+      end
+    end
+
+    def test_locale_repair
+      SUBSTITUTIONS.inject(self) do |val, (from, to)|
+        val.gsub(to, from).gsub(to.upcase, from.upcase)
+      end
+    end
+  end
+end
+
+using TestLocaleTransformer
+
 namespace :locale do
   desc "Generate en-xx locale"
   task generate: :environment do
-    def destroy(val)
-      val
-        .gsub("A", "ÅÄ")
-        .gsub("E", "ÉÊ")
-        .gsub("I", "ÏÍ")
-        .gsub("O", "ÖØ")
-        .gsub("U", "ÜǓ")
-        .gsub("a", "åä")
-        .gsub("e", "éê")
-        .gsub("i", "ïí")
-        .gsub("o", "öø")
-        .gsub("u", "üǔ")
-    end
-
-    def repair(val)
-      val
-        .gsub("ÅÄ", "A")
-        .gsub("ÉÊ", "E")
-        .gsub("ÏÍ", "I")
-        .gsub("ÖØ", "O")
-        .gsub("ÜǓ", "U")
-        .gsub("åä", "a")
-        .gsub("éê", "e")
-        .gsub("ïí", "i")
-        .gsub("öø", "o")
-        .gsub("üǔ", "u")
-    end
-
     def transform_locale(hash)
       hash.transform_values do |val|
         next transform_locale(val) if val.is_a? Hash
         next val if val.is_a? Symbol
 
-        val = destroy(val)
+        val = val.test_locale_destroy
 
         # undo damage in %{variables}
-        val = val.gsub(/%{([^}]+)}/) { repair(_1) }
+        val = val.gsub(/%{([^}]+)}/, &:test_locale_repair)
 
         # undo damage in <html tags>
-        val = val.gsub(/<([^>]+)>/) { repair(_1) }
+        val = val.gsub(/<([^>]+)>/, &:test_locale_repair)
 
         "[#{val}]"
       end
