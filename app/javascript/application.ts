@@ -1,6 +1,3 @@
-import { Application } from '@hotwired/stimulus';
-import { definitionsFromContext } from '@hotwired/stimulus-webpack-helpers';
-
 import start from 'retrospring/common';
 import initAnswerbox from 'retrospring/features/answerbox/index';
 import initCapabilities from 'retrospring/features/capabilities';
@@ -31,6 +28,4 @@ document.addEventListener('turbo:load', initFront);
 document.addEventListener('DOMContentLoaded', initWebpush);
 document.addEventListener('turbo:load', initWebpushSettingsButtons);
 
-window['Stimulus'] = Application.start();
-const context = require.context('../retrospring/controllers', true, /\.ts$/);
-window['Stimulus'].load(definitionsFromContext(context));
+
