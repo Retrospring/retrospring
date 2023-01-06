@@ -15,7 +15,7 @@
         "utilities/*": ["app/javascript/retrospring/utilities/*"]
     },
     "sourceMap": true,
-    "target": "es5",
+    "target": "es6",
     "noEmit": true
   },
   "exclude": [
