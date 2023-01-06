@@ -32,20 +32,6 @@ require "rspec-sidekiq"
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.before :suite do
-    # Run webpack compilation before suite, so assets exists in public/packs
-    # It would be better to run the webpack compilation only if at least one :js spec
-    # should be executed, but `when_first_matching_example_defined`
-    # does not work with `config.infer_spec_type_from_file_location!`
-    # see https://github.com/rspec/rspec-core/issues/2366
-
-    unless ENV.key?("DISABLE_WEBPACK_IN_TESTS")
-      start = Time.now # rubocop:disable all
-      `bin/webpack`
-      puts "processing time of webpack: \033[32;1m#{(Time.now - start).round(3).to_s.ljust(5, '0')}s\033[0m" # rubocop:disable all
-    end
-  end
-
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
