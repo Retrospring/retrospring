@@ -11,9 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :find_active_announcements
 
   # check if user wants to read
-  def switch_locale(&) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
-    return I18n.with_locale("en", &) if Rails.env.test?
-
+  def switch_locale(&)
     locale = params[:lang] || current_user&.locale || cookies[:lang] || "en"
     if params[:lang] && current_user.present?
       current_user.locale = locale
