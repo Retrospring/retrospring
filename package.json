@@ -2,6 +2,7 @@
   "scripts": {
     "lint": "yarn run eslint --ext .ts app/javascript",
     "lint:fix": "yarn run eslint --ext .ts app/javascript --fix",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
     "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "cheet.js": "^0.3.3",
     "core-js": "^3.27.1",
     "croppr": "^2.3.1",
+    "esbuild": "^0.16.14",
     "i18n-js": "^4.0",
     "js-cookie": "2.2.1",
     "regenerator-runtime": "^0.13.11",
