@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.asset_source = :webpacker
+  config.asset_source = :sprockets
 
   # Code is not reloaded between requests.
   config.cache_classes = true
