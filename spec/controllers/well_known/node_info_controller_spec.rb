@@ -81,7 +81,7 @@ describe WellKnown::NodeInfoController do
       it "includes Twitter in outbound services" do
         subject
         parsed = JSON.parse(response.body)
-        parsed.dig("services", "outbound").should_not include("twitter")
+        expect(parsed.dig("services", "outbound")).to_not include("twitter")
       end
     end
 
