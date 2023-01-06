@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   before_action :find_active_announcements
 
   # check if user wants to read
-  def switch_locale(&action)
-    return I18n.with_locale("en", &action) if Rails.env.test?
+  def switch_locale(&) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+    return I18n.with_locale("en", &) if Rails.env.test?
 
     locale = params[:lang] || current_user&.locale || cookies[:lang] || "en"
     if params[:lang] && current_user.present?
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
     cookies[:lang] = locale
 
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(locale, &)
   end
 
   # check if user got hit by the banhammer of doom
