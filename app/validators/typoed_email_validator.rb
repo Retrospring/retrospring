@@ -15,6 +15,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       gmail.cm
       gmail.co
       gmail.co.uk
+      gmail.om
       gmaile.com
       gmaill.com
       gmali.com
