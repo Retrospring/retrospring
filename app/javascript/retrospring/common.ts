@@ -1,9 +1,11 @@
 import '@hotwired/turbo-rails';
-import initialize from './initializers';
+import initializeBootstrap from './initializers/bootstrap';
+import initializeStimulus from './initializers/stimulus';
 
 export default function start(): void {
   try {
-    initialize();
+    initializeBootstrap();
+    initializeStimulus();
   } catch (e) {
     // initialization errors
   }
