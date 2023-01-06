@@ -5,8 +5,12 @@ module TestLocaleTransformer
     "a" => "åä",
     "e" => "éê",
     "i" => "ïí",
+    "n" => "ñ",
     "o" => "öø",
-    "u" => "üǔ"
+    "r" => "ř",
+    "u" => "üǔ",
+    "y" => "ÿ",
+    "z" => "ż"
   }.freeze
 
   refine String do
