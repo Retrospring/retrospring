@@ -211,7 +211,7 @@ en:
       answers:
         one: "1 answer"
         other: "%{count} answers"
-      options: "Options"
+      options: "Sharing Options"
       placeholder: "Write your answer here…"
       sharing:
         heading: "Sharing"

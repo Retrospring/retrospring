@@ -30,8 +30,8 @@
       %button.btn.btn-danger{ name: "ib-destroy", data: { ib_id: i.id } }
         = t("voc.delete")
       %button.btn.btn-default{ name: "ib-options", data: { ib_id: i.id, state: :hidden } }
-        %i.fa.fa-cog
-        %span.visually-hidden= t(".options")
+        %i.fa.fa-chevron-down
+        %span.pe-none= t(".options")
     .card-footer.d-none{ id: "ib-options-#{i.id}" }
       %h4= t(".sharing.heading")
       - if current_user.services.count.positive?
