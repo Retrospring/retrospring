@@ -32,6 +32,9 @@ yarn-debug.log*
 # site configuration
 /config/justask.yml
 
+# locales generated with `bin/rails locale:generate`
+/config/locales/*.en-xx.yml
+
 # local storage
 /public/export
 /public/system
