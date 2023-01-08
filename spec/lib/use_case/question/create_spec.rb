@@ -57,11 +57,22 @@ describe UseCase::Question::Create do
       end
     end
 
-    context "content is too long" do
+    context "content is over 512 characters long" do
       let(:content) { "a" * 513 }
 
-      it "raises an error" do
-        expect { subject }.to raise_error(Errors::QuestionTooLong)
+      context "recipient does not allow long questions" do
+        it "raises an error" do
+          expect { subject }.to raise_error(Errors::QuestionTooLong)
+        end
+      end
+
+      context "recipient allows long questions" do
+        before do
+          target_user.profile.allow_long_questions = true
+          target_user.profile.save
+        end
+
+        it_behaves_like "creates the question"
       end
     end
   end
