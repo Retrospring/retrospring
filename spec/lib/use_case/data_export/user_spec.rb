@@ -96,7 +96,7 @@ describe UseCase::DataExport::User, :data_export do
           created_at:           user.profile.created_at.as_json,
           updated_at:           user.profile.updated_at.as_json,
           anon_display_name:    nil,
-          allow_long_questions: true,
+          allow_long_questions: true
         },
         roles:   {
           administrator: false,
