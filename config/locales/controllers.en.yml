@@ -169,8 +169,8 @@ en:
         error: "Exporting is currently not possible."
     privacy:
       update:
-        success: :settings.profile.update.success
-        error: :settings.profile.update.error
+        success: "Privacy settings updated successfully."
+        error: "Failed to update privacy settings."
     profile:
       update:
         success: "Profile updated successfully."
