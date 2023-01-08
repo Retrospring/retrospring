@@ -61,7 +61,7 @@ describe UseCase::Question::Create do
       let(:content) { "a" * 513 }
 
       it "raises an error" do
-        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
+        expect { subject }.to raise_error(Errors::QuestionTooLong)
       end
     end
   end

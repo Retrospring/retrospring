@@ -5,7 +5,9 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :inboxes, dependent: :destroy
 
-  validates :content, length: { minimum: 1, maximum: 512 }
+  validates :content, length: { minimum: 1 }
+
+  SHORT_QUESTION_MAX_LENGTH = 512
 
   before_destroy do
     rep = Report.where(target_id: self.id, type: 'Reports::Question')
@@ -30,4 +32,6 @@ class Question < ApplicationRecord
   def generated? = %w[justask retrospring_exporter].include?(author_identifier)
 
   def anonymous? = author_is_anonymous && author_identifier.present?
+
+  def long? = content.length > SHORT_QUESTION_MAX_LENGTH
 end
