@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_27_065923) do
+ActiveRecord::Schema.define(version: 2023_01_08_114333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2022_12_27_065923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "anon_display_name"
+    t.boolean "allow_long_questions", default: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
