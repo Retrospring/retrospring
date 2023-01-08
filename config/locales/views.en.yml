@@ -103,7 +103,6 @@ en:
         dead: "Dead"
   answerbox:
     header:
-      anon_hint: :inbox.entry.anon_hint
       answers:
         zero: "0 answers"
         one: "1 answer"
@@ -203,7 +202,6 @@ en:
   inbox:
     entry:
       asked_html: "%{user} asked %{time} ago"
-      anon_hint: "This question was asked anonymously."
       answers:
         one: "1 answer"
         other: "%{count} answers"
@@ -320,7 +318,6 @@ en:
           features: "Feature Requests"
     desktop:
       ask_question: "Ask a question"
-      list: :user.actions.list
   notifications:
     index:
       title: "Notifications"
@@ -637,7 +634,6 @@ en:
       privilege: "Check %{user}'s privileges"
       ban: "Ban Control"
       title: "Actions"
-      list: "Manage list memberships"
     profile:
       badge:
         admin: "Admin"

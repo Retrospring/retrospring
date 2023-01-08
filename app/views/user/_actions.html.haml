@@ -18,7 +18,7 @@
         .dropdown-menu
           %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
             %i.fa.fa-list.fa-fw
-            = t(".list")
+            = t("voc.list")
           - if current_user.blocking?(user)
             %a.dropdown-item{ href: '#', data: { action: :unblock, target: user.screen_name } }
               %i.fa.fa-minus-circle.fa-fw

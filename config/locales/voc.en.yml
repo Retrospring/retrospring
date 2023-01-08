@@ -1,6 +1,7 @@
 en:
   voc:
     add: "Add"
+    anon_hint: "This question was asked anonymously."
     answer: "Answer"
     block: "Block"
     block_site_wide: "Block user site-wide"
@@ -10,6 +11,7 @@ en:
     delete: "Delete"
     edit: "Edit"
     follow: "Follow"
+    list: "Manage list memberships"
     load: "Load more"
     login: "Sign in"
     logout: "Sign out"
