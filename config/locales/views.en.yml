@@ -254,6 +254,7 @@ en:
       placeholder: "Type your question here…"
       action: "Ask"
       loading: "Asking…"
+      long_question_warning: "This question will only be sent to those who allow long questions."
     comment_smiles:
       title: "People who smiled this comment"
       none: "No one has smiled this comment yet."

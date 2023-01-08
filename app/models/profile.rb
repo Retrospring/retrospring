@@ -26,4 +26,6 @@ class Profile < ApplicationRecord
   def safe_name
     display_name.presence || user.screen_name
   end
+
+  def question_length_limit = allow_long_questions ? nil : Question::SHORT_QUESTION_MAX_LENGTH
 end
