@@ -1,11 +1,11 @@
-- provide(:title, generate_title(t(".title")))
+- provide(:title, generate_title(t("voc.login")))
 .container
   .row
     .col-sm-4.offset-sm-4
       = render "layouts/messages"
       .card.mt-3
         .card-body
-          %h1.mb-3.mt-0= t(".title")
+          %h1.mb-3.mt-0= t("voc.login")
           = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f|
 
             = f.text_field :login, autofocus: true, autocomplete: :username

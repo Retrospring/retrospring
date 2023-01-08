@@ -1,10 +1,10 @@
-- provide(:title, generate_title(t(".title")))
+- provide(:title, generate_title(t("voc.register")))
 .container
   .row
     .col-sm-8.offset-sm-2
       .card.mt-3
         .card-body
-          %h1= t(".title")
+          %h1= t("voc.register")
           = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f|
             = render "devise/shared/error_messages", resource: resource
             = render "layouts/messages"
@@ -18,7 +18,7 @@
               = hcaptcha_tags theme: :light
 
             %p= raw t(".info", terms: link_to(t("voc.terms"), terms_path))
-            = f.primary
+            = f.primary t("voc.register")
 
           = render "devise/shared/links"
 = render "shared/links"

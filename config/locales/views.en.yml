@@ -148,11 +148,7 @@ en:
       edit:
         title: "Account Settings"
       new:
-        title: "Sign up"
         info: "By signing up you accept our %{terms}"
-    sessions:
-      new:
-        title: "Sign in"
   discover:
     index:
       title: "Discover"
