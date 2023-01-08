@@ -122,7 +122,7 @@ en:
           error: "You are not muting that user."
     report:
       create:
-        noauth: :ajax.noauth
+        noauth: "You need to be logged in to report this."
         unknown: "You can't report this entity."
         notfound: "Could not find %{parameter}"
         success: "%{parameter} reported.  A moderator will decide what happens with the %{parameter}."
