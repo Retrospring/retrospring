@@ -65,7 +65,7 @@ en:
     moderation:
       destroy_report:
         success: "Successfully removed report."
-        error: :errors.base
+        error: "Failed to remove report."
       ban:
         nopriv: "You cannot ban an administrator!"
         success:
@@ -157,7 +157,7 @@ en:
       success: "Service updated successfully."
       error: "Unable to update service."
     failure:
-      error: :errors.base
+      error: "Failed to connect service."
     destroy:
       success: "%{service} disconnected successfully."
   settings:
