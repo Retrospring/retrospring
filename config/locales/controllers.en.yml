@@ -177,11 +177,14 @@ en:
         error: "Unable to update profile."
     profile_picture:
       update:
-        success: :settings.profile.update.success
+        success:
+          profile_picture: "Profile picture updated successfully. It might take a few minutes until your new profile picture is shown everywhere."
+          profile_header: "Profile header updated successfully. It might take a few minutes until your new profile header is shown everywhere."
+          both: "Profile picture and header updated successfully. It might take a few minutes until they are shown everywhere."
+          foreign_themes:
+            enabled: "You will now see other user's themes when viewing their profiles."
+            disabled: "You will no longer see other user's themes."
         error: :settings.profile.update.error
-        notice:
-          profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
-          profile_header: " It might take a few minutes until your new profile header is shown everywhere."
     theme:
       update:
         success: "Theme saved successfully."
