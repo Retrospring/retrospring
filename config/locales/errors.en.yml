@@ -28,8 +28,6 @@ en:
 
     conflict: "This already exists"
 
-    invalid_otp: "The code you entered was invalid."
-
     parameter_error: "%{parameter} is required."
 
     invalid_parameter: "Invalid parameter"
