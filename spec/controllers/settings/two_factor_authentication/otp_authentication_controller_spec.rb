@@ -52,7 +52,7 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController, type: :
           travel_to(Time.at(1603290888).utc) do
             subject
             expect(response).to redirect_to :settings_two_factor_authentication_otp_authentication
-            expect(flash[:error]).to eq("The code you entered was invalid.")
+            expect(flash[:error]).to eq(I18n.t("settings.two_factor_authentication.otp_authentication.update.error"))
           end
         end
       end
@@ -77,7 +77,7 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController, type: :
           travel_to(Time.at(1603290950).utc) do
             subject
             expect(response).to redirect_to :settings_two_factor_authentication_otp_authentication
-            expect(flash[:error]).to eq(I18n.t("errors.invalid_otp"))
+            expect(flash[:error]).to eq(I18n.t("settings.two_factor_authentication.otp_authentication.update.error"))
           end
         end
       end

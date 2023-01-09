@@ -70,7 +70,7 @@ describe User::SessionsController do
 
         it "redirects to the sign in page" do
           expect(subject).to redirect_to :new_user_session
-          expect(flash[:error]).to eq I18n.t("errors.invalid_otp")
+          expect(flash[:error]).to eq I18n.t("user.sessions.create.error")
         end
       end
     end
