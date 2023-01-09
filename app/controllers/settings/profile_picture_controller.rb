@@ -25,7 +25,7 @@ class Settings::ProfilePictureController < ApplicationController
     elsif user_attributes[:profile_header]
       t(".update.success.profile_header")
     else
-      state = user_attributes[:show_foreign_themes] ? "enabled" : "disabled"
+      state = user_attributes[:show_foreign_themes] == "true" ? "enabled" : "disabled"
       t(".update.success.foreign_themes.#{state}")
     end
   end
