@@ -24,10 +24,6 @@
 
   .format-help {
     opacity: .3;
-
-    #{$this}:focus-within & {
-      opacity: 1;
-    }
   }
 
   &:focus-within .format-help,
