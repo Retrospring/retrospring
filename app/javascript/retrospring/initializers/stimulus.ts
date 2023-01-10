@@ -2,6 +2,7 @@ import { Application } from "@hotwired/stimulus";
 import AnnouncementController from "retrospring/controllers/announcement_controller";
 import AutofocusController from "retrospring/controllers/autofocus_controller";
 import CharacterCountController from "retrospring/controllers/character_count_controller";
+import FormatPopupController from "retrospring/controllers/format_popup_controller";
 
 /**
  * This module sets up Stimulus and our controllers
@@ -15,4 +16,5 @@ export default function (): void {
   window['Stimulus'].register('announcement', AnnouncementController);
   window['Stimulus'].register('autofocus', AutofocusController);
   window['Stimulus'].register('character-count', CharacterCountController);
+  window['Stimulus'].register('format-popup', FormatPopupController);
 }
