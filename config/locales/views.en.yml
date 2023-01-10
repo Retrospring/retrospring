@@ -550,6 +550,13 @@ en:
       unsubscribe_all: "Disable on all devices"
       description: "Here you can set up or disable push notifications for new questions in your inbox."
   shared:
+    formatting:
+      body_html: |
+        <p>%{app_name} uses <b>Markdown</b> for formatting</p>
+        <p>Add two new lines for a new paragraph to start</p>
+        <p><code>*italic text*</code> for <i>italic text</i></p>
+        <p><code>**bold text**</code> for <b>bold text</b></p>
+        <p><code>[link](https://example.com)</code> for <a href="https://example.com">link</a></p>
     links:
       about: "About"
       source: "Source code"
