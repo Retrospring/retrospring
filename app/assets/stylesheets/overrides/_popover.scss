@@ -1,0 +1,13 @@
+.popover {
+  box-shadow: $box-shadow;
+  background-color: var(--raised-bg);
+}
+
+.rs-popover {
+  --popover-arrow-border: transparent;
+  --popover-border-color: transparent;
+}
+
+.popover-body p:last-child {
+  margin-bottom: 0;
+}

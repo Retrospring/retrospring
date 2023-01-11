@@ -30,6 +30,7 @@
       = render 'navigation/guest'
     = render 'shared/announcements'
     = yield
+    = render "shared/formatting"
     - if Rails.env.development?
       #debug
         %hr

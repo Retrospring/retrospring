@@ -1,10 +1,13 @@
-%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none.d-print-none{ role: :navigation }
+%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none.d-print-none{ class: Rails.env.development? ? "navbar-dev" : "", role: :navigation }
   .container
     %a.navbar-brand{ href: '/', title: APP_CONFIG["site_name"] }
       - if APP_CONFIG["use_svg_logo"]
         = render inline: Rails.application.config.justask_svg_logo
       - else
         = APP_CONFIG["site_name"]
+      - if Rails.env.development?
+        %span.badge.rounded-pill.bg-warning.text-bg-warning.fs-7
+          DEV
     %ul.nav.navbar-nav.me-auto
       = nav_entry t("navigation.timeline"), root_path, icon: 'home'
       = nav_entry t("navigation.inbox"), '/inbox', icon: 'inbox', badge: inbox_count

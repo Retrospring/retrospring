@@ -95,7 +95,7 @@ module UseCase
       def filtered?(question)
         target_user.mute_rules.any? { |rule| rule.applies_to? question } ||
           (anonymous && AnonymousBlock.where(identifier: question.author_identifier, user_id: [target_user.id, nil]).any?) ||
-          (source_user_id && anonymous && AnonymousBlock.where(target_user_id: [source_user.id, nil], user_id: [target_user.id, nil]).any?) ||
+          (source_user_id && anonymous && AnonymousBlock.where(target_user_id: source_user.id, user_id: [target_user.id, nil]).any?) ||
           (source_user_id && target_user.muting?(source_user))
       end
 

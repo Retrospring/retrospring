@@ -1,5 +1,5 @@
 - notifications_icon = notification_count.nil? ? 'bell-o' : 'bell'
-%nav.navbar.navbar-themed.bg-primary.fixed-bottom.d-lg-none.d-block.d-print-none#rs-mobile-nav{ role: :navigation }
+%nav.navbar.navbar-themed.bg-primary.fixed-bottom.d-lg-none.d-block.d-print-none#rs-mobile-nav{ class: Rails.env.development? ? "navbar-dev" : "", role: :navigation }
   .container
     %ul.nav.navbar-nav.navbar-icon-row
       = nav_entry t("navigation.timeline"), root_path, icon: 'home', icon_only: true
