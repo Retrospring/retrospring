@@ -5,6 +5,9 @@
         = render inline: Rails.application.config.justask_svg_logo
       - else
         = APP_CONFIG["site_name"]
+      - if Rails.env.development?
+        %span.badge.rounded-pill.bg-warning.text-bg-warning.fs-7
+          DEV
     %ul.nav.navbar-nav.me-auto
       = nav_entry t("navigation.timeline"), root_path, icon: 'home'
       = nav_entry t("navigation.inbox"), '/inbox', icon: 'inbox', badge: inbox_count
