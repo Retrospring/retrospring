@@ -1,4 +1,6 @@
 .inbox-entry {
+  $this: &;
+
   &--new {
     box-shadow: 0 0.125rem 0.25rem var(--primary);
 
@@ -18,5 +20,14 @@
         color: RGBA(var(--primary-text), 0.8) !important;
       }
     }
+  }
+
+  .format-help {
+    opacity: .3;
+  }
+
+  &:focus-within .format-help,
+  &:hover .format-help {
+    opacity: 1;
   }
 }

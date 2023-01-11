@@ -23,15 +23,17 @@
             = render "actions/question", question: i.question
   - if current_user == i.user
     .card-body
-      %textarea.form-control{ name: "ib-answer", placeholder: t(".placeholder"), data: { id: i.id } }
-      %br/
-      %button.btn.btn-success{ name: "ib-answer", data: { ib_id: i.id } }
-        = t("voc.answer")
-      %button.btn.btn-danger{ name: "ib-destroy", data: { ib_id: i.id } }
-        = t("voc.delete")
-      %button.btn.btn-default{ name: "ib-options", data: { ib_id: i.id, state: :hidden } }
-        %i.fa.fa-chevron-down
-        %span.pe-none= t(".options")
+      %textarea.form-control.mb-3{ name: "ib-answer", placeholder: t(".placeholder"), data: { id: i.id } }
+      .d-sm-flex
+        %button.btn.btn-success.me-sm-1{ name: "ib-answer", data: { ib_id: i.id } }
+          = t("voc.answer")
+        %button.btn.btn-danger.me-sm-1{ name: "ib-destroy", data: { ib_id: i.id } }
+          = t("voc.delete")
+        %button.btn.btn-default.px-1{ name: "ib-options", data: { ib_id: i.id, state: :hidden } }
+          %i.fa.fa-chevron-down
+          %span.pe-none= t(".options")
+        %p.format-help.ms-auto.align-self-center.mt-2.mt-sm-0.text-center
+          = render "shared/format_link"
     .card-footer.d-none{ id: "ib-options-#{i.id}" }
       %h4= t(".sharing.heading")
       - if current_user.services.count.positive?
