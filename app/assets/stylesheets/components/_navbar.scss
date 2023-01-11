@@ -1,4 +1,8 @@
 .navbar-dev {
+  &.fixed-top:before {
+    top: 0;
+  }
+
   &:before {
     @extend .progress-bar-striped;
     @extend .bg-warning;

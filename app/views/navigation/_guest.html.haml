@@ -1,10 +1,13 @@
-%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top{ role: :navigation }
+%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top{ class: Rails.env.development? ? "navbar-dev" : "", role: :navigation }
   .container
     %a.navbar-brand{ href: '/', title: APP_CONFIG["site_name"] }
       - if APP_CONFIG["use_svg_logo"]
         = render inline: Rails.application.config.justask_svg_logo
       - else
         = APP_CONFIG["site_name"]
+      - if Rails.env.development?
+        %span.badge.rounded-pill.bg-warning.text-bg-warning.fs-7
+          DEV
     %button.navbar-toggler{ data: { bs_target: '#j2-main-navbar-collapse', bs_toggle: :collapse }, type: :button }
       %span.visually-hidden= t("navigation.toggle")
       %span.navbar-toggler-icon
