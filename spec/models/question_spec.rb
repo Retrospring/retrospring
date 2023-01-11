@@ -16,11 +16,6 @@ RSpec.describe Question, :type => :model do
     expect(@question.content).to match 'Is this a question?'
   end
 
-  it 'does not save questions longer than 512 characters' do
-    @question.content = 'X' * 513
-    expect{@question.save!}.to raise_error(ActiveRecord::RecordInvalid)
-  end
-
   it 'has many answers' do
     5.times { |i| Answer.create(content: "This is an answer. #{i}", user: FactoryBot.create(:user), question: @question) }
     expect(@question.answer_count).to match 5

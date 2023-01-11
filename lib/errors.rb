@@ -28,6 +28,9 @@ module Errors
   class InvalidBanDuration < BadRequest
   end
 
+  class QuestionTooLong < BadRequest
+  end
+
   class Forbidden < Base
     def status
       403

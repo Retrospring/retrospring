@@ -27,11 +27,12 @@ describe UseCase::DataExport::User, :data_export do
       sign_in_count:                     10,
       smiled_count:                      28,
       profile:                           {
-        display_name:      "Fizzy Raccoon",
-        description:       "A small raccoon",
-        location:          "Binland",
-        motivation_header: "",
-        website:           "https://retrospring.net"
+        display_name:         "Fizzy Raccoon",
+        description:          "A small raccoon",
+        location:             "Binland",
+        motivation_header:    "",
+        website:              "https://retrospring.net",
+        allow_long_questions: true
       }
     }
   end
@@ -87,14 +88,15 @@ describe UseCase::DataExport::User, :data_export do
           privacy_noindex:                   false
         },
         profile: {
-          display_name:      "Fizzy Raccoon",
-          description:       "A small raccoon",
-          location:          "Binland",
-          website:           "https://retrospring.net",
-          motivation_header: "",
-          created_at:        user.profile.created_at.as_json,
-          updated_at:        user.profile.updated_at.as_json,
-          anon_display_name: nil
+          display_name:         "Fizzy Raccoon",
+          description:          "A small raccoon",
+          location:             "Binland",
+          website:              "https://retrospring.net",
+          motivation_header:    "",
+          created_at:           user.profile.created_at.as_json,
+          updated_at:           user.profile.updated_at.as_json,
+          anon_display_name:    nil,
+          allow_long_questions: true
         },
         roles:   {
           administrator: false,

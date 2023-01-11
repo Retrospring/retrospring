@@ -30,8 +30,10 @@ export function questionboxUserHandler(event: Event): void {
         document.querySelector<HTMLInputElement>('textarea[name=qb-question]').value = '';
 
         // FIXME: also solve this using a Stimulus controller
-        const characterCount = document.querySelector<HTMLElement>('#question-box[data-character-count-max-value]').dataset.characterCountMaxValue;
-        document.querySelector<HTMLElement>('#question-box [data-character-count-target="counter"]').innerHTML = characterCount;
+        const questionBox = document.getElementById('question-box');
+        if ('characterCountMaxValue' in questionBox.dataset) {
+          questionBox.querySelector<HTMLElement>('[data-character-count-target="counter"]').innerHTML = questionBox.dataset.characterCountMaxValue;
+        }
 
         if (promote) {
           const questionbox = document.querySelector('#question-box');

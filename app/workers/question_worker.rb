@@ -30,6 +30,7 @@ class QuestionWorker
     return true if follower.banned?
     return true if muted?(follower, question)
     return true if user.muting?(question.user)
+    return true if question.long? && !follower.profile.allow_long_questions
 
     false
   end

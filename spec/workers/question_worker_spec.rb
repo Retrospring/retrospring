@@ -6,7 +6,8 @@ describe QuestionWorker do
   describe "#perform" do
     let(:user) { FactoryBot.create(:user) }
     let(:user_id) { user.id }
-    let(:question) { FactoryBot.create(:question, user:) }
+    let(:content) { Faker::Lorem.sentence }
+    let(:question) { FactoryBot.create(:question, content:, user:) }
     let(:question_id) { question.id }
 
     before do
@@ -87,6 +88,21 @@ describe QuestionWorker do
         expect { subject }
           .to(
             change { Rpush::Webpush::Notification.count }
+              .from(0)
+              .to(1)
+          )
+      end
+    end
+
+    context "long question" do
+      let(:content) { "x" * 1000 }
+
+      it "sends to recipients who allow long questions" do
+        user.followers.first.profile.update(allow_long_questions: true)
+
+        expect { subject }
+          .to(
+            change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
               .from(0)
               .to(1)
           )
