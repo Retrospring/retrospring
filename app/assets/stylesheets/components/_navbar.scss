@@ -1,0 +1,18 @@
+.navbar-dev {
+  &:before {
+    @extend .progress-bar-striped;
+    @extend .bg-warning;
+
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    background-size: 4px 4px;
+
+    @include media-breakpoint-up('md') {
+      bottom: unset;
+      top: 0;
+    }
+  }
+}
