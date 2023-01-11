@@ -8,7 +8,7 @@
     bottom: 0;
     height: 4px;
     width: 100%;
-    background-size: 4px 4px;
+    background-size: 40px 40px;
 
     @include media-breakpoint-up('md') {
       bottom: unset;
