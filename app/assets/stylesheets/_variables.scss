@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Font settings
 $lexend-font-path: ".";
 $lexend-weights: 500, 600;
@@ -81,6 +83,16 @@ $spacers: map-merge($rs-spacers, $spacers);
   --input-bg: var(--background);
   --raised-bg: #ffffff;
   --raised-accent: #f7f7f7;
+
+  /**
+   *-rgb values are some of the background colors
+   available as triplets because they are required
+   for background opacity styles
+   */
+
+  --primary-rgb: #{color.red($primary)}, #{color.green($primary)}, #{color.blue($primary)};
+  --raised-bg-rgb: #{color.red(#ffffff)}, #{color.green(#ffffff)}, #{color.blue(#ffffff)};
+  --raised-accent-rgb: #{color.red(#f7f7f7)}, #{color.green(#f7f7f7)}, #{color.blue(#f7f7f7)};
 
   /**
    NOTE for all *-text variables
