@@ -14,6 +14,8 @@ class Answer < ApplicationRecord
   validates :question_id, uniqueness: { scope: :user_id }
   # rubocop:enable Rails/UniqueValidationWithoutIndex
 
+  SHORT_ANSWER_MAX_LENGTH = 640
+
   # rubocop:disable Rails/SkipsModelValidations
   after_create do
     Inbox.where(user: self.user, question: self.question).destroy_all
@@ -52,4 +54,6 @@ class Answer < ApplicationRecord
   def notification_type(*_args)
     Notification::QuestionAnswered
   end
+
+  def long? = content.length > SHORT_ANSWER_MAX_LENGTH
 end
