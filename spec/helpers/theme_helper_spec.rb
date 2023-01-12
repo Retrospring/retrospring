@@ -242,4 +242,22 @@ describe ThemeHelper, :type => :helper do
       end
     end
   end
+
+  describe "#get_color_for_key" do
+    context "any key and value are supplied" do
+      subject { helper.get_color_for_key("primary", 6174129) }
+
+      it "returns a hex color code" do
+        expect(subject).to eq("#5e35b1")
+      end
+    end
+
+    context "a text key is supplied" do
+      subject { helper.get_color_for_key("primary-text", 6174129) }
+
+      it "returns RGB triplets" do
+        expect(subject).to eq("94, 53, 177")
+      end
+    end
+  end
 end
