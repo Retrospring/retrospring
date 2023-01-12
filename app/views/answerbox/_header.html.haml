@@ -4,7 +4,7 @@
       .flex-shrink-0
         %a{ href: user_path(a.question.user) }
           %img.answerbox__question-user-avatar.avatar-md{ src: a.question.user.profile_picture.url(:small), loading: :lazy }
-    .flex-grow-1
+    .flex-grow-1.align-self-center
       %h6.text-muted.answerbox__question-user
         - if a.question.author_is_anonymous
           %i.fas.fa-user-secret{ title: t(".anon_hint") }
@@ -13,14 +13,14 @@
           ·
           %a{ href: question_path(a.question.user.screen_name, a.question.id) }
             = t(".answers", count: a.question.answer_count)
-      .answerbox__question-body{ data: { controller: "collapse" } }
-        .answerbox__question-text{ class: a.question.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }
-          = question_markdown a.question.content
-        - if a.question.long? && !display_all
-          = render "shared/collapse", type: "question"
     - if user_signed_in?
       .flex-shrink-0.ms-auto
         .btn-group
-          %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+          %button.btn.btn-link.btn-sm.dropdown-toggle.p-0{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
             %span.caret
           = render "actions/question", question: a.question
+  .answerbox__question-body{ data: { controller: "collapse" } }
+    .answerbox__question-text{ class: a.question.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }
+      = question_markdown a.question.content
+    - if a.question.long? && !display_all
+      = render "shared/collapse", type: "question"
