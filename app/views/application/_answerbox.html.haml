@@ -1,12 +1,12 @@
 - display_all ||= nil
 .card.answerbox{ data: { id: a.id, q_id: a.question.id } }
   - if @question.nil?
-    = render "answerbox/header", a: a
+    = render "answerbox/header", a: a, display_all: display_all
   .card-body
     .answerbox__answer-body{ data: { controller: "collapse" } }
-      .answerbox__answer-text{ class: a.long? ? "collapsed" : "", data: { collapse_target: "content" } }
+      .answerbox__answer-text{ class: a.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }
         = markdown a.content
-      - if a.long?
+      - if a.long? && !display_all
         = render "shared/collapse", type: "answer"
     - if @user.nil?
       .row
