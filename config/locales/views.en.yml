@@ -551,6 +551,13 @@ en:
       unsubscribe_all: "Disable on all devices"
       description: "Here you can set up or disable push notifications for new questions in your inbox."
   shared:
+    collapse:
+      answer:
+        show: "Show full answer"
+        hide: "Hide full answer"
+      question:
+        show: "Show full question"
+        hide: "Hide full question"
     formatting:
       body_html: |
         <p>%{app_name} uses <b>Markdown</b> for formatting</p>
