@@ -16,6 +16,11 @@
     overflow: visible;
   }
 
+  &__question-body,
+  &__answer-body {
+    position: relative;
+  }
+
   &__answer-text {
     margin-bottom: map.get($spacers, 3);
   }
