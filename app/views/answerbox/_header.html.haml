@@ -13,8 +13,11 @@
           ·
           %a{ href: question_path(a.question.user.screen_name, a.question.id) }
             = t(".answers", count: a.question.answer_count)
-      .answerbox__question-text
-        = question_markdown a.question.content
+      .answerbox__question-body{ data: { controller: "collapse" } }
+        .answerbox__question-text{ class: a.question.long? ? "collapsed" : "", data: { collapse_target: "content" } }
+          = question_markdown a.question.content
+        - if a.question.long?
+          = render "shared/collapse", type: "question"
     - if user_signed_in?
       .flex-shrink-0.ms-auto
         .btn-group

@@ -13,7 +13,11 @@
               = user_screen_name question.user, author_identifier: identifier, url: false
             - else
               = t("answerbox.header.asked_html", user: user_screen_name(question.user, author_identifier: identifier), time: time_tooltip(question))
-          .answerbox__question-text= question_markdown question.content
+          .answerbox__question-body{ data: { controller: "collapse" } }
+            .answerbox__question-text{ class: question.long? ? "collapsed" : "", data: { collapse_target: "content" } }
+              = question_markdown question.content
+            - if question.long?
+              = render "shared/collapse", type: "question"
         - if user_signed_in?
           .flex-shrink-0.ms-auto
             .btn-group

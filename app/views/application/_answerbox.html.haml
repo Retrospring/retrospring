@@ -3,16 +3,11 @@
   - if @question.nil?
     = render "answerbox/header", a: a
   .card-body
-    - if display_all.nil?
-      .answerbox__answer-text
-        = markdown a.content.truncate(640, omission: " [...]", separator: /\s/)
-        - if a.content.length > 640
-          %p
-            %a.btn.btn-primary{ href: answer_path(a.user.screen_name, a.id) }
-              = t(".read")
-    - else
-      .answerbox__answer-text
+    .answerbox__answer-body{ data: { controller: "collapse" } }
+      .answerbox__answer-text{ class: a.long? ? "collapsed" : "", data: { collapse_target: "content" } }
         = markdown a.content
+      - if a.long?
+        = render "shared/collapse", type: "answer"
     - if @user.nil?
       .row
         .col-sm-6.text-start.text-muted
