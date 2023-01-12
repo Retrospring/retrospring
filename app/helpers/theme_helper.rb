@@ -2,7 +2,7 @@
 
 module ThemeHelper
   ATTRIBUTE_MAP = {
-    "primary_color"     => "primary",
+    "primary_color"     => %w[primary primary-rgb],
     "primary_text"      => "primary-text",
     "danger_color"      => "danger",
     "danger_text"       => "danger-text",
@@ -16,8 +16,8 @@ module ThemeHelper
     "dark_text"         => "dark-text",
     "light_color"       => "light",
     "light_text"        => "light-text",
-    "raised_background" => "raised-bg",
-    "raised_accent"     => "raised-accent",
+    "raised_background" => %w[raised-bg raised-bg-rgb],
+    "raised_accent"     => %w[raised-accent raised-accent-rgb],
     "background_color"  => "background",
     "body_text"         => "body-text",
     "input_color"       => "input-bg",
@@ -36,18 +36,27 @@ module ThemeHelper
     theme.attributes.each do |k, v|
       next unless ATTRIBUTE_MAP.key?(k)
 
-      if k.include?("text") || k.include?("placeholder")
-        hex = get_hex_color_from_theme_value(v)
-        body += "\t--#{ATTRIBUTE_MAP[k]}: #{get_decimal_triplet_from_hex(hex)};\n"
+      if ATTRIBUTE_MAP[k].is_a?(Array)
+        ATTRIBUTE_MAP[k].each do |var|
+          body += "\t--#{var}: #{get_color_for_key(var, v)};\n"
+        end
       else
-        body += "\t--#{ATTRIBUTE_MAP[k]}: ##{get_hex_color_from_theme_value(v)};\n"
+        body += "\t--#{ATTRIBUTE_MAP[k]}: #{get_color_for_key(ATTRIBUTE_MAP[k], v)};\n"
       end
     end
-    body += "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n"
-
-    body += "}"
+    body += "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n}"
 
     content_tag(:style, body)
+  end
+
+  def get_color_for_key(key, color)
+    hex = get_hex_color_from_theme_value(color)
+
+    if key.include?("text") || key.include?("placeholder") || key.include?("rgb")
+      get_decimal_triplet_from_hex(hex)
+    else
+      "##{hex}"
+    end
   end
 
   def theme_color
