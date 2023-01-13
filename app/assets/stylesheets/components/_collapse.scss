@@ -1,23 +1,22 @@
 @use "sass:map";
 
 .collapsed {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
 
   &.answerbox__answer-text {
-    -webkit-line-clamp: 12;
+    max-height: 18rem;
 
     @include media-breakpoint-up('sm') {
-      -webkit-line-clamp: 7;
+      max-height: 10.5rem;
     }
   }
 
   &.answerbox__question-text {
-    -webkit-line-clamp: 10;
+    max-height: 15rem;
 
     @include media-breakpoint-up('sm') {
-      -webkit-line-clamp: 5;
+      max-height: 7.5rem;
     }
   }
 }
@@ -48,6 +47,7 @@
   .collapsed ~ & {
     position: absolute;
     bottom: 0;
+    left: 0;
 
     &:before {
       content: "";
