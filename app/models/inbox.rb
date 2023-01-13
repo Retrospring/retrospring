@@ -39,7 +39,7 @@ class Inbox < ApplicationRecord
               end
       ),
       icon:  question.author_is_anonymous ? "/icons/maskable_icon_x128.png" : question.user.profile_picture.url(:small),
-      body:  question.content
+      body:  question.content.truncate(Question::SHORT_QUESTION_MAX_LENGTH)
     }
   end
 end
