@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import { Alert } from 'bootstrap';
 
 export default class extends Controller {
   static values = {
@@ -15,5 +16,8 @@ export default class extends Controller {
 
   close(): void {
     window.localStorage.setItem(`announcement${this.idValue}`, 'true');
+
+    const alert = Alert.getOrCreateInstance(this.element);
+    alert.close();
   }
 }
