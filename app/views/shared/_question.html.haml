@@ -1,6 +1,6 @@
 - type ||= nil
 .card.questionbox{ data: { id: q.id } }
-  .card-body
+  .card-body{ data: { controller: q.long? ? "collapse" : nil } }
     .d-flex
       - if type == 'discover'
         .flex-shrink-0
@@ -13,8 +13,10 @@
             ·
             %a{ href: question_path(q.user.screen_name, q.id) }
               = pluralize(q.answer_count, t("voc.answer"))
-        .answerbox__question-text
+        .answerbox__question-text{ class: q.long? ? 'collapsed' : '', data: { collapse_target: "content" } }
           = question_markdown q.content
+        - if q.long?
+          = render "shared/collapse", type: "question"
       - if user_signed_in?
         .flex-shrink-0.ms-auto
           .btn-group
