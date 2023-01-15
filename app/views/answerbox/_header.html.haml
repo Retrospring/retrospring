@@ -13,7 +13,7 @@
           ·
           %a{ href: question_path(a.question.user.screen_name, a.question.id) }
             = t(".answers", count: a.question.answer_count)
-      .answerbox__question-body{ data: { controller: "collapse" } }
+      .answerbox__question-body{ data: { controller: a.question.long? ? "collapse" : nil } }
         .answerbox__question-text{ class: a.question.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }
           = question_markdown a.question.content
         - if a.question.long? && !display_all

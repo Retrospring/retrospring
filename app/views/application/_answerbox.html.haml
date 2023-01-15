@@ -3,7 +3,7 @@
   - if @question.nil?
     = render "answerbox/header", a: a, display_all: display_all
   .card-body
-    .answerbox__answer-body{ data: { controller: "collapse" } }
+    .answerbox__answer-body{ data: { controller: a.long? ? "collapse" : nil } }
       .answerbox__answer-text{ class: a.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }
         = markdown a.content
       - if a.long? && !display_all
