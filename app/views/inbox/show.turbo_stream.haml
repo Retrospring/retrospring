@@ -4,5 +4,4 @@
 
 = turbo_stream.update "paginator" do
   - if @more_data_available
-    = button_to t("voc.load"), inbox_path(last_id: @inbox_last_id), class: "btn btn-light"
-
+    = button_to t("voc.load"), inbox_path, class: "btn btn-light", method: :get, params: { last_id: @inbox_last_id }, form: { data: { "turbo-stream" => true } }

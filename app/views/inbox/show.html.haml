@@ -7,5 +7,4 @@
 
 - if @more_data_available
   .d-flex.justify-content-center#paginator
-    = button_to inbox_path(last_id: @inbox_last_id), class: "btn btn-light" do
-      = t("voc.load")
+    = button_to t("voc.load"), inbox_path, class: "btn btn-light", method: :get, params: { last_id: @inbox_last_id }, form: { data: { "turbo-stream" => true } }
