@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss"
+  ],
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "scss/at-import-partial-extension": null,
+    "scss/at-rule-no-unknown": true,
+    "at-rule-no-unknown": null,
+    "color-hex-length": "long",
+    "color-hex-case": "upper",
+    "comment-whitespace-inside": null,
+    "declaration-block-no-duplicate-properties": true,
+    "function-name-case": null,
+    "max-empty-lines": 2,
+    "number-leading-zero": "always",
+    "no-descending-specificity": null,
+    "no-duplicate-at-import-rules": true,
+    "rule-empty-line-before": ["always-multi-line", {"ignore": ["after-comment"]}],
+    "shorthand-property-no-redundant-values": [true, {"severity": "warning"}],
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "selector-max-id": 1,
+    "string-quotes": "double",
+    "value-keyword-case": "lower"
+  }
+}
