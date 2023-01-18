@@ -1,50 +1,21 @@
+# frozen_string_literal: true
+
 class InboxController < ApplicationController
   before_action :authenticate_user!
 
+  before_action :find_author, only: %i[show]
+
   def show
-    @inbox = current_user.cursored_inbox(last_id: params[:last_id])
+    @inbox = current_user.cursored_inbox(last_id: params[:last_id]).then(&method(:filter_author_chain))
     @inbox_last_id = @inbox.map(&:id).min
-    @more_data_available = !current_user.cursored_inbox(last_id: @inbox_last_id, size: 1).count.zero?
-    @inbox_count = current_user.inboxes.count
+    @more_data_available = !current_user.cursored_inbox(last_id: @inbox_last_id, size: 1).then(&method(:filter_author_chain)).count.zero?
+    @inbox_count = current_user.inboxes.then(&method(:filter_author_chain)).count
 
-    if params[:author].present?
-      begin
-        @author = true
-        @target_user = User.where('LOWER(screen_name) = ?', params[:author].downcase).first!
-        @inbox_author = @inbox.joins(:question)
-                              .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
-        @inbox_author_count = current_user.inboxes
-                                          .joins(:question)
-                                          .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
-                                          .count
-
-        if @inbox_author.empty?
-          @empty = true
-          flash.now[:info] = t(".author.info", author: params[:author])
-        else
-          @inbox = @inbox_author
-          @inbox_count = @inbox_author_count
-          @inbox_last_id = @inbox.map(&:id).min
-          @more_data_available = !current_user.cursored_inbox(last_id: @inbox_last_id, size: 1)
-                                              .joins(:question)
-                                              .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
-                                              .count
-                                              .zero?
-        end
-      rescue => e
-        Sentry.capture_exception(e)
-        flash.now[:error] = t(".author.error", author: params[:author])
-        @not_found = true
-      end
-    end
-
-    if @empty or @not_found
-      @delete_id = "ib-delete-all"
-    elsif @author
-      @delete_id = "ib-delete-all-author"
-    else
-      @delete_id = "ib-delete-all"
-    end
+    @delete_id = if @author_user && @inbox_count.positive?
+                   "ib-delete-all-author"
+                 else
+                   "ib-delete-all"
+                 end
 
     @disabled = true if @inbox.empty?
     respond_to do |format|
@@ -74,5 +45,24 @@ class InboxController < ApplicationController
 
       format.html { redirect_to inbox_path }
     end
+  end
+
+  private
+
+  def find_author
+    return if params[:author].blank?
+
+    @author = params[:author]
+
+    @author_user = User.where("LOWER(screen_name) = ?", @author.downcase).first
+    flash.now[:error] = t(".author.error", author: @author) unless @author_user
+  end
+
+  def filter_author_chain(query)
+    return query unless @author_user
+
+    query
+      .joins(:question)
+      .where(questions: { user: @author_user, author_is_anonymous: false })
   end
 end
