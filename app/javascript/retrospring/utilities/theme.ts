@@ -32,7 +32,6 @@ export const getDecimalTripletsFromHex = (hex: string): string => {
 }
 
 export const getIntegerFromHexColor = (hex: string): number => {
-  console.log(hex, hex.substr(1, 6), parseInt(hex.substr(1, 6), 16));
   return parseInt(hex.substr(1, 6), 16);
 }
 
