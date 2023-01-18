@@ -53,3 +53,22 @@ jobs:
         with:
           reporter: github-check
           rubocop_version: gemfile
+
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Set up Node 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Install node modules
+        run: |
+          npm i -g yarn
+          yarn install --frozen-lockfile
+      - name: stylelint
+        uses: pixeldesu/action-stylelint@5ec750b03a94da735352bdb02e9dfc3d5af33aba
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          stylelint_input: 'app/assets/stylesheets/**/*.scss'
