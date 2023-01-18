@@ -1,0 +1,55 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Run rubocop
+        uses: reviewdog/action-rubocop@v2
+        with:
+          rubocop_version: gemfile
+          rubocop_extensions: rubocop-rails:gemfile
+          reporter: github-pr-check
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Set up Node 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Install node modules
+        run: |
+          npm i -g yarn
+          yarn install --frozen-lockfile
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-check
+          eslint_flags: '--ext .ts app/javascript'
+
+  haml-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: patch-technology/action-haml-lint@0.4
+        with:
+          reporter: github-check
+          rubocop_version: gemfile
