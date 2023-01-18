@@ -11,6 +11,11 @@ class InboxController < ApplicationController
     @more_data_available = !current_user.cursored_inbox(last_id: @inbox_last_id, size: 1).then(&method(:filter_author_chain)).count.zero?
     @inbox_count = current_user.inboxes.then(&method(:filter_author_chain)).count
 
+    if @author_user && @inbox_count.zero?
+      flash[:info] = t(".author.info", author: @author)
+      redirect_to inbox_path(last_id: params[:last_id])
+    end
+
     @delete_id = if @author_user && @inbox_count.positive?
                    "ib-delete-all-author"
                  else
