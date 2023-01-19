@@ -3,24 +3,17 @@
 class InboxController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :find_author, only: %i[show]
-
   def show
-    @inbox = current_user.cursored_inbox(last_id: params[:last_id]).then(&method(:filter_author_chain))
-    @inbox_last_id = @inbox.map(&:id).min
-    @more_data_available = !current_user.cursored_inbox(last_id: @inbox_last_id, size: 1).then(&method(:filter_author_chain)).count.zero?
-    @inbox_count = current_user.inboxes.then(&method(:filter_author_chain)).count
+    find_author
+    find_inbox_entries
 
     if @author_user && @inbox_count.zero?
-      flash[:info] = t(".author.info", author: @author)
+      # rubocop disabled because of a false positive
+      flash[:info] = t(".author.info", author: @author) # rubocop:disable Rails/ActionControllerFlashBeforeRender
       redirect_to inbox_path(last_id: params[:last_id])
     end
 
-    @delete_id = if @author_user && @inbox_count.positive?
-                   "ib-delete-all-author"
-                 else
-                   "ib-delete-all"
-                 end
+    @delete_id = find_delete_id
 
     @disabled = true if @inbox.empty?
     respond_to do |format|
@@ -28,7 +21,8 @@ class InboxController < ApplicationController
       format.turbo_stream do
         render "show", layout: false, status: :see_other
 
-        @inbox.update_all(new: false)
+        # rubocop disabled as just flipping a flag doesn't need to have validations to be run
+        @inbox.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
       end
     end
   end
@@ -61,6 +55,19 @@ class InboxController < ApplicationController
 
     @author_user = User.where("LOWER(screen_name) = ?", @author.downcase).first
     flash.now[:error] = t(".author.error", author: @author) unless @author_user
+  end
+
+  def find_inbox_entries
+    @inbox = current_user.cursored_inbox(last_id: params[:last_id]).then(&method(:filter_author_chain))
+    @inbox_last_id = @inbox.map(&:id).min
+    @more_data_available = current_user.cursored_inbox(last_id: @inbox_last_id, size: 1).then(&method(:filter_author_chain)).count.positive?
+    @inbox_count = current_user.inboxes.then(&method(:filter_author_chain)).count
+  end
+
+  def find_delete_id
+    return "ib-delete-all-author" if @author_user && @inbox_count.positive?
+
+    "ib-delete-all"
   end
 
   def filter_author_chain(query)
