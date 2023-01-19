@@ -1,10 +1,14 @@
 #entries
   - @inbox.each do |i|
-    = render "inbox/entry", i: i
+    = render "inbox/entry", i:
 
   - if @inbox.empty?
     %p.empty= t(".empty")
 
 - if @more_data_available
   .d-flex.justify-content-center#paginator
-    = button_to t("voc.load"), inbox_path, class: "btn btn-light", method: :get, params: { last_id: @inbox_last_id, author: @author }.compact, form: { data: { turbo_stream: true } }
+    = button_to t("voc.load"), inbox_path,
+      class: "btn btn-light",
+      method: :get,
+      params: { last_id: @inbox_last_id, author: @author }.compact,
+      form: { data: { turbo_stream: true } }
