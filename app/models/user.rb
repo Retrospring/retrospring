@@ -63,7 +63,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   validates :email, fake_email: true, typoed_email: true
   validates :screen_name,
             presence:    true,
-            format:      { with: SCREEN_NAME_REGEX },
+            format:      { with: SCREEN_NAME_REGEX, message: I18n.t("activerecord.validation.user.screen_name.format") },
             length:      { minimum: 1, maximum: 16 },
             uniqueness:  { case_sensitive: false },
             screen_name: true
