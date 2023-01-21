@@ -18,7 +18,10 @@
 
 - if @more_data_available
   .d-flex.justify-content-center.justify-content-sm-start#paginator
-    = button_to notifications_path(last_id: @notifications_last_id, type: params[:type]), class: "btn btn-light" do
-      = t("voc.load")
+    = button_to t("voc.load"), notifications_path(type: params[:type]),
+      class: "btn btn-light",
+      method: :get,
+      params: { last_id: @notifications_last_id },
+      form: { data: { turbo_stream: true } }
 
 - provide(:title, generate_title(t(".title")))
