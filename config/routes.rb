@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :user do
-    root to: "timeline#index", via: [:get, :post], as: :timeline
+    root to: "timeline#index", via: :get, as: :timeline
   end
 
   get "/about", to: "about#about"
@@ -143,8 +143,8 @@ Rails.application.routes.draw do
   resource :anonymous_block, controller: :anonymous_block, only: %i[create destroy]
 
   get "/discover", to: "discover#index", as: :discover
-  match "/public", to: "timeline#public", via: [:get, :post], as: :public_timeline if APP_CONFIG.dig(:features, :public, :enabled)
-  match "/list/:list_name", to: "timeline#list", via: [:get, :post], as: :list_timeline
+  get "/public", to: "timeline#public", as: :public_timeline if APP_CONFIG.dig(:features, :public, :enabled)
+  get "/list/:list_name", to: "timeline#list", as: :list_timeline
 
   match "/notifications(/:type)", to: "notifications#index", via: [:get, :post], as: :notifications, defaults: { type: "new" }
 

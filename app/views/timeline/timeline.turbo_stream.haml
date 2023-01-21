@@ -4,5 +4,8 @@
 
 = turbo_stream.update "paginator" do
   - if @more_data_available
-    = button_to "#{request.path}?last_id=#{@timeline_last_id}", class: "btn btn-light" do
-      = t("voc.load")
+    = button_to t("voc.load"), request.path,
+      class: "btn btn-light",
+      method: :get,
+      params: { last_id: @timeline_last_id },
+      form: { data: { turbo_stream: true } }
