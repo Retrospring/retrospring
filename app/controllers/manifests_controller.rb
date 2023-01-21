@@ -7,7 +7,7 @@ class ManifestsController < ApplicationController
     render json: {
       name:             APP_CONFIG["site_name"],
       description:      t("about.about.subtitle"),
-      start_url:        root_url(source: "pwa"),
+      start_url:        root_url,
       scope:            root_url,
       display:          "standalone",
       categories:       %w[social],
