@@ -52,6 +52,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
+          cache: 'yarn'
       - name: Copy default configuration
         run: |
           cp config/database.yml.postgres config/database.yml
