@@ -82,6 +82,7 @@ en:
         updated_at: "Account updated at"
     help:
       user:
+        screen_name: "Alphanumerical and underscores allowed, max. 16 characters"
         email: "Don't forget to check your spam folder in case our email might have landed there!"
         current_password: "We need your current password to confirm your changes"
       profile:
