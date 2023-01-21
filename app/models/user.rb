@@ -53,7 +53,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
                           foreign_key: "banned_by_id",
                           dependent:   :nullify
 
-  SCREEN_NAME_REGEX = /[a-zA-Z0-9_]/
+  SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]+\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.-]+)\/?(?:.*)/i
 
   before_validation do
