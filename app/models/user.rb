@@ -53,7 +53,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
                           foreign_key: "banned_by_id",
                           dependent:   :nullify
 
-  SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]{1,16}\z/
+  SCREEN_NAME_REGEX = /[a-zA-Z0-9_]/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.-]+)\/?(?:.*)/i
 
   before_validation do
@@ -61,7 +61,12 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   validates :email, fake_email: true, typoed_email: true
-  validates :screen_name, presence: true, format: { with: SCREEN_NAME_REGEX }, uniqueness: { case_sensitive: false }, screen_name: true
+  validates :screen_name,
+            presence:    true,
+            format:      { with: SCREEN_NAME_REGEX },
+            length:      { minimum: 1, maximum: 16 },
+            uniqueness:  { case_sensitive: false },
+            screen_name: true
 
   mount_uploader :profile_picture, ProfilePictureUploader, mount_on: :profile_picture_file_name
   process_in_background :profile_picture
