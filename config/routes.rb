@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :user do
-    root to: "timeline#index", via: :get, as: :timeline
+    root to: "timeline#index", as: :timeline
   end
 
   get "/about", to: "about#about"
@@ -151,21 +151,21 @@ Rails.application.routes.draw do
   post "/inbox/create", to: "inbox#create", as: :inbox_create
   get "/inbox", to: "inbox#show", as: :inbox
 
-  get "/user/:username(/p/:page)", to: "user#show", defaults: { page: 1 }
-  get "/@:username(/p/:page)", to: "user#show", as: :user, defaults: { page: 1 }
-  get "/@:username/a/:id", to: "answer#show", via: "get", as: :answer
+  get "/user/:username", to: "user#show"
+  get "/@:username", to: "user#show", as: :user
+  get "/@:username/a/:id", to: "answer#show", as: :answer
   get "/@:username/q/:id", to: "question#show", as: :question
-  get "/@:username/followers(/p/:page)", to: "user#followers", as: :show_user_followers, defaults: { page: 1 }
-  get "/@:username/followings(/p/:page)", to: "user#followings", as: :show_user_followings, defaults: { page: 1 }
-  get "/@:username/friends(/p/:page)", to: redirect("/@%{username}/followings/p/%{page}"), defaults: { page: 1 }
-  get "/@:username/questions(/p/:page)", to: "user#questions", as: :show_user_questions, defaults: { page: 1 }
-  get "/:username(/p/:page)", to: "user#show", as: :user_alt, defaults: { page: 1 }
+  get "/@:username/followers", to: "user#followers", as: :show_user_followers
+  get "/@:username/followings", to: "user#followings", as: :show_user_followings
+  get "/@:username/friends", to: redirect("/@%{username}/followings/p/%{page}")
+  get "/@:username/questions", to: "user#questions", as: :show_user_questions
+  get "/:username", to: "user#show", as: :user_alt
   get "/:username/a/:id", to: "answer#show", as: :answer_alt
   get "/:username/q/:id", to: "question#show", as: :question_alt
-  get "/:username/followers(/p/:page)", to: "user#followers", as: :show_user_followers_alt, defaults: { page: 1 }
-  get "/:username/followings(/p/:page)", to: "user#followings", as: :show_user_followings_alt, defaults: { page: 1 }
-  get "/:username/friends(/p/:page)", to: redirect("/%{username}/followings/p/%{page}"), defaults: { page: 1 }
-  get "/:username/questions(/p/:page)", to: "user#questions", as: :show_user_questions_alt, defaults: { page: 1 }
+  get "/:username/followers", to: "user#followers", as: :show_user_followers_alt
+  get "/:username/followings", to: "user#followings", as: :show_user_followings_alt
+  get "/:username/friends", to: redirect("/%{username}/followings/p/%{page}")
+  get "/:username/questions", to: "user#questions", as: :show_user_questions_alt
 
   get "/feedback/consent", to: "feedback#consent", as: "feedback_consent"
   post "/feedback/consent/update", to: "feedback#update", as: "feedback_consent_update"
