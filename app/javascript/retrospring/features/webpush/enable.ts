@@ -1,6 +1,7 @@
 import { get, post } from '@rails/request.js';
 import I18n from "retrospring/i18n";
 import { showNotification } from "utilities/notifications";
+import { Buffer } from "buffer";
 
 export function enableHandler (event: Event): void {
   event.preventDefault();

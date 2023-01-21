@@ -15,6 +15,7 @@
     "@popperjs/core": "^2.11",
     "@rails/request.js": "^0.0.8",
     "bootstrap": "^5.2",
+    "buffer": "^6.0.3",
     "cheet.js": "^0.3.3",
     "croppr": "^2.3.1",
     "i18n-js": "^4.0",
