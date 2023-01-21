@@ -39,8 +39,10 @@ class ManifestsController < ApplicationController
   def webapp_icons
     %i[1024 512 384 192 128 96 72 48].map do |size|
       [
-        { src: "/icons/icon_x#{size}.webp", sizes: "#{size}x#{size}", type: "image/webp" },
-        { src: "/icons/icon_x#{size}.png", sizes: "#{size}x#{size}", type: "image/png" }
+        { src: "/icons/icon_x#{size}.webp", sizes: "#{size}x#{size}", type: "image/webp", purpose: "any" },
+        { src: "/icons/icon_x#{size}.png", sizes: "#{size}x#{size}", type: "image/png", purpose: "any" },
+        { src: "/icons/maskable_icon_x#{size}.webp", sizes: "#{size}x#{size}", type: "image/webp", purpose: "maskable" },
+        { src: "/icons/maskable_icon_x#{size}.png", sizes: "#{size}x#{size}", type: "image/png", purpose: "maskable" }
       ]
     end.flatten
   end
