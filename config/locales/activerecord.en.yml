@@ -96,6 +96,10 @@ en:
         primary_color: "The primary/brand colour of the site, used for navigation, links, etc."
         success_color: "Colour used for messages if something went through successfully."
         warning_color: "Colour used for warnings if something non-critical has happened."
+    validation:
+      user:
+        screen_name:
+          format: "contains invalid characters"
   helpers:
     submit:
       user:
