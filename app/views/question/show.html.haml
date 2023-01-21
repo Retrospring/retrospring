@@ -8,8 +8,11 @@
 
   - if @more_data_available
     .d-flex.justify-content-center.justify-content-sm-start#paginator
-      = button_to question_path(@question.user.screen_name, @question.id, last_id: @answers_last_id), class: "btn btn-light" do
-        = t("voc.load")
+      = button_to t("voc.load"), question_path(@question.user.screen_name, @question.id),
+        class: "btn btn-light",
+        method: :get,
+        params: { last_id: @answers_last_id },
+        form: { data: { turbo_stream: true } }
 
   - if user_signed_in? && !current_user.answered?(@question) && current_user != @question.user && @question.user&.privacy_allow_stranger_answers
     .card#q-answer-box
