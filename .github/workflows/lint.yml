@@ -32,6 +32,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
+          cache: 'yarn'
       - name: Install node modules
         run: |
           npm i -g yarn
@@ -62,6 +63,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
+          cache: 'yarn'
       - name: Install node modules
         run: |
           npm i -g yarn
