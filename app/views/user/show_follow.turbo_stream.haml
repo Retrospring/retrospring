@@ -5,9 +5,8 @@
 
 = turbo_stream.update "paginator" do
   - if @more_data_available
-    - if @type === :follower
-      = button_to show_user_followers_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
-        = t("voc.load")
-    - else
-      = button_to show_user_followings_path(@user, last_id: @relationships_last_id), class: "btn btn-light" do
-        = t("voc.load")
+    = button_to t("voc.load"), @type == :follower ? show_user_followers_path(@user) : show_user_followings_path(@user),
+      class: "btn btn-light",
+      method: :get,
+      params: { last_id: @relationships_last_id },
+      form: { data: { turbo_stream: true } }
