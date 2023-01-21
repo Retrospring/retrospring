@@ -5,8 +5,11 @@
 
 - if @more_data_available
   .d-flex.justify-content-center.justify-content-sm-start#paginator
-    = button_to user_path(@user, last_id: @answers_last_id), class: "btn btn-light" do
-      = t("voc.load")
+    = button_to t("voc.load"), user_path(@user),
+      class: "btn btn-light",
+      method: :get,
+      params: { last_id: @answers_last_id },
+      form: { data: { turbo_stream: true } }
 
 :ruby
   provide(:title, user_title(@user))
