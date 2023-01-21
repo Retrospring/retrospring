@@ -82,6 +82,7 @@ en:
         updated_at: "Account updated at"
     help:
       user:
+        screen_name: "Alphanumerical and underscores allowed, max. 16 characters"
         email: "Don't forget to check your spam folder in case our email might have landed there!"
         current_password: "We need your current password to confirm your changes"
       profile:
@@ -95,6 +96,10 @@ en:
         primary_color: "The primary/brand colour of the site, used for navigation, links, etc."
         success_color: "Colour used for messages if something went through successfully."
         warning_color: "Colour used for warnings if something non-critical has happened."
+    validation:
+      user:
+        screen_name:
+          format: "contains invalid characters"
   helpers:
     submit:
       user:

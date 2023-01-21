@@ -1,6 +1,5 @@
 import start from 'retrospring/common';
 import initAnswerbox from 'retrospring/features/answerbox/index';
-import initCapabilities from 'retrospring/features/capabilities';
 import initInbox from 'retrospring/features/inbox/index';
 import initUser from 'retrospring/features/user';
 import initSettings from 'retrospring/features/settings/index';
@@ -14,7 +13,6 @@ import initWebpush from 'retrospring/features/webpush';
 import initWebpushSettingsButtons from 'retrospring/features/webpush/settingsButtons';
 
 start();
-document.addEventListener('turbo:load', initCapabilities);
 document.addEventListener('DOMContentLoaded', initAnswerbox);
 document.addEventListener('DOMContentLoaded', initInbox);
 document.addEventListener('DOMContentLoaded', initUser);

@@ -6,6 +6,7 @@ import CharacterCountWarningController from "retrospring/controllers/character_c
 import FormatPopupController from "retrospring/controllers/format_popup_controller";
 import CollapseController from "retrospring/controllers/collapse_controller";
 import ThemeController from "retrospring/controllers/theme_controller";
+import CapabilitiesController from "retrospring/controllers/capabilities_controller";
 
 /**
  * This module sets up Stimulus and our controllers
@@ -18,6 +19,7 @@ export default function (): void {
   window['Stimulus'] = Application.start();
   window['Stimulus'].register('announcement', AnnouncementController);
   window['Stimulus'].register('autofocus', AutofocusController);
+  window['Stimulus'].register('capabilities', CapabilitiesController);
   window['Stimulus'].register('character-count', CharacterCountController);
   window['Stimulus'].register('character-count-warning', CharacterCountWarningController);
   window['Stimulus'].register('collapse', CollapseController);
