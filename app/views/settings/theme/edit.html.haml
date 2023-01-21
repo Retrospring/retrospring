@@ -7,7 +7,10 @@
     - if current_user.theme
       .pull-right
         = link_to t(".delete"), settings_theme_path, data: { turbo_confirm: t("voc.confirm"), turbo_method: :delete }, tabindex: -1, class: "btn btn-danger"
-= bootstrap_form_for(current_user.theme || Theme.new, html: { id: "update" }, method: :patch, data: { turbo: false }) do |f|
+= bootstrap_form_for(current_user.theme || Theme.new,
+  html: { id: "update" },
+  method: :patch,
+  data: { turbo: false, controller: "theme", action: "theme#submit" }) do |f|
   .card
     .card-body
       %h2= t(".general.heading")
@@ -15,9 +18,9 @@
 
       .row
         .col-sm-6
-          = f.text_field :background_color, class: "color", data: { default: 0xF0EDF4 }
+          = f.text_field :background_color, class: "color", data: { default: 0xF0EDF4, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :body_text, class: "color", data: { default: 0x000000 }
+          = f.text_field :body_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
   .card
     .card-body
       %h2= t(".colors.heading")
@@ -25,56 +28,56 @@
 
       .row
         .col-sm-6
-          = f.text_field :primary_color, class: "color", data: { default: 0x5E35B1 }
+          = f.text_field :primary_color, class: "color", data: { default: 0x5E35B1, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :primary_text, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :primary_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-12
           .alert.alert-primary= t(".colors.alert.example", type: t(".colors.alert.type.primary"))
       .row
         .col-sm-6
-          = f.text_field :danger_color, class: "color", data: { default: 0xDC3545 }
+          = f.text_field :danger_color, class: "color", data: { default: 0xDC3545, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :danger_text, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :danger_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-12
           .alert.alert-danger= t(".colors.alert.example", type: t(".colors.alert.type.danger"))
       .row
         .col-sm-6
-          = f.text_field :warning_color, class: "color", data: { default: 0xFFC107 }
+          = f.text_field :warning_color, class: "color", data: { default: 0xFFC107, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :warning_text, class: "color", data: { default: 0x292929 }
+          = f.text_field :warning_text, class: "color", data: { default: 0x292929, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-12
           .alert.alert-warning= t(".colors.alert.example", type: t(".colors.alert.type.warning"))
       .row
         .col-sm-6
-          = f.text_field :info_color, class: "color", data: { default: 0x17A2B8 }
+          = f.text_field :info_color, class: "color", data: { default: 0x17A2B8, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :info_text, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :info_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-12
           .alert.alert-info= t(".colors.alert.example", type: t(".colors.alert.type.info"))
       .row
         .col-sm-6
-          = f.text_field :success_color, class: "color", data: { default: 0x28A745 }
+          = f.text_field :success_color, class: "color", data: { default: 0x28A745, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :success_text, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :success_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-12
           .alert.alert-success= t(".colors.alert.example", type: t(".colors.alert.type.success"))
       .row
         .col-sm-6
-          = f.text_field :dark_color, class: "color", data: { default: 0x343A40 }
+          = f.text_field :dark_color, class: "color", data: { default: 0x343A40, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :dark_text, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :dark_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-12
           %a.btn.btn-dark.mb-3{ href: "#" }= t(".colors.button.example", type: t(".colors.button.type.dark"))
       .row
         .col-sm-6
-          = f.text_field :light_color, class: "color", data: { default: 0xF8F9FA }
+          = f.text_field :light_color, class: "color", data: { default: 0xF8F9FA, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :light_text, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :light_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-12
           %a.btn.btn-light.mb-3{ href: "#" }= t(".colors.button.example", type: t(".colors.button.type.light"))
       .row
         .col-sm-6
-          = f.text_field :muted_text, class: "color", data: { default: 0x6C757D }
+          = f.text_field :muted_text, class: "color", data: { default: 0x6C757D, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
           %p.pt-4.text-muted= t(".colors.text.example")
   .card
@@ -84,16 +87,16 @@
 
       .row
         .col-sm-6
-          = f.text_field :input_color, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :input_color, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
         .col-sm-6
-          = f.text_field :input_text, class: "color", data: { default: 0x000000 }
+          = f.text_field :input_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
 
       .row
         .col-sm-6
-          = f.text_field :input_placeholder, class: "color", data: { default: 0x6C757D }
+          = f.text_field :input_placeholder, class: "color", data: { default: 0x6C757D, theme_target: "color" }
         .col-sm-6
           .form-group
-            %label Example Input
+            %label.form-label Example Input
             %input.form-control{ placeholder: "A test placeholder" }
   .card
     .card-body
@@ -102,9 +105,9 @@
 
       .row
         .col-sm-6
-          = f.text_field :raised_background, class: "color", data: { default: 0xFFFFFF }
+          = f.text_field :raised_background, class: "color", data: { default: 0xFFFFFF, theme_target: "color" }
         .col-sm-6
-          = f.text_field :raised_accent, class: "color", data: { default: 0xF7F7F7 }
+          = f.text_field :raised_accent, class: "color", data: { default: 0xF7F7F7, theme_target: "color" }
     .card-footer
       %p= t(".raised.accent.example")
   .card

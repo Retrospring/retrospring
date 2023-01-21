@@ -5,6 +5,7 @@ import CharacterCountController from "retrospring/controllers/character_count_co
 import CharacterCountWarningController from "retrospring/controllers/character_count_warning_controller";
 import FormatPopupController from "retrospring/controllers/format_popup_controller";
 import CollapseController from "retrospring/controllers/collapse_controller";
+import ThemeController from "retrospring/controllers/theme_controller";
 import CapabilitiesController from "retrospring/controllers/capabilities_controller";
 
 /**
@@ -23,4 +24,5 @@ export default function (): void {
   window['Stimulus'].register('character-count-warning', CharacterCountWarningController);
   window['Stimulus'].register('collapse', CollapseController);
   window['Stimulus'].register('format-popup', FormatPopupController);
+  window['Stimulus'].register('theme', ThemeController);
 }
