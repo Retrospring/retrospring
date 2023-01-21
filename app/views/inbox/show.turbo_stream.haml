@@ -1,8 +1,11 @@
 = turbo_stream.append "entries" do
   - @inbox.each do |i|
-    = render "inbox/entry", i: i
+    = render "inbox/entry", i:
 
 = turbo_stream.update "paginator" do
   - if @more_data_available
-    = button_to t("voc.load"), inbox_path(last_id: @inbox_last_id), class: "btn btn-light"
-
+    = button_to t("voc.load"), inbox_path,
+      class: "btn btn-light",
+      method: :get,
+      params: { last_id: @inbox_last_id, author: @author }.compact,
+      form: { data: { turbo_stream: true } }
