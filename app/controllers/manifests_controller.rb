@@ -6,7 +6,7 @@ class ManifestsController < ApplicationController
   def show
     render json: {
       name:             APP_CONFIG["site_name"],
-      description:      t("about.about.subtitle"),
+      description:      t("about.index.subtitle"),
       start_url:        root_url,
       scope:            root_url,
       display:          "standalone",
