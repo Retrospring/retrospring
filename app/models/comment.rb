@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   validates :answer_id, presence: true
   has_many :smiles, class_name: "Appendable::Reaction", foreign_key: :parent_id, dependent: :destroy
 
-  validates :content, length: { maximum: 160 }
+  validates :content, length: { maximum: 512 }
 
   # rubocop:disable Rails/SkipsModelValidations
   after_create do
