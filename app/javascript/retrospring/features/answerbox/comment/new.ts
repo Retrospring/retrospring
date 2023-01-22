@@ -19,7 +19,7 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
   if (event.which === 13) {
     event.preventDefault();
 
-    if (input.value.length > 160) {
+    if (input.value.length > 512) {
       group.classList.add('has-error');
       return true;
     }
@@ -43,7 +43,7 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
             commentCount.innerHTML = data.count;
           }
           input.value = '';
-          counter.innerHTML = String(160);
+          counter.innerHTML = String(512);
 
           const sub = document.querySelector<HTMLElement>(`[data-action=ab-submarine][data-a-id="${id}"]`);
           sub.dataset.torpedo = "no"
