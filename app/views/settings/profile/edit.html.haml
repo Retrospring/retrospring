@@ -3,31 +3,31 @@
     = bootstrap_form_for(current_user, url: settings_profile_picture_path, html: { multipart: true }, method: :patch, data: { turbo: false }) do |f|
 
       %div{ data: { controller: "cropper", cropper_aspect_ratio_value: "1"}}
-        .d-flex#profile-picture-media
+        .d-flex
           .flex-shrink-0
             %img.avatar-lg.me-3{ src: current_user.profile_picture.url(:medium) }
           .flex-grow-1
             = f.file_field :profile_picture, accept: APP_CONFIG[:accepted_image_formats].join(","), data: { cropper_target: "input", action: "cropper#change" }
 
-        .row.d-none#profile-picture-crop-controls{ data: { cropper_target: "controls" } }
+        .row.d-none{ data: { cropper_target: "controls" } }
           .col-sm-10.col-md-8
             %strong= t(".adjust.profile_picture")
-            %img#profile-picture-cropper{ src: current_user.profile_picture.url(:medium), data: { cropper_target: "cropper" } }
+            %img{ src: current_user.profile_picture.url(:medium), data: { cropper_target: "cropper" } }
 
         - %i[profile_picture_x profile_picture_y profile_picture_w profile_picture_h].each do |attrib|
           = f.hidden_field attrib, id: attrib, data: { cropper_target: attrib.to_s.split("_").last }
 
       %div{ data: { controller: "cropper", cropper_aspect_ratio_value: "0.23"}}
-        .row.mb-2#profile-header-media
+        .row.mb-2
           .col-xs-12.col-md-6
             %img.mw-100.me-3{ src: current_user.profile_header.url(:mobile) }
           .col-xs-12.col-md-6.mt-3.mt-sm-0.ps-3.pe-3
             = f.file_field :profile_header, accept: APP_CONFIG[:accepted_image_formats].join(","), data: { cropper_target: "input", action: "cropper#change" }
 
-        .row.d-none#profile-header-crop-controls{ data: { cropper_target: "controls" } }
+        .row.d-none{ data: { cropper_target: "controls" } }
           .col-sm-10.col-md-8
             %strong= t(".adjust.profile_header")
-            %img#profile-header-cropper{ src: current_user.profile_header.url(:web), data: { cropper_target: "cropper" } }
+            %img{ src: current_user.profile_header.url(:web), data: { cropper_target: "cropper" } }
 
         - %i[profile_header_x profile_header_y profile_header_w profile_header_h].each do |attrib|
           = f.hidden_field attrib, id: attrib, data: { cropper_target: attrib.to_s.split("_").last }
