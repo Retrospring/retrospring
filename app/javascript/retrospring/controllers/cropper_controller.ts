@@ -18,18 +18,18 @@ export default class extends Controller {
 
   declare readonly aspectRatioValue: string;
 
-  readImage(file, callback) {
+  readImage(file: File, callback: (string) => void): void {
     callback((window.URL || window.webkitURL).createObjectURL(file));
   }
 
-  updateValues(data) {
+  updateValues(data: Record<string, string>): void {
     this.xTarget.value = data.x;
     this.yTarget.value = data.y;
     this.wTarget.value = data.width;
     this.hTarget.value = data.height;
   }
 
-  change() {
+  change(): void {
     this.controlsTarget.classList.toggle('d-none');
 
     if (this.inputTarget.files && this.inputTarget.files[0]) {

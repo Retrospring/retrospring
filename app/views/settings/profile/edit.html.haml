@@ -2,7 +2,7 @@
   .card-body
     = bootstrap_form_for(current_user, url: settings_profile_picture_path, html: { multipart: true }, method: :patch, data: { turbo: false }) do |f|
 
-      %div{ data: { controller: "cropper", cropper_aspect_ratio_value: "1"}}
+      %div{ data: { controller: "cropper", cropper_aspect_ratio_value: "1" } }
         .d-flex
           .flex-shrink-0
             %img.avatar-lg.me-3{ src: current_user.profile_picture.url(:medium) }
@@ -17,7 +17,7 @@
         - %i[profile_picture_x profile_picture_y profile_picture_w profile_picture_h].each do |attrib|
           = f.hidden_field attrib, id: attrib, data: { cropper_target: attrib.to_s.split("_").last }
 
-      %div{ data: { controller: "cropper", cropper_aspect_ratio_value: "0.23"}}
+      %div{ data: { controller: "cropper", cropper_aspect_ratio_value: "0.23" } }
         .row.mb-2
           .col-xs-12.col-md-6
             %img.mw-100.me-3{ src: current_user.profile_header.url(:mobile) }
