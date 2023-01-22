@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>You are offline</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f0edf4">
+  <style>
+    :root {
+      --primary: #5e35b1;
+      --muted: 108, 117, 125;
+      --background: #f0edf4;
+    }
+
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    body {
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      background-color: var(--background);
+    }
+
+    .text-primary {
+      color: var(--primary);
+    }
+
+    .text-muted {
+      color: rgb(var(--muted));
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .font-weight-bold {
+      font-weight: bold;
+    }
+
+    .d-none {
+      display: none !important;
+    }
+
+    .links {
+      padding: 0;
+    }
+
+    .links li {
+      display: inline-block;
+    }
+
+    .links li:not(:last-child):after {
+      content: ' • ';
+    }
+
+    .mb-0 {
+      margin-bottom: 0;
+    }
+
+    .mt-0 {
+      margin-top: 0;
+    }
+
+    .error-artwork-container {
+      display:flex;
+      justify-content: center;
+      max-width: 100%;
+    }
+
+    .error-artwork-container picture {
+      display: block;
+      max-width: 100%;
+    }
+
+    .error-artwork-container picture img {
+      max-width: 100%;
+    }
+
+    .error-text-container {
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding: 3rem 1rem 1rem 1rem;
+      }
+
+      .error-artwork-container picture {
+        width: 576px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      body {
+        padding: 5rem 1rem 3rem 1rem;
+      }
+
+      .error {
+        display: flex;
+        justify-content: center;
+      }
+
+      .error-text-container {
+        align-self: center;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error">
+    <div class="error-artwork-container">
+      <picture>
+        <source
+          srcset="/images/errors/small/404.png 576w,
+                  /images/errors/medium/404.png 768w,
+                  /images/errors/original/404.png 1200w">
+        <img src="/images/errors/small/404.png" alt="A raccoon peeking out of a bin, looking confused" />
+      </picture>
+    </div>
+    <div class="error-text-container">
+      <h1>
+        <small class="text-primary">You are offline</small>
+      </h1>
+      <p>
+        This content is not available offline.
+      </p>
+      <ul class="links">
+        <li>
+          <a href="/">Retry</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+  </script>
+</body>
+</html>

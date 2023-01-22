@@ -21,7 +21,7 @@ describe ManifestsController, type: :controller do
       body = JSON.parse(response.body)
 
       expect(body["name"]).to eq("Specspring")
-      expect(body["start_url"]).to eq("http://test.host/?source=pwa")
+      expect(body["start_url"]).to eq("http://test.host/")
       expect(body["scope"]).to eq("http://test.host/")
       expect(body["theme_color"]).to eq("#5e35b1")
     end

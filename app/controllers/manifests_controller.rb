@@ -6,8 +6,8 @@ class ManifestsController < ApplicationController
   def show
     render json: {
       name:             APP_CONFIG["site_name"],
-      description:      t("about.about.subtitle"),
-      start_url:        root_url(source: "pwa"),
+      description:      t("about.index.subtitle"),
+      start_url:        root_url,
       scope:            root_url,
       display:          "standalone",
       categories:       %w[social],
@@ -37,10 +37,12 @@ class ManifestsController < ApplicationController
   end
 
   def webapp_icons
-    %i[1024 512 384 192 128 96 72 48].map do |size|
+    %i[1024 512 384 192 144 128 96 72 48].map do |size|
       [
-        { src: "/icons/maskable_icon_x#{size}.webp", size: "#{size}x#{size}", type: "image/webp" },
-        { src: "/icons/maskable_icon_x#{size}.png", size: "#{size}x#{size}", type: "image/png" }
+        { src: "/icons/icon_x#{size}.webp", sizes: "#{size}x#{size}", type: "image/webp", purpose: "any" },
+        { src: "/icons/icon_x#{size}.png", sizes: "#{size}x#{size}", type: "image/png", purpose: "any" },
+        { src: "/icons/maskable_icon_x#{size}.webp", sizes: "#{size}x#{size}", type: "image/webp", purpose: "maskable" },
+        { src: "/icons/maskable_icon_x#{size}.png", sizes: "#{size}x#{size}", type: "image/png", purpose: "maskable" }
       ]
     end.flatten
   end
