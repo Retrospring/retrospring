@@ -25,8 +25,10 @@
                 %span.caret
               = render "actions/comment", comment: comment, answer: a
 - if user_signed_in?
-  .form-group.has-feedback.comment__input-group.input-group{ name: "ab-comment-new-group",
-    data: { a_id: a.id, controller: "character-count", character_count_max_value: 512 } }
+  .form-group.has-feedback.comment__input-group.input-group{
+    name: "ab-comment-new-group",
+    data: { a_id: a.id, controller: "character-count", character_count_max_value: 512 }
+  }
     %input.form-control.comment__input{ type: :text, placeholder: t(".placeholder"), name: "ab-comment-new", data: { a_id: a.id, "character-count-target": "input" } }
     %span.text-muted.form-control-feedback.comment__character-count{ id: "ab-comment-charcount-#{a.id}", data: { "character-count-target": "counter" } } 512
     %button.btn.btn-primary.d-none{ type: :button, name: "ab-comment-new-submit", data: { a_id: a.id, "character-count-target": "action" } }= t(".action")
