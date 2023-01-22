@@ -7,6 +7,7 @@ import FormatPopupController from "retrospring/controllers/format_popup_controll
 import CollapseController from "retrospring/controllers/collapse_controller";
 import ThemeController from "retrospring/controllers/theme_controller";
 import CapabilitiesController from "retrospring/controllers/capabilities_controller";
+import CropperController from "retrospring/controllers/cropper_controller";
 
 /**
  * This module sets up Stimulus and our controllers
@@ -23,6 +24,7 @@ export default function (): void {
   window['Stimulus'].register('character-count', CharacterCountController);
   window['Stimulus'].register('character-count-warning', CharacterCountWarningController);
   window['Stimulus'].register('collapse', CollapseController);
+  window['Stimulus'].register('cropper', CropperController);
   window['Stimulus'].register('format-popup', FormatPopupController);
   window['Stimulus'].register('theme', ThemeController);
 }
