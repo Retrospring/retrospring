@@ -30,7 +30,7 @@
     "@typescript-eslint/parser": "^4.11.0",
     "esbuild": "^0.17.0",
     "eslint": "^7.16.0",
-    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-import": "^2.27.5",
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-scss": "^4.3.0"
