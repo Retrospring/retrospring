@@ -6,11 +6,11 @@
     %a.dropdown-item.text-danger{ href: "#", data: { action: "ab-comment-destroy", c_id: comment.id } }
       %i.fa.fa-fw.fa-trash-o
       = t("voc.delete")
-  - unless comment.user == current_user
+  - if user_signed_in? && comment.user != current_user
     %a.dropdown-item{ href: "#", data: { action: "ab-comment-report", c_id: comment.id } }
       %i.fa.fa-fw.fa-exclamation-triangle
       = t("voc.report")
-  - if current_user.admin?
+  - if user_signed_in? && current_user&.admin?
     %a.dropdown-item{ href: rails_admin_path_for_resource(comment), target: "_blank" }
       %i.fa.fa-fw.fa-gears
       = t("voc.view_in_rails_admin")
