@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_08_114333) do
+ActiveRecord::Schema.define(version: 2023_01_23_214851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(version: 2023_01_08_114333) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "rpush_apps", force: :cascade do |t|
@@ -301,6 +301,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_114333) do
     t.integer "light_color", default: 16316922
     t.integer "light_text", default: 0
     t.integer "input_placeholder", default: 7107965, null: false
+    t.integer "raised_text", default: 0, null: false
+    t.integer "raised_accent_text", default: 0, null: false
     t.index ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at"
   end
 
