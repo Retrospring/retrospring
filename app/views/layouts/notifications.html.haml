@@ -8,5 +8,5 @@
 .d-block.d-sm-none= render "shared/links"
 
 :ruby
-  Notification.for(current_user).update_all(new: false)
+  Notification.for(current_user).where(new: true).update_all(new: false)
   parent_layout 'base'
