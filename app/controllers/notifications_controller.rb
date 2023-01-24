@@ -3,6 +3,8 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
+  after_action :mark_notifications_as_read, only: %i[index]
+
   TYPE_MAPPINGS = {
     "answer"       => Notification::QuestionAnswered.name,
     "comment"      => Notification::Commented.name,
@@ -24,6 +26,11 @@ class NotificationsController < ApplicationController
   end
 
   private
+
+  def mark_notifications_as_read
+    # using .dup to not modify @notifications -- useful in tests
+    @notifications&.dup&.update_all(new: false)
+  end
 
   def cursored_notifications_for(type:, last_id:, size: nil)
     cursor_params = { last_id: last_id, size: size }.compact

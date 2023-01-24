@@ -33,5 +33,9 @@ describe NotificationsController do
       expect(response).to render_template(:index)
       expect(controller.instance_variable_get(:@notifications)).to have_attributes(size: 2)
     end
+
+    it "marks notifications as read" do
+      expect { subject }.to change { Notification.for(user).where(new: true).count }.from(2).to(0)
+    end
   end
 end
