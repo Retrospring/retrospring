@@ -47,6 +47,9 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
+  const url = new URL(event.request.url);
+  if (event.request.method !== 'GET' || !OFFLINE_CACHE_PATHS.includes(url.pathname)) return;
+
   event.respondWith(
     (async () => {
       try {
