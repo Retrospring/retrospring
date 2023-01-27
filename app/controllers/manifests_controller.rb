@@ -3,7 +3,13 @@
 class ManifestsController < ApplicationController
   include ThemeHelper
 
+  skip_before_action :banned?
+  skip_before_action :find_active_announcements
+
   def show
+    expires_in 1.day
+    return if fresh_when current_user&.theme
+
     render json: {
       name:             APP_CONFIG["site_name"],
       description:      t("about.index.subtitle"),
@@ -12,16 +18,18 @@ class ManifestsController < ApplicationController
       display:          "standalone",
       categories:       %w[social],
       lang:             I18n.locale,
-      shortcuts:        [
-        webapp_shortcut(inbox_url, t("navigation.inbox"), "inbox")
-      ],
+      shortcuts:,
       icons:            webapp_icons,
-      theme_color:      theme_color,
+      theme_color:,
       background_color: mobile_theme_color
     }
   end
 
   private
+
+  def shortcuts = [
+    webapp_shortcut(inbox_url, t("navigation.inbox"), "inbox")
+  ]
 
   def webapp_shortcut(url, name, icon_name)
     {
