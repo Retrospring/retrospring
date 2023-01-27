@@ -9,6 +9,5 @@
 = render 'shared/links'
 
 :ruby
-  @inbox.update_all(new: false)
   provide(:title, generate_title('Inbox'))
   parent_layout 'base'
