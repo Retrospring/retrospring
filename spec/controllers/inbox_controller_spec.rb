@@ -58,6 +58,10 @@ describe InboxController, type: :controller do
           end
         end
 
+        it "updates the inbox entry status" do
+          expect { subject }.to change { inbox_entry.reload.new? }.from(true).to(false)
+        end
+
         context "when requested the turbo stream format" do
           subject { get :show, format: :turbo_stream }
 
