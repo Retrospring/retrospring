@@ -51,6 +51,15 @@ namespace :justask do # rubocop:disable Metrics/BlockLength
     user.remove_role :moderator
     puts "#{user.screen_name} is no longer a moderator."
   end
+
+  desc "Removes users whose accounts haven't been verified for over 3 months."
+  task remove_stale: :environment do
+    puts "Removing stale users…"
+    removed = User.where(confirmed_at: nil)
+                  .where("confirmation_sent_at < ?", DateTime.now.utc - 3.months)
+                  .destroy_all.count
+    puts "Removed #{removed} users"
+  end
 end
 
 namespace :db do
