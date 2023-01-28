@@ -40,9 +40,9 @@
           = render "shared/format_link"
     .card-footer.d-none{ id: "ib-options-#{i.id}" }
       %h4= t(".sharing.heading")
-      - if current_user.services.count.positive?
+      - if @services.count.positive?
         .row
-          - current_user.services.each do |service|
+          - @services.each do |service|
             .col-md-3.col-sm-4.col-xs-6
               %label
                 %input{ type: "checkbox", name: "ib-share", checked: :checked, data: { ib_id: i.id, service: service.provider } }

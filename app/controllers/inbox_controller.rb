@@ -8,16 +8,12 @@ class InboxController < ApplicationController
   def show
     find_author
     find_inbox_entries
-
-    if @author_user && @inbox_count.zero?
-      # rubocop disabled because of a false positive
-      flash[:info] = t(".author.info", author: @author) # rubocop:disable Rails/ActionControllerFlashBeforeRender
-      redirect_to inbox_path(last_id: params[:last_id])
-    end
+    check_for_empty_filter
 
     @delete_id = find_delete_id
-
+    @services = current_user.services
     @disabled = true if @inbox.empty?
+
     respond_to do |format|
       format.html
       format.turbo_stream do
@@ -49,6 +45,13 @@ class InboxController < ApplicationController
   end
 
   private
+
+  def check_for_empty_filter
+    return unless @author_user && @inbox_count.zero?
+
+    flash[:info] = t(".author.info", author: @author)
+    redirect_to inbox_path(last_id: params[:last_id])
+  end
 
   def find_author
     return if params[:author].blank?
