@@ -1,15 +1,15 @@
 .row.row-cols-1.row-cols-sm-2.row-cols-md-3#users
   - @users.each do |user|
     .col.pb-3
-      = render 'shared/userbox', user: user, type: @type
+      = render 'shared/userbox', user:, type:
 
 - if @more_data_available
   .d-flex.justify-content-center.justify-content-sm-start#paginator
-    = button_to t("voc.load"), @type == :follower ? show_user_followers_path(@user) : show_user_followings_path(@user),
+    = button_to t("voc.load"), type == :follower ? show_user_followers_path(@user) : show_user_followings_path(@user),
       class: "btn btn-light",
       method: :get,
       params: { last_id: @relationships_last_id },
       form: { data: { turbo_stream: true } }
 
-- provide(:title, user_title(@user, 'friends and followers'))
+- provide(:title, t(".title.#{type}", user: @user.profile.safe_name))
 - parent_layout 'user/profile'
