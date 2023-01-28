@@ -5,10 +5,16 @@ class InboxController < ApplicationController
 
   after_action :mark_inbox_entries_as_read, only: %i[show]
 
-  def show
+  def show # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     find_author
     find_inbox_entries
-    check_for_empty_filter
+
+    if @author_user && @inbox_count.zero?
+      # rubocop disabled because of a false positive
+      flash[:info] = t(".author.info", author: @author) # rubocop:disable Rails/ActionControllerFlashBeforeRender
+      redirect_to inbox_path(last_id: params[:last_id])
+      return
+    end
 
     @delete_id = find_delete_id
     @disabled = true if @inbox.empty?
@@ -45,13 +51,6 @@ class InboxController < ApplicationController
   end
 
   private
-
-  def check_for_empty_filter
-    return unless @author_user && @inbox_count.zero?
-
-    flash[:info] = t(".author.info", author: @author)
-    redirect_to inbox_path(last_id: params[:last_id])
-  end
 
   def find_author
     return if params[:author].blank?
