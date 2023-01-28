@@ -48,8 +48,10 @@ ActiveRecord::Schema.define(version: 2023_02_12_181044) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
+    t.datetime "pinned_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
+    t.index ["user_id", "pinned_at"], name: "index_answers_on_user_id_and_pinned_at"
   end
 
   create_table "appendables", force: :cascade do |t|

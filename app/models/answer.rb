@@ -14,6 +14,8 @@ class Answer < ApplicationRecord
   validates :question_id, uniqueness: { scope: :user_id }
   # rubocop:enable Rails/UniqueValidationWithoutIndex
 
+  scope :pinned, -> { where.not(pinned_at: nil) }
+
   SHORT_ANSWER_MAX_LENGTH = 640
 
   # rubocop:disable Rails/SkipsModelValidations
@@ -56,4 +58,6 @@ class Answer < ApplicationRecord
   end
 
   def long? = content.length > SHORT_ANSWER_MAX_LENGTH
+
+  def pinned? = pinned_at.present?
 end
