@@ -157,14 +157,14 @@ Rails.application.routes.draw do
   get "/@:username/q/:id", to: "question#show", as: :question
   get "/@:username/followers", to: "user#followers", as: :show_user_followers
   get "/@:username/followings", to: "user#followings", as: :show_user_followings
-  get "/@:username/friends", to: redirect("/@%{username}/followings/p/%{page}")
+  get "/@:username/friends", to: redirect("/@%{username}/followings")
   get "/@:username/questions", to: "user#questions", as: :show_user_questions
   get "/:username", to: "user#show", as: :user_alt
   get "/:username/a/:id", to: "answer#show", as: :answer_alt
   get "/:username/q/:id", to: "question#show", as: :question_alt
   get "/:username/followers", to: "user#followers", as: :show_user_followers_alt
   get "/:username/followings", to: "user#followings", as: :show_user_followings_alt
-  get "/:username/friends", to: redirect("/%{username}/followings/p/%{page}")
+  get "/:username/friends", to: redirect("/%{username}/followings")
   get "/:username/questions", to: "user#questions", as: :show_user_questions_alt
 
   get "/feedback/consent", to: "feedback#consent", as: "feedback_consent"
