@@ -8,4 +8,20 @@ Sentry.init do |config|
   # of transactions for performance monitoring.
   # We recommend adjusting this value in production
   config.traces_sample_rate = 0.25
+
+  exception_fingerprints = {
+    Excon::Error::ServiceUnavailable => 'external-service',
+    Twitter::Error::InternalServerError => 'external-service',
+  }
+  config.before_send = lambda do |event, hint|
+    # These are used for user-facing errors, not when something goes wrong
+    next if hint[:exception].is_a?(Errors::Base)
+
+    exception_class = hint[:exception].class
+    if exception_fingerprints.key?(exception_class)
+      event.fingerprint = [exception_fingerprints[exception_class]]
+    end
+
+    event
+  end
 end
