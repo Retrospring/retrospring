@@ -3,19 +3,12 @@
 class UserController < ApplicationController
   before_action :set_user
   before_action :hidden_social_graph_redirect, only: %i[followers followings]
+  after_action :mark_notification_as_read, only: %i[show]
 
   def show
     @answers = @user.cursored_answers(last_id: params[:last_id])
     @answers_last_id = @answers.map(&:id).min
     @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
-
-    if user_signed_in?
-      notif = Notification.where(target_type: "Relationship", target_id: @user.active_follow_relationships.where(target_id: current_user.id).pluck(:id), recipient_id: current_user.id, new: true).first
-      unless notif.nil?
-        notif.new = false
-        notif.save
-      end
-    end
 
     respond_to do |format|
       format.html
@@ -65,6 +58,18 @@ class UserController < ApplicationController
   end
 
   private
+
+  def mark_notification_as_read
+    return unless user_signed_in?
+
+    Notification
+      .where(
+        target_type:  "Relationship",
+        target_id:    @user.active_follow_relationships.where(target_id: current_user.id).pluck(:id),
+        recipient_id: current_user.id,
+        new:          true
+      ).update(new: false)
+  end
 
   def set_user
     @user = User.where("LOWER(screen_name) = ?", params[:username].downcase).includes(:profile).first!
