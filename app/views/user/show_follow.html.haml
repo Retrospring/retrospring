@@ -1,7 +1,7 @@
 .row.row-cols-1.row-cols-sm-2.row-cols-md-3#users
   - @users.each do |user|
     .col.pb-3
-      = render 'shared/userbox', user:, type:
+      = render "shared/userbox", user:, type:
 
 - if @more_data_available
   .d-flex.justify-content-center.justify-content-sm-start#paginator
@@ -12,4 +12,4 @@
       form: { data: { turbo_stream: true } }
 
 - provide(:title, t(".title.#{type}", user: @user.profile.safe_name))
-- parent_layout 'user/profile'
+- parent_layout "user/profile"

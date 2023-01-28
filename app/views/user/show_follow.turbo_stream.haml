@@ -1,7 +1,7 @@
 = turbo_stream.append "users" do
   - @users.each do |user|
     .col.pb-3
-      = render 'shared/userbox', user:, type:
+      = render "shared/userbox", user:, type:
 
 = turbo_stream.update "paginator" do
   - if @more_data_available
