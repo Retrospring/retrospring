@@ -8,4 +8,13 @@ Sentry.init do |config|
   # of transactions for performance monitoring.
   # We recommend adjusting this value in production
   config.traces_sample_rate = 0.25
+
+  config.before_send do |event, hint|
+    if hint[:exception].is_a?(Errors::Base)
+      # These are used for user-facing errors, not when something goes wrong
+      nil
+    end
+
+    event
+  end
 end
