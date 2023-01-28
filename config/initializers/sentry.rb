@@ -14,10 +14,8 @@ Sentry.init do |config|
     Twitter::Error::InternalServerError => 'external-service',
   }
   config.before_send = lambda do |event, hint|
-    if hint[:exception].is_a?(Errors::Base)
-      # These are used for user-facing errors, not when something goes wrong
-      nil
-    end
+    # These are used for user-facing errors, not when something goes wrong
+    next if hint[:exception].is_a?(Errors::Base)
 
     exception_class = hint[:exception].class.name
     if exception_fingerprints.key?(exception_class)
