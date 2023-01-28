@@ -13,7 +13,7 @@ Sentry.init do |config|
     Excon::Error::ServiceUnavailable => 'external-service',
     Twitter::Error::InternalServerError => 'external-service',
   }
-  config.before_send do |event, hint|
+  config.before_send = lambda do |event, hint|
     if hint[:exception].is_a?(Errors::Base)
       # These are used for user-facing errors, not when something goes wrong
       nil
