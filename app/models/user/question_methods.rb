@@ -5,6 +5,7 @@ module User::QuestionMethods
 
   define_cursor_paginator :cursored_questions, :ordered_questions
 
+  # @return [ActiveRecord::Relation<Question>] List of questions sent by the user
   def ordered_questions(author_is_anonymous: nil, direct: nil)
     questions
       .where({ author_is_anonymous:, direct: }.compact)
