@@ -17,9 +17,9 @@ Sentry.init do |config|
     # These are used for user-facing errors, not when something goes wrong
     next if hint[:exception].is_a?(Errors::Base)
 
-    exception_class = hint[:exception].class.name
+    exception_class = hint[:exception].class
     if exception_fingerprints.key?(exception_class)
-      event.fingerprint = [exception_fingerprints[hint[:exception].class.name]]
+      event.fingerprint = [exception_fingerprints[exception_class]]
     end
 
     event
