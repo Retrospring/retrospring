@@ -62,6 +62,7 @@ export function deleteAllQuestionsHandler(event: Event): void {
 export function deleteAllAuthorQuestionsHandler(event: Event): void {
   const button = event.target as Element;
   const count = button.getAttribute('data-ib-count');
+  const urlSearchParams = new URLSearchParams(window.location.search);
 
   swal({
     title: I18n.translate('frontend.inbox.confirm_all.title', { count: count }),
@@ -75,7 +76,7 @@ export function deleteAllAuthorQuestionsHandler(event: Event): void {
   }, (returnValue) => {
     if (returnValue === null) return false;
 
-    post(`/ajax/delete_all_inbox/${location.pathname.split('/')[2]}`)
+    post(`/ajax/delete_all_inbox/${urlSearchParams.get('author')}`)
       .then(async response => {
         const data = await response.json;
 
