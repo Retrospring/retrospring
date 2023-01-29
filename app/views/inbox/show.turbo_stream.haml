@@ -1,6 +1,6 @@
 = turbo_stream.append "entries" do
   - @inbox.each do |i|
-    = render "inbox/entry", i:
+    = render "inbox/entry", services:, i:
 
 = turbo_stream.update "paginator" do
   - if @more_data_available

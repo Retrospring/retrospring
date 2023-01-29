@@ -5,7 +5,7 @@ class InboxController < ApplicationController
 
   after_action :mark_inbox_entries_as_read, only: %i[show]
 
-  def show
+  def show # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     find_author
     find_inbox_entries
 
@@ -13,15 +13,17 @@ class InboxController < ApplicationController
       # rubocop disabled because of a false positive
       flash[:info] = t(".author.info", author: @author) # rubocop:disable Rails/ActionControllerFlashBeforeRender
       redirect_to inbox_path(last_id: params[:last_id])
+      return
     end
 
     @delete_id = find_delete_id
-
     @disabled = true if @inbox.empty?
+    services = current_user.services
+
     respond_to do |format|
-      format.html
+      format.html { render "show", locals: { services: } }
       format.turbo_stream do
-        render "show", layout: false, status: :see_other
+        render "show", locals: { services: }, layout: false, status: :see_other
 
         # rubocop disabled as just flipping a flag doesn't need to have validations to be run
         @inbox.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
