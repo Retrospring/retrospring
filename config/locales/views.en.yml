@@ -73,6 +73,8 @@ en:
   actions:
     answer:
       return: "Return to Inbox"
+      pin: "Pin to Profile"
+      unpin: "Unpin from Profile"
     comment:
       view_smiles: "View comment smiles"
     share:

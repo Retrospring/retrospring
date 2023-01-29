@@ -26,6 +26,8 @@ en:
       destroy:
         nopriv: "You cannot delete other people's answers."
         success: "Successfully deleted answer."
+      pin:
+        success: "Successfully pinned answer."
     comment:
       create:
         invalid: "Your comment is too long."
