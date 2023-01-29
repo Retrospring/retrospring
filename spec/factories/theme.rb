@@ -15,12 +15,14 @@ FactoryBot.define do
     dark_color { 6_710_886 }
     dark_text { 15_658_734 }
     raised_background { 16_777_215 }
+    raised_text { 3_355_443 }
     background_color { 13_026_795 }
     body_text { 3_355_443 }
     muted_text { 3_355_443 }
     input_color { 15_789_556 }
     input_text { 6_710_886 }
     raised_accent { 16_250_871 }
+    raised_accent_text { 3_355_443 }
     light_color { 16_316_922 }
     light_text { 0 }
   end
