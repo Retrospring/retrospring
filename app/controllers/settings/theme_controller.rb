@@ -17,6 +17,7 @@ class Settings::ThemeController < ApplicationController
                                                         dark_color dark_text
                                                         light_color light_text
                                                         raised_background raised_accent
+                                                        raised_text raised_accent_text
                                                         background_color body_text
                                                         muted_text input_color
                                                         input_text input_placeholder
