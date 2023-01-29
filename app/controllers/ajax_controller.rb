@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class AjaxController < ApplicationController
+  skip_before_action :find_active_announcements
   before_action :build_response
   after_action :return_response
 
@@ -90,10 +91,6 @@ class AjaxController < ApplicationController
     }
 
     return_response
-  end
-
-  def find_active_announcements
-    # We do not need announcements here
   end
 
   private

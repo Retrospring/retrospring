@@ -3,6 +3,8 @@
 class InboxController < ApplicationController
   before_action :authenticate_user!
 
+  after_action :mark_inbox_entries_as_read, only: %i[show]
+
   def show
     find_author
     find_inbox_entries
@@ -76,5 +78,10 @@ class InboxController < ApplicationController
     query
       .joins(:question)
       .where(questions: { user: @author_user, author_is_anonymous: false })
+  end
+
+  def mark_inbox_entries_as_read
+    # using .dup to not modify @inbox -- useful in tests
+    @inbox&.dup&.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
   end
 end

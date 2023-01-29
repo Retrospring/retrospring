@@ -6,8 +6,7 @@ import { deleteAllAuthorQuestionsHandler, deleteAllQuestionsHandler } from './de
 export default (): void => {
   registerEvents([
     { type: 'click', target: '#ib-delete-all', handler: deleteAllQuestionsHandler, global: true },
-    { type: 'click', target: '#ib-delete-all-author', handler: deleteAllAuthorQuestionsHandler, global: true },
-    { type: 'submit', target: '#author-form', handler: authorSearchHandler, global: true }
+    { type: 'click', target: '#ib-delete-all-author', handler: deleteAllAuthorQuestionsHandler, global: true }
   ]);
 
   registerInboxEntryEvents();

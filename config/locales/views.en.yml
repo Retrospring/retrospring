@@ -651,6 +651,10 @@ en:
       index:
         title: "Questions from %{author_identifier}"
   user:
+    show_follow:
+      title:
+        follower: "%{user}'s followers"
+        friend: "%{user}'s followings"
     actions:
       view_inbox: "View inbox"
       privilege: "Check %{user}'s privileges"

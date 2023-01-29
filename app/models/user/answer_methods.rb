@@ -5,10 +5,11 @@ module User::AnswerMethods
 
   define_cursor_paginator :cursored_answers, :ordered_answers
 
+  # @return [ActiveRecord::Relation<Answer>] List of a user's answers
   def ordered_answers
     answers
       .order(:created_at)
       .reverse_order
-      .includes(comments: [:user, :smiles], question: [:user], smiles: [:user])
+      .includes(comments: %i[user smiles], question: { user: :profile }, smiles: [:user])
   end
 end
