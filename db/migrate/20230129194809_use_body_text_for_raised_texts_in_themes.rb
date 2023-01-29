@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UseBodyTextForRaisedTextsInThemes < ActiveRecord::Migration[6.1]
-  def change
+  def up
     execute <<~SQUIRREL
       UPDATE themes
       SET raised_text = body_text,
@@ -9,4 +9,6 @@ class UseBodyTextForRaisedTextsInThemes < ActiveRecord::Migration[6.1]
       WHERE body_text != 0;
     SQUIRREL
   end
+
+  def down; end
 end
