@@ -179,9 +179,7 @@ describe InboxController, type: :controller do
                   inbox:               [],
                   inbox_last_id:       nil,
                   more_data_available: false,
-                  inbox_count:         0,
-                  delete_id:           "ib-delete-all",
-                  disabled:            true
+                  inbox_count:         0
                 }
               end
             end
@@ -213,9 +211,7 @@ describe InboxController, type: :controller do
                   inbox:               [],
                   inbox_last_id:       nil,
                   more_data_available: false,
-                  inbox_count:         0,
-                  delete_id:           "ib-delete-all",
-                  disabled:            true
+                  inbox_count:         0
                 }
               end
             end
