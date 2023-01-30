@@ -7,6 +7,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
   INVALID_ENDINGS = [
     # with @:
     *%w[
+      aoo.com
       fmail.com
       gail.com
       gamil.com

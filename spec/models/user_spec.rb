@@ -81,6 +81,7 @@ RSpec.describe User, type: :model do
     # nor .mail (.email is, however)
     include_examples "invalid email", "fritz.fantom@proton.mail"
     # common typos:
+    include_examples "invalid email", "fritz.fantom@aoo.com"
     include_examples "invalid email", "fritz.fantom@fmail.com"
     include_examples "invalid email", "fritz.fantom@gamil.com"
     include_examples "invalid email", "fritz.fantom@gemail.com"
