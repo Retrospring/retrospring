@@ -190,7 +190,7 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    haml_lint (0.43.0)
+    haml_lint (0.45.0)
       haml (>= 4.0, < 6.2)
       parallel (~> 1.10)
       rainbow
@@ -371,7 +371,7 @@ GEM
     rake (13.0.6)
     redcarpet (3.6.0)
     redis (4.5.1)
-    regexp_parser (2.6.1)
+    regexp_parser (2.6.2)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.0.1)
@@ -485,7 +485,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sysexits (1.2.0)
-    temple (0.9.1)
+    temple (0.10.0)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.11)
