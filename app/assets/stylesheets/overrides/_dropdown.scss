@@ -1,14 +1,14 @@
 .dropdown-menu {
-  color: RGB(var(--body-text));
+  color: RGB(var(--raised-text));
   background-color: var(--raised-bg);
   box-shadow: $box-shadow-lg;
   border: none;
 }
 
 .dropdown-item {
-  color: RGB(var(--body-text));
+  color: RGB(var(--raised-text));
 
-  &.active, 
+  &.active,
   &:active,
   &:active:hover {
     color: RGB(var(--primary-text));
@@ -16,6 +16,7 @@
   }
 
   &:hover {
+    color: RGB(var(--raised-accent-text));
     background-color: var(--raised-accent);
   }
 }

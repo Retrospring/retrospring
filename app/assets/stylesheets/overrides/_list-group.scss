@@ -13,9 +13,10 @@
 }
 
 .list-group-item-action {
-  color: RGB(var(--body-text));
+  color: RGB(var(--raised-text));
 
   &:hover, &:focus {
+    color: RGB(var(--raised-accent-text));
     background-color: var(--raised-accent);
   }
 
