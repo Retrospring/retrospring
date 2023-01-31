@@ -21,11 +21,12 @@ class UserController < ApplicationController
     @relationships_last_id = @relationships.map(&:id).min
     @more_data_available = !@user.cursored_follower_relationships(last_id: @relationships_last_id, size: 1).count.zero?
     @users = @relationships.map(&:source)
-    find_own_relationships
+    own_followings = find_own_relationships(current_user&.active_follow_relationships)
+    own_blocks = find_own_relationships(current_user&.active_block_relationships)
 
     respond_to do |format|
-      format.html { render "show_follow", locals: { type: :follower } }
-      format.turbo_stream { render "show_follow", locals: { type: :follower } }
+      format.html { render "show_follow", locals: { type: :follower, own_followings:, own_blocks: } }
+      format.turbo_stream { render "show_follow", locals: { type: :follower, own_followings:, own_blocks: } }
     end
   end
 
@@ -34,11 +35,12 @@ class UserController < ApplicationController
     @relationships_last_id = @relationships.map(&:id).min
     @more_data_available = !@user.cursored_following_relationships(last_id: @relationships_last_id, size: 1).count.zero?
     @users = @relationships.map(&:target)
-    find_own_relationships
+    own_followings = find_own_relationships(current_user&.active_follow_relationships)
+    own_blocks = find_own_relationships(current_user&.active_block_relationships)
 
     respond_to do |format|
-      format.html { render "show_follow", locals: { type: :friend } }
-      format.turbo_stream { render "show_follow", locals: { type: :friend } }
+      format.html { render "show_follow", locals: { type: :friend, own_followings:, own_blocks: } }
+      format.turbo_stream { render "show_follow", locals: { type: :friend, own_followings:, own_blocks: } }
     end
   end
 
@@ -71,14 +73,10 @@ class UserController < ApplicationController
     @user = User.where("LOWER(screen_name) = ?", params[:username].downcase).includes(:profile).first!
   end
 
-  # Checks which of the displayed users are followed or blocked by the current user
-  #
-  # This prevents 𝑛+1 queries.
-  def find_own_relationships
-    return unless user_signed_in?
+  def find_own_relationships(relationships)
+    return nil if relationships.nil?
 
-    @own_followings = current_user.active_follow_relationships.where(target_id: @users.map(&:id)).select(:target_id).map(&:target_id)
-    @own_blocks = current_user.active_block_relationships.where(target_id: @users.map(&:id)).select(:target_id).map(&:target_id)
+    relationships.where(target_id: @users.map(&:id))&.select(:target_id)&.map(&:target_id)
   end
 
   def hidden_social_graph_redirect

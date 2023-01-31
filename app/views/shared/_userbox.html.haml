@@ -9,4 +9,4 @@
           = user.profile.display_name
       .profile__screen-name
         = user.screen_name
-    = render 'user/actions', user: user, type: type
+    = render "user/actions", user:, type:, own_followings:, own_blocks:
