@@ -17,9 +17,7 @@ class UserController < ApplicationController
   end
 
   def followers
-    @relationships = @user.cursored_follower_relationships(last_id: params[:last_id])
-    @relationships_last_id = @relationships.map(&:id).min
-    @more_data_available = !@user.cursored_follower_relationships(last_id: @relationships_last_id, size: 1).count.zero?
+    paginate_relationships(:cursored_follower_relationships)
     @users = @relationships.map(&:source)
     own_followings = find_own_relationships(current_user&.active_follow_relationships)
     own_blocks = find_own_relationships(current_user&.active_block_relationships)
@@ -31,9 +29,7 @@ class UserController < ApplicationController
   end
 
   def followings
-    @relationships = @user.cursored_following_relationships(last_id: params[:last_id])
-    @relationships_last_id = @relationships.map(&:id).min
-    @more_data_available = !@user.cursored_following_relationships(last_id: @relationships_last_id, size: 1).count.zero?
+    paginate_relationships(:cursored_following_relationships)
     @users = @relationships.map(&:target)
     own_followings = find_own_relationships(current_user&.active_follow_relationships)
     own_blocks = find_own_relationships(current_user&.active_block_relationships)
@@ -77,6 +73,12 @@ class UserController < ApplicationController
     return nil if relationships.nil?
 
     relationships.where(target_id: @users.map(&:id))&.select(:target_id)&.map(&:target_id)
+  end
+
+  def paginate_relationships(method)
+    @relationships = @user.public_send(method, last_id: params[:last_id])
+    @relationships_last_id = @relationships.map(&:id).min
+    @more_data_available = !@user.public_send(method, last_id: @relationships_last_id, size: 1).count.zero?
   end
 
   def hidden_social_graph_redirect
