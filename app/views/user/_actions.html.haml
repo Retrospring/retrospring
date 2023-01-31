@@ -5,7 +5,7 @@
       %a.btn.btn-dark{ href: settings_profile_path } Edit profile
   - elsif user_signed_in?
     .d-grid.gap-2
-      - if @own_followings.include?(user.id)
+      - if @own_followings.include? user.id
         %button.btn.btn-primary{ type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name } }
           = t("voc.unfollow")
       - else
@@ -19,7 +19,7 @@
           %a.dropdown-item.d-block.d-sm-none{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
             %i.fa.fa-list.fa-fw
             = t(".list")
-          - if @own_blocks.include?(user.id)
+          - if @own_blocks.include? user.id
             %a.dropdown-item{ href: '#', data: { action: :unblock, target: user.screen_name } }
               %i.fa.fa-minus-circle.fa-fw
               %span.pe-none= t("voc.unblock")
