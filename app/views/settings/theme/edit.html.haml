@@ -23,6 +23,23 @@
           = f.text_field :body_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
   .card
     .card-body
+      %h2= t(".raised.heading")
+      %p= t(".raised.body")
+
+      .row
+        .col-sm-6
+          = f.text_field :raised_background, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+        .col-sm-6
+          = f.text_field :raised_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
+      .row
+        .col-sm-6
+          = f.text_field :raised_accent, class: "color", data: { default: 0xF7F7F7, theme_target: "color", action: "theme#updatePreview" }
+        .col-sm-6
+          = f.text_field :raised_accent_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
+    .card-footer
+      %p= t(".raised.accent.example")
+  .card
+    .card-body
       %h2= t(".colors.heading")
       %p= t(".colors.body")
 
@@ -98,23 +115,6 @@
           .form-group
             %label.form-label Example Input
             %input.form-control{ placeholder: "A test placeholder" }
-  .card
-    .card-body
-      %h2= t(".raised.heading")
-      %p= t(".raised.body")
-
-      .row
-        .col-sm-6
-          = f.text_field :raised_background, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
-        .col-sm-6
-          = f.text_field :raised_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
-      .row
-        .col-sm-6
-          = f.text_field :raised_accent, class: "color", data: { default: 0xF7F7F7, theme_target: "color", action: "theme#updatePreview" }
-        .col-sm-6
-          = f.text_field :raised_accent_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
-    .card-footer
-      %p= t(".raised.accent.example")
   .card
     .card-body
       .pull-left
