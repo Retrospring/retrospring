@@ -19,7 +19,7 @@ services:
       - 1234:1234
 
   redis:
-    image: redis:3.2.11-alpine
+    image: redis:6.2.10-alpine
     ports:
       - 6379:6379
 
