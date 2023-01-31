@@ -52,7 +52,7 @@ gem "sentry-sidekiq"
 
 gem "sidekiq", "< 7" # remove version constraint once are ready to upgrade https://github.com/mperham/sidekiq/blob/main/docs/7.0-Upgrade.md
 
-gem "questiongenerator", "~> 1.0"
+gem "questiongenerator", "~> 1.1"
 
 gem "httparty"
 gem "redcarpet"
