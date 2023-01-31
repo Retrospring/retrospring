@@ -21,6 +21,7 @@ class UserController < ApplicationController
     @relationships_last_id = @relationships.map(&:id).min
     @more_data_available = !@user.cursored_follower_relationships(last_id: @relationships_last_id, size: 1).count.zero?
     @users = @relationships.map(&:source)
+    find_own_relationships
 
     respond_to do |format|
       format.html { render "show_follow", locals: { type: :follower } }
@@ -33,6 +34,7 @@ class UserController < ApplicationController
     @relationships_last_id = @relationships.map(&:id).min
     @more_data_available = !@user.cursored_following_relationships(last_id: @relationships_last_id, size: 1).count.zero?
     @users = @relationships.map(&:target)
+    find_own_relationships
 
     respond_to do |format|
       format.html { render "show_follow", locals: { type: :friend } }
@@ -67,6 +69,16 @@ class UserController < ApplicationController
 
   def set_user
     @user = User.where("LOWER(screen_name) = ?", params[:username].downcase).includes(:profile).first!
+  end
+
+  # Checks which of the displayed users are followed or blocked by the current user
+  #
+  # This prevents 𝑛+1 queries.
+  def find_own_relationships
+    return unless user_signed_in?
+
+    @own_followings = current_user.active_follow_relationships.where(target_id: @users.map(&:id)).select(:target_id).map(&:target_id)
+    @own_blocks = current_user.active_block_relationships.where(target_id: @users.map(&:id)).select(:target_id).map(&:target_id)
   end
 
   def hidden_social_graph_redirect
