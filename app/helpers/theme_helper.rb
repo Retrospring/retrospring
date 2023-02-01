@@ -33,6 +33,11 @@ module ThemeHelper
 
     return unless theme
 
+    css = get_theme_css(theme)
+    content_tag(:style, css)
+  end
+
+  def get_theme_css(theme)
     body = ":root {\n"
 
     theme.attributes.each do |k, v|
@@ -42,9 +47,7 @@ module ThemeHelper
         body += "\t--#{var}: #{get_color_for_key(var, v)};\n"
       end
     end
-    body += "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n}"
-
-    content_tag(:style, body)
+    body + "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n}"
   end
 
   def get_color_for_key(key, color)
