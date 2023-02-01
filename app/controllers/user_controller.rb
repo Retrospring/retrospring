@@ -19,24 +19,34 @@ class UserController < ApplicationController
   def followers
     paginate_relationships(:cursored_follower_relationships)
     @users = @relationships.map(&:source)
-    own_followings = find_own_relationships(current_user&.active_follow_relationships)
-    own_blocks = find_own_relationships(current_user&.active_block_relationships)
+    own_relationships = find_own_relationships
+    locals = {
+      type:           :friend,
+      own_followings: own_relationships[Relationships::Follow],
+      own_blocks:     own_relationships[Relationships::Block],
+      own_mutes:      own_relationships[Relationships::Mute]
+    }
 
     respond_to do |format|
-      format.html { render "show_follow", locals: { type: :follower, own_followings:, own_blocks: } }
-      format.turbo_stream { render "show_follow", locals: { type: :follower, own_followings:, own_blocks: } }
+      format.html { render "show_follow", locals: }
+      format.turbo_stream { render "show_follow", locals: }
     end
   end
 
   def followings
     paginate_relationships(:cursored_following_relationships)
     @users = @relationships.map(&:target)
-    own_followings = find_own_relationships(current_user&.active_follow_relationships)
-    own_blocks = find_own_relationships(current_user&.active_block_relationships)
+    own_relationships = find_own_relationships
+    locals = {
+      type:           :friend,
+      own_followings: own_relationships[Relationships::Follow],
+      own_blocks:     own_relationships[Relationships::Block],
+      own_mutes:      own_relationships[Relationships::Mute]
+    }
 
     respond_to do |format|
-      format.html { render "show_follow", locals: { type: :friend, own_followings:, own_blocks: } }
-      format.turbo_stream { render "show_follow", locals: { type: :friend, own_followings:, own_blocks: } }
+      format.html { render "show_follow", locals: }
+      format.turbo_stream { render "show_follow", locals: }
     end
   end
 
@@ -69,10 +79,12 @@ class UserController < ApplicationController
     @user = User.where("LOWER(screen_name) = ?", params[:username].downcase).includes(:profile).first!
   end
 
-  def find_own_relationships(relationships)
-    return nil if relationships.nil?
+  def find_own_relationships
+    return {} unless user_signed_in?
 
-    relationships.where(target_id: @users.map(&:id))&.select(:target_id)&.map(&:target_id)
+    Relationship.where(source: current_user, target_id: @users.map(&:id))
+      &.select(:target_id, :type)
+      &.group_by(&:type)
   end
 
   def paginate_relationships(method)

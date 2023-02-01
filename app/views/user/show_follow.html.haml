@@ -1,7 +1,7 @@
 .row.row-cols-1.row-cols-sm-2.row-cols-md-3#users
   - @users.each do |user|
     .col.pb-3
-      = render "shared/userbox", user:, type:, own_followings:, own_blocks:
+      = render "shared/userbox", user:, type:, own_followings:, own_blocks:, own_mutes:
 
 - if @more_data_available
   .d-flex.justify-content-center.justify-content-sm-start#paginator
