@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ServicesController, type: :controller do
+describe Settings::ServicesController, type: :controller do
   describe "#index" do
     subject { get :index }
 
@@ -110,7 +110,7 @@ describe ServicesController, type: :controller do
 
         it "updates a service connection" do
           expect { subject }.to change { service.reload.post_tag }.to("#askaraccoon")
-          expect(response).to redirect_to(services_path)
+          expect(response).to redirect_to(settings_services_path)
           expect(flash[:success]).to eq("Service updated successfully.")
         end
       end
@@ -120,7 +120,7 @@ describe ServicesController, type: :controller do
 
         it "shows an error" do
           subject
-          expect(response).to redirect_to(services_path)
+          expect(response).to redirect_to(settings_services_path)
           expect(flash[:error]).to eq("Unable to update service.")
         end
       end
