@@ -21,7 +21,7 @@ class UserController < ApplicationController
     @users = @relationships.map(&:source)
     own_relationships = find_own_relationships
     locals = {
-      type:           :friend,
+      type:           :follower,
       own_followings: own_relationships[Relationships::Follow],
       own_blocks:     own_relationships[Relationships::Block],
       own_mutes:      own_relationships[Relationships::Mute]
