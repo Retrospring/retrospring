@@ -18,7 +18,7 @@ class InboxController < ApplicationController
 
     @delete_id = find_delete_id
     @disabled = true if @inbox.empty?
-    services = current_user.services
+    services = current_user.services.to_a
 
     respond_to do |format|
       format.html { render "show", locals: { services: } }
