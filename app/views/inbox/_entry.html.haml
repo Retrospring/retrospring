@@ -48,4 +48,4 @@
                 %input{ type: "checkbox", name: "ib-share", checked: :checked, data: { ib_id: i.id, service: service.provider } }
                 = raw t(".sharing.post_to", service: service.provider.capitalize)
       - else
-        %p= t(".sharing.none_html", settings: link_to(t(".sharing.settings"), services_path))
+        %p= t(".sharing.none_html", settings: link_to(t(".sharing.settings"), settings_services_path))
