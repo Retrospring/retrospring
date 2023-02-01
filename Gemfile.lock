@@ -321,7 +321,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
-    questiongenerator (1.0.0)
+    questiongenerator (1.1.0)
     racc (1.6.2)
     rack (2.2.6.2)
     rack-protection (3.0.5)
@@ -578,7 +578,7 @@ DEPENDENCIES
   pghero
   puma
   pundit (~> 2.3)
-  questiongenerator (~> 1.0)
+  questiongenerator (~> 1.1)
   rails (~> 6.1)
   rails-controller-testing
   rails-i18n (~> 7.0)
