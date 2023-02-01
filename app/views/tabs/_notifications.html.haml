@@ -9,18 +9,18 @@
   .list-group
     = list_group_item t('.answer'),
       notifications_path('answer'),
-      badge: Notification.for(current_user).where(target_type: 'Answer', new: true).count
+      badge: @counters['Answer']
     = list_group_item t('.smile'),
       notifications_path('smile'),
-      badge: Notification.for(current_user).where(target_type: 'Smile', new: true).count
+      badge: @counters['Smile']
     = list_group_item t('.comment'),
       notifications_path('comment'),
-      badge: Notification.for(current_user).where(target_type: 'Comment', new: true).count
+      badge: @counters['Comment']
     = list_group_item t('.commentsmile'),
       notifications_path('commentsmile'),
-      badge: Notification.for(current_user).where(target_type: 'CommentSmile', new: true).count
+      badge: @counters['CommentSmile']
     = list_group_item t('.relationship'),
       notifications_path('relationship'),
-      badge: Notification.for(current_user).where(target_type: 'Relationship', new: true).count
+      badge: @counters['Relationship']
 
 .d-none.d-sm-block= render 'shared/links'

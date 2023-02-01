@@ -18,6 +18,9 @@ class NotificationsController < ApplicationController
     @notifications = cursored_notifications_for(type: @type, last_id: params[:last_id])
     @notifications_last_id = @notifications.map(&:id).min
     @more_data_available = !cursored_notifications_for(type: @type, last_id: @notifications_last_id, size: 1).count.zero?
+    @counters = Notification.where(recipient: current_user, new: true)
+                            .group(:target_type)
+                            .count(:target_type)
 
     respond_to do |format|
       format.html
