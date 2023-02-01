@@ -28,15 +28,6 @@ module ThemeHelper
     "muted_text"         => "muted-text",
   }.freeze
 
-  def render_theme
-    theme = get_active_theme
-
-    return unless theme
-
-    css = get_theme_css(theme)
-    content_tag(:style, css)
-  end
-
   def get_theme_css(theme)
     body = ":root {\n"
 
@@ -61,7 +52,7 @@ module ThemeHelper
   end
 
   def theme_color
-    theme = get_active_theme
+    theme = active_theme_user&.theme
     if theme
       theme.theme_color
     else
@@ -70,7 +61,7 @@ module ThemeHelper
   end
 
   def mobile_theme_color
-    theme = get_active_theme
+    theme = active_theme_user&.theme
     if theme
       theme.mobile_theme_color
     else
@@ -78,31 +69,17 @@ module ThemeHelper
     end
   end
 
-  def get_active_theme
-    if @user&.theme
-      if user_signed_in?
-        if current_user&.show_foreign_themes?
-          @user.theme
-        else
-          current_user&.theme
-        end
-      else
-        @user.theme
-      end
-    elsif @answer&.user&.theme
-      if user_signed_in?
-        if current_user&.show_foreign_themes?
-          @answer.user.theme
-        else
-          current_user&.theme
-        end
-      else
-        @answer.user.theme
-      end
-    elsif current_user&.theme
-      current_user.theme
+  def active_theme_user
+    user = @user ||= @answer&.user
+
+    if user&.theme.present? && should_show_foreign_theme?
+      user
+    elsif user_signed_in?
+      current_user
     end
   end
+
+  def should_show_foreign_theme? = current_user&.show_foreign_themes || !user_signed_in?
 
   def get_hex_color_from_theme_value(value)
     "0000000#{value.to_s(16)}"[-6, 6]

@@ -5,10 +5,10 @@
     %meta{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover' }
     - if user_signed_in?
-      %meta{ name: 'theme-color', content: "var(--primary)", media: '(min-width: 993px)' }
-      %meta{ name: 'theme-color', content: "var(--background)", media: '(max-width: 992px)' }
+      %meta{ name: "theme-color", content: "var(--primary)", media: "(min-width: 993px)" }
+      %meta{ name: "theme-color", content: "var(--background)", media: "(max-width: 992px)" }
     - else
-      %meta{ name: 'theme-color', content: "var(--primary)" }
+      %meta{ name: "theme-color", content: "var(--primary)" }
     - if @user&.privacy_noindex? || @answer&.user&.privacy_noindex? || @question&.user&.privacy_noindex?
       %meta{ name: 'robots', content: 'noindex' }
     %link{ rel: 'manifest', href: '/manifest.json', crossorigin: 'use-credentials' }
@@ -19,10 +19,7 @@
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
     = stylesheet_link_tag "application", data: { 'turbo-track': "reload" }, media: "all"
-    - if current_user&.show_foreign_themes?
-      %link{ rel: 'stylesheet', href: user_path(username: @user&.screen_name || @answer&.user&.screen_name || current_user&.screen_name, format: "css"), data: { turbo_track: "reload" } }
-    - elsif user_signed_in?
-      %link{ rel: 'stylesheet', href: user_path(username: current_user&.screen_name, format: "css"), data: { turbo_track: "reload" } }
+    %link{ rel: "stylesheet", href: user_path(username: active_theme_user.screen_name, format: "css"), data: { turbo_track: "reload" } }
     = javascript_include_tag 'application', data: { 'turbo-track': 'reload' }, defer: true
     = csrf_meta_tags
     = yield(:og)
