@@ -24,7 +24,7 @@ class UserController < ApplicationController
     theme = Theme.where(user: User.where("LOWER(screen_name) = ?", params[:username].downcase).select(:id)).first
     return head :no_content if theme.nil?
 
-    expires_in 1.day
+    expires_in 3.months
     return if fresh_when theme, public: true
 
     render plain: get_theme_css(theme), content_type: "text/css"
