@@ -148,18 +148,6 @@ en:
     author:
       info: "No questions from @%{author} found, showing entries from all users instead!"
       error: "No user with the name @%{author} found, showing entries from all users instead!"
-  services:
-    create:
-      success: "%{service} connected successfully."
-      duplicate: "The %{service} account you are trying to connect is already connected to another %{app} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
-      error: "Unable to connect to %{service}."
-    update:
-      success: "Service updated successfully."
-      error: "Unable to update service."
-    failure:
-      error: :errors.base
-    destroy:
-      success: "%{service} disconnected successfully."
   settings:
     export:
       index:
@@ -182,6 +170,18 @@ en:
         notice:
           profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
           profile_header: " It might take a few minutes until your new profile header is shown everywhere."
+    services:
+      create:
+        success: "%{service} connected successfully."
+        duplicate: "The %{service} account you are trying to connect is already connected to another %{app} account. If you are unable to disconnect the account yourself, please send us a Direct Message on Twitter: @retrospring."
+        error: "Unable to connect to %{service}."
+      update:
+        success: "Service updated successfully."
+        error: "Unable to update service."
+      failure:
+        error: :errors.base
+      destroy:
+        success: "%{service} disconnected successfully."
     theme:
       update:
         success: "Theme saved successfully."

@@ -363,9 +363,6 @@ en:
         heading: "Twitter connection expired"
         text_html: "If you would like to continue automatically sharing your answers to Twitter, head to %{settings_sharing} and re-connect your account."
         settings_services: "Sharing Settings"
-  services:
-    index:
-      title: "Service Settings"
   settings:
     account:
       email_confirm: "Currently awaiting confirmation for %{resource}"
@@ -488,13 +485,15 @@ en:
             google_play: "Google Play"
             code: "Source Code"
     services:
-      services:
-        one: "Sharing is enabled for the following service:"
-        other: "Sharing is enabled for the following services:"
-        zero: "You have not connected any services yet."
-      connect: "Connect to %{service}"
-      disconnect: "Disconnect"
-      confirm: "Really disconnect service %{service}?"
+      index:
+        title: "Service Settings"
+        services:
+          one: "Sharing is enabled for the following service:"
+          other: "Sharing is enabled for the following services:"
+          zero: "You have not connected any services yet."
+        connect: "Connect to %{service}"
+        disconnect: "Disconnect"
+        confirm: "Really disconnect service %{service}?"
     theme:
       edit:
         title: "Theme Settings"
