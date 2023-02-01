@@ -91,6 +91,8 @@ Rails.application.routes.draw do
 
     resources :push_notifications, only: %i[index]
 
+    resources :services, only: %i[index update destroy]
+
     namespace :two_factor_authentication do
       get :otp_authentication, to: "otp_authentication#index"
       patch :otp_authentication, to: "otp_authentication#update"
@@ -101,11 +103,7 @@ Rails.application.routes.draw do
   resolve("Theme") { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
   resolve("Profile") { [:settings_profile] }
 
-  # resources :services, only: [:index, :destroy]
-  get "/settings/services", to: "services#index", as: :services
-  patch "/settings/services/:id", to: "services#update", as: :update_service
-  delete "/settings/services/:id", to: "services#destroy", as: :service
-  controller :services do
+  controller "settings/services" do
     scope "/auth", as: "auth" do
       get ":provider/callback" => :create
       get :failure

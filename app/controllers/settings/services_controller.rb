@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ServicesController < ApplicationController
+class Settings::ServicesController < ApplicationController
   before_action :authenticate_user!
   before_action :mark_notifications_as_read, only: %i[index]
 
@@ -23,7 +23,7 @@ class ServicesController < ApplicationController
                       end
     end
 
-    redirect_to origin || services_path
+    redirect_to origin || settings_services_path
   end
 
   def update
@@ -34,13 +34,13 @@ class ServicesController < ApplicationController
     else
       flash[:error] = t(".error")
     end
-    redirect_to services_path
+    redirect_to settings_services_path
   end
 
   def failure
     Rails.logger.info "oauth error: #{params.inspect}"
     flash[:error] = t(".error")
-    redirect_to services_path
+    redirect_to settings_services_path
   end
 
   def destroy
@@ -48,7 +48,7 @@ class ServicesController < ApplicationController
     service_name = @service.type.split("::").last.titleize
     @service.destroy
     flash[:success] = t(".success", service: service_name)
-    redirect_to services_path
+    redirect_to settings_services_path
   end
 
   private
