@@ -2,6 +2,7 @@
   - type ||= :nil
   - own_followings ||= nil
   - own_blocks ||= nil
+  - own_mutes ||= nil
   - if user_signed_in? && user == current_user
     .d-grid
       %a.btn.btn-dark{ href: settings_profile_path } Edit profile
@@ -29,7 +30,7 @@
             %a.dropdown-item{ href: '#', data: { action: :block, target: user.screen_name } }
               %i.fa.fa-minus-circle.fa-fw
               %span.pe-none= t("voc.block")
-          - if current_user.muting?(user)
+          - if own_mutes&.include?(user.id) || current_user.muting?(user)
             %a.dropdown-item{ href: '#', data: { action: :unmute, target: user.screen_name } }
               %i.fa.fa-volume-off.fa-fw
               %span.pe-none= t("voc.unmute")
