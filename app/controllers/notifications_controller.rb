@@ -16,11 +16,8 @@ class NotificationsController < ApplicationController
   def index
     @type = TYPE_MAPPINGS[params[:type]] || params[:type]
     @notifications = cursored_notifications_for(type: @type, last_id: params[:last_id])
-    @notifications_last_id = @notifications.map(&:id).min
-    @more_data_available = !cursored_notifications_for(type: @type, last_id: @notifications_last_id, size: 1).count.zero?
-    @counters = Notification.where(recipient: current_user, new: true)
-                            .group(:target_type)
-                            .count(:target_type)
+    paginate_notifications
+    @counters = count_unread_by_type
 
     respond_to do |format|
       format.html
@@ -29,6 +26,17 @@ class NotificationsController < ApplicationController
   end
 
   private
+
+  def paginate_notifications
+    @notifications_last_id = @notifications.map(&:id).min
+    @more_data_available = !cursored_notifications_for(type: @type, last_id: @notifications_last_id, size: 1).count.zero?
+  end
+
+  def count_unread_by_type
+    Notification.where(recipient: current_user, new: true)
+                .group(:target_type)
+                .count(:target_type)
+  end
 
   def mark_notifications_as_read
     # using .dup to not modify @notifications -- useful in tests
