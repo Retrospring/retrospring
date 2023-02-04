@@ -51,6 +51,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  config.log_level = ENV.fetch("LOG_LEVEL") { "debug" }.to_sym
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -73,6 +77,6 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
 
-# For better_errors to work inside Docker we need 
+# For better_errors to work inside Docker we need
 # to allow 0.0.0.0 as an IP in development context
 BetterErrors::Middleware.allow_ip! "0.0.0.0/0"

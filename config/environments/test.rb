@@ -34,6 +34,10 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  config.log_level = ENV.fetch("LOG_LEVEL") { "debug" }.to_sym
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
