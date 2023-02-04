@@ -2,7 +2,7 @@
 
 namespace :css do
   desc "Build your CSS bundle"
-  task :build do
+  task build: :environment do
     command = "yarn install && yarn build:css"
     command += " --style=compressed" if Rails.env.production?
 

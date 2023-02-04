@@ -2,7 +2,7 @@
 
 namespace :javascript do
   desc "Build your JavaScript bundle"
-  task :build do
+  task build: :environment do
     command = "yarn install && yarn build"
     command += " --minify" if Rails.env.production?
 
