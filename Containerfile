@@ -74,4 +74,7 @@ RUN cp config/justask.yml.example config/justask.yml    \
  && rm config/justask.yml config/database.yml
 ENV SECRET_KEY_BASE=
 
+# set some defaults
+ENV RAILS_LOG_TO_STDOUT=true
+
 EXPOSE 3000
