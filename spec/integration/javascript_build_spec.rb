@@ -7,6 +7,6 @@ describe "test javascript building" do
   it "succeeds" do
     Rake::Task["javascript:build"].execute
 
-    expect { File.open(Rails.root.join("app/assets/builds/application.js")) }.to_not raise_error
+    expect { Rails.root.join("app/assets/builds/application.js").open }.to_not raise_error
   end
 end
