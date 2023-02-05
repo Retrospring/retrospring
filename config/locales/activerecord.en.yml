@@ -75,7 +75,7 @@ en:
         privacy_noindex: "Prevent search engines from indexing your profile"
         privacy_hide_social_graph: "Hide your social graph from others"
         sharing_enabled: "Enable sharing"
-        sharing_autoclose: "Automatically close inbox entry after sharing once"
+        sharing_autoclose: "Automatically hide inbox entry after sharing once"
         sharing_custom_url: "Custom Share Link"
         profile_picture: "Profile picture"
         profile_header: "Profile header"
