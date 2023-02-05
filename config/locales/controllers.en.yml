@@ -170,6 +170,10 @@ en:
         notice:
           profile_picture: " It might take a few minutes until your new profile picture is shown everywhere."
           profile_header: " It might take a few minutes until your new profile header is shown everywhere."
+    sharing:
+      update:
+        success: "Sharing settings updated successfully."
+        error: "Unable to update sharing settings."
     theme:
       update:
         success: "Theme saved successfully."

@@ -1,0 +1,20 @@
+= bootstrap_form_for(current_user, url: settings_sharing_path, method: :patch, data: { turbo: false }) do |f|
+  .card
+    .card-body
+      = f.form_group :sharing, help: t("activerecord.help.user.sharing_enabled") do
+        = f.check_box :sharing_enabled
+      = f.form_group :sharing, help: t("activerecord.help.user.sharing_autoclose"), class: false do
+        = f.check_box :sharing_autoclose
+
+  .card
+    .card-body
+      %h3= t(".advanced.title")
+      = t(".advanced.body_html")
+      = f.url_field :sharing_custom_url
+
+  .card
+    .card-body
+      = f.primary
+
+- provide(:title, generate_title(t(".title")))
+- parent_layout "user/settings"
