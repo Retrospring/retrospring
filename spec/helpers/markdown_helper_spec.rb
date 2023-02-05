@@ -40,24 +40,8 @@ describe MarkdownHelper, type: :helper do
   end
 
   describe "#twitter_markdown" do
-    context "mentioned user has Twitter connected" do
-      let(:user) { FactoryBot.create(:user) }
-      let(:service) { Services::Twitter.create(user: user) }
-
-      before do
-        service.nickname = "test"
-        service.save!
-      end
-
-      it "should transform a internal mention to a Twitter mention" do
-        expect(twitter_markdown("@#{user.screen_name}")).to eq("@test")
-      end
-    end
-
-    context "mentioned user doesnt have Twitter connected" do
-      it "should not transform the mention" do
-        expect(twitter_markdown("@test")).to eq("test")
-      end
+    it "should not transform the mention" do
+      expect(twitter_markdown("@test")).to eq("test")
     end
 
     it "should not strip weird hearts" do
@@ -118,17 +102,9 @@ describe MarkdownHelper, type: :helper do
 
   describe "#twitter_markdown_io" do
     let(:user) { FactoryBot.create(:user) }
-    let(:service) { Services::Twitter.create(user: user) }
-
-    before do
-      user.screen_name = "test"
-      user.save!
-      service.nickname = "ObamaGaming"
-      service.save!
-    end
 
     it "should return the expected text" do
-      expect(twitter_markdown_io("spec/fixtures/markdown/twitter.md")).to eq("@ObamaGaming")
+      expect(twitter_markdown_io("spec/fixtures/markdown/twitter.md")).to eq("test")
     end
   end
 
