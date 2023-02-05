@@ -12,6 +12,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include User::PushNotificationMethods
   include User::ReactionMethods
   include User::RelationshipMethods
+  include User::SharingMethods
   include User::TimelineMethods
   include ActiveModel::OneTimePassword
 

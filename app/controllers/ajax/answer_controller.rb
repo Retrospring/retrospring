@@ -1,8 +1,12 @@
+require 'cgi'
+
 class Ajax::AnswerController < AjaxController
+  include SocialHelper::TwitterMethods
+  include SocialHelper::TumblrMethods
+
   def create
     params.require :id
     params.require :answer
-    params.require :share
     params.require :inbox
 
     inbox = (params[:inbox] == 'true')
@@ -31,15 +35,19 @@ class Ajax::AnswerController < AjaxController
                current_user.answer question, params[:answer]
              end
 
-    services = JSON.parse params[:share]
-    services.each do |service|
-      ShareWorker.perform_async(current_user.id, answer.id, service)
-    end
-
 
     @response[:status] = :okay
     @response[:message] = t(".success")
     @response[:success] = true
+
+    if current_user.sharing_enabled
+      @response[:sharing] = {
+        twitter: twitter_share_url(answer),
+        tumblr: tumblr_share_url(answer),
+        custom: CGI.escape(prepare_tweet(answer))
+      }
+    end
+
     unless inbox
       # this assign is needed because shared/_answerbox relies on it, I think
       @question = 1
