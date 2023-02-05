@@ -9,6 +9,7 @@
     "scss/at-import-partial-extension": null,
     "scss/at-rule-no-unknown": true,
     "at-rule-no-unknown": null,
+    "color-function-notation": null,
     "color-hex-length": "long",
     "color-hex-case": "upper",
     "comment-whitespace-inside": null,
