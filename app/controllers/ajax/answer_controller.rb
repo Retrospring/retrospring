@@ -1,4 +1,6 @@
-require 'cgi'
+# frozen_string_literal: true
+
+require "cgi"
 
 class Ajax::AnswerController < AjaxController
   include SocialHelper::TwitterMethods
@@ -9,7 +11,7 @@ class Ajax::AnswerController < AjaxController
     params.require :answer
     params.require :inbox
 
-    inbox = (params[:inbox] == 'true')
+    inbox = (params[:inbox] == "true")
 
     if inbox
       inbox_entry = Inbox.find(params[:id])
@@ -35,7 +37,6 @@ class Ajax::AnswerController < AjaxController
                current_user.answer question, params[:answer]
              end
 
-
     @response[:status] = :okay
     @response[:message] = t(".success")
     @response[:success] = true
@@ -43,16 +44,16 @@ class Ajax::AnswerController < AjaxController
     if current_user.sharing_enabled
       @response[:sharing] = {
         twitter: twitter_share_url(answer),
-        tumblr: tumblr_share_url(answer),
-        custom: CGI.escape(prepare_tweet(answer))
+        tumblr:  tumblr_share_url(answer),
+        custom:  CGI.escape(prepare_tweet(answer))
       }
     end
 
-    unless inbox
-      # this assign is needed because shared/_answerbox relies on it, I think
-      @question = 1
-      @response[:render] = render_to_string(partial: 'answerbox', locals: { a: answer, show_question: false })
-    end
+    return if inbox
+
+    # this assign is needed because shared/_answerbox relies on it, I think
+    @question = 1
+    @response[:render] = render_to_string(partial: "answerbox", locals: { a: answer, show_question: false })
   end
 
   def destroy
@@ -60,15 +61,13 @@ class Ajax::AnswerController < AjaxController
 
     answer = Answer.find(params[:answer])
 
-    unless (current_user == answer.user) or (privileged? answer.user)
+    unless (current_user == answer.user) || (privileged? answer.user)
       @response[:status] = :nopriv
       @response[:message] = t(".nopriv")
       return
     end
 
-    if answer.user == current_user
-      Inbox.create!(user: answer.user, question: answer.question, new: true, returning: true)
-    end
+    Inbox.create!(user: answer.user, question: answer.question, new: true, returning: true) if answer.user == current_user
     answer.destroy
 
     @response[:status] = :okay

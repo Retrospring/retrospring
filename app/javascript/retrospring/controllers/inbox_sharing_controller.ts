@@ -16,7 +16,7 @@ export default class extends Controller {
   declare readonly configValue: Record<string, string>;
   declare readonly autoCloseValue: boolean;
 
-  connect() {
+  connect(): void {
     if (this.autoCloseValue) {
       this.twitterTarget.addEventListener('click', () => this.close());
       this.tumblrTarget.addEventListener('click', () => this.close());
@@ -27,7 +27,7 @@ export default class extends Controller {
     }
   }
 
-  configValueChanged(value): void {
+  configValueChanged(value: Record<string, string>): void {
     if (Object.keys(value).length === 0) {
       return;
     }
