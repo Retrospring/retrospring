@@ -214,10 +214,10 @@ en:
       options: "Sharing Options"
       placeholder: "Write your answer here…"
       sharing:
-        heading: "Sharing"
+        heading: "Share answer on..."
         post_to: "Post to %{service}"
-        none_html: "You have not connected any services yet. Visit your %{settings} to connect one."
-        settings: "service settings"
+        hint_html: "You can customize sharing in your %{settings}"
+        settings: "settings"
     show:
       empty: "Nothing to see here."
     actions:

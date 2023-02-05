@@ -1,5 +1,9 @@
+@use "sass:map";
+
 .inbox-entry {
   $this: &;
+
+  position: relative;
 
   &--new {
     box-shadow: 0 0.125rem 0.25rem var(--primary);
@@ -22,6 +26,24 @@
     }
   }
 
+  &__close {
+    position: absolute;
+    top: map.get($spacers, 3);
+    right: map.get($spacers, 3);
+  }
+
+  &__sharing {
+    position: absolute;
+    display: flex;
+    background-color: rgba(var(--raised-bg-rgb), 0.9);
+    backdrop-filter: blur(3px);
+    border-radius: var(--card-inner-border-radius);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
   .format-help {
     opacity: .3;
   }
@@ -30,7 +52,7 @@
   &:hover .format-help {
     opacity: 1;
   }
-  
+
   .card-header {
     position: relative;
   }

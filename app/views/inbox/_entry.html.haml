@@ -33,19 +33,22 @@
           = t("voc.answer")
         %button.btn.btn-danger.me-sm-1{ name: "ib-destroy", data: { ib_id: i.id } }
           = t("voc.delete")
-        %button.btn.btn-default.px-1{ name: "ib-options", data: { ib_id: i.id, state: :hidden } }
-          %i.fa.fa-chevron-down
-          %span.pe-none= t(".options")
         %p.format-help.ms-auto.align-self-center.mt-2.mt-sm-0.text-center
           = render "shared/format_link"
-    .card-footer.d-none{ id: "ib-options-#{i.id}" }
-      %h4= t(".sharing.heading")
-      - if services.count.positive?
-        .row
-          - services.each do |service|
-            .col-md-3.col-sm-4.col-xs-6
-              %label
-                %input{ type: "checkbox", name: "ib-share", checked: :checked, data: { ib_id: i.id, service: service.provider } }
-                = raw t(".sharing.post_to", service: service.provider.capitalize)
-      - else
-        %p= t(".sharing.none_html", settings: link_to(t(".sharing.settings"), services_path))
+    - if current_user.sharing_enabled
+      .inbox-entry__sharing.text-center.p-2.justify-content-center.d-none{ data: { controller: "inbox-sharing", inbox_sharing_config_value: "{}", inbox_sharing_auto_close_value: current_user.sharing_autoclose.to_s }}
+        %button.btn-close.inbox-entry__close{ data: { action: "inbox-sharing#close" } }
+          %span.visually-hidden= t("voc.close")
+        %div.align-self-center
+          %p.fs-3.fw-bold= t(".sharing.heading")
+          %p
+            %a.btn.btn-primary{ href: "https://twitter.com/intent/tweet?text=", data: { inbox_sharing_target: "twitter" }, target: "_blank" }
+              %i.fab.fa-twitter.fa-fw
+              Twitter
+            %a.btn.btn-primary{ href: "#", data: { inbox_sharing_target: "tumblr" }, target: "_blank" }
+              %i.fab.fa-tumblr.fa-fw
+              Tumblr
+            - if current_user.sharing_custom_url
+              %a.btn.btn-primary{ href: current_user.sharing_custom_url, data: { inbox_sharing_target: "custom" }, target: "_blank" }
+                = current_user.display_sharing_custom_url
+          %p.text-muted= t(".sharing.hint_html", settings: link_to(t(".sharing.settings"), settings_sharing_path))
