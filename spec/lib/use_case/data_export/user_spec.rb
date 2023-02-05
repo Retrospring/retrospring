@@ -22,6 +22,9 @@ describe UseCase::DataExport::User, :data_export do
       privacy_allow_public_timeline:     false,
       privacy_allow_stranger_answers:    false,
       privacy_show_in_search:            true,
+      sharing_enabled:                   false,
+      sharing_autoclose:                 false,
+      sharing_custom_url:                nil,
       screen_name:                       "fizzyraccoon",
       show_foreign_themes:               true,
       sign_in_count:                     10,
@@ -85,7 +88,10 @@ describe UseCase::DataExport::User, :data_export do
           privacy_lock_inbox:                false,
           privacy_require_user:              false,
           privacy_hide_social_graph:         false,
-          privacy_noindex:                   false
+          privacy_noindex:                   false,
+          sharing_enabled:                   false,
+          sharing_autoclose:                 false,
+          sharing_custom_url:                nil,
         },
         profile: {
           display_name:         "Fizzy Raccoon",
