@@ -53,14 +53,6 @@ features:
   public:
     enabled: true
 
-# OAuth tokens
-sharing:
-  twitter:
-    enabled: false
-    # Get the tokens from https://apps.twitter.com
-    consumer_key: ''
-    consumer_secret: ''
-
 # Redis
 redis_url: "redis://localhost:6379"
 
