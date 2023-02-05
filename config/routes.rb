@@ -101,17 +101,6 @@ Rails.application.routes.draw do
   resolve("Theme") { [:settings_theme] } # to make link_to/form_for work nicely when passing a `Theme` object to it, see also: https://api.rubyonrails.org/v6.1.5.1/classes/ActionDispatch/Routing/Mapper/CustomUrls.html#method-i-resolve
   resolve("Profile") { [:settings_profile] }
 
-  # resources :services, only: [:index, :destroy]
-  get "/settings/services", to: "services#index", as: :services
-  patch "/settings/services/:id", to: "services#update", as: :update_service
-  delete "/settings/services/:id", to: "services#destroy", as: :service
-  controller :services do
-    scope "/auth", as: "auth" do
-      get ":provider/callback" => :create
-      get :failure
-    end
-  end
-
   namespace :ajax do
     post "/ask", to: "question#create", as: :ask
     post "/destroy_question", to: "question#destroy", as: :destroy_question
