@@ -30,8 +30,6 @@ en:
         location: "Location"
         motivation_header: "Motivation header"
         website: "Website"
-      service:
-        post_tag: "Tag"
       theme:
         background_color: "Background colour"
         body_text: "Body text colour"
@@ -90,8 +88,6 @@ en:
       profile:
         anon_display_name: "This name will be used for questions asked to you by anonymous users."
         motivation_header: "Shown in the header of the question box on your profile. Motivate users to ask you questions!"
-      services/twitter:
-        post_tag: "Automatically append a tag to your shared answers. A # symbol is not automatically prepended."
       theme:
         danger_color: "Colour used for errors or critical actions like deleting something."
         info_color: "Colour used for informational popups or messages."

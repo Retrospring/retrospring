@@ -33,7 +33,6 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :comments, dependent: :destroy_async
   has_many :inboxes, dependent: :destroy_async
   has_many :smiles, class_name: "Appendable::Reaction", dependent: :destroy_async
-  has_many :services, dependent: :destroy_async
   has_many :notifications, foreign_key: :recipient_id, dependent: :destroy_async
   has_many :reports, dependent: :destroy_async
   has_many :lists, dependent: :destroy_async
