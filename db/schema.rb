@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_29_194809) do
+ActiveRecord::Schema.define(version: 2023_02_05_162800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,19 +253,6 @@ ActiveRecord::Schema.define(version: 2023_01_29_194809) do
     t.index ["delivered", "failed", "processing", "deliver_after", "created_at"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))"
   end
 
-  create_table "services", id: :serial, force: :cascade do |t|
-    t.string "type", null: false
-    t.bigint "user_id", null: false
-    t.string "uid"
-    t.string "access_token"
-    t.string "access_secret"
-    t.string "nickname"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "post_tag", limit: 20
-    t.index ["user_id"], name: "index_services_on_user_id"
-  end
-
   create_table "subscriptions", id: :serial, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "answer_id", null: false
@@ -371,6 +358,9 @@ ActiveRecord::Schema.define(version: 2023_01_29_194809) do
     t.boolean "privacy_require_user", default: false
     t.boolean "privacy_hide_social_graph", default: false
     t.boolean "privacy_noindex", default: false
+    t.boolean "sharing_enabled", default: false
+    t.boolean "sharing_autoclose", default: false
+    t.string "sharing_custom_url"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
