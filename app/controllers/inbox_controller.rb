@@ -37,11 +37,10 @@ class InboxController < ApplicationController
                                 user:                current_user)
 
     inbox = Inbox.create!(user: current_user, question_id: question.id, new: true)
-    services = current_user.services
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.prepend("entries", partial: "inbox/entry", locals: { i: inbox, services: })
+        render turbo_stream: turbo_stream.prepend("entries", partial: "inbox/entry", locals: { i: inbox })
 
         inbox.update(new: false)
       end
