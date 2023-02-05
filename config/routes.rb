@@ -78,6 +78,9 @@ Rails.application.routes.draw do
     get :privacy, to: redirect("/settings/privacy/edit")
     resource :privacy, controller: :privacy, only: %i[edit update]
 
+    get :sharing, to: redirect("/settings/sharing/edit")
+    resource :sharing, controller: :sharing, only: %i[edit update]
+
     get :export, to: "export#index"
     post :export, to: "export#create"
 

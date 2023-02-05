@@ -363,9 +363,6 @@ en:
         heading: "Twitter connection expired"
         text_html: "If you would like to continue automatically sharing your answers to Twitter, head to %{settings_sharing} and re-connect your account."
         settings_services: "Sharing Settings"
-  services:
-    index:
-      title: "Service Settings"
   settings:
     account:
       email_confirm: "Currently awaiting confirmation for %{resource}"
@@ -453,6 +450,14 @@ en:
           profile_picture: "Adjust your new profile picture"
           profile_header: "Adjust your new profile header"
         submit_picture: "Save pictures"
+    sharing:
+      edit:
+        title: "Sharing Settings"
+        advanced:
+          title: "Advanced options"
+          body_html: |
+            <p>If you use a service other than Twitter or Tumblr, which has support for sharing from external services, you can enter their sharing URL here so it will be listed as an option for sharing after an answer has been sent.</p>
+            <p>We will prepend a URL-encoded version of the answer to the end of the given link.</p>
     two_factor_authentication:
       otp_authentication:
         index:
