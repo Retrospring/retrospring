@@ -61,7 +61,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   end
 
   validates :email, fake_email: true, typoed_email: true
-  validates :sharing_custom_url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
+  validates :sharing_custom_url, format: URI::DEFAULT_PARSER.make_regexp(%w[http https]), allow_blank: true
   validates :screen_name,
             presence:    true,
             format:      { with: SCREEN_NAME_REGEX, message: I18n.t("activerecord.validation.user.screen_name.format") },
