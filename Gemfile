@@ -58,12 +58,6 @@ gem "httparty"
 gem "redcarpet"
 gem "sanitize"
 
-# OmniAuth and providers
-gem "omniauth"
-gem "omniauth-twitter"
-
-# OAuth clients
-gem "twitter"
 gem "twitter-text"
 
 gem "redis"
@@ -108,8 +102,6 @@ end
 group :production do
   gem "lograge"
 end
-
-gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem "net-imap"
 gem "net-pop"

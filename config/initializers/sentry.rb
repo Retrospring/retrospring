@@ -11,7 +11,6 @@ Sentry.init do |config|
 
   exception_fingerprints = {
     Excon::Error::ServiceUnavailable => 'external-service',
-    Twitter::Error::InternalServerError => 'external-service',
   }
   config.before_send = lambda do |event, hint|
     # These are used for user-facing errors, not when something goes wrong
