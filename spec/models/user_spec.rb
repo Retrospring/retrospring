@@ -33,6 +33,38 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "custom sharing url validation" do
+    subject do
+      FactoryBot.build(:user, sharing_custom_url: url).tap(&:validate).errors[:sharing_custom_url]
+    end
+
+    shared_examples_for "valid url" do |example_url|
+      context "when url is #{example_url}" do
+        let(:url) { example_url }
+
+        it "does not have validation errors" do
+          expect(subject).to be_empty
+        end
+      end
+    end
+
+    shared_examples_for "invalid url" do |example_url|
+      context "when url is #{example_url}" do
+        let(:url) { example_url }
+
+        it "has validation errors" do
+          expect(subject).not_to be_empty
+        end
+      end
+    end
+
+    include_examples "valid url", "https://myfunnywebsite.com/"
+    include_examples "valid url", "https://desu.social/share?text="
+    include_examples "valid url", "http://insecurebutvalid.business/"
+    include_examples "invalid url", "ftp://fileprotocols.cool/"
+    include_examples "invalid url", "notevenanurl"
+  end
+
   describe "email validation" do
     subject do
       FactoryBot.build(:user, email: email).tap(&:validate).errors[:email]
