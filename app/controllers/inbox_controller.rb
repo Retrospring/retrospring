@@ -18,12 +18,11 @@ class InboxController < ApplicationController
 
     @delete_id = find_delete_id
     @disabled = true if @inbox.empty?
-    services = current_user.services.to_a
 
     respond_to do |format|
-      format.html { render "show", locals: { services: } }
+      format.html { render "show" }
       format.turbo_stream do
-        render "show", locals: { services: }, layout: false, status: :see_other
+        render "show", layout: false, status: :see_other
 
         # rubocop disabled as just flipping a flag doesn't need to have validations to be run
         @inbox.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations

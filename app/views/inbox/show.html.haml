@@ -1,6 +1,6 @@
 #entries
   - @inbox.each do |i|
-    = render "inbox/entry", services:, i:
+    = render "inbox/entry", i:
 
   - if @inbox.empty?
     %p.empty= t(".empty")

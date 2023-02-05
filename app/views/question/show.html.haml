@@ -22,7 +22,3 @@
         %br/
         %button.btn.btn-success#q-answer-btn{ data: { q_id: @question.id } }
           = t("voc.answer")
-        - current_user.services.each do |service|
-          %label
-            %input{ type: "checkbox", name: "share", checked: :checked, data: { q_id: @question.id, service: service.provider } }
-            = t("inbox.entry.sharing.post_to", service: service.provider.capitalize)
