@@ -9,16 +9,9 @@ export function answerEntryHandler(event: Event): void {
 
   element.disabled = true;
 
-  const shareTo = [];
-  inboxEntry.querySelectorAll('input[type=checkbox][name=ib-share]:checked')
-    .forEach((element: HTMLInputElement) => {
-      shareTo.push(element.getAttribute('data-service'));
-    });
-
   const data = {
     id: element.getAttribute('data-ib-id'),
     answer: inboxEntry.querySelector<HTMLInputElement>('textarea[name=ib-answer]')?.value,
-    share: JSON.stringify(shareTo),
     inbox: 'true'
   };
 
@@ -36,7 +29,14 @@ export function answerEntryHandler(event: Event): void {
       }
       updateDeleteButton(false);
       showNotification(data.message);
-      (inboxEntry as HTMLElement).remove();
+
+      const sharing = inboxEntry.querySelector<HTMLElement>('.inbox-entry__sharing');
+      if (sharing != null) {
+        sharing.dataset.inboxSharingConfigValue = JSON.stringify(data.sharing);
+      }
+      else {
+        (inboxEntry as HTMLElement).remove();
+      }
     })
     .catch(err => {
       console.log(err);
