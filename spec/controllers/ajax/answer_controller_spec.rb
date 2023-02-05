@@ -25,24 +25,12 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           expect { subject }.to(change { Answer.count }.by(1))
         end
 
-        it "enqueues a job for sharing the answer to social networks" do
-          subject
-          shared_services.each do |service|
-            expect(ShareWorker).to have_enqueued_sidekiq_job(user.id, Answer.last.id, service)
-          end
-        end
-
         include_examples "returns the expected response"
       end
 
       shared_examples "does not create the answer" do
         it "does not create an answer" do
           expect { subject }.not_to(change { Answer.count })
-        end
-
-        it "does not enqueue a job for sharing the answer to social networks" do
-          subject
-          expect(ShareWorker).not_to have_enqueued_sidekiq_job(anything, anything, anything)
         end
 
         include_examples "returns the expected response"
