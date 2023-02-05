@@ -216,7 +216,7 @@ en:
       sharing:
         heading: "Share answer on..."
         post_to: "Post to %{service}"
-        hint_html: "You can customize sharing in your %{settings}"
+        hint_html: "You can customise sharing in your %{settings}"
         settings: "settings"
     show:
       empty: "Nothing to see here."
