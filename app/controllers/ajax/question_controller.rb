@@ -41,7 +41,7 @@ class Ajax::QuestionController < AjaxController
       target_user_id:    params[:rcpt],
       content:           params[:question],
       anonymous:         params[:anonymousQuestion],
-      author_identifier: AnonymousBlock.get_identifier(request.ip)
+      author_identifier: AnonymousBlock.get_identifier(request.remote_ip)
     )
   end
 end

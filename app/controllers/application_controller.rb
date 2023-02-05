@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     if current_user.present?
       Sentry.set_user({ id: current_user.id })
     else
-      Sentry.set_user({ ip_address: request.ip })
+      Sentry.set_user({ ip_address: request.remote_ip })
     end
   end
 end
