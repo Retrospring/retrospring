@@ -91,7 +91,7 @@ describe UseCase::DataExport::User, :data_export do
           privacy_noindex:                   false,
           sharing_enabled:                   false,
           sharing_autoclose:                 false,
-          sharing_custom_url:                nil,
+          sharing_custom_url:                nil
         },
         profile: {
           display_name:         "Fizzy Raccoon",
