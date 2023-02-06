@@ -131,3 +131,6 @@ Style/Encoding:
 
 Style/EndlessMethod:
   EnforcedStyle: allow_always
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma

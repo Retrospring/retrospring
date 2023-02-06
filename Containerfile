@@ -65,13 +65,15 @@ RUN bundle config set without 'development test'     \
  && yarn install --frozen-lockfile
 
 # temporarily set a SECRET_KEY_BASE and copy config files so rake tasks can run
-ENV SECRET_KEY_BASE=secret_for_build
+ARG SECRET_KEY_BASE=secret_for_build
 RUN cp config/justask.yml.example config/justask.yml    \
  && cp config/database.yml.postgres config/database.yml \
  && bundle exec rails locale:generate                   \
  && bundle exec i18n export                             \
  && bundle exec rails assets:precompile                 \
  && rm config/justask.yml config/database.yml
-ENV SECRET_KEY_BASE=
+
+# set some defaults
+ENV RAILS_LOG_TO_STDOUT=true
 
 EXPOSE 3000
