@@ -23,7 +23,7 @@
     "sass": "^1.58.0",
     "sweetalert": "1.1.3",
     "toastify-js": "^1.12.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.11.0",
