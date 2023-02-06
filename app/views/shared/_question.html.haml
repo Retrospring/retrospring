@@ -1,8 +1,17 @@
 - type ||= nil
 .card.questionbox{ data: { id: q.id } }
+  - if type.nil? && q.direct
+    - if user_signed_in? && q.user == current_user
+      .card-header
+        %i.fa.fa-eye-slash
+        Only you can see this
+    - elsif moderation_view?
+      .card-header
+        %i.fa.fa-eye-slash
+        You can see this because you are in moderation view
   .card-body{ data: { controller: q.long? ? "collapse" : nil } }
     .d-flex
-      - if type == 'discover'
+      - if type == "discover"
         .flex-shrink-0
           %a{ href: user_screen_name(q.user, link_only: true) }
             %img.avatar-md.me-2{ src: q.user&.profile_picture&.url(:small), loading: :lazy }
@@ -13,7 +22,7 @@
             ·
             %a{ href: question_path(q.user.screen_name, q.id) }
               = pluralize(q.answer_count, t("voc.answer"))
-        .answerbox__question-text{ class: q.long? ? 'collapsed' : '', data: { collapse_target: "content" } }
+        .answerbox__question-text{ class: q.long? ? "collapsed" : "", data: { collapse_target: "content" } }
           = question_markdown q.content
         - if q.long?
           = render "shared/collapse", type: "question"
