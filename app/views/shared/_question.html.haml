@@ -4,11 +4,11 @@
     - if user_signed_in? && q.user == current_user
       .card-header
         %i.fa.fa-eye-slash
-        Only you can see this
+        = t(".visible_to_you")
     - elsif moderation_view?
       .card-header
         %i.fa.fa-eye-slash
-        You can see this because you are in moderation view
+        = t(".visible_mod_mode")
   .card-body{ data: { controller: q.long? ? "collapse" : nil } }
     .d-flex
       - if type == "discover"
