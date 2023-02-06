@@ -210,7 +210,7 @@ GEM
     json (2.6.3)
     json-schema (3.0.0)
       addressable (>= 2.8)
-    jwt (2.6.0)
+    jwt (2.7.0)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -509,7 +509,7 @@ DEPENDENCIES
   i18n-js (= 4.0)
   jsbundling-rails (~> 1.1)
   json-schema
-  jwt (~> 2.6)
+  jwt (~> 2.7)
   letter_opener
   lograge
   mail (~> 2.7.1)
