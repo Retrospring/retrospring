@@ -578,6 +578,9 @@ en:
     anonymous_block:
       deleted_question: "Deleted question"
       blocked: "blocked %{time} ago"
+    question:
+      visible_to_you: "Only visible to you"
+      visible_mod_mode: "You can see this because you are in moderation view"
   tabs:
     admin:
       announcements: "Announcements"
