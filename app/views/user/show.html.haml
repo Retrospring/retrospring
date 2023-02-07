@@ -1,6 +1,6 @@
 - unless @user.banned?
   #pinned-answers
-    - @user.answers.pinned.each do |a|
+    - @pinned_answers.each do |a|
       = render "answerbox", a:
 
   #answers
