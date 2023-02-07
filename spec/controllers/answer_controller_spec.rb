@@ -2,7 +2,9 @@
 
 require "rails_helper"
 
-describe AnswerController do
+describe AnswerController, type: :controller do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:user) do
     FactoryBot.create :user,
                       otp_module:     :disabled,
@@ -36,6 +38,64 @@ describe AnswerController do
         subject
         expect(assigns(:answer)).to eq(answer)
         expect(response.body).to include("<meta content='noindex' name='robots'>")
+      end
+    end
+  end
+
+  describe "#pin" do
+    subject { post :pin, params: { username: user.screen_name, id: answer.id } }
+
+    context "user signed in" do
+      before(:each) { sign_in user }
+
+      it "pins the answer" do
+        travel_to(Time.at(1603290950).utc) do
+          expect { subject }.to change { answer.reload.pinned_at }.from(nil).to(Time.at(1603290950).utc)
+          expect(response).to redirect_to(user_path(user))
+        end
+      end
+    end
+
+    context "other user signed in" do
+      let(:other_user) { FactoryBot.create(:user) }
+
+      before(:each) { sign_in other_user }
+
+      it "does not pin the answer do" do
+        travel_to(Time.at(1603290950).utc) do
+          expect { subject }.to raise_error(Errors::NotAuthorized)
+          expect(answer.reload.pinned_at).to eq(nil)
+        end
+      end
+    end
+  end
+
+  describe "#unpin" do
+    subject { delete :unpin, params: { username: user.screen_name, id: answer.id } }
+
+    context "user signed in" do
+      before(:each) do
+        sign_in user
+        answer.update!(pinned_at: Time.at(1603290950).utc)
+      end
+
+      it "pins the answer" do
+        expect { subject }.to change { answer.reload.pinned_at }.from(Time.at(1603290950).utc).to(nil)
+        expect(response).to redirect_to(user_path(user))
+      end
+    end
+
+    context "other user signed in" do
+      let(:other_user) { FactoryBot.create(:user) }
+
+      before(:each) do
+        sign_in other_user
+        answer.update!(pinned_at: Time.at(1603290950).utc)
+      end
+
+      it "does not pin the answer do" do
+        expect { subject }.to raise_error(Errors::NotAuthorized)
+        expect(answer.reload.pinned_at).to eq(Time.at(1603290950).utc)
       end
     end
   end
