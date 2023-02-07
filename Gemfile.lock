@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/mltnhm/carrierwave_backgrounder.git
-  revision: 8fe468957f047ad7039f07679e5952a534d07b6d
+  remote: https://github.com/raccube/carrierwave_backgrounder.git
+  revision: 41b756f7514c0e410c561bc8b5ee321cd8cce1ee
   specs:
     carrierwave_backgrounder (0.4.2)
       carrierwave (>= 0.5, <= 2.1)
