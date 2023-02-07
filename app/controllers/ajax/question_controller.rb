@@ -31,7 +31,7 @@ class Ajax::QuestionController < AjaxController
       UseCase::Question::CreateFollowers.call(
         source_user_id:    current_user.id,
         content:           params[:question],
-        author_identifier: AnonymousBlock.get_identifier(request.ip)
+        author_identifier: AnonymousBlock.get_identifier(request.remote_ip)
       )
       return
     end
