@@ -28,4 +28,14 @@ class AnswerController < ApplicationController
       format.turbo_stream { render "pin", locals: { answer: } }
     end
   end
+
+  def unpin
+    answer = Answer.includes(:user).find(params[:id])
+    UseCase::Answer::Unpin.call(user: current_user, answer:)
+
+    respond_to do |format|
+      format.html { redirect_to(user_path(username: current_user.screen_name)) }
+      format.turbo_stream { render "pin", locals: { answer: } }
+    end
+  end
 end
