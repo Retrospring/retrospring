@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AnswerController < ApplicationController
-  before_action :authenticate_user!, only: :pin
+  before_action :authenticate_user!, only: %i[pin unpin]
 
   def show
     @answer = Answer.includes(comments: %i[user smiles], question: [:user], smiles: [:user]).find(params[:id])
