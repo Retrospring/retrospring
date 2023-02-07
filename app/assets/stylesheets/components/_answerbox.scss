@@ -82,8 +82,20 @@
     }
   }
 
+  &__pinned {
+    display: none;
+  }
+
   .card-body {
     padding-bottom: .6rem;
+  }
+}
+
+#pinned-answers {
+  .answerbox {
+    &__pinned {
+      display: inline;
+    }
   }
 }
 

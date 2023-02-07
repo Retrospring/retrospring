@@ -27,6 +27,11 @@
         .col-md-6.text-start.text-muted
           %i.fa.fa-clock-o
           = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), class: "answerbox__permalink")
+          - if instance_variable_defined?(:@user) && @user == a.user && a.pinned_at.present?
+            %span.answerbox__pinned
+              ·
+              %i.fa.fa-thumbtack
+              = t(".pinned")
         .col-md-6.d-md-flex.answerbox__actions
           = render "answerbox/actions", a: a, display_all: display_all
   .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? "d-none" : nil }

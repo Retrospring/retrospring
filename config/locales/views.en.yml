@@ -126,6 +126,7 @@ en:
       read: "Read the entire answer"
       answered: "%{hide} %{user}" # resolves into "Answered by %{user}"
       hide: "Answered by"
+      pinned: "Pinned"
     questionbox:
       title: "Ask something!"
       placeholder: "Type your question here…"
