@@ -92,10 +92,9 @@
 }
 
 #pinned-answers {
-  .answerbox {
-    &__pinned {
-      display: inline;
-    }
+
+  .answerbox__pinned {
+    display: inline;
   }
 }
 
