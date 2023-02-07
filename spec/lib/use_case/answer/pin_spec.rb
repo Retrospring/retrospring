@@ -18,6 +18,17 @@ describe UseCase::Answer::Pin do
           expect { subject }.to change { answer.pinned_at }.from(nil).to(Time.at(1603290950).utc)
         end
       end
+
+      context "answer is already pinned" do
+        before do
+          answer.update!(pinned_at: Time.at(1603290950).utc)
+        end
+
+        it "raises an error" do
+          expect { subject }.to raise_error(Errors::BadRequest)
+          expect(answer.reload.pinned_at).to eq(Time.at(1603290950).utc)
+        end
+      end
     end
 
     context "as other user" do
