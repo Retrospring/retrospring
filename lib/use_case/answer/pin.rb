@@ -14,7 +14,7 @@ module UseCase
 
         {
           status:   200,
-          resource: answer
+          resource: answer,
         }
       end
 

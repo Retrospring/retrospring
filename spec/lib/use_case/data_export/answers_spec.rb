@@ -33,7 +33,7 @@ describe UseCase::DataExport::Answers, :data_export do
               created_at:    "2022-12-10T13:37:42.000Z",
               updated_at:    "2022-12-10T13:37:42.000Z",
               smile_count:   0,
-              pinned_at:     nil
+              pinned_at:     nil,
             }
           ]
         }

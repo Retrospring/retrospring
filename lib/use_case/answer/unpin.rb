@@ -15,7 +15,7 @@ module UseCase
 
         {
           status:   200,
-          resource: nil
+          resource: nil,
         }
       end
 
