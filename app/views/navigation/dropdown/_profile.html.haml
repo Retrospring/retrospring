@@ -1,6 +1,6 @@
 .dropdown-menu.dropdown-menu-end.profile-dropdown{ id: "rs-#{size}-nav-profile" }
   %h6.dropdown-header.d-none.d-sm-block= current_user.screen_name
-  %a.dropdown-item{ href: user_path(current_user) }
+  %a.dropdown-item{ href: user_path(current_user), data: { hotkey: "g p" } }
     %i.fa.fa-fw.fa-user
     = t(".profile")
   %a.dropdown-item{ href: edit_user_registration_path }
