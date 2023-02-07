@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AnswerController < ApplicationController
+  before_action :authenticate_user!, only: :pin
+
   def show
     @answer = Answer.includes(comments: %i[user smiles], question: [:user], smiles: [:user]).find(params[:id])
     @display_all = true
@@ -14,6 +16,16 @@ class AnswerController < ApplicationController
       notif.update_all(new: false) unless notif.empty?
       notif = Notification.where(type: "Notification::CommentSmiled", target_id: @answer.comment_smiles.pluck(:id), recipient_id: current_user.id, new: true)
       notif.update_all(new: false) unless notif.empty?
+    end
+  end
+
+  def pin
+    answer = Answer.includes(:user).find(params[:id])
+    UseCase::Answer::Pin.call(user: current_user, answer:)
+
+    respond_to do |format|
+      format.html { redirect_to(user_path(username: current_user.screen_name)) }
+      format.turbo_stream { render "pin", locals: { answer: } }
     end
   end
 end

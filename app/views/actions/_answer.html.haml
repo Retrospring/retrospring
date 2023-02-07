@@ -17,14 +17,7 @@
       %i.fa.fa-fw.fa-exclamation-triangle
       = t("voc.report")
   - else
-    - if answer.pinned?
-      %a.dropdown-item{ href: "#", data: { a_id: answer.id, action: "ab-unpin" } }
-        %i.fa.fa-fw.fa-thumbtack
-        = t(".unpin")
-    - else
-      %a.dropdown-item{ href: "#", data: { a_id: answer.id, action: "ab-pin" } }
-        %i.fa.fa-fw.fa-thumbtack
-        = t(".pin")
+    = render "actions/pin", answer:
   - if current_user.admin?
     %a.dropdown-item{ href: rails_admin_path_for_resource(answer), target: "_blank" }
       %i.fa.fa-fw.fa-gears
