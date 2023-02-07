@@ -17,6 +17,15 @@ describe UseCase::Answer::Unpin do
       it "unpins the answer" do
         expect { subject }.to change { answer.pinned_at }.from(pinned_at).to(nil)
       end
+
+      context "answer is already unpinned" do
+        let(:pinned_at) { nil }
+
+        it "raises an error" do
+          expect { subject }.to raise_error(Errors::BadRequest)
+          expect(answer.reload.pinned_at).to eq(nil)
+        end
+      end
     end
 
     context "as other user" do
