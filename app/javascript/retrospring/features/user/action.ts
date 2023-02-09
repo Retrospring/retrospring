@@ -7,6 +7,7 @@ export function userActionHandler(event: Event): void {
   const button: HTMLButtonElement = event.target as HTMLButtonElement;
   const target = button.dataset.target;
   const action = button.dataset.action;
+  button.disabled = true;
 
   let targetURL, relationshipType;
 
@@ -56,6 +57,7 @@ export function userActionHandler(event: Event): void {
       showErrorNotification(I18n.translate('frontend.error.message'));
     })
     .finally(() => {
+      button.disabled = false;
       if (!success) return;
 
       switch (action) {
