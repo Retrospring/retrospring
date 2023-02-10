@@ -7,7 +7,7 @@ class UserController < ApplicationController
 
   def show
     @answers = @user.cursored_answers(last_id: params[:last_id])
-    @pinned_answers = @user.answers.pinned.limit(10)
+    @pinned_answers = @user.answers.pinned.order(pinned_at: :desc).limit(10)
     @answers_last_id = @answers.map(&:id).min
     @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
 
