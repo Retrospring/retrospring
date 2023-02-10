@@ -9,5 +9,11 @@ module UseCase
     def self.call(...) = new(...).call
 
     def call = raise NotImplementedError
+
+    private
+
+    def authorize!(verb, user, record, error_class: Errors::NotAuthorized)
+      raise error_class unless Pundit.policy!(user, record).public_send("#{verb}?")
+    end
   end
 end

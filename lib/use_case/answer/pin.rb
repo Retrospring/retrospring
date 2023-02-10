@@ -7,7 +7,7 @@ module UseCase
       option :answer, type: Types.Instance(::Answer)
 
       def call
-        check_ownership!
+        authorize!(:pin, user, answer)
         check_unpinned!
 
         answer.pinned_at = Time.now.utc
@@ -20,10 +20,6 @@ module UseCase
       end
 
       private
-
-      def check_ownership!
-        raise ::Errors::NotAuthorized unless answer.user == user
-      end
 
       def check_unpinned!
         raise ::Errors::BadRequest if answer.pinned_at.present?
