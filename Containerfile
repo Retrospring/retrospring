@@ -57,7 +57,7 @@ WORKDIR /opt/retrospring/app
 USER justask:users
 
 # install the app
-RUN curl -L https://github.com/Retrospring/retrospring/archive/refs/tags/${RETROSPRING_VERSION}.tar.gz | tar xz --strip-components=1
+RUN curl -L https://github.com/Retrospring/retrospring/archive/${RETROSPRING_VERSION}.tar.gz | tar xz --strip-components=1
 
 RUN bundle config set without 'development test'     \
  && bundle config set path '/opt/retrospring/bundle' \
