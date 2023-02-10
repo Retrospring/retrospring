@@ -63,6 +63,8 @@ RSpec.describe User, type: :model do
     include_examples "valid url", "http://insecurebutvalid.business/"
     include_examples "invalid url", "ftp://fileprotocols.cool/"
     include_examples "invalid url", "notevenanurl"
+    include_examples "invalid url", %(https://richtig <strong>oarger</strong> shice) # passes the regexp, but trips up URI.parse
+    include_examples "invalid url", %(https://österreich.gv.at) # needs to be ASCII
   end
 
   describe "email validation" do
