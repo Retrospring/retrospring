@@ -10,10 +10,11 @@ class Settings::SharingController < ApplicationController
                                                    :sharing_autoclose,
                                                    :sharing_custom_url)
     if current_user.update(user_attributes)
-      flash[:success] = t(".success")
+      flash.now[:success] = t(".success")
     else
-      flash[:error] = t(".error")
+      flash.now[:error] = t(".error")
     end
-    redirect_to settings_sharing_path
+
+    render :edit
   end
 end

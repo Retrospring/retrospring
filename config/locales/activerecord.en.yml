@@ -104,6 +104,9 @@ en:
       user:
         screen_name:
           format: "contains invalid characters"
+    errors:
+      messages:
+        invalid_url: "does not look like a valid URL"
   helpers:
     submit:
       user:
