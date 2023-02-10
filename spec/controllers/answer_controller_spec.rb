@@ -61,7 +61,7 @@ describe AnswerController, type: :controller do
 
       before(:each) { sign_in other_user }
 
-      it "does not pin the answer do" do
+      it "does not pin the answer" do
         travel_to(Time.at(1603290950).utc) do
           expect { subject }.to raise_error(Errors::NotAuthorized)
           expect(answer.reload.pinned_at).to eq(nil)
@@ -79,7 +79,7 @@ describe AnswerController, type: :controller do
         answer.update!(pinned_at: Time.at(1603290950).utc)
       end
 
-      it "pins the answer" do
+      it "unpins the answer" do
         expect { subject }.to change { answer.reload.pinned_at }.from(Time.at(1603290950).utc).to(nil)
         expect(response).to redirect_to(user_path(user))
       end
@@ -93,7 +93,7 @@ describe AnswerController, type: :controller do
         answer.update!(pinned_at: Time.at(1603290950).utc)
       end
 
-      it "does not pin the answer do" do
+      it "does not unpin the answer" do
         expect { subject }.to raise_error(Errors::NotAuthorized)
         expect(answer.reload.pinned_at).to eq(Time.at(1603290950).utc)
       end
