@@ -31,6 +31,7 @@
     = render 'shared/announcements'
     = yield
     = render "shared/formatting"
+    #toasts.d-none
     - if Rails.env.development?
       #debug
         %hr
