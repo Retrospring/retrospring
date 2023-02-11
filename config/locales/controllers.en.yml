@@ -144,6 +144,11 @@ en:
         zero: "You are not currently subscribed to push notifications on any devices."
         one: "You are currently receiving push notifications on one device."
         other: "You are currently receiving push notifications on %{count} devices."
+  anonymous_block:
+    create:
+      success: "Successfully blocked user."
+    destroy:
+      success: "Successfully unblocked user."
   inbox:
     author:
       info: "No questions from @%{author} found, showing entries from all users instead!"
