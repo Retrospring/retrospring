@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Settings::MutesController < ApplicationController
+  include TurboStreamable
+
   before_action :authenticate_user!
 
-  def turbo_stream_actions = %i[create destroy]
-
-  include TurboStreamable
+  turbo_stream_actions :create, :destroy
 
   def index
     @users = current_user.muted_users

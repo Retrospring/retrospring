@@ -3,16 +3,14 @@
 module TurboStreamable
   extend ActiveSupport::Concern
 
-  included do |controller|
-    around_action :handle_error, only: controller.respond_to?(:turbo_stream_actions) ? controller.turbo_stream_actions : []
+  class_methods do
+    def turbo_stream_actions(*actions)
+      around_action :handle_error, only: actions
+    end
   end
 
   def render_toast(message, success = true)
     turbo_stream.append("toasts", partial: "shared/toast", locals: { message:, success: })
-  end
-
-  class_methods do
-    def render_toast = render_toast
   end
 
   private

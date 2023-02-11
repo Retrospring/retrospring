@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class AnonymousBlockController < ApplicationController
+  include TurboStreamable
+
   before_action :authenticate_user!
 
-  def turbo_stream_actions = %i[create destroy]
-
-  include TurboStreamable
+  turbo_stream_actions :create, :destroy
 
   def create
     params.require :question
