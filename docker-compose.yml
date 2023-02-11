@@ -11,6 +11,8 @@ services:
       - redis
     environment:
       - SPROCKETS_CACHE=/cache
+      - DATABASE_URL=postgres://postgres:justask@postgres/justask_development?pool=25
+      - REDIS_URL=redis://redis:6379
     volumes:
       - ./:/app
       - cache:/cache
