@@ -20,7 +20,7 @@ module TurboStreamable
   rescue Errors::Base => e
     render_error I18n.t(e.locale_tag)
   rescue KeyError, ActionController::ParameterMissing => e
-    render_error t("errors.parameter_error", parameter: e.is_a?(KeyError) ? e.key : e.param.capitalize)
+    render_error t("errors.parameter_error", parameter: e.instance_of?(KeyError) ? e.key : e.param.capitalize)
   rescue Dry::Types::CoercionError, Dry::Types::ConstraintError
     render_error t("errors.invalid_parameter")
   rescue ActiveRecord::RecordNotFound
