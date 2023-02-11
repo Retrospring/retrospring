@@ -29,16 +29,6 @@ end
 describe TurboStreamableTestController, type: :controller do
   render_views
 
-  before do
-    routes.disable_clear_and_finalize = true
-    routes.draw do
-      get "turbo_streamable" => "turbo_streamable_test#create"
-      get "turbo_streamable_blocked" => "turbo_streamable_test#blocked"
-      get "turbo_streamable_not_found" => "turbo_streamable_test#not_found"
-    end
-    routes.finalize!
-  end
-
   shared_examples_for "it returns a toast as Turbo Stream response" do |action, message|
     subject { get action, format: :turbo_stream }
 
