@@ -160,6 +160,11 @@ en:
       create:
         success: "Your account is currently being exported. This will take a little while."
         error: "Exporting is currently not possible."
+    mutes:
+      create:
+        success: "Sucessfully created mute rule"
+      destroy:
+        success: "Successfully removed mute rule"
     privacy:
       update:
         success: :settings.profile.update.success
