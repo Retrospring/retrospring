@@ -3,6 +3,10 @@
 class AnonymousBlockController < ApplicationController
   before_action :authenticate_user!
 
+  def turbo_stream_actions = %i[create destroy]
+
+  include TurboStreamable
+
   def create
     params.require :question
 
@@ -21,8 +25,10 @@ class AnonymousBlockController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove("inbox_#{inbox_id}")
+        render turbo_stream: [
           inbox_id ? turbo_stream.remove("inbox_#{inbox_id}") : nil,
+          render_toast(t(".success"))
+        ].compact
       end
 
       format.html { redirect_back(fallback_location: inbox_path) }
@@ -39,7 +45,10 @@ class AnonymousBlockController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove("block_#{params[:id]}")
+        render turbo_stream: [
+          turbo_stream.remove("block_#{params[:id]}"),
+          render_toast(t(".success"))
+        ]
       end
 
       format.html { redirect_back(fallback_location: settings_blocks_path) }
