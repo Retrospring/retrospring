@@ -54,7 +54,19 @@ Rails.application.configure do
   config.lograge.enabled = true
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  cache_redis_url = ENV.fetch("CACHE_REDIS_URL") { nil }
+  if cache_redis_url.present?
+    config.cache_store = :redis_cache_store, {
+      url: cache_redis_url,
+      pool_size: ENV.fetch("RAILS_MAX_THREADS") { 5 }.to_i,
+      pool_timeout: ENV.fetch("CACHE_REDIS_TIMEOUT") { 5 },
+      error_handler: -> (method:, returning:, exception:) {
+        # Report errors to Sentry as warnings
+        Sentry.capture_exception exception, level: 'warning',
+                                 tags: { method: method, returning: returning }
+      },
+    }
+  end
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
