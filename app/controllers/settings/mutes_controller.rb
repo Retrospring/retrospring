@@ -3,6 +3,10 @@
 class Settings::MutesController < ApplicationController
   before_action :authenticate_user!
 
+  def turbo_stream_actions = %i[create destroy]
+
+  include TurboStreamable
+
   def index
     @users = current_user.muted_users
     @rules = MuteRule.where(user: current_user)
@@ -15,7 +19,8 @@ class Settings::MutesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace("form", partial: "settings/mutes/form"),
-          turbo_stream.append("rules", partial: "settings/mutes/rule", locals: { rule: result[:resource] })
+          turbo_stream.append("rules", partial: "settings/mutes/rule", locals: { rule: result[:resource] }),
+          render_toast(t(".success"))
         ]
       end
 
@@ -32,7 +37,10 @@ class Settings::MutesController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove("rule_#{params[:id]}")
+        render turbo_stream: [
+          turbo_stream.remove("rule_#{params[:id]}"),
+          render_toast(t(".success"))
+        ]
       end
 
       format.html { redirect_to settings_muted_path }
