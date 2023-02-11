@@ -16,12 +16,13 @@ class AnonymousBlockController < ApplicationController
       target_user: question.user
     )
 
-    inbox_id = question.inboxes.first.id
+    inbox_id = question.inboxes.first&.id
     question.inboxes.first&.destroy
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.remove("inbox_#{inbox_id}")
+          inbox_id ? turbo_stream.remove("inbox_#{inbox_id}") : nil,
       end
 
       format.html { redirect_back(fallback_location: inbox_path) }
