@@ -60,6 +60,7 @@ gem "sanitize"
 
 gem "twitter-text"
 
+gem "connection_pool"
 gem "redis"
 
 gem "fake_email_validator"
