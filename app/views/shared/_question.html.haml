@@ -1,14 +1,5 @@
 - type ||= nil
 .card.questionbox{ data: { id: q.id } }
-  - if type.nil? && q.direct
-    - if user_signed_in? && q.user == current_user
-      .card-header
-        %i.fa.fa-eye-slash
-        = t(".visible_to_you")
-    - elsif moderation_view?
-      .card-header
-        %i.fa.fa-eye-slash
-        = t(".visible_mod_mode")
   .card-body{ data: { controller: q.long? ? "collapse" : nil } }
     .d-flex
       - if type == "discover"
@@ -17,6 +8,11 @@
             %img.avatar-md.me-2{ src: q.user&.profile_picture&.url(:small), loading: :lazy }
       .flex-grow-1
         %h6.text-muted.answerbox__question-user
+          - if type.nil? && q.direct
+            - if user_signed_in? && q.user == current_user
+              %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_to_you") } }
+            - elsif moderation_view?
+              %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_mod_mode") } }
           = t("answerbox.header.asked_html", user: user_screen_name(q.user), time: time_tooltip(q))
           - if q.answer_count > 1
             ·
