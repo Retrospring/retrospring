@@ -19,7 +19,7 @@ describe Settings::MutesController, type: :controller do
   end
 
   describe "#create" do
-    subject { post :create, params: { muted_phrase: "foo" } }
+    subject { post :create, params: { muted_phrase: "foo" }, format: :turbo_stream }
 
     context "user signed in" do
       let(:user) { FactoryBot.create(:user) }
@@ -29,11 +29,17 @@ describe Settings::MutesController, type: :controller do
       it "creates a mute rule" do
         expect { subject }.to(change { MuteRule.count }.by(1))
       end
+
+      it "contains a turbo stream append tag" do
+        subject
+
+        expect(response.body).to include "turbo-stream action=\"append\" target=\"rules\""
+      end
     end
   end
 
   describe "#destroy" do
-    subject { delete :destroy, params: }
+    subject { delete :destroy, params:, format: :turbo_stream }
 
     context "user signed in" do
       let(:user) { FactoryBot.create(:user) }
@@ -46,6 +52,12 @@ describe Settings::MutesController, type: :controller do
         subject
 
         expect(MuteRule.exists?(rule.id)).to eq(false)
+      end
+
+      it "contains a turbo stream remove tag" do
+        subject
+
+        expect(response.body).to include "turbo-stream action=\"remove\" target=\"rule_#{rule.id}\""
       end
     end
   end

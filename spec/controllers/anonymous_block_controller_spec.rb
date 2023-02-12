@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe AnonymousBlockController, type: :controller do
   describe "#create" do
-    subject { post(:create, params:) }
+    subject { post(:create, params:, format: :turbo_stream) }
 
     context "user signed in" do
       let(:user) { FactoryBot.create(:user) }
@@ -22,6 +22,29 @@ describe AnonymousBlockController, type: :controller do
 
         it "creates an anonymous block" do
           expect { subject }.to(change { AnonymousBlock.count }.by(1))
+        end
+
+        it "contains the inbox entry removal turbo stream action" do
+          subject
+
+          expect(response.body).to include "turbo-stream action=\"remove\" target=\"inbox_#{inbox.id}"
+        end
+      end
+
+      context "when all required parameters are given, but no inbox entry exists" do
+        let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
+        let(:params) do
+          { question: question.id }
+        end
+
+        it "creates an anonymous block" do
+          expect { subject }.to(change { AnonymousBlock.count }.by(1))
+        end
+
+        it "doesn't contain the inbox entry removal turbo stream action" do
+          subject
+
+          expect(response.body).not_to include "turbo-stream action=\"remove\" target=\"inbox_"
         end
       end
 
