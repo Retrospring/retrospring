@@ -1,0 +1,14 @@
+- if answer.pinned?
+  = button_to unpin_answer_path(username: current_user.screen_name, id: answer.id),
+    class: "dropdown-item",
+    method: :delete,
+    form: { id: "ab-pin-#{answer.id}", data: { turbo_stream: true } } do
+    %i.fa.fa-fw.fa-thumbtack
+    = t(".unpin")
+- else
+  = button_to pin_answer_path(username: current_user.screen_name, id: answer.id),
+    class: "dropdown-item",
+    method: :post,
+    form: { id: "ab-pin-#{answer.id}", data: { turbo_stream: true } } do
+    %i.fa.fa-fw.fa-thumbtack
+    = t(".pin")

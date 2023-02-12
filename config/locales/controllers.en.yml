@@ -26,6 +26,8 @@ en:
       destroy:
         nopriv: "You cannot delete other people's answers."
         success: "Successfully deleted answer."
+      pin:
+        success: "Successfully pinned answer."
     comment:
       create:
         invalid: "Your comment is too long."
@@ -210,3 +212,8 @@ en:
   timeline:
     public:
       title: "Public Timeline"
+  answer:
+    pin:
+      success: "This answer will now appear at the top of your profile."
+    unpin:
+      success: "This answer will no longer be pinned to the top of your profile."
