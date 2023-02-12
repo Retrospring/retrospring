@@ -27,10 +27,11 @@ en:
         header: "Share your answers"
         body_html: |
           <p>Want your followers on another platform to see your %{app_name} answers?
-          You can configure automatic sharing to your favourite platforms easily.</p>
+          You can easily share them to your favourite platforms.</p>
 
-          <p class="text-muted">Not sure if it's a favourite, but at the moment only
-          <b>Twitter</b> is supported.</p>
+          <p class="text-muted">We support <strong>Tumblr</strong>, <strong>Twitter</strong>,
+          and many other services including <strong>Mastodon</strong> and
+          <strong>Misskey</strong>.</p>
       customize:
         header: "Customise your experience"
         body_html: |
