@@ -13,9 +13,9 @@ describe WellKnown::NodeInfoController do
                              "links" => [
                                {
                                  "rel"  => "http://nodeinfo.diaspora.software/ns/schema/2.1",
-                                 "href" => "http://test.host/nodeinfo/2.1"
+                                 "href" => "http://test.host/nodeinfo/2.1",
                                }
-                             ]
+                             ],
                            })
     end
   end
@@ -44,44 +44,8 @@ describe WellKnown::NodeInfoController do
         expect(parsed["software"]).to eq({
                                            "name"       => "Retrospring",
                                            "version"    => "2023.0102.1",
-                                           "repository" => "https://github.com/Retrospring/retrospring"
+                                           "repository" => "https://github.com/Retrospring/retrospring",
                                          })
-      end
-    end
-
-    context "Twitter integration enabled" do
-      before do
-        stub_const("APP_CONFIG", {
-                     "sharing" => {
-                       "twitter" => {
-                         "enabled" => true
-                       }
-                     }
-                   })
-      end
-
-      it "includes Twitter in outbound services" do
-        subject
-        parsed = JSON.parse(response.body)
-        expect(parsed.dig("services", "outbound")).to include("twitter")
-      end
-    end
-
-    context "Twitter integration disabled" do
-      before do
-        stub_const("APP_CONFIG", {
-                     "sharing" => {
-                       "twitter" => {
-                         "enabled" => false
-                       }
-                     }
-                   })
-      end
-
-      it "includes Twitter in outbound services" do
-        subject
-        parsed = JSON.parse(response.body)
-        expect(parsed.dig("services", "outbound")).to_not include("twitter")
       end
     end
 

@@ -8,7 +8,7 @@ class WellKnown::NodeInfoController < ApplicationController
       links: [
         rel:  "http://nodeinfo.diaspora.software/ns/schema/2.1",
         href: node_info_url
-      ]
+      ],
     }
   end
 
@@ -21,12 +21,12 @@ class WellKnown::NodeInfoController < ApplicationController
       protocols:         %i[],
       services:          {
         inbound:  inbound_services,
-        outbound: outbound_services
+        outbound: outbound_services,
       },
       usage:             usage_stats,
       # We don't implement this so we can always return true for now
       openRegistrations: true,
-      metadata:          {}
+      metadata:          {},
     }
   end
 
@@ -36,23 +36,19 @@ class WellKnown::NodeInfoController < ApplicationController
     {
       name:       "Retrospring",
       version:    Retrospring::Version.to_s,
-      repository: "https://github.com/Retrospring/retrospring"
+      repository: "https://github.com/Retrospring/retrospring",
     }
   end
 
   def usage_stats
     {
       users: {
-        total: User.count
-      }
+        total: User.count,
+      },
     }
   end
 
   def inbound_services = []
 
-  def outbound_services
-    {
-      "twitter" => APP_CONFIG.dig("sharing", "twitter", "enabled")
-    }.select { |_service, available| available }.keys
-  end
+  def outbound_services = []
 end
