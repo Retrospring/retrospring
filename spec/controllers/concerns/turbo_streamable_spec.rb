@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ApplicationController, type: :controller do
+describe TurboStreamable, type: :controller do
   controller do
     include TurboStreamable
 
