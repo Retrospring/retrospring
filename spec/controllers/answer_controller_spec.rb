@@ -43,7 +43,7 @@ describe AnswerController, type: :controller do
   end
 
   describe "#pin" do
-    subject { post :pin, params: { username: user.screen_name, id: answer.id } }
+    subject { post :pin, params: { username: user.screen_name, id: answer.id }, format: :turbo_stream }
 
     context "user signed in" do
       before(:each) { sign_in user }
@@ -51,7 +51,7 @@ describe AnswerController, type: :controller do
       it "pins the answer" do
         travel_to(Time.at(1603290950).utc) do
           expect { subject }.to change { answer.reload.pinned_at }.from(nil).to(Time.at(1603290950).utc)
-          expect(response).to redirect_to(user_path(user))
+          expect(response.body).to include("turbo-stream action=\"update\" target=\"ab-pin-#{answer.id}\"")
         end
       end
     end
@@ -63,15 +63,14 @@ describe AnswerController, type: :controller do
 
       it "does not pin the answer" do
         travel_to(Time.at(1603290950).utc) do
-          expect { subject }.to raise_error(Errors::NotAuthorized)
-          expect(answer.reload.pinned_at).to eq(nil)
+          expect { subject }.not_to(change { answer.reload.pinned_at })
         end
       end
     end
   end
 
   describe "#unpin" do
-    subject { delete :unpin, params: { username: user.screen_name, id: answer.id } }
+    subject { delete :unpin, params: { username: user.screen_name, id: answer.id }, format: :turbo_stream }
 
     context "user signed in" do
       before(:each) do
@@ -81,7 +80,7 @@ describe AnswerController, type: :controller do
 
       it "unpins the answer" do
         expect { subject }.to change { answer.reload.pinned_at }.from(Time.at(1603290950).utc).to(nil)
-        expect(response).to redirect_to(user_path(user))
+        expect(response.body).to include("turbo-stream action=\"update\" target=\"ab-pin-#{answer.id}\"")
       end
     end
 
@@ -94,8 +93,7 @@ describe AnswerController, type: :controller do
       end
 
       it "does not unpin the answer" do
-        expect { subject }.to raise_error(Errors::NotAuthorized)
-        expect(answer.reload.pinned_at).to eq(Time.at(1603290950).utc)
+        expect { subject }.not_to(change { answer.reload.pinned_at })
       end
     end
   end
