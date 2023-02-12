@@ -3,6 +3,10 @@
 class AnswerController < ApplicationController
   before_action :authenticate_user!, only: %i[pin unpin]
 
+  include TurboStreamable
+
+  turbo_stream_actions :pin, :unpin
+
   def show
     @answer = Answer.includes(comments: %i[user smiles], question: [:user], smiles: [:user]).find(params[:id])
     @display_all = true
@@ -25,7 +29,12 @@ class AnswerController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(user_path(username: current_user.screen_name)) }
-      format.turbo_stream { render "pin", locals: { answer: } }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update("ab-pin-#{answer.id}", partial: "actions/pin", locals: { answer: }),
+          render_toast(t(".success"))
+        ]
+      end
     end
   end
 
@@ -35,7 +44,12 @@ class AnswerController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(user_path(username: current_user.screen_name)) }
-      format.turbo_stream { render "pin", locals: { answer: } }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update("ab-pin-#{answer.id}", partial: "actions/pin", locals: { answer: }),
+          render_toast(t(".success"))
+        ]
+      end
     end
   end
 end
