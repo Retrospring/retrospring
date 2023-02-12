@@ -60,6 +60,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  # anonymous controllers will infer ApplicationController instead of the
+  # described class
+  config.infer_base_class_for_anonymous_controllers = false
+
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
 end
