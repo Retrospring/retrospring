@@ -2,31 +2,39 @@
 
 require "rails_helper"
 
-class TurboStreamableTestController < ApplicationController
-  include TurboStreamable
+describe ApplicationController, type: :controller do
+  controller do
+    include TurboStreamable
 
-  turbo_stream_actions :create, :blocked, :not_found
+    turbo_stream_actions :create, :blocked, :not_found
 
-  def create
-    params.require :message
+    def create
+      params.require :message
 
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: render_toast("success!")
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: render_toast("success!")
+        end
       end
+    end
+
+    def blocked
+      raise Errors::Blocked
+    end
+
+    def not_found
+      raise ActiveRecord::RecordNotFound
     end
   end
 
-  def blocked
-    raise Errors::Blocked
+  before do
+    routes.draw do
+      get "create" => "anonymous#create"
+      get "blocked" => "anonymous#blocked"
+      get "not_found" => "anonymous#not_found"
+    end
   end
 
-  def not_found
-    raise ActiveRecord::RecordNotFound
-  end
-end
-
-describe TurboStreamableTestController, type: :controller do
   render_views
 
   shared_examples_for "it returns a toast as Turbo Stream response" do |action, message|
