@@ -5,7 +5,7 @@ class InboxController < ApplicationController
 
   after_action :mark_inbox_entries_as_read, only: %i[show]
 
-  def show # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+  def show # rubocop:disable Metrics/MethodLength
     find_author
     find_inbox_entries
 

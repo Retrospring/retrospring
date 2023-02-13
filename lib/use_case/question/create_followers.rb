@@ -9,9 +9,9 @@ module UseCase
 
       def call
         question = ::Question.create!(
-          content:             content,
+          content:,
           author_is_anonymous: false,
-          author_identifier:   author_identifier,
+          author_identifier:,
           user:                source_user,
           direct:              false
         )
@@ -23,7 +23,7 @@ module UseCase
 
         {
           status:   201,
-          resource: question
+          resource: question,
         }
       end
 

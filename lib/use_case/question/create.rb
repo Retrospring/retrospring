@@ -27,8 +27,8 @@ module UseCase
           status:   201,
           resource: question,
           extra:    {
-            inbox:
-          }
+            inbox:,
+          },
         }
       end
 
