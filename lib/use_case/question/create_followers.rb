@@ -17,6 +17,7 @@ module UseCase
         )
 
         increment_asked_count
+        increment_metric
 
         QuestionWorker.perform_async(source_user_id, question.id)
 
@@ -31,6 +32,16 @@ module UseCase
       def increment_asked_count
         source_user.increment(:asked_count)
         source_user.save
+      end
+
+      def increment_metric
+        Retrospring::Metrics::QUESTIONS_ASKED.increment(
+          labels: {
+            anonymous: false,
+            followers: true,
+            generated: false,
+          }
+        )
       end
 
       def source_user

@@ -18,6 +18,7 @@ module UseCase
         return if filtered?(question)
 
         increment_asked_count
+        increment_metric
 
         inbox = ::Inbox.create!(user: target_user, question:, new: true)
         notify(inbox)
@@ -90,6 +91,16 @@ module UseCase
 
         source_user.increment(:asked_count)
         source_user.save
+      end
+
+      def increment_metric
+        Retrospring::Metrics::QUESTIONS_ASKED.increment(
+          labels: {
+            anonymous:,
+            followers: false,
+            generated: false,
+          }
+        )
       end
 
       def filtered?(question)

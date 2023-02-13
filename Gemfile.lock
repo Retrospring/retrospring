@@ -279,6 +279,7 @@ GEM
     pg (1.4.5)
     pghero (3.1.0)
       activerecord (>= 6)
+    prometheus-client (4.0.0)
     public_suffix (4.0.7)
     puma (6.1.0)
       nio4r (~> 2.0)
@@ -522,6 +523,7 @@ DEPENDENCIES
   openssl (~> 3.1)
   pg
   pghero
+  prometheus-client (~> 4.0)
   puma
   pundit (~> 2.3)
   questiongenerator (~> 1.1)

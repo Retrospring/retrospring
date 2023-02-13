@@ -37,6 +37,7 @@ class InboxController < ApplicationController
                                 user:                current_user)
 
     inbox = Inbox.create!(user: current_user, question_id: question.id, new: true)
+    increment_metric
 
     respond_to do |format|
       format.turbo_stream do
@@ -84,5 +85,15 @@ class InboxController < ApplicationController
   def mark_inbox_entries_as_read
     # using .dup to not modify @inbox -- useful in tests
     @inbox&.dup&.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
+  end
+
+  def increment_metric
+    Retrospring::Metrics::QUESTIONS_ASKED.increment(
+      labels: {
+        anonymous: true,
+        followers: false,
+        generated: true,
+      }
+    )
   end
 end
