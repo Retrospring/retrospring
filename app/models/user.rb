@@ -115,6 +115,8 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
     raise Errors::AnsweringSelfBlockedOther if self.blocking?(question.user)
     # rubocop:enable Style/RedundantSelf
 
+    Retrospring::Metrics::QUESTIONS_ANSWERED.increment
+
     Answer.create!(content:, user: self, question:)
   end
 
@@ -127,6 +129,8 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
     raise Errors::CommentingSelfBlockedOther if self.blocking?(answer.user)
     raise Errors::CommentingOtherBlockedSelf if answer.user.blocking?(self)
     # rubocop:enable Style/RedundantSelf
+
+    Retrospring::Metrics::COMMENTS_CREATED.increment
 
     Comment.create!(user: self, answer:, content:)
   end

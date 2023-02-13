@@ -4,7 +4,7 @@ module Retrospring
   module Metrics
     PROMETHEUS = Prometheus::Client.registry
 
-    # avoid re-registering metrics to make autoreloader happy:
+    # avoid re-registering metrics to make autoreloader happy during dev:
     class << self
       %i[counter gauge histogram summary].each do |meth|
         define_method meth do |name, *args, **kwargs|
@@ -31,6 +31,16 @@ module Retrospring
       :retrospring_questions_asked_total,
       docstring: "How many questions got asked",
       labels:    %i[anonymous followers generated]
+    )
+
+    QUESTIONS_ANSWERED = counter(
+      :retrospring_questions_answered_total,
+      docstring: "How many questions got answered"
+    )
+
+    COMMENTS_CREATED = counter(
+      :retrospring_comments_created_total,
+      docstring: "How many comments got created"
     )
   end
 end
