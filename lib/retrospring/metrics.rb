@@ -42,5 +42,38 @@ module Retrospring
       :retrospring_comments_created_total,
       docstring: "How many comments got created"
     )
+
+    # metrics from Sidekiq::Stats.new
+    SIDEKIQ = {
+      processed:      gauge(
+        :sidekiq_processed,
+        docstring: "Number of jobs processed by Sidekiq"
+      ),
+      failed:         gauge(
+        :sidekiq_failed,
+        docstring: "Number of jobs that failed"
+      ),
+      scheduled_size: gauge(
+        :sidekiq_scheduled_jobs,
+        docstring: "Number of jobs that are enqueued"
+      ),
+      retry_size:     gauge(
+        :sidekiq_retried_jobs,
+        docstring: "Number of jobs that are being retried"
+      ),
+      dead_size:      gauge(
+        :sidekiq_dead_jobs,
+        docstring: "Number of jobs that are dead"
+      ),
+      processes_size: gauge(
+        :sidekiq_processes,
+        docstring: "Number of active Sidekiq processes"
+      ),
+      queue_enqueued: gauge(
+        :sidekiq_queues_enqueued,
+        docstring: "Number of enqueued jobs per queue",
+        labels:    %i[queue]
+      ),
+    }.freeze
   end
 end
