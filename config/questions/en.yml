@@ -36,8 +36,8 @@ Do:
     - think that:
         - late is better than never
     - prefer:
-      to:
-        - take baths or showers
+        to:
+          - take baths or showers
   your:
     friends:
       like:
@@ -61,14 +61,15 @@ What:
         best:
           - day of your life like
         last:
-          song:
-            - you listened on repeat
-          thing:
-            you:
-              have:
-                - bought
-                - done
-                - eaten
+          - concert you've been to
+          - song:
+              - you listened on repeat
+          - thing:
+              you:
+                have:
+                  - bought
+                  - done
+                  - eaten
       your:
         favourite:
           song:
@@ -95,6 +96,9 @@ What:
           - 'on':
             - the:
               - weekend
+        usually:
+          - do when you're bored
+          - have for breakfast
         like:
           more,:
             - dogs or cats
@@ -135,48 +139,40 @@ What:
         - first memory
         - dream job
         - favourite:
-          - season
-          - video game
-          - board game
-          - sports team
           - activity
-          - beverage
-          - Internet browser
-          - piece of music
-          - console
-          - snack
-          - food
           - animal
-          - programming language:
-            - ''
-            - and why is it:
-              - PHP
-              - Rust
-              - C++
-              - Lisp
-              - Pascal
-              - Swift
-              - Ruby
-          - website:
-            - ''
-            - and why is it:
-              - Reddit
-              - Twitter
-              - Facebook
-              - YouTube
+          - beverage
+          - board game
+          - book series
+          - console
+          - food
+          - Internet browser
+          - language
+          - name
+          - number
+          - piece of music
+          - programming language
+          - season
+          - snack
+          - sports team
+          - type of cheese
+          - video game
+          - way to eat a potato
+          - website
       the:
         [best, worst]:
           thing:
             - about:
-                the:
-                  - Internet
-                your:
-                  - favourite:
-                    - series
-                    - movie
-                    - book
-                  - country
-                  - hometown
+                - society
+                - the:
+                    - Internet
+                - your:
+                    - favourite:
+                      - series
+                      - movie
+                      - book
+                    - country
+                    - hometown
             - one can do:
               - if:
                 - "they're bored"
@@ -184,6 +180,8 @@ What:
           fast:
             food:
               - chain
+          way:
+            - to prepare and eat eggs
       one:
         - thing you would like to become better at
   - was:
@@ -250,23 +248,69 @@ Have:
           - someone else
       - listened to:
         - classical music
-        - music:
-          - "from the 80's"
+        - drum and bass
         - dubstep
-        - nightcore
+        - frenchcore
+        - hardstyle
+        - J-Pop
+        - K-Pop
         - metal
+        - music:
+          - "from the 50's"
+          - "from the 60's"
+          - "from the 70's"
+          - "from the 80's"
+          - "from the 90's"
+        - nightcore
+        - punk rock
+        - trance
+        - vaporwave
       - had:
         - an:
           - accident
+      - pet:
+        - a bat
+        - a bnuuy
+        - a bunny
+        - a cat
+        - a coyote
+        - a dog
+        - a dragon
+        - a ferret
+        - a fox
+        - a horse
+        - a hyena
+        - a lion
+        - a lizard
+        - a marten
+        - a mouse
+        - a raccoon
+        - a rat
+        - a shark
+        - a wolf
+        - an opossum
+        - an otter
+        - an owl
+      - ridden a horse
       - written:
         - a love letter
         - code
         - in Japanese
 How:
+  fast:
+    - are you
+    - is your internet connection
   has:
     your:
       day:
         - been
+  often:
+    do you:
+      - cook
+      - eat food not prepared by yourself
+      - iron your clothes
+      - take selfies
+      - use condiments
   old:
     are:
       - you
