@@ -1,311 +1,307 @@
-Do:
-  you:
-    - recycle
+---
+- Are you:
+  - afraid of:
+    - going outside at night
+    - the dark
+  - religious
+
+- Can you:
+  - cook
+  - dance
+  - draw
+  - play:
+    - any:
+      - sports
+    - baseball
+    - the:
+      - guitar
+      - piano
+      - saxophone
+      - trumpet
+  - ski
+  - speak a foreign language
+  - swim
+  - yodel
+
+- Do:
+  - you:
     - have:
-      - a:
-        - nickname
+      - a nickname
       - any:
         - siblings
         - pets
     - like:
-      - social networks
       - muffins
-      - video games
-      - the:
-        - city:
-          - or:
-            - country
-          - where you:
-            - live
+      - social networks
+      - the place where you live
       - to:
         - travel
         - sing out loud when no one else is around
+      - video games
+    - prefer to:
+      - browse the Internet on your phone, computer, or another device
+      - live in a house or a flat
+      - take baths or showers
+      - watch movies or read books
+    - recycle
+    - think that late is better than never
     - want:
+      - more:
+        - friends
+        - money
+        - things than you need
       - old times back
       - to know more:
-          about:
+        - about:
+          - history
+          - new inventions
+          - your:
+            - future
+            - relatives
+  - your:
+    - friends:
+      - know:
+        - [much, too much]:
+          - about:
+            - you
             - your:
-              - future
-              - relatives
-            - history
-            - new inventions
-      - more:
-        - money
-        - friends
-        - things than you need
-    - think that:
-        - late is better than never
-    - prefer:
-      to:
-        - take baths or showers
-  your:
-    friends:
-      like:
-        - you:
-          - the way you are
-        - social networks
-        - muffins
-        - video games
-      know:
-        [much, too much]:
-          about:
-            - your:
-              - life
-              - hobbies
               - family
               - friends
-            - you
-What:
-  - was:
-      the:
-        best:
-          - day of your life like
-        last:
-          song:
-            - you listened on repeat
-          thing:
-            you:
-              have:
-                - bought
-                - done
-                - eaten
-      your:
-        favourite:
-          song:
-            - as a 5 year old
-            - from a few weeks ago
-  - would:
-      you:
-        do:
-          if:
-            you:
-              had:
-                - one million dollars
-                - the ability to fly
-              were:
-                - a dragon
-              woke up:
-                with:
-                  - someone else next to you
-                  - some drawings in your face
-  - do:
-      you:
-        do:
-          - for fun
-          - 'on':
-            - the:
-              - weekend
-        like:
-          more,:
-            - dogs or cats
-            - shower or bath
-            - tea or coffee
-        think:
-          about:
-            - the:
-              - Internet
-            - Bad Dragon
-            - dragons
-            - '"fact" accounts'
-            - society
-            - cats
-            - surveillance
-            - coyotes
-            - raccoons
-            - foxes
-            - dogs
-            - lizards
-  - [activity, activities]:
-      do:
-        you:
-          - enjoy the most
-  - kind:
-      of:
-        animals:
-          - do you have
-  - habit:
-      do:
-        you:
-          really:
-            find:
-              cute:
-                - in a person
-  - is:
-      your:
-        - first memory
-        - dream job
-        - favourite:
-          - season
-          - video game
-          - board game
-          - sports team
-          - activity
-          - beverage
-          - Internet browser
-          - piece of music
-          - console
-          - snack
-          - food
-          - animal
-          - programming language:
-            - ''
-            - and why is it:
-              - PHP
-              - Rust
-              - C++
-              - Lisp
-              - Pascal
-              - Swift
-              - Ruby
-          - website:
-            - ''
-            - and why is it:
-              - Reddit
-              - Twitter
-              - Facebook
-              - YouTube
-      the:
-        [best, worst]:
-          thing:
-            - about:
-                the:
-                  - Internet
-                your:
-                  - favourite:
-                    - series
-                    - movie
-                    - book
-                  - country
-                  - hometown
-            - one can do:
-              - if:
-                - "they're bored"
-            - ever
-          fast:
-            food:
-              - chain
-      one:
-        - thing you would like to become better at
-  - was:
-      the:
-        last:
-          thing:
-            you:
-              - did
-              - ate
-              - looked for
-        [best, worst]:
-          thing:
-            - "you've eaten so far"
-  - languages do you know
-  - apps do you use daily
-  - 'is heavier: a kilogram of steel, or a kilogram of feathers'
-Can:
-  you:
-    - swim
-    - speak:
-      - different:
-        - languages
-    - play:
-      - any:
-        - sports
+              - hobbies
+              - life
+      - like:
+        - muffins
+        - social networks
+        - video games
+        - you the way you are
+
+- Have you ever:
+  - been:
+    - caught:
+      - cheating
+      - doing things you shouldn't do
+    - mistaken for someone else
+    - to:
+      - Australia
+      - Austria
+      - Brazil
+      - Bulgaria
+      - China
+      - Czechia
+      - Finland
+      - France
+      - Germany
+      - Italy
+      - Japan
+      - Mexico
+      - Monaco
+      - Norway
+      - Poland
+      - Russia
+      - Slovakia
+      - Slovenia
+      - Sweden
+      - Switzerland
+      - Ukraine
+      - Venezuela
       - the:
-        - piano
-        - guitar
-        - trumpet
-        - saxophone
-      - baseball
-    - ski
+        - USA
+        - United Kingdom
+  - had an accident
+  - listened to:
+    - classical music
+    - drum and bass
+    - dubstep
+    - frenchcore
+    - hardstyle
+    - J-Pop
+    - K-Pop
+    - metal
+    - music:
+      - "from the 50's"
+      - "from the 60's"
+      - "from the 70's"
+      - "from the 80's"
+      - "from the 90's"
+    - nightcore
+    - punk rock
+    - trance
+    - vaporwave
+  - pet:
+    - a bat
+    - a bnuuy
+    - a bunny
+    - a cat
+    - a coyote
+    - a dog
+    - a dragon
+    - a ferret
+    - a fox
+    - a horse
+    - a hyena
+    - a lion
+    - a lizard
+    - a marten
+    - a mouse
+    - a raccoon
+    - a rat
+    - a shark
+    - a wolf
+    - an opossum
+    - an otter
+    - an owl
+  - ridden a horse
+  - written:
+    - a love letter
+    - code
+    - in Japanese
+
+- How:
+  - fast:
+    - are you
+    - is your internet connection
+  - has your day been
+  - often do you:
     - cook
-    - dance
-    - yodel
-    - draw
-Are:
-  you:
-    - religious
-Have:
-  you:
-    ever:
-      - been:
-        - to:
-          - Austria
-          - Germany
-          - Japan
-          - Switzerland
-          - France
-          - Sweden
-          - Norway
-          - Finland
-          - Australia
-          - Italy
-          - Russia
-          - China
-          - the:
-            - USA
-            - United Kingdom
-        - caught:
-          - "doing things you shouldn't do"
-          - cheating
-        - mistaken for:
-          - someone else
-      - listened to:
-        - classical music
-        - music:
-          - "from the 80's"
-        - dubstep
-        - nightcore
-        - metal
-      - had:
-        - an:
-          - accident
-      - written:
-        - a love letter
-        - code
-        - in Japanese
-How:
-  has:
-    your:
-      day:
-        - been
-  old:
-    are:
-      - you
-  many:
-    - open tabs do you currently have
+    - eat food not prepared by yourself
+    - iron your clothes
+    - take selfies
+    - use condiments
+  - many:
     - followers is too many
-Where:
-  do:
-    you:
-      - work
-      - live
-Which:
-  food:
-    do:
-      you:
-        - love
-        - hate
-Who:
-  is:
-    the:
-      - most famous person you have met
-    your:
+    - open tabs do you currently have
+  - old are you
+
+- What:
+  - [activity, activities]:
+    - do you enjoy the most
+  - apps do you use daily
+  - do you:
+    - do:
+      - for a living
+      - for fun
+      - on the weekend
+    - like more,:
+      - dogs or cats
+      - shower or bath
+      - tea or coffee
+    - think about:
+      - Bad Dragon
+      - cats
+      - coyotes
+      - dogs
+      - dragons
+      - '"fact" accounts'
+      - foxes
+      - lizards
+      - raccoons
+      - society
+      - surveillance
+      - the Internet
+    - usually:
+      - do when you're bored
+      - have for breakfast
+  - habit do you really find cute in a person
+  - is:
+    - "heavier: a kilogram of steel, or a kilogram of feathers"
+    - one thing you would like to become better at
+    - the:
+      - [best, worst]:
+        - fast food chain
+        - thing:
+          - about:
+              - society
+              - the Internet
+              - your:
+                - country
+                - favourite:
+                  - book
+                  - movie
+                  - series
+                - hometown
+          - ever
+          - one can do if they're bored
+        - way to prepare and eat eggs
+    - your:
+      - dream job
       - favourite:
-        - Retrospring user
-        - actor
-        - artist
-        - comedian
-        - musician
-Why:
-  do:
-    - they call it oven when you of in the cold food of out hot eat the food
-Would:
-  you:
-    rather:
-      live:
-        - in:
-          - a city or in the countryside
-          - a flat or in a house
-      lose:
-        - an arm or a leg
-      be:
-        - the best player on a horrible team or the worst player on a great team
+        - activity
+        - animal
+        - beverage
+        - board game
+        - book series
+        - console
+        - food
+        - Internet browser
+        - language
+        - name
+        - number
+        - piece of music
+        - programming language
+        - season
+        - snack
+        - sports team
+        - text editor
+        - type of cheese
+        - video game
+        - way to eat a potato
+        - website
+      - first memory
+  - kind of animals do you have
+  - languages do you know
+  - was:
+    - the:
+      - best day of your life like
+      - [best, worst]:
+        - thing you've eaten so far
+      - last:
+          - concert you've been to
+          - song you listened to on repeat
+          - thing you:
+            - ate
+            - did
+            - have:
+              - bought
+              - done
+              - eaten
+              - looked for
+    - your favourite song:
+      - as a kid
+      - from a few weeks ago
+  - would you do if you:
+    - had:
+        - one billion euros
+        - one million euros
+        - the ability to fly
+    - were a dragon
+    - woke up with:
+      - some drawings in your face
+      - someone else next to you
+
+- Which food do you:
+  - hate
+  - love
+
+- Who is:
+  - the most famous person you have met
+  - your favourite:
+    - Retrospring user
+    - actor
+    - artist
+    - comedian
+    - musician
+
+- Why do:
+  - people climb mountains
+  - printers never work when you need them
+  - they call it oven when you of in the cold food of out hot eat the food
+
+- Would you:
+  - buy a cheese flavoured bubble gum
+  - eat a cactus
+  - rather:
+    - be the best player on a horrible team or the worst player on a great team
+    - live in:
+      - a city or in the countryside
+      - a flat or in a house
+    - lose an arm or a leg
