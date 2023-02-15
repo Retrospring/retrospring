@@ -74,6 +74,10 @@ describe MarkdownHelper, type: :helper do
     it "should not process invalid links" do
       expect(question_markdown("https://example.com/example.質問")).to eq("<p>https://example.com/example.質問</p>")
     end
+
+    it "should turn line breaks into <br> tags" do
+      expect(markdown("Some\ntext")).to eq("<p>Some<br>\ntext</p>")
+    end
   end
 
   describe "#raw_markdown" do
