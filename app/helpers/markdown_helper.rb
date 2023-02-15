@@ -4,7 +4,8 @@ module MarkdownHelper
   def markdown(content)
     renderer = FlavoredMarkdown.new(**MARKDOWN_RENDERER_OPTS)
     md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
-    Sanitize.fragment(md.render(content), EVIL_TAGS).strip.html_safe
+    # As the string has been sanitized we can mark it as HTML safe
+    Sanitize.fragment(md.render(content), EVIL_TAGS).strip.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def strip_markdown(content)
@@ -22,7 +23,8 @@ module MarkdownHelper
   def question_markdown(content)
     renderer = QuestionMarkdown.new
     md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
-    Sanitize.fragment(md.render(content), EVIL_TAGS).strip.html_safe
+    # As the string has been sanitized we can mark it as HTML safe
+    Sanitize.fragment(md.render(content), EVIL_TAGS).strip.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def raw_markdown(content)
