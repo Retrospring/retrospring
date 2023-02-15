@@ -31,6 +31,10 @@ describe MarkdownHelper, type: :helper do
     it "should escape HTML tags" do
       expect(markdown("I'm <h1>a test</h1>")).to eq("<p>I'm &lt;h1&gt;a test&lt;/h1&gt;</p>")
     end
+
+    it "should turn line breaks into <br> tags" do
+      expect(markdown("Some\ntext")).to eq("<p>Some<br>\ntext</p>")
+    end
   end
 
   describe "#strip_markdown" do
