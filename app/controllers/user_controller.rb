@@ -7,9 +7,11 @@ class UserController < ApplicationController
 
   def show
     @answers = @user.cursored_answers(last_id: params[:last_id])
+    answer_ids = @answers.map(&:id)
     @pinned_answers = @user.answers.pinned.order(pinned_at: :desc).limit(10)
-    @answers_last_id = @answers.map(&:id).min
+    @answers_last_id = answer_ids.min
     @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
+    @subscribed = Subscription.where(user: current_user, answer_id: answer_ids).pluck(:answer_id) if user_signed_in?
 
     respond_to do |format|
       format.html
