@@ -3,37 +3,40 @@
   - if @question.nil?
     = render "answerbox/header", a: a, display_all: display_all
   .card-body
-    .answerbox__answer-body{ data: { controller: a.long? ? "collapse" : nil } }
-      .answerbox__answer-text{ class: a.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }
-        = markdown a.content
-      - if a.long? && !display_all
-        = render "shared/collapse", type: "answer"
+    - cache [a, display_all] do
+      .answerbox__answer-body{ data: { controller: a.long? ? "collapse" : nil } }
+        .answerbox__answer-text{ class: a.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }
+          = markdown a.content
+        - if a.long? && !display_all
+          = render "shared/collapse", type: "answer"
     - if @user.nil?
       .row
         .col-sm-6.text-start.text-muted
-          .d-flex
-            .flex-shrink-0
-              %a{ href: user_path(a.user) }
-                %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:small), loading: :lazy }
-            .flex-grow-1
-              %h6.answerbox__answer-user
-                = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
-              .answerbox__answer-date
-                = link_to(answer_path(a.user.screen_name, a.id)) do
-                  %time{ datetime: a.created_at.iso8601, data: { controller: "timestamp" } }= a.created_at
+          - cache [a, a.user] do
+            .d-flex
+              .flex-shrink-0
+                %a{ href: user_path(a.user) }
+                  %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:small), loading: :lazy }
+              .flex-grow-1
+                %h6.answerbox__answer-user
+                  = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
+                .answerbox__answer-date
+                  = link_to(answer_path(a.user.screen_name, a.id)) do
+                    %time{ datetime: a.created_at.iso8601, data: { controller: "timestamp" } }= a.created_at
         .col-md-6.d-flex.d-md-block.answerbox__actions
           = render "answerbox/actions", a: a, display_all: display_all
     - else
       .row
         .col-md-6.text-start.text-muted
-          %i.fa.fa-clock-o
-          = link_to(answer_path(a.user.screen_name, a.id), class: "answerbox__permalink") do
-            %time{ datetime: a.created_at.iso8601, data: { controller: "timestamp" } }= a.created_at
-          - if a.pinned_at.present?
-            %span.answerbox__pinned
-              ·
-              %i.fa.fa-thumbtack
-              = t(".pinned")
+          - cache [a, a.user] do
+            %i.fa.fa-clock-o
+            = link_to(answer_path(a.user.screen_name, a.id), class: "answerbox__permalink") do
+              %time{ datetime: a.created_at.iso8601, data: { controller: "timestamp" } }= a.created_at
+            - if a.pinned_at.present?
+              %span.answerbox__pinned
+                ·
+                %i.fa.fa-thumbtack
+                = t(".pinned")
         .col-md-6.d-md-flex.answerbox__actions
           = render "answerbox/actions", a: a, display_all: display_all
   .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? "d-none" : nil }
