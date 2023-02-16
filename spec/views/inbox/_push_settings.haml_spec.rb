@@ -6,10 +6,10 @@ describe "inbox/_push_settings.haml", type: :view do
   subject(:rendered) { render }
 
   it "has a button to enable push notifications" do
-    expect(rendered).to match(/<button.+data-action='push-enable'>/)
+    expect(rendered).to have_css(%(button[data-action="push-enable"]))
   end
 
   it "has a button to dismiss the view" do
-    expect(rendered).to match(/<button.+data-action='push-dismiss'>/)
+    expect(rendered).to have_css(%(button[data-action="push-dismiss"]))
   end
 end

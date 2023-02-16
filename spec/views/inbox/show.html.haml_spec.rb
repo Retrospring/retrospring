@@ -17,7 +17,10 @@ describe "inbox/show.html.haml", type: :view do
     end
 
     it "displays an 'inbox is empty' message" do
-      expect(rendered).to match %(<p class='empty'>Nothing to see here.</p>)
+      html = Nokogiri::HTML.parse(rendered)
+      selector = "p.empty"
+      expect(rendered).to have_css(selector)
+      expect(html.css(selector).text.strip).to eq "Nothing to see here."
     end
   end
 
@@ -30,16 +33,16 @@ describe "inbox/show.html.haml", type: :view do
     end
 
     it "renders inbox entries" do
-      expect(rendered).to match(/id='inbox_#{inbox_entry1.id}'/)
-      expect(rendered).to match(/id='inbox_#{inbox_entry2.id}'/)
+      expect(rendered).to have_css("#inbox_#{inbox_entry1.id}")
+      expect(rendered).to have_css("#inbox_#{inbox_entry2.id}")
     end
 
     it "does not contain the empty inbox message" do
-      expect(rendered).not_to match(%r{<p class='empty'>Nothing to see here.</p>})
+      expect(rendered).not_to have_css("p.empty")
     end
 
     it "does not render the paginator" do
-      expect(rendered).not_to match(/id='paginator'/)
+      expect(rendered).not_to have_css("#paginator")
     end
 
     context "when more data is available" do
@@ -49,12 +52,12 @@ describe "inbox/show.html.haml", type: :view do
       end
 
       it "renders the paginator" do
-        expect(rendered).to match(/id='paginator'/)
+        expect(rendered).to have_css("#paginator")
       end
 
       it "has the correct params on the button" do
-        expect(rendered).to match(/input type="hidden" name="last_id" value="1337"/)
-        expect(rendered).not_to match(/input type="hidden" name="author"/)
+        expect(rendered).to have_css(%(input[type="hidden"][name="last_id"][value="1337"]))
+        expect(rendered).not_to have_css(%(input[type="hidden"][name="author"]))
       end
 
       context "when passed an author" do
@@ -63,8 +66,8 @@ describe "inbox/show.html.haml", type: :view do
         end
 
         it "has the correct params on the button" do
-          expect(rendered).to match(/input type="hidden" name="last_id" value="1337"/)
-          expect(rendered).to match(/input type="hidden" name="author"/)
+          expect(rendered).to have_css(%(input[type="hidden"][name="last_id"][value="1337"]))
+          expect(rendered).to have_css(%(input[type="hidden"][name="author"]))
         end
       end
     end

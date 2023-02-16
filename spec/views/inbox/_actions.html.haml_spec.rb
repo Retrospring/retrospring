@@ -23,9 +23,7 @@ describe "inbox/_actions.html.haml", type: :view do
   it "has a button for deleting all inbox entries" do
     html = Nokogiri::HTML.parse(rendered)
     button = html.css("button#ib-delete-all")
-
-    expect(button.attr("disabled")).to be_nil
-    expect(button.attr("data-ib-count").value).to eq "4020"
+    expect(button).not_to have_attribute(:disabled)
   end
 
   context "with disabled = true" do
@@ -34,8 +32,7 @@ describe "inbox/_actions.html.haml", type: :view do
     it "has a button for deleting all inbox entries" do
       html = Nokogiri::HTML.parse(rendered)
       button = html.css("button#ib-delete-all")
-
-      expect(button.attr("disabled").value).to be_truthy
+      expect(button).to have_attribute(:disabled)
     end
   end
 
@@ -46,7 +43,7 @@ describe "inbox/_actions.html.haml", type: :view do
       html = Nokogiri::HTML.parse(rendered)
       button = html.css("button#ib-delete-all-author")
 
-      expect(button.attr("data-ib-count").value).to eq "4020"
+      expect(button).to have_attribute("data-ib-count" => "4020")
     end
   end
 end
