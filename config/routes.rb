@@ -49,6 +49,10 @@ Rails.application.routes.draw do
   get "/linkfilter", to: "link_filter#index", as: :linkfilter
   get "/manifest.json", to: "manifests#show", as: :webapp_manifest
 
+  constraints(Constraints::LocalNetwork) do
+    get "/metrics", to: "metrics#show"
+  end
+
   # Devise routes
   devise_for :users, path: "user", skip: %i[sessions registrations]
   as :user do

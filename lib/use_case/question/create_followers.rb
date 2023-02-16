@@ -9,20 +9,21 @@ module UseCase
 
       def call
         question = ::Question.create!(
-          content:             content,
+          content:,
           author_is_anonymous: false,
-          author_identifier:   author_identifier,
+          author_identifier:,
           user:                source_user,
           direct:              false
         )
 
         increment_asked_count
+        increment_metric
 
         QuestionWorker.perform_async(source_user_id, question.id)
 
         {
           status:   201,
-          resource: question
+          resource: question,
         }
       end
 
@@ -31,6 +32,16 @@ module UseCase
       def increment_asked_count
         source_user.increment(:asked_count)
         source_user.save
+      end
+
+      def increment_metric
+        Retrospring::Metrics::QUESTIONS_ASKED.increment(
+          labels: {
+            anonymous: false,
+            followers: true,
+            generated: false,
+          }
+        )
       end
 
       def source_user
