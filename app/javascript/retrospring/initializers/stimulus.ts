@@ -9,6 +9,7 @@ import ThemeController from "retrospring/controllers/theme_controller";
 import CapabilitiesController from "retrospring/controllers/capabilities_controller";
 import CropperController from "retrospring/controllers/cropper_controller";
 import InboxSharingController from "retrospring/controllers/inbox_sharing_controller";
+import TimestampController from "retrospring/controllers/timestamp_controller";
 import ToastController from "retrospring/controllers/toast_controller";
 
 /**
@@ -30,5 +31,6 @@ export default function (): void {
   window['Stimulus'].register('format-popup', FormatPopupController);
   window['Stimulus'].register('inbox-sharing', InboxSharingController);
   window['Stimulus'].register('theme', ThemeController);
+  window['Stimulus'].register('timestamp', TimestampController);
   window['Stimulus'].register('toast', ToastController);
 }

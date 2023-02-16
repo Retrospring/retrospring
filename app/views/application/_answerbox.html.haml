@@ -19,14 +19,16 @@
               %h6.answerbox__answer-user
                 = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
               .answerbox__answer-date
-                = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id))
+                = link_to(answer_path(a.user.screen_name, a.id)) do
+                  %time{ datetime: a.created_at.iso8601, data: { controller: "timestamp" } }= a.created_at
         .col-md-6.d-flex.d-md-block.answerbox__actions
           = render "answerbox/actions", a: a, display_all: display_all
     - else
       .row
         .col-md-6.text-start.text-muted
           %i.fa.fa-clock-o
-          = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), class: "answerbox__permalink")
+          = link_to(answer_path(a.user.screen_name, a.id), class: "answerbox__permalink") do
+            %time{ datetime: a.created_at.iso8601, data: { controller: "timestamp" } }= a.created_at
           - if a.pinned_at.present?
             %span.answerbox__pinned
               ·
