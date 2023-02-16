@@ -1,4 +1,4 @@
 - provide(:title, answer_title(@answer))
 - provide(:og, answer_opengraph(@answer))
 .container-lg.container--main
-  = render 'answerbox', a: @answer, display_all: @display_all
+  = render 'answerbox', a: @answer, display_all: @display_all, subscribed_answer_ids: @subscribed
