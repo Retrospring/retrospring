@@ -66,6 +66,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
+  config.include Devise::Test::ControllerHelpers, type: :view
 end
 
 Shoulda::Matchers.configure do |config|
