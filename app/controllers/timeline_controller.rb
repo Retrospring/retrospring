@@ -35,11 +35,11 @@ class TimelineController < ApplicationController
     timeline_ids = @timeline.map(&:id)
     @timeline_last_id = timeline_ids.min
     @more_data_available = !yield(last_id: @timeline_last_id, size: 1).count.zero?
-    @subscribed = Subscription.where(user: current_user, answer_id: timeline_ids).pluck(:answer_id) if user_signed_in?
+    subscribed_answer_ids = Subscription.where(user: current_user, answer_id: timeline_ids).pluck(:answer_id) if user_signed_in?
 
     respond_to do |format|
-      format.html { render "timeline/timeline" }
-      format.turbo_stream { render "timeline/timeline", layout: false, status: :see_other }
+      format.html { render "timeline/timeline", locals: { subscribed_answer_ids: } }
+      format.turbo_stream { render "timeline/timeline", layout: false, status: :see_other, locals: { subscribed_answer_ids: } }
     end
   end
 end

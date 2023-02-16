@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class QuestionController < ApplicationController
+  include PaginatesAnswers
+
   def show
     @question = Question.find(params[:id])
     @answers = @question.cursored_answers(last_id: params[:last_id], current_user:)
@@ -10,8 +12,8 @@ class QuestionController < ApplicationController
     @subscribed = Subscription.where(user: current_user, answer_id: answer_ids).pluck(:answer_id) if user_signed_in?
 
     respond_to do |format|
-      format.html
-      format.turbo_stream { render layout: false, status: :see_other }
+      format.html { render locals: { subscribed_answer_ids: } }
+      format.turbo_stream { render layout: false, status: :see_other, locals: { subscribed_answer_ids: } }
     end
   end
 end

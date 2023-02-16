@@ -1,6 +1,6 @@
 = turbo_stream.append "answers" do
   - @answers.each do |a|
-    = render 'answerbox', a: a
+    = render "answerbox", a:, subscribed_answer_ids:
 
 = turbo_stream.update "paginator" do
   - if @more_data_available
