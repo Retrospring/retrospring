@@ -7,15 +7,6 @@ class Subscription < ApplicationRecord
       Subscription.where(answer: target)
     end
 
-    def is_subscribed(recipient, target)
-      existing = Subscription.find_by(user: recipient, answer: target)
-      if existing.nil?
-        false
-      else
-        existing.is_active
-      end
-    end
-
     def subscribe(recipient, target, force = true)
       existing = Subscription.find_by(user: recipient, answer: target)
       if existing.nil?
