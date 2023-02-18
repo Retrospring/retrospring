@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_12_181044) do
+ActiveRecord::Schema.define(version: 2023_02_18_142952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2023_02_12_181044) do
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
     t.datetime "pinned_at"
+    t.index ["created_at"], name: "index_answers_on_created_at", order: :desc
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
     t.index ["user_id", "pinned_at"], name: "index_answers_on_user_id_and_pinned_at"
