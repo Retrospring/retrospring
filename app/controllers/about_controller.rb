@@ -9,7 +9,6 @@ class AboutController < ApplicationController
       @questions = Question.count(:id)
       @answers = Answer.count(:id)
       @comments = Comment.count(:id)
-      @smiles = Appendable::Reaction.count
     end
   end
 
