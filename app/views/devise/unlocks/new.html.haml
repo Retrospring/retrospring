@@ -3,7 +3,7 @@
   %h1 Resend unlock instructions
   = render 'layouts/messages'
 
-  = bootstrap_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }, data: { turbo: false }) do |f|
+  = bootstrap_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
     = render 'devise/shared/error_messages', resource: resource
 
     = f.email_field :email, autofocus: true, label: 'Email address'
