@@ -567,7 +567,6 @@ en:
     formatting:
       body_html: |
         <p>%{app_name} uses <b>Markdown</b> for formatting</p>
-        <p>A blank line starts a new paragraph</p>
         <p><code>*italic text*</code> for <i>italic text</i></p>
         <p><code>**bold text**</code> for <b>bold text</b></p>
         <p><code>[link](https://example.com)</code> for <a href="https://example.com">link</a></p>
