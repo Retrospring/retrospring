@@ -3,10 +3,10 @@
     .profile__header-container
       %img.profile__header-image{ src: @user.profile_header.url(:web) }
   .row
-    .col-md-3.col-xs-12.col-sm-4
+    .col-lg-3.col-md-4.col-xs-12.col-sm-4
       = render 'user/profile', user: @user
       .d-none.d-sm-block= render 'shared/links'
-    .col-md-9.col-xs-12.col-sm-8
+    .col-lg-9.col-md-8.col-xs-12.col-sm-8
       = render 'questionbox', user: @user
       = render 'tabs/profile', user: @user
       = yield
