@@ -5,7 +5,7 @@
       .card.mt-3
         .card-body
           %h1 Resend confirmation instructions
-          = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, data: { turbo: false }) do |f|
+          = bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
             = render 'devise/shared/error_messages', resource: resource
 
             = f.text_field :screen_name, autofocus: true, label: 'User name'
