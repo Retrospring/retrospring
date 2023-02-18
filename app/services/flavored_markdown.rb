@@ -18,10 +18,6 @@ class FlavoredMarkdown < Redcarpet::Render::HTML
     paragraph text
   end
 
-  def paragraph(text)
-    "<p>#{text}</p>"
-  end
-
   def raw_html(raw_html)
     Rack::Utils.escape_html raw_html
   end

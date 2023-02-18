@@ -1,36 +1,42 @@
-module MarkdownHelper
+# frozen_string_literal: true
 
+module MarkdownHelper
   def markdown(content)
-    md = Redcarpet::Markdown.new(FlavoredMarkdown, MARKDOWN_OPTS)
-    Sanitize.fragment(md.render(content), EVIL_TAGS).html_safe
+    renderer = FlavoredMarkdown.new(**MARKDOWN_RENDERER_OPTS)
+    md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
+    # As the string has been sanitized we can mark it as HTML safe
+    Sanitize.fragment(md.render(content), EVIL_TAGS).strip.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def strip_markdown(content)
-    md = Redcarpet::Markdown.new(Redcarpet::Render::StripDown, MARKDOWN_OPTS)
+    renderer = Redcarpet::Render::StripDown.new
+    md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
     CGI.unescape_html(Sanitize.fragment(CGI.escape_html(md.render(content)), EVIL_TAGS)).strip
   end
 
   def twitter_markdown(content)
-    md = Redcarpet::Markdown.new(TwitteredMarkdown, MARKDOWN_OPTS)
+    renderer = TwitteredMarkdown.new
+    md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
     CGI.unescape_html(Sanitize.fragment(CGI.escape_html(md.render(content)), EVIL_TAGS)).strip
   end
 
   def question_markdown(content)
-    md = Redcarpet::Markdown.new(QuestionMarkdown.new, MARKDOWN_OPTS)
-    Sanitize.fragment(md.render(content), EVIL_TAGS).html_safe
+    renderer = QuestionMarkdown.new
+    md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
+    # As the string has been sanitized we can mark it as HTML safe
+    Sanitize.fragment(md.render(content), EVIL_TAGS).strip.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   def raw_markdown(content)
-    md = Redcarpet::Markdown.new(Redcarpet::Render::HTML, RAW_MARKDOWN_OPTS)
+    renderer = Redcarpet::Render::HTML.new(**MARKDOWN_RENDERER_OPTS)
+    md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
     raw md.render content
   end
 
   def get_markdown(path, relative_to = Rails.root)
-    begin
-      File.read relative_to.join(path)
-    rescue Errno::ENOENT
-      "# Error reading #{relative_to.join(path)}"
-    end
+    File.read relative_to.join(path)
+  rescue Errno::ENOENT
+    "# Error reading #{relative_to.join(path)}"
   end
 
   def markdown_io(path, relative_to = Rails.root)
