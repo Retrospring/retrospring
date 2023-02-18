@@ -28,8 +28,8 @@ module MarkdownHelper
   end
 
   def raw_markdown(content)
-    renderer = Redcarpet::Render::HTML.new(MARKDOWN_RENDERER_OPTS)
-    md = Redcarpet::Markdown.new(renderer, RAW_MARKDOWN_OPTS)
+    renderer = Redcarpet::Render::HTML.new(**MARKDOWN_RENDERER_OPTS)
+    md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
     raw md.render content
   end
 

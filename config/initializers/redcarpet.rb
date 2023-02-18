@@ -22,15 +22,6 @@ MARKDOWN_RENDERER_OPTS = {
   hard_wrap:       true,
 }.freeze
 
-RAW_MARKDOWN_OPTS = {
-  tables:                       true,
-  fenced_code_blocks:           true,
-  autolink:                     true,
-  disable_indented_code_blocks: true,
-  strikethrough:                true,
-  superscript:                  false,
-}.freeze
-
 ALLOWED_HOSTS_IN_MARKDOWN = [
   APP_CONFIG["hostname"],
   *APP_CONFIG["allowed_hosts_in_markdown"]
