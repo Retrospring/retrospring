@@ -17,13 +17,13 @@
           %h2= t(".statistics.header")
           %p= t(".statistics.body", app_name: APP_CONFIG["site_name"])
           .entry
-            .entry__value= @questions
+            .entry__value{ title: number_to_human(@questions) }= number_to_human @questions, units: :short, format: "%n%u"
             %h4.entry__description= Question.model_name.human(count: @questions)
           .entry
-            .entry__value= @answers
+            .entry__value{ title: number_to_human(@answers) }= number_to_human @answers, units: :short, format: "%n%u"
             %h4.entry__description= Answer.model_name.human(count: @answers)
           .entry
-            .entry__value= @users
+            .entry__value{ title: number_to_human(@users) }= number_to_human @users, units: :short, format: "%n%u"
             %h4.entry__description= User.model_name.human(count: @users)
 
 = render "shared/links"
