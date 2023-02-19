@@ -15,11 +15,11 @@ module Retrospring
 
     def year = 2023
 
-    def month = 1
+    def month = 2
 
-    def day = 31
+    def day = 19
 
-    def patch = 1
+    def patch = 0
 
     def suffix = ""
 
