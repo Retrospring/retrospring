@@ -15,7 +15,7 @@ class FlavoredMarkdown < Redcarpet::Render::HTML
   end
 
   def header(text, _header_level)
-    paragraph text
+    "<p>#{text}</p>"
   end
 
   def raw_html(raw_html)
