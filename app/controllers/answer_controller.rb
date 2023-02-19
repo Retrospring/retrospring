@@ -9,9 +9,13 @@ class AnswerController < ApplicationController
 
   def show
     @answer = Answer.includes(comments: %i[user smiles], question: [:user], smiles: [:user]).find(params[:id])
-    @subscribed = Subscription.where(user: current_user, answer: @answer).pluck(:id)
     @display_all = true
-    mark_notifications_as_read if user_signed_in?
+    @subscribed = []
+
+    return unless user_signed_in?
+
+    @subscribed = Subscription.where(user: current_user, answer: @answer).pluck(:answer_id)
+    mark_notifications_as_read
   end
 
   def pin
