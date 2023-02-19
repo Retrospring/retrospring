@@ -13,7 +13,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         id:,
         answer:,
         share:  shared_services&.to_json,
-        inbox:
+        inbox:,
       }.compact
     end
 
@@ -42,7 +42,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             "success" => false,
             # caught by rescue_from, so status is not peter_dinklage
             "status"  => "parameter_error",
-            "message" => anything
+            "message" => anything,
           }
         end
 
@@ -70,13 +70,33 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               {
                 "success" => true,
                 "status"  => "okay",
-                "message" => anything
+                "message" => anything,
               }
             end
 
             include_examples "creates the answer"
 
             it_behaves_like "fails when answer content is empty"
+
+            context "when the user has sharing enabled" do
+              before do
+                user.sharing_enabled = true
+                user.save
+              end
+
+              let(:expected_response) do
+                super().merge(
+                  "sharing" => {
+                    "twitter"  => a_string_matching("https://twitter.com/"),
+                    "tumblr"   => a_string_matching("https://www.tumblr.com/"),
+                    "telegram" => a_string_matching("https://t.me/"),
+                    "custom"   => a_string_matching(/Werfen\+Sie\+nicht\+l%C3%A4nger\+das\+Fenster\+zum\+Geld\+hinaus%21/),
+                  }
+                )
+              end
+
+              include_examples "creates the answer"
+            end
           end
 
           context "when the inbox entry does not belong to the user" do
@@ -85,7 +105,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               {
                 "success" => false,
                 "status"  => "fail",
-                "message" => anything
+                "message" => anything,
               }
             end
 
@@ -100,7 +120,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               {
                 "success" => true,
                 "status"  => "okay",
-                "message" => anything
+                "message" => anything,
               }
             end
 
@@ -129,13 +149,33 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
                 "success" => true,
                 "status"  => "okay",
                 "message" => anything,
-                "render"  => anything
+                "render"  => anything,
               }
             end
 
             include_examples "creates the answer"
 
             it_behaves_like "fails when answer content is empty"
+
+            context "when the user has sharing enabled" do
+              before do
+                user.sharing_enabled = true
+                user.save
+              end
+
+              let(:expected_response) do
+                super().merge(
+                  "sharing" => {
+                    "twitter"  => a_string_matching("https://twitter.com/"),
+                    "tumblr"   => a_string_matching("https://www.tumblr.com/"),
+                    "telegram" => a_string_matching("https://t.me/"),
+                    "custom"   => a_string_matching(/Werfen\+Sie\+nicht\+l%C3%A4nger\+das\+Fenster\+zum\+Geld\+hinaus%21/),
+                  }
+                )
+              end
+
+              include_examples "creates the answer"
+            end
           end
 
           context "when question asker does not allow strangers to answer (i.e. question was not in inbox)" do
@@ -144,7 +184,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               {
                 "success" => false,
                 "status"  => "privacy_stronk",
-                "message" => anything
+                "message" => anything,
               }
             end
 
@@ -160,7 +200,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               {
                 "success" => false,
                 "status"  => "answering_other_blocked_self",
-                "message" => I18n.t("errors.answering_other_blocked_self")
+                "message" => I18n.t("errors.answering_other_blocked_self"),
               }
             end
 
@@ -176,7 +216,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               {
                 "success" => false,
                 "status"  => "answering_self_blocked_other",
-                "message" => I18n.t("errors.answering_self_blocked_other")
+                "message" => I18n.t("errors.answering_self_blocked_other"),
               }
             end
 
@@ -196,7 +236,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
             "success" => false,
             # caught by rescue_from, so status is not peter_dinklage
             "status"  => "parameter_error",
-            "message" => anything
+            "message" => anything,
           }
         end
 
@@ -214,7 +254,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         {
           "success" => false,
           "status"  => "err",
-          "message" => anything
+          "message" => anything,
         }
       end
 
@@ -230,7 +270,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
 
     let(:params) do
       {
-        answer: answer_id
+        answer: answer_id,
       }
     end
 
@@ -242,7 +282,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           {
             "success" => true,
             "status"  => "okay",
-            "message" => anything
+            "message" => anything,
           }
         end
 
@@ -259,7 +299,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           {
             "success" => false,
             "status"  => "nopriv",
-            "message" => anything
+            "message" => anything,
           }
         end
 
@@ -311,7 +351,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           {
             "success" => false,
             "status"  => anything,
-            "message" => anything
+            "message" => anything,
           }
         end
 
@@ -324,7 +364,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         {
           "success" => false,
           "status"  => "nopriv",
-          "message" => anything
+          "message" => anything,
         }
       end
 

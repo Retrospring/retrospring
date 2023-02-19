@@ -5,6 +5,7 @@ require "cgi"
 class Ajax::AnswerController < AjaxController
   include SocialHelper::TwitterMethods
   include SocialHelper::TumblrMethods
+  include SocialHelper::TelegramMethods
 
   def create
     params.require :id
@@ -41,13 +42,7 @@ class Ajax::AnswerController < AjaxController
     @response[:message] = t(".success")
     @response[:success] = true
 
-    if current_user.sharing_enabled
-      @response[:sharing] = {
-        twitter: twitter_share_url(answer),
-        tumblr:  tumblr_share_url(answer),
-        custom:  CGI.escape(prepare_tweet(answer))
-      }
-    end
+    @response[:sharing] = sharing_hash(answer) if current_user.sharing_enabled
 
     return if inbox
 
@@ -74,4 +69,13 @@ class Ajax::AnswerController < AjaxController
     @response[:message] = t(".success")
     @response[:success] = true
   end
+
+  private
+
+  def sharing_hash(answer) = {
+    twitter:  twitter_share_url(answer),
+    tumblr:   tumblr_share_url(answer),
+    telegram: telegram_share_url(answer),
+    custom:   CGI.escape(prepare_tweet(answer)),
+  }
 end
