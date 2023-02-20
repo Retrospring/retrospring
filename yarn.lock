@@ -216,10 +216,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@melloware/coloris@^0.17.1":
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/@melloware/coloris/-/coloris-0.17.1.tgz#06b16fa8a9bbdbc6f5005953e5f1946949c10f52"
-  integrity sha512-EF+XlJEPcn4amdiOnXqhdZLSHfgVugVv3I538lypFAcyskc8DSx/GY5/oTLLSf83t1BeMcoee9JxFC9r5Xnr5w==
+"@melloware/coloris@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@melloware/coloris/-/coloris-0.18.0.tgz#80be501412567cea699fcaf370f1a0576b44766e"
+  integrity sha512-XF0OiDVkqYuqscUWFe2uFJORIOsus5JB+AQ4hEFMJjM2xJTkzrCmsIFkTwxjt/2PXeZwuo50ZDcZIiW3X5ZG0Q==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
