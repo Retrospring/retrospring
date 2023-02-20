@@ -212,95 +212,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "user follows users with answers to questions from blocked or muted users" do
-      let(:blocked_user) { FactoryBot.create(:user) }
-      let(:muted_user) { FactoryBot.create(:user) }
-      let(:user1) { FactoryBot.create(:user) }
-      let(:user2) { FactoryBot.create(:user) }
-      let!(:answer_to_anonymous) do
-        FactoryBot.create(
-          :answer,
-          user:     user1,
-          content:  "answer to a true anonymous coward",
-          question: FactoryBot.create(
-            :question,
-            author_is_anonymous: true
-          )
-        )
-      end
-      let!(:answer_to_normal_user) do
-        FactoryBot.create(
-          :answer,
-          user:     user2,
-          content:  "answer to a normal user",
-          question: FactoryBot.create(
-            :question,
-            user:                user1,
-            author_is_anonymous: false
-          )
-        )
-      end
-      let!(:answer_to_normal_user_anonymous) do
-        FactoryBot.create(
-          :answer,
-          user:     user2,
-          content:  "answer to a cowardly user",
-          question: FactoryBot.create(
-            :question,
-            user:                user1,
-            author_is_anonymous: true
-          )
-        )
-      end
-      let!(:answer_to_blocked_user) do
-        FactoryBot.create(
-          :answer,
-          user:     user1,
-          content:  "answer to a blocked user",
-          question: FactoryBot.create(
-            :question,
-            user:                blocked_user,
-            author_is_anonymous: false
-          )
-        )
-      end
-      let!(:answer_to_blocked_user_anonymous) do
-        FactoryBot.create(
-          :answer,
-          user:     user1,
-          content:  "answer to a blocked user who's a coward",
-          question: FactoryBot.create(
-            :question,
-            user:                blocked_user,
-            author_is_anonymous: true
-          )
-        )
-      end
-      let!(:answer_to_muted_user) do
-        FactoryBot.create(
-          :answer,
-          user:     user2,
-          content:  "answer to a muted user",
-          question: FactoryBot.create(
-            :question,
-            user:                muted_user,
-            author_is_anonymous: false
-          )
-        )
-      end
-      let!(:answer_to_muted_user_anonymous) do
-        FactoryBot.create(
-          :answer,
-          user:     user2,
-          content:  "answer to a muted user who's a coward",
-          question: FactoryBot.create(
-            :question,
-            user:                muted_user,
-            author_is_anonymous: true
-          )
-        )
-      end
-
+    context "user follows users with answers to questions from blocked or muted users", timeline_test_data: true do
       before do
         me.follow user1
         me.follow user2
@@ -314,6 +226,8 @@ RSpec.describe User, type: :model do
         expect(subject).to include(answer_to_muted_user_anonymous)
         expect(subject).to include(answer_to_blocked_user)
         expect(subject).to include(answer_to_muted_user)
+        expect(subject).not_to include(answer_from_blocked_user)
+        expect(subject).not_to include(answer_from_muted_user)
       end
 
       context "when blocking and muting some users" do
@@ -330,6 +244,8 @@ RSpec.describe User, type: :model do
           expect(subject).to include(answer_to_muted_user_anonymous)
           expect(subject).not_to include(answer_to_blocked_user)
           expect(subject).not_to include(answer_to_muted_user)
+          expect(subject).not_to include(answer_from_blocked_user)
+          expect(subject).not_to include(answer_from_muted_user)
         end
       end
     end
