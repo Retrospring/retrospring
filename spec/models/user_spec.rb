@@ -69,7 +69,7 @@ RSpec.describe User, type: :model do
 
   describe "email validation" do
     subject do
-      FactoryBot.build(:user, email: email).tap(&:validate).errors[:email]
+      FactoryBot.build(:user, email:).tap(&:validate).errors[:email]
     end
 
     shared_examples_for "valid email" do |example_email|
@@ -211,12 +211,134 @@ RSpec.describe User, type: :model do
         expect(subject).to eq(expected)
       end
     end
+
+    context "user follows users with answers to questions from blocked or muted users" do
+      let(:blocked_user) { FactoryBot.create(:user) }
+      let(:muted_user) { FactoryBot.create(:user) }
+      let(:user1) { FactoryBot.create(:user) }
+      let(:user2) { FactoryBot.create(:user) }
+      let!(:answer_to_anonymous) do
+        FactoryBot.create(
+          :answer,
+          user:     user1,
+          content:  "answer to a true anonymous coward",
+          question: FactoryBot.create(
+            :question,
+            author_is_anonymous: true
+          )
+        )
+      end
+      let!(:answer_to_normal_user) do
+        FactoryBot.create(
+          :answer,
+          user:     user2,
+          content:  "answer to a normal user",
+          question: FactoryBot.create(
+            :question,
+            user:                user1,
+            author_is_anonymous: false
+          )
+        )
+      end
+      let!(:answer_to_normal_user_anonymous) do
+        FactoryBot.create(
+          :answer,
+          user:     user2,
+          content:  "answer to a cowardly user",
+          question: FactoryBot.create(
+            :question,
+            user:                user1,
+            author_is_anonymous: true
+          )
+        )
+      end
+      let!(:answer_to_blocked_user) do
+        FactoryBot.create(
+          :answer,
+          user:     user1,
+          content:  "answer to a blocked user",
+          question: FactoryBot.create(
+            :question,
+            user:                blocked_user,
+            author_is_anonymous: false
+          )
+        )
+      end
+      let!(:answer_to_blocked_user_anonymous) do
+        FactoryBot.create(
+          :answer,
+          user:     user1,
+          content:  "answer to a blocked user who's a coward",
+          question: FactoryBot.create(
+            :question,
+            user:                blocked_user,
+            author_is_anonymous: true
+          )
+        )
+      end
+      let!(:answer_to_muted_user) do
+        FactoryBot.create(
+          :answer,
+          user:     user2,
+          content:  "answer to a muted user",
+          question: FactoryBot.create(
+            :question,
+            user:                muted_user,
+            author_is_anonymous: false
+          )
+        )
+      end
+      let!(:answer_to_muted_user_anonymous) do
+        FactoryBot.create(
+          :answer,
+          user:     user2,
+          content:  "answer to a muted user who's a coward",
+          question: FactoryBot.create(
+            :question,
+            user:                muted_user,
+            author_is_anonymous: true
+          )
+        )
+      end
+
+      before do
+        me.follow user1
+        me.follow user2
+      end
+
+      it "includes all answers to questions the user follows" do
+        expect(subject).to include(answer_to_anonymous)
+        expect(subject).to include(answer_to_normal_user)
+        expect(subject).to include(answer_to_normal_user_anonymous)
+        expect(subject).to include(answer_to_blocked_user_anonymous)
+        expect(subject).to include(answer_to_muted_user_anonymous)
+        expect(subject).to include(answer_to_blocked_user)
+        expect(subject).to include(answer_to_muted_user)
+      end
+
+      context "when blocking and muting some users" do
+        before do
+          me.block blocked_user
+          me.mute muted_user
+        end
+
+        it "only includes answers to questions from users the user doesn't block or mute" do
+          expect(subject).to include(answer_to_anonymous)
+          expect(subject).to include(answer_to_normal_user)
+          expect(subject).to include(answer_to_normal_user_anonymous)
+          expect(subject).to include(answer_to_blocked_user_anonymous)
+          expect(subject).to include(answer_to_muted_user_anonymous)
+          expect(subject).not_to include(answer_to_blocked_user)
+          expect(subject).not_to include(answer_to_muted_user)
+        end
+      end
+    end
   end
 
   describe "#cursored_timeline" do
     let(:last_id) { nil }
 
-    subject { me.cursored_timeline(last_id: last_id, size: 3) }
+    subject { me.cursored_timeline(last_id:, size: 3) }
 
     context "user answered nothing and is not following anyone" do
       include_examples "result is blank"
