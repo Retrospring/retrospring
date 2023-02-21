@@ -8,11 +8,11 @@ describe QuestionController, type: :controller do
 
     before do
       stub_const("APP_CONFIG", {
-        "site_name"      => "Specspring",
-        "hostname"       => "test.host",
-        "https"          => false,
-        "items_per_page" => 10,
-      })
+                   "site_name"      => "Specspring",
+                   "hostname"       => "test.host",
+                   "https"          => false,
+                   "items_per_page" => 10,
+                 })
     end
 
     context "question exists" do
@@ -54,6 +54,17 @@ describe QuestionController, type: :controller do
             expect(assigns(:answers).length).to eq(10)
             expect(assigns(:answers_last_id)).to_not be_nil
             expect(assigns(:more_data_available)).to eq(true)
+          end
+        end
+
+        context "when signed in" do
+          before do
+            sign_in(FactoryBot.create(:user))
+          end
+
+          it "is fine" do
+            # basic test to make sure nothing breaks with an user
+            expect(subject).to have_http_status(:ok)
           end
         end
       end
