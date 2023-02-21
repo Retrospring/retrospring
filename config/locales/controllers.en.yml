@@ -202,10 +202,10 @@ en:
         banned: "I'm sorry, %{name}, I'm afraid I can't do that."
         reason: "Ban reason: %{reason}"
         until: "Banned until: %{time}"
-        info:
-          one: "You have only one recovery code remaining. Please regenerate your recovery codes from the security settings to avoid being locked out!"
-          other: "You have %{count} recovery codes remaining."
-        error: :errors.invalid_otp
+      info:
+        one: "You have only one recovery code remaining. Please regenerate your recovery codes from the security settings to avoid being locked out!"
+        other: "You have %{count} recovery codes remaining."
+      error: :errors.invalid_otp
     registrations:
       destroy:
         export_pending: "You may not delete your account while account data is currently being exported."
