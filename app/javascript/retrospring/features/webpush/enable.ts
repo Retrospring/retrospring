@@ -8,7 +8,7 @@ export function enableHandler (event: Event): void {
   const sender = event.target as HTMLButtonElement;
 
   try {
-    installServiceWorker()
+    getServiceWorker()
       .then(subscribe)
       .then(async subscription => {
         return Notification.requestPermission().then(permission => {
@@ -51,8 +51,8 @@ export function enableHandler (event: Event): void {
     }
 }
 
-async function installServiceWorker(): Promise<ServiceWorkerRegistration> {
-  return navigator.serviceWorker.register("/service_worker.js", { scope: "/" });
+async function getServiceWorker(): Promise<ServiceWorkerRegistration> {
+  return navigator.serviceWorker.getRegistration("/");
 }
 
 async function getServerKey(): Promise<Buffer> {
