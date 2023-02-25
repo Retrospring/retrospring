@@ -5,6 +5,7 @@ module BootstrapHelper
     options = {
       badge:       nil,
       badge_color: nil,
+      badge_attr:  {},
       icon:        nil,
       class:       ""
     }.merge(options)
@@ -29,7 +30,7 @@ module BootstrapHelper
         ("badge-pill" if options[:badge_pill])
       ].compact.join(" ")
 
-      body += " #{content_tag(:span, options[:badge], class: badge_class)}".html_safe
+      body += " #{content_tag(:span, options[:badge], class: badge_class, **options[:badge_attr])}".html_safe
     end
 
     content_tag(:li, link_to(body.html_safe, path, class: "nav-link"), class: classes)
