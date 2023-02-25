@@ -8,6 +8,7 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include User::AnswerMethods
   include User::BanMethods
   include User::InboxMethods
+  include User::NotificationMethods
   include User::QuestionMethods
   include User::PushNotificationMethods
   include User::ReactionMethods
