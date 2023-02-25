@@ -9,11 +9,17 @@ module User::PushNotificationMethods
       n.app = app
       n.registration_ids = [s.subscription.symbolize_keys]
       n.data = {
-        message: resource.as_push_notification.to_json
+        message: resource.as_push_notification.merge(notification_data).to_json,
       }
       n.save!
 
       PushNotificationWorker.perform_async(n.id)
     end
   end
+
+  def notification_data = {
+    data: {
+      badge: current_user.unread_inbox_count,
+    },
+  }
 end
