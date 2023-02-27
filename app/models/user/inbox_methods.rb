@@ -14,19 +14,16 @@ module User::InboxMethods
   end
 
   def unread_inbox_count
-    Rails.cache.fetch("#{inbox_cache_key}/unread_inbox_count") do
-      count = Inbox.select("COUNT(id) AS count")
-                   .where(new: true)
-                   .where(user_id: id)
-                   .group(:user_id)
-                   .order(:count)
-                   .first
-      return nil if count.nil?
-      return nil unless count.count.positive?
+    Rails.cache.fetch(inbox_cache_key) do
+      count = Inbox.where(new: true, user_id: id).count(:id)
 
-      count.count
+      # Returning +nil+ here in order to not display a counter
+      # at all when there isn't anything in the user's inbox
+      return nil unless count.positive?
+
+      count
     end
   end
 
-  def inbox_cache_key = "#{cache_key}-#{inbox_updated_at}"
+  def inbox_cache_key = "#{cache_key}/unread_inbox_count-#{inbox_updated_at}"
 end
