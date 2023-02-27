@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_25_143633) do
+ActiveRecord::Schema.define(version: 2023_02_27_174822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,7 +261,6 @@ ActiveRecord::Schema.define(version: 2023_02_25_143633) do
     t.bigint "answer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_active", default: true
     t.index ["user_id", "answer_id"], name: "index_subscriptions_on_user_id_and_answer_id"
   end
 
