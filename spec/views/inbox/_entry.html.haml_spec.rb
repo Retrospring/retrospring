@@ -82,6 +82,10 @@ describe "inbox/_entry.html.haml", type: :view do
     expect(rendered).to have_css(%(.inbox-entry__sharing.d-none))
   end
 
+  it "has a link-button to share to telegram" do
+    expect(rendered).to have_css(%(.inbox-entry__sharing a.btn[data-inbox-sharing-target="telegram"]))
+  end
+
   it "has a link-button to share to tumblr" do
     expect(rendered).to have_css(%(.inbox-entry__sharing a.btn[data-inbox-sharing-target="tumblr"]))
   end

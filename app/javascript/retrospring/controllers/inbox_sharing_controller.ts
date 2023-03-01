@@ -1,10 +1,11 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ['twitter', 'tumblr', 'custom'];
+  static targets = ['twitter', 'tumblr', 'telegram', 'custom'];
 
   declare readonly twitterTarget: HTMLAnchorElement;
   declare readonly tumblrTarget: HTMLAnchorElement;
+  declare readonly telegramTarget: HTMLAnchorElement;
   declare readonly customTarget: HTMLAnchorElement;
   declare readonly hasCustomTarget: boolean;
 
@@ -20,6 +21,7 @@ export default class extends Controller {
     if (this.autoCloseValue) {
       this.twitterTarget.addEventListener('click', () => this.close());
       this.tumblrTarget.addEventListener('click', () => this.close());
+      this.telegramTarget.addEventListener('click', () => this.close());
 
       if (this.hasCustomTarget) {
         this.customTarget.addEventListener('click', () => this.close());
@@ -36,6 +38,7 @@ export default class extends Controller {
 
     this.twitterTarget.href = this.configValue['twitter'];
     this.tumblrTarget.href = this.configValue['tumblr'];
+    this.telegramTarget.href = this.configValue['telegram'];
 
     if (this.hasCustomTarget) {
       this.customTarget.href = `${this.customTarget.href}${this.configValue['custom']}`;

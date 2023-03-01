@@ -81,6 +81,7 @@ en:
     share:
       twitter: "Share on Twitter"
       tumblr: "Share on Tumblr"
+      telegram: "Share on Telegram"
       other: "Share on other apps..."
   admin:
     announcement:
