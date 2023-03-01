@@ -104,7 +104,7 @@ GEM
     chunky_png (1.4.0)
     coderay (1.1.3)
     colorize (0.8.1)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     connection_pool (2.3.0)
     crass (1.0.6)
     cssbundling-rails (1.1.2)
@@ -391,7 +391,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.26.0)
       parser (>= 3.2.1.0)
-    rubocop-rails (2.17.4)
+    rubocop-rails (2.18.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
@@ -542,7 +542,7 @@ DEPENDENCIES
   rspec-rails (~> 6.0)
   rspec-sidekiq (~> 3.0)
   rubocop (~> 1.45)
-  rubocop-rails (~> 2.17)
+  rubocop-rails (~> 2.18)
   ruby-progressbar
   rubyzip (~> 2.3)
   sanitize
