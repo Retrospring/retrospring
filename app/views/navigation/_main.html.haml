@@ -1,9 +1,10 @@
-- notifications = Notification.for(current_user).where(new: true).includes([:target]).limit(4)
-- inbox_count = current_user.unread_inbox_count
-- notification_count = current_user.unread_notification_count
-= render 'navigation/desktop', notifications:, inbox_count:, notification_count:
-= render 'navigation/mobile', inbox_count:, notification_count:
+:ruby
+  notifications = Notification.for(current_user).where(new: true).includes([:target]).limit(4)
+  inbox_count = current_user.unread_inbox_count
+  notification_count = current_user.unread_notification_count
+= render "navigation/desktop", notifications:, inbox_count:, notification_count:
+= render "navigation/mobile", inbox_count:, notification_count:
 
-= render 'modal/ask'
+= render "modal/ask"
 %button.btn.btn-primary.btn-fab.d-block.d-lg-none.d-print-none{ data: { bs_target: "#modal-ask-followers", bs_toggle: :modal }, type: "button" }
   %i.fa.fa-pencil-square-o
