@@ -19,7 +19,7 @@ module User::PushNotificationMethods
 
   def notification_data = {
     data: {
-      badge: current_user.unread_inbox_count,
+      badge: unread_inbox_count,
     },
   }
 end
