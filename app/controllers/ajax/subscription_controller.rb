@@ -4,14 +4,14 @@ class Ajax::SubscriptionController < AjaxController
   def subscribe
     params.require :answer
     @response[:status] = :okay
-    state = Subscription.subscribe(current_user, Answer.find(params[:answer])).nil?
-    @response[:success] = state == false
+    result = Subscription.subscribe(current_user, Answer.find(params[:answer]))
+    @response[:success] = result.present?
   end
 
   def unsubscribe
     params.require :answer
     @response[:status] = :okay
-    state = Subscription.unsubscribe(current_user, Answer.find(params[:answer])).nil?
-    @response[:success] = state == false
+    result = Subscription.unsubscribe(current_user, Answer.find(params[:answer]))
+    @response[:success] = result&.destroyed? || false
   end
 end

@@ -33,7 +33,7 @@ describe Ajax::SubscriptionController, :ajax_controller, type: :controller do
         context "when subscription does not exist" do
           it "creates a subscription on the answer" do
             expect { subject }.to(change { answer.subscriptions.count }.by(1))
-            expect(answer.subscriptions.where(is_active: true).map { |s| s.user.id }.sort).to eq([answer_user.id, user.id].sort)
+            expect(answer.subscriptions.map { |s| s.user.id }.sort).to eq([answer_user.id, user.id].sort)
           end
 
           include_examples "returns the expected response"
@@ -44,7 +44,7 @@ describe Ajax::SubscriptionController, :ajax_controller, type: :controller do
 
           it "does not modify the answer's subscriptions" do
             expect { subject }.to(change { answer.subscriptions.count }.by(0))
-            expect(answer.subscriptions.where(is_active: true).map { |s| s.user.id }.sort).to eq([answer_user.id, user.id].sort)
+            expect(answer.subscriptions.map { |s| s.user.id }.sort).to eq([answer_user.id, user.id].sort)
           end
 
           include_examples "returns the expected response"
@@ -105,8 +105,8 @@ describe Ajax::SubscriptionController, :ajax_controller, type: :controller do
           before(:each) { Subscription.subscribe(user, answer) }
 
           it "removes an active subscription from the answer" do
-            expect { subject }.to(change { answer.subscriptions.where(is_active: true).count }.by(-1))
-            expect(answer.subscriptions.where(is_active: true).map { |s| s.user.id }.sort).to eq([answer_user.id].sort)
+            expect { subject }.to(change { answer.subscriptions.count }.by(-1))
+            expect(answer.subscriptions.map { |s| s.user.id }.sort).to eq([answer_user.id].sort)
           end
 
           include_examples "returns the expected response"
@@ -123,7 +123,7 @@ describe Ajax::SubscriptionController, :ajax_controller, type: :controller do
 
           it "does not modify the answer's subscriptions" do
             expect { subject }.to(change { answer.subscriptions.count }.by(0))
-            expect(answer.subscriptions.where(is_active: true).map { |s| s.user.id }.sort).to eq([answer_user.id].sort)
+            expect(answer.subscriptions.map { |s| s.user.id }.sort).to eq([answer_user.id].sort)
           end
 
           include_examples "returns the expected response"
