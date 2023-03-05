@@ -26,15 +26,6 @@ class Subscription < ApplicationRecord
       Subscription.where(answer: target).destroy_all
     end
 
-    def destruct_by(recipient, target)
-      if recipient.nil? or target.nil?
-        return nil
-      end
-
-      subs = Subscription.find_by(user: recipient, answer: target)
-      subs.destroy unless subs.nil?
-    end
-
     def notify(source, target)
       return nil if source.nil? || target.nil?
 
