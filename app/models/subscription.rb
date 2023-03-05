@@ -36,23 +36,20 @@ class Subscription < ApplicationRecord
     end
 
     def notify(source, target)
-      if source.nil? or target.nil?
-        return nil
+      return nil if source.nil? || target.nil?
+
+      notifications = Subscription.where(answer: target).where.not(user: target.user).map do |s|
+        { target_id: source.id, target_type: Comment, recipient_id: s.user_id, new: true, type: Notification::Commented }
       end
 
-      Subscription.where(answer: target).each do |subs|
-        next unless not subs.user == source.user
-        Notification.notify subs.user, source
-      end
+      Notification.insert_all!(notifications)
     end
 
     def denotify(source, target)
-      if source.nil? or target.nil?
-        return nil
-      end
-      Subscription.where(answer: target).each do |subs|
-        Notification.denotify subs.user, source
-      end
+      return nil if source.nil? or target.nil?
+
+      subs = Subscription.where(answer: target)
+      Notification.where(target:, recipient: subs.map(&:user)).delete_all
     end
   end
 end
