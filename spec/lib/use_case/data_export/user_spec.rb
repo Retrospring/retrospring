@@ -3,6 +3,12 @@
 require "rails_helper"
 
 describe UseCase::DataExport::User, :data_export do
+  before do
+    stub_const("APP_CONFIG", {
+      "fog" => {}
+    })
+  end
+
   let(:user_params) do
     {
       email:                             "fizzyraccoon@bsnss.biz",

@@ -5,6 +5,13 @@ require "rails_helper"
 describe Settings::ProfilePictureController, type: :controller do
   describe "#update" do
     subject { patch :update, params: { user: avatar_params } }
+
+    before do
+      stub_const("APP_CONFIG", {
+        "fog" => {}
+      })
+    end
+
     let(:avatar_params) do
       {
         profile_picture: fixture_file_upload("banana_racc.jpg", "image/jpeg")
