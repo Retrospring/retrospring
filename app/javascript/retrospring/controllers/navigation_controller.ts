@@ -56,7 +56,7 @@ export default class extends Controller {
     if (target.dataset.navigationTarget == "traversable") {
       this.currentTarget.dataset.navigationTarget = "traversable";
       target.dataset.navigationTarget = "traversable current";
-      target.scrollIntoView(false);
+      target.scrollIntoView({ block: "center", inline: "center" });
     }
   }
 }
