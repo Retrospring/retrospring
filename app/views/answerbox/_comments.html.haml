@@ -25,6 +25,7 @@
                 %span.caret
               = render "actions/comment", comment: comment, answer: a
 - if user_signed_in?
+  %button.d-none{ name: "ab-open-and-comment", data: { a_id: a.id, selection_hotkey: "c" } }
   .comment__compose-wrapper{
     name: "ab-comment-new-group",
     data: { a_id: a.id, controller: "character-count", character_count_max_value: 512 }
