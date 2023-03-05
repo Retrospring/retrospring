@@ -10,28 +10,42 @@ export default class extends Controller {
   declare readonly traversableTargets: HTMLElement[];
 
   traversableTargetConnected(target: HTMLElement) {
+    if (!("navigationIndex" in target.dataset)) {
+      target.dataset.navigationIndex = this.traversableTargets.indexOf(target).toString();
+    }
+
     if (!this.hasCurrentTarget) {
       const first = this.traversableTargets[0];
-      first.dataset.navigationTarget = "current";
+      first.dataset.navigationTarget += " current";
     }
   }
 
   currentTargetConnected(target: HTMLElement) {
+    target.classList.add("js-hotkey-current-selection");
+
     target.querySelectorAll<HTMLElement>("[data-selection-hotkey]")
-      .forEach(el => install(el, el.dataset.selectionHotkey))
+      .forEach(el => install(el, el.dataset.selectionHotkey));
   }
 
   currentTargetDisconnected(target: HTMLElement) {
+    target.classList.remove("js-hotkey-current-selection");
+
     target.querySelectorAll<HTMLElement>("[data-selection-hotkey]")
-      .forEach(el => uninstall(el))
+      .forEach(el => uninstall(el));
   }
 
   up(): void {
-    this.navigate(this.currentTarget.previousElementSibling as HTMLElement);
+    const prevIndex = this.traversableTargets.indexOf(this.currentTarget) - 1;
+    if (prevIndex == -1) return;
+
+    this.navigate(this.traversableTargets[prevIndex]);
   }
 
   down(): void {
-    this.navigate(this.currentTarget.nextElementSibling as HTMLElement);
+    const nextIndex = this.traversableTargets.indexOf(this.currentTarget) + 1;
+    if (nextIndex == this.traversableTargets.length) return;
+
+    this.navigate(this.traversableTargets[nextIndex]);
   }
 
   navigate(target: HTMLElement): void {
@@ -41,7 +55,7 @@ export default class extends Controller {
 
     if (target.dataset.navigationTarget == "traversable") {
       this.currentTarget.dataset.navigationTarget = "traversable";
-      target.dataset.navigationTarget = "current";
+      target.dataset.navigationTarget = "traversable current";
       target.scrollIntoView(false);
     }
   }
