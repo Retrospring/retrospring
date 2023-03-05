@@ -13,6 +13,7 @@
       class: "btn btn-light",
       method: :get,
       params: { last_id: @answers_last_id },
+      data: { hotkey: "." },
       form: { data: { turbo_stream: true } }
 
 :ruby

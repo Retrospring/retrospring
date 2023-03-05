@@ -8,6 +8,7 @@
       class: "btn btn-light",
       method: :get,
       params: { last_id: @questions_last_id },
+      data: { hotkey: "." },
       form: { data: { turbo_stream: true } }
 
 - provide(:title, questions_title(@user))

@@ -14,6 +14,7 @@
         class: "btn btn-light",
         method: :get,
         params: { last_id: @answers_last_id },
+        data: { hotkey: "." },
         form: { data: { turbo_stream: true } }
 
   - if user_signed_in? && !current_user.answered?(@question) && current_user != @question.user && @question.user&.privacy_allow_stranger_answers
