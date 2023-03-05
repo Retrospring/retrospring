@@ -330,6 +330,7 @@ en:
           heading: "Feedback"
           bugs: "Bugs"
           features: "Feature Requests"
+        hotkeys: "Keyboard Shortcuts"
     desktop:
       ask_question: "Ask a question"
       list: :user.actions.list
@@ -583,6 +584,21 @@ en:
     question:
       visible_to_you: "Only visible to you as it was asked directly"
       visible_mod_mode: "You can see this because you are in moderation view"
+    hotkeys:
+      navigation:
+        title: "Navigation"
+      title: "Keyboard Shortcuts"
+      show_dialog: "Show this dialog"
+      answer:
+        title: "Answer actions"
+        view_comments: "View comments"
+        comment: "Write a comment"
+        all_answers: "View all answers"
+      global:
+        navigation:
+          up: "Move selection up"
+          down: "Move selection down"
+        title: "Site-wide"
   tabs:
     admin:
       announcements: "Announcements"
