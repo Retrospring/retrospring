@@ -47,6 +47,13 @@
   &__recovery {
     &-container {
       max-width: 455px;
+
+      @media print {
+
+        .card {
+          box-shadow: none;
+        }
+      }
     }
 
     &-icon {

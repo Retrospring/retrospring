@@ -42,6 +42,6 @@ class Settings::TwoFactorAuthentication::OtpAuthenticationController < Applicati
   def reset
     current_user.totp_recovery_codes.delete_all
     @recovery_keys = TotpRecoveryCode.generate_for(current_user)
-    render "settings/two_factor_authentication/otp_authentication/recovery_keys"
+    render "settings/two_factor_authentication/otp_authentication/recovery_keys", status: :see_other
   end
 end

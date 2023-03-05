@@ -18,7 +18,7 @@
     %link{ rel: 'icon', href: '/icons/maskable_icon_x192.png', sizes: '192x192' }
     %link{ rel: 'icon', href: '/images/favicon/favicon-32.png', sizes: '32x32' }
     %title= yield(:title)
-    = stylesheet_link_tag 'application', data: { 'turbo-track': 'reload' }
+    = stylesheet_link_tag "application", data: { 'turbo-track': "reload" }, media: "all"
     = javascript_include_tag 'application', data: { 'turbo-track': 'reload' }, defer: true
     = csrf_meta_tags
     = yield(:og)
