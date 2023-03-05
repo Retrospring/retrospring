@@ -594,6 +594,7 @@ en:
         view_comments: "View comments"
         comment: "Write a comment"
         all_answers: "View all answers"
+        view_answer: "View answer page"
       global:
         navigation:
           up: "Move selection up"
