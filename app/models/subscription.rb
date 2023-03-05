@@ -32,7 +32,7 @@ class Subscription < ApplicationRecord
         { target_id: source.id, target_type: Comment, recipient_id: s.user_id, new: true, type: Notification::Commented }
       end
 
-      Notification.insert_all!(notifications)
+      Notification.insert_all!(notifications) # rubocop:disable Rails/SkipsModelValidations
     end
 
     def denotify(source, target)

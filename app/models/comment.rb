@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
   validates :content, length: { maximum: 512 }
 
   after_create do
-    Subscription.subscribe self.user, answer
+    Subscription.subscribe user, answer
     Subscription.notify self, answer
   end
 
