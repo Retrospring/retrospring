@@ -9,7 +9,7 @@ export default class extends Controller {
   declare readonly currentTarget: HTMLElement;
   declare readonly traversableTargets: HTMLElement[];
 
-  traversableTargetConnected(target: HTMLElement) {
+  traversableTargetConnected(target: HTMLElement): void {
     if (!("navigationIndex" in target.dataset)) {
       target.dataset.navigationIndex = this.traversableTargets.indexOf(target).toString();
     }
@@ -20,14 +20,14 @@ export default class extends Controller {
     }
   }
 
-  currentTargetConnected(target: HTMLElement) {
+  currentTargetConnected(target: HTMLElement): void {
     target.classList.add("js-hotkey-current-selection");
 
     target.querySelectorAll<HTMLElement>("[data-selection-hotkey]")
       .forEach(el => install(el, el.dataset.selectionHotkey));
   }
 
-  currentTargetDisconnected(target: HTMLElement) {
+  currentTargetDisconnected(target: HTMLElement): void {
     target.classList.remove("js-hotkey-current-selection");
 
     target.querySelectorAll<HTMLElement>("[data-selection-hotkey]")
