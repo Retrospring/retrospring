@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :answer
@@ -11,18 +13,15 @@ class Subscription < ApplicationRecord
     end
 
     def unsubscribe(recipient, target)
-      if recipient.nil? or target.nil?
-        return nil
-      end
+      return nil if recipient.nil? || target.nil?
 
       subs = Subscription.find_by(user: recipient, answer: target)
       subs&.destroy
     end
 
     def destruct(target)
-      if target.nil?
-        return nil
-      end
+      return nil if target.nil?
+
       Subscription.where(answer: target).destroy_all
     end
 
@@ -37,7 +36,7 @@ class Subscription < ApplicationRecord
     end
 
     def denotify(source, target)
-      return nil if source.nil? or target.nil?
+      return nil if source.nil? || target.nil?
 
       subs = Subscription.where(answer: target)
       Notification.where(target:, recipient: subs.map(&:user)).delete_all
