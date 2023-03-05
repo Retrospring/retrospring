@@ -11,6 +11,7 @@ import CropperController from "retrospring/controllers/cropper_controller";
 import InboxSharingController from "retrospring/controllers/inbox_sharing_controller";
 import ToastController from "retrospring/controllers/toast_controller";
 import PwaBadgeController from "retrospring/controllers/pwa_badge_controller";
+import NavigationController from "retrospring/controllers/navigation_controller";
 
 /**
  * This module sets up Stimulus and our controllers
@@ -31,6 +32,7 @@ export default function (): void {
   window['Stimulus'].register('format-popup', FormatPopupController);
   window['Stimulus'].register('inbox-sharing', InboxSharingController);
   window['Stimulus'].register('pwa-badge', PwaBadgeController);
+  window['Stimulus'].register('navigation', NavigationController);
   window['Stimulus'].register('theme', ThemeController);
   window['Stimulus'].register('toast', ToastController);
 }

@@ -1,0 +1,5 @@
+.js-hotkey-navigating {
+  [data-navigation-target="current"] {
+    outline: var(--primary) solid 4px;
+  }
+}

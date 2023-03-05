@@ -1,5 +1,5 @@
 - display_all ||= nil
-.card.answerbox{ data: { id: a.id, q_id: a.question.id } }
+.card.answerbox{ data: { id: a.id, q_id: a.question.id, navigation_target: "traversable" } }
   - if @question.nil?
     = render "answerbox/header", a: a, display_all: display_all
   .card-body

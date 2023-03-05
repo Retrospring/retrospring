@@ -1,4 +1,6 @@
-#timeline
+#timeline{ data: { controller: "navigation" } }
+  %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
+  %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
   - @timeline.each do |answer|
     = render "answerbox", a: answer
 
