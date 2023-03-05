@@ -7,9 +7,11 @@ describe Settings::ProfilePictureController, type: :controller do
     subject { patch :update, params: { user: avatar_params } }
 
     before do
-      stub_const("APP_CONFIG", {
-                   "fog" => {},
-                 })
+      if ENV["USE_FOG_IN_TESTS"].blank?
+        stub_const("APP_CONFIG", {
+                     "fog" => {},
+                   })
+      end
     end
 
     let(:avatar_params) do

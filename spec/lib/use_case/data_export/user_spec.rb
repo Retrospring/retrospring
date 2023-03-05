@@ -4,9 +4,11 @@ require "rails_helper"
 
 describe UseCase::DataExport::User, :data_export do
   before do
-    stub_const("APP_CONFIG", {
-                 "fog" => {},
-               })
+    if ENV["USE_FOG_IN_TESTS"].blank?
+      stub_const("APP_CONFIG", {
+                   "fog" => {},
+                 })
+    end
   end
 
   let(:user_params) do
