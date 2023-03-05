@@ -1,4 +1,4 @@
-%button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile", data: { a_id: a.id, action: current_user&.smiled?(a) ? :unsmile : :smile, selection_hotkey: "l" }, disabled: !user_signed_in? }
+%button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile", data: { a_id: a.id, action: current_user&.smiled?(a) ? :unsmile : :smile, selection_hotkey: "s" }, disabled: !user_signed_in? }
   %i.fa.fa-fw.fa-smile-o
   %span{ id: "ab-smile-count-#{a.id}" }= a.smiles.count
 - unless display_all
