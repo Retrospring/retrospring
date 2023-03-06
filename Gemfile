@@ -42,8 +42,6 @@ gem "rolify", "~> 6.0"
 gem "dry-initializer", "~> 3.1"
 gem "dry-types", "~> 1.7"
 
-gem "ruby-progressbar"
-
 gem "pghero"
 gem "rails_admin"
 gem "sentry-rails"
