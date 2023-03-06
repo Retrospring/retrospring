@@ -10,7 +10,7 @@
     "@fontsource/lexend": "^4.5.15",
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@hotwired/stimulus": "^3.2.1",
-    "@hotwired/turbo-rails": "^7.2.5",
+    "@hotwired/turbo-rails": "^7.3.0",
     "@melloware/coloris": "^0.18.0",
     "@popperjs/core": "^2.11",
     "@rails/request.js": "^0.0.8",
