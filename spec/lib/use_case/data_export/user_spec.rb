@@ -3,6 +3,14 @@
 require "rails_helper"
 
 describe UseCase::DataExport::User, :data_export do
+  before do
+    if ENV["USE_FOG_IN_TESTS"].blank?
+      stub_const("APP_CONFIG", {
+                   "fog" => {},
+                 })
+    end
+  end
+
   let(:user_params) do
     {
       email:                             "fizzyraccoon@bsnss.biz",
@@ -35,8 +43,8 @@ describe UseCase::DataExport::User, :data_export do
         location:             "Binland",
         motivation_header:    "",
         website:              "https://retrospring.net",
-        allow_long_questions: true
-      }
+        allow_long_questions: true,
+      },
     }
   end
 
@@ -91,7 +99,7 @@ describe UseCase::DataExport::User, :data_export do
           privacy_noindex:                   false,
           sharing_enabled:                   false,
           sharing_autoclose:                 false,
-          sharing_custom_url:                nil
+          sharing_custom_url:                nil,
         },
         profile: {
           display_name:         "Fizzy Raccoon",
@@ -102,12 +110,12 @@ describe UseCase::DataExport::User, :data_export do
           created_at:           user.profile.created_at.as_json,
           updated_at:           user.profile.updated_at.as_json,
           anon_display_name:    nil,
-          allow_long_questions: true
+          allow_long_questions: true,
         },
         roles:   {
           administrator: false,
-          moderator:     false
-        }
+          moderator:     false,
+        },
       }
     )
   end

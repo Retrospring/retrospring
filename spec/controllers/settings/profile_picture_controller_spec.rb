@@ -5,9 +5,18 @@ require "rails_helper"
 describe Settings::ProfilePictureController, type: :controller do
   describe "#update" do
     subject { patch :update, params: { user: avatar_params } }
+
+    before do
+      if ENV["USE_FOG_IN_TESTS"].blank?
+        stub_const("APP_CONFIG", {
+                     "fog" => {},
+                   })
+      end
+    end
+
     let(:avatar_params) do
       {
-        profile_picture: fixture_file_upload("banana_racc.jpg", "image/jpeg")
+        profile_picture: fixture_file_upload("banana_racc.jpg", "image/jpeg"),
       }
     end
 
@@ -18,7 +27,7 @@ describe Settings::ProfilePictureController, type: :controller do
 
       it "enqueues a Sidekiq job to process the uploaded profile picture" do
         subject
-        expect(::CarrierWave::Workers::ProcessAsset).to have_enqueued_sidekiq_job("User", user.id.to_s, "profile_picture")
+        expect(CarrierWave::Workers::ProcessAsset).to have_enqueued_sidekiq_job("User", user.id.to_s, "profile_picture")
       end
 
       it "redirects to the edit_user_profile page" do
