@@ -120,6 +120,7 @@ en:
     comments:
       none: "There are no comments yet."
       placeholder: "Comment..."
+      action: "Post comment"
     smiles:
       none: "No one smiled this yet."
   application:

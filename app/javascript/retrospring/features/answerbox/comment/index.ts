@@ -13,6 +13,6 @@ export default (): void => {
     { type: 'click', target: '[data-action=ab-comment-destroy]', handler: commentDestroyHandler, global: true },
     { type: 'compositionstart', target: '[name=ab-comment-new]', handler: commentComposeStart, global: true },
     { type: 'compositionend', target: '[name=ab-comment-new]', handler: commentComposeEnd, global: true },
-    { type: 'keyup', target: '[name=ab-comment-new]', handler: commentCreateHandler, global: true }
+    { type: 'keydown', target: '[name=ab-comment-new]', handler: commentCreateHandler, global: true }
   ]);
 }

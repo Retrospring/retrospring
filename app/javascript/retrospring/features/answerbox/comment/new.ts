@@ -16,7 +16,9 @@ export function commentCreateHandler(event: KeyboardEvent): boolean {
   const counter = document.querySelector(`#ab-comment-charcount-${id}`);
   const group = document.querySelector(`[name=ab-comment-new-group][data-a-id="${id}"]`);
 
-  if (event.which === 13) {
+  console.debug("comment create", event.ctrlKey, event.metaKey, event.which);
+
+  if ((event.ctrlKey || event.metaKey) && event.which === 13) {
     event.preventDefault();
 
     if (input.value.length > 512) {
