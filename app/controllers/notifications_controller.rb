@@ -25,6 +25,16 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def read
+    current_user.notifications.where(new: true).update_all(new: false)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render "navigation/notifications", locals: { notifications: [], notification_count: nil }
+       end
+    end
+  end
+
   private
 
   def paginate_notifications

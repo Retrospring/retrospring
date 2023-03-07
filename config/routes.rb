@@ -143,6 +143,7 @@ Rails.application.routes.draw do
   get "/list/:list_name", to: "timeline#list", as: :list_timeline
 
   get "/notifications(/:type)", to: "notifications#index", as: :notifications, defaults: { type: "new" }
+  post "/notifications", to: "notifications#read", as: :notifications_read
 
   post "/inbox/create", to: "inbox#create", as: :inbox_create
   get "/inbox", to: "inbox#show", as: :inbox

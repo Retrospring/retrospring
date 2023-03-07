@@ -1,0 +1,13 @@
+= turbo_stream.update "notifications-dropdown-list" do
+  = render "navigation/dropdown/notifications", notifications:
+
+= turbo_stream.update "notification-desktop-icon" do
+  - if notification_count.nil?
+    %i.fa.fa-bell-o
+  - else
+    %i.fa.fa-bell
+  %span.visually-hidden= t("navigation.notifications")
+  %span.badge= notification_count
+
+= turbo_stream.update "notification-mobile-count" do
+  %span.badge.badge-primary= notification_count
