@@ -4,30 +4,6 @@ module ApplicationHelper
   include ApplicationHelper::GraphMethods
   include ApplicationHelper::TitleMethods
 
-  def inbox_count
-    return 0 unless user_signed_in?
-
-    count = Inbox.select("COUNT(id) AS count")
-                 .where(new: true)
-                 .where(user_id: current_user.id)
-                 .group(:user_id)
-                 .order(:count)
-                 .first
-    return nil if count.nil?
-    return nil unless count.count.positive?
-
-    count.count
-  end
-
-  def notification_count
-    return 0 unless user_signed_in?
-
-    count = Notification.for(current_user).where(new: true).count
-    return nil unless count.positive?
-
-    count
-  end
-
   def privileged?(user)
     !current_user.nil? && ((current_user == user) || current_user.mod?)
   end

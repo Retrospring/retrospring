@@ -11,27 +11,22 @@ const OFFLINE_CACHE_PATHS = [
 
 self.addEventListener('push', function (event) {
   if (event.data) {
-    const notification = event.data.json();
+    const contents = event.data.json();
+    navigator.setAppBadge(contents.data.badge);
 
-    event.waitUntil(self.registration.showNotification(notification.title, {
-      body: notification.body,
-      tag: notification.type,
-      icon: notification.icon,
-    }));
+    event.waitUntil(self.registration.showNotification(contents.title, contents));
   } else {
     console.error("Push event received, but it didn't contain any data.", event);
   }
 });
 
 self.addEventListener('notificationclick', async event => {
-  if (event.notification.tag === 'inbox') {
+  if ("click_url" in event.notification.data) {
     event.preventDefault();
-    return clients.openWindow("/inbox", "_blank").then(result => {
+    return clients.openWindow(event.notification.data.click_url, "_blank").then(result => {
       event.notification.close();
       return result;
     });
-  } else {
-    console.warn(`Unhandled notification tag: ${event.notification.tag}`);
   }
 });
 

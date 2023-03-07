@@ -10,7 +10,7 @@
           DEV
     %ul.nav.navbar-nav.me-auto
       = nav_entry t("navigation.timeline"), root_path, icon: 'home'
-      = nav_entry t("navigation.inbox"), '/inbox', icon: 'inbox', badge: inbox_count
+      = nav_entry t("navigation.inbox"), "/inbox", icon: "inbox", badge: inbox_count, badge_attr: { data: { controller: "pwa-badge" } }
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t("navigation.discover"), discover_path, icon: 'compass'
     %ul.nav.navbar-nav

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Inbox < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, touch: :inbox_updated_at
   belongs_to :question
 
   attr_accessor :returning
@@ -27,9 +27,10 @@ class Inbox < ApplicationRecord
     self.destroy
   end
 
+  def notification_icon = question.author_is_anonymous ? "/icons/maskable_icon_x128.png" : question.user.profile_picture.url(:small)
+
   def as_push_notification
     {
-      type:  :inbox,
       title: I18n.t(
         "frontend.push_notifications.inbox.title",
         user: if question.author_is_anonymous
@@ -38,8 +39,11 @@ class Inbox < ApplicationRecord
                 question.user.profile.safe_name
               end
       ),
-      icon:  question.author_is_anonymous ? "/icons/maskable_icon_x128.png" : question.user.profile_picture.url(:small),
-      body:  question.content.truncate(Question::SHORT_QUESTION_MAX_LENGTH)
+      icon:  notification_icon,
+      body:  question.content.truncate(Question::SHORT_QUESTION_MAX_LENGTH),
+      data:  {
+        click_url: "/inbox",
+      },
     }
   end
 end

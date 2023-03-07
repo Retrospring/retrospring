@@ -13,6 +13,8 @@ module UseCase
         otp_secret_key
         reset_password_sent_at
         reset_password_token
+        inbox_updated_at
+        notifications_updated_at
       ].freeze
 
       IGNORED_FIELDS_PROFILES = %i[

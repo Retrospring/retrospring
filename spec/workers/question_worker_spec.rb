@@ -78,7 +78,7 @@ describe QuestionWorker do
           user:         receiver,
           subscription: {
             endpoint: "This will not be used",
-            keys:     {}
+            keys:     {},
           }
         )
         receiver.follow(user)

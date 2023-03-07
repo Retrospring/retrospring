@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Notification < ApplicationRecord
-  belongs_to :recipient, class_name: "User"
+  belongs_to :recipient, class_name: "User", touch: :notifications_updated_at
   belongs_to :target, polymorphic: true
 
   class << self
@@ -11,11 +11,11 @@ class Notification < ApplicationRecord
     define_cursor_paginator :cursored_for_type, :for_type
 
     def for(recipient, **kwargs)
-      where(kwargs.merge!(recipient:)).includes(:target).order(:created_at).reverse_order
+      where(kwargs.merge!(recipient:)).order(:created_at).reverse_order
     end
 
     def for_type(recipient, type, **kwargs)
-      where(kwargs.merge!(recipient:)).includes(:target).where(type:).order(:created_at).reverse_order
+      where(kwargs.merge!(recipient:)).where(type:).order(:created_at).reverse_order
     end
 
     def notify(recipient, target)
