@@ -16,7 +16,7 @@ class User
         has_many :muted_by_users, through: :passive_mute_relationships, source: :source
       end
 
-      # Mute an user
+      # Mute a user
       def mute(target_user)
         raise Errors::MutingSelf if target_user == self
 
