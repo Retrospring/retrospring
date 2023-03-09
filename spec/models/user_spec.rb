@@ -130,6 +130,7 @@ RSpec.describe User, type: :model do
     include_examples "invalid email", "fritz.fantom@gmali.com"
     include_examples "invalid email", "fritz.fantom@gmaul.com"
     include_examples "invalid email", "fritz.fantom@gnail.com"
+    include_examples "invalid email", "fritz.fantom@hornail.com"
     include_examples "invalid email", "fritz.fantom@hotamil.com"
     include_examples "invalid email", "fritz.fantom@hotmai.com"
     include_examples "invalid email", "fritz.fantom@hotmailcom"

@@ -22,6 +22,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
       gmali.com
       gmaul.com
       gnail.com
+      hornail.com
       hotamil.com
       hotmai.com
       hotmaill.com
