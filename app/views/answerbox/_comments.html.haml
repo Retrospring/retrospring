@@ -32,6 +32,11 @@
     .form-group.has-feedback.comment__input-group.input-group
       %textarea.form-control.comment__input{ type: :text, placeholder: t(".placeholder"), name: "ab-comment-new", data: { a_id: a.id, "character-count-target": "input" } }
     .comment__submit-wrapper
-      %button.btn.btn-primary{ type: :button, name: "ab-comment-new-submit", title: t(".action"), data: { a_id: a.id, "character-count-target": "action" } }
+      %button.btn.btn-primary{
+        type: :button,
+        name: "ab-comment-new-submit",
+        title: t(".action"),
+        data: { a_id: a.id, "character-count-target": "action" }
+      }
         %i.fa.fa-paper-plane-o
       %span.text-muted.form-control-feedback.comment__character-count{ id: "ab-comment-charcount-#{a.id}", data: { "character-count-target": "counter" } } 512
