@@ -24,10 +24,10 @@ describe NotificationsController do
     context "user has notifications" do
       let(:other_user) { FactoryBot.create(:user) }
       let(:another_user) { FactoryBot.create(:user) }
-      let(:question) { FactoryBot.create(:question, user: user) }
-      let!(:answer) { FactoryBot.create(:answer, question: question, user: other_user) }
-      let!(:subscription) { Subscription.create(user: user, answer: answer) }
-      let!(:comment) { FactoryBot.create(:comment, answer: answer, user: other_user) }
+      let(:question) { FactoryBot.create(:question, user:) }
+      let!(:answer) { FactoryBot.create(:answer, question:, user: other_user) }
+      let!(:subscription) { Subscription.create(user:, answer:) }
+      let!(:comment) { FactoryBot.create(:comment, answer:, user: other_user) }
 
       it "should show a list of notifications" do
         subject
