@@ -40,4 +40,25 @@ describe NotificationsController do
       end
     end
   end
+
+  describe "#read" do
+    subject { post :read, format: :turbo_stream }
+
+    let(:recipient) { FactoryBot.create(:user) }
+    let(:notification_count) { rand(8..20) }
+
+    context "user has some unread notifications" do
+      before do
+        notification_count.times do
+          FactoryBot.create(:user).follow(recipient)
+        end
+
+        sign_in(recipient)
+      end
+
+      it "marks all notifications as read" do
+        expect { subject }.to change { Notification.where(recipient:, new: true).count }.from(notification_count).to(0)
+      end
+    end
+  end
 end
