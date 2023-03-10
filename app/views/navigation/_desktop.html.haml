@@ -31,7 +31,7 @@
             %span.badge= notification_count
         .dropdown-menu.dropdown-menu-end.notification-dropdown
           %turbo-frame#notifications-dropdown-list
-            = render 'navigation/dropdown/notifications', notifications:, notification_count: nil
+            = render "navigation/dropdown/notifications", notifications:, notification_count: nil
       %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t('.ask_question') }
         %a.nav-link{ href: "#", name: "toggle-all-ask", data: { bs_target: "#modal-ask-followers", bs_toggle: :modal, hotkey: "n" } }
           %i.fa.fa-pencil-square-o

@@ -26,12 +26,12 @@ class NotificationsController < ApplicationController
   end
 
   def read
-    current_user.notifications.where(new: true).update_all(new: false)
+    current_user.notifications.where(new: true).update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
 
     respond_to do |format|
       format.turbo_stream do
         render "navigation/notifications", locals: { notifications: [], notification_count: nil }
-       end
+      end
     end
   end
 
