@@ -35,5 +35,24 @@
         .col-md-6.d-md-flex.answerbox__actions
           = render "answerbox/actions", a:, display_all:, subscribed_answer_ids:
   .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? "d-none" : nil }
-    %div{ id: "ab-smiles-#{a.id}" }= render "answerbox/smiles", a: a
-    %div{ id: "ab-comments-#{a.id}" }= render "answerbox/comments", a: a
+    = turbo_frame_tag("ab-comments-list-#{a.id}", src: comments_path(a.question, a), loading: :lazy) do
+      .d-flex.justify-content-center
+        .spinner-border{ role: :status }
+          .visually-hidden= t("voc.loading")
+    - if user_signed_in?
+      %button.d-none{ name: "ab-open-and-comment", data: { a_id: a.id, selection_hotkey: "c" } }
+      .comment__compose-wrapper{
+        name: "ab-comment-new-group",
+        data: { a_id: a.id, controller: "character-count", character_count_max_value: 512 }
+      }
+        .form-group.has-feedback.comment__input-group.input-group
+          %textarea.form-control.comment__input{ type: :text, placeholder: t(".comments.placeholder"), name: "ab-comment-new", data: { a_id: a.id, "character-count-target": "input" } }
+        .comment__submit-wrapper
+          %button.btn.btn-primary{
+            type: :button,
+            name: "ab-comment-new-submit",
+            title: t(".comments.action"),
+            data: { a_id: a.id, "character-count-target": "action" }
+          }
+            %i.fa.fa-paper-plane-o
+          %span.text-muted.form-control-feedback.comment__character-count{ id: "ab-comment-charcount-#{a.id}", data: { "character-count-target": "counter" } } 512

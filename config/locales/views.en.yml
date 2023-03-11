@@ -117,18 +117,18 @@ en:
     actions:
       share:
         title: "Share"
-    comments:
-      none: "There are no comments yet."
-      placeholder: "Comment..."
-      action: "Post comment"
     smiles:
       none: "No one smiled this yet."
+    comments:
+      none: "There are no comments yet."
   application:
     answerbox:
       read: "Read the entire answer"
       answered: "%{hide} %{user}" # resolves into "Answered by %{user}"
       hide: "Answered by"
       pinned: "Pinned"
+      comments:
+        placeholder: "Comment…"
     questionbox:
       title: "Ask something!"
       placeholder: "Type your question here…"
