@@ -37,11 +37,12 @@ jobs:
             ;;
           esac
 
-      - name: Login to Docker Hub
+      - name: Login to registry
         uses: docker/login-action@v2
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
         if: github.event_name != 'pull_request'
 
       - name: Build and push
@@ -54,4 +55,4 @@ jobs:
           context: .
           file: Containerfile
           push: ${{ github.event_name != 'pull_request' }}
-          tags: retrospring/retrospring:${{ env.RETROSPRING_VERSION }}
+          tags: ghcr.io/retrospring/retrospring:${{ env.RETROSPRING_VERSION }}

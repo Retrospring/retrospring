@@ -2,6 +2,11 @@
 
 FROM registry.opensuse.org/opensuse/leap:15.4
 
+LABEL org.opencontainers.image.title="Retrospring (production)"
+LABEL org.opencontainers.image.description="Image containing everything to run Retrospring in production mode.  Do not use this for development."
+LABEL org.opencontainers.image.vendor="The Retrospring team"
+LABEL org.opencontainers.image.url="https://github.com/Retrospring/retrospring"
+
 ARG RETROSPRING_VERSION=2023.0131.1
 ARG RUBY_VERSION=3.1.2
 ARG RUBY_INSTALL_VERSION=0.9.0
