@@ -451,7 +451,7 @@ GEM
     timeout (0.3.1)
     tldv (0.1.0)
       tldv-data (~> 1.0)
-    tldv-data (1.0.2022121701)
+    tldv-data (1.0.2023031000)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
