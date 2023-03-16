@@ -12,69 +12,101 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: "**/*.rb"
       - name: Install dependencies
         run: sudo apt update && sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick libidn11-dev
+        if: steps.changed-files.outputs.any_changed == 'true'
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+        if: steps.changed-files.outputs.any_changed == 'true'
       - name: Run rubocop
         uses: reviewdog/action-rubocop@v2
         with:
           rubocop_version: gemfile
           rubocop_extensions: rubocop-rails:gemfile
           reporter: github-pr-check
+        if: steps.changed-files.outputs.any_changed == 'true'
 
   eslint:
     name: ESLint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: "**/*.ts"
       - name: Set up Node 14
         uses: actions/setup-node@v3
         with:
           node-version: '14'
           cache: 'yarn'
+        if: steps.changed-files.outputs.any_changed == 'true'
       - name: Install node modules
         run: |
           npm i -g yarn
           yarn install --frozen-lockfile
+        if: steps.changed-files.outputs.any_changed == 'true'
       - uses: reviewdog/action-eslint@v1
         with:
           reporter: github-check
           eslint_flags: '--ext .ts app/javascript'
+        if: steps.changed-files.outputs.any_changed == 'true'
 
   haml-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: "**/*.haml"
       - name: Install dependencies
         run: sudo apt update && sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev libmagickwand-dev imagemagick libidn11-dev
+        if: steps.changed-files.outputs.any_changed == 'true'
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+        if: steps.changed-files.outputs.any_changed == 'true'
       - uses: patch-technology/action-haml-lint@0.4
         with:
           reporter: github-check
           rubocop_version: gemfile
+        if: steps.changed-files.outputs.any_changed == 'true'
 
   stylelint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.3.0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: "**/*.scss"
       - name: Set up Node 14
         uses: actions/setup-node@v3
         with:
           node-version: '14'
           cache: 'yarn'
+        if: steps.changed-files.outputs.any_changed == 'true'
       - name: Install node modules
         run: |
           npm i -g yarn
           yarn install --frozen-lockfile
+        if: steps.changed-files.outputs.any_changed == 'true'
       - name: stylelint
         uses: pixeldesu/action-stylelint@5ec750b03a94da735352bdb02e9dfc3d5af33aba
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           stylelint_input: 'app/assets/stylesheets/**/*.scss'
+        if: steps.changed-files.outputs.any_changed == 'true'
