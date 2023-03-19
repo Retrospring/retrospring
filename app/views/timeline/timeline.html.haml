@@ -10,7 +10,7 @@
       class: "btn btn-light",
       method: :get,
       params: { last_id: @timeline_last_id },
-      data: { hotkey: "." },
+      data: { controller: :hotkey, hotkey: "." },
       form: { data: { turbo_stream: true } }
 
 - provide(:title, @title || APP_CONFIG["site_name"])

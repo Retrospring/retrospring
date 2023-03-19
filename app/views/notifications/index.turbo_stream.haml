@@ -11,5 +11,5 @@
       class: "btn btn-light",
       method: :get,
       params: { last_id: @notifications_last_id },
-      data: { hotkey: "." },
+      data: { controller: :hotkey, hotkey: "." },
       form: { data: { turbo_stream: true } }
