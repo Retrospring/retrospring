@@ -6,7 +6,7 @@
       .card.mt-3
         .card-body
           %h1.mb-3.mt-0= t(".title")
-          = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f|
 
             = f.text_field :login, autofocus: true, autocomplete: :username
             = f.password_field :password, autocomplete: "current-password"
