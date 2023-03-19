@@ -9,11 +9,11 @@ class UserController < ApplicationController
 
   def show
     @pinned_answers = @user.answers.pinned.order(pinned_at: :desc).limit(10)
-    subscribed_answer_ids = paginate_answers { |args| @user.cursored_answers(**args) }
+    paginate_answers { |args| @user.cursored_answers(**args) }
 
     respond_to do |format|
-      format.html { render locals: { subscribed_answer_ids: } }
-      format.turbo_stream { render layout: false, locals: { subscribed_answer_ids: } }
+      format.html
+      format.turbo_stream { render layout: false }
     end
   end
 

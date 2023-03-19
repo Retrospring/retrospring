@@ -10,11 +10,11 @@ class AnswerController < ApplicationController
   def show
     @answer = Answer.includes(comments: %i[user smiles], question: [:user], smiles: [:user]).find(params[:id])
     @display_all = true
-    @subscribed = []
+    @subscribed_answer_ids = []
 
     return unless user_signed_in?
 
-    @subscribed = Subscription.where(user: current_user, answer: @answer).pluck(:answer_id)
+    @subscribed_answer_ids = Subscription.where(user: current_user, answer: @answer).pluck(:answer_id)
     mark_notifications_as_read
   end
 

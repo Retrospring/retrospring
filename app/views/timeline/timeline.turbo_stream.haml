@@ -1,6 +1,6 @@
 = turbo_stream.append "timeline" do
   - @timeline.each do |answer|
-    = render "answerbox", a: answer, subscribed_answer_ids:
+    = render "answerbox", a: answer, subscribed_answer_ids: @subscribed_answer_ids
 
 = turbo_stream.update "paginator" do
   - if @more_data_available
