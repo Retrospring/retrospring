@@ -33,6 +33,6 @@
     "eslint-plugin-import": "^2.27.5",
     "stylelint": "^14.16.1",
     "stylelint-config-standard-scss": "^6.1.0",
-    "stylelint-scss": "^4.4.0"
+    "stylelint-scss": "^4.5.0"
   }
 }
