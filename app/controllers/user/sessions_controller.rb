@@ -37,7 +37,7 @@ class User::SessionsController < Devise::SessionsController
     session[:user_sign_in_uid] = resource.id
     sign_out(resource)
     warden.lock!
-     render "auth/two_factor_authentication"
+    render "auth/two_factor_authentication"
   end
 
   def attempt_2fa
