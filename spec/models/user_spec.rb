@@ -33,6 +33,45 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "callbacks" do
+    describe "before_destroy" do
+      it "marks reports about this user as deleted" do
+        other_user = FactoryBot.create(:user)
+        other_user.report me, "va tutto benissimo"
+
+        expect { me.destroy }
+          .to change { Reports::User.find_by(target_id: me.id).deleted? }
+          .from(false)
+          .to(true)
+      end
+    end
+
+    describe "after_destroy" do
+      it "increments the users_destroyed metric" do
+        expect { me.destroy }.to change { Retrospring::Metrics::USERS_DESTROYED.values.values.sum }.by(1)
+      end
+    end
+
+    describe "after_create" do
+      subject :user do
+        User.create!(
+          screen_name: "konqi",
+          email:       "konqi@example.rrerr.net",
+          password:    "dragonsRQt5",
+        )
+      end
+
+      it "creates a profile for the user" do
+        expect { user }.to change { Profile.count }.by(1)
+        expect(Profile.find_by(user:).user).to eq(user)
+      end
+
+      it "increments the users_created metric" do
+        expect { user }.to change { Retrospring::Metrics::USERS_CREATED.values.values.sum }.by(1)
+      end
+    end
+  end
+
   describe "custom sharing url validation" do
     subject do
       FactoryBot.build(:user, sharing_custom_url: url).tap(&:validate).errors[:sharing_custom_url]

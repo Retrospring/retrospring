@@ -43,6 +43,16 @@ module Retrospring
       docstring: "How many comments got created"
     )
 
+    USERS_CREATED = counter(
+      :retrospring_users_created_total,
+      docstring: "How many users got created"
+    )
+
+    USERS_DESTROYED = counter(
+      :retrospring_users_destroyed_total,
+      docstring: "How many users deleted their accounts"
+    )
+
     # metrics from Sidekiq::Stats.new
     SIDEKIQ = {
       processed:      gauge(
