@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if [ ! -e "docker-compose.yml" ]; then
+  echo "\033[0;33mdocker-compose.yml not found! Copying example file.\033[0m"
+  cp docker-compose.example.yml docker-compose.yml 
+fi
+
+docker compose -f docker-compose.yml -f docker-compose.dev.yml "$@"

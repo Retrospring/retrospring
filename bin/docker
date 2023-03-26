@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if [ ! -e "docker-compose.yml" ]; then
+  echo "\033[0;31mdocker-compose.yml not found! Please create the file from the example file before continuing.\033[0m"
+  exit 1
+fi
+
+docker compose -f docker-compose.yml "$@"

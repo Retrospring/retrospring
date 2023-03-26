@@ -1,0 +1,56 @@
+version: "3.7"
+
+# NOTE: We don't use Docker in production at Retrospring, so this setup is
+#       provided as-is and might be broken or could be improved.
+#
+#       If you have experience in production docker setups, feel free to
+#       send in some patches!
+
+services:
+  web:
+    image: ghcr.io/retrospring/retrospring:main
+    command: bundle exec puma -C config/puma.rb -b tcp://0.0.0.0:3000
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      # PROD: define a secret key
+      # - SECRET_KEY_BASE=seeeecret
+      # PROD: configure your database credentials (alternatively use ./config/database.yml below)
+      # - DATABASE_URL=postgres://postgres:justask@postgres/justask_development?pool=25
+      - RAILS_LOG_TO_STDOUT=true
+      - SPROCKETS_CACHE=/cache
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      # PROD: configure your database credentials (alternatively use DATABASE_URL above)
+      # - ./config/database.yml:/opt/retrospring/app/config/database.yml
+      - ./config/sidekiq.yml:/opt/retrospring/app/config/sidekiq.yml
+      - ./config/justask.yml:/opt/retrospring/app/config/justask.yml
+      - ./config/initializers/devise.rb:/opt/retrospring/app/config/initializers/devise.rb
+      - cache:/cache
+    ports:
+      - 3000:3000
+
+  redis:
+    image: redis:6.2.10-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+
+  postgres:
+    image: postgres:10.12
+    ports:
+      - 5432:5432
+    # PROD: define database credentials  
+    # environment:
+    #   - POSTGRES_PASSWORD=justask
+    #   - POSTGRES_DB=justask_production
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  # PROD: in order to persist data over a longer period of time, define filesystem mounts for volumes
+  db:
+  redis:
+  cache:
