@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
       @user = User.new(
         screen_name: "FunnyMeme2004",
         password:    "y_u_no_secure_password?",
-        email:       "nice.meme@nsa.gov"
+        email:       "nice.meme@nsa.gov",
       )
       Profile.new(user: @user)
     end
@@ -108,7 +108,7 @@ RSpec.describe User, type: :model do
 
   describe "email validation" do
     subject do
-      FactoryBot.build(:user, email: email).tap(&:validate).errors[:email]
+      FactoryBot.build(:user, email:).tap(&:validate).errors[:email]
     end
 
     shared_examples_for "valid email" do |example_email|
@@ -255,7 +255,7 @@ RSpec.describe User, type: :model do
   describe "#cursored_timeline" do
     let(:last_id) { nil }
 
-    subject { me.cursored_timeline(last_id: last_id, size: 3) }
+    subject { me.cursored_timeline(last_id:, size: 3) }
 
     context "user answered nothing and is not following anyone" do
       include_examples "result is blank"

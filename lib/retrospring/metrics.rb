@@ -24,65 +24,65 @@ module Retrospring
       labels:        [:version],
       preset_labels: {
         version: Retrospring::Version.to_s,
-      }
+      },
     ).tap { _1.set 1 }
 
     QUESTIONS_ASKED = counter(
       :retrospring_questions_asked_total,
       docstring: "How many questions got asked",
-      labels:    %i[anonymous followers generated]
+      labels:    %i[anonymous followers generated],
     )
 
     QUESTIONS_ANSWERED = counter(
       :retrospring_questions_answered_total,
-      docstring: "How many questions got answered"
+      docstring: "How many questions got answered",
     )
 
     COMMENTS_CREATED = counter(
       :retrospring_comments_created_total,
-      docstring: "How many comments got created"
+      docstring: "How many comments got created",
     )
 
     USERS_CREATED = counter(
       :retrospring_users_created_total,
-      docstring: "How many users got created"
+      docstring: "How many users got created",
     )
 
     USERS_DESTROYED = counter(
       :retrospring_users_destroyed_total,
-      docstring: "How many users deleted their accounts"
+      docstring: "How many users deleted their accounts",
     )
 
     # metrics from Sidekiq::Stats.new
     SIDEKIQ = {
       processed:      gauge(
         :sidekiq_processed,
-        docstring: "Number of jobs processed by Sidekiq"
+        docstring: "Number of jobs processed by Sidekiq",
       ),
       failed:         gauge(
         :sidekiq_failed,
-        docstring: "Number of jobs that failed"
+        docstring: "Number of jobs that failed",
       ),
       scheduled_size: gauge(
         :sidekiq_scheduled_jobs,
-        docstring: "Number of jobs that are enqueued"
+        docstring: "Number of jobs that are enqueued",
       ),
       retry_size:     gauge(
         :sidekiq_retried_jobs,
-        docstring: "Number of jobs that are being retried"
+        docstring: "Number of jobs that are being retried",
       ),
       dead_size:      gauge(
         :sidekiq_dead_jobs,
-        docstring: "Number of jobs that are dead"
+        docstring: "Number of jobs that are dead",
       ),
       processes_size: gauge(
         :sidekiq_processes,
-        docstring: "Number of active Sidekiq processes"
+        docstring: "Number of active Sidekiq processes",
       ),
       queue_enqueued: gauge(
         :sidekiq_queues_enqueued,
         docstring: "Number of enqueued jobs per queue",
-        labels:    %i[queue]
+        labels:    %i[queue],
       ),
     }.freeze
   end
