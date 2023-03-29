@@ -5,4 +5,4 @@ if [ ! -e "docker-compose.yml" ]; then
   cp docker-compose.example.yml docker-compose.yml 
 fi
 
-docker compose -f docker-compose.yml -f docker-compose.dev.yml "$@"
+exec docker compose -f docker-compose.yml -f docker-compose.dev.yml "$@"

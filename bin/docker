@@ -5,4 +5,4 @@ if [ ! -e "docker-compose.yml" ]; then
   exit 1
 fi
 
-docker compose -f docker-compose.yml "$@"
+exec docker compose -f docker-compose.yml "$@"
