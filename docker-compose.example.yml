@@ -1,10 +1,11 @@
 version: "3.7"
 
-# NOTE: We don't use Docker in production at Retrospring, so this setup is
-#       provided as-is and might be broken or could be improved.
+# NOTE: We don't use docker-compose in production ourselves at Retrospring.
+#       This setup is provided as-is and might be broken or could be improved.
 #
-#       If you have experience in production docker setups, feel free to
-#       send in some patches!
+#       If you use have experience with using docker-compose in production (or
+#       are adventurous enough to run Retrospring this way yourself), feel free
+#       to send in some patches.
 
 services:
   web:
