@@ -21,7 +21,7 @@
               .answerbox__answer-date
                 = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), data: { selection_hotkey: "l" })
         .col-md-6.d-flex.d-md-block.answerbox__actions
-          = render "answerbox/actions", a:, display_all:
+          = render "answerbox/actions", a:, display_all:, subscribed_answer_ids:
     - else
       .row
         .col-md-6.text-start.text-muted
