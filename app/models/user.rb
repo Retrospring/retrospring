@@ -85,8 +85,14 @@ class User < ApplicationRecord # rubocop:disable Metrics/ClassLength
     end
   end
 
+  after_destroy do
+    Retrospring::Metrics::USERS_DESTROYED.increment
+  end
+
   after_create do
     Profile.create(user_id: id) if Profile.where(user_id: id).count.zero?
+
+    Retrospring::Metrics::USERS_CREATED.increment
   end
 
   # use the screen name as parameter for url helpers

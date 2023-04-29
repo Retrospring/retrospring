@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
       @user = User.new(
         screen_name: "FunnyMeme2004",
         password:    "y_u_no_secure_password?",
-        email:       "nice.meme@nsa.gov"
+        email:       "nice.meme@nsa.gov",
       )
       Profile.new(user: @user)
     end
@@ -30,6 +30,45 @@ RSpec.describe User, type: :model do
     it "does not save an invalid screen name" do
       @user.screen_name = "$Funny-Meme-%&2004"
       expect { @user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  describe "callbacks" do
+    describe "before_destroy" do
+      it "marks reports about this user as deleted" do
+        other_user = FactoryBot.create(:user)
+        other_user.report me, "va tutto benissimo"
+
+        expect { me.destroy }
+          .to change { Reports::User.find_by(target_id: me.id).deleted? }
+          .from(false)
+          .to(true)
+      end
+    end
+
+    describe "after_destroy" do
+      it "increments the users_destroyed metric" do
+        expect { me.destroy }.to change { Retrospring::Metrics::USERS_DESTROYED.values.values.sum }.by(1)
+      end
+    end
+
+    describe "after_create" do
+      subject :user do
+        User.create!(
+          screen_name: "konqi",
+          email:       "konqi@example.rrerr.net",
+          password:    "dragonsRQt5",
+        )
+      end
+
+      it "creates a profile for the user" do
+        expect { user }.to change { Profile.count }.by(1)
+        expect(Profile.find_by(user:).user).to eq(user)
+      end
+
+      it "increments the users_created metric" do
+        expect { user }.to change { Retrospring::Metrics::USERS_CREATED.values.values.sum }.by(1)
+      end
     end
   end
 
