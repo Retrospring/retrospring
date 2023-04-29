@@ -24,18 +24,20 @@
   }
 
   &__input {
-    padding-right: 2.5rem;
-
     &.is-invalid {
       background-image: none;
     }
   }
 
-  &__character-count {
-    position: absolute;
-    z-index: 5;
-    right: .5rem;
-    top: .5rem;
+  &__compose-wrapper {
+    display: flex;
+  }
+
+  &__submit-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 0.5rem;
   }
 }
 
