@@ -1,4 +1,6 @@
-#timeline
+#timeline{ data: { controller: "navigation" } }
+  %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
+  %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
   - @timeline.each do |answer|
     = render "answerbox", a: answer
 
@@ -8,6 +10,7 @@
       class: "btn btn-light",
       method: :get,
       params: { last_id: @timeline_last_id },
+      data: { controller: :hotkey, hotkey: "." },
       form: { data: { turbo_stream: true } }
 
 - provide(:title, @title || APP_CONFIG["site_name"])

@@ -2,7 +2,9 @@
 = render "question", question: @question, hidden: false
 = render "question", question: @question, hidden: true
 .container.question-page
-  #answers
+  #answers{ data: { controller: "navigation" } }
+    %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
+    %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
     - @answers.each do |a|
       = render "answerbox", a: a, show_question: false
 
@@ -12,6 +14,7 @@
         class: "btn btn-light",
         method: :get,
         params: { last_id: @answers_last_id },
+        data: { controller: :hotkey, hotkey: "." },
         form: { data: { turbo_stream: true } }
 
   - if user_signed_in? && !current_user.answered?(@question) && current_user != @question.user && @question.user&.privacy_allow_stranger_answers

@@ -22,6 +22,7 @@
       class: "btn btn-light",
       method: :get,
       params: { last_id: @notifications_last_id },
+      data: { controller: :hotkey, hotkey: "." },
       form: { data: { turbo_stream: true } }
 
 - provide(:title, generate_title(t(".title")))

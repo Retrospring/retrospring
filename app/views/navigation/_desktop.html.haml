@@ -9,17 +9,17 @@
         %span.badge.rounded-pill.bg-warning.text-bg-warning.fs-7
           DEV
     %ul.nav.navbar-nav.me-auto
-      = nav_entry t("navigation.timeline"), root_path, icon: 'home'
-      = nav_entry t("navigation.inbox"), "/inbox", icon: "inbox", badge: inbox_count, badge_attr: { data: { controller: "pwa-badge" } }
+      = nav_entry t("navigation.timeline"), root_path, icon: "home", hotkey: "g t"
+      = nav_entry t("navigation.inbox"), "/inbox", icon: "inbox", badge: inbox_count, badge_attr: { data: { controller: "pwa-badge" } }, hotkey: "g i"
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
-        = nav_entry t("navigation.discover"), discover_path, icon: 'compass'
+        = nav_entry t("navigation.discover"), discover_path, icon: "compass", hotkey: "g d"
     %ul.nav.navbar-nav
       - if @user.present? && @user != current_user
         %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t(".list") }
           %a.nav-link{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
             %i.fa.fa-list.hidden-xs
             %span.d-none.d-sm-inline.d-md-none= t(".list")
-      = nav_entry t("navigation.notifications"), notifications_path, badge: notification_count, class: 'd-block d-sm-none'
+      = nav_entry t("navigation.notifications"), notifications_path, badge: notification_count, class: "d-block d-sm-none", hotkey: "g n"
       %li.nav-item.dropdown.d-none.d-sm-block
         %a.nav-link.dropdown-toggle{ href: '#', data: { bs_toggle: :dropdown } }
           - if notification_count.nil?
@@ -30,7 +30,7 @@
           %span.badge= notification_count
         = render 'navigation/dropdown/notifications', notifications: notifications, size: "desktop"
       %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t('.ask_question') }
-        %a.nav-link{ href: '#', name: 'toggle-all-ask', data: { bs_target: '#modal-ask-followers', bs_toggle: :modal } }
+        %a.nav-link{ href: "#", name: "toggle-all-ask", data: { bs_target: "#modal-ask-followers", bs_toggle: :modal, hotkey: "n" } }
           %i.fa.fa-pencil-square-o
       %li.nav-item.dropdown.profile--image-dropdown
         %a.nav-link.dropdown-toggle.p-sm-0{ href: "#", data: { bs_toggle: :dropdown } }

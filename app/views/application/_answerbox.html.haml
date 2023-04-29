@@ -1,5 +1,5 @@
 - display_all ||= nil
-.card.answerbox{ data: { id: a.id, q_id: a.question.id } }
+.card.answerbox{ data: { id: a.id, q_id: a.question.id, navigation_target: "traversable" } }
   - if @question.nil?
     = render "answerbox/header", a: a, display_all: display_all
   .card-body
@@ -19,7 +19,7 @@
               %h6.answerbox__answer-user
                 = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
               .answerbox__answer-date
-                = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id))
+                = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), data: { selection_hotkey: "l" })
         .col-md-6.d-flex.d-md-block.answerbox__actions
           = render "answerbox/actions", a: a, display_all: display_all
     - else

@@ -8,4 +8,5 @@
       class: "btn btn-light",
       method: :get,
       params: { last_id: @answers_last_id },
+      data: { controller: :hotkey, hotkey: "." },
       form: { data: { turbo_stream: true } }

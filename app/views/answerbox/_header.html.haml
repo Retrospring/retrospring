@@ -11,7 +11,7 @@
         = t(".asked_html", user: user_screen_name(a.question.user, context_user: a.user, author_identifier: a.question.author_is_anonymous ? a.question.author_identifier: nil), time: time_tooltip(a.question))
         - if !a.question.author_is_anonymous && !a.question.direct
           ·
-          %a{ href: question_path(a.question.user.screen_name, a.question.id) }
+          %a{ href: question_path(a.question.user.screen_name, a.question.id), data: { selection_hotkey: "a" } }
             = t(".answers", count: a.question.answer_count)
       .answerbox__question-body{ data: { controller: a.question.long? ? "collapse" : nil } }
         .answerbox__question-text{ class: a.question.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }

@@ -1,6 +1,6 @@
 .dropdown-menu.dropdown-menu-end.profile-dropdown{ id: "rs-#{size}-nav-profile" }
   %h6.dropdown-header.d-none.d-sm-block= current_user.screen_name
-  %a.dropdown-item{ href: user_path(current_user) }
+  %a.dropdown-item{ href: user_path(current_user), data: { hotkey: "g p" } }
     %i.fa.fa-fw.fa-user
     = t(".profile")
   %a.dropdown-item{ href: edit_user_registration_path }
@@ -34,6 +34,10 @@
       %i.fa.fa-fw.fa-flask
       = t(".feedback.features")
     .dropdown-divider
+  %a.dropdown-item{ href: "#", data: { bs_target: "#modal-hotkeys", bs_toggle: "modal", hotkey: "Shift+?,?,Shift+ß" } }
+    %i.fa.fa-keyboard
+    = t(".hotkeys")
+  .dropdown-divider
   = link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do
     %i.fa.fa-fw.fa-sign-out
     = t("voc.logout")

@@ -1,0 +1,80 @@
+.modal.fade#modal-hotkeys{ aria: { hidden: true, labelledby: "modal-hotkeys-label" }, role: :dialog, tabindex: -1 }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#modal-hotkeys-label= t(".title")
+        %button.btn-close{ data: { bs_dismiss: :modal }, type: :button }
+          %span.visually-hidden= t("voc.close")
+      .modal-body
+        .row
+          .col-6
+            .card
+              .card-header
+                %h5.card-title= t(".navigation.title")
+              %ul.list-group.list-group-flush
+                %li.list-group-item
+                  = t("navigation.timeline")
+                  %kbd
+                    %kbd g
+                    %kbd t
+                %li.list-group-item
+                  = t("navigation.inbox")
+                  %kbd
+                    %kbd g
+                    %kbd i
+                - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
+                  %li.list-group-item
+                    = t("navigation.discover")
+                    %kbd
+                      %kbd g
+                      %kbd d
+                %li.list-group-item
+                  = t("navigation.notifications")
+                  %kbd
+                    %kbd g
+                    %kbd n
+                %li.list-group-item
+                  = t("navigation.dropdown.profile.profile")
+                  %kbd
+                    %kbd g
+                    %kbd p
+          .col-6
+            .card
+              .card-header
+                %h5.card-title= t(".global.title")
+              %ul.list-group.list-group-flush
+                %li.list-group-item
+                  = t(".global.navigation.up")
+                  %kbd k
+                %li.list-group-item
+                  = t(".global.navigation.down")
+                  %kbd j
+                %li.list-group-item
+                  = t("navigation.desktop.ask_question")
+                  %kbd n
+                %li.list-group-item
+                  = t("voc.load")
+                  %kbd .
+                %li.list-group-item
+                  = t(".show_dialog")
+                  %kbd ?
+            .card
+              .card-header
+                %h5.card-title= t(".answer.title")
+              %ul.list-group.list-group-flush
+                %li.list-group-item
+                  = t("voc.smile")
+                  %kbd s
+                %li.list-group-item
+                  = t(".answer.view_comments")
+                  %kbd x
+                %li.list-group-item
+                  = t(".answer.comment")
+                  %kbd c
+                %li.list-group-item
+                  = t(".answer.all_answers")
+                  %kbd a
+                %li.list-group-item
+                  = t(".answer.view_answer")
+                  %kbd l
+
