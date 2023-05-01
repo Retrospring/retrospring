@@ -47,7 +47,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_model_otp (2.3.1)
+    active_model_otp (2.3.2)
       activemodel
       rotp (~> 6.2.0)
     activejob (6.1.7.3)
@@ -196,7 +196,7 @@ GEM
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     i18n-js (4.0.0)
       glob
@@ -341,7 +341,7 @@ GEM
       railties (>= 5.2)
     rexml (3.2.5)
     rolify (6.0.1)
-    rotp (6.2.0)
+    rotp (6.2.2)
     rpush (7.0.1)
       activesupport (>= 5.2)
       jwt (>= 1.5.6)
@@ -474,7 +474,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   ruby
