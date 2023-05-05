@@ -31,7 +31,9 @@
             %span.badge= notification_count
         .dropdown-menu.dropdown-menu-end.notification-dropdown
           %turbo-frame#notifications-dropdown-list
-            = render "navigation/dropdown/notifications", notifications:, notification_count: nil
+            - Rails.cache.fetch current_user.notification_dropdown_cache_key do
+              - notifications = Notification.for(current_user).where(new: true).includes([:target]).limit(4)
+              = render 'navigation/dropdown/notifications', notifications:, size: "desktop"
       %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t('.ask_question') }
         %a.nav-link{ href: "#", name: "toggle-all-ask", data: { bs_target: "#modal-ask-followers", bs_toggle: :modal, hotkey: "n" } }
           %i.fa.fa-pencil-square-o

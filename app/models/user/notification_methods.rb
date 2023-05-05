@@ -14,4 +14,5 @@ module User::NotificationMethods
   end
 
   def notification_cache_key = "#{cache_key}/unread_notification_count-#{notifications_updated_at}"
+  def notification_dropdown_cache_key = "#{cache_key}/notification_dropdown-#{notifications_updated_at}"
 end
