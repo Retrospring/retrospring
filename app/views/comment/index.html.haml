@@ -1,3 +1,3 @@
 = turbo_frame_tag "ab-comments-list-#{a.id}" do
   %div{ id: "ab-smiles-#{a.id}" }= render "answerbox/smiles", a:
-  %div{ id: "ab-comments-#{a.id}" }= render "answerbox/comments", a:, comments:
+  %div{ id: "ab-comments-#{a.id}" }= render "answerbox/comments", a:, comments: @comments
