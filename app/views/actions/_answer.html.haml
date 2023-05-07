@@ -1,5 +1,5 @@
 .dropdown-menu.dropdown-menu-end{ role: :menu }
-  - if Subscription.is_subscribed(current_user, answer)
+  - if subscribed_answer_ids&.include?(answer.id)
     -#                                            fun joke    should subscribe?
     %a.dropdown-item{ href: "#", data: { a_id: answer.id, action: "ab-submarine", torpedo: "no" } }
       %i.fa.fa-fw.fa-anchor

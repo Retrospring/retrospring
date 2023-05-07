@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 class UserController < ApplicationController
+  include PaginatesAnswers
+
   before_action :set_user
   before_action :hidden_social_graph_redirect, only: %i[followers followings]
   after_action :mark_notification_as_read, only: %i[show]
 
   def show
-    @answers = @user.cursored_answers(last_id: params[:last_id])
     @pinned_answers = @user.answers.pinned.order(pinned_at: :desc).limit(10)
-    @answers_last_id = @answers.map(&:id).min
-    @more_data_available = !@user.cursored_answers(last_id: @answers_last_id, size: 1).count.zero?
+    paginate_answers { |args| @user.cursored_answers(**args) }
 
     respond_to do |format|
       format.html
-      format.turbo_stream
+      format.turbo_stream { render layout: false }
     end
   end
 

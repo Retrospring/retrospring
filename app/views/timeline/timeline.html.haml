@@ -2,7 +2,7 @@
   %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
   %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
   - @timeline.each do |answer|
-    = render "answerbox", a: answer
+    = render "answerbox", a: answer, subscribed_answer_ids: @subscribed_answer_ids
 
 - if @more_data_available
   .d-flex.justify-content-center#paginator

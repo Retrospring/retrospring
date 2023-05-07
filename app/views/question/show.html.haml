@@ -6,7 +6,7 @@
     %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
     %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
     - @answers.each do |a|
-      = render "answerbox", a: a, show_question: false
+      = render "answerbox", a:, show_question: false, subscribed_answer_ids: @subscribed_answer_ids
 
   - if @more_data_available
     .d-flex.justify-content-center.justify-content-sm-start#paginator

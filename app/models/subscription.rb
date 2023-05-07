@@ -1,73 +1,52 @@
+# frozen_string_literal: true
+
 class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :answer
 
   class << self
-    def for(target)
-      Subscription.where(answer: target)
-    end
-
-    def is_subscribed(recipient, target)
+    def subscribe(recipient, target)
       existing = Subscription.find_by(user: recipient, answer: target)
-      if existing.nil?
-        false
-      else
-        existing.is_active
-      end
-    end
+      return true if existing.present?
 
-    def subscribe(recipient, target, force = true)
-      existing = Subscription.find_by(user: recipient, answer: target)
-      if existing.nil?
-        Subscription.new(user: recipient, answer: target).save!
-      elsif force
-        existing.update(is_active: true)
-      end
+      Subscription.create!(user: recipient, answer: target)
     end
 
     def unsubscribe(recipient, target)
-      if recipient.nil? or target.nil?
-        return nil
-      end
+      return nil if recipient.nil? || target.nil?
 
       subs = Subscription.find_by(user: recipient, answer: target)
-      subs.update(is_active: false) unless subs.nil?
+      subs&.destroy
     end
 
     def destruct(target)
-      if target.nil?
-        return nil
-      end
+      return nil if target.nil?
+
       Subscription.where(answer: target).destroy_all
     end
 
-    def destruct_by(recipient, target)
-      if recipient.nil? or target.nil?
-        return nil
-      end
-
-      subs = Subscription.find_by(user: recipient, answer: target)
-      subs.destroy unless subs.nil?
-    end
-
     def notify(source, target)
-      if source.nil? or target.nil?
-        return nil
+      return nil if source.nil? || target.nil?
+
+      muted_by = Relationships::Mute.where(target: source.user).pluck(&:source_id)
+
+      # As we will need to notify for each person subscribed,
+      # it's much faster to bulk insert than to use +Notification.notify+
+      notifications = Subscription.where(answer: target)
+                                  .where.not(user: source.user)
+                                  .where.not(user_id: muted_by)
+                                  .map do |s|
+        { target_id: source.id, target_type: Comment, recipient_id: s.user_id, new: true, type: Notification::Commented }
       end
 
-      Subscription.where(answer: target, is_active: true).each do |subs|
-        next unless not subs.user == source.user
-        Notification.notify subs.user, source
-      end
+      Notification.insert_all!(notifications) unless notifications.empty? # rubocop:disable Rails/SkipsModelValidations
     end
 
     def denotify(source, target)
-      if source.nil? or target.nil?
-        return nil
-      end
-      Subscription.where(answer: target).each do |subs|
-        Notification.denotify subs.user, source
-      end
+      return nil if source.nil? || target.nil?
+
+      subs = Subscription.where(answer: target)
+      Notification.where(target:, recipient: subs.map(&:user)).delete_all
     end
   end
 end

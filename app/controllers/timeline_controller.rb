@@ -32,8 +32,10 @@ class TimelineController < ApplicationController
 
   def paginate_timeline
     @timeline = yield(last_id: params[:last_id])
-    @timeline_last_id = @timeline.map(&:id).min
+    timeline_ids = @timeline.map(&:id)
+    @timeline_last_id = timeline_ids.min
     @more_data_available = !yield(last_id: @timeline_last_id, size: 1).count.zero?
+    @subscribed_answer_ids = Subscription.where(user: current_user, answer_id: timeline_ids).pluck(:answer_id)
 
     respond_to do |format|
       format.html { render "timeline/timeline" }
