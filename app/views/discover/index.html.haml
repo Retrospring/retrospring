@@ -19,7 +19,7 @@
         .tab-content.mt-3
           = render "discover/tab/answers", answers: @popular_answers, subscribed_answer_ids: @subscribed_answer_ids
           = render "discover/tab/questions", questions: @popular_questions
-          = render "discover/tab/discussed", comments: @most_discussed
+          = render "discover/tab/discussed", comments: @most_discussed, subscribed_answer_ids: @subscribed_answer_ids
     .col-md-5.col-sm-6
       %h2= t(".people.heading")
       %p= t(".people.description")
