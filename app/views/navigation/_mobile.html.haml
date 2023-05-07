@@ -9,7 +9,7 @@
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t("navigation.discover"), discover_path, icon: 'compass', icon_only: true
       = nav_entry t("navigation.notifications"), notifications_path("all"), icon: notifications_icon,
-        badge: notification_count, badge_color: "primary", icon_only: true
+        badge: notification_count, badge_color: "primary", badge_attr: { id: "notification-mobile-count" }, icon_only: true
       %li.nav-item.profile--image-dropdown
         %a.nav-link{ href: '#', data: { bs_toggle: 'dropdown', bs_target: '#rs-mobile-nav-profile' }, aria: { controls: 'rs-mobile-nav-profile', expanded: 'false' } }
           %img.avatar-md.d-inline{ src: current_user.profile_picture.url(:small) }

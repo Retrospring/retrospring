@@ -19,16 +19,19 @@
           %a.nav-link{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
             %i.fa.fa-list.hidden-xs
             %span.d-none.d-sm-inline.d-md-none= t(".list")
-      = nav_entry t("navigation.notifications"), notifications_path, badge: notification_count, class: "d-block d-sm-none", hotkey: "g n"
+      = nav_entry t("navigation.notifications"), notifications_path, class: "d-block d-sm-none", hotkey: "g n"
       %li.nav-item.dropdown.d-none.d-sm-block
         %a.nav-link.dropdown-toggle{ href: '#', data: { bs_toggle: :dropdown } }
-          - if notification_count.nil?
-            %i.fa.fa-bell-o
-          - else
-            %i.fa.fa-bell
-          %span.visually-hidden= t("navigation.notifications")
-          %span.badge= notification_count
-        = render 'navigation/dropdown/notifications', notifications: notifications, size: "desktop"
+          %turbo-frame#notification-desktop-icon
+            - if notification_count.nil?
+              %i.fa.fa-bell-o
+            - else
+              %i.fa.fa-bell
+            %span.visually-hidden= t("navigation.notifications")
+            %span.badge= notification_count
+        .dropdown-menu.dropdown-menu-end.notification-dropdown
+          %turbo-frame#notifications-dropdown-list
+            = render "navigation/dropdown/notifications", notifications:, notification_count: nil
       %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t('.ask_question') }
         %a.nav-link{ href: "#", name: "toggle-all-ask", data: { bs_target: "#modal-ask-followers", bs_toggle: :modal, hotkey: "n" } }
           %i.fa.fa-pencil-square-o

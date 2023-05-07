@@ -318,6 +318,7 @@ en:
         none: :notifications.index.none
         all: "Show all notifications"
         new: "Show all new notifications"
+        mark_as_read: "Mark all as read"
       profile:
         profile: "Show profile"
         settings: "Settings"
