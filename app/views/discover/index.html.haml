@@ -17,7 +17,7 @@
           %li.nav-item{ role: "presentation" }
             %a.nav-link{ href: "#comments", role: :tab, aria: { controls: "comments" }, data: { bs_toggle: :tab } }= t(".content.tab.comments")
         .tab-content.mt-3
-          = render "discover/tab/answers", answers: @popular_answers
+          = render "discover/tab/answers", answers: @popular_answers, subscribed_answer_ids: @subscribed_answer_ids
           = render "discover/tab/questions", questions: @popular_questions
           = render "discover/tab/discussed", comments: @most_discussed
     .col-md-5.col-sm-6
