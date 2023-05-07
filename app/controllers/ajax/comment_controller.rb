@@ -14,12 +14,12 @@ class Ajax::CommentController < AjaxController
       return
     end
 
-    comments = Comment.where(answer:).includes([{user: :profile}, :smiles])
+    comments = Comment.where(answer:).includes([{ user: :profile }, :smiles])
 
     @response[:status] = :okay
     @response[:message] = t(".success")
     @response[:success] = true
-    @response[:render] = render_to_string(partial: 'answerbox/comments', locals: { a: answer, comments: })
+    @response[:render] = render_to_string(partial: "answerbox/comments", locals: { a: answer, comments: })
     @response[:count] = answer.comment_count
   end
 

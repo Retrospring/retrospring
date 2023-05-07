@@ -5,7 +5,7 @@ require "rails_helper"
 describe "answerbox/_comments.html.haml", type: :view do
   subject(:rendered) do
     render partial: "answerbox/comments", locals: {
-      comments:, a:
+      comments:, a:,
     }
   end
 
