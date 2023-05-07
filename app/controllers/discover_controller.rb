@@ -13,6 +13,9 @@ class DiscoverController < ApplicationController
     @popular_questions = Question.where("created_at > ?", Time.now.ago(1.week)).order(:answer_count).reverse_order.limit(top_x).includes(:user)
     @new_users = User.where("asked_count > 0").order(:id).reverse_order.limit(top_x).includes(:profile)
 
+    answer_ids = @popular_answers.map(&:id) + @most_discussed.map(&:id)
+    @subscribed_answer_ids = Subscription.where(user: current_user, answer_id: answer_ids).pluck(:answer_id)
+
     # .user = the user
     # .question_count = how many questions did the user ask
     @users_with_most_questions = Question.select('user_id, COUNT(*) AS question_count').
