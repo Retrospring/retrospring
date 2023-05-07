@@ -22,7 +22,7 @@
                   %kbd
                     %kbd g
                     %kbd i
-                - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
+                - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user&.mod?
                   %li.list-group-item
                     = t("navigation.discover")
                     %kbd
