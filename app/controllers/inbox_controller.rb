@@ -82,10 +82,13 @@ class InboxController < ApplicationController
       .where(questions: { user: @author_user, author_is_anonymous: false })
   end
 
+  # rubocop:disable Rails/SkipsModelValidations
   def mark_inbox_entries_as_read
     # using .dup to not modify @inbox -- useful in tests
-    @inbox&.dup&.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
+    @inbox&.dup&.update_all(new: false)
+    current_user.touch(:inbox_updated_at)
   end
+  # rubocop:enable Rails/SkipsModelValidations
 
   def increment_metric
     Retrospring::Metrics::QUESTIONS_ASKED.increment(
