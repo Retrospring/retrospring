@@ -3,7 +3,10 @@
 require "rails_helper"
 
 describe InboxController, type: :controller do
-  let(:user) { FactoryBot.create(:user) }
+  include ActiveSupport::Testing::TimeHelpers
+
+  let(:original_inbox_updated_at) { 1.day.ago }
+  let(:user) { FactoryBot.create(:user, inbox_updated_at: original_inbox_updated_at) }
 
   describe "#show" do
     shared_examples_for "sets the expected ivars" do
@@ -53,13 +56,20 @@ describe InboxController, type: :controller do
               more_data_available: false,
               inbox_count:         1,
               delete_id:           "ib-delete-all",
-              disabled:            nil
+              disabled:            nil,
             }
           end
         end
 
         it "updates the inbox entry status" do
           expect { subject }.to change { inbox_entry.reload.new? }.from(true).to(false)
+        end
+
+        it "updates the the timestamp used for caching" do
+          user.update(inbox_updated_at: original_inbox_updated_at)
+          travel 1.second do
+            expect { subject }.to change { user.reload.inbox_updated_at }.from(original_inbox_updated_at).to(Time.now.utc)
+          end
         end
 
         context "when requested the turbo stream format" do
