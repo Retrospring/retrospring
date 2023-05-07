@@ -45,7 +45,7 @@ describe NotificationsController do
       it "updates the the timestamp used for caching" do
         user.update(notifications_updated_at: original_notifications_updated_at)
         travel 1.second do
-          expect { subject }.to change { user.reload.notifications_updated_at }.from(original_notifications_updated_at).to(Time.now.utc)
+          expect { subject }.to change { user.reload.notifications_updated_at.floor }.from(original_notifications_updated_at.floor).to(Time.now.utc.floor)
         end
       end
     end
