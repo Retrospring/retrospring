@@ -3,9 +3,12 @@
 require "rails_helper"
 
 describe NotificationsController do
+  include ActiveSupport::Testing::TimeHelpers
+
   describe "#index" do
     subject { get :index, params: { type: :new } }
 
+    let(:original_notifications_updated_at) { 1.day.ago }
     let(:user) { FactoryBot.create(:user) }
 
     before do
@@ -37,6 +40,13 @@ describe NotificationsController do
 
       it "marks notifications as read" do
         expect { subject }.to change { Notification.for(user).where(new: true).count }.from(2).to(0)
+      end
+
+      it "updates the the timestamp used for caching" do
+        user.update(notifications_updated_at: original_notifications_updated_at)
+        travel 1.second do
+          expect { subject }.to change { user.reload.notifications_updated_at }.from(original_notifications_updated_at).to(Time.now.utc)
+        end
       end
     end
   end

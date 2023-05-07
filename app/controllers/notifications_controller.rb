@@ -48,10 +48,13 @@ class NotificationsController < ApplicationController
                 .count(:target_type)
   end
 
+  # rubocop:disable Rails/SkipsModelValidations
   def mark_notifications_as_read
     # using .dup to not modify @notifications -- useful in tests
-    @notifications&.dup&.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
+    @notifications&.dup&.update_all(new: false)
+    current_user.touch(:notifications_updated_at)
   end
+  # rubocop:enable Rails/SkipsModelValidations
 
   def cursored_notifications_for(type:, last_id:, size: nil)
     cursor_params = { last_id: last_id, size: size }.compact
