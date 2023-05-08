@@ -27,6 +27,7 @@ class NotificationsController < ApplicationController
 
   def read
     current_user.notifications.where(new: true).update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
+    current_user.touch(:notifications_updated_at)
 
     respond_to do |format|
       format.turbo_stream do
