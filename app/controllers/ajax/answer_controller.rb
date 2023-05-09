@@ -48,7 +48,7 @@ class Ajax::AnswerController < AjaxController
 
     # this assign is needed because shared/_answerbox relies on it, I think
     @question = 1
-    @response[:render] = render_to_string(partial: "answerbox", locals: { a: answer, show_question: false })
+    @response[:render] = render_to_string(partial: "answerbox", locals: { a: answer, show_question: false, subscribed_answer_ids: [answer.id] })
   end
 
   def destroy
