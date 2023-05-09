@@ -6,12 +6,12 @@
       %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small), loading: :lazy }
       = t(".heading_html",
           user: user_screen_name(notification.target.user),
-          question: link_to(t(".link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.id)),
+          question: link_to(t(".link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.id), target: "_top"),
           time: time_tooltip(notification.target))
     .list-group
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.question.one")
-        = markdown notification.target.question.content[0..60] + (notification.target.question.content.length > 60 ? '[...]' : '')
+        = markdown notification.target.question.content[0..60] + (notification.target.question.content.length > 60 ? "[…]" : "")
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.answer.one")
-        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[...]' : '')
+        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? "[…]" : "")
