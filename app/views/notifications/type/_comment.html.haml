@@ -7,7 +7,10 @@
       - if notification.target.answer.user == current_user
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
-              answer: link_to(t(".active.link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), target: "_top"),
+              answer: link_to(t(".active.link_text"),
+                              answer_path(username: notification.target.user.screen_name,
+                              id: notification.target.answer.id),
+                              target: "_top"),
               time: time_tooltip(notification.target))
       - elsif notification.target.user == notification.target.answer.user
         = t(".heading_html",
@@ -17,7 +20,11 @@
       - else
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
-              answer: link_to(t(".other.link_text_html", user: user_screen_name(notification.target.answer.user, url: false)), answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), target: "_top"),
+              answer: link_to(t(".other.link_text_html",
+                                user: user_screen_name(notification.target.answer.user, url: false)),
+                                answer_path(username: notification.target.user.screen_name,
+                                id: notification.target.answer.id),
+                                target: "_top"),
               time: time_tooltip(notification.target))
     .list-group
       .list-group-item
