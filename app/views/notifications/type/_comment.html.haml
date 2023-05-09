@@ -15,7 +15,10 @@
       - elsif notification.target.user == notification.target.answer.user
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
-              answer: link_to(t(".passive.link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.answer.id), target: "_top"),
+              answer: link_to(t(".passive.link_text"),
+                              answer_path(username: notification.target.user.screen_name,
+                              id: notification.target.answer.id),
+                              target: "_top"),
               time: time_tooltip(notification.target))
       - else
         = t(".heading_html",
@@ -29,7 +32,7 @@
     .list-group
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.answer.one")
-        = markdown notification.target.answer.content[0..60] + (notification.target.answer.content.length > 60 ? '[…]' : '')
+        = markdown notification.target.answer.content[0..60] + (notification.target.answer.content.length > 60 ? "[…]" : "")
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.comment.one")
-        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[…]' : '')
+        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? "[…]" : "")

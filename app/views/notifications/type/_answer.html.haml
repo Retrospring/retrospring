@@ -11,7 +11,7 @@
     .list-group
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.question.one")
-        = markdown notification.target.question.content[0..60] + (notification.target.question.content.length > 60 ? '[…]' : '')
+        = markdown notification.target.question.content[0..60] + (notification.target.question.content.length > 60 ? "[…]" : "")
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.answer.one")
-        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[…]' : '')
+        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? "[…]" : "")
