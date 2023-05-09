@@ -12,7 +12,7 @@ module UserHelper
     if url
       return user_path(user) if link_only
 
-      return profile_link(user, "_top")
+      return profile_link(user, target: "_top")
     end
     user.profile.safe_name.strip
   end
@@ -23,7 +23,7 @@ module UserHelper
 
   private
 
-  def profile_link(user, target = nil)
+  def profile_link(user, target: nil)
     link_to(user.profile.safe_name, user_path(user), class: ("user--banned" if user.banned?).to_s, target:)
   end
 
