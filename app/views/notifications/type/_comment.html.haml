@@ -29,7 +29,7 @@
     .list-group
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.answer.one")
-        = markdown notification.target.answer.content[0..60] + (notification.target.answer.content.length > 60 ? '[...]' : '')
+        = markdown notification.target.answer.content[0..60] + (notification.target.answer.content.length > 60 ? '[…]' : '')
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.comment.one")
-        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[...]' : '')
+        = markdown notification.target.content[0..60] + (notification.target.content.length > 60 ? '[…]' : '')

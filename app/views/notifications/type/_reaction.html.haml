@@ -23,4 +23,4 @@
     .list-group
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.#{notification.target.parent_type.downcase}.one")
-        = markdown notification.target.parent.content[0..60] + (notification.target.parent.content.length > 60 ? "[...]" : "")
+        = markdown notification.target.parent.content[0..60] + (notification.target.parent.content.length > 60 ? "[…]" : "")
