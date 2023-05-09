@@ -123,7 +123,7 @@ describe UserHelper, type: :helper do
 
             context "user is not banned" do
               it "returns a link tag to the user's profile" do
-                expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: ""))
+                expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: "", target: "_top"))
               end
             end
 
@@ -133,7 +133,7 @@ describe UserHelper, type: :helper do
               end
 
               it "returns a link tag to the user's profile" do
-                expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: "user--banned"))
+                expect(subject).to eq(link_to(user.profile.safe_name, user_path(user), class: "user--banned", target: "_top"))
               end
             end
           end
