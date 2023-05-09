@@ -6,7 +6,7 @@
       %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small), loading: :lazy }
       = t(".heading_html",
           user: user_screen_name(notification.target.user),
-          question: link_to(t(".link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.id)),
+          question: link_to(t(".link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.id), target: "_top"),
           time: time_tooltip(notification.target))
     .list-group
       .list-group-item

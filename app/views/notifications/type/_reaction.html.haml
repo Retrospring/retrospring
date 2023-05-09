@@ -7,12 +7,12 @@
       - if notification.target.parent_type == 'Answer'
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
-              type: link_to(t(".#{notification.target.parent_type.downcase}.link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.parent.id)),
+              type: link_to(t(".#{notification.target.parent_type.downcase}.link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.parent.id), target: "_top"),
               time: time_tooltip(notification.target))
       - elsif notification.target.parent_type == 'Comment'
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
-              type: link_to(t(".#{notification.target.parent_type.downcase}.link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.parent.answer.id)),
+              type: link_to(t(".#{notification.target.parent_type.downcase}.link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.parent.answer.id), target: "_top"),
               time: time_tooltip(notification.target))
     .list-group
       .list-group-item

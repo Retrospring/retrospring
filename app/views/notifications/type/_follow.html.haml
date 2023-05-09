@@ -5,4 +5,4 @@
     %h6.notification__user
       = user_screen_name notification.target.source
     .notification__text
-      = t(".heading_html", time: time_ago_in_words(notification.target.created_at))
+      = t(".heading_html", time: time_ago_in_words(notification.target.created_at), target: "_top")
