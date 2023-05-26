@@ -36,7 +36,7 @@ class Subscription < ApplicationRecord
                                   .where.not(user: source.user)
                                   .where.not(user_id: muted_by)
                                   .map do |s|
-        { target_id: source.id, target_type: Comment, recipient_id: s.user_id, new: true, type: Notification::Commented }
+        { target_id: source.id, target_type: Comment, recipient_id: s.user_id, new: true, type: Notification::Commented, created_at: source.created_at, updated_at: source.created_at }
       end
 
       Notification.insert_all!(notifications) unless notifications.empty? # rubocop:disable Rails/SkipsModelValidations
