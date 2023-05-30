@@ -24,7 +24,7 @@ module BootstrapHelper
                "#{content_tag(:i, '', class: "fa fa-#{options[:icon]}")} #{body}"
              end
     end
-    unless options[:badge].nil?
+    if options[:badge].present? || options.dig(:badge_attr, :data)&.has_key?(:controller)
       badge_class = [
         "badge",
         ("badge-#{options[:badge_color]}" unless options[:badge_color].nil?),
