@@ -11,7 +11,7 @@ export default class extends Controller<HTMLElement> {
 
   connect(): void {
     if (this.isPwa && this.badgeCapable) {
-      const count = Number.parseInt(this.element.innerText);
+      const count = Number.parseInt(this.element.innerText) || 0;
       navigator.setAppBadge(count);
     }
   }
