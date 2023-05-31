@@ -17,7 +17,7 @@ module Retrospring
 
     def month = 5
 
-    def day = 9
+    def day = 31
 
     def patch = 0
 
