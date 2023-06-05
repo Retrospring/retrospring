@@ -15,7 +15,7 @@
     "@melloware/coloris": "^0.19.1",
     "@popperjs/core": "^2.11",
     "@rails/request.js": "^0.0.8",
-    "bootstrap": "^5.2",
+    "bootstrap": "^5.3",
     "buffer": "^6.0.3",
     "cheet.js": "^0.3.3",
     "croppr": "^2.3.1",
