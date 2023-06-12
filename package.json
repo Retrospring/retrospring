@@ -7,7 +7,7 @@
     "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "dependencies": {
-    "@fontsource/lexend": "^4.5.15",
+    "@fontsource/lexend": "^5.0.3",
     "@fortawesome/fontawesome-free": "^6.4.0",
     "@github/hotkey": "^2.0.1",
     "@hotwired/stimulus": "^3.2.1",
