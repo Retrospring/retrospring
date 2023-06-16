@@ -8,12 +8,15 @@ class UserController < ApplicationController
   after_action :mark_notification_as_read, only: %i[show]
 
   def show
-    @pinned_answers = @user.answers.pinned.order(pinned_at: :desc).limit(10)
-    paginate_answers { |args| @user.cursored_answers(**args) }
+    unless request.format == Mime[:json]
+      @pinned_answers = @user.answers.pinned.order(pinned_at: :desc).limit(10)
+      paginate_answers { |args| @user.cursored_answers(**args) }
+    end
 
     respond_to do |format|
       format.html
       format.turbo_stream { render layout: false }
+      format.json { render json: UserSerializer.new(context: { controller: self }).serialize_to_json(@user) }
     end
   end
 

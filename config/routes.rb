@@ -171,6 +171,8 @@ Rails.application.routes.draw do
   get "/feedback/bugs(/*any)", to: "feedback#bugs", as: "feedback_bugs"
   get "/feedback/feature_requests(/*any)", to: "feedback#features", as: "feedback_features"
 
+  get "/users/:username", to: "user#show", as: "activitypub_user", defaults: { format: :json }
+
   namespace :well_known, path: "/.well-known" do
     get "/change-password", to: redirect("/settings/account")
     get "/nodeinfo", to: "node_info#discovery"
