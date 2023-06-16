@@ -26,6 +26,8 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         end
 
         include_examples "returns the expected response"
+
+        include_examples "touches user timestamp", :inbox_updated_at
       end
 
       shared_examples "does not create the answer" do

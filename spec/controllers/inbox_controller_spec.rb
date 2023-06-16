@@ -65,12 +65,7 @@ describe InboxController, type: :controller do
           expect { subject }.to change { inbox_entry.reload.new? }.from(true).to(false)
         end
 
-        it "updates the the timestamp used for caching" do
-          user.update(inbox_updated_at: original_inbox_updated_at)
-          travel 1.second do
-            expect { subject }.to change { user.reload.inbox_updated_at.floor }.from(original_inbox_updated_at.floor).to(Time.now.utc.floor)
-          end
-        end
+        include_examples "touches user timestamp", :inbox_updated_at
 
         context "when requested the turbo stream format" do
           subject { get :show, format: :turbo_stream }
@@ -280,6 +275,8 @@ describe InboxController, type: :controller do
       it "creates an inbox entry" do
         expect { subject }.to(change { user.inboxes.count }.by(1))
       end
+
+      include_examples "touches user timestamp", :inbox_updated_at
     end
   end
 end

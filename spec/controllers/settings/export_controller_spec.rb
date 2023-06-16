@@ -17,18 +17,20 @@ describe Settings::ExportController, type: :controller do
       end
 
       context "when user has a new DataExported notification" do
-        let(:notification) do
+        let!(:notification) do
           Notification::DataExported.create(
             target_id:   user.id,
             target_type: "User::DataExport",
             recipient:   user,
-            new:         true
+            new:         true,
           )
         end
 
         it "marks the notification as read" do
           expect { subject }.to change { notification.reload.new }.from(true).to(false)
         end
+
+        include_examples "touches user timestamp", :notifications_updated_at
       end
     end
   end
