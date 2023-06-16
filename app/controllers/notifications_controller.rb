@@ -3,8 +3,6 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
-  after_action :mark_notifications_as_read, only: %i[index]
-
   TYPE_MAPPINGS = {
     "answer"       => Notification::QuestionAnswered.name,
     "comment"      => Notification::Commented.name,
@@ -18,6 +16,7 @@ class NotificationsController < ApplicationController
     @notifications = cursored_notifications_for(type: @type, last_id: params[:last_id])
     paginate_notifications
     @counters = count_unread_by_type
+    mark_notifications_as_read
 
     respond_to do |format|
       format.html
@@ -52,8 +51,8 @@ class NotificationsController < ApplicationController
   # rubocop:disable Rails/SkipsModelValidations
   def mark_notifications_as_read
     # using .dup to not modify @notifications -- useful in tests
-    @notifications&.dup&.update_all(new: false)
-    current_user.touch(:notifications_updated_at)
+    updated = @notifications&.dup&.update_all(new: false)
+    current_user.touch(:notifications_updated_at) if updated.positive?
   end
   # rubocop:enable Rails/SkipsModelValidations
 
