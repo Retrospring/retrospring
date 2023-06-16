@@ -13,3 +13,6 @@
       params: { last_id: @notifications_last_id },
       data: { controller: :hotkey, hotkey: "." },
       form: { data: { turbo_stream: true } }
+
+= turbo_stream.update "notification-desktop-icon" do
+  = render "navigation/icons/notifications", notification_count: current_user.unread_notification_count

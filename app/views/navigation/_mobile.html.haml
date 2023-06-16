@@ -3,9 +3,10 @@
   .container
     %ul.nav.navbar-nav.navbar-icon-row
       = nav_entry t("navigation.timeline"), root_path, icon: 'home', icon_only: true
-      = nav_entry t("navigation.inbox"), '/inbox',
-        badge: inbox_count, badge_color: 'primary', badge_pill: true,
-        icon: 'inbox', icon_only: true
+      #nav-inbox-mobile
+        = nav_entry t("navigation.inbox"), '/inbox',
+          badge: inbox_count, badge_color: 'primary', badge_pill: true,
+          icon: 'inbox', icon_only: true
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t("navigation.discover"), discover_path, icon: 'compass', icon_only: true
       = nav_entry t("navigation.notifications"), notifications_path("all"), icon: notifications_icon,
