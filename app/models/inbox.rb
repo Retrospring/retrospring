@@ -13,6 +13,18 @@ class Inbox < ApplicationRecord
       !user.privacy_allow_anonymous_questions?
   end
 
+  after_create do
+    user.touch(:inbox_updated_at)
+  end
+
+  after_update do
+    user.touch(:inbox_updated_at)
+  end
+
+  after_destroy do
+    user.touch(:inbox_updated_at)
+  end
+
   def answer(answer_content, user)
     raise Errors::AnsweringOtherBlockedSelf if question.user&.blocking?(user)
     raise Errors::AnsweringSelfBlockedOther if user.blocking?(question.user)

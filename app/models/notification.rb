@@ -1,8 +1,20 @@
 # frozen_string_literal: true
 
 class Notification < ApplicationRecord
-  belongs_to :recipient, class_name: "User", touch: :notifications_updated_at
+  belongs_to :recipient, class_name: "User"
   belongs_to :target, polymorphic: true
+
+  after_create do
+    recipient.touch(:notifications_updated_at)
+  end
+
+  after_update do
+    recipient.touch(:notifications_updated_at)
+  end
+
+  after_destroy do
+    recipient.touch(:notifications_updated_at)
+  end
 
   class << self
     include CursorPaginatable
@@ -45,7 +57,7 @@ class Notification < ApplicationRecord
 
       n = notification_type.new(target:,
                                 recipient:,
-                                new:       true)
+                                new:       true,)
       n.save!
       n
     end
