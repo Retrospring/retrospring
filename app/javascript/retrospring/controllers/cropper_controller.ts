@@ -34,15 +34,19 @@ export default class extends Controller {
 
     if (this.inputTarget.files && this.inputTarget.files[0]) {
       this.readImage(this.inputTarget.files[0], (src) => {
-        this.cropperTarget.src = src;
-
-        new Croppr(this.cropperTarget, {
-          aspectRatio: parseFloat(this.aspectRatioValue),
-          startSize: [100, 100, '%'],
-          onCropStart: this.updateValues.bind(this),
-          onCropMove: this.updateValues.bind(this),
-          onCropEnd: this.updateValues.bind(this)
+        this.cropperTarget.addEventListener('load', () => {
+          new Croppr(this.cropperTarget, {
+            aspectRatio: parseFloat(this.aspectRatioValue),
+            startSize: [100, 100, '%'],
+            onCropStart: this.updateValues.bind(this),
+            onCropMove: this.updateValues.bind(this),
+            onCropEnd: this.updateValues.bind(this)
+          });
+        }, {
+          once: true  
         });
+        
+        this.cropperTarget.src = src;
       });
     }
   }
