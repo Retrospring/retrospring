@@ -77,7 +77,7 @@ jobs:
         with:
           bundler-cache: true
         if: steps.changed-files.outputs.any_changed == 'true'
-      - uses: patch-technology/action-haml-lint@0.4
+      - uses: patch-technology/action-haml-lint@0.5
         with:
           reporter: github-check
           rubocop_version: gemfile
