@@ -174,10 +174,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/lexend@^4.5.15":
-  version "4.5.15"
-  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.15.tgz#ee033b850224d05b665d6661bf8d32c950f166bb"
-  integrity sha512-6edLmDmte8pJWtQ1NIahcJq0iWlf6b0/JLwkd7WbDQ3C5tZWnxjvbP4RSklMv4MPzGjpuYuYnc+QANbjUws1oA==
+"@fontsource/lexend@^5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-5.0.5.tgz#178811cd2bf2b400d68a0099e077ef66caf544ba"
+  integrity sha512-0Fr7Q6MsChpE3YBTTnMrDJvMJG4x6hOaLYdd3PaUKFq0ii7GYiEq1LkUU60/g7HhGcCawrrc0bOGN9kaDfLUvQ==
 
 "@fortawesome/fontawesome-free@^6.4.0":
   version "6.4.0"
