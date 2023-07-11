@@ -182,11 +182,11 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    haml_lint (0.45.0)
+    haml_lint (0.48.0)
       haml (>= 4.0, < 6.2)
       parallel (~> 1.10)
       rainbow
-      rubocop (>= 0.50.0)
+      rubocop (>= 1.0)
       sysexits (~> 1.1)
     hcaptcha (7.1.0)
       json
@@ -450,9 +450,9 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sysexits (1.2.0)
-    temple (0.10.0)
+    temple (0.10.2)
     thor (1.2.2)
-    tilt (2.0.11)
+    tilt (2.2.0)
     timeout (0.3.2)
     tldv (0.1.0)
       tldv-data (~> 1.0)
