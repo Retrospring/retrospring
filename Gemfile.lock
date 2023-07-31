@@ -257,7 +257,7 @@ GEM
       connection_pool (~> 2.2)
     net-http2 (0.18.4)
       http-2 (~> 0.11)
-    net-imap (0.3.6)
+    net-imap (0.3.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -453,7 +453,7 @@ GEM
     temple (0.10.2)
     thor (1.2.2)
     tilt (2.2.0)
-    timeout (0.3.2)
+    timeout (0.4.0)
     tldv (0.1.0)
       tldv-data (~> 1.0)
     tldv-data (1.0.2023031000)
