@@ -280,7 +280,7 @@ GEM
     pg (1.5.3)
     pghero (3.3.3)
       activerecord (>= 6)
-    prometheus-client (4.2.0)
+    prometheus-client (4.2.1)
     public_suffix (5.0.1)
     puma (6.3.0)
       nio4r (~> 2.0)
