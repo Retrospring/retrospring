@@ -38,12 +38,13 @@ export default class extends Controller {
           new Croppr(this.cropperTarget, {
             aspectRatio: parseFloat(this.aspectRatioValue),
             startSize: [100, 100, '%'],
+            onInitialize: (instance) => { this.updateValues(instance.getValue()) },
             onCropStart: this.updateValues.bind(this),
             onCropMove: this.updateValues.bind(this),
             onCropEnd: this.updateValues.bind(this)
           });
         }, {
-          once: true  
+          once: true
         });
         
         this.cropperTarget.src = src;
