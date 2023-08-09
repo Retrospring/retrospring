@@ -1,4 +1,6 @@
 @use "sass:color";
+@use "sass:map";
+@use "@fontsource/lexend/scss/mixins" as Lexend;
 
 // Font settings
 $lexend-font-path: ".";
@@ -132,3 +134,29 @@ $spacers: map-merge($rs-spacers, $spacers);
 }
 
 $gray: #e2e2e2;
+
+/**
+ FONTSOURCE SETTINGS
+ */
+
+@include Lexend.faces(
+  $weights: $lexend-weights,
+  $display: fallback,
+  $directory: "assets/"
+);
+
+// Using Lexend Light (300) as Regular (400) as Regular is quite thick.
+@include Lexend.generator(
+  $weights: (
+    300
+  )
+) using ($props) {
+  @font-face {
+    font-family: map.get($props, font-family);
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url("assets/lexend-latin-300-normal.woff2") format("woff2"),
+    url("assets/lexend-latin-300-normal.woff") format("woff");
+  }
+}

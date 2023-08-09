@@ -189,10 +189,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/lexend@^4.5.15":
-  version "4.5.15"
-  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-4.5.15.tgz#ee033b850224d05b665d6661bf8d32c950f166bb"
-  integrity sha512-6edLmDmte8pJWtQ1NIahcJq0iWlf6b0/JLwkd7WbDQ3C5tZWnxjvbP4RSklMv4MPzGjpuYuYnc+QANbjUws1oA==
+"@fontsource/lexend@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/lexend/-/lexend-5.0.8.tgz#4302aaebf619c85272a0747d83ab5afff851ed2b"
+  integrity sha512-5khaT5dvZEnhaaUU6hWak9nbG/SXXrL5+B/eauT81Aztectsk030LF/QVOv7TqPKZihXlKySOBNLLMeWPQLYFQ==
 
 "@fortawesome/fontawesome-free@^6.4.2":
   version "6.4.2"

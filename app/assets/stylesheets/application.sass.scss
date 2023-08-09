@@ -4,7 +4,6 @@
  Variable definitions, tools and mixins used
  across all styling definitions.
  */
-@use "@fontsource/lexend/scss/mixins" as Lexend;
 
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
@@ -30,28 +29,6 @@
 "@fortawesome/fontawesome-free/scss/v4-shims",
 "sweetalert/dist/sweetalert",
 "toastify-js/src/toastify";
-
-
-@each $weight in $lexend-weights {
-  @include Lexend.fontFace($weight: $weight,
-    $display: fallback,
-    $fontDir: "."
-  );
-}
-
-// Using Lexend Light (300) as Regular (400) as Regular is quite thick.
-@each $subset,
-$unicodeRangeValues in Lexend.$unicodeMap {
-  @font-face {
-    font-family: Lexend;
-    font-style: normal;
-    font-display: swap;
-    font-weight: 400;
-    src: url("lexend-#{$subset}-300-normal.woff2") format("woff2"),
-    url("lexend-all-300-normal.woff") format("woff");
-    unicode-range: $unicodeRangeValues;
-  }
-}
 
 /**
   OVERRIDES
