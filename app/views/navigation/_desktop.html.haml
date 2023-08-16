@@ -1,4 +1,4 @@
-%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none.d-print-none{ class: Rails.env.development? ? "navbar-dev" : "", role: :navigation }
+%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none.d-print-none{ class: Rails.env.tdevelopment? ? "navbar-dev" : "", role: :navigation }
   .container
     %a.navbar-brand{ href: '/', title: APP_CONFIG["site_name"] }
       - if APP_CONFIG["use_svg_logo"]
@@ -10,8 +10,7 @@
           DEV
     %ul.nav.navbar-nav.me-auto
       = nav_entry t("navigation.timeline"), root_path, icon: "home", hotkey: "g t"
-      #nav-inbox-desktop
-        = nav_entry t("navigation.inbox"), "/inbox", icon: "inbox", badge: inbox_count, badge_attr: { data: { controller: "pwa-badge" } }, hotkey: "g i"
+      = nav_entry t("navigation.inbox"), "/inbox", icon: "inbox", badge: inbox_count, badge_attr: { data: { controller: "pwa-badge" } }, hotkey: "g i", id: "nav-inbox-desktop"
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t("navigation.discover"), discover_path, icon: "compass", hotkey: "g d"
     %ul.nav.navbar-nav
