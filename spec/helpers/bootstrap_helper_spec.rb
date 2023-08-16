@@ -42,6 +42,13 @@ describe BootstrapHelper, :type => :helper do
         eq('<li class="nav-item "><a class="nav-link" href="/example">Example <span class="badge badge-primary badge-pill">3</span></a></li>')
       )
     end
+
+    it 'should put an ID on the entry an id if given' do
+      allow(self).to receive(:current_page?).and_return(false)
+      expect(nav_entry('Example', '/example', id: "testing")).to(
+        eq('<li class="nav-item " id="testing"><a class="nav-link" href="/example">Example</a></li>')
+      )
+    end
   end
 
   describe "#list_group_item" do
