@@ -333,7 +333,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         it "updates the inbox caching timestamp for the user who answered" do
           initial_timestamp = 1.day.ago
           answer.user.update(inbox_updated_at: initial_timestamp)
-          freeze_time do
+          travel_to 1.day.from_now do
             expect { subject }.to(change { answer.user.reload.inbox_updated_at }.from(initial_timestamp).to(DateTime.now))
           end
         end
