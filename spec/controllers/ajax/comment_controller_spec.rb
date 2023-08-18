@@ -35,7 +35,6 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
               expect { subject }.to change { subscribed_user.reload.notifications_updated_at }.to(DateTime.now)
             end
           end
-
         end
 
         include_examples "returns the expected response"

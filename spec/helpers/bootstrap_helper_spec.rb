@@ -43,10 +43,10 @@ describe BootstrapHelper, :type => :helper do
       )
     end
 
-    it 'should put an ID on the entry an id if given' do
+    it "should put an ID on the entry an id if given" do
       allow(self).to receive(:current_page?).and_return(false)
-      expect(nav_entry('Example', '/example', id: "testing")).to(
-        eq('<li class="nav-item " id="testing"><a class="nav-link" href="/example">Example</a></li>')
+      expect(nav_entry("Example", "/example", id: "testing")).to(
+        eq("<li class=\"nav-item \" id=\"testing\"><a class=\"nav-link\" href=\"/example\">Example</a></li>"),
       )
     end
   end
