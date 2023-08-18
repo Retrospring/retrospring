@@ -334,7 +334,8 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           initial_timestamp = 1.day.ago
           answer.user.update(inbox_updated_at: initial_timestamp)
           travel_to 1.day.from_now do
-            expect { subject }.to(change { answer.user.reload.inbox_updated_at }.from(initial_timestamp).to(DateTime.now))
+            # using string representation to avoid precision issues
+            expect { subject }.to(change { answer.user.reload.inbox_updated_at.to_s }.from(initial_timestamp.to_s).to(DateTime.now))
           end
         end
       end
