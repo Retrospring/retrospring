@@ -1,4 +1,4 @@
-%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none.d-print-none{ class: Rails.env.tdevelopment? ? "navbar-dev" : "", role: :navigation }
+%nav.navbar.navbar-themed.navbar-expand-lg.bg-primary.fixed-top.d-lg-block.d-none.d-print-none{ class: Rails.env.development? ? "navbar-dev" : "", role: :navigation }
   .container
     %a.navbar-brand{ href: '/', title: APP_CONFIG["site_name"] }
       - if APP_CONFIG["use_svg_logo"]
