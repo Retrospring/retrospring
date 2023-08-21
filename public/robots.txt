@@ -3,3 +3,10 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-agent: *
 # Disallow: /
+
+# Block ChatGPT browsing and plugin browsing
+User-agent: GPTBot
+Disallow: /
+
+User-agent: GPTBot-User
+Disallow: /
