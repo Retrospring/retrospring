@@ -32,7 +32,7 @@
     "esbuild": "^0.17.0",
     "eslint": "^7.16.0",
     "eslint-plugin-import": "^2.28.0",
-    "stylelint": "^15.10.2",
+    "stylelint": "^15.10.3",
     "stylelint-config-standard-scss": "^10.0.0",
     "stylelint-scss": "^5.1.0"
   }
