@@ -9,7 +9,7 @@ version: "3.7"
 
 services:
   web:
-    image: ghcr.io/retrospring/retrospring:main
+    image: ghcr.io/retrospring/retrospring:2023.0707.0
     command: bundle exec puma -C config/puma.rb -b tcp://0.0.0.0:3000
     depends_on:
       - postgres
@@ -40,7 +40,7 @@ services:
       - redis:/data
 
   sidekiq:
-    image: ghcr.io/retrospring/retrospring:main
+    image: ghcr.io/retrospring/retrospring:2023.0707.0
     command: bundle exec sidekiq
     depends_on:
       - redis
