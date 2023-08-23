@@ -16,6 +16,16 @@ services:
     ports:
       - 1234:1234
 
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Containerfile.dev
+    command: bundle exec sidekiq
+    environment:
+      - DATABASE_URL=postgres://postgres:justask@postgres/justask_development?pool=25
+    volumes:
+      - ./:/app
+
   postgres:
     environment:
       - POSTGRES_PASSWORD=justask

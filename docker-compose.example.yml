@@ -39,11 +39,30 @@ services:
     volumes:
       - redis:/data
 
+  sidekiq:
+    image: ghcr.io/retrospring/retrospring:main
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+    environment:
+      # PROD: define a secret key
+      # - SECRET_KEY_BASE=seeeecret
+      # PROD: configure your database credentials (alternatively use ./config/database.yml below)
+      # - DATABASE_URL=postgres://postgres:justask@postgres/justask_development?pool=25
+      - RAILS_LOG_TO_STDOUT=true
+      - SPROCKETS_CACHE=/cache
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      # PROD: configure your database credentials (alternatively use DATABASE_URL above)
+      # - ./config/database.yml:/opt/retrospring/app/config/database.yml
+      - ./config/sidekiq.yml:/opt/retrospring/app/config/sidekiq.yml
+      - ./config/justask.yml:/opt/retrospring/app/config/justask.yml
+
   postgres:
     image: postgres:10.12
     ports:
       - 5432:5432
-    # PROD: define database credentials  
+    # PROD: define database credentials
     # environment:
     #   - POSTGRES_PASSWORD=justask
     #   - POSTGRES_DB=justask_production
