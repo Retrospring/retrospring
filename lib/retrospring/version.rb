@@ -15,9 +15,9 @@ module Retrospring
 
     def year = 2023
 
-    def month = 7
+    def month = 9
 
-    def day = 7
+    def day = 1
 
     def patch = 0
 
