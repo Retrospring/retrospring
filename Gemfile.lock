@@ -130,6 +130,10 @@ GEM
       devise (>= 4.8.0)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-core (1.0.0)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
@@ -505,6 +509,7 @@ DEPENDENCIES
   devise (~> 4.9)
   devise-async
   devise-i18n
+  dotenv-rails (~> 2.8)
   dry-initializer (~> 3.1)
   dry-types (~> 1.7)
   factory_bot_rails

@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gem "i18n-js", "4.0"
 gem "rails", "~> 6.1"
 gem "rails-i18n", "~> 7.0"
+gem "dotenv-rails", "~> 2.8"
 
 gem "cssbundling-rails", "~> 1.2"
 gem "jsbundling-rails", "~> 1.1"
