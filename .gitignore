@@ -5,7 +5,6 @@
 
 /config/database.yml
 .env
-.env.production
 .env.development
 
 /coverage
