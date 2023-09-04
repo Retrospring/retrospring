@@ -79,6 +79,7 @@ group :development, :test do
   gem "better_errors"
   gem "bullet"
   gem "database_cleaner"
+  gem "dotenv-rails", "~> 2.8"
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "haml_lint", require: false
@@ -96,7 +97,6 @@ group :development, :test do
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false
   gem "simplecov-json", require: false
-  gem "dotenv-rails", "~> 2.8"
 end
 
 group :production do
