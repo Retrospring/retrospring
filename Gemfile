@@ -5,7 +5,6 @@ source "https://rubygems.org"
 gem "i18n-js", "4.0"
 gem "rails", "~> 6.1"
 gem "rails-i18n", "~> 7.0"
-gem "dotenv-rails", "~> 2.8"
 
 gem "cssbundling-rails", "~> 1.2"
 gem "jsbundling-rails", "~> 1.1"
@@ -97,6 +96,7 @@ group :development, :test do
   gem "simplecov", require: false
   gem "simplecov-cobertura", require: false
   gem "simplecov-json", require: false
+  gem "dotenv-rails", "~> 2.8"
 end
 
 group :production do
