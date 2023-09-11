@@ -9,7 +9,7 @@ gem "rails-i18n", "~> 7.0"
 gem "cssbundling-rails", "~> 1.2"
 gem "jsbundling-rails", "~> 1.1"
 gem "sassc-rails"
-gem "sprockets", "~> 4.1"
+gem "sprockets", "~> 4.2"
 gem "sprockets-rails", require: "sprockets/railtie"
 
 gem "pg"
