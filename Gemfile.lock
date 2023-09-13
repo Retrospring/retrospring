@@ -450,7 +450,7 @@ GEM
       simplecov
     simplecov_json_formatter (0.1.4)
     spring (4.1.1)
-    sprockets (4.2.0)
+    sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
     sprockets-rails (3.4.2)
@@ -569,7 +569,7 @@ DEPENDENCIES
   simplecov-cobertura
   simplecov-json
   spring (~> 4.1)
-  sprockets (~> 4.1)
+  sprockets (~> 4.2)
   sprockets-rails
   tldv (~> 0.1.0)
   turbo-rails
