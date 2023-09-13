@@ -35,6 +35,10 @@
         .col-md-6.d-md-flex.answerbox__actions
           = render "answerbox/actions", a:, display_all:, subscribed_answer_ids:
   .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? "d-none" : nil }
+    = turbo_frame_tag("ab-reactions-list-#{a.id}", src: reactions_path(a.question, a), loading: :lazy) do
+      .d-flex.smiles
+        .flex-shrink-0.me-1
+          %i.fa.fa-smile-o
     = turbo_frame_tag("ab-comments-list-#{a.id}", src: comments_path(a.question, a), loading: :lazy) do
       .d-flex.justify-content-center
         .spinner-border{ role: :status }

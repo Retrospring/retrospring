@@ -154,6 +154,7 @@ Rails.application.routes.draw do
   post "/@:username/a/:id/pin", to: "answer#pin", as: :pin_answer
   delete "/@:username/a/:id/pin", to: "answer#unpin", as: :unpin_answer
   get "/@:username/a/:id/comments", to: "comment#index", as: :comments
+  get "/@:username/a/:id/reactions", to: "reaction#index", as: :reactions
   get "/@:username/q/:id", to: "question#show", as: :question
   get "/@:username/followers", to: "user#followers", as: :show_user_followers
   get "/@:username/followings", to: "user#followings", as: :show_user_followings
