@@ -3,8 +3,6 @@
 class InboxController < ApplicationController
   before_action :authenticate_user!
 
-  after_action :mark_inbox_entries_as_read, only: %i[show]
-
   def show # rubocop:disable Metrics/MethodLength
     find_author
     find_inbox_entries
@@ -19,14 +17,11 @@ class InboxController < ApplicationController
     @delete_id = find_delete_id
     @disabled = true if @inbox.empty?
 
-    respond_to do |format|
-      format.html { render "show" }
-      format.turbo_stream do
-        render "show", layout: false, status: :see_other
+    mark_inbox_entries_as_read
 
-        # rubocop disabled as just flipping a flag doesn't need to have validations to be run
-        @inbox.update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
-      end
+    respond_to do |format|
+      format.html
+      format.turbo_stream
     end
   end
 
@@ -85,8 +80,8 @@ class InboxController < ApplicationController
   # rubocop:disable Rails/SkipsModelValidations
   def mark_inbox_entries_as_read
     # using .dup to not modify @inbox -- useful in tests
-    @inbox&.dup&.update_all(new: false)
-    current_user.touch(:inbox_updated_at)
+    updated = @inbox&.dup&.update_all(new: false)
+    current_user.touch(:inbox_updated_at) if updated.positive?
   end
   # rubocop:enable Rails/SkipsModelValidations
 

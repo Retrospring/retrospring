@@ -4,6 +4,8 @@
 require "rails_helper"
 
 describe Ajax::CommentController, :ajax_controller, type: :controller do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:answer) { FactoryBot.create(:answer, user: FactoryBot.create(:user)) }
 
   describe "#create" do
@@ -21,6 +23,18 @@ describe Ajax::CommentController, :ajax_controller, type: :controller do
         it "creates a comment to the answer" do
           expect { subject }.to(change { Comment.count }.by(1))
           expect(answer.reload.comments.ids).to include(Comment.last.id)
+        end
+
+        context "a user is subscribed to the answer" do
+          let(:subscribed_user) { FactoryBot.create(:user) }
+
+          it "updates the notification caching timestamp for a subscribed user" do
+            Subscription.subscribe(subscribed_user, answer)
+
+            travel_to(1.day.from_now) do
+              expect { subject }.to change { subscribed_user.reload.notifications_updated_at }.to(DateTime.now)
+            end
+          end
         end
 
         include_examples "returns the expected response"

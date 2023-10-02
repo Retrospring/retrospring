@@ -21,9 +21,12 @@ class Settings::ExportController < ApplicationController
 
   private
 
+  # rubocop:disable Rails/SkipsModelValidations
   def mark_notifications_as_read
-    Notification::DataExported
-      .where(recipient: current_user, new: true)
-      .update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
+    updated = Notification::DataExported
+              .where(recipient: current_user, new: true)
+              .update_all(new: false)
+    current_user.touch(:notifications_updated_at) if updated.positive?
   end
+  # rubocop:enable Rails/SkipsModelValidations
 end

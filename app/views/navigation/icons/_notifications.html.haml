@@ -1,0 +1,6 @@
+- if notification_count.nil?
+  %i.fa.fa-bell-o
+- else
+  %i.fa.fa-bell
+%span.visually-hidden= t("navigation.notifications")
+%span.badge= notification_count

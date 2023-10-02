@@ -51,11 +51,12 @@ class AnswerController < ApplicationController
   private
 
   def mark_notifications_as_read
-    Notification.where(recipient_id: current_user.id, new: true)
+    updated = Notification.where(recipient_id: current_user.id, new: true)
                 .and(Notification.where(type: "Notification::QuestionAnswered", target_id: @answer.id)
                 .or(Notification.where(type: "Notification::Commented", target_id: @answer.comments.pluck(:id)))
                 .or(Notification.where(type: "Notification::Smiled", target_id: @answer.smiles.pluck(:id)))
                 .or(Notification.where(type: "Notification::CommentSmiled", target_id: @answer.comment_smiles.pluck(:id))))
                 .update_all(new: false) # rubocop:disable Rails/SkipsModelValidations
+    current_user.touch(:notifications_updated_at) if updated.positive?
   end
 end

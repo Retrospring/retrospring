@@ -8,6 +8,7 @@ module BootstrapHelper
       badge_attr:  {},
       icon:        nil,
       class:       "",
+      id:          nil,
       hotkey:      nil,
     }.merge(options)
 
@@ -34,7 +35,7 @@ module BootstrapHelper
       body += " #{content_tag(:span, options[:badge], class: badge_class, **options[:badge_attr])}".html_safe
     end
 
-    content_tag(:li, link_to(body.html_safe, path, class: "nav-link", data: { hotkey: options[:hotkey] }), class: classes)
+    content_tag(:li, link_to(body.html_safe, path, class: "nav-link", data: { hotkey: options[:hotkey] }), class: classes, id: options[:id])
   end
 
   def list_group_item(body, path, options = {})

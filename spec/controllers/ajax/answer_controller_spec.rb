@@ -4,6 +4,8 @@
 require "rails_helper"
 
 describe Ajax::AnswerController, :ajax_controller, type: :controller do
+  include ActiveSupport::Testing::TimeHelpers
+
   let(:question) { FactoryBot.create(:question, user: FactoryBot.build(:user, privacy_allow_stranger_answers: asker_allows_strangers)) }
   let(:asker_allows_strangers) { true }
 
@@ -26,6 +28,8 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         end
 
         include_examples "returns the expected response"
+
+        include_examples "touches user timestamp", :inbox_updated_at
       end
 
       shared_examples "does not create the answer" do
@@ -324,6 +328,15 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
           user.privacy_allow_anonymous_questions = false
           user.save
           expect { subject }.to(change { Inbox.where(question_id: answer.question.id, user_id: user.id).count }.by(1))
+        end
+
+        it "updates the inbox caching timestamp for the user who answered" do
+          initial_timestamp = 1.day.ago
+          answer.user.update(inbox_updated_at: initial_timestamp)
+          travel_to 1.day.from_now do
+            # using string representation to avoid precision issues
+            expect { subject }.to(change { answer.user.reload.inbox_updated_at.to_s }.from(initial_timestamp.to_s).to(DateTime.now))
+          end
         end
       end
 

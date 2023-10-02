@@ -10,7 +10,7 @@
           DEV
     %ul.nav.navbar-nav.me-auto
       = nav_entry t("navigation.timeline"), root_path, icon: "home", hotkey: "g t"
-      = nav_entry t("navigation.inbox"), "/inbox", icon: "inbox", badge: inbox_count, badge_attr: { data: { controller: "pwa-badge" } }, hotkey: "g i"
+      = nav_entry t("navigation.inbox"), "/inbox", icon: "inbox", badge: inbox_count, badge_attr: { data: { controller: "pwa-badge" } }, hotkey: "g i", id: "nav-inbox-desktop"
       - if APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
         = nav_entry t("navigation.discover"), discover_path, icon: "compass", hotkey: "g d"
     %ul.nav.navbar-nav
@@ -23,12 +23,7 @@
       %li.nav-item.dropdown.d-none.d-sm-block
         %a.nav-link.dropdown-toggle{ href: '#', data: { bs_toggle: :dropdown } }
           %turbo-frame#notification-desktop-icon
-            - if notification_count.nil?
-              %i.fa.fa-bell-o
-            - else
-              %i.fa.fa-bell
-            %span.visually-hidden= t("navigation.notifications")
-            %span.badge= notification_count
+            = render "navigation/icons/notifications", notification_count:
         .dropdown-menu.dropdown-menu-end.notification-dropdown
           %turbo-frame#notifications-dropdown-list
             - cache current_user.notification_dropdown_cache_key do
