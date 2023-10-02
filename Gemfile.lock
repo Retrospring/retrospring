@@ -183,7 +183,7 @@ GEM
     glob (0.3.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    haml (6.1.2)
+    haml (6.1.4)
       temple (>= 0.8.2)
       thor
       tilt
@@ -460,7 +460,7 @@ GEM
     sysexits (1.2.0)
     temple (0.10.2)
     thor (1.2.2)
-    tilt (2.2.0)
+    tilt (2.3.0)
     timeout (0.4.0)
     tldv (0.1.0)
       tldv-data (~> 1.0)
