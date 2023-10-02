@@ -14,7 +14,7 @@
     "@hotwired/turbo-rails": "^7.3.0",
     "@melloware/coloris": "^0.21.1",
     "@popperjs/core": "^2.11",
-    "@rails/request.js": "^0.0.8",
+    "@rails/request.js": "^0.0.9",
     "bootstrap": "^5.2",
     "buffer": "^6.0.3",
     "cheet.js": "^0.3.3",
