@@ -6,6 +6,14 @@ GIT
       carrierwave (>= 0.5, <= 2.1)
       mime-types (>= 3.0.0)
 
+GIT
+  remote: https://github.com/raccube/hcaptcha
+  revision: f8de70ee2d629ac34395902dbee724c21297960c
+  ref: fix/flash-in-turbo-streams
+  specs:
+    hcaptcha (7.1.0)
+      json
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -193,8 +201,6 @@ GEM
       rainbow
       rubocop (>= 1.0)
       sysexits (~> 1.1)
-    hcaptcha (7.1.0)
-      json
     hkdf (0.3.0)
     http-2 (0.11.0)
     httparty (0.21.0)
@@ -520,7 +526,7 @@ DEPENDENCIES
   fog-local
   haml (~> 6.1)
   haml_lint
-  hcaptcha (~> 7.0)
+  hcaptcha!
   httparty
   i18n-js (= 4.0)
   jsbundling-rails (~> 1.2)
