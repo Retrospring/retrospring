@@ -6,7 +6,7 @@ describe TurboStreamable, type: :controller do
   controller do
     include TurboStreamable
 
-    turbo_stream_actions :create, :blocked, :not_found
+    turbo_stream_actions :create, :blocked, :not_found, :invalid_record
 
     def create
       params.require :message
@@ -25,6 +25,10 @@ describe TurboStreamable, type: :controller do
     def not_found
       raise ActiveRecord::RecordNotFound
     end
+
+    def invalid_record
+      ::MuteRule.create!(muted_phrase: "", user: FactoryBot.create(:user))
+    end
   end
 
   before do
@@ -32,6 +36,7 @@ describe TurboStreamable, type: :controller do
       get "create" => "anonymous#create"
       get "blocked" => "anonymous#blocked"
       get "not_found" => "anonymous#not_found"
+      get "invalid_record" => "anonymous#invalid_record"
     end
   end
 
@@ -68,4 +73,5 @@ describe TurboStreamable, type: :controller do
   it_behaves_like "it returns a toast as Turbo Stream response", :create, "Message is required"
   it_behaves_like "it returns a toast as Turbo Stream response", :blocked, "You have been blocked from performing this request"
   it_behaves_like "it returns a toast as Turbo Stream response", :not_found, "Record not found"
+  it_behaves_like "it returns a toast as Turbo Stream response", :invalid_record, "too short"
 end
