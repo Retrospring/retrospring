@@ -23,6 +23,8 @@ module TurboStreamable
     render_error t("errors.parameter_error", parameter: e.instance_of?(KeyError) ? e.key : e.param.capitalize)
   rescue Dry::Types::CoercionError, Dry::Types::ConstraintError
     render_error t("errors.invalid_parameter")
+  rescue ActiveRecord::RecordInvalid => e
+    render_error e.record.errors.full_messages.flatten.join(" ")
   rescue ActiveRecord::RecordNotFound
     render_error t("errors.record_not_found")
   end
