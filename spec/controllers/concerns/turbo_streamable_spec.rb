@@ -27,7 +27,7 @@ describe TurboStreamable, type: :controller do
     end
 
     def invalid_record
-      ::MuteRule.create!(muted_phrase: "", user: FactoryBot.create(:user))
+      MuteRule.create!(muted_phrase: "", user: FactoryBot.create(:user))
     end
   end
 
