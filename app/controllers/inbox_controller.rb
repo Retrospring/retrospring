@@ -3,7 +3,7 @@
 class InboxController < ApplicationController
   before_action :authenticate_user!
 
-  def show # rubocop:disable Metrics/MethodLength
+  def show
     find_author
     find_inbox_entries
 
