@@ -123,3 +123,7 @@ Style/TrailingCommaInHashLiteral:
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
+
+Style/RedundantSelf:
+  Exclude:
+    - app/models/**/*
