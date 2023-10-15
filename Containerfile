@@ -32,6 +32,7 @@ RUN zypper addrepo https://download.opensuse.org/repositories/devel:languages:no
       tar              \
       xz               \
       zlib-devel       \
+      curl             \
       # build dependencies (app)
       gcc-c++          \
       git              \
