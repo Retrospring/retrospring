@@ -3,7 +3,7 @@
 class MuteRule < ApplicationRecord
   belongs_to :user
 
-  validates :muted_phrase, presence: true
+  validates :muted_phrase, length: { minimum: 1 }
 
   def applies_to?(post)
     !!(post.content =~ /\b#{Regexp.escape(muted_phrase)}\b/i)
