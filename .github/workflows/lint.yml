@@ -43,10 +43,10 @@ jobs:
         uses: tj-actions/changed-files@v39
         with:
           files: "**/*.ts"
-      - name: Set up Node 14
+      - name: Set up Node 16
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'yarn'
         if: steps.changed-files.outputs.any_changed == 'true'
       - name: Install node modules
@@ -92,10 +92,10 @@ jobs:
         uses: tj-actions/changed-files@v39
         with:
           files: "**/*.scss"
-      - name: Set up Node 14
+      - name: Set up Node 16
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'
           cache: 'yarn'
         if: steps.changed-files.outputs.any_changed == 'true'
       - name: Install node modules
