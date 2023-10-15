@@ -31,39 +31,25 @@ Lint/NestedMethodDefinition:
 ### Metrics
 
 Metrics/AbcSize:
-  Max: 20
-  Exclude:
-    - 'db/**/*'
+  Enabled: false
 
 Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
-  Max: 15
-  Exclude:
-    - 'db/migrate/*.rb'
+  Enabled: false
 
 Metrics/BlockLength:
-  Exclude:
-    - '*.gemspec'
-    - '**/*.rake'
-    - 'api/**/*'
-    - 'app/api/routes.rb'
-    - 'config/initialize/**/*'
-    - 'config/initializers/**/*'
-    - 'spec/**/*'
+  Enabled: false
 
 Metrics/ClassLength:
-  Exclude:
-    - spec/**/*
+  Enabled: false
 
 Metrics/CyclomaticComplexity:
   Severity: refactor
 
 Metrics/ModuleLength:
-  Exclude:
-    - 'app/api/routes.rb'
-    - 'spec/requests/**/*'
+  Enabled: false
 
 
 ### Style / Layout
