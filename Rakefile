@@ -7,7 +7,7 @@ require File.expand_path("config/application", __dir__)
 
 Rails.application.load_tasks
 
-namespace :justask do # rubocop:disable Metrics/BlockLength
+namespace :justask do
   desc "Gives admin status to a user."
   task :admin, [:screen_name] => :environment do |_t, args|
     abort "screen name required" if args[:screen_name].nil?
