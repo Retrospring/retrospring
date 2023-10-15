@@ -19,10 +19,8 @@ class User
       # Follow an user
       def follow(target_user)
         raise Errors::FollowingSelf if target_user == self
-        # rubocop:disable Style/RedundantSelf
         raise Errors::FollowingOtherBlockedSelf if target_user.blocking?(self)
         raise Errors::FollowingSelfBlockedOther if self.blocking?(target_user)
-        # rubocop:enable Style/RedundantSelf
 
         create_relationship(active_follow_relationships, target_user)
       end
