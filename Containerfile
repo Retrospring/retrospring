@@ -1,6 +1,6 @@
 # Container image for a production Retrospring setup
 
-FROM registry.opensuse.org/opensuse/leap:15.4
+FROM registry.opensuse.org/opensuse/leap:15.5
 
 LABEL org.opencontainers.image.title="Retrospring (production)"
 LABEL org.opencontainers.image.description="Image containing everything to run Retrospring in production mode.  Do not use this for development."
@@ -15,7 +15,8 @@ ARG BUNDLER_VERSION=2.3.18
 ENV RAILS_ENV=production
 
 # update and install dependencies
-RUN zypper up -y \
+RUN zypper addrepo https://download.opensuse.org/repositories/devel:languages:nodejs/15.5/devel:languages:nodejs.repo \
+ && zypper --gpg-auto-import-keys up -y \
  && zypper in -y \
       # build dependencies (ruby-install)
       automake         \
@@ -31,12 +32,13 @@ RUN zypper up -y \
       tar              \
       xz               \
       zlib-devel       \
+      curl             \
       # build dependencies (app)
       gcc-c++          \
       git              \
       libidn-devel     \
-      nodejs14         \
-      npm14            \
+      nodejs16         \
+      npm16            \
       postgresql-devel \
       # runtime dependencies
       ImageMagick      \
