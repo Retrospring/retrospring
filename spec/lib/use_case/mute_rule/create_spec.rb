@@ -11,8 +11,8 @@ describe UseCase::MuteRule::Create do
     context "phrase is empty" do
       let(:phrase) { "" }
 
-      it "does not create the rule" do
-        expect { subject }.not_to(change { MuteRule.count })
+      it "raises an error" do
+        expect { subject }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
 
