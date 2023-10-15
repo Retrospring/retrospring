@@ -7,7 +7,7 @@ module UseCase
       option :phrase, type: Types::Coercible::String
 
       def call
-        rule = ::MuteRule.create(
+        rule = ::MuteRule.create!(
           user:,
           muted_phrase: phrase
         )
