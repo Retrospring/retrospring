@@ -35,8 +35,8 @@ RUN zypper up -y \
       gcc-c++          \
       git              \
       libidn-devel     \
-      nodejs14         \
-      npm14            \
+      nodejs16         \
+      npm16            \
       postgresql-devel \
       # runtime dependencies
       ImageMagick      \
