@@ -1,6 +1,6 @@
 # Container image for a production Retrospring setup
 
-FROM registry.opensuse.org/opensuse/leap:15.4
+FROM registry.opensuse.org/opensuse/leap:15.5
 
 LABEL org.opencontainers.image.title="Retrospring (production)"
 LABEL org.opencontainers.image.description="Image containing everything to run Retrospring in production mode.  Do not use this for development."
