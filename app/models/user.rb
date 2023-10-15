@@ -117,10 +117,8 @@ class User < ApplicationRecord
   # @param question [Question] the question to answer
   # @param content [String] the answer content
   def answer(question, content)
-    # rubocop:disable Style/RedundantSelf
     raise Errors::AnsweringOtherBlockedSelf if question.user&.blocking?(self)
     raise Errors::AnsweringSelfBlockedOther if self.blocking?(question.user)
-    # rubocop:enable Style/RedundantSelf
 
     Retrospring::Metrics::QUESTIONS_ANSWERED.increment
 
@@ -132,10 +130,8 @@ class User < ApplicationRecord
   def answered?(question) = question.answers.pluck(:user_id).include? id
 
   def comment(answer, content)
-    # rubocop:disable Style/RedundantSelf
     raise Errors::CommentingSelfBlockedOther if self.blocking?(answer.user)
     raise Errors::CommentingOtherBlockedSelf if answer.user.blocking?(self)
-    # rubocop:enable Style/RedundantSelf
 
     Retrospring::Metrics::COMMENTS_CREATED.increment
 
