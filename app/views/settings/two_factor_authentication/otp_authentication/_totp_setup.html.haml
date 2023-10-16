@@ -36,6 +36,12 @@
                 %a{ href: "https://apps.apple.com/gb/app/microsoft-authenticator/id983156458" }= t(".source.app_store")
               %li.list-inline-item
                 %a{ href: "https://play.google.com/store/apps/details?id=com.azure.authenticator" }= t(".source.google_play")
+          %li
+            %i.fa.fa-apple
+            = t(".app.iphone")
+            %ul.list-inline
+              %li.list-inline-item
+                %a{ href: "https://support.apple.com/en-gb/guide/iphone/ipha6173c19f/ios" }= t(".source.apple_support")
         %p= t(".setup_qr", app_name: APP_CONFIG['site_name'])
         = f.text_field :otp_validation, class: "totp-setup__code-field", inputmode: :numeric, label: t(".otp_validation"), autofocus: true
         = f.primary
