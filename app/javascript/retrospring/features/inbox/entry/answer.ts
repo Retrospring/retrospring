@@ -30,14 +30,14 @@ export function answerEntryHandler(event: Event): void {
       updateDeleteButton(false);
       showNotification(data.message);
 
-      const sharing = inboxEntry.querySelector<HTMLElement>('.inbox-entry__sharing');
-      if (sharing != null) {
-        sharing.dataset.inboxSharingConfigValue = JSON.stringify(data.sharing);
-      }
-
       const shareButton = inboxEntry.querySelector<HTMLButtonElement>('[data-controller="share"]');
       if (shareButton != null) {
         shareButton.dataset.shareTextValue = decodeURIComponent(data.sharing.custom).replaceAll('+', ' ');
+      }
+
+      const sharing = inboxEntry.querySelector<HTMLElement>('.inbox-entry__sharing');
+      if (sharing != null) {
+        sharing.dataset.inboxSharingConfigValue = JSON.stringify(data.sharing);
       }
       else {
         (inboxEntry as HTMLElement).remove();
