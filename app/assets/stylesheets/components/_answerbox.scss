@@ -97,9 +97,3 @@
     display: inline;
   }
 }
-
-body:not(.cap-web-share) {
-  [name="ab-share"] {
-    display: none;
-  }
-}
