@@ -199,10 +199,10 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.4.2.tgz#36b6a9cb5ffbecdf89815c94d0c0ffa489ac5ecb"
   integrity sha512-m5cPn3e2+FDCOgi1mz0RexTUvvQibBebOUlUlW0+YrMjDTPkiJ6VTKukA1GRsvRw+12KyJndNjj0O4AgTxm2Pg==
 
-"@github/hotkey@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@github/hotkey/-/hotkey-2.0.1.tgz#24ad6b49313cee5b98368174eab16a4b53a08ec7"
-  integrity sha512-qKXjAJjtheJbf4ie3hi8IwrHWJZHB5qdojR6JGo6jvQNPpsdUbk/NIdU8sxu4PW41CjW80vfciDMu3MAP3j2Fg==
+"@github/hotkey@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@github/hotkey/-/hotkey-2.1.1.tgz#0e1da799c7a43d719b21f740bc59107dec30ea3b"
+  integrity sha512-UPb3mbKQzw3uskbRu+jsJwhAP2lFhxH0vI799camXiNbV5q3w61VNGt3oX7yxn4HhC5V4S701NoOqGbosCJhiw==
 
 "@hotwired/stimulus@^3.2.2":
   version "3.2.2"
