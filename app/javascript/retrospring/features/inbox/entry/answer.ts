@@ -34,6 +34,11 @@ export function answerEntryHandler(event: Event): void {
       if (sharing != null) {
         sharing.dataset.inboxSharingConfigValue = JSON.stringify(data.sharing);
       }
+
+      const shareButton = inboxEntry.querySelector<HTMLButtonElement>('[data-controller="share"]');
+      if (shareButton != null) {
+        shareButton.dataset.shareTextValue = decodeURIComponent(data.sharing.custom).replaceAll('+', ' ');
+      }
       else {
         (inboxEntry as HTMLElement).remove();
       }

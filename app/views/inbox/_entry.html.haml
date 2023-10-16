@@ -52,6 +52,9 @@
             %a.btn.btn-primary{ href: "#", data: { inbox_sharing_target: "telegram" }, target: "_blank" }
               %i.fab.fa-telegram.fa-fw
               Telegram
+            %button.btn.btn-primary{ data: { controller: "share", action: "share#share", inbox_sharing_target: "other" } }
+              %i.fa.fa-fw.fa-share-alt
+              = t("actions.share.other")
             - if current_user.sharing_custom_url.present?
               %a.btn.btn-primary{ href: current_user.sharing_custom_url, data: { inbox_sharing_target: "custom" }, target: "_blank" }
                 = current_user.display_sharing_custom_url
