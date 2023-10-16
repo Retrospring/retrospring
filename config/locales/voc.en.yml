@@ -12,6 +12,7 @@ en:
     follow: "Follow"
     format_markdown: "Styling with Markdown is supported"
     load: "Load more"
+    loading: "Loading…"
     login: "Sign in"
     logout: "Sign out"
     mute: "Mute"
