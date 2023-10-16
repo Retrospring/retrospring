@@ -492,7 +492,9 @@ en:
             aegis: "Aegis Authenticator for Android"
             strongbox: "Strongbox Authenticator for iOS"
             microsoft: "Microsoft Authenticator"
+            iphone: "iPhone (Passwords/Camera)"
           source:
+            apple_support: "Apple Support"
             app_store: "App Store"
             fdroid: "F-Droid"
             google_play: "Google Play"
