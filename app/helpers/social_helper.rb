@@ -10,7 +10,7 @@ module SocialHelper
       id:       answer.id,
       username: answer.user.screen_name,
       host:     APP_CONFIG["hostname"],
-      protocol: (APP_CONFIG["https"] ? :https : :http)
+      protocol: (APP_CONFIG["https"] ? :https : :http),
     )
   end
 end
