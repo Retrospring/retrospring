@@ -1,3 +1,5 @@
 export default function (): void {
-  navigator.serviceWorker.register("/service_worker.js", { scope: "/" });
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register("/service_worker.js", { scope: "/" });
+  }
 }
