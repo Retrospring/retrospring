@@ -22,7 +22,8 @@ class Inbox < ApplicationRecord
   end
 
   after_destroy do
-    user.touch(:inbox_updated_at)
+    # user might not exist at this point (account deleted, records are cleaned up async)
+    user&.touch(:inbox_updated_at)
   end
 
   def answer(answer_content, user)
