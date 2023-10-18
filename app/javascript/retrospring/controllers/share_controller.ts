@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import noop from 'utilities/noop';
 
 export default class extends Controller {
   static values = {
@@ -35,8 +36,10 @@ export default class extends Controller {
       };
     }
 
-    navigator.share(shareConfiguration).then(() => {
-      this.element.dispatchEvent(new CustomEvent('retrospring:shared'));
-    });
+    navigator.share(shareConfiguration)
+      .then(() => {
+        this.element.dispatchEvent(new CustomEvent('retrospring:shared'));
+      })
+      .catch(noop);
   }
 }
