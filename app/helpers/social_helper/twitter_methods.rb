@@ -3,7 +3,7 @@ require 'cgi'
 module SocialHelper::TwitterMethods
   include MarkdownHelper
 
-  def prepare_tweet(answer, post_tag = nil)
+  def prepare_tweet(answer, post_tag = nil, omit_url = false)
     question_content = twitter_markdown answer.question.content.gsub(/\@(\w+)/, '\1')
     original_question_length = question_content.length
     answer_content = twitter_markdown answer.content
@@ -13,7 +13,7 @@ module SocialHelper::TwitterMethods
       username: answer.user.screen_name,
       host: APP_CONFIG['hostname'],
       protocol: (APP_CONFIG['https'] ? :https : :http)
-    )
+    ) unless omit_url
 
     parsed_tweet = { :valid => false }
     tweet_text = ""
