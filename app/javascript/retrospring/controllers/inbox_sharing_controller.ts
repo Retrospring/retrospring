@@ -23,7 +23,7 @@ export default class extends Controller {
       this.twitterTarget.addEventListener('click', () => this.close());
       this.tumblrTarget.addEventListener('click', () => this.close());
       this.telegramTarget.addEventListener('click', () => this.close());
-      this.otherTarget.addEventListener('click', () => this.close());
+      this.otherTarget.addEventListener('click', () => this.closeAfterShare());
 
       if (this.hasCustomTarget) {
         this.customTarget.addEventListener('click', () => this.close());
@@ -49,5 +49,9 @@ export default class extends Controller {
 
   close(): void {
     (this.element.closest(".inbox-entry")).remove();
+  }
+
+  closeAfterShare(): void {
+    this.otherTarget.addEventListener('retrospring:shared', () => this.close());
   }
 }
