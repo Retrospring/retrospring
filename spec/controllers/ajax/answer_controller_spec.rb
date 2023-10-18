@@ -91,6 +91,8 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               let(:expected_response) do
                 super().merge(
                   "sharing" => {
+                    "url"      => a_string_matching("https://#{APP_CONFIG['hostname']}/"),
+                    "text"     => a_string_matching("Werfen Sie nicht länger das Fenster zum Geld hinaus!"),
                     "twitter"  => a_string_matching("https://twitter.com/"),
                     "tumblr"   => a_string_matching("https://www.tumblr.com/"),
                     "telegram" => a_string_matching("https://t.me/"),
@@ -170,6 +172,8 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
               let(:expected_response) do
                 super().merge(
                   "sharing" => {
+                    "url"      => a_string_matching("https://#{APP_CONFIG['hostname']}/"),
+                    "text"     => a_string_matching("Werfen Sie nicht länger das Fenster zum Geld hinaus!"),
                     "twitter"  => a_string_matching("https://twitter.com/"),
                     "tumblr"   => a_string_matching("https://www.tumblr.com/"),
                     "telegram" => a_string_matching("https://t.me/"),
