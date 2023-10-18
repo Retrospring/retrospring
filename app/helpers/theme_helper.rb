@@ -25,7 +25,7 @@ module ThemeHelper
     "input_color"        => "input-bg",
     "input_text"         => "input-text",
     "input_placeholder"  => "input-placeholder",
-    "muted_text"         => "muted-text"
+    "muted_text"         => "muted-text",
   }.freeze
 
   def render_theme

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ThemeHelper, :type => :helper do
+describe ThemeHelper, type: :helper do
   describe "#render_theme" do
     context "when target page doesn't have a theme" do
       it "returns no theme" do
@@ -18,7 +18,7 @@ describe ThemeHelper, :type => :helper do
       end
 
       it "returns a theme" do
-        expect(helper.render_theme).to include('<style>:root {')
+        expect(helper.render_theme).to include("<style>:root {")
       end
 
       it "contains correct theme background colors" do
@@ -193,12 +193,12 @@ describe ThemeHelper, :type => :helper do
     end
   end
 
-  describe '#theme_color' do
+  describe "#theme_color" do
     subject { helper.theme_color }
 
-    context 'when user is signed in' do
+    context "when user is signed in" do
       let(:user) { FactoryBot.create(:user) }
-      let(:theme) { FactoryBot.create(:theme, user: user) }
+      let(:theme) { FactoryBot.create(:theme, user:) }
 
       before(:each) do
         user.theme = theme
@@ -206,24 +206,24 @@ describe ThemeHelper, :type => :helper do
         sign_in(user)
       end
 
-      it 'should return the user theme\'s primary color' do
-        expect(subject).to eq('#8e8cd8')
+      it "should return the user theme's primary color" do
+        expect(subject).to eq("#8e8cd8")
       end
     end
 
-    context 'user is not signed in' do
-      it 'should return the default primary color' do
-        expect(subject).to eq('#5e35b1')
+    context "user is not signed in" do
+      it "should return the default primary color" do
+        expect(subject).to eq("#5e35b1")
       end
     end
   end
 
-  describe '#mobile_theme_color' do
+  describe "#mobile_theme_color" do
     subject { helper.mobile_theme_color }
 
-    context 'when user is signed in' do
+    context "when user is signed in" do
       let(:user) { FactoryBot.create(:user) }
-      let(:theme) { FactoryBot.create(:theme, user: user) }
+      let(:theme) { FactoryBot.create(:theme, user:) }
 
       before(:each) do
         user.theme = theme
@@ -231,14 +231,14 @@ describe ThemeHelper, :type => :helper do
         sign_in(user)
       end
 
-      it 'should return the user theme\'s background color' do
-        expect(subject).to eq('#c6c5eb')
+      it "should return the user theme's background color" do
+        expect(subject).to eq("#c6c5eb")
       end
     end
 
-    context 'user is not signed in' do
-      it 'should return the default background color' do
-        expect(subject).to eq('#f0edf4')
+    context "user is not signed in" do
+      it "should return the default background color" do
+        expect(subject).to eq("#f0edf4")
       end
     end
   end

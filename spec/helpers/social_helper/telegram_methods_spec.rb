@@ -9,7 +9,7 @@ describe SocialHelper::TelegramMethods, type: :helper do
       :answer,
       user:,
       content:          "this is an answer\nwith multiple lines\nand **FORMATTING**",
-      question_content: "this is a question .... or is it?"
+      question_content: "this is a question .... or is it?",
     )
   end
 
@@ -18,7 +18,7 @@ describe SocialHelper::TelegramMethods, type: :helper do
                  "hostname"       => "example.com",
                  "https"          => true,
                  "items_per_page" => 5,
-               })
+               },)
   end
 
   describe "#telegram_text" do

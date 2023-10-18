@@ -18,8 +18,7 @@ describe SocialHelper, type: :helper do
                  "hostname"       => "example.com",
                  "https"          => true,
                  "items_per_page" => 5,
-               },
-              )
+               },)
   end
 
   describe "#answer_share_url" do
