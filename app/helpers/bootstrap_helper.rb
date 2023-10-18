@@ -25,24 +25,24 @@ module BootstrapHelper
                "#{content_tag(:i, '', class: "fa fa-#{options[:icon]}")} #{body}"
              end
     end
-    if options[:badge].present? || options.dig(:badge_attr, :data)&.has_key?(:controller)
+    if options[:badge].present? || options.dig(:badge_attr, :data)&.key?(:controller)
       badge_class = [
         "badge",
         ("badge-#{options[:badge_color]}" unless options[:badge_color].nil?),
         ("badge-pill" if options[:badge_pill])
       ].compact.join(" ")
 
-      body += " #{content_tag(:span, options[:badge], class: badge_class, **options[:badge_attr])}".html_safe
+      body += " #{content_tag(:span, options[:badge], class: badge_class, **options[:badge_attr])}".html_safe # rubocop:disable Rails/OutputSafety
     end
 
-    content_tag(:li, link_to(body.html_safe, path, class: "nav-link", data: { hotkey: options[:hotkey] }), class: classes, id: options[:id])
+    content_tag(:li, link_to(body.html_safe, path, class: "nav-link", data: { hotkey: options[:hotkey] }), class: classes, id: options[:id]) # rubocop:disable Rails/OutputSafety
   end
 
   def list_group_item(body, path, options = {})
     options = {
       badge:       nil,
       badge_color: nil,
-      class:       ""
+      class:       "",
     }.merge(options)
 
     classes = [
@@ -54,13 +54,18 @@ module BootstrapHelper
 
     unless options[:badge].nil? || (options[:badge]).zero?
       # TODO: make this prettier?
-      body << " #{
-        content_tag(:span, options[:badge], class: "badge#{
+      badge = content_tag(:span, options[:badge], class: "badge#{
           " badge-#{options[:badge_color]}" unless options[:badge_color].nil?
-        }")}"
+        }",)
     end
 
-    content_tag(:a, body.html_safe, href: path, class: classes)
+    html = if badge
+             "#{body} #{badge}"
+           else
+             body
+           end
+
+    content_tag(:a, html.html_safe, href: path, class: classes) # rubocop:disable Rails/OutputSafety
   end
 
   def tooltip(body, tooltip_content, placement = "bottom")

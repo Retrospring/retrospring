@@ -12,8 +12,8 @@ describe ApplicationHelper::TitleMethods, type: :helper do
                  "anonymous_name" => "Anonymous",
                  "https"          => true,
                  "items_per_page" => 5,
-                 "sharing"        => {}
-               })
+                 "sharing"        => {},
+               },)
 
     user.profile.display_name = "Cool Man"
     user.profile.save!
@@ -42,7 +42,7 @@ describe ApplicationHelper::TitleMethods, type: :helper do
 
     context "user has custom anonymous display name" do
       before do
-        FactoryBot.create(:answer, question: question, user: user)
+        FactoryBot.create(:answer, question:, user:)
         user.profile.anon_display_name = "Amogus"
         user.profile.save!
       end
@@ -55,9 +55,9 @@ describe ApplicationHelper::TitleMethods, type: :helper do
 
   describe "#answer_title" do
     let(:answer) do
-      FactoryBot.create(:answer, user:             user,
+      FactoryBot.create(:answer, user:,
                                  content:          "a",
-                                 question_content: "q")
+                                 question_content: "q",)
     end
 
     it "should generate a proper title" do

@@ -10,8 +10,8 @@ describe MarkdownHelper, type: :helper do
                  "items_per_page" => 5,
                  "allowed_hosts"  => [
                    "twitter.com"
-                 ]
-               })
+                 ],
+               },)
   end
 
   describe "#markdown" do

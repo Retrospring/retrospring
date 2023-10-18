@@ -11,9 +11,9 @@ describe FeedbackHelper, type: :helper do
                  "canny"          => {
                    sso:           "sso",
                    feature_board: "feature",
-                   bug_board:     "bug"
-                 }
-               })
+                   bug_board:     "bug",
+                 },
+               },)
   end
 
   describe "#canny_token" do

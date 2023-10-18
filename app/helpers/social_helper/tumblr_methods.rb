@@ -1,4 +1,6 @@
-require 'cgi'
+# frozen_string_literal: true
+
+require "cgi"
 
 module SocialHelper::TumblrMethods
   def tumblr_title(answer)
@@ -13,10 +15,10 @@ module SocialHelper::TumblrMethods
 
   def tumblr_body(answer)
     answer_url = answer_url(
-        id: answer.id,
-        username: answer.user.screen_name,
-        host: APP_CONFIG['hostname'],
-        protocol: (APP_CONFIG['https'] ? :https : :http)
+      id:       answer.id,
+      username: answer.user.screen_name,
+      host:     APP_CONFIG["hostname"],
+      protocol: (APP_CONFIG["https"] ? :https : :http),
     )
 
     "#{answer.content}\n\n[Smile or comment on the answer here](#{answer_url})"
@@ -24,10 +26,10 @@ module SocialHelper::TumblrMethods
 
   def tumblr_share_url(answer)
     answer_url = answer_url(
-      id: answer.id,
+      id:       answer.id,
       username: answer.user.screen_name,
-      host: APP_CONFIG['hostname'],
-      protocol: (APP_CONFIG['https'] ? :https : :http)
+      host:     APP_CONFIG["hostname"],
+      protocol: (APP_CONFIG["https"] ? :https : :http),
     )
 
     "https://www.tumblr.com/widgets/share/tool?shareSource=legacy&posttype=text&title=#{CGI.escape(tumblr_title(answer))}&url=#{CGI.escape(answer_url)}&caption=&content=#{CGI.escape(tumblr_body(answer))}"

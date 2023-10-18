@@ -4,13 +4,13 @@ module ApplicationHelper::GraphMethods
   # Creates <meta> tags for OpenGraph properties from a hash
   # @param values [Hash]
   def opengraph_meta_tags(values)
-    safe_join(values.map { |name, content| tag.meta(property: name, content: content) }, "\n")
+    safe_join(values.map { |name, content| tag.meta(property: name, content:) }, "\n")
   end
 
   # Creates <meta> tags from a hash
   # @param values [Hash]
   def meta_tags(values)
-    safe_join(values.map { |name, content| tag.meta(name: name, content: content) }, "\n")
+    safe_join(values.map { |name, content| tag.meta(name:, content:) }, "\n")
   end
 
   # @param user [User]
@@ -22,7 +22,7 @@ module ApplicationHelper::GraphMethods
                           "og:url":           user_url(user),
                           "og:description":   user.profile.description,
                           "og:site_name":     APP_CONFIG["site_name"],
-                          "profile:username": user.screen_name
+                          "profile:username": user.screen_name,
                         })
   end
 
@@ -33,7 +33,7 @@ module ApplicationHelper::GraphMethods
                 "twitter:site":        "@retrospring",
                 "twitter:title":       user.profile.motivation_header.presence || "Ask me anything!",
                 "twitter:description": "Ask #{user.profile.safe_name} anything on Retrospring",
-                "twitter:image":       full_profile_picture_url(user)
+                "twitter:image":       full_profile_picture_url(user),
               })
   end
 
@@ -45,7 +45,7 @@ module ApplicationHelper::GraphMethods
                           "og:image":       full_profile_picture_url(answer.user),
                           "og:url":         answer_url(answer.user.screen_name, answer.id),
                           "og:description": answer.content,
-                          "og:site_name":   APP_CONFIG["site_name"]
+                          "og:site_name":   APP_CONFIG["site_name"],
                         })
   end
 

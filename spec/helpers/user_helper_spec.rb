@@ -6,10 +6,10 @@ describe UserHelper, type: :helper do
   describe "#user_screen_name" do
     subject do
       helper.user_screen_name(user,
-                              context_user:      context_user,
-                              author_identifier: author_identifier,
-                              url:               url,
-                              link_only:         link_only)
+                              context_user:,
+                              author_identifier:,
+                              url:,
+                              link_only:,)
     end
 
     let(:user) { FactoryBot.create(:user) }
@@ -20,8 +20,8 @@ describe UserHelper, type: :helper do
 
     before do
       stub_const("APP_CONFIG", {
-                   "anonymous_name" => "Anonymous"
-                 })
+                   "anonymous_name" => "Anonymous",
+                 },)
     end
 
     context "moderation view enabled" do
@@ -80,7 +80,7 @@ describe UserHelper, type: :helper do
       context "author is anonymous" do
         let(:author_identifier) { "some_identifier" }
 
-        let(:context_user) { FactoryBot.create(:user, profile: { anon_display_name: anon_display_name }) }
+        let(:context_user) { FactoryBot.create(:user, profile: { anon_display_name: }) }
         context "context user has custom anonymous name" do
           let(:anon_display_name) { "Sneaky Raccoon" }
 
