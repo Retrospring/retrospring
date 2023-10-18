@@ -5,15 +5,16 @@ class Notification < ApplicationRecord
   belongs_to :target, polymorphic: true
 
   after_create do
-    recipient.touch(:notifications_updated_at)
+    recipient.touch(:notifications_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   after_update do
-    recipient.touch(:notifications_updated_at)
+    recipient.touch(:notifications_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   after_destroy do
-    recipient.touch(:notifications_updated_at)
+    # recipient might not exist at this point (account deleted, records are cleaned up async)
+    recipient&.touch(:notifications_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   class << self
