@@ -14,16 +14,16 @@ class Inbox < ApplicationRecord
   end
 
   after_create do
-    user.touch(:inbox_updated_at)
+    user.touch(:inbox_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   after_update do
-    user.touch(:inbox_updated_at)
+    user.touch(:inbox_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   after_destroy do
     # user might not exist at this point (account deleted, records are cleaned up async)
-    user&.touch(:inbox_updated_at)
+    user&.touch(:inbox_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def answer(answer_content, user)
