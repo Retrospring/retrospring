@@ -50,7 +50,7 @@ class Inbox < ApplicationRecord
                 user.profile.anon_display_name || APP_CONFIG["anonymous_name"]
               else
                 question.user.profile.safe_name
-              end
+              end,
       ),
       icon:  notification_icon,
       body:  question.content.truncate(Question::SHORT_QUESTION_MAX_LENGTH),
