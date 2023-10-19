@@ -3,9 +3,7 @@
 require "cgi"
 
 class Ajax::AnswerController < AjaxController
-  include SocialHelper::TwitterMethods
-  include SocialHelper::TumblrMethods
-  include SocialHelper::TelegramMethods
+  include SocialHelper
 
   def create
     params.require :id
@@ -73,6 +71,8 @@ class Ajax::AnswerController < AjaxController
   private
 
   def sharing_hash(answer) = {
+    url:      answer_share_url(answer),
+    text:     prepare_tweet(answer, nil, true),
     twitter:  twitter_share_url(answer),
     tumblr:   tumblr_share_url(answer),
     telegram: telegram_share_url(answer),

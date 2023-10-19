@@ -40,6 +40,17 @@ describe SocialHelper::TwitterMethods, type: :helper do
       end
     end
 
+    context "when the url should be omitted" do
+      let(:question_content) { "question" }
+      let(:answer_content) { "answer" }
+
+      subject { prepare_tweet(answer, nil, true) }
+
+      it "should include the suffix after the link" do
+        expect(subject).to eq("question — answer")
+      end
+    end
+
     context "when a suffix has been passed and the tweet needs to be shortened" do
       subject { prepare_tweet(answer, "#askracc") }
 

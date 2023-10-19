@@ -32,7 +32,8 @@ export function answerEntryHandler(event: Event): void {
 
       const shareButton = inboxEntry.querySelector<HTMLButtonElement>('[data-controller="share"]');
       if (shareButton != null) {
-        shareButton.dataset.shareTextValue = decodeURIComponent(data.sharing.custom).replaceAll('+', ' ');
+        shareButton.dataset.shareUrlValue = data.sharing.url;
+        shareButton.dataset.shareTextValue = data.sharing.text;
       }
 
       const sharing = inboxEntry.querySelector<HTMLElement>('.inbox-entry__sharing');
