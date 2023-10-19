@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddBanReasonAndBannedUntilToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :ban_reason, :string, default: nil

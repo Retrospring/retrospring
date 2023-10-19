@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddInputAndOutlineToTheme < ActiveRecord::Migration[4.2]
   def change
     add_column :themes, :input_color, :integer, default: 0xFFFFFF, null: false

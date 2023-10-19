@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateModerationVotes < ActiveRecord::Migration[4.2]
   def change
     create_table :moderation_votes do |t|
@@ -10,6 +12,6 @@ class CreateModerationVotes < ActiveRecord::Migration[4.2]
 
     add_index :moderation_votes, :user_id
     add_index :moderation_votes, :report_id
-    add_index :moderation_votes, [:user_id, :report_id], unique: true
+    add_index :moderation_votes, %i[user_id report_id], unique: true
   end
 end

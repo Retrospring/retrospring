@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'securerandom'
+require "securerandom"
 
 # This migration changes the IDs of several tables from serial to a
 # timestamped/"snowflake" one.
@@ -13,7 +13,7 @@ class UseTimestampedIds < ActiveRecord::Migration[5.2]
   def up
     # PL/pgSQL is just spicy pascal
     # don't @ me
-    execute <<~SQL
+    execute <<~SQL.squish
       CREATE or replace FUNCTION gen_timestamp_id(tblname text) RETURNS bigint AS $$
       DECLARE
         timepart bigint;
@@ -30,15 +30,15 @@ class UseTimestampedIds < ActiveRecord::Migration[5.2]
 
     # we need to migrate related columns to bigints for this to work
     {
-      question: %i[answers inboxes],
-      answer: %i[comments smiles subscriptions],
-      comment: %i[comment_smiles],
-      user: %i[announcements answers comment_smiles comments inboxes list_members lists moderation_comments moderation_votes questions reports services smiles subscriptions themes users_roles],
+      question:  %i[answers inboxes],
+      answer:    %i[comments smiles subscriptions],
+      comment:   %i[comment_smiles],
+      user:      %i[announcements answers comment_smiles comments inboxes list_members lists moderation_comments moderation_votes questions reports services smiles subscriptions themes users_roles],
 
       # polymorphic tables go brrr
       recipient: %i[notifications],
-      source: %i[relationships],
-      target: %i[notifications relationships reports],
+      source:    %i[relationships],
+      target:    %i[notifications relationships reports],
     }.each do |ref, tbls|
       tbls.each do |tbl|
         say "Migrating #{tbl}.#{ref}_id to bigint"

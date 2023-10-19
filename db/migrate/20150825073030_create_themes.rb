@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateThemes < ActiveRecord::Migration[4.2]
   def change
     create_table :themes do |t|
@@ -38,6 +40,6 @@ class CreateThemes < ActiveRecord::Migration[4.2]
       t.timestamps null: false
     end
 
-    add_index :themes, [:user_id, :created_at]
+    add_index :themes, %i[user_id created_at]
   end
 end

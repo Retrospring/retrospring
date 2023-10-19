@@ -5,7 +5,7 @@ class AddDirectToQuestions < ActiveRecord::Migration[5.2]
     add_column :questions, :direct, :boolean, null: false, default: false
 
     # default all legacy questions to direct
-    execute 'UPDATE questions SET direct = true;'
+    execute "UPDATE questions SET direct = true;"
 
     # All questions where
     # - the author is not 'justask' (generated questions), and
