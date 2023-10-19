@@ -15,7 +15,7 @@ module SocialHelper::TelegramMethods
       id:       answer.id,
       username: answer.user.screen_name,
       host:     APP_CONFIG["hostname"],
-      protocol: (APP_CONFIG["https"] ? :https : :http)
+      protocol: (APP_CONFIG["https"] ? :https : :http),
     )
 
     %(https://t.me/share/url?url=#{CGI.escape(url)}&text=#{CGI.escape(telegram_text(answer))})

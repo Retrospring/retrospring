@@ -30,7 +30,7 @@ module MarkdownHelper
   def raw_markdown(content)
     renderer = Redcarpet::Render::HTML.new(**MARKDOWN_RENDERER_OPTS)
     md = Redcarpet::Markdown.new(renderer, **MARKDOWN_OPTS)
-    raw md.render content
+    raw md.render content # rubocop:disable Rails/OutputSafety
   end
 
   def get_markdown(path, relative_to = Rails.root)

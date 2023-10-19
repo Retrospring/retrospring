@@ -14,15 +14,16 @@ class Inbox < ApplicationRecord
   end
 
   after_create do
-    user.touch(:inbox_updated_at)
+    user.touch(:inbox_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   after_update do
-    user.touch(:inbox_updated_at)
+    user.touch(:inbox_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   after_destroy do
-    user.touch(:inbox_updated_at)
+    # user might not exist at this point (account deleted, records are cleaned up async)
+    user&.touch(:inbox_updated_at) # rubocop:disable Rails/SkipsModelValidations
   end
 
   def answer(answer_content, user)
@@ -49,7 +50,7 @@ class Inbox < ApplicationRecord
                 user.profile.anon_display_name || APP_CONFIG["anonymous_name"]
               else
                 question.user.profile.safe_name
-              end
+              end,
       ),
       icon:  notification_icon,
       body:  question.content.truncate(Question::SHORT_QUESTION_MAX_LENGTH),
