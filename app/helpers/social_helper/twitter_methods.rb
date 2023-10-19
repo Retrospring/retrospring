@@ -4,13 +4,13 @@ require "cgi"
 
 module SocialHelper::TwitterMethods
   include MarkdownHelper
-  
+
   def prepare_tweet(answer, post_tag = nil, omit_url = false)
     question_content = twitter_markdown answer.question.content.gsub(/@(\w+)/, '\1')
     original_question_length = question_content.length
     answer_content = twitter_markdown answer.content
     original_answer_length = answer_content.length
-    
+
     unless omit_url
       answer_url = answer_url(
         id:       answer.id,
