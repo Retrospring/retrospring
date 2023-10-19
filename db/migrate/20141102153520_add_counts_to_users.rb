@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddCountsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :friend_count, :integer, default: 0, null: false

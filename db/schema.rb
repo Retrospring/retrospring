@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +13,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2023_10_18_172518) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,8 +52,8 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.datetime "pinned_at"
     t.index ["created_at"], name: "index_answers_on_created_at", order: :desc
     t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["user_id", "created_at"], name: "index_answers_on_user_id_and_created_at"
-    t.index ["user_id", "pinned_at"], name: "index_answers_on_user_id_and_pinned_at"
+    t.index %w[user_id created_at], name: "index_answers_on_user_id_and_created_at"
+    t.index %w[user_id pinned_at], name: "index_answers_on_user_id_and_pinned_at"
   end
 
   create_table "appendables", force: :cascade do |t|
@@ -63,8 +64,8 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["parent_id", "parent_type"], name: "index_appendables_on_parent_id_and_parent_type"
-    t.index ["user_id", "created_at"], name: "index_appendables_on_user_id_and_created_at"
+    t.index %w[parent_id parent_type], name: "index_appendables_on_parent_id_and_parent_type"
+    t.index %w[user_id created_at], name: "index_appendables_on_user_id_and_created_at"
   end
 
   create_table "comments", id: :bigint, default: -> { "gen_timestamp_id('comments'::text)" }, force: :cascade do |t|
@@ -75,7 +76,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.datetime "updated_at"
     t.integer "smile_count", default: 0, null: false
     t.index ["answer_id"], name: "index_comments_on_answer_id"
-    t.index ["user_id", "created_at"], name: "index_comments_on_user_id_and_created_at"
+    t.index %w[user_id created_at], name: "index_comments_on_user_id_and_created_at"
   end
 
   create_table "inboxes", id: :serial, force: :cascade do |t|
@@ -93,7 +94,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.bigint "user_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["list_id", "user_id"], name: "index_list_members_on_list_id_and_user_id", unique: true
+    t.index %w[list_id user_id], name: "index_list_members_on_list_id_and_user_id", unique: true
   end
 
   create_table "lists", id: :serial, force: :cascade do |t|
@@ -103,7 +104,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.boolean "private", default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["user_id", "name"], name: "index_lists_on_user_id_and_name", unique: true
+    t.index %w[user_id name], name: "index_lists_on_user_id_and_name", unique: true
   end
 
   create_table "mute_rules", id: :bigint, default: -> { "gen_timestamp_id('mute_rules'::text)" }, force: :cascade do |t|
@@ -150,7 +151,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.datetime "updated_at"
     t.integer "answer_count", default: 0, null: false
     t.boolean "direct", default: false, null: false
-    t.index ["user_id", "created_at"], name: "index_questions_on_user_id_and_created_at"
+    t.index %w[user_id created_at], name: "index_questions_on_user_id_and_created_at"
   end
 
   create_table "relationships", id: :serial, force: :cascade do |t|
@@ -159,7 +160,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "type", null: false
-    t.index ["source_id", "target_id", "type"], name: "index_relationships_on_source_id_and_target_id_and_type", unique: true
+    t.index %w[source_id target_id type], name: "index_relationships_on_source_id_and_target_id_and_type", unique: true
     t.index ["source_id"], name: "index_relationships_on_source_id"
     t.index ["target_id"], name: "index_relationships_on_target_id"
     t.index ["type"], name: "index_relationships_on_type"
@@ -173,8 +174,8 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.datetime "updated_at"
     t.boolean "deleted", default: false
     t.string "reason"
-    t.index ["type", "target_id"], name: "index_reports_on_type_and_target_id"
-    t.index ["user_id", "created_at"], name: "index_reports_on_user_id_and_created_at"
+    t.index %w[type target_id], name: "index_reports_on_type_and_target_id"
+    t.index %w[user_id created_at], name: "index_reports_on_user_id_and_created_at"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -183,8 +184,8 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+    t.index %w[name resource_type resource_id], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index %w[resource_type resource_id], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "rpush_apps", force: :cascade do |t|
@@ -253,7 +254,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.string "thread_id"
     t.boolean "dry_run", default: false, null: false
     t.boolean "sound_is_json", default: false
-    t.index ["delivered", "failed", "processing", "deliver_after", "created_at"], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))"
+    t.index %w[delivered failed processing deliver_after created_at], name: "index_rpush_notifications_multi", where: "((NOT delivered) AND (NOT failed))"
   end
 
   create_table "subscriptions", id: :serial, force: :cascade do |t|
@@ -261,7 +262,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.bigint "answer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "answer_id"], name: "index_subscriptions_on_user_id_and_answer_id"
+    t.index %w[user_id answer_id], name: "index_subscriptions_on_user_id_and_answer_id"
   end
 
   create_table "themes", id: :serial, force: :cascade do |t|
@@ -292,13 +293,13 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.integer "input_placeholder", default: 7107965, null: false
     t.integer "raised_text", default: 0, null: false
     t.integer "raised_accent_text", default: 0, null: false
-    t.index ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at"
+    t.index %w[user_id created_at], name: "index_themes_on_user_id_and_created_at"
   end
 
   create_table "totp_recovery_codes", force: :cascade do |t|
     t.bigint "user_id"
     t.string "code", limit: 8
-    t.index ["user_id", "code"], name: "index_totp_recovery_codes_on_user_id_and_code"
+    t.index %w[user_id code], name: "index_totp_recovery_codes_on_user_id_and_code"
   end
 
   create_table "user_bans", force: :cascade do |t|
@@ -375,7 +376,7 @@ ActiveRecord::Schema.define(version: 2023_10_18_172518) do
     t.bigint "user_id"
     t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
-    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index %w[user_id role_id], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 

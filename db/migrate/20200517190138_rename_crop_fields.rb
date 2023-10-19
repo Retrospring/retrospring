@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameCropFields < ActiveRecord::Migration[5.2]
   def change
     rename_column :users, :crop_h, :profile_picture_h
