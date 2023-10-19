@@ -13,7 +13,7 @@ class UseTimestampedIds < ActiveRecord::Migration[5.2]
   def up
     # PL/pgSQL is just spicy pascal
     # don't @ me
-    execute <<~SQL.squish
+    execute <<~SQL
       CREATE or replace FUNCTION gen_timestamp_id(tblname text) RETURNS bigint AS $$
       DECLARE
         timepart bigint;
