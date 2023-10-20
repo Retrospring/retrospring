@@ -1,0 +1,8 @@
+en:
+  answers:
+    zero: "0 answers"
+    one: "1 answer"
+    other: "%{count} answers"
+  asked_html: "%{user} asked %{time} ago"
+  visible_to_you: "Only visible to you as it was asked directly"
+  visible_mod_mode: "You can see this because you are in moderation view"
