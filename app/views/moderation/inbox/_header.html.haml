@@ -4,6 +4,6 @@
       .d-flex
         .flex-shrink-0
           %a{ href: user_path(user) }
-            = render AvatarComponent.new(user:, size: "md", classes: ["answerbox__question-user-avatar"])
+            = render AvatarComponent.new(user:, size: "md", classes: ["question__avatar"])
         .flex-grow-1
           = t(".title_html", screen_name: user.screen_name, user_id: user.id)

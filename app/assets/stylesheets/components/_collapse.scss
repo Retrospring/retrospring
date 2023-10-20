@@ -12,7 +12,7 @@
     }
   }
 
-  &.answerbox__question-text {
+  &.question__text {
     max-height: 15rem;
 
     @include media-breakpoint-up('sm') {

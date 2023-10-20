@@ -5,7 +5,7 @@
         %a{ href: user_path(u) }
           = render AvatarComponent.new(user: u, size: "md", classes: ["me-2"])
       .flex-grow-1
-        %h6.answerbox__question-user
+        %h6.question__user
           - if u.profile.display_name.blank?
             %a{ href: user_path(u) }
               = u.screen_name
@@ -13,4 +13,4 @@
             %a{ href: user_path(u) }
               = u.profile.display_name
             %span.text-muted= u.screen_name
-        %p.answerbox__question-text= t(".#{type}", value: value, count: value)
+        %p.question__text= t(".#{type}", value: value, count: value)
