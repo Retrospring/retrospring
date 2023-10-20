@@ -22,7 +22,7 @@ class Settings::ThemeController < ApplicationController
     else
       flash[:error] = t(".error", errors: current_user.theme.errors.messages.flatten.join(" "))
     end
-    redirect_to settings_theme_path
+    render :edit
   end
 
   def destroy
