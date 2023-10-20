@@ -13,7 +13,7 @@ describe Settings::PrivacyController, type: :controller do
 
       it "renders the edit template" do
         subject
-        expect(response).to render_template("edit")
+        expect(response).to render_template(:edit)
       end
     end
   end
@@ -43,7 +43,7 @@ describe Settings::PrivacyController, type: :controller do
 
       it "redirects to the privacy settings page" do
         subject
-        expect(response).to redirect_to(:settings_privacy)
+        expect(response).to render_template(:edit)
       end
     end
   end

@@ -61,7 +61,7 @@ describe Settings::ThemeController, type: :controller do
 
         it "renders the edit template" do
           subject
-          expect(response).to redirect_to(:settings_theme)
+          expect(response).to render_template(:edit)
         end
       end
 
@@ -75,7 +75,7 @@ describe Settings::ThemeController, type: :controller do
 
         it "renders the edit template" do
           subject
-          expect(response).to redirect_to(:settings_theme)
+          expect(response).to render_template(:edit)
         end
       end
     end

@@ -14,6 +14,6 @@ class Settings::ProfileController < ApplicationController
       flash[:error] = t(".error")
     end
 
-    redirect_to settings_profile_path
+    render :edit
   end
 end
