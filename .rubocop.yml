@@ -27,6 +27,10 @@ Lint/NestedMethodDefinition:
   Exclude:
     - api/sinatra/**/*
 
+Lint/MissingSuper:
+  Exclude:
+    - app/components/**/*
+
 
 ### Metrics
 
