@@ -1,6 +1,8 @@
 - provide(:title, question_title(@question))
-= render "question", question: @question, hidden: false
-= render "question", question: @question, hidden: true
+.card.question--sticky
+  .container
+    .card-body
+      = render QuestionComponent.new(question: @question)
 .container.question-page
   #answers{ data: { controller: "navigation" } }
     %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
