@@ -70,7 +70,6 @@ gem "jwt", "~> 2.7"
 
 group :development do
   gem "binding_of_caller"
-  gem "spring", "~> 4.1"
 end
 
 gem "puma"
