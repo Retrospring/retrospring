@@ -1,30 +1,4 @@
 - type ||= nil
 .card.questionbox{ data: { id: q.id } }
   .card-body{ data: { controller: q.long? ? "collapse" : nil } }
-    .d-flex
-      - if type == "discover"
-        .flex-shrink-0
-          %a{ href: user_screen_name(q.user, link_only: true) }
-            = render AvatarComponent.new(user: q.user, size: "md", classes: ["me-2"])
-      .flex-grow-1
-        %h6.text-muted.answerbox__question-user
-          - if type.nil? && q.direct
-            - if user_signed_in? && q.user == current_user
-              %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_to_you") } }
-            - elsif moderation_view?
-              %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_mod_mode") } }
-          = t("answerbox.header.asked_html", user: user_screen_name(q.user), time: time_tooltip(q))
-          - if q.answer_count > 1
-            ·
-            %a{ href: question_path(q.user.screen_name, q.id) }
-              = pluralize(q.answer_count, t("voc.answer"))
-        .answerbox__question-text{ class: q.long? ? "collapsed" : "", data: { collapse_target: "content" } }
-          = question_markdown q.content
-        - if q.long?
-          = render "shared/collapse", type: "question"
-      - if user_signed_in?
-        .flex-shrink-0.ms-auto
-          .btn-group
-            %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-              %span.caret
-            = render "actions/question", question: q
+    = render QuestionComponent.new(question: q, hide_avatar: type == "discover" ? false : true, profile_question: true)

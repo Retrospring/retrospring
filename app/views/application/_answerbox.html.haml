@@ -1,7 +1,8 @@
 - display_all ||= nil
 .card.answerbox{ data: { id: a.id, q_id: a.question.id, navigation_target: "traversable" } }
   - if @question.nil?
-    = render "answerbox/header", a: a, display_all: display_all
+    .card-header
+      = render QuestionComponent.new(question: a.question, context_user: a.user, collapse: !display_all)
   .card-body
     .answerbox__answer-body{ data: { controller: a.long? ? "collapse" : nil } }
       .answerbox__answer-text{ class: a.long? && !display_all ? "collapsed" : "", data: { collapse_target: "content" } }

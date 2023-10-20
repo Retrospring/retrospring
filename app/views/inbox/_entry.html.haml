@@ -1,30 +1,6 @@
 .card.inbox-entry{ id: "inbox_#{i.id}", class: i.new? ? "inbox-entry--new" : "", data: { id: i.id } }
   .card-header
-    .d-flex
-      - unless i.question.author_is_anonymous
-        .flex-shrink-0
-          %a.pull-left{ href: user_path(i.question.user) }
-            = render AvatarComponent.new(user: i.question.user, size: "md", classes: ["answerbox__question-user-avatar"])
-      .flex-grow-1
-        %h6.text-muted.answerbox__question-user
-          - if i.question.author_is_anonymous
-            %i.fas.fa-user-secret{ title: t('.anon_hint') }
-          = t(".asked_html", user: user_screen_name(i.question.user, context_user: i.user, author_identifier: i.question.author_is_anonymous ? i.question.author_identifier : nil), time: time_tooltip(i.question))
-          - if !i.question.author_is_anonymous && i.question.answer_count.positive?
-            ·
-            %a{ href: question_path(i.question.user.screen_name, i.question.id) }
-              = t(".answers", count: i.question.answer_count)
-        .answerbox__question-body{ data: { controller: i.question.long? ? "collapse" : nil } }
-          .answerbox__question-text{ class: i.question.long? ? "collapsed" : "", data: { collapse_target: "content" } }
-            = question_markdown i.question.content
-          - if i.question.long?
-            = render "shared/collapse", type: "question"
-      - if i.question.user_id != current_user.id || current_user.has_cached_role?(:administrator)
-        .flex-shrink-0.ms-auto
-          .btn-group
-            %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-              %span.caret
-            = render "actions/question", question: i.question
+    = render QuestionComponent.new(question: i.question, context_user: i.user)
   - if current_user == i.user
     .card-body
       %textarea.form-control.mb-3{ name: "ib-answer", placeholder: t(".placeholder"), data: { id: i.id } }
