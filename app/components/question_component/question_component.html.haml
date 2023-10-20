@@ -1,0 +1,30 @@
+.d-flex
+  - unless hide_avatar?
+    .flex-shrink-0
+      %a{ href: user_path(@question.user) }
+        = render AvatarComponent.new(user: @question.user, size: "md", classes: ["question__avatar"])
+  .flex-grow-1
+    %h6.text-muted.question__user
+      - if @question.author_is_anonymous
+        %i.fas.fa-user-secret{ title: t(".anon_hint") }
+      - if @profile_question && @question.direct
+        - if user_signed_in? && @question.user == current_user
+          %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_to_you") } }
+        - elsif moderation_view?
+          %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_mod_mode") } }
+      = t(".asked_html", user: user_screen_name(@question.user, context_user: @context_user, author_identifier: author_identifier), time: time_tooltip(@question))
+      - if follower_question?
+        ·
+        %a{ href: question_path(@question.user.screen_name, @question.id), data: { selection_hotkey: "a" } }
+          = t(".answers", count: @question.answer_count)
+    .question__body{ data: { controller: @question.long? ? "collapse" : nil } }
+      .question__text{ class: @question.long? && @collapse ? "collapsed" : "", data: { collapse_target: "content" } }
+        = question_markdown @question.content
+      - if @question.long? && @collapse
+        = render "shared/collapse", type: "question"
+  - if user_signed_in?
+    .flex-shrink-0.ms-auto
+      .btn-group
+        %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+          %span.caret
+        = render "actions/question", question: @question
