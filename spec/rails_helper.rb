@@ -11,6 +11,8 @@ require "rspec/rails"
 require "rspec/its"
 require "devise"
 require "rspec-sidekiq"
+require "view_component/test_helpers"
+require "view_component/system_test_helpers"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -68,6 +70,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include ViewComponent::SystemTestHelpers, type: :component
 end
 
 Shoulda::Matchers.configure do |config|
