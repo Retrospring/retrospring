@@ -8,7 +8,7 @@ describe "inbox/_entry.html.haml", type: :view do
   let(:user)                { FactoryBot.create(:user, sharing_enabled:, sharing_custom_url:) }
   let(:sharing_enabled)     { true }
   let(:sharing_custom_url)  { nil }
-  let(:question)            { FactoryBot.create(:question, content: "owo what's this?", author_is_anonymous:, user: question_user, answer_count:) }
+  let(:question)            { FactoryBot.create(:question, content: "owo what's this?", author_is_anonymous:, user: question_user, answer_count:, direct: false) }
   let(:author_is_anonymous) { true }
   let(:question_user)       { nil }
   let(:answer_count)        { 0 }
