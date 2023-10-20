@@ -1,18 +1,26 @@
-.question {
-  &--fixed {
-    position: absolute;
-    width: 100%;
-    z-index: 999;
+@use "sass:map";
 
-    @include media-breakpoint-up('sm') {
-      position: fixed;
-    }
+.question {
+
+  &__avatar {
+    margin-right: map.get($spacers, 2);
+    border-radius: $avatar-border-radius;
   }
 
-  &--hidden {
-    visibility: hidden;
-    position: relative;
-    box-shadow: none;
-    z-index: -1;
+  &__text,
+  &__user {
+    margin-bottom: 0;
+    overflow: hidden;
+    word-break: break-word;
+  }
+
+  &--sticky {
+    border-radius: 0;
+    width: 100%;
+
+    @include media-breakpoint-up('sm') {
+      position: sticky;
+      top: $navbar-height;
+    }
   }
 }
