@@ -56,7 +56,7 @@ class TypoedEmailValidator < ActiveModel::EachValidator
 
     # check if the TLD is valid
     tld = domain_parts.last
-    return false unless TLDv.valid?(tld)
+    return false unless TLDv.valid?(tld) || (Rails.env.test? && %w[example test].include?(tld))
 
     # finally, common typos
     return false if INVALID_ENDINGS.any? { value.end_with?(_1) }
