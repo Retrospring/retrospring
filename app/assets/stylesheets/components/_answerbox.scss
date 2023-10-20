@@ -1,8 +1,6 @@
 @use "sass:map";
 
 .answerbox {
-  &__question-text,
-  &__question-user,
   &__answer-user,
   &__answer-date {
     margin-bottom: 0;
@@ -25,7 +23,6 @@
     margin-bottom: map.get($spacers, 3);
   }
 
-  &__question-user-avatar,
   &__answer-user-avatar {
     margin-right: map.get($spacers, 2);
     border-radius: $avatar-border-radius;
