@@ -45,7 +45,7 @@ describe "inbox/_entry.html.haml", type: :view do
     let(:author_is_anonymous) { false }
 
     it "has an avatar" do
-      expect(rendered).to have_css(%(img.answerbox__question-user-avatar))
+      expect(rendered).to have_css(%(img.question__avatar))
     end
 
     it "does not have an icon indicating the author is anonymous" do
