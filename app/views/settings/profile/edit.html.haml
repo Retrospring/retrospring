@@ -5,7 +5,7 @@
       %div{ data: { controller: "cropper", cropper_aspect_ratio_value: "1" } }
         .d-flex
           .flex-shrink-0
-            %img.avatar-lg.me-3{ src: current_user.profile_picture.url(:medium) }
+            = render AvatarComponent.new(user: current_user, size: "lg", classes: ["me-3"])
           .flex-grow-1
             = f.file_field :profile_picture, accept: APP_CONFIG[:accepted_image_formats].join(","), data: { cropper_target: "input", action: "cropper#change" }
 

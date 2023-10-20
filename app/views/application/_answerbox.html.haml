@@ -14,7 +14,7 @@
           .d-flex
             .flex-shrink-0
               %a{ href: user_path(a.user) }
-                %img.answerbox__answer-user-avatar.avatar-sm{ src: a.user.profile_picture.url(:small), loading: :lazy }
+                = render AvatarComponent.new(user: a.user, size: "sm", classes: ["answerbox__answer-user-avatar"])
             .flex-grow-1
               %h6.answerbox__answer-user
                 = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))

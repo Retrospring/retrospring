@@ -18,7 +18,7 @@
           %p.px-4.pb-2
             - list.members.each do |member|
               %a{ href: user_path(member.user), title: member.user.screen_name, data: { bs_toggle: :tooltip, bs_placement: :top } }
-                %img.avatar-xs{ src: member.user.profile_picture.url(:small), loading: :lazy }
+                = render AvatarComponent.new(user: member.user, size: "xs")
       - if !list && lists.empty?
         .p-3= t(".lists.notice_html")
       - lists.each do |list|

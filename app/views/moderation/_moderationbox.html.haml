@@ -1,6 +1,6 @@
 .card.moderationbox{ data: { id: report.id } }
   .card-header
-    %img.avatar-sm{ src: report.user.profile_picture.url(:small), loading: :lazy }
+    = render AvatarComponent.new(user: report.user, size: "sm")
     = t(".reported_html",
       user: user_screen_name(report.user),
       content: report.type.sub("Reports::", ""),

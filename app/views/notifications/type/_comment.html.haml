@@ -3,7 +3,7 @@
     %i.fa.fa-2x.fa-fw.fa-comments
   .flex-grow-1
     .notification__heading
-      %img.avatar-xs{ src: notification.target.user.profile_picture.url(:small), loading: :lazy }
+      = render AvatarComponent.new(user: notification.target.user, size: "xs")
       - if notification.target.answer.user == current_user
         = t(".heading_html",
               user: user_screen_name(notification.target.user),

@@ -1,6 +1,6 @@
 .d-flex.notification
   .flex-shrink-0.notification__icon
-    %img.avatar-sm{ src: notification.target.source.profile_picture.url(:small), loading: :lazy }
+    = render AvatarComponent.new(user: notification.target.source, size: "sm")
   .flex-grow-1
     %h6.notification__user
       = user_screen_name notification.target.source

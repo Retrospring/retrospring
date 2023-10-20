@@ -4,7 +4,7 @@
       - unless i.question.author_is_anonymous
         .flex-shrink-0
           %a.pull-left{ href: user_path(i.question.user) }
-            %img.answerbox__question-user-avatar.avatar-md{ src: i.question.user.profile_picture.url(:small), loading: :lazy }
+            = render AvatarComponent.new(user: i.question.user, size: "md", classes: ["answerbox__question-user-avatar"])
       .flex-grow-1
         %h6.text-muted.answerbox__question-user
           - if i.question.author_is_anonymous

@@ -3,7 +3,7 @@
     .d-flex
       .flex-shrink-0
         %a{ href: user_path(u) }
-          %img.avatar-md.me-2{ src: u.profile_picture.url(:medium) }
+          = render AvatarComponent.new(user: u, size: "md", classes: ["me-2"])
       .flex-grow-1
         %h6.answerbox__question-user
           - if u.profile.display_name.blank?

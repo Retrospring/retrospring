@@ -34,7 +34,7 @@
           %i.fa.fa-pencil-square-o
       %li.nav-item.dropdown.profile--image-dropdown
         %a.nav-link.dropdown-toggle.p-sm-0{ href: "#", data: { bs_toggle: :dropdown } }
-          %img.avatar-md.d-none.d-sm-inline{ src: current_user.profile_picture.url(:small) }
+          = render AvatarComponent.new(user: current_user, size: "md", classes: ["d-none", "d-sm-inline"])
           %span.d-inline.d-sm-none
             = current_user.screen_name
             %b.caret

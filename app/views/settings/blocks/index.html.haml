@@ -6,7 +6,7 @@
       - @blocks.each do |block|
         %li.list-group-item
           .d-flex
-            %img.avatar-md.d-none.d-sm-inline.me-2{ src: block.target.profile_picture.url(:small) }
+            = render AvatarComponent.new(user: block.target, size: "md", classes: ["d-none", "d-sm-inline", "me-2"])
             %div
               %p.mb-0= user_screen_name(block.target)
               %p.text-muted.mb-0= t(".blocked", time: time_ago_in_words(block.created_at))
