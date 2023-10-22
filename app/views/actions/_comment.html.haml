@@ -1,5 +1,5 @@
 .dropdown-menu.dropdown-menu-end{ role: :menu }
-  %a.dropdown-item{ href: "#", data: { bs_target: "#modal-view-comment#{comment.id}-smiles", bs_toggle: :modal } }
+  = link_to comment_reactions_path(username: comment.user.screen_name, id: comment.id), class: "dropdown-item", data: { turbo_frame: "modal" } do
     %i.fa.fa-fw.fa-smile-o
     = t(".view_smiles")
   - if privileged?(comment.user) || privileged?(answer.user)

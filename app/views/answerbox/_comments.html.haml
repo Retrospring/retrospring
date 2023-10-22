@@ -4,7 +4,6 @@
   %ul.comment__container
     - comments.order(:created_at).each do |comment|
       %li.comment{ data: { comment_id: comment.id } }
-        %div{ style: "height: 0; width: 0" }= render "modal/comment_smiles", comment: comment
         .d-flex
           .flex-shrink-0
             %a{ href: user_path(comment.user) }
