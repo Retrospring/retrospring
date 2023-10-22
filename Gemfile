@@ -119,3 +119,4 @@ gem "mail", "~> 2.7.1"
 
 gem "prometheus-client", "~> 4.2"
 
+gem "meilisearch-rails", "~> 0.10.1"

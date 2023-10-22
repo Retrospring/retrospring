@@ -3,18 +3,19 @@
     .col-sm-10.col-md-10.col-lg-9.mx-auto
       .card
         .card-body
-          = bootstrap_form_tag layout: :inline, method: :get do |f|
-            = f.text_field :q, skip_label: true, append: f.primary("Search")
+          = bootstrap_form_with url: search_path, layout: :inline, method: :get do |f|
+            = f.text_field :q, skip_label: true, append: f.primary("Search"), value: params[:q]
+            = f.check_box :multi_search, label: "Multisearch"
   - unless @results.blank?
     .container-lg.container--main
       .row
         .col-sm-10.col-md-10.col-lg-9.mx-auto
           - @results.each do |result|
-            - case result.searchable
+            - case result
               - when Answer
-                = render "answerbox", a: result.searchable, display_all: false, subscribed_answer_ids: []
+                = render "answerbox", a: result, display_all: false, subscribed_answer_ids: []
               - when Question
-                = render "shared/question", q: result.searchable, type: nil
+                = render "shared/question", q: result, type: nil
 
 = render 'shared/links'
 

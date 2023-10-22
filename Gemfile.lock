@@ -249,6 +249,10 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    meilisearch (0.25.1)
+      httparty (>= 0.17.1, < 0.22.0)
+    meilisearch-rails (0.10.1)
+      meilisearch (~> 0.25.0)
     method_source (1.0.0)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)
@@ -535,6 +539,7 @@ DEPENDENCIES
   letter_opener
   lograge
   mail (~> 2.7.1)
+  meilisearch-rails (~> 0.10.1)
   mini_magick
   net-imap
   net-pop

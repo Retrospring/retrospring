@@ -1,6 +1,12 @@
 class Question < ApplicationRecord
   include Question::AnswerMethods
 
+  include MeiliSearch::Rails
+
+  meilisearch do
+    attribute :content
+  end
+
   belongs_to :user, optional: true
   has_many :answers, dependent: :destroy
   has_many :inboxes, dependent: :destroy
