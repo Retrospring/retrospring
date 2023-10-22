@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserBans < ActiveRecord::Migration[5.2]
   def up
     create_table :user_bans do |t|
@@ -14,7 +16,6 @@ class CreateUserBans < ActiveRecord::Migration[5.2]
     (user_id, reason, expires_at, created_at, updated_at)
     SELECT users.id, users.ban_reason, users.banned_until, users.updated_at, NOW() FROM users
     WHERE banned_until IS NOT NULL AND NOT permanently_banned;"
-
 
     execute "INSERT INTO user_bans
     (user_id, reason, expires_at, created_at, updated_at)

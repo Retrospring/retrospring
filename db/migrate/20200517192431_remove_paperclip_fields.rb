@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemovePaperclipFields < ActiveRecord::Migration[5.2]
   def change
     remove_column :users, :profile_picture_content_type

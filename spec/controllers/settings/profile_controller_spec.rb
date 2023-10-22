@@ -37,7 +37,7 @@ describe Settings::ProfileController, type: :controller do
 
       it "redirects to the edit_user_profile page" do
         subject
-        expect(response).to redirect_to(:settings_profile)
+        expect(response).to render_template(:edit)
       end
     end
   end

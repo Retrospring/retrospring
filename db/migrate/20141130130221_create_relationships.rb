@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRelationships < ActiveRecord::Migration[4.2]
   def change
     create_table :relationships do |t|
@@ -9,6 +11,6 @@ class CreateRelationships < ActiveRecord::Migration[4.2]
 
     add_index :relationships, :source_id
     add_index :relationships, :target_id
-    add_index :relationships, [:source_id, :target_id], unique: true
+    add_index :relationships, %i[source_id target_id], unique: true
   end
 end

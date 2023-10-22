@@ -19,6 +19,6 @@ class Settings::PrivacyController < ApplicationController
     else
       flash[:error] = t(".error")
     end
-    redirect_to settings_privacy_path
+    render :edit
   end
 end

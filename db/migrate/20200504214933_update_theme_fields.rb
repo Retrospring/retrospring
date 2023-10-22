@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateThemeFields < ActiveRecord::Migration[5.2]
   def up
     # CSS file related fields
