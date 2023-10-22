@@ -17,8 +17,7 @@ class QuestionComponent < ApplicationComponent
 
   def author_identifier = @question.author_is_anonymous ? @question.author_identifier : nil
 
-  def follower_question? = !@question.author_is_anonymous && !@question.direct && @question.answer_count > 0
+  def follower_question? = !@question.author_is_anonymous && !@question.direct && @question.answer_count.positive?
 
   def hide_avatar? = @hide_avatar || @question.author_is_anonymous
-
 end
