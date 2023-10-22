@@ -21,6 +21,6 @@ module User::TimelineMethods
       .where("answers.user_id in (?) OR answers.user_id = ?", following_ids, id)
       .order(:created_at)
       .reverse_order
-      .includes(comments: %i[user smiles], question: { user: :profile }, user: [:profile], smiles: [:user])
+      .includes(question: { user: [:profile] }, user: [:profile])
   end
 end
