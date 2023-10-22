@@ -119,4 +119,3 @@ gem "mail", "~> 2.7.1"
 
 gem "prometheus-client", "~> 4.2"
 
-gem "pg_search", "~> 2.3"

@@ -1,9 +1,6 @@
 class Answer < ApplicationRecord
   extend Answer::TimelineMethods
 
-  include PgSearch::Model
-  multisearchable against: [:content]
-
   belongs_to :user, counter_cache: :answered_count
   belongs_to :question, counter_cache: :answer_count
   has_many :comments, dependent: :destroy

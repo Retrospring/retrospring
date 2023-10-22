@@ -4,6 +4,6 @@ class SearchController < ApplicationController
     query = params[:q]
     return if query.blank?
 
-    @results = PgSearch.multisearch(query).limit(10)
+    @results = []
   end
 end
