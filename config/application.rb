@@ -27,12 +27,14 @@ module Justask
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.load_defaults 6.0
+    config.load_defaults 7.0
     # add `lib/` to the autoload paths so zeitwerk can find e.g. our `UseCase`s
     # without an explicit `require`, and also take care of hot reloading the code
     # (really useful in development!)
-    config.autoload_paths << config.root.join("lib")
+    config.autoload_once_paths << config.root.join("lib")
     config.eager_load_paths << config.root.join("lib")
+    # This lowers memory usage from Bootsnap
+    config.add_autoload_paths_to_load_path = false
 
     # Use Sidekiq for background jobs
     config.active_job.queue_adapter = :sidekiq
