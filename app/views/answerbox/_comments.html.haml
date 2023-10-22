@@ -8,7 +8,7 @@
         .d-flex
           .flex-shrink-0
             %a{ href: user_path(comment.user) }
-              %img.comment__user-avatar.avatar-sm{ src: comment.user.profile_picture.url(:small), loading: :lazy }
+              = render AvatarComponent.new(user: comment.user, size: "sm", classes: ["comment__user-avatar"])
           .flex-grow-1
             %h6.comment__user
               = user_screen_name comment.user

@@ -66,6 +66,8 @@ gem "fake_email_validator"
 # TLD validation
 gem "tldv", "~> 0.1.0"
 
+gem "view_component"
+
 gem "jwt", "~> 2.7"
 
 group :development do

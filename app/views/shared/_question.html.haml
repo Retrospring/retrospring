@@ -5,7 +5,7 @@
       - if type == "discover"
         .flex-shrink-0
           %a{ href: user_screen_name(q.user, link_only: true) }
-            %img.avatar-md.me-2{ src: q.user&.profile_picture&.url(:small), loading: :lazy }
+            = render AvatarComponent.new(user: q.user, size: "md", classes: ["me-2"])
       .flex-grow-1
         %h6.text-muted.answerbox__question-user
           - if type.nil? && q.direct
