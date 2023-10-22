@@ -8,7 +8,7 @@ class QuestionComponent < ApplicationComponent
   def initialize(question:, context_user: nil, collapse: true, hide_avatar: false, profile_question: false)
     @question = question
     @context_user = context_user
-    @collapse = true
+    @collapse = collapse
     @hide_avatar = hide_avatar
     @profile_question = profile_question
   end
