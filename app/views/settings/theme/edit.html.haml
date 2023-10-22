@@ -18,9 +18,9 @@
 
       .row
         .col-sm-6
-          = f.text_field :background_color, class: "color", data: { default: 0xF0EDF4, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :background_color, class: "color", data: { default: 0xF0EDF4, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :body_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :body_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
   .card
     .card-body
       %h2= t(".raised.heading")
@@ -28,14 +28,14 @@
 
       .row
         .col-sm-6
-          = f.text_field :raised_background, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :raised_background, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :raised_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :raised_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
       .row
         .col-sm-6
-          = f.text_field :raised_accent, class: "color", data: { default: 0xF7F7F7, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :raised_accent, class: "color", data: { default: 0xF7F7F7, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :raised_accent_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :raised_accent_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
     .card-footer
       %p= t(".raised.accent.example")
   .card
@@ -45,56 +45,56 @@
 
       .row
         .col-sm-6
-          = f.text_field :primary_color, class: "color", data: { default: 0x5E35B1, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :primary_color, class: "color", data: { default: 0x5E35B1, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :primary_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :primary_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-12
           .alert.alert-primary= t(".colors.alert.example", type: t(".colors.alert.type.primary"))
       .row
         .col-sm-6
-          = f.text_field :danger_color, class: "color", data: { default: 0xDC3545, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :danger_color, class: "color", data: { default: 0xDC3545, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :danger_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :danger_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-12
           .alert.alert-danger= t(".colors.alert.example", type: t(".colors.alert.type.danger"))
       .row
         .col-sm-6
-          = f.text_field :warning_color, class: "color", data: { default: 0xFFC107, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :warning_color, class: "color", data: { default: 0xFFC107, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :warning_text, class: "color", data: { default: 0x292929, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :warning_text, class: "color", data: { default: 0x292929, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-12
           .alert.alert-warning= t(".colors.alert.example", type: t(".colors.alert.type.warning"))
       .row
         .col-sm-6
-          = f.text_field :info_color, class: "color", data: { default: 0x17A2B8, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :info_color, class: "color", data: { default: 0x17A2B8, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :info_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :info_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-12
           .alert.alert-info= t(".colors.alert.example", type: t(".colors.alert.type.info"))
       .row
         .col-sm-6
-          = f.text_field :success_color, class: "color", data: { default: 0x28A745, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :success_color, class: "color", data: { default: 0x28A745, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :success_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :success_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-12
           .alert.alert-success= t(".colors.alert.example", type: t(".colors.alert.type.success"))
       .row
         .col-sm-6
-          = f.text_field :dark_color, class: "color", data: { default: 0x343A40, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :dark_color, class: "color", data: { default: 0x343A40, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :dark_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :dark_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-12
           %a.btn.btn-dark.mb-3{ href: "#" }= t(".colors.button.example", type: t(".colors.button.type.dark"))
       .row
         .col-sm-6
-          = f.text_field :light_color, class: "color", data: { default: 0xF8F9FA, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :light_color, class: "color", data: { default: 0xF8F9FA, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :light_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :light_text, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-12
           %a.btn.btn-light.mb-3{ href: "#" }= t(".colors.button.example", type: t(".colors.button.type.light"))
       .row
         .col-sm-6
-          = f.text_field :muted_text, class: "color", data: { default: 0x6C757D, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :muted_text, class: "color", data: { default: 0x6C757D, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
           %p.pt-4.text-muted= t(".colors.text.example")
   .card
@@ -104,13 +104,13 @@
 
       .row
         .col-sm-6
-          = f.text_field :input_color, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :input_color, class: "color", data: { default: 0xFFFFFF, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
-          = f.text_field :input_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :input_text, class: "color", data: { default: 0x000000, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
 
       .row
         .col-sm-6
-          = f.text_field :input_placeholder, class: "color", data: { default: 0x6C757D, theme_target: "color", action: "theme#updatePreview" }
+          = f.text_field :input_placeholder, class: "color", data: { default: 0x6C757D, theme_target: "color", action: "theme#updatePreview" }, readonly: :readonly
         .col-sm-6
           .form-group
             %label.form-label Example Input
