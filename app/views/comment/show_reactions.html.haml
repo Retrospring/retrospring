@@ -1,0 +1,21 @@
+= turbo_frame_tag "modal" do
+  .modal.fade.show.d-block{ id: "modal-view-comment-smiles", aria: { hidden: false, labelledby: "modal-commentsmile-label" }, role: :dialog, tabindex: -1 }
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title#modal-commentsmile-label= t(".title")
+          = button_to modal_close_path, method: :get, class: "btn-close" do
+            %span.visually-hidden Close
+        .modal-body
+          - if @reactions.count.zero?
+            = t(".none")
+          - else
+            %ul.smiles__user-list
+              - @reactions.each do |smile|
+                %li.smiles__user-list-entry
+                  %a{ href: user_path(smile.user) }
+                    %img{ src: smile.user.profile_picture.url(:small), alt: user_screen_name(smile.user, url: false) }
+                    %span= user_screen_name(smile.user, url: false)
+        .modal-footer
+          = button_to t("voc.close"), modal_close_path, method: :get, class: "btn btn-default"
+  .modal-backdrop.fade.show

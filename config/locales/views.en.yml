@@ -150,6 +150,10 @@ en:
         non_anonymous_html: |
           This user does not want to receive anonymous questions. <br/>
           (%{sign_in} or %{sign_up})
+  comment:
+    show_reactions:
+      title: "People who smiled this comment"
+      none: "No one has smiled this comment yet."
   devise:
     registrations:
       edit:
@@ -262,9 +266,6 @@ en:
       action: "Ask"
       loading: "Asking…"
       long_question_warning: "This question will only be sent to those who allow long questions in their profile settings."
-    comment_smiles:
-      title: "People who smiled this comment"
-      none: "No one has smiled this comment yet."
     list:
       title: "Manage list memberships"
       tab:
