@@ -181,5 +181,7 @@ Rails.application.routes.draw do
 
   get "/nodeinfo/2.1", to: "well_known/node_info#nodeinfo", as: :node_info
 
+  get "/modal/close", to: "modal#close", as: :modal_close
+
   puts "processing time of routes.rb: #{"#{(Time.zone.now - start).round(3).to_s.ljust(5, '0')}s".light_green}"
 end

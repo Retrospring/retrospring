@@ -32,6 +32,7 @@
     = yield
     = render "shared/formatting"
     = render "shared/hotkeys"
+    = turbo_frame_tag "modal"
     .d-none#toasts
     - if Rails.env.development?
       #debug
