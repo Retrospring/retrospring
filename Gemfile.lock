@@ -289,6 +289,9 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.4)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     pghero (3.3.4)
       activerecord (>= 6)
     prometheus-client (4.2.1)
@@ -542,6 +545,7 @@ DEPENDENCIES
   oj
   openssl (~> 3.2)
   pg
+  pg_search (~> 2.3)
   pghero
   prometheus-client (~> 4.2)
   puma

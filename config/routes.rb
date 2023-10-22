@@ -148,6 +148,8 @@ Rails.application.routes.draw do
   post "/inbox/create", to: "inbox#create", as: :inbox_create
   get "/inbox", to: "inbox#show", as: :inbox
 
+  get "/search", to: "search#index"
+
   get "/user/:username", to: "user#show"
   get "/@:username", to: "user#show", as: :user
   get "/@:username/a/:id", to: "answer#show", as: :answer
