@@ -5,9 +5,10 @@ module List::TimelineMethods
 
   define_cursor_paginator :cursored_timeline, :timeline
 
-  # @return [Array] the lists' timeline
+  # @return [ActiveRecord::Relation<Answer>] the lists' timeline
   def timeline(current_user: nil)
     Answer
+      .includes([{ user: :profile }, :question])
       .then do |query|
         next query unless current_user
 
