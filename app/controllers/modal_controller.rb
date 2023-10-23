@@ -8,6 +8,7 @@ class ModalController < ApplicationController
 
   def close
     return redirect_to root_path unless turbo_frame_request?
-    render inline: turbo_frame_tag("modal")
+
+    render inline: turbo_frame_tag("modal") # rubocop:disable Rails/RenderInline
   end
 end
