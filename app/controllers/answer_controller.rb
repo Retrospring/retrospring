@@ -8,7 +8,7 @@ class AnswerController < ApplicationController
   turbo_stream_actions :pin, :unpin
 
   def show
-    @answer = Answer.includes(comments: %i[user smiles], question: [:user], smiles: [:user]).find(params[:id])
+    @answer = Answer.includes(question: [:user], smiles: [:user]).find(params[:id])
     @display_all = true
     @subscribed_answer_ids = []
 
