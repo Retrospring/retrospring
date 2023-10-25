@@ -128,8 +128,6 @@ Rails.application.routes.draw do
     post "/create_list", to: "list#create", as: :create_list
     post "/destroy_list", to: "list#destroy", as: :destroy_list
     post "/list_membership", to: "list#membership", as: :list_membership
-    post "/subscribe", to: "subscription#subscribe", as: :subscribe_answer
-    post "/unsubscribe", to: "subscription#unsubscribe", as: :unsubscribe_answer
     get "/webpush/key", to: "web_push#key", as: :webpush_key
     post "/webpush/check", to: "web_push#check", as: :webpush_check
     post "/webpush", to: "web_push#subscribe", as: :webpush_subscribe
