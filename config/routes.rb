@@ -148,6 +148,8 @@ Rails.application.routes.draw do
   post "/inbox/create", to: "inbox#create", as: :inbox_create
   get "/inbox", to: "inbox#show", as: :inbox
 
+  resource :subscriptions, controller: :subscriptions, only: %i[create destroy]
+
   get "/user/:username", to: "user#show"
   get "/@:username", to: "user#show", as: :user
   get "/@:username/a/:id", to: "answer#show", as: :answer
