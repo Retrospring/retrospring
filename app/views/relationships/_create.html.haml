@@ -1,0 +1,13 @@
+- if type == "follow"
+  = button_to relationships_path(screen_name:, type:), form: { id: "#{type}-#{screen_name}" }, class: "btn btn-primary", form_class: "d-grid" do
+    = t("voc.follow")
+
+- if type == "block"
+  = button_to relationships_path(screen_name:, type:), form: { id: "#{type}-#{screen_name}" }, class: "dropdown-item" do
+    %i.fa.fa-minus-circle.fa-fw
+    = t("voc.block")
+
+- if type == "mute"
+  = button_to relationships_path(screen_name:, type:), form: { id: "#{type}-#{screen_name}" }, class: "dropdown-item" do
+    %i.fa.fa-volume-off.fa-fw
+    = t("voc.mute")
