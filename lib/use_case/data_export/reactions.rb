@@ -7,8 +7,8 @@ module UseCase
         "reactions.json" => json_file!(
           reactions: [
             *user.smiles.map(&method(:collect_reaction))
-          ]
-        )
+          ],
+        ),
       }
 
       def collect_reaction(reaction)

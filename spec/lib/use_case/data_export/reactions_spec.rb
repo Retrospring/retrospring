@@ -9,7 +9,7 @@ describe UseCase::DataExport::Reactions, :data_export do
     it "returns an empty set of reactions" do
       expect(json_file("reactions.json")).to eq(
         {
-          reactions: []
+          reactions: [],
         }
       )
     end
