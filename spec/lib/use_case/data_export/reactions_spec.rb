@@ -32,7 +32,6 @@ describe UseCase::DataExport::Reactions, :data_export do
           reactions: [
             {
               id:          reactions[0].id,
-              type:        "Reaction",
               user_id:     user.id,
               parent_id:   reactions[0].parent_id,
               parent_type: "Comment",
@@ -42,7 +41,6 @@ describe UseCase::DataExport::Reactions, :data_export do
             },
             {
               id:          reactions[1].id,
-              type:        "Reaction",
               user_id:     user.id,
               parent_id:   reactions[1].parent_id,
               parent_type: "Answer",
