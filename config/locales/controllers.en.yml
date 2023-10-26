@@ -101,27 +101,6 @@ en:
         notfound: "Question does not exist."
         noauth: "You are not allowed to delete this question."
         success: "Successfully deleted question."
-    relationship:
-      create:
-        block:
-          success: "Successfully blocked user."
-          error: "You are already blocking that user."
-        follow:
-          success: "Successfully followed user."
-          error: "You are already following that user."
-        mute:
-          success: "Successfully muted user."
-          error: "You are already muting that user."
-      destroy:
-        block:
-          success: "Successfully unblocked user."
-          error: "You are not blocking that user."
-        follow:
-          success: "Successfully unfollowed user."
-          error: "You are not following that user."
-        mute:
-          success: "Successfully unmuted user."
-          error: "You are not muting that user."
     report:
       create:
         noauth: :ajax.noauth
@@ -216,6 +195,27 @@ en:
     registrations:
       destroy:
         export_pending: "You may not delete your account while account data is currently being exported."
+  relationships:
+    create:
+      block:
+        success: "Successfully blocked user."
+        error: "You are already blocking that user."
+      follow:
+        success: "Successfully followed user."
+        error: "You are already following that user."
+      mute:
+        success: "Successfully muted user."
+        error: "You are already muting that user."
+    destroy:
+      block:
+        success: "Successfully unblocked user."
+        error: "You are not blocking that user."
+      follow:
+        success: "Successfully unfollowed user."
+        error: "You are not following that user."
+      mute:
+        success: "Successfully unmuted user."
+        error: "You are not muting that user."
   timeline:
     public:
       title: "Public Timeline"
