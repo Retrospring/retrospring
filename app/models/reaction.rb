@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class Appendable::Reaction < Appendable
+class Reaction < ApplicationRecord
+  belongs_to :parent, polymorphic: true
+  belongs_to :user
+
   # rubocop:disable Rails/SkipsModelValidations
   after_create do
     Notification.notify parent.user, self unless parent.user == user

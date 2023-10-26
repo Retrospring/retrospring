@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Appendable::Reaction do
+describe Reaction do
   let(:user) { FactoryBot.create(:user) }
   let(:owner) { FactoryBot.create(:user) }
   let(:parent) { FactoryBot.create(:answer, user: owner) }
