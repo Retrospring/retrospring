@@ -4,6 +4,8 @@
 require "rails_helper"
 
 describe RelationshipsController, type: :controller do
+  render_views
+
   shared_examples_for "params is empty" do
     let(:params) { {} }
 

@@ -14,10 +14,9 @@ RSpec.shared_examples_for "ajax does not succeed" do |part_of_error_message|
   end
 end
 
-RSpec.shared_examples_for "turbo does not succeed" do
+RSpec.shared_examples_for "turbo does not succeed" do |part_of_error_message|
   it "turbo does not succeed" do
     subject
-    # FIXME: for some reason, partials are not rendered, making the actual error message not accessible
-    expect(response.body).to include "turbo-stream action=\"append\" target=\"toasts\""
+    expect(response.body).to include(part_of_error_message)
   end
 end

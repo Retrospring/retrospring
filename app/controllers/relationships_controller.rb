@@ -8,6 +8,8 @@ class RelationshipsController < ApplicationController
   turbo_stream_actions :create, :destroy
 
   def create
+    params.require :screen_name
+
     UseCase::Relationship::Create.call(
       source_user: current_user,
       target_user: ::User.find_by!(screen_name: params[:screen_name]),
