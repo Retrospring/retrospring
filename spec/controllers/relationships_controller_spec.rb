@@ -41,9 +41,9 @@ describe RelationshipsController, type: :controller do
 
     let(:type)        { "Sauerkraut" }
     let(:screen_name) { user2.screen_name }
-    let(:params)      { { type: type, screen_name: screen_name } }
+    let(:params)      { { type:, screen_name: } }
 
-    subject { post(:create, params: params, format: :turbo_stream) }
+    subject { post(:create, params:, format: :turbo_stream) }
 
     it_behaves_like "requires login"
 
@@ -116,9 +116,9 @@ describe RelationshipsController, type: :controller do
 
     let(:type)        { "Sauerkraut" }
     let(:screen_name) { user2.screen_name }
-    let(:params)      { { type: type, screen_name: screen_name } }
+    let(:params)      { { type:, screen_name: } }
 
-    subject { delete(:destroy, params: params, format: :turbo_stream) }
+    subject { delete(:destroy, params:, format: :turbo_stream) }
 
     it_behaves_like "requires login"
 

@@ -14,7 +14,7 @@ RSpec.shared_examples_for "ajax does not succeed" do |part_of_error_message|
   end
 end
 
-RSpec.shared_examples_for "turbo does not succeed" do |part_of_error_message|
+RSpec.shared_examples_for "turbo does not succeed" do
   it "turbo does not succeed" do
     subject
     # FIXME: for some reason, partials are not rendered, making the actual error message not accessible

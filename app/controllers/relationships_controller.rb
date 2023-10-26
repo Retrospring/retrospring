@@ -11,7 +11,7 @@ class RelationshipsController < ApplicationController
     UseCase::Relationship::Create.call(
       source_user: current_user,
       target_user: ::User.find_by!(screen_name: params[:screen_name]),
-      type:        params[:type]
+      type:        params[:type],
     )
 
     respond_to do |format|
@@ -30,7 +30,7 @@ class RelationshipsController < ApplicationController
     UseCase::Relationship::Destroy.call(
       source_user: current_user,
       target_user: ::User.find_by!(screen_name: params[:screen_name]),
-      type:        params[:type]
+      type:        params[:type],
     )
 
     respond_to do |format|

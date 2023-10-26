@@ -1,5 +1,6 @@
 - if type == "follow"
-  = button_to relationships_path(screen_name:, type:), method: :delete, form: { id: "#{type}-#{screen_name}" }, class: "btn btn-primary", form_class: "d-grid" do
+  = button_to relationships_path(screen_name:, type:), method: :delete, form: { id: "#{type}-#{screen_name}" }, class: "btn btn-primary",
+                                                       form_class: "d-grid" do
     = t("voc.unfollow")
 
 - if type == "block"
