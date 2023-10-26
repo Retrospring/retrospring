@@ -28,8 +28,8 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "creates a smile to the answer" do
-          expect { subject }.to(change { Appendable::Reaction.count }.by(1))
-          expect(answer.reload.smiles.ids).to include(Appendable::Reaction.last.id)
+          expect { subject }.to(change { Reaction.count }.by(1))
+          expect(answer.reload.smiles.ids).to include(Reaction.last.id)
         end
 
         include_examples "returns the expected response"
@@ -47,7 +47,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "does not create a smile" do
-          expect { subject }.not_to(change { Appendable::Reaction.count })
+          expect { subject }.not_to(change { Reaction.count })
         end
 
         include_examples "returns the expected response"
@@ -100,7 +100,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
       end
 
       it "does not create a smile" do
-        expect { subject }.not_to(change { Appendable::Reaction.count })
+        expect { subject }.not_to(change { Reaction.count })
       end
 
       include_examples "returns the expected response"
@@ -124,7 +124,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
       end
 
       it "does not create a smile" do
-        expect { subject }.not_to(change { Appendable::Reaction.count })
+        expect { subject }.not_to(change { Reaction.count })
       end
 
       include_examples "returns the expected response"
@@ -160,7 +160,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "deletes the smile" do
-          expect { subject }.to(change { Appendable::Reaction.count }.by(-1))
+          expect { subject }.to(change { Reaction.count }.by(-1))
         end
 
         include_examples "returns the expected response"
@@ -219,8 +219,8 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "creates a smile to the comment" do
-          expect { subject }.to(change { Appendable::Reaction.count }.by(1))
-          expect(comment.reload.smiles.ids).to include(Appendable::Reaction.last.id)
+          expect { subject }.to(change { Reaction.count }.by(1))
+          expect(comment.reload.smiles.ids).to include(Reaction.last.id)
         end
 
         include_examples "returns the expected response"
@@ -238,7 +238,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "does not create a smile" do
-          expect { subject }.not_to(change { Appendable::Reaction.count })
+          expect { subject }.not_to(change { Reaction.count })
         end
 
         include_examples "returns the expected response"
@@ -304,7 +304,7 @@ describe Ajax::SmileController, :ajax_controller, type: :controller do
         end
 
         it "deletes the smile" do
-          expect { subject }.to(change { Appendable::Reaction.count }.by(-1))
+          expect { subject }.to(change { Reaction.count }.by(-1))
         end
 
         include_examples "returns the expected response"

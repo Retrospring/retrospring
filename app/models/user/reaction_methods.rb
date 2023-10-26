@@ -7,13 +7,13 @@ module User::ReactionMethods
     raise Errors::ReactingSelfBlockedOther if self.blocking?(item.user)
     raise Errors::ReactingOtherBlockedSelf if item.user.blocking?(self)
 
-    ::Appendable::Reaction.create!(user: self, parent: item, content: "🙂")
+    Reaction.create!(user: self, parent: item, content: "🙂")
   end
 
   # unsmile an answer or comment
   # @param item [ApplicationRecord] the answer/comment to unsmile
   def unsmile(item)
-    ::Appendable::Reaction.find_by(user: self, parent: item).destroy
+    Reaction.find_by(user: self, parent: item).destroy
   end
 
   def smiled?(item)

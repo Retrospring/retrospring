@@ -7,7 +7,7 @@ require "zip/filesystem"
 # require all data export use cases via Zeitwerk
 # rubocop:disable Lint/Void
 UseCase::DataExport::Answers
-UseCase::DataExport::Appendables
+UseCase::DataExport::Reactions
 UseCase::DataExport::Comments
 UseCase::DataExport::MuteRules
 UseCase::DataExport::Questions

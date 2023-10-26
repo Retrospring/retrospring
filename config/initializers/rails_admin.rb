@@ -29,8 +29,7 @@ RailsAdmin.config do |config|
   end
 
   config.included_models = %w[
-    Appendable
-    Appendable::Reaction
+    Reaction
     Answer
     AnonymousBlock
     Comment
@@ -58,8 +57,7 @@ RailsAdmin.config do |config|
   {
     "AnonymousBlock"        => "user-secret",
     "Answer"                => "exclamation",
-    "Appendable"            => "paperclip",
-    "Appendable::Reaction"  => "smile",
+    "Reaction"              => "smile",
     "Comment"               => "comment",
     "Inbox"                 => "inbox",
     "List"                  => "list",
