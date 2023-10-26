@@ -9,11 +9,9 @@
   - elsif user_signed_in?
     .d-grid.gap-2
       - if own_followings&.include?(user.id) || current_user.following?(user)
-        %button.btn.btn-primary{ type: :button, name: 'user-action', data: { action: :unfollow, type: type, target: user.screen_name } }
-          = t("voc.unfollow")
+        = render "relationships/destroy", type: "follow", screen_name: user.screen_name
       - else
-        %button.btn.btn-primary{ type: :button, name: 'user-action', data: { action: :follow, type: type, target: user.screen_name } }
-          = t("voc.follow")
+        = render "relationships/create", type: "follow", screen_name: user.screen_name
       .btn-group
         %button.btn.btn-light.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
           = t(".title")
@@ -23,21 +21,13 @@
             %i.fa.fa-list.fa-fw
             = t(".list")
           - if own_blocks&.include?(user.id) || current_user.blocking?(user)
-            %a.dropdown-item{ href: '#', data: { action: :unblock, target: user.screen_name } }
-              %i.fa.fa-minus-circle.fa-fw
-              %span.pe-none= t("voc.unblock")
+            = render "relationships/destroy", type: "block", screen_name: user.screen_name
           - else
-            %a.dropdown-item{ href: '#', data: { action: :block, target: user.screen_name } }
-              %i.fa.fa-minus-circle.fa-fw
-              %span.pe-none= t("voc.block")
+            = render "relationships/create", type: "block", screen_name: user.screen_name
           - if own_mutes&.include?(user.id) || current_user.muting?(user)
-            %a.dropdown-item{ href: '#', data: { action: :unmute, target: user.screen_name } }
-              %i.fa.fa-volume-off.fa-fw
-              %span.pe-none= t("voc.unmute")
+            = render "relationships/destroy", type: "mute", screen_name: user.screen_name
           - else
-            %a.dropdown-item{ href: '#', data: { action: :mute, target: user.screen_name } }
-              %i.fa.fa-volume-off.fa-fw
-              %span.pe-none= t("voc.mute")
+            = render "relationships/create", type: "mute", screen_name: user.screen_name
           %a.dropdown-item{ href: '#', data: { action: 'report-user', target: user.screen_name } }
             %i.fa.fa-exclamation-triangle.fa-fw
             = t("voc.report")
