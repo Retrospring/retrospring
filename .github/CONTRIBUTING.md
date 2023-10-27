@@ -24,7 +24,8 @@ using. We find screenshots (for front-end issues) very helpful.
 We love pull requests! We are very happy to work with you to get your changes
 merged in, however please keep the following in mind.
 
-* Please use the core team standard of `feature/*` or `fix/*` branch naming.
+* Please use the core team standard of `feature/*` or `bugfix/*` branch naming.
+  * Using these branch prefixes tags the Pull Requests with the appropriate labels for release categorization.
 * Adhere to the coding conventions you see in the surrounding code.
 * If you include a new feature also include tests, and make sure they'll pass.
 * Before submitting a pull-request, clean up the history by going over your
