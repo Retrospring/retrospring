@@ -1,0 +1,17 @@
+changelog:
+  categories:
+    - title: Added
+      labels:
+        - feature
+    - title: Fixed
+      labels:
+        - bugfix
+    - title: Changed
+      labels:
+        - '*'
+    - title: Developer experience
+      labels:
+        - developer experience
+    - title: Dependency updates
+      labels:
+        - dependencies
