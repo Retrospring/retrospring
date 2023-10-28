@@ -3,11 +3,13 @@
 
 require "rails_helper"
 
-describe Ajax::RelationshipController, type: :controller do
+describe RelationshipsController, type: :controller do
+  render_views
+
   shared_examples_for "params is empty" do
     let(:params) { {} }
 
-    include_examples "ajax does not succeed", "is required"
+    include_examples "turbo does not succeed", "is required"
   end
 
   let!(:user) { FactoryBot.create(:user) }
@@ -20,13 +22,13 @@ describe Ajax::RelationshipController, type: :controller do
       context "screen_name does not exist" do
         let(:screen_name) { "peter-witzig" }
 
-        include_examples "ajax does not succeed", "not found"
+        include_examples "turbo does not succeed", "not found"
       end
 
       context "screen_name is current user" do
         let(:screen_name) { user.screen_name }
 
-        include_examples "ajax does not succeed", "yourself"
+        include_examples "turbo does not succeed", "yourself"
       end
 
       context "screen_name is different from current_user" do
@@ -41,9 +43,9 @@ describe Ajax::RelationshipController, type: :controller do
 
     let(:type)        { "Sauerkraut" }
     let(:screen_name) { user2.screen_name }
-    let(:params)      { { type: type, screen_name: screen_name } }
+    let(:params)      { { type:, screen_name: } }
 
-    subject { post(:create, params: params) }
+    subject { post(:create, params:, format: :turbo_stream) }
 
     it_behaves_like "requires login"
 
@@ -82,7 +84,7 @@ describe Ajax::RelationshipController, type: :controller do
         let(:type) { "dick" }
 
         it_behaves_like "params is empty"
-        include_examples "ajax does not succeed", "Invalid parameter"
+        include_examples "turbo does not succeed", "Invalid parameter"
       end
     end
   end
@@ -110,15 +112,15 @@ describe Ajax::RelationshipController, type: :controller do
       context "screen_name does not exist" do
         let(:screen_name) { "peter-witzig" }
 
-        include_examples "ajax does not succeed", "not found"
+        include_examples "turbo does not succeed", "not found"
       end
     end
 
     let(:type)        { "Sauerkraut" }
     let(:screen_name) { user2.screen_name }
-    let(:params)      { { type: type, screen_name: screen_name } }
+    let(:params)      { { type:, screen_name: } }
 
-    subject { delete(:destroy, params: params) }
+    subject { delete(:destroy, params:, format: :turbo_stream) }
 
     it_behaves_like "requires login"
 
@@ -146,7 +148,7 @@ describe Ajax::RelationshipController, type: :controller do
       context "type = 'dick'" do
         let(:type) { "dick" }
 
-        include_examples "ajax does not succeed", "Invalid parameter"
+        include_examples "turbo does not succeed", "Invalid parameter"
       end
     end
   end

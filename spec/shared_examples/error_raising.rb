@@ -13,3 +13,10 @@ RSpec.shared_examples_for "ajax does not succeed" do |part_of_error_message|
     expect(assigns(:response)[:message]).to include(part_of_error_message)
   end
 end
+
+RSpec.shared_examples_for "turbo does not succeed" do |part_of_error_message|
+  it "turbo does not succeed" do
+    subject
+    expect(response.body).to include(part_of_error_message)
+  end
+end

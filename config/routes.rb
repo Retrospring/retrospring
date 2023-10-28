@@ -147,6 +147,7 @@ Rails.application.routes.draw do
   get "/inbox", to: "inbox#show", as: :inbox
 
   resource :subscriptions, controller: :subscriptions, only: %i[create destroy]
+  resource :relationships, only: %i[create destroy]
 
   get "/user/:username", to: "user#show"
   get "/@:username", to: "user#show", as: :user
