@@ -6,12 +6,6 @@ en:
     error:
       title: "Uh-oh…"
       message: "An error occurred, a developer should check the console for details"
-    subscription:
-      subscribe: "Successfully subscribed."
-      unsubscribe: "Successfully unsubscribed."
-      fail:
-        subscribe: "Failed to subscribe to answer."
-        unsubscribe: "Failed to unsubscribe from answer."
     list:
       confirm:
         title: "Are you sure?"

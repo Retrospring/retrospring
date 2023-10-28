@@ -1,0 +1,3 @@
+= button_to subscriptions_path(answer: answer.id), method: :delete, class: "dropdown-item", form: { id: "subscription-#{answer.id}" } do
+  %i.fa.fa-fw.fa-bell-slash
+  = t("voc.unsubscribe")

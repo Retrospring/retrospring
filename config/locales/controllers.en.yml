@@ -196,6 +196,13 @@ en:
           error: :errors.invalid_otp
         destroy:
           success: "Two factor authentication has been disabled for your account."
+  subscriptions:
+    create:
+      success: "Successfully subscribed."
+      error: "Failed to subscribe to answer."
+    destroy:
+      success: "Successfully unsubscribed."
+      error: "Failed to unsubscribe from answer."
   user:
     sessions:
       create:
