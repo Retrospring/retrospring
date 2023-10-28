@@ -18,4 +18,4 @@
                     %span= user_screen_name(smile.user, url: false)
         .modal-footer
           = button_to t("voc.close"), modal_close_path, method: :get, class: "btn btn-default"
-  .modal-backdrop.fade.show
+    = link_to "", modal_close_path, method: :get, class: "modal-backdrop fade show z-n1"

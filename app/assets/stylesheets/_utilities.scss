@@ -25,3 +25,8 @@
 .pull-left {
   float: left;
 }
+
+// FIXME: Backport from Bootstrap 5.3, remove once updated
+.z-n1 {
+  z-index: -1;
+}
