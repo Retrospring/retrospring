@@ -2,3 +2,4 @@ web: unset PORT && bin/rails server
 worker: bundle exec sidekiq
 css: yarn build:css --watch
 js: yarn build --watch
+search: meilisearch --no-analytics --env development --db-path tmp/meilisearch/db --dump-dir tmp/meilisearch/dump --master-key justfordev42069e621

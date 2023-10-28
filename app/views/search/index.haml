@@ -1,0 +1,24 @@
+.container-lg.container--main
+  .row
+    .col-sm-10.col-md-10.col-lg-9.mx-auto
+      .card
+        .card-body
+          = bootstrap_form_with url: search_path, layout: :inline, method: :get do |f|
+            = f.text_field :q, skip_label: true, append: f.primary("Search"), value: params[:q]
+            = f.check_box :multi_search, label: "Multisearch"
+  - unless @results.blank?
+    .container-lg.container--main
+      .row
+        .col-sm-10.col-md-10.col-lg-9.mx-auto
+          - @results.each do |result|
+            - case result
+              - when Answer
+                = render "answerbox", a: result, display_all: false, subscribed_answer_ids: []
+              - when Question
+                = render "shared/question", q: result, type: nil
+
+= render 'shared/links'
+
+:ruby
+  provide(:title, generate_title('Search'))
+  parent_layout 'base'
