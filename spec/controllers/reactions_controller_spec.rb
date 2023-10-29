@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe ReactionController, type: :controller do
+describe ReactionsController, type: :controller do
   describe "#index" do
     shared_examples_for "succeeds" do
       it "returns the correct response" do
