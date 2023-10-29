@@ -9,7 +9,7 @@ describe UseCase::Reaction::Destroy do
     end
 
     it "destroys a reaction" do
-      expect { subject }.to change { target.smile_count }.by(-1)
+      expect { subject }.to change { target.reload.smile_count }.by(-1)
     end
   end
 

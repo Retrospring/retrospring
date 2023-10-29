@@ -5,7 +5,7 @@ require "rails_helper"
 describe UseCase::Reaction::Create do
   shared_examples_for "valid target type" do
     it "creates a reaction" do
-      expect { subject }.to change { target.smile_count }.by(1)
+      expect { subject }.to change { target.reload.smile_count }.by(1)
     end
   end
 
