@@ -7,7 +7,7 @@ describe CommentsController, type: :controller do
     shared_examples_for "succeeds" do
       it "returns the correct response" do
         subject
-        expect(response).to have_rendered("comment/index")
+        expect(response).to have_rendered :index
         expect(response).to have_http_status(200)
         expect(assigns(:comments)).to eq(comments)
         expect(assigns(:comments)).to_not include(unrelated_comment)
