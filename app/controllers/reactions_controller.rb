@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReactionController < ApplicationController
+class ReactionsController < ApplicationController
   def index
     answer = Answer.includes([smiles: { user: :profile }]).find(params[:id])
 
