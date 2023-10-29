@@ -1,5 +1,8 @@
 .btn {
+  --btn-padding-x: 1rem;
+  --btn-border-radius: 2rem;
   color: RGB(var(--body-text));
+  font-weight: bold;
 }
 
 .btn-link:hover {
