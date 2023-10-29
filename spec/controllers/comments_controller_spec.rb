@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe CommentController, type: :controller do
+describe CommentsController, type: :controller do
   describe "#index" do
     shared_examples_for "succeeds" do
       it "returns the correct response" do
