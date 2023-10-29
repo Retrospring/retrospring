@@ -2,12 +2,12 @@
 
 require "rails_helper"
 
-describe ReactionController, type: :controller do
+describe ReactionsController, type: :controller do
   describe "#index" do
     shared_examples_for "succeeds" do
       it "returns the correct response" do
         subject
-        expect(response).to have_rendered("reaction/index")
+        expect(response).to have_rendered :index
         expect(response).to have_http_status(200)
       end
     end
