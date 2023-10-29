@@ -157,7 +157,7 @@ Rails.application.routes.draw do
   get "/@:username/a/:id/comments", to: "comments#index", as: :comments
   get "/@:username/a/:id/reactions", to: "reaction#index", as: :reactions
   get "/@:username/q/:id", to: "question#show", as: :question
-  get "/@:username/c/:id/reactions", to: "comments#show_reactions", as: :comment_reactions
+  get "/@:username/c/:id/reactions", to: "comments/reactions#show", as: :comment_reactions
   get "/@:username/followers", to: "user#followers", as: :show_user_followers
   get "/@:username/followings", to: "user#followings", as: :show_user_followings
   get "/@:username/friends", to: redirect("/@%{username}/followings")
