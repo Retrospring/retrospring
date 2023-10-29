@@ -3,14 +3,14 @@
 require "rails_helper"
 
 describe Comments::ReactionsController, type: :controller do
-  describe "#show" do
+  describe "#index" do
     let(:answer_author) { FactoryBot.create(:user) }
     let(:answer) { FactoryBot.create(:answer, user: answer_author) }
     let(:commenter) { FactoryBot.create(:user) }
     let(:comment) { FactoryBot.create(:comment, answer:, user: commenter) }
 
     context "a regular web navigation request" do
-      subject { get :show, params: { username: commenter.screen_name, id: comment.id } }
+      subject { get :index, params: { username: commenter.screen_name, id: comment.id } }
 
       it "should redirect to the answer page" do
         subject
@@ -20,14 +20,14 @@ describe Comments::ReactionsController, type: :controller do
     end
 
     context "a Turbo Frame request" do
-      subject { get :show, params: { username: commenter.screen_name, id: comment.id } }
+      subject { get :index, params: { username: commenter.screen_name, id: comment.id } }
 
-      it "renders the show_reaction template" do
+      it "renders the index template" do
         @request.headers["Turbo-Frame"] = "some_id"
 
         subject
 
-        expect(response).to render_template(:show)
+        expect(response).to render_template(:index)
       end
     end
   end
