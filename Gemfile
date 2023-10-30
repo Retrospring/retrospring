@@ -91,7 +91,7 @@ group :development, :test do
   gem "rspec-its", "~> 1.3"
   gem "rspec-mocks"
   gem "rspec-rails", "~> 6.0"
-  gem "rspec-sidekiq", "~> 4.0", require: false
+  gem "rspec-sidekiq", "~> 4.1", require: false
   gem "rubocop", "~> 1.57"
   gem "rubocop-rails", "~> 2.22"
   gem "shoulda-matchers", "~> 5.3"

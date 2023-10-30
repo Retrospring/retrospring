@@ -395,7 +395,7 @@ GEM
       rspec-expectations (~> 3.12)
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
-    rspec-sidekiq (4.0.2)
+    rspec-sidekiq (4.1.0)
       rspec-core (~> 3.0)
       rspec-expectations (~> 3.0)
       rspec-mocks (~> 3.0)
@@ -567,7 +567,7 @@ DEPENDENCIES
   rspec-its (~> 1.3)
   rspec-mocks
   rspec-rails (~> 6.0)
-  rspec-sidekiq (~> 4.0)
+  rspec-sidekiq (~> 4.1)
   rubocop (~> 1.57)
   rubocop-rails (~> 2.22)
   rubyzip (~> 2.3)
