@@ -44,7 +44,7 @@ jobs:
         with:
           files: "**/*.ts"
       - name: Set up Node 16
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'yarn'
@@ -93,7 +93,7 @@ jobs:
         with:
           files: "**/*.scss"
       - name: Set up Node 16
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
           cache: 'yarn'
