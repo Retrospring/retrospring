@@ -156,8 +156,12 @@ Rails.application.routes.draw do
   delete "/@:username/a/:id/pin", to: "answer#unpin", as: :unpin_answer
   get "/@:username/a/:id/comments", to: "comments#index", as: :comments
   get "/@:username/a/:id/reactions", to: "reactions#index", as: :reactions
+  post "/@:username/a/:id/reactions", to: "reactions#create", as: :create_reactions, defaults: { type: "Answer" }
+  delete "/@:username/a/:id/reactions", to: "reactions#destroy", as: :destroy_reactions, defaults: { type: "Answer" }
   get "/@:username/q/:id", to: "question#show", as: :question
   get "/@:username/c/:id/reactions", to: "comments/reactions#index", as: :comment_reactions
+  post "/@:username/c/:id/reactions", to: "reactions#create", as: :create_comment_reactions, defaults: { type: "Comment" }
+  delete "/@:username/c/:id/reactions", to: "reactions#destroy", as: :destroy_comment_reactions, defaults: { type: "Comment" }
   get "/@:username/followers", to: "user#followers", as: :show_user_followers
   get "/@:username/followings", to: "user#followings", as: :show_user_followings
   get "/@:username/friends", to: redirect("/@%{username}/followings")

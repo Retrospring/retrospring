@@ -1,0 +1,13 @@
+- if type == "Answer"
+  = button_to create_reactions_path(id: target.id, username: target.user.screen_name),
+              form: { class: "d-inline-block", id: "reaction-#{type}-#{target.id}" },
+              class: "btn btn-link answerbox__action smile" do
+    %i.fa.fa-fw.fa-smile-o
+    %span= target.smile_count
+
+- if type == "Comment"
+  = button_to create_comment_reactions_path(id: target.id, username: target.user.screen_name),
+              form: { class: "d-inline-block", id: "reaction-#{type}-#{target.id}" },
+              class: "btn btn-link answerbox__action smile" do
+    %i.fa.fa-fw.fa-smile-o
+    %span= target.smile_count

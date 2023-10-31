@@ -1,0 +1,15 @@
+- if type == "Answer"
+  = button_to destroy_reactions_path(id: target.id, username: target.user.screen_name),
+              method: :delete,
+              form: { class: "d-inline-block", id: "reaction-#{type}-#{target.id}" },
+              class: "btn btn-link answerbox__action unsmile" do
+    %i.fa.fa-fw.fa-smile-o
+    %span= target.smile_count
+
+- if type == "Comment"
+  = button_to destroy_comment_reactions_path(id: target.id, username: target.user.screen_name),
+              method: :delete,
+              form: { class: "d-inline-block", id: "reaction-#{type}-#{target.id}" },
+              class: "btn btn-link answerbox__action unsmile" do
+    %i.fa.fa-fw.fa-smile-o
+    %span= target.smile_count

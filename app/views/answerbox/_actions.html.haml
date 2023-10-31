@@ -1,6 +1,7 @@
-%button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile", data: { a_id: a.id, action: a.has_reacted ? :unsmile : :smile, selection_hotkey: "s" }, disabled: !user_signed_in? }
-  %i.fa.fa-fw.fa-smile-o
-  %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
+- if a.has_reacted
+  = render "reactions/destroy", type: "Answer", target: a
+- else
+  = render "reactions/create", type: "Answer", target: a
 - unless display_all
   %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-comments", data: { a_id: a.id, state: :hidden, selection_hotkey: "x" } }
     %i.fa.fa-fw.fa-comments

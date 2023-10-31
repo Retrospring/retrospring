@@ -50,20 +50,19 @@
       text-decoration: none;
     }
 
-    &[name="ab-smile"],
-    &[name="ab-smile-comment"] {
+    &.smile {
       color: var(--primary);
 
       &:hover {
         color: var(--success);
       }
+    }
 
-      &[data-action="unsmile"] {
-        color: var(--success);
+    &.unsmile {
+      color: var(--success);
 
-        &:hover {
-          color: var(--danger);
-        }
+      &:hover {
+        color: var(--danger);
       }
     }
   }
