@@ -118,10 +118,6 @@ Rails.application.routes.draw do
     post "/destroy_answer", to: "answer#destroy", as: :destroy_answer
     post "/create_relationship", to: "relationship#create", as: :create_relationship
     post "/destroy_relationship", to: "relationship#destroy", as: :destroy_relationship
-    post "/create_smile", to: "smile#create", as: :create_smile
-    post "/destroy_smile", to: "smile#destroy", as: :destroy_smile
-    post "/create_comment_smile", to: "smile#create_comment", as: :create_comment_smile
-    post "/destroy_comment_smile", to: "smile#destroy_comment", as: :destroy_comment_smile
     post "/create_comment", to: "comment#create", as: :create_comment
     post "/destroy_comment", to: "comment#destroy", as: :destroy_comment
     post "/report", to: "report#create", as: :report
