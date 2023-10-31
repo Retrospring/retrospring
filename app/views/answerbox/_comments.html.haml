@@ -16,9 +16,10 @@
             .comment__content
               = markdown comment.content
           .flex-shrink-0.ms-auto
-            %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile-comment", data: { c_id: comment.id, action: current_user&.smiled?(comment) ? :unsmile : :smile }, disabled: !user_signed_in? }
-              %i.fa.fa-fw.fa-smile-o
-              %span{ id: "ab-comment-smile-count-#{comment.id}" }= comment.smile_count
+            - if current_user&.smiled?(comment)
+              = render "reactions/destroy", type: "Comment", target: comment
+            - else
+              = render "reactions/create", type: "Comment", target: comment
             .btn-group
               %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
                 %span.caret
