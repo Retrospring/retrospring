@@ -5,22 +5,17 @@ class QuestionWorker
 
   sidekiq_options queue: :question, retry: false
 
-  # @param user_id [Integer] user id passed from Devise
+  # @param follower_id [Integer] user id passed from Devise
   # @param question_id [Integer] newly created question id
-  def perform(user_id, question_id)
-    user = User.find(user_id)
-    question = Question.find(question_id)
+  def perform(follower_id, question_id)
+    follower = User.includes(:web_push_subscriptions, :mute_rules, :muted_users).find(follower_id)
+    question = Question.includes(:user).find(question_id)
     webpush_app = Rpush::App.find_by(name: "webpush")
 
-    user.followers.each do |f|
-      next if skip_inbox?(f, question, user)
+    return if skip_inbox?(follower, question, user)
 
-      inbox = Inbox.create(user_id: f.id, question_id:, new: true)
-      f.push_notification(webpush_app, inbox) if webpush_app
-    end
-  rescue StandardError => e
-    logger.info "failed to ask question: #{e.message}"
-    Sentry.capture_exception(e)
+    inbox = Inbox.create(user_id: follower.id, question_id:, new: true)
+    follower.push_notification(webpush_app, inbox) if webpush_app
   end
 
   private
@@ -35,7 +30,9 @@ class QuestionWorker
     false
   end
 
+  # @param [User] user
+  # @param [Question] question
   def muted?(user, question)
-    MuteRule.where(user:).any? { |rule| rule.applies_to? question }
+    user.mute_rules.any? { |rule| rule.applies_to? question }
   end
 end
