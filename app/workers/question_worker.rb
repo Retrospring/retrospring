@@ -12,7 +12,7 @@ class QuestionWorker
     question = Question.includes(:user).find(question_id)
     webpush_app = Rpush::App.find_by(name: "webpush")
 
-    return if skip_inbox?(follower, question, user)
+    return if skip_inbox?(follower, question)
 
     inbox = Inbox.create(user_id: follower.id, question_id:, new: true)
     follower.push_notification(webpush_app, inbox) if webpush_app
@@ -20,11 +20,11 @@ class QuestionWorker
 
   private
 
-  def skip_inbox?(follower, question, user)
+  def skip_inbox?(follower, question)
     return true if follower.inbox_locked?
     return true if follower.banned?
     return true if muted?(follower, question)
-    return true if user.muting?(question.user)
+    return true if follower.muting?(question.user)
     return true if question.long? && !follower.profile.allow_long_questions
 
     false
