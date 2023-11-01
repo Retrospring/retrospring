@@ -23,7 +23,7 @@ describe QuestionWorker do
         .to(
           change { Inbox.where(user_id: follower_id, question_id:, new: true).count }
             .from(0)
-            .to(1)
+            .to(1),
         )
     end
 
@@ -64,7 +64,7 @@ describe QuestionWorker do
           subscription: {
             endpoint: "This will not be used",
             keys:     {},
-          }
+          },
         )
       end
 
@@ -73,7 +73,7 @@ describe QuestionWorker do
           .to(
             change { Rpush::Webpush::Notification.count }
               .from(0)
-              .to(1)
+              .to(1),
           )
       end
     end
@@ -88,7 +88,7 @@ describe QuestionWorker do
           .to(
             change { Inbox.where(user_id: follower_id, question_id:, new: true).count }
               .from(0)
-              .to(1)
+              .to(1),
           )
       end
 
