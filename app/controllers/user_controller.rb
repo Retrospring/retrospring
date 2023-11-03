@@ -22,7 +22,7 @@ class UserController < ApplicationController
 
   def show_theme
     theme = Theme.where(user: User.where("LOWER(screen_name) = ?", params[:username].downcase).select(:id)).first
-    return head :no_content if theme.nil?
+    return head :no_content unless theme
 
     expires_in 3.months
     return if fresh_when theme, public: true
