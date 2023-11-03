@@ -70,7 +70,7 @@ module ThemeHelper
   end
 
   def active_theme_user
-    user = @user ||= @answer&.user
+    user = @user || @answer&.user # rubocop:disable Rails/HelperInstanceVariable
 
     if user&.theme.present? && should_show_foreign_theme?
       user
