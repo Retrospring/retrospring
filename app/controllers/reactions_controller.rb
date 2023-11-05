@@ -15,9 +15,8 @@ class ReactionsController < ApplicationController
 
   def create
     params.require :id
-    params.require :type
 
-    target = params[:type].constantize.find_by!(id: params[:id])
+    target = target_class.find_by!(id: params[:id])
 
     UseCase::Reaction::Create.call(
       source_user: current_user,
@@ -40,9 +39,8 @@ class ReactionsController < ApplicationController
 
   def destroy
     params.require :id
-    params.require :type
 
-    target = params[:type].constantize.find_by!(id: params[:id])
+    target = target_class.find_by!(id: params[:id])
 
     UseCase::Reaction::Destroy.call(
       source_user: current_user,
@@ -61,5 +59,17 @@ class ReactionsController < ApplicationController
 
       format.html { redirect_back(fallback_location: root_path) }
     end
+  end
+
+  private
+
+  ALLOWED_TYPES = %w[Answer Comment].freeze
+  private_constant :ALLOWED_TYPES
+
+  def target_class
+    params.require :type
+    raise NameError unless ALLOWED_TYPES.include?(params[:type])
+
+    params[:type].constantize
   end
 end
