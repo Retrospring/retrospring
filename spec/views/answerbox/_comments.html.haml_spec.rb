@@ -78,7 +78,7 @@ describe "answerbox/_comments.html.haml", type: :view do
 
     it "shows the correct number of smiles" do
       html = Nokogiri::HTML.parse(rendered)
-      selector = %(li.comment[data-comment-id="#{comment.id}"] button[data-action="smile"]>span)
+      selector = %(li.comment[data-comment-id="#{comment.id}"] button.smile>span)
       expect(html.css(selector).text).to eq("5")
     end
   end
@@ -94,7 +94,7 @@ describe "answerbox/_comments.html.haml", type: :view do
 
     it "displays the comment as smiled" do
       html = Nokogiri::HTML.parse(rendered)
-      selector = %(li.comment[data-comment-id="#{comment.id}"] button[data-action="unsmile"])
+      selector = %(li.comment[data-comment-id="#{comment.id}"] button.unsmile)
       expect(html.css(selector)).to_not be_empty
     end
   end
