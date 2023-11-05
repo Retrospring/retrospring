@@ -16,11 +16,11 @@ class ReactionsController < ApplicationController
   def create
     params.require :id
 
-    target = target_class.find_by!(id: params[:id])
+    target = target_class.find(params[:id])
 
     UseCase::Reaction::Create.call(
       source_user: current_user,
-      target:
+      target:,
     )
 
     target.reload
@@ -40,11 +40,11 @@ class ReactionsController < ApplicationController
   def destroy
     params.require :id
 
-    target = target_class.find_by!(id: params[:id])
+    target = target_class.find(params[:id])
 
     UseCase::Reaction::Destroy.call(
       source_user: current_user,
-      target:
+      target:,
     )
 
     target.reload
