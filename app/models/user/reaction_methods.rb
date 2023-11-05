@@ -13,7 +13,7 @@ module User::ReactionMethods
   # unsmile an answer or comment
   # @param item [ApplicationRecord] the answer/comment to unsmile
   def unsmile(item)
-    Reaction.find_by(user: self, parent: item).destroy
+    Reaction.find_by!(user: self, parent: item).destroy
   end
 
   def smiled?(item)
