@@ -296,7 +296,7 @@ GEM
     pg (1.5.4)
     pghero (3.3.4)
       activerecord (>= 6)
-    prometheus-client (4.2.1)
+    prometheus-client (4.2.2)
     public_suffix (5.0.3)
     puma (6.4.0)
       nio4r (~> 2.0)
