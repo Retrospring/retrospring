@@ -7,7 +7,6 @@ import { showNotification, showErrorNotification } from 'utilities/notifications
 
 export function deleteEntryHandler(event: Event): void {
   const element: HTMLButtonElement = event.target as HTMLButtonElement;
-  element.disabled = true;
 
   const data = {
     id: element.getAttribute('data-ib-id')
@@ -22,11 +21,8 @@ export function deleteEntryHandler(event: Event): void {
     confirmButtonText: I18n.translate('voc.delete'),
     cancelButtonText: I18n.translate('voc.cancel'),
     closeOnConfirm: true
-  }, (returnValue) => {
-    if (returnValue === false) {
-      element.disabled = false;
-      return;
-    }
+  }, () => {
+    element.disabled = true;
 
     post('/ajax/delete_inbox', {
       body: data,
@@ -44,6 +40,7 @@ export function deleteEntryHandler(event: Event): void {
         (inboxEntry as HTMLElement).remove();
       })
       .catch(err => {
+        element.disabled = false;
         console.log(err);
         showErrorNotification(I18n.translate('frontend.error.message'));
       });
