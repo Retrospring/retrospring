@@ -14,6 +14,7 @@ class DiscoverController < ApplicationController
     @new_users = User.where("asked_count > 0").order(:id).reverse_order.limit(top_x).includes(:profile)
 
     answer_ids = @popular_answers.map(&:id) + @most_discussed.map(&:id)
+    @reacted_answer_ids = Reaction.where(user: current_user, parent_type: "Answer", parent_id: answer_ids).pluck(:parent_id)
     @subscribed_answer_ids = Subscription.where(user: current_user, answer_id: answer_ids).pluck(:answer_id)
 
     # .user = the user

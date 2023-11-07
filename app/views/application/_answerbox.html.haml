@@ -22,7 +22,7 @@
               .answerbox__answer-date
                 = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), data: { selection_hotkey: "l" })
         .col-md-6.d-flex.d-md-block.answerbox__actions
-          = render "answerbox/actions", a:, display_all:, subscribed_answer_ids:
+          = render "answerbox/actions", a:, display_all:, subscribed_answer_ids:, reacted_answer_ids:
     - else
       .row
         .col-md-6.text-start.text-muted
@@ -34,7 +34,7 @@
               %i.fa.fa-thumbtack
               = t(".pinned")
         .col-md-6.d-md-flex.answerbox__actions
-          = render "answerbox/actions", a:, display_all:, subscribed_answer_ids:
+          = render "answerbox/actions", a:, display_all:, subscribed_answer_ids:, reacted_answer_ids:
   .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? "d-none" : nil }
     = turbo_frame_tag("ab-reactions-list-#{a.id}", src: reactions_path(a.question, a), loading: :lazy) do
       .d-flex.smiles
