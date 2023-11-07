@@ -291,7 +291,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_200845) do
     t.integer "input_placeholder", default: 7107965, null: false
     t.integer "raised_text", default: 0, null: false
     t.integer "raised_accent_text", default: 0, null: false
-    t.index ["user_id", "created_at"], name: "index_themes_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_themes_on_user_id"
   end
 
   create_table "totp_recovery_codes", force: :cascade do |t|
