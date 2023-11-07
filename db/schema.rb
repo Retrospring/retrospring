@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_28_091613) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_07_200845) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_091613) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["starts_at", "ends_at"], name: "index_announcements_on_starts_at_and_ends_at", order: :desc
     t.index ["user_id"], name: "index_announcements_on_user_id"
   end
 
@@ -306,6 +307,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_091613) do
     t.bigint "banned_by_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["expires_at"], name: "index_user_bans_on_expires_at", order: :desc
   end
 
   create_table "users", id: :bigint, default: -> { "gen_timestamp_id('users'::text)" }, force: :cascade do |t|
@@ -363,10 +365,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_28_091613) do
     t.string "sharing_custom_url"
     t.datetime "notifications_updated_at", precision: nil
     t.datetime "inbox_updated_at", precision: nil
+    t.index "lower((screen_name)::text)", name: "index_users_on_LOWER_screen_name", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["screen_name"], name: "index_users_on_screen_name", unique: true
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
