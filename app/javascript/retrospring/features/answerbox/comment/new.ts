@@ -31,10 +31,6 @@ function createComment(input: HTMLInputElement, id: string, counter: Element, gr
         }
         input.value = '';
         counter.innerHTML = String(512);
-
-        const sub = document.querySelector<HTMLElement>(`[data-action=ab-submarine][data-a-id="${id}"]`);
-        sub.dataset.torpedo = "no"
-        sub.children[0].nextSibling.textContent = ' ' + I18n.translate('voc.unsubscribe');
       }
 
       showNotification(data.message, data.success);
