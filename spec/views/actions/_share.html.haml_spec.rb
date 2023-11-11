@@ -24,6 +24,10 @@ describe "actions/_share.html.haml", type: :view do
   end
 
   it "has a dropdown item to share to anywhere else" do
-    expect(rendered).to have_css(%(a.dropdown-item[data-controller="share"]))
+    expect(rendered).to have_css(%(a.dropdown-item[data-action="share#share"]))
+  end
+
+  it "has a dropdown item to copy to clipboard" do
+    expect(rendered).to have_css(%(a.dropdown-item[data-action="share#copyToClipboard"]))
   end
 end
