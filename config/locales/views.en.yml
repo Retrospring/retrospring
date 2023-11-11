@@ -79,6 +79,7 @@ en:
       pin: "Pin to Profile"
       unpin: "Unpin from Profile"
     share:
+      copy: "Copy to Clipboard"
       twitter: "Share on Twitter"
       tumblr: "Share on Tumblr"
       telegram: "Share on Telegram"
