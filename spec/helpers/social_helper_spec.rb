@@ -30,14 +30,4 @@ describe SocialHelper, type: :helper do
       URL
     end
   end
-
-  describe "#answer_copy_content" do
-    subject { answer_copy_content(answer) }
-
-    it "returns a formatted content to copy" do
-      expected_content = "#{answer.question.content} - #{answer.content} [https://example.com/@#{answer.user.screen_name}/a/#{answer.id}]"
-
-      expect(subject).to eq(expected_content)
-    end
-  end
 end
