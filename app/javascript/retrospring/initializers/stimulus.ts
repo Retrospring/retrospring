@@ -14,6 +14,7 @@ import ToastController from "retrospring/controllers/toast_controller";
 import PwaBadgeController from "retrospring/controllers/pwa_badge_controller";
 import NavigationController from "retrospring/controllers/navigation_controller";
 import ShareController from "retrospring/controllers/share_controller";
+import ClipboardController from "retrospring/controllers/clipboard_controller";
 
 /**
  * This module sets up Stimulus and our controllers
@@ -39,4 +40,5 @@ export default function (): void {
   window['Stimulus'].register('theme', ThemeController);
   window['Stimulus'].register('toast', ToastController);
   window['Stimulus'].register('share', ShareController);
+  window['Stimulus'].register('clipboard', ClipboardController)
 }
