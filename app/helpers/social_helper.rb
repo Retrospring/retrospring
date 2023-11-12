@@ -13,9 +13,4 @@ module SocialHelper
       protocol: (APP_CONFIG["https"] ? :https : :http),
     )
   end
-
-  def answer_copy_content(answer)
-    # copy content template: "question - answer [link]"
-    "#{answer.question.content} - #{answer.content} [#{answer_share_url(answer)}]"
-  end
 end
