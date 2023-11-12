@@ -4,11 +4,11 @@ export default class extends Controller {
 
   static values = {
     copy: String
-  }
+  };
 
   declare readonly copyValue: string;
 
   async copy(){
-    await navigator.clipboard.writeText(this.copyValue)
+    await navigator.clipboard.writeText(this.copyValue);
   }
 }

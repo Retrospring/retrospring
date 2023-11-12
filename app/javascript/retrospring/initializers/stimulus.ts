@@ -40,5 +40,5 @@ export default function (): void {
   window['Stimulus'].register('theme', ThemeController);
   window['Stimulus'].register('toast', ToastController);
   window['Stimulus'].register('share', ShareController);
-  window['Stimulus'].register('clipboard', ClipboardController)
+  window['Stimulus'].register('clipboard', ClipboardController);
 }
