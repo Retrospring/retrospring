@@ -12,7 +12,7 @@
     "@github/hotkey": "^2.3.0",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
-    "@melloware/coloris": "^0.21.1",
+    "@melloware/coloris": "^0.22.0",
     "@popperjs/core": "^2.11",
     "@rails/request.js": "^0.0.9",
     "bootstrap": "^5.2",
