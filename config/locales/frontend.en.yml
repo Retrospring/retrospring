@@ -62,3 +62,6 @@ en:
         title: "Are you sure you want to report this %{type}?"
         text: "A moderator will review your report and decide what happens.\nYou can optionally specify a reason."
         input: "Specify a reason…"
+    clipboard_copy:
+      success: "Content copied to clipboard."
+      error: "Failed to copy content to clipboard."
