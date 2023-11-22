@@ -31,9 +31,14 @@ export function answerEntryHandler(event: Event): void {
       showNotification(data.message);
 
       const shareButton = inboxEntry.querySelector<HTMLButtonElement>('[data-controller="share"]');
+      const clipboardCopyButton = inboxEntry.querySelector<HTMLButtonElement>('[data-action="clipboard#copy"]')
       if (shareButton != null) {
         shareButton.dataset.shareUrlValue = data.sharing.url;
         shareButton.dataset.shareTextValue = data.sharing.text;
+      }
+
+      if (clipboardCopyButton != null){
+        clipboardCopyButton.dataset.clipboardCopyValue = `${data.sharing.text} ${data.sharing.url}`;
       }
 
       const sharing = inboxEntry.querySelector<HTMLElement>('.inbox-entry__sharing');

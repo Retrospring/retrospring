@@ -1,13 +1,14 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
-  static targets = ['twitter', 'tumblr', 'telegram', 'other', 'custom'];
+  static targets = ['twitter', 'tumblr', 'telegram', 'other', 'custom', 'clipboard'];
 
   declare readonly twitterTarget: HTMLAnchorElement;
   declare readonly tumblrTarget: HTMLAnchorElement;
   declare readonly telegramTarget: HTMLAnchorElement;
   declare readonly customTarget: HTMLAnchorElement;
   declare readonly otherTarget: HTMLButtonElement;
+  declare readonly clipboardTarget: HTMLButtonElement;
   declare readonly hasCustomTarget: boolean;
 
   static values = {
@@ -24,6 +25,7 @@ export default class extends Controller {
       this.tumblrTarget.addEventListener('click', () => this.close());
       this.telegramTarget.addEventListener('click', () => this.close());
       this.otherTarget.addEventListener('click', () => this.closeAfterShare());
+      this.clipboardTarget.addEventListener('click', () => this.closeAfterCopyToClipboard());
 
       if (this.hasCustomTarget) {
         this.customTarget.addEventListener('click', () => this.close());
@@ -53,5 +55,9 @@ export default class extends Controller {
 
   closeAfterShare(): void {
     this.otherTarget.addEventListener('retrospring:shared', () => this.close());
+  }
+
+  closeAfterCopyToClipboard(): void {
+    this.clipboardTarget.addEventListener('retrospring:copied', () => this.close());
   }
 }

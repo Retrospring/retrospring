@@ -14,6 +14,7 @@ export default class extends Controller {
     try {
       await navigator.clipboard.writeText(this.copyValue);
       showNotification(I18n.translate("frontend.clipboard_copy.success"));
+      this.element.dispatchEvent(new CustomEvent('retrospring:copied'));
     } catch (error) {
       console.log(error);
       showErrorNotification(I18n.translate("frontend.clipboard_copy.error"));
