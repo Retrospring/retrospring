@@ -1,5 +1,5 @@
 .dropdown-menu.dropdown-menu-end{ role: :menu }
-  - if subscribed_answer_ids&.include?(answer.id)
+  - if answer.is_subscribed
     = render "subscriptions/destroy", answer: answer
   - else
     = render "subscriptions/create", answer: answer

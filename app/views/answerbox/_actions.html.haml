@@ -1,4 +1,4 @@
-%button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile", data: { a_id: a.id, action: reacted_answer_ids&.include?(a.id) ? :unsmile : :smile, selection_hotkey: "s" }, disabled: !user_signed_in? }
+%button.btn.btn-link.answerbox__action{ type: :button, name: "ab-smile", data: { a_id: a.id, action: a.has_reacted ? :unsmile : :smile, selection_hotkey: "s" }, disabled: !user_signed_in? }
   %i.fa.fa-fw.fa-smile-o
   %span{ id: "ab-smile-count-#{a.id}" }= a.smile_count
 - unless display_all
@@ -13,4 +13,4 @@
   .btn-group
     %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
       %span.caret
-    = render "actions/answer", answer: a, subscribed_answer_ids:
+    = render "actions/answer", answer: a

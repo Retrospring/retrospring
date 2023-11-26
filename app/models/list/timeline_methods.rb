@@ -8,6 +8,7 @@ module List::TimelineMethods
   # @return [ActiveRecord::Relation<Answer>] the lists' timeline
   def timeline(current_user: nil)
     Answer
+      .for_user(current_user)
       .includes([{ user: :profile }, :question])
       .then do |query|
         next query unless current_user

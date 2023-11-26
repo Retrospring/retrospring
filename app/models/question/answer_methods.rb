@@ -7,6 +7,7 @@ module Question::AnswerMethods
 
   def ordered_answers(current_user: nil)
     answers
+      .for_user(current_user)
       .includes([{ user: :profile }, :question])
       .then do |query|
         next query unless current_user
