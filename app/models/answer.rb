@@ -27,7 +27,8 @@ class Answer < ApplicationRecord
               FROM reactions
               WHERE parent_id = answers.id
                 AND parent_type = 'Answer'
-                AND user_id = #{current_user.id}) as has_reacted")
+                AND user_id = #{current_user.id}) as has_reacted",
+           )
   }
 
   SHORT_ANSWER_MAX_LENGTH = 640
