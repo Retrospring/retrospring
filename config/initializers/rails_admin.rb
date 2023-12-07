@@ -109,6 +109,7 @@ RailsAdmin.config do |config|
       Answer
       Appendable
       Comment
+      Reaction
       Question
       User
     ],
