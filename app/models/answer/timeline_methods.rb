@@ -6,7 +6,8 @@ module Answer::TimelineMethods
   define_cursor_paginator :cursored_public_timeline, :public_timeline
 
   def public_timeline(current_user: nil)
-    includes([{ user: :profile }, :question])
+    for_user(current_user)
+      .includes([{ user: :profile }, :question])
       .then do |query|
         next query unless current_user
 

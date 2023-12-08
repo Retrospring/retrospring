@@ -8,6 +8,7 @@ module User::TimelineMethods
   # @return [ActiveRecord::Relation<Answer>] the user's timeline
   def timeline
     Answer
+      .for_user(self)
       .then do |query|
         blocked_and_muted_user_ids = blocked_user_ids_cached + muted_user_ids_cached
         next query if blocked_and_muted_user_ids.empty?

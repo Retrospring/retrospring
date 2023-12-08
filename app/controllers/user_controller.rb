@@ -8,8 +8,8 @@ class UserController < ApplicationController
   after_action :mark_notification_as_read, only: %i[show]
 
   def show
-    @pinned_answers = @user.answers.pinned.includes([{ user: :profile }, :question]).order(pinned_at: :desc).limit(10).load_async
-    paginate_answers { |args| @user.cursored_answers(**args) }
+    @pinned_answers = @user.answers.for_user(current_user).pinned.includes([{ user: :profile }, :question]).order(pinned_at: :desc).limit(10).load_async
+    paginate_answers { |args| @user.cursored_answers(current_user_id: current_user, **args) }
 
     respond_to do |format|
       format.html

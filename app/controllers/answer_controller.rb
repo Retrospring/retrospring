@@ -8,13 +8,11 @@ class AnswerController < ApplicationController
   turbo_stream_actions :pin, :unpin
 
   def show
-    @answer = Answer.includes(question: [:user], smiles: [:user]).find(params[:id])
+    @answer = Answer.for_user(current_user).includes(question: [:user], smiles: [:user]).find(params[:id])
     @display_all = true
-    @subscribed_answer_ids = []
 
     return unless user_signed_in?
 
-    @subscribed_answer_ids = Subscription.where(user: current_user, answer: @answer).pluck(:answer_id)
     mark_notifications_as_read
   end
 

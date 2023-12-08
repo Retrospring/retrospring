@@ -15,6 +15,21 @@ class Answer < ApplicationRecord
   # rubocop:enable Rails/UniqueValidationWithoutIndex
 
   scope :pinned, -> { where.not(pinned_at: nil) }
+  scope :for_user, lambda { |current_user|
+    next select("answers.*", "false as is_subscribed", "false as has_reacted") if current_user.nil?
+
+    select("answers.*",
+           "EXISTS(SELECT 1
+              FROM subscriptions
+              WHERE answer_id = answers.id
+                AND user_id = #{current_user.id}) as is_subscribed",
+           "EXISTS(SELECT 1
+              FROM reactions
+              WHERE parent_id = answers.id
+                AND parent_type = 'Answer'
+                AND user_id = #{current_user.id}) as has_reacted",
+           )
+  }
 
   SHORT_ANSWER_MAX_LENGTH = 640
 

@@ -4,11 +4,11 @@
     %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
     #pinned-answers
       - @pinned_answers.each do |a|
-        = render "answerbox", a:, subscribed_answer_ids: @subscribed_answer_ids
+        = render "answerbox", a:
 
     #answers
       - @answers.each do |a|
-        = render "answerbox", a:, subscribed_answer_ids: @subscribed_answer_ids
+        = render "answerbox", a:
 
 - if @more_data_available
   .d-flex.justify-content-center.justify-content-sm-start#paginator
