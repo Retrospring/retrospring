@@ -21,6 +21,7 @@
     @include media-breakpoint-up('sm') {
       position: sticky;
       top: $navbar-height;
+      z-index: 1;
     }
   }
 }
