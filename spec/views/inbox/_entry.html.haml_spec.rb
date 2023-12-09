@@ -96,7 +96,7 @@ describe "inbox/_entry.html.haml", type: :view do
 
   it "has a link-button to copy to clipboard" do
     expected_attribute_selectors = %([data-controller="clipboard"][data-action="clipboard#copy"][data-inbox-sharing-target="clipboard"])
-    expect(rendered).to have_css(%(.inbox-entry__sharing a.btn#{expected_attribute_selectors}))
+    expect(rendered).to have_css(%(.inbox-entry__sharing button.btn#{expected_attribute_selectors}))
   end
 
   it "does not have a link-button to share to a custom site" do
