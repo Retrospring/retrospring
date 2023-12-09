@@ -30,7 +30,7 @@
             %a.btn.btn-primary.mb-1{ href: "#", data: { inbox_sharing_target: "telegram" }, target: "_blank" }
               %i.fab.fa-telegram.fa-fw
               Telegram
-            %a.btn.btn-primary{ data: { controller: :clipboard, action: "clipboard#copy", inbox_sharing_target: "clipboard" } }
+            %button.btn.btn-primary.mb-1{ data: { controller: :clipboard, action: "clipboard#copy", inbox_sharing_target: "clipboard" } }
               %i.fa.fa-fw.fa-solid.fa-copy
               = t("actions.share.copy")
             %button.btn.btn-primary.mb-1{ data: { controller: "share", action: "share#share", inbox_sharing_target: "other" } }
