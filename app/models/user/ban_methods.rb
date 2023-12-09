@@ -6,14 +6,17 @@ module User::BanMethods
   end
 
   def banned?
-    bans.current.count.positive?
+    Rails.cache.fetch("#{cache_key}/banned") do
+      bans.current.count.positive?
+    end
   end
 
   def unban
     bans.current.update(
       # -1s to account for flakyness with timings in tests
-      expires_at: DateTime.now.utc - 1.second
+      expires_at: DateTime.now.utc - 1.second,
     )
+    Rails.cache.delete("#{cache_key}/banned")
   end
 
   # Bans a user.
@@ -24,8 +27,9 @@ module User::BanMethods
     ::UserBan.create!(
       user:       self,
       expires_at: expiry,
-      banned_by:  banned_by,
-      reason:     reason
+      banned_by:,
+      reason:,
     )
+    Rails.cache.delete("#{cache_key}/banned")
   end
 end
