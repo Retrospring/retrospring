@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_07_200845) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_09_212629) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,11 +28,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_200845) do
   end
 
   create_table "anonymous_blocks", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "identifier"
-    t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "question_id"
+    t.bigint "user_id"
     t.bigint "target_user_id"
     t.index ["identifier"], name: "index_anonymous_blocks_on_identifier"
     t.index ["question_id"], name: "index_anonymous_blocks_on_question_id"
@@ -95,10 +95,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_200845) do
   end
 
   create_table "mute_rules", id: :bigint, default: -> { "gen_timestamp_id('mute_rules'::text)" }, force: :cascade do |t|
-    t.bigint "user_id"
     t.string "muted_phrase"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_mute_rules_on_user_id"
   end
 
@@ -183,7 +183,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_200845) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
   create_table "rpush_apps", force: :cascade do |t|
@@ -308,6 +308,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_200845) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["expires_at"], name: "index_user_bans_on_expires_at", order: :desc
+    t.index ["user_id"], name: "index_user_bans_on_user_id"
   end
 
   create_table "users", id: :bigint, default: -> { "gen_timestamp_id('users'::text)" }, force: :cascade do |t|
