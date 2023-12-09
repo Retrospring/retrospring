@@ -1,10 +1,10 @@
+# frozen_string_literal: true
+
 class DiscoverController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    unless APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
-      return redirect_to root_path
-    end
+    return redirect_to root_path unless APP_CONFIG.dig(:features, :discover, :enabled) || current_user.mod?
 
     top_x = 10 # only display the top X items
     week_ago = Time.now.utc.ago(1.week)
@@ -16,19 +16,19 @@ class DiscoverController < ApplicationController
 
     # .user = the user
     # .question_count = how many questions did the user ask
-    @users_with_most_questions = Question.select('user_id, COUNT(*) AS question_count').
-        where("created_at > ?", week_ago).
-        where(author_is_anonymous: false).
-        group(:user_id).
-        order('question_count').
-        reverse_order.limit(top_x)
+    @users_with_most_questions = Question.select("user_id, COUNT(*) AS question_count")
+                                         .where("created_at > ?", week_ago)
+                                         .where(author_is_anonymous: false)
+                                         .group(:user_id)
+                                         .order("question_count")
+                                         .reverse_order.limit(top_x)
 
     # .user = the user
     # .answer_count = how many questions did the user answer
-    @users_with_most_answers = Answer.select('user_id, COUNT(*) AS answer_count').
-        where("created_at > ?", week_ago).
-        group(:user_id).
-        order('answer_count').
-        reverse_order.limit(top_x)
+    @users_with_most_answers = Answer.select("user_id, COUNT(*) AS answer_count")
+                                     .where("created_at > ?", week_ago)
+                                     .group(:user_id)
+                                     .order("answer_count")
+                                     .reverse_order.limit(top_x)
   end
 end
