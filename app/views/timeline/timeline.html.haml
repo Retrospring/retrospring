@@ -1,6 +1,9 @@
 #timeline{ data: { controller: "navigation" } }
   %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
   %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
+  - if @timeline.empty?
+    = render "shared/empty", type: "timeline"
+
   - @timeline.each do |answer|
     = render "answerbox", a: answer
 

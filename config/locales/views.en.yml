@@ -581,6 +581,12 @@ en:
       moderation:
         reports: "There are no open reports right now!"
         inbox: "This users inbox is empty."
+      timeline:
+        heading: "Your feed is empty!"
+        text: "Start answering questions or follow some people to fill your feed with answers."
+        actions:
+          inbox: "Go to your inbox"
+          public: "Go to the public timeline"
       inbox:
         heading: "Your inbox is empty!"
         text: "To start answering, generate a question or share your profile on other sites to get questions."
