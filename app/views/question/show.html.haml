@@ -7,6 +7,9 @@
   #answers{ data: { controller: "navigation" } }
     %button.d-none{ data: { hotkey: "j", action: "navigation#down" } }
     %button.d-none{ data: { hotkey: "k", action: "navigation#up" } }
+    - if @answers.empty?
+      = render "shared/empty", icon: "fa-regular fa-comments", translation_key: ".question"
+
     - @answers.each do |a|
       = render "answerbox", a:, show_question: false
 

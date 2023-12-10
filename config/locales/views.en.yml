@@ -581,6 +581,7 @@ en:
       moderation:
         reports: "There are no open reports right now!"
         inbox: "This users inbox is empty."
+      question: "No one answered this question yet."
       timeline:
         heading: "Your feed is empty!"
         text: "Start answering questions or follow some people to fill your feed with answers."
