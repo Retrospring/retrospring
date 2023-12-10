@@ -1,4 +1,7 @@
 #questions
+  - if @questions.empty?
+    = render "shared/empty", icon: "fa-regular fa-comment", translation_key: ".user.questions"
+
   - @questions.each do |q|
     = render 'shared/question', q: q, type: nil
 

@@ -7,6 +7,9 @@
         = render "answerbox", a:
 
     #answers
+      - if @answers.empty?
+        = render "shared/empty", icon: "fa-regular fa-comments", translation_key: ".user.answers"
+
       - @answers.each do |a|
         = render "answerbox", a:
 

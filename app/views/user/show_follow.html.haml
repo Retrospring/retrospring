@@ -1,3 +1,6 @@
+- if @users.empty?
+  = render "shared/empty", icon: "fa-regular fa-user", translation_key: ".user.#{type}"
+
 .row.row-cols-1.row-cols-sm-2.row-cols-md-3#users
   - @users.each do |user|
     .col.pb-3
