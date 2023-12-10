@@ -1,4 +1,7 @@
 #reports
+  - if @reports.empty?
+    = render "shared/empty", icon: "fa-regular fa-smile-beam", translation_key: ".moderation.reports"
+
   - @reports.each do |r|
     = render "moderation/moderationbox", report: r
 

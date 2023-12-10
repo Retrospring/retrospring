@@ -2,8 +2,11 @@
 
 = render "header", user: @user
 
-.container-lg.container--main
+.container-lg.question-page
   #entries
+    - if @inboxes.empty?
+      = render "shared/empty", icon: "fa fa-inbox", translation_key: ".moderation.inbox"
+
     - @inboxes.each do |i|
       = render "inbox/entry", i: i
 
