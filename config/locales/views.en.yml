@@ -578,6 +578,9 @@ en:
         questions: "This user hasn't asked any questions yet."
         follower: "This user has no followers."
         friend: "This user is not following anyone."
+      moderation:
+        reports: "There are no open reports right now!"
+        inbox: "This users inbox is empty."
     formatting:
       body_html: |
         <p>%{app_name} uses <b>Markdown</b> for formatting</p>
