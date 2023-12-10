@@ -18,9 +18,9 @@ describe "inbox/show.html.haml", type: :view do
 
     it "displays an 'inbox is empty' message" do
       html = Nokogiri::HTML.parse(rendered)
-      selector = "p.empty"
+      selector = "div.card.empty"
       expect(rendered).to have_css(selector)
-      expect(html.css(selector).text.strip).to eq "Nothing to see here."
+      expect(html.css(selector).text.strip).to include "Your inbox is empty!"
     end
   end
 
