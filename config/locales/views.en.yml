@@ -581,6 +581,9 @@ en:
       moderation:
         reports: "There are no open reports right now!"
         inbox: "This users inbox is empty."
+      inbox:
+        heading: "Your inbox is empty!"
+        text: "To start answering, generate a question or share your profile on other sites to get questions."
     formatting:
       body_html: |
         <p>%{app_name} uses <b>Markdown</b> for formatting</p>
