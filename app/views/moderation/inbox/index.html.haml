@@ -1,7 +1,6 @@
 - provide(:title, generate_title(t(".title", user: @user.screen_name)))
 
-= render "header", user: @user, hidden: false
-= render "header", user: @user, hidden: true
+= render "header", user: @user
 
 .container-lg.container--main
   #entries
