@@ -15,6 +15,7 @@ import PwaBadgeController from "retrospring/controllers/pwa_badge_controller";
 import NavigationController from "retrospring/controllers/navigation_controller";
 import ShareController from "retrospring/controllers/share_controller";
 import ClipboardController from "retrospring/controllers/clipboard_controller";
+import QuestionboxFocusController from "retrospring/controllers/questionbox_focus_controller";
 
 /**
  * This module sets up Stimulus and our controllers
@@ -41,4 +42,5 @@ export default function (): void {
   window['Stimulus'].register('toast', ToastController);
   window['Stimulus'].register('share', ShareController);
   window['Stimulus'].register('clipboard', ClipboardController);
+  window['Stimulus'].register('questionbox-focus', QuestionboxFocusController);
 }
