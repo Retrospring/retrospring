@@ -573,6 +573,11 @@ en:
         show: "Show full question"
         hide: "Hide full question"
     empty:
+      user:
+        answers: "This user hasn't answered any questions yet."
+        questions: "This user hasn't asked any questions yet."
+        follower: "This user has no followers."
+        friend: "This user is not following anyone."
     formatting:
       body_html: |
         <p>%{app_name} uses <b>Markdown</b> for formatting</p>
