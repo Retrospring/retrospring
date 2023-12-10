@@ -6,6 +6,8 @@
         %button.btn-close{ data: { bs_dismiss: :modal }, type: :button }
           %span.visually-hidden= t("voc.close")
       .modal-body
+        - if @user
+          .alert.alert-info.d-sm-none= t(".user_note_html", user: @user.profile.safe_name)
         .form-group.has-feedback
           %textarea.form-control{ name: "qb-all-question", placeholder: t(".placeholder"), data: { "character-count-warning-target": "input" } }
           .alert.alert-warning.mt-3.d-none{ data: { "character-count-warning-target": "warning" } }= t('.long_question_warning')

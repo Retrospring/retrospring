@@ -262,6 +262,11 @@ en:
       confirm: "I understand the risk, proceed!"
   modal:
     ask:
+      user_note_html: |
+        <strong>Do you want to ask %{user} a question?</strong>
+        This dialog asks a question to all your followers.
+        <a href="#question-card" data-controller="questionbox-focus" data-action="click">Click here</a>
+        to ask them a question directly!
       title: "Ask your followers"
       placeholder: "Type your question here…"
       action: "Ask"
