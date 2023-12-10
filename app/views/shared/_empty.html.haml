@@ -1,0 +1,34 @@
+- type ||= nil
+.card{ class: type == "inbox" ? "empty" : nil }
+  .card-body.py-5.text-center
+    - if type == "timeline"
+      %p.mb-3
+        %i.fa-regular.fa-comments.icon--showcase.text-muted
+      %h3= t(".timeline.heading")
+      %p= t(".timeline.text")
+      %p
+        %a.btn.btn-primary{ href: inbox_path }= t(".timeline.actions.inbox")
+        %a.btn.btn-default{ href: public_timeline_path }= t(".timeline.actions.public")
+    - elsif type == "inbox"
+      %p.mb-3
+        %i.fa.fa-inbox.icon--showcase.text-muted
+      %h3= t(".inbox.heading")
+      %p= t(".inbox.text")
+      .d-block.d-sm-flex.justify-content-center
+        = button_to inbox_create_path, class: "btn btn-info me-auto" do
+          = t("inbox.actions.questions.button")
+        .button-group.ms-1
+          %button.btn.btn-default{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+            %i.fa.fa-fw.fa-share-alt
+            %span= t("inbox.actions.share.heading")
+          .dropdown-menu.dropdown-menu-end{ role: :menu }
+            %a.dropdown-item{ href: "https://twitter.com/intent/tweet?text=Ask%20me%20anything%21&url=#{user_url(current_user)}", target: "_blank" }
+              %i.fa.fa-fw.fa-twitter
+              = t("inbox.actions.share.button", service: "Twitter")
+            %a.dropdown-item{ href: "https://www.tumblr.com/share/link?url=#{user_url(current_user)}&name=Ask%20me%20anything%21", target: "_blank" }
+              %i.fa.fa-fw.fa-tumblr
+              = t("inbox.actions.share.button", service: "Tumblr")
+    - else
+      %p.mb-3
+        %i.icon--showcase.text-muted{ class: icon }
+      %p= t(translation_key)

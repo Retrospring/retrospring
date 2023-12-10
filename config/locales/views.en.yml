@@ -572,6 +572,7 @@ en:
       question:
         show: "Show full question"
         hide: "Hide full question"
+    empty:
     formatting:
       body_html: |
         <p>%{app_name} uses <b>Markdown</b> for formatting</p>
