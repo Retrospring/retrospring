@@ -29,7 +29,7 @@ describe UseCase::Question::CreateFollowers do
 
     it "enqueues a QuestionWorker job" do
       followers.each do |target_user|
-        expect(QuestionWorker).to have_enqueued_sidekiq_job(target_user.id, subject[:resource].id)
+        expect(SendToInboxJob).to have_enqueued_sidekiq_job(target_user.id, subject[:resource].id)
       end
     end
 

@@ -1,19 +1,6 @@
 # frozen_string_literal: true
 
 class Ajax::QuestionController < AjaxController
-  def destroy
-    params.require :question
-
-    UseCase::Question::Destroy.call(
-      question_id:  params[:question],
-      current_user: current_user
-    )
-
-    @response[:status] = :okay
-    @response[:message] = t(".success")
-    @response[:success] = true
-  end
-
   def create
     params.require :question
     params.require :anonymousQuestion
@@ -24,14 +11,14 @@ class Ajax::QuestionController < AjaxController
     @response = {
       success: true,
       message: t(".success"),
-      status:  :okay
+      status:  :okay,
     }
 
     if user_signed_in? && params[:rcpt] == "followers"
       UseCase::Question::CreateFollowers.call(
         source_user_id:    current_user.id,
         content:           params[:question],
-        author_identifier: AnonymousBlock.get_identifier(request.remote_ip)
+        author_identifier: AnonymousBlock.get_identifier(request.remote_ip),
       )
       return
     end
@@ -41,7 +28,21 @@ class Ajax::QuestionController < AjaxController
       target_user_id:    params[:rcpt],
       content:           params[:question],
       anonymous:         params[:anonymousQuestion],
-      author_identifier: AnonymousBlock.get_identifier(request.remote_ip)
+      author_identifier: AnonymousBlock.get_identifier(request.remote_ip),
     )
   end
+
+  def destroy
+    params.require :question
+
+    UseCase::Question::Destroy.call(
+      question_id:  params[:question],
+      current_user: current_user,
+    )
+
+    @response[:status] = :okay
+    @response[:message] = t(".success")
+    @response[:success] = true
+  end
+
 end
