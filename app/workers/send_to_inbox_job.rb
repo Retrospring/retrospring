@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SendToInboxJob
-  include Sidekiq::Worker
+  include Sidekiq::Job
 
   sidekiq_options queue: :question, retry: false
 
