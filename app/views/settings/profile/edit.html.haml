@@ -7,7 +7,7 @@
           .flex-shrink-0
             = render AvatarComponent.new(user: current_user, size: "lg", classes: ["me-3"])
           .flex-grow-1
-            = f.file_field :profile_picture, accept: APP_CONFIG[:accepted_image_formats].join(","), data: { cropper_target: "input", action: "cropper#change" }
+            = f.file_field :profile_picture, accept: current_user.profile_picture.content_type_whitelist.join(','), data: { cropper_target: "input", action: "cropper#change" }
 
         .row.d-none{ data: { cropper_target: "controls" } }
           .col-sm-10.col-md-8
@@ -22,7 +22,7 @@
           .col-xs-12.col-md-6
             %img.mw-100.me-3{ src: current_user.profile_header.url(:mobile) }
           .col-xs-12.col-md-6.mt-3.mt-sm-0.ps-3.pe-3
-            = f.file_field :profile_header, accept: APP_CONFIG[:accepted_image_formats].join(","), data: { cropper_target: "input", action: "cropper#change" }
+            = f.file_field :profile_header, accept: current_user.profile_header.content_type_whitelist.join(','), data: { cropper_target: "input", action: "cropper#change" }
 
         .row.d-none{ data: { cropper_target: "controls" } }
           .col-sm-10.col-md-8

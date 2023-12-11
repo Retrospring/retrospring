@@ -11,9 +11,11 @@ class BaseUploader < CarrierWave::Uploader::Base
   # Process cropping on upload
   process :cropping
 
-  def store_dir
-    "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  def content_type_whitelist = %w[image/jpeg image/gif image/png]
+
+  def store_dir = "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+
+  def size_range = (1.byte)..(2.megabytes)
 
   def paperclip_path
     return "/users/:attachment/:id_partition/:style/:basename.:extension" if APP_CONFIG["fog"].blank?
