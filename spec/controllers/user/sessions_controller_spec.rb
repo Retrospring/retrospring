@@ -82,7 +82,7 @@ describe User::SessionsController do
 
       it "redirects to the sign in page" do
         expect(subject).to redirect_to :new_user_session
-        expect(flash[:notice]).to eq "#{I18n.t('user.sessions.create.banned', name: user.screen_name)}\n#{I18n.t('user.sessions.create.reason', reason: 'Do not feed the animals')}"
+        expect(flash[:notice]).to eq "#{I18n.t('user.sessions.create.banned', name: user.screen_name)}\n#{I18n.t('user.sessions.create.reason', reason: 'Do not feed the animals')}\n#{I18n.t('user.sessions.create.permanent')}"
       end
     end
 
