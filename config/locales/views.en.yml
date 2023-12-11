@@ -269,7 +269,7 @@ en:
         to ask them a question directly!
       follower_note_html: |
         <strong>You don't have any followers!</strong>
-        Questions asked through this dialog now will not be answered by anyone.
+        Questions asked through this dialog will not arrive in anyone's inbox.
       title: "Ask your followers"
       placeholder: "Type your question here…"
       action: "Ask"
