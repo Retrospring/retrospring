@@ -30,10 +30,13 @@ class ApplicationController < ActionController::Base
       # obligatory '2001: A Space Odyssey' reference
       flash[:notice] = t("user.sessions.create.banned", name:)
       current_ban = current_user.bans.current.first
-      unless current_ban&.reason.nil?
+      unless current_ban&.reason.empty?
         flash[:notice] += "\n#{t('user.sessions.create.reason', reason: current_ban.reason)}"
       end
-      unless current_ban&.permanent?
+
+      if current_ban&.permanent?
+        flash[:notice] += "\n#{t('user.sessions.create.permanent')}"
+      else
         # TODO format banned_until
         flash[:notice] += "\n#{t('user.sessions.create.until', time: current_ban.expires_at)}"
       end

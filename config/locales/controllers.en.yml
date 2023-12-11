@@ -173,6 +173,7 @@ en:
     sessions:
       create:
         banned: "I'm sorry, %{name}, I'm afraid I can't do that."
+        permanent: "You are banned permanently."
         reason: "Ban reason: %{reason}"
         until: "Banned until: %{time}"
       info:
