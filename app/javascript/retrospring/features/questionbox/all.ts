@@ -13,7 +13,8 @@ export function questionboxAllHandler(event: Event): void {
     body: {
       rcpt: 'followers',
       question: document.querySelector<HTMLInputElement>('textarea[name=qb-all-question]').value,
-      anonymousQuestion: 'false'
+      anonymousQuestion: 'false',
+      sendToOwnInbox: (document.getElementById('qb-send-to-own-inbox') as HTMLInputElement).checked,
     },
     contentType: 'application/json'
   })

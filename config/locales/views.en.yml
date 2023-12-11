@@ -272,6 +272,7 @@ en:
       action: "Ask"
       loading: "Asking…"
       long_question_warning: "This question will only be sent to those who allow long questions in their profile settings."
+      send_to_own_inbox: "Send copy to my inbox"
     list:
       title: "Manage list memberships"
       tab:
