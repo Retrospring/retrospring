@@ -8,7 +8,7 @@ class BaseUploader < CarrierWave::Uploader::Base
   # Store original size
   version :original
 
-  # Process cropping on upload
+  process :remove_animation
   process :cropping
 
   def content_type_whitelist = %w[image/jpeg image/gif image/png]
@@ -32,5 +32,11 @@ class BaseUploader < CarrierWave::Uploader::Base
     manipulate! do |image|
       image.crop "#{w}x#{h}+#{x}+#{y}"
     end
+  end
+
+  def remove_animation
+    return unless content_type == "image/gif"
+
+    manipulate!(&:collapse!)
   end
 end
