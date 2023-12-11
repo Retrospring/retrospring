@@ -2,29 +2,28 @@
 
 require "rails_helper"
 
-describe QuestionWorker do
+describe SendToInboxJob do
   describe "#perform" do
     let(:user) { FactoryBot.create(:user) }
     let(:user_id) { user.id }
     let(:content) { Faker::Lorem.sentence }
     let(:question) { FactoryBot.create(:question, content:, user:) }
     let(:question_id) { question.id }
+    let(:follower) { FactoryBot.create(:user) }
+    let(:follower_id) { follower.id }
 
     before do
-      5.times do
-        other_user = FactoryBot.create(:user)
-        other_user.follow(user)
-      end
+      follower.follow(user)
     end
 
-    subject { described_class.new.perform(user_id, question_id) }
+    subject { described_class.new.perform(follower_id, question_id) }
 
     it "places the question in the inbox of the user's followers" do
       expect { subject }
         .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+          change { Inbox.where(user_id: follower_id, question_id:, new: true).count }
             .from(0)
-            .to(5)
+            .to(1),
         )
     end
 
@@ -32,56 +31,41 @@ describe QuestionWorker do
       question.content = "Some spicy question text"
       question.save
 
-      MuteRule.create(user_id: user.followers.first.id, muted_phrase: "spicy")
+      MuteRule.create(user_id: follower_id, muted_phrase: "spicy")
 
-      expect { subject }
-        .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
-            .from(0)
-            .to(4)
-        )
+      subject
+      expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
     end
 
     it "respects inbox locks" do
-      user.followers.first.update(privacy_lock_inbox: true)
+      follower.update(privacy_lock_inbox: true)
 
-      expect { subject }
-        .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
-            .from(0)
-            .to(4)
-        )
+      subject
+      expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
     end
 
     it "does not send questions to banned users" do
-      user.followers.first.ban
+      follower.ban
 
-      expect { subject }
-        .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
-            .from(0)
-            .to(4)
-        )
+      subject
+      expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
     end
 
     context "receiver has push notifications enabled" do
-      let(:receiver) { FactoryBot.create(:user) }
-
       before do
         Rpush::Webpush::App.create(
           name:        "webpush",
           certificate: { public_key: "AAAA", private_key: "AAAA", subject: "" }.to_json,
-          connections: 1
+          connections: 1,
         )
 
         WebPushSubscription.create!(
-          user:         receiver,
+          user:         follower,
           subscription: {
             endpoint: "This will not be used",
             keys:     {},
-          }
+          },
         )
-        receiver.follow(user)
       end
 
       it "sends notifications" do
@@ -89,7 +73,7 @@ describe QuestionWorker do
           .to(
             change { Rpush::Webpush::Notification.count }
               .from(0)
-              .to(1)
+              .to(1),
           )
       end
     end
@@ -98,14 +82,19 @@ describe QuestionWorker do
       let(:content) { "x" * 1000 }
 
       it "sends to recipients who allow long questions" do
-        user.followers.first.profile.update(allow_long_questions: true)
+        follower.profile.update(allow_long_questions: true)
 
         expect { subject }
           .to(
-            change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+            change { Inbox.where(user_id: follower_id, question_id:, new: true).count }
               .from(0)
-              .to(1)
+              .to(1),
           )
+      end
+
+      it "does not send to recipients who do not allow long questions" do
+        subject
+        expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
       end
     end
   end

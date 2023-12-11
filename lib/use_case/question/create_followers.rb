@@ -20,7 +20,7 @@ module UseCase
         increment_metric
 
         args = source_user.followers.map { |f| [f.id, question.id] }
-        QuestionWorker.perform_bulk(args)
+        SendToInboxJob.perform_bulk(args)
 
         {
           status:   201,
