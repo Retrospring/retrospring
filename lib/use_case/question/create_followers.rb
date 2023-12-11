@@ -13,13 +13,14 @@ module UseCase
           author_is_anonymous: false,
           author_identifier:,
           user:                source_user,
-          direct:              false
+          direct:              false,
         )
 
         increment_asked_count
         increment_metric
 
-        QuestionWorker.perform_async(source_user_id, question.id)
+        args = source_user.followers.map { |f| [f.id, question.id] }
+        SendToInboxJob.perform_bulk(args)
 
         {
           status:   201,
@@ -40,12 +41,12 @@ module UseCase
             anonymous: false,
             followers: true,
             generated: false,
-          }
+          },
         )
       end
 
       def source_user
-        @source_user ||= ::User.find(source_user_id)
+        @source_user ||= ::User.includes(:followers).find(source_user_id)
       end
     end
   end

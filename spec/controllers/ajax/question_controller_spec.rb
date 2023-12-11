@@ -48,21 +48,25 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       include_examples "returns the expected response"
     end
 
-    shared_examples "enqueues a QuestionWorker job" do |_expected_rcpt|
-      it "enqueues a QuestionWorker job" do
-        allow(QuestionWorker).to receive(:perform_async)
+    shared_examples "enqueues SendToInboxJob jobs" do
+      it "enqueues a SendToInboxJob job" do
+        allow(SendToInboxJob).to receive(:perform_bulk)
         subject
-        expect(QuestionWorker).to have_received(:perform_async).with(user.id, Question.last.id)
+        question_id = Question.last.id
+        bulk_args = followers.map { |f| [f.id, question_id] }
+        expect(SendToInboxJob).to have_received(:perform_bulk).with(bulk_args)
       end
 
       include_examples "returns the expected response"
     end
 
-    shared_examples "does not enqueue a QuestionWorker job" do
-      it "does not enqueue a QuestionWorker job" do
-        allow(QuestionWorker).to receive(:perform_async)
+    shared_examples "does not enqueue a SendToInboxJob job" do
+      it "does not enqueue a SendToInboxJob job" do
+        allow(SendToInboxJob).to receive(:perform_async)
+        allow(SendToInboxJob).to receive(:perform_bulk)
         subject
-        expect(QuestionWorker).not_to have_received(:perform_async)
+        expect(SendToInboxJob).not_to have_received(:perform_async)
+        expect(SendToInboxJob).not_to have_received(:perform_bulk)
       end
 
       include_examples "returns the expected response"
@@ -194,13 +198,18 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       context "when rcpt is followers" do
         let(:rcpt) { "followers" }
+        let(:followers) { FactoryBot.create_list(:user, 3) }
+
+        before do
+          followers.each { |follower| follower.follow(user) }
+        end
 
         context "when anonymousQuestion is true" do
           let(:anonymous_question) { "true" }
           let(:expected_question_anonymous) { false }
 
           include_examples "creates the question", false
-          include_examples "enqueues a QuestionWorker job", "followers"
+          include_examples "enqueues SendToInboxJob jobs"
         end
 
         context "when anonymousQuestion is false" do
@@ -208,7 +217,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           let(:expected_question_anonymous) { false }
 
           include_examples "creates the question", false
-          include_examples "enqueues a QuestionWorker job", "followers"
+          include_examples "enqueues SendToInboxJob jobs"
         end
       end
 
@@ -375,7 +384,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           }
         end
 
-        include_examples "does not enqueue a QuestionWorker job"
+        include_examples "does not enqueue a SendToInboxJob job"
       end
 
       context "when rcpt is an invalid value" do

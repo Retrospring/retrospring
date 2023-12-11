@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# @deprecated This is to be replaced by SendToInboxJob. Remaining here so that remaining QuestionWorker jobs can finish.
 class QuestionWorker
   include Sidekiq::Worker
 
@@ -35,7 +36,5 @@ class QuestionWorker
     false
   end
 
-  def muted?(user, question)
-    MuteRule.where(user:).any? { |rule| rule.applies_to? question }
-  end
+  def muted?(user, question) = MuteRule.where(user:).any? { |rule| rule.applies_to? question }
 end

@@ -6,13 +6,20 @@ describe UseCase::Question::CreateFollowers do
   subject do
     UseCase::Question::CreateFollowers.call(
       source_user_id:    source_user.id,
-      content:           content,
-      author_identifier: author_identifier
+      content:,
+      author_identifier:,
     )
   end
 
   context "user is logged in" do
+    before do
+      followers.each do |target_user|
+        target_user.follow source_user
+      end
+    end
+
     let(:source_user) { create(:user) }
+    let(:followers) { create_list(:user, 5) }
     let(:content) { "content" }
     let(:author_identifier) { nil }
 
@@ -21,7 +28,9 @@ describe UseCase::Question::CreateFollowers do
     end
 
     it "enqueues a QuestionWorker job" do
-      expect(QuestionWorker).to have_enqueued_sidekiq_job(source_user.id, subject[:resource].id)
+      followers.each do |target_user|
+        expect(SendToInboxJob).to have_enqueued_sidekiq_job(target_user.id, subject[:resource].id)
+      end
     end
 
     it "increments the asked count" do
