@@ -37,12 +37,11 @@ class Ajax::QuestionController < AjaxController
 
     UseCase::Question::Destroy.call(
       question_id:  params[:question],
-      current_user: current_user,
+      current_user:,
     )
 
     @response[:status] = :okay
     @response[:message] = t(".success")
     @response[:success] = true
   end
-
 end
