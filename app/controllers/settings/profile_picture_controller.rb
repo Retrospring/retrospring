@@ -12,9 +12,10 @@ class Settings::ProfilePictureController < ApplicationController
       text += t(".notice.profile_header") if user_attributes[:profile_header]
       flash[:success] = text
     else
-      flash[:error] = t(".error")
+      # CarrierWave resets the image to the default upon an error
+      current_user.reload
     end
 
-    redirect_to settings_profile_path
+    render "settings/profile/edit"
   end
 end

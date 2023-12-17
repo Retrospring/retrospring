@@ -8,12 +8,14 @@ class BaseUploader < CarrierWave::Uploader::Base
   # Store original size
   version :original
 
-  # Process cropping on upload
+  process :remove_animation
   process :cropping
 
-  def store_dir
-    "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  def content_type_whitelist = %w[image/jpeg image/gif image/png]
+
+  def store_dir = "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+
+  def size_range = (1.byte)..(5.megabytes)
 
   def paperclip_path
     return "/users/:attachment/:id_partition/:style/:basename.:extension" if APP_CONFIG["fog"].blank?
@@ -30,5 +32,11 @@ class BaseUploader < CarrierWave::Uploader::Base
     manipulate! do |image|
       image.crop "#{w}x#{h}+#{x}+#{y}"
     end
+  end
+
+  def remove_animation
+    return unless content_type == "image/gif"
+
+    manipulate!(&:collapse!)
   end
 end

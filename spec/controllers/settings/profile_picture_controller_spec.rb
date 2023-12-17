@@ -32,7 +32,8 @@ describe Settings::ProfilePictureController, type: :controller do
 
       it "redirects to the edit_user_profile page" do
         subject
-        expect(response).to redirect_to(:settings_profile)
+        expect(response).to have_http_status(:ok)
+        expect(response).to have_rendered(:edit)
       end
     end
   end
