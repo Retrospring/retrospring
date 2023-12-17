@@ -6,6 +6,7 @@ module UseCase
       option :source_user_id, type: Types::Coercible::Integer
       option :content, type: Types::Coercible::String
       option :author_identifier, type: Types::Coercible::String | Types::Nil
+      option :send_to_own_inbox, type: Types::Params::Bool, default: proc { false }
 
       def call
         question = ::Question.create!(
@@ -20,6 +21,7 @@ module UseCase
         increment_metric
 
         args = source_user.followers.map { |f| [f.id, question.id] }
+        SendToInboxJob.perform_async(source_user_id, question.id) if send_to_own_inbox
         SendToInboxJob.perform_bulk(args)
 
         {

@@ -14,5 +14,9 @@
           %textarea.form-control{ name: "qb-all-question", placeholder: t(".placeholder"), data: { "character-count-warning-target": "input" } }
           .alert.alert-warning.mt-3.d-none{ data: { "character-count-warning-target": "warning" } }= t('.long_question_warning')
       .modal-footer
-        %button.btn.btn-default{ type: :button, data: { bs_dismiss: :modal } }= t("voc.cancel")
-        %button.btn.btn-primary{ name: "qb-all-ask", type: :button, data: { loading_text: t(".loading") } }= t(".action")
+        .flex-grow-1
+          %input.form-check-input#qb-send-to-own-inbox{ type: :checkbox }
+          %label.form-check-label{ for: 'qb-send-to-own-inbox' }= t('.send_to_own_inbox')
+        .flex-grow-1.d-flex
+          %button.btn.btn-default.ms-auto{ type: :button, data: { bs_dismiss: :modal } }= t("voc.cancel")
+          %button.btn.btn-primary{ name: "qb-all-ask", type: :button, data: { loading_text: t(".loading") } }= t(".action")

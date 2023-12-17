@@ -19,6 +19,7 @@ class Ajax::QuestionController < AjaxController
         source_user_id:    current_user.id,
         content:           params[:question],
         author_identifier: AnonymousBlock.get_identifier(request.remote_ip),
+        send_to_own_inbox: params[:sendToOwnInbox],
       )
       return
     end

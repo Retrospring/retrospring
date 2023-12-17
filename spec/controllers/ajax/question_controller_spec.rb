@@ -77,9 +77,11 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       {
         question:          question_content,
         anonymousQuestion: anonymous_question,
-        rcpt:              rcpt
+        rcpt:,
+        sendToOwnInbox:    send_to_own_inbox,
       }
     end
+    let(:send_to_own_inbox) { "false" }
 
     subject { post(:create, params: params) }
 
@@ -98,6 +100,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       context "when rcpt is a valid user" do
         let(:rcpt) { target_user.id }
+        let(:send_to_own_inbox) { false }
 
         context "when user allows anonymous questions" do
           let(:user_allows_anonymous_questions) { true }
@@ -219,10 +222,41 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
           include_examples "creates the question", false
           include_examples "enqueues SendToInboxJob jobs"
         end
+
+        context "when sendToOwnInbox is true" do
+          let(:anonymous_question) { "false" }
+          let(:expected_question_anonymous) { false }
+          let(:user_allows_anonymous_questions) { false }
+          let(:send_to_own_inbox) { "true" }
+
+          include_examples "creates the question", false
+
+          it "sends question to the current user" do
+            allow(SendToInboxJob).to receive(:perform_async)
+            subject
+            expect(SendToInboxJob).to have_received(:perform_async).with(user.id, Question.last.id)
+          end
+        end
+
+        context "when sendToOwnInbox is false" do
+          let(:anonymous_question) { "false" }
+          let(:expected_question_anonymous) { false }
+          let(:user_allows_anonymous_questions) { false }
+          let(:send_to_own_inbox) { "false" }
+
+          include_examples "creates the question", false
+
+          it "sends question to the current user" do
+            allow(SendToInboxJob).to receive(:perform_async)
+            subject
+            expect(SendToInboxJob).not_to have_received(:perform_async).with(user.id, Question.last.id)
+          end
+        end
       end
 
       context "when rcpt is an invalid value" do
         let(:rcpt) { "tripmeister_eder" }
+        let(:send_to_own_inbox) { false }
         let(:anonymous_question) { "false" }
         let(:expected_response) do
           {
@@ -239,6 +273,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       context "when rcpt is a non-existent user" do
         let(:rcpt) { "-1" }
+        let(:send_to_own_inbox) { false }
         let(:anonymous_question) { "false" }
         let(:expected_response) do
           {
