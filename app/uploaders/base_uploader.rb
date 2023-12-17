@@ -15,7 +15,7 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def store_dir = "/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
 
-  def size_range = (1.byte)..(2.megabytes)
+  def size_range = (1.byte)..(5.megabytes)
 
   def paperclip_path
     return "/users/:attachment/:id_partition/:style/:basename.:extension" if APP_CONFIG["fog"].blank?
