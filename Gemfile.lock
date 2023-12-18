@@ -197,7 +197,7 @@ GEM
     glob (0.4.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    haml (6.2.3)
+    haml (6.3.0)
       temple (>= 0.8.2)
       thor
       tilt
@@ -534,7 +534,7 @@ DEPENDENCIES
   fog-aws
   fog-core
   fog-local
-  haml (~> 6.2)
+  haml (~> 6.3)
   haml_lint
   hcaptcha!
   httparty
