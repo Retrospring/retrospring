@@ -44,9 +44,6 @@ class Ajax::AnswerController < AjaxController
 
     return if inbox
 
-    # these assigns are needed because shared/_answerbox rely on them
-    answer.has_reacted = false
-    answer.is_subscribed = false
     @question = 1
     @response[:render] = render_to_string(partial: "answerbox", locals: { a: answer, show_question: false })
   end
