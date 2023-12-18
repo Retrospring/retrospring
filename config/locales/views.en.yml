@@ -129,6 +129,7 @@ en:
       hide: "Answered by"
       pinned: "Pinned"
       comments:
+        action: "Post comment"
         placeholder: "Comment…"
     questionbox:
       title: "Ask something!"
