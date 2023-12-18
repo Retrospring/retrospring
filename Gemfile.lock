@@ -201,7 +201,7 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    haml_lint (0.51.0)
+    haml_lint (0.52.0)
       haml (>= 4.0)
       parallel (~> 1.10)
       rainbow
