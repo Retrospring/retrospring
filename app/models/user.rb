@@ -122,7 +122,7 @@ class User < ApplicationRecord
 
     Retrospring::Metrics::QUESTIONS_ANSWERED.increment
 
-    Answer.create!(content:, user: self, question:)
+    Answer.create!(content:, user: self, question:, has_reacted: false, is_subscribed: true)
   end
 
   # has the user answered +question+ yet?
