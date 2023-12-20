@@ -4,6 +4,17 @@
     %p.lead= t(".lead")
     = t(".body_html")
 
+    %h2= t(".standard.heading")
+    .grid
+      = render ThemePreviewComponent.new(Theme.new)
+      - @built_in_themes.each do |theme|
+        = render ThemePreviewComponent.new(theme)
+
+    %h2= t(".own.heading")
+    .grid
+      - current_user.themes.each do |theme|
+        = render ThemePreviewComponent.new(theme)
+
     - if current_user.active_theme
       .pull-right
         = link_to t(".delete"), settings_theme_path, data: { turbo_confirm: t("voc.confirm"), turbo_method: :delete }, tabindex: -1, class: "btn btn-danger"

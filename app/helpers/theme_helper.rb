@@ -28,17 +28,11 @@ module ThemeHelper
     "muted_text"         => "muted-text",
   }.freeze
 
-  def get_theme_css(theme)
-    body = ":root {\n"
-
-    theme.attributes.each do |k, v|
-      next unless ATTRIBUTE_MAP.key?(k)
-
-      Array(ATTRIBUTE_MAP[k]).each do |var|
-        body += "\t--#{var}: #{get_color_for_key(var, v)};\n"
-      end
-    end
-    body + "\t--turbolinks-progress-color: ##{lighten(theme.primary_color)}\n}"
+  def get_theme_css(theme, wrap = true)
+    body = wrap ? ":root {\n" : ""
+    body += theme.to_css
+    body += "}" if wrap
+    body
   end
 
   def get_color_for_key(key, color)

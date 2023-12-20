@@ -5,7 +5,9 @@ class Settings::ThemeController < ApplicationController
 
   before_action :authenticate_user!
 
-  def edit; end
+  def edit
+    @built_in_themes = Theme.built_in
+  end
 
   def update
     if current_user.theme.nil?

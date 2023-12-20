@@ -561,6 +561,10 @@ en:
           body: "Raised content includes all the different boxes and panels you can see across the site."
           accent:
             example: "Some text on top of a accented area on a raised element!"
+        standard:
+          heading: "Built-in themes"
+        own:
+          heading: "Your themes"
     push_notifications:
       index:
         title: "Push Notifications"
