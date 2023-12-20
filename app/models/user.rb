@@ -41,13 +41,14 @@ class User < ApplicationRecord
   has_many :list_memberships, class_name: "ListMember", dependent: :destroy_async
   has_many :mute_rules, dependent: :destroy_async
   has_many :anonymous_blocks, dependent: :destroy_async
+  has_many :themes, dependent: :destroy
 
   has_many :subscriptions, dependent: :destroy_async
   has_many :totp_recovery_codes, dependent: :destroy_async
   has_many :web_push_subscriptions, dependent: :destroy_async
 
   has_one :profile, dependent: :destroy
-  has_one :theme, dependent: :destroy
+  has_one :active_theme, -> { where(active: true) }, class_name: "Theme"
 
   has_many :bans, class_name: "UserBan", dependent: :destroy_async
   has_many :banned_users, class_name:  "UserBan",

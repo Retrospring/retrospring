@@ -52,7 +52,7 @@ module ThemeHelper
   end
 
   def theme_color
-    theme = active_theme_user&.theme
+    theme = active_theme_user&.active_theme
     if theme
       theme.theme_color
     else
@@ -61,7 +61,7 @@ module ThemeHelper
   end
 
   def mobile_theme_color
-    theme = active_theme_user&.theme
+    theme = active_theme_user&.active_theme
     if theme
       theme.mobile_theme_color
     else
@@ -72,7 +72,7 @@ module ThemeHelper
   def active_theme_user
     user = @user || @answer&.user # rubocop:disable Rails/HelperInstanceVariable
 
-    if user&.theme.present? && should_show_foreign_theme?
+    if user&.active_theme.present? && should_show_foreign_theme?
       user
     elsif user_signed_in?
       current_user

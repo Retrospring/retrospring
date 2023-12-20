@@ -4,10 +4,10 @@
     %p.lead= t(".lead")
     = t(".body_html")
 
-    - if current_user.theme
+    - if current_user.active_theme
       .pull-right
         = link_to t(".delete"), settings_theme_path, data: { turbo_confirm: t("voc.confirm"), turbo_method: :delete }, tabindex: -1, class: "btn btn-danger"
-= bootstrap_form_for(current_user.theme || Theme.new,
+= bootstrap_form_for(current_user.active_theme || Theme.new,
   html: { id: "update" },
   method: :patch,
   data: { turbo: false, controller: "theme", action: "theme#submit" }) do |f|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_20_100445) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_20_130817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -292,6 +292,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_20_100445) do
     t.integer "input_placeholder", default: 7107965, null: false
     t.integer "raised_text", default: 0, null: false
     t.integer "raised_accent_text", default: 0, null: false
+    t.boolean "active", default: false, null: false
+    t.string "name"
+    t.index ["user_id", "active"], name: "index_themes_on_user_id_and_active"
     t.index ["user_id"], name: "index_themes_on_user_id"
   end
 
