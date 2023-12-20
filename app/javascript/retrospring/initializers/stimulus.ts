@@ -16,6 +16,7 @@ import NavigationController from "retrospring/controllers/navigation_controller"
 import ShareController from "retrospring/controllers/share_controller";
 import ClipboardController from "retrospring/controllers/clipboard_controller";
 import QuestionboxFocusController from "retrospring/controllers/questionbox_focus_controller";
+import ReactionController from "retrospring/controllers/reaction_controller";
 
 /**
  * This module sets up Stimulus and our controllers
@@ -43,4 +44,5 @@ export default function (): void {
   window['Stimulus'].register('share', ShareController);
   window['Stimulus'].register('clipboard', ClipboardController);
   window['Stimulus'].register('questionbox-focus', QuestionboxFocusController);
+  window['Stimulus'].register('reaction', ReactionController);
 }
