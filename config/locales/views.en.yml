@@ -108,12 +108,6 @@ en:
         retries: "Retries"
         dead: "Dead"
   answerbox:
-    header:
-      answers:
-        zero: "0 answers"
-        one: "1 answer"
-        other: "%{count} answers"
-      asked_html: "%{user} asked %{time} ago"
     actions:
       share:
         title: "Share"
@@ -218,10 +212,6 @@ en:
       title: "Feature Requests – Feedback"
   inbox:
     entry:
-      asked_html: "%{user} asked %{time} ago"
-      answers:
-        one: "1 answer"
-        other: "%{count} answers"
       options: "Sharing Options"
       placeholder: "Write your answer here…"
       sharing:
