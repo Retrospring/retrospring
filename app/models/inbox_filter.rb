@@ -5,10 +5,10 @@ class InboxFilter
 
   define_cursor_paginator :cursored_results, :results
 
-  KEYS = %i(
+  KEYS = %i[
     author
     anonymous
-  ).freeze
+  ].freeze
 
   attr_reader :params, :user
 
@@ -36,10 +36,10 @@ class InboxFilter
     case key.to_s
     when "author"
       @user.inboxes.joins(question: [:user])
-                   .where(questions: { users: { screen_name: value }, author_is_anonymous: false })
+           .where(questions: { users: { screen_name: value }, author_is_anonymous: false })
     when "anonymous"
       @user.inboxes.joins(:question)
-                   .where(questions: { author_is_anonymous: true })
+           .where(questions: { author_is_anonymous: true })
     end
   end
 end
