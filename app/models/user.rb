@@ -40,7 +40,6 @@ class User < ApplicationRecord
   has_many :lists, dependent: :destroy_async
   has_many :list_memberships, class_name: "ListMember", dependent: :destroy_async
   has_many :mute_rules, dependent: :destroy_async
-  has_many :anonymous_blocks, dependent: :destroy_async
 
   has_many :subscriptions, dependent: :destroy_async
   has_many :totp_recovery_codes, dependent: :destroy_async
@@ -53,6 +52,11 @@ class User < ApplicationRecord
   has_many :banned_users, class_name:  "UserBan",
                           foreign_key: "banned_by_id",
                           dependent:   :nullify
+
+  has_many :anonymous_blocks, dependent: :destroy_async
+  has_many :passive_anonymous_blocks, class_name: "AnonymousBlock",
+                                      foreign_key: "target_user_id",
+                                      dependent: :nullify
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]+\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.-]+)\/?(?:.*)/i
