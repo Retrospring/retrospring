@@ -103,7 +103,7 @@ describe InboxController, type: :controller do
               more_data_available: true,
               inbox_count:         16,
               delete_id:           "ib-delete-all",
-              disabled:            nil
+              disabled:            nil,
             }
           end
         end
@@ -119,7 +119,7 @@ describe InboxController, type: :controller do
                 more_data_available: false,
                 inbox_count:         16,
                 delete_id:           "ib-delete-all",
-                disabled:            nil
+                disabled:            nil,
               }
             end
           end
@@ -136,8 +136,8 @@ describe InboxController, type: :controller do
             question: FactoryBot.create(
               :question,
               user:                unrelated_user,
-              author_is_anonymous: false
-            )
+              author_is_anonymous: false,
+            ),
           )
         end
         let!(:generic_inbox_entry2) { Inbox.create(user:, question: FactoryBot.create(:question)) }
@@ -155,7 +155,7 @@ describe InboxController, type: :controller do
                   inbox:               [],
                   inbox_last_id:       nil,
                   more_data_available: false,
-                  inbox_count:         0
+                  inbox_count:         0,
                 }
               end
             end
@@ -168,8 +168,8 @@ describe InboxController, type: :controller do
                 question: FactoryBot.create(
                   :question,
                   user:                other_user,
-                  author_is_anonymous: true
-                )
+                  author_is_anonymous: true,
+                ),
               )
             end
 
@@ -180,7 +180,7 @@ describe InboxController, type: :controller do
                   inbox:               [],
                   inbox_last_id:       nil,
                   more_data_available: false,
-                  inbox_count:         0
+                  inbox_count:         0,
                 }
               end
             end
@@ -193,8 +193,8 @@ describe InboxController, type: :controller do
                 question: FactoryBot.create(
                   :question,
                   user:                other_user,
-                  author_is_anonymous: false
-                )
+                  author_is_anonymous: false,
+                ),
               )
             end
             let!(:anonymous_inbox_entry) do
@@ -203,8 +203,8 @@ describe InboxController, type: :controller do
                 question: FactoryBot.create(
                   :question,
                   user:                other_user,
-                  author_is_anonymous: true
-                )
+                  author_is_anonymous: true,
+                ),
               )
             end
 
@@ -216,7 +216,7 @@ describe InboxController, type: :controller do
                   more_data_available: false,
                   inbox_count:         1,
                   delete_id:           "ib-delete-all-author",
-                  disabled:            nil
+                  disabled:            nil,
                 }
               end
             end
@@ -232,8 +232,8 @@ describe InboxController, type: :controller do
             question: FactoryBot.create(
               :question,
               user:                other_user,
-              author_is_anonymous: false
-            )
+              author_is_anonymous: false,
+            ),
           )
         end
 
@@ -249,7 +249,7 @@ describe InboxController, type: :controller do
             {
               inbox:               [*inbox_entry_fillers.reverse],
               more_data_available: false,
-              inbox_count:         9
+              inbox_count:         9,
             }
           end
         end
