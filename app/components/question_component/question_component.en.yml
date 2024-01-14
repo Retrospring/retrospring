@@ -1,4 +1,5 @@
 en:
+  anon_hint: "This question was asked anonymously"
   answers:
     zero: "0 answers"
     one: "1 answer"
