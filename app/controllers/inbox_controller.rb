@@ -4,15 +4,7 @@ class InboxController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    find_author
     find_inbox_entries
-
-    if @author_user && @inbox_count.zero?
-      # rubocop disabled because of a false positive
-      flash[:info] = t(".author.info", author: @author) # rubocop:disable Rails/ActionControllerFlashBeforeRender
-      redirect_to inbox_path(last_id: params[:last_id])
-      return
-    end
 
     @delete_id = find_delete_id
     @disabled = true if @inbox.empty?
@@ -47,34 +39,22 @@ class InboxController < ApplicationController
 
   private
 
-  def find_author
-    return if params[:author].blank?
-
-    @author = params[:author]
-
-    @author_user = User.where("LOWER(screen_name) = ?", @author.downcase).first
-    flash.now[:error] = t(".author.error", author: @author) unless @author_user
+  def filter_params
+    params.slice(*InboxFilter::KEYS).permit(*InboxFilter::KEYS)
   end
 
   def find_inbox_entries
-    @inbox = current_user.cursored_inbox(last_id: params[:last_id]).then(&method(:filter_author_chain))
+    filter = InboxFilter.new(current_user, filter_params)
+    @inbox = filter.cursored_results(last_id: params[:last_id])
     @inbox_last_id = @inbox.map(&:id).min
-    @more_data_available = current_user.cursored_inbox(last_id: @inbox_last_id, size: 1).then(&method(:filter_author_chain)).count.positive?
-    @inbox_count = current_user.inboxes.then(&method(:filter_author_chain)).count
+    @more_data_available = filter.cursored_results(last_id: @inbox_last_id, size: 1).count.positive?
+    @inbox_count = filter.results.count
   end
 
   def find_delete_id
-    return "ib-delete-all-author" if @author_user && @inbox_count.positive?
+    return "ib-delete-all-author" if params[:author].present? && @inbox_count.positive?
 
     "ib-delete-all"
-  end
-
-  def filter_author_chain(query)
-    return query unless @author_user
-
-    query
-      .joins(:question)
-      .where(questions: { user: @author_user, author_is_anonymous: false })
   end
 
   # rubocop:disable Rails/SkipsModelValidations
