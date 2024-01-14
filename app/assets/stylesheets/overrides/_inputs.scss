@@ -29,3 +29,9 @@
 .form-check-input:focus {
   box-shadow: rgba(var(--primary-rgb), 0.25) 0 0 0 0.25rem;
 }
+
+.input-group .button_to .btn {
+  margin-left: -1px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
