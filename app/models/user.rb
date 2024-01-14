@@ -54,9 +54,9 @@ class User < ApplicationRecord
                           dependent:   :nullify
 
   has_many :anonymous_blocks, dependent: :destroy_async
-  has_many :passive_anonymous_blocks, class_name: "AnonymousBlock",
+  has_many :passive_anonymous_blocks, class_name:  "AnonymousBlock",
                                       foreign_key: "target_user_id",
-                                      dependent: :nullify
+                                      dependent:   :nullify
 
   SCREEN_NAME_REGEX = /\A[a-zA-Z0-9_]+\z/
   WEBSITE_REGEX = /https?:\/\/([A-Za-z.-]+)\/?(?:.*)/i
