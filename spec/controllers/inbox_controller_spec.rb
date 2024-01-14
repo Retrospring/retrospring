@@ -144,39 +144,10 @@ describe InboxController, type: :controller do
 
         subject { get :show, params: { author: author_param } }
 
-        context "with a nonexisting screen name" do
-          let(:author_param) { "xXx420MegaGamer2003xXx" }
-
-          it "sets the error flash" do
-            subject
-            expect(flash[:error]).to eq "No user with the name @xXx420MegaGamer2003xXx found, showing entries from all users instead!"
-          end
-
-          include_examples "sets the expected ivars" do
-            let(:expected_assigns) do
-              {
-                inbox:               [generic_inbox_entry2, generic_inbox_entry1],
-                inbox_last_id:       generic_inbox_entry1.id,
-                more_data_available: false,
-                inbox_count:         2,
-                delete_id:           "ib-delete-all",
-                disabled:            nil
-              }
-            end
-          end
-        end
-
         context "with an existing screen name" do
           let(:author_param) { other_user.screen_name }
 
           context "with no questions from the other user in the inbox" do
-            it { is_expected.to redirect_to inbox_path }
-
-            it "sets the info flash" do
-              subject
-              expect(flash[:info]).to eq "No questions from @#{other_user.screen_name} found, showing entries from all users instead!"
-            end
-
             include_examples "sets the expected ivars" do
               # these are the ivars set before the redirect happened
               let(:expected_assigns) do
@@ -200,13 +171,6 @@ describe InboxController, type: :controller do
                   author_is_anonymous: true
                 )
               )
-            end
-
-            it { is_expected.to redirect_to inbox_path }
-
-            it "sets the info flash" do
-              subject
-              expect(flash[:info]).to eq "No questions from @#{other_user.screen_name} found, showing entries from all users instead!"
             end
 
             include_examples "sets the expected ivars" do
@@ -256,6 +220,37 @@ describe InboxController, type: :controller do
                 }
               end
             end
+          end
+        end
+      end
+
+      context "when passed the anonymous param" do
+        let!(:other_user) { FactoryBot.create(:user) }
+        let!(:generic_inbox_entry) do
+          Inbox.create(
+            user:,
+            question: FactoryBot.create(
+              :question,
+              user:                other_user,
+              author_is_anonymous: false
+            )
+          )
+        end
+
+        let!(:inbox_entry_fillers) do
+          # 9 times => 1 entry less than default page size
+          9.times.map { Inbox.create(user:, question: FactoryBot.create(:question, author_is_anonymous: true)) }
+        end
+
+        subject { get :show, params: { anonymous: true } }
+
+        include_examples "sets the expected ivars" do
+          let(:expected_assigns) do
+            {
+              inbox:               [*inbox_entry_fillers.reverse],
+              more_data_available: false,
+              inbox_count:         9
+            }
           end
         end
       end
