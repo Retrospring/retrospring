@@ -1,7 +1,7 @@
 class Answer < ApplicationRecord
   extend Answer::TimelineMethods
 
-  attr_writer :has_reacted, :is_subscribed
+  attr_accessor :has_reacted, :is_subscribed
 
   belongs_to :user, counter_cache: :answered_count
   belongs_to :question, counter_cache: :answer_count
