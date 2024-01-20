@@ -165,6 +165,8 @@ GEM
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
     excon (0.109.0)
     factory_bot (6.4.5)
       activesupport (>= 5.0.0)
@@ -195,6 +197,9 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (1.1.0)
+    fugit (1.9.0)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     glob (0.4.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -306,6 +311,7 @@ GEM
     pundit (2.3.1)
       activesupport (>= 3.0.0)
     questiongenerator (1.1.0)
+    raabro (1.4.0)
     racc (1.7.3)
     rack (2.2.8)
     rack-test (2.1.0)
@@ -426,6 +432,8 @@ GEM
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    rufus-scheduler (3.9.1)
+      fugit (~> 1.1, >= 1.1.6)
     sanitize (6.1.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -451,6 +459,10 @@ GEM
       connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
+    sidekiq-scheduler (5.0.3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 6, < 8)
+      tilt (>= 1.4.0)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -582,6 +594,7 @@ DEPENDENCIES
   sentry-sidekiq
   shoulda-matchers (~> 6.0)
   sidekiq (< 7)
+  sidekiq-scheduler
   simplecov
   simplecov-cobertura
   simplecov-json
