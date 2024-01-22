@@ -36,6 +36,7 @@ gem "mini_magick"
 gem "oj"
 gem "rpush"
 gem "rqrcode"
+gem "web-push"
 
 gem "rolify", "~> 6.0"
 

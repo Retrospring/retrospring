@@ -510,6 +510,9 @@ GEM
       method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    web-push (3.0.1)
+      jwt (~> 2.0)
+      openssl (~> 3.0)
     webpush (1.1.0)
       hkdf (~> 0.2)
       jwt (~> 2.0)
@@ -604,6 +607,7 @@ DEPENDENCIES
   turbo-rails
   twitter-text
   view_component
+  web-push
 
 BUNDLED WITH
    2.5.5
