@@ -26,6 +26,7 @@ RUN zypper addrepo https://download.opensuse.org/repositories/devel:languages:no
       libffi-devel     \
       libopenssl-devel \
       libyaml-devel    \
+      jemalloc-devel   \
       make             \
       ncurses-devel    \
       readline-devel   \
@@ -52,7 +53,7 @@ RUN curl -Lo ruby-install-${RUBY_INSTALL_VERSION}.tar.gz https://github.com/post
  && tar xvf ruby-install-${RUBY_INSTALL_VERSION}.tar.gz \
  && (cd ruby-install-${RUBY_INSTALL_VERSION} && make install) \
  && rm -rf ruby-install-${RUBY_INSTALL_VERSION} ruby-install-${RUBY_INSTALL_VERSION}.tar.gz \
- && ruby-install --no-install-deps --cleanup --system --jobs=$(nproc) ruby ${RUBY_VERSION} -- --disable-install-rdoc \
+ && ruby-install --no-install-deps --cleanup --system --jobs=$(nproc) ruby ${RUBY_VERSION} -- --disable-install-rdoc --with-jemalloc \
  && gem install bundler:${BUNDLER_VERSION}
 
 # create user and dirs to run retrospring in
