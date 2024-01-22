@@ -8,9 +8,9 @@ LABEL org.opencontainers.image.vendor="The Retrospring team"
 LABEL org.opencontainers.image.url="https://github.com/Retrospring/retrospring"
 
 ARG RETROSPRING_VERSION=2023.0131.1
-ARG RUBY_VERSION=3.2.2
-ARG RUBY_INSTALL_VERSION=0.9.2
-ARG BUNDLER_VERSION=2.3.18
+ARG RUBY_VERSION=3.2.3
+ARG RUBY_INSTALL_VERSION=0.9.3
+ARG BUNDLER_VERSION=2.5.5
 
 ENV RAILS_ENV=production
 
