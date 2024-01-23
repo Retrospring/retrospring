@@ -148,10 +148,10 @@ class User < ApplicationRecord
   def admin? = has_cached_role?(:administrator)
 
   # region stuff used for reporting/moderation
-  def report(object, reason = nil)
-    existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: id, deleted: false)
+  def report(object, target_user = nil, reason = nil)
+    existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, deleted: false)
     if existing.nil?
-      Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: id, reason:)
+      Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, reason:)
     elsif !reason.nil? && reason.length.positive?
       existing.append_reason(reason)
     end

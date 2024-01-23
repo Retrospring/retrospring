@@ -36,7 +36,13 @@ class Ajax::ReportController < AjaxController
       return
     end
 
-    current_user.report object, params[:reason]
+    target_user = if object.class.to_s == "User"
+                    object
+                  elsif object.respond_to? :user
+                    object.user
+                  end
+
+    current_user.report object, target_user, params[:reason]
 
     @response[:status] = :okay
     @response[:message] = t(".success", parameter: params[:type].titleize)
