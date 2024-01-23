@@ -149,7 +149,7 @@ class User < ApplicationRecord
 
   # region stuff used for reporting/moderation
   def report(object, reason = nil)
-    target_user = if object.class.to_s == "User"
+    target_user = if object.instance_of?(::User)
                     object
                   elsif object.respond_to? :user
                     object.user
