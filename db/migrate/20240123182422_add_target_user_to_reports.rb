@@ -34,6 +34,6 @@ class AddTargetUserToReports < ActiveRecord::Migration[7.0]
   end
 
   def down
-    remove_reference :reports, :target_user, null: true, foreign_key: { to_table: :users }
+    remove_reference :reports, :target_user, null: true, foreign_key: false
   end
 end
