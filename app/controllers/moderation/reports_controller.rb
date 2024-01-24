@@ -20,14 +20,4 @@ class Moderation::ReportsController < ApplicationController
   def filter_params
     params.slice(*ReportFilter::KEYS).permit(*ReportFilter::KEYS)
   end
-
-  def list_reports(type:, last_id:, size: nil)
-    cursor_params = { last_id:, size: }.compact
-
-    if type == "all"
-      Report.cursored_reports(**cursor_params)
-    else
-      Report.cursored_reports_of_type(type, **cursor_params)
-    end
-  end
 end
