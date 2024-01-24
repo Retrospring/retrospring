@@ -40,7 +40,7 @@ class ReportFilter
       Report.joins(:target_user)
             .where(users: { screen_name: value })
     when "type"
-      Report.where('LOWER(type) = ?', "reports::#{value}")
+      Report.where("LOWER(type) = ?", "reports::#{value}")
     end
   end
 end
