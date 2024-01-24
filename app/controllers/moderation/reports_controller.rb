@@ -4,10 +4,10 @@ class Moderation::ReportsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @type = params[:type]
-    @reports = list_reports(type: @type, last_id: params[:last_id])
+    filter = ReportFilter.new(filter_params)
+    @reports = filter.cursored_results(last_id: params[:last_id])
     @reports_last_id = @reports.map(&:id).min
-    @more_data_available = !list_reports(type: @type, last_id: @reports_last_id, size: 1).count.zero?
+    @more_data_available = filter.cursored_results(last_id: @reports_last_id, size: 1).count.positive?
 
     respond_to do |format|
       format.html
@@ -16,6 +16,10 @@ class Moderation::ReportsController < ApplicationController
   end
 
   private
+
+  def filter_params
+    params.slice(*ReportFilter::KEYS).permit(*ReportFilter::KEYS)
+  end
 
   def list_reports(type:, last_id:, size: nil)
     cursor_params = { last_id:, size: }.compact
