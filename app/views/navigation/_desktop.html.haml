@@ -26,7 +26,7 @@
             = render "navigation/icons/notifications", notification_count:
         .dropdown-menu.dropdown-menu-end.notification-dropdown
           %turbo-frame#notifications-dropdown-list
-            - cache current_user.notification_dropdown_cache_key do
+            - cache current_user.notification_dropdown_cache_key, expires_in: 12.hours do
               - notifications = Notification.for(current_user).where(new: true).includes([:target]).limit(4)
               = render "navigation/dropdown/notifications", notifications:, size: "desktop"
       %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t('.ask_question') }

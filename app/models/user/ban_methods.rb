@@ -6,7 +6,7 @@ module User::BanMethods
   end
 
   def banned?
-    Rails.cache.fetch("#{cache_key}/banned") do
+    Rails.cache.fetch("#{cache_key}/banned", expires_in: 6.hours) do
       bans.current.count.positive?
     end
   end
