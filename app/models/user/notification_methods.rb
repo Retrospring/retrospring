@@ -2,7 +2,7 @@
 
 module User::NotificationMethods
   def unread_notification_count
-    Rails.cache.fetch(notification_cache_key) do
+    Rails.cache.fetch(notification_cache_key, expires_in: 12.hours) do
       count = Notification.for(self).where(new: true).count(:id)
 
       # Returning +nil+ here in order to not display a counter
