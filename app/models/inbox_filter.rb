@@ -10,6 +10,10 @@ class InboxFilter
     anonymous
   ].freeze
 
+  FORBIDDEN_PARAM_GROUPS = [
+    %i[author anonymous]
+  ].freeze
+
   attr_reader :params, :user
 
   def initialize(user, params)
@@ -18,6 +22,8 @@ class InboxFilter
   end
 
   def results
+    return Inbox.none unless valid_params?
+
     scope = @user.inboxes
                  .includes(:question, user: :profile)
                  .order(:created_at)
@@ -31,6 +37,10 @@ class InboxFilter
   end
 
   private
+
+  def valid_params?
+    FORBIDDEN_PARAM_GROUPS.none? { |combination| combination.all? { |key| params.key?(key) } }
+  end
 
   def scope_for(key, value)
     case key.to_s
