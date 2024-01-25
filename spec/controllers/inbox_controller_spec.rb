@@ -254,6 +254,37 @@ describe InboxController, type: :controller do
           end
         end
       end
+
+      context "when passed the anonymous and the author param" do
+        let!(:other_user) { FactoryBot.create(:user) }
+        let!(:generic_inbox_entry) do
+          Inbox.create(
+            user:,
+            question: FactoryBot.create(
+              :question,
+              user:                other_user,
+              author_is_anonymous: false,
+            ),
+          )
+        end
+
+        let!(:inbox_entry_fillers) do
+          # 9 times => 1 entry less than default page size
+          9.times.map { Inbox.create(user:, question: FactoryBot.create(:question, author_is_anonymous: true)) }
+        end
+
+        subject { get :show, params: { anonymous: true, author: "some_name" } }
+
+        include_examples "sets the expected ivars" do
+          let(:expected_assigns) do
+            {
+              inbox:               [],
+              more_data_available: false,
+              inbox_count:         0,
+            }
+          end
+        end
+      end
     end
   end
 
