@@ -20,8 +20,8 @@ class AnonymousBlockController < ApplicationController
       target_user: question.user
     )
 
-    inbox_id = question.inboxes.first&.id
-    question.inboxes.first&.destroy
+    inbox_id = question.inbox_entries.first&.id
+    question.inbox_entries.first&.destroy
 
     respond_to do |format|
       format.turbo_stream do

@@ -27,7 +27,7 @@ describe Answer, type: :model do
       end
 
       it "should remove the question from the user's inbox" do
-        expect { subject.save }.to change { user.inboxes.count }.by(-1)
+        expect { subject.save }.to change { user.inbox_entries.count }.by(-1)
       end
     end
 

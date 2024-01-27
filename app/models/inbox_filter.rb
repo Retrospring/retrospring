@@ -24,7 +24,7 @@ class InboxFilter
   def results
     return InboxEntry.none unless valid_params?
 
-    scope = @user.inboxes
+    scope = @user.inbox_entries
                  .includes(:question, user: :profile)
                  .order(:created_at)
                  .reverse_order
@@ -45,10 +45,10 @@ class InboxFilter
   def scope_for(key, value)
     case key.to_s
     when "author"
-      @user.inboxes.joins(question: [:user])
+      @user.inbox_entries.joins(question: [:user])
            .where(questions: { users: { screen_name: value }, author_is_anonymous: false })
     when "anonymous"
-      @user.inboxes.joins(:question)
+      @user.inbox_entries.joins(:question)
            .where(questions: { author_is_anonymous: true })
     end
   end

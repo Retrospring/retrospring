@@ -8,7 +8,7 @@ class Moderation::InboxController < ApplicationController
     @inboxes = @user.cursored_inbox(last_id: params[:last_id])
     @inbox_last_id = @inboxes.map(&:id).min
     @more_data_available = !@user.cursored_inbox(last_id: @inbox_last_id, size: 1).count.zero?
-    @inbox_count = @user.inboxes.count
+    @inbox_count = @user.inbox_entries.count
 
     respond_to do |format|
       format.html

@@ -5,9 +5,9 @@ module User::InboxMethods
 
   define_cursor_paginator :cursored_inbox, :ordered_inbox
 
-  # @return [ActiveRecord::Relation<Inbox>] the user's inbox entries
+  # @return [ActiveRecord::Relation<InboxEntry>] the user's inbox entries
   def ordered_inbox
-    inboxes
+    inbox_entries
       .includes(:question, user: :profile)
       .order(:created_at)
       .reverse_order

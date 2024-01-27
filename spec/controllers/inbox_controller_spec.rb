@@ -131,7 +131,7 @@ describe InboxController, type: :controller do
         let!(:unrelated_user) { FactoryBot.create(:user) }
 
         let!(:generic_inbox_entry1) do
-          Inbox.create(
+          InboxEntry.create(
             user:,
             question: FactoryBot.create(
               :question,
@@ -140,7 +140,7 @@ describe InboxController, type: :controller do
             ),
           )
         end
-        let!(:generic_inbox_entry2) { Inbox.create(user:, question: FactoryBot.create(:question)) }
+        let!(:generic_inbox_entry2) { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
 
         subject { get :show, params: { author: author_param } }
 
@@ -163,7 +163,7 @@ describe InboxController, type: :controller do
 
           context "with no non-anonymous questions from the other user in the inbox" do
             let!(:anonymous_inbox_entry) do
-              Inbox.create(
+              InboxEntry.create(
                 user:,
                 question: FactoryBot.create(
                   :question,
@@ -188,7 +188,7 @@ describe InboxController, type: :controller do
 
           context "with both non-anonymous and anonymous questions from the other user in the inbox" do
             let!(:non_anonymous_inbox_entry) do
-              Inbox.create(
+              InboxEntry.create(
                 user:,
                 question: FactoryBot.create(
                   :question,
@@ -198,7 +198,7 @@ describe InboxController, type: :controller do
               )
             end
             let!(:anonymous_inbox_entry) do
-              Inbox.create(
+              InboxEntry.create(
                 user:,
                 question: FactoryBot.create(
                   :question,
@@ -227,7 +227,7 @@ describe InboxController, type: :controller do
       context "when passed the anonymous param" do
         let!(:other_user) { FactoryBot.create(:user) }
         let!(:generic_inbox_entry) do
-          Inbox.create(
+          InboxEntry.create(
             user:,
             question: FactoryBot.create(
               :question,
@@ -239,7 +239,7 @@ describe InboxController, type: :controller do
 
         let!(:inbox_entry_fillers) do
           # 9 times => 1 entry less than default page size
-          9.times.map { Inbox.create(user:, question: FactoryBot.create(:question, author_is_anonymous: true)) }
+          9.times.map { InboxEntry.create(user:, question: FactoryBot.create(:question, author_is_anonymous: true)) }
         end
 
         subject { get :show, params: { anonymous: true } }
@@ -258,7 +258,7 @@ describe InboxController, type: :controller do
       context "when passed the anonymous and the author param" do
         let!(:other_user) { FactoryBot.create(:user) }
         let!(:generic_inbox_entry) do
-          Inbox.create(
+          InboxEntry.create(
             user:,
             question: FactoryBot.create(
               :question,
@@ -270,7 +270,7 @@ describe InboxController, type: :controller do
 
         let!(:inbox_entry_fillers) do
           # 9 times => 1 entry less than default page size
-          9.times.map { Inbox.create(user:, question: FactoryBot.create(:question, author_is_anonymous: true)) }
+          9.times.map { InboxEntry.create(user:, question: FactoryBot.create(:question, author_is_anonymous: true)) }
         end
 
         subject { get :show, params: { anonymous: true, author: "some_name" } }
@@ -299,7 +299,7 @@ describe InboxController, type: :controller do
       before(:each) { sign_in(user) }
 
       it "creates an inbox entry" do
-        expect { subject }.to(change { user.inboxes.count }.by(1))
+        expect { subject }.to(change { user.inbox_entries.count }.by(1))
       end
 
       include_examples "touches user timestamp", :inbox_updated_at
