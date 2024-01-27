@@ -1,18 +1,6 @@
 # frozen_string_literal: true
 
 module User::InboxMethods
-  include CursorPaginatable
-
-  define_cursor_paginator :cursored_inbox, :ordered_inbox
-
-  # @return [ActiveRecord::Relation<InboxEntry>] the user's inbox entries
-  def ordered_inbox
-    inbox_entries
-      .includes(:question, user: :profile)
-      .order(:created_at)
-      .reverse_order
-  end
-
   def unread_inbox_count
     Rails.cache.fetch(inbox_cache_key, expires_in: 12.hours) do
       count = InboxEntry.where(new: true, user_id: id).count(:id)
