@@ -22,7 +22,7 @@ gem "active_model_otp"
 gem "bootsnap", require: false
 gem "bootstrap_form", "~> 5.0"
 gem "carrierwave", "~> 2.0"
-gem "carrierwave_backgrounder", git: "https://github.com/retrospring/carrierwave_backgrounder.git"
+gem "carrierwave_backgrounder", "~> 1.0.2"
 gem "colorize"
 gem "devise", "~> 4.9"
 gem "devise-async"
