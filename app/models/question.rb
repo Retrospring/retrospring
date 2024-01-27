@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   belongs_to :user, optional: true
   has_many :anonymous_blocks, dependent: :nullify
   has_many :answers, dependent: :destroy
-  has_many :inboxes, dependent: :destroy
+  has_many :inbox_entries, dependent: :destroy
 
   validates :content, length: { minimum: 1 }
 
