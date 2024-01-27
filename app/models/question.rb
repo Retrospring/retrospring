@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Question < ApplicationRecord
   include Question::AnswerMethods
 
@@ -11,7 +13,7 @@ class Question < ApplicationRecord
   SHORT_QUESTION_MAX_LENGTH = 512
 
   before_destroy do
-    rep = Report.where(target_id: self.id, type: 'Reports::Question')
+    rep = Report.where(target_id: self.id, type: "Reports::Question")
     rep.each do |r|
       unless r.nil?
         r.deleted = true
@@ -25,8 +27,9 @@ class Question < ApplicationRecord
   end
 
   def can_be_removed?
-    return false if self.answers.count > 0
+    return false if self.answers.count.positive?
     return false if InboxEntry.where(question: self).count > 1
+
     true
   end
 

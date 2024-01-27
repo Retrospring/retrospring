@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Ajax::InboxController < AjaxController
   def remove
     params.require :id
@@ -28,7 +30,7 @@ class Ajax::InboxController < AjaxController
     raise unless user_signed_in?
 
     begin
-      InboxEntry.where(user: current_user).each { |i| i.remove }
+      InboxEntry.where(user: current_user).find_each(&:remove)
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :err
@@ -43,10 +45,10 @@ class Ajax::InboxController < AjaxController
 
   def remove_all_author
     begin
-      @target_user = User.where('LOWER(screen_name) = ?', params[:author].downcase).first!
+      @target_user = User.where("LOWER(screen_name) = ?", params[:author].downcase).first!
       @inbox = current_user.inbox_entries.joins(:question)
-                                         .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
-      @inbox.each { |i| i.remove }
+                           .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
+      @inbox.each(&:remove)
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :err
