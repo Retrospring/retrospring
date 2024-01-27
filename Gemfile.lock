@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/retrospring/carrierwave_backgrounder.git
-  revision: 41b756f7514c0e410c561bc8b5ee321cd8cce1ee
-  specs:
-    carrierwave_backgrounder (0.4.2)
-      carrierwave (>= 0.5, <= 2.1)
-      mime-types (>= 3.0.0)
-
-GIT
   remote: https://github.com/retrospring/hcaptcha
   revision: f8de70ee2d629ac34395902dbee724c21297960c
   ref: fix/flash-in-turbo-streams
@@ -116,6 +108,9 @@ GEM
       image_processing (~> 1.1)
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
+    carrierwave_backgrounder (1.0.2)
+      carrierwave (> 2.0, < 4.0)
+      rails (> 6.0, < 8.0)
     chunky_png (1.4.0)
     colorize (1.1.0)
     concurrent-ruby (1.2.3)
@@ -533,7 +528,7 @@ DEPENDENCIES
   bootstrap_form (~> 5.0)
   bullet
   carrierwave (~> 2.0)
-  carrierwave_backgrounder!
+  carrierwave_backgrounder (~> 1.0.2)
   colorize
   connection_pool
   cssbundling-rails (~> 1.4)
