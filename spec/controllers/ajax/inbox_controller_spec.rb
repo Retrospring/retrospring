@@ -7,11 +7,11 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
   describe "#remove" do
     let(:params) do
       {
-        id: inbox_entry_id
+        id: inbox_entry_id,
       }
     end
 
-    subject { delete(:remove, params: params) }
+    subject { delete(:remove, params:) }
 
     context "when user is signed in" do
       before(:each) { sign_in(user) }
@@ -28,8 +28,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
           let(:expected_response) do
             {
               "success" => true,
-              "status" => "okay",
-              "message" => anything
+              "status"  => "okay",
+              "message" => anything,
             }
           end
 
@@ -46,8 +46,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
           let(:expected_response) do
             {
               "success" => false,
-              "status" => "fail",
-              "message" => anything
+              "status"  => "fail",
+              "message" => anything,
             }
           end
 
@@ -65,8 +65,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "not_found",
-            "message" => anything
+            "status"  => "not_found",
+            "message" => anything,
           }
         end
 
@@ -79,8 +79,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "not_found",
-          "message" => anything
+          "status"  => "not_found",
+          "message" => anything,
         }
       end
 
@@ -97,8 +97,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => true,
-          "status" => "okay",
-          "message" => anything
+          "status"  => "okay",
+          "message" => anything,
         }
       end
 
@@ -107,7 +107,7 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       context "when user has some inbox entries" do
         let(:some_other_user) { FactoryBot.create(:user) }
         before do
-          10.times { FactoryBot.create(:inbox_entry, user: user) }
+          10.times { FactoryBot.create(:inbox_entry, user:) }
           10.times { FactoryBot.create(:inbox_entry, user: some_other_user) }
         end
 
@@ -123,8 +123,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "err",
-          "message" => anything
+          "status"  => "err",
+          "message" => anything,
         }
       end
 
@@ -135,11 +135,11 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
   describe "#remove_all_author" do
     let(:params) do
       {
-        author: author
+        author:,
       }
     end
 
-    subject { delete(:remove_all_author, params: params) }
+    subject { delete(:remove_all_author, params:) }
 
     context "when user is signed in" do
       before(:each) { sign_in(user) }
@@ -148,8 +148,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => true,
-          "status" => "okay",
-          "message" => anything
+          "status"  => "okay",
+          "message" => anything,
         }
       end
 
@@ -162,9 +162,9 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
           normal_question = FactoryBot.create(:question, user: some_other_user, author_is_anonymous: false)
           anon_question = FactoryBot.create(:question, user: some_other_user, author_is_anonymous: true)
 
-          10.times { FactoryBot.create(:inbox_entry, user: user) }
-          3.times { FactoryBot.create(:inbox_entry, user: user, question: normal_question) }
-          2.times { FactoryBot.create(:inbox_entry, user: user, question: anon_question) }
+          10.times { FactoryBot.create(:inbox_entry, user:) }
+          3.times { FactoryBot.create(:inbox_entry, user:, question: normal_question) }
+          2.times { FactoryBot.create(:inbox_entry, user:, question: anon_question) }
         end
 
         it "deletes all the entries asked by some other user which are not anonymous from the user's inbox" do
@@ -179,8 +179,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
         let(:expected_response) do
           {
             "success" => false,
-            "status" => "err",
-            "message" => anything
+            "status"  => "err",
+            "message" => anything,
           }
         end
 
@@ -193,8 +193,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       let(:expected_response) do
         {
           "success" => false,
-          "status" => "err",
-          "message" => anything
+          "status"  => "err",
+          "message" => anything,
         }
       end
 
