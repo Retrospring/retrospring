@@ -15,7 +15,7 @@ module User::InboxMethods
 
   def unread_inbox_count
     Rails.cache.fetch(inbox_cache_key, expires_in: 12.hours) do
-      count = Inbox.where(new: true, user_id: id).count(:id)
+      count = InboxEntry.where(new: true, user_id: id).count(:id)
 
       # Returning +nil+ here in order to not display a counter
       # at all when there isn't anything in the user's inbox

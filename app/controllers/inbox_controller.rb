@@ -23,7 +23,7 @@ class InboxController < ApplicationController
                                 author_identifier:   "justask",
                                 user:                current_user)
 
-    inbox = Inbox.create!(user: current_user, question_id: question.id, new: true)
+    inbox = InboxEntry.create!(user: current_user, question_id: question.id, new: true)
     increment_metric
 
     respond_to do |format|

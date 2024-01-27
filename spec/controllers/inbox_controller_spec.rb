@@ -46,7 +46,7 @@ describe InboxController, type: :controller do
       end
 
       context "when inbox has an amount of questions less than page size" do
-        let!(:inbox_entry) { Inbox.create(user:, new: true, question: FactoryBot.create(:question)) }
+        let!(:inbox_entry) { InboxEntry.create(user:, new: true, question: FactoryBot.create(:question)) }
 
         include_examples "sets the expected ivars" do
           let(:expected_assigns) do
@@ -79,13 +79,13 @@ describe InboxController, type: :controller do
       context "when inbox has an amount of questions more than page size" do
         let(:inbox_entry_fillers_page1) do
           # 9 times => 1 entry less than default page size
-          9.times.map { Inbox.create(user:, question: FactoryBot.create(:question)) }
+          9.times.map { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
         end
-        let(:last_inbox_entry_page1) { Inbox.create(user:, question: FactoryBot.create(:question)) }
+        let(:last_inbox_entry_page1) { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
         let(:inbox_entry_fillers_page2) do
-          5.times.map { Inbox.create(user:, question: FactoryBot.create(:question)) }
+          5.times.map { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
         end
-        let(:last_inbox_entry_page2) { Inbox.create(user:, question: FactoryBot.create(:question)) }
+        let(:last_inbox_entry_page2) { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
 
         before do
           # create inbox entries in reverse so pagination works as expected

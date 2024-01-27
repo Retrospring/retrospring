@@ -36,7 +36,7 @@ class Answer < ApplicationRecord
   SHORT_ANSWER_MAX_LENGTH = 640
 
   after_create do
-    Inbox.where(user: self.user, question: self.question).destroy_all
+    InboxEntry.where(user: self.user, question: self.question).destroy_all
     user.touch :inbox_updated_at # rubocop:disable Rails/SkipsModelValidations
 
     Notification.notify self.question.user, self unless self.question.user == self.user or self.question.user.nil?

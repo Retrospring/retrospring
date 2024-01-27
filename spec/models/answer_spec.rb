@@ -23,7 +23,7 @@ describe Answer, type: :model do
 
     context "user has the question in their inbox" do
       before do
-        Inbox.create(user:, question:, new: true)
+        InboxEntry.create(user:, question:, new: true)
       end
 
       it "should remove the question from the user's inbox" do

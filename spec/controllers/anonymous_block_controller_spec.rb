@@ -15,7 +15,7 @@ describe AnonymousBlockController, type: :controller do
 
       context "when all required parameters are given" do
         let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
-        let!(:inbox) { FactoryBot.create(:inbox, user:, question:) }
+        let!(:inbox) { FactoryBot.create(:inbox_entry, user:, question:) }
         let(:params) do
           { question: question.id }
         end
@@ -50,7 +50,7 @@ describe AnonymousBlockController, type: :controller do
 
       context "when blocking a user globally" do
         let(:question) { FactoryBot.create(:question, author_identifier: "someidentifier") }
-        let!(:inbox) { FactoryBot.create(:inbox, user:, question:) }
+        let!(:inbox) { FactoryBot.create(:inbox_entry, user:, question:) }
         let(:params) do
           { question: question.id, global: "true" }
         end

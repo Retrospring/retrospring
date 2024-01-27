@@ -17,7 +17,7 @@ describe Scheduler::InboxCleanupScheduler do
     it "should delete orphaned inbox entries" do
       expect { subject }
         .to(
-          change { Inbox.where(question_id: nil).count }
+          change { InboxEntry.where(question_id: nil).count }
             .from(1)
             .to(0),
         )

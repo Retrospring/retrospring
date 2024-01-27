@@ -17,7 +17,7 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       before(:each) { sign_in(user) }
 
       context "when inbox entry exists" do
-        let(:inbox_entry) { FactoryBot.create(:inbox, user: inbox_user) }
+        let(:inbox_entry) { FactoryBot.create(:inbox_entry, user: inbox_user) }
         let(:inbox_entry_id) { inbox_entry.id }
 
         # ensure the inbox entry exists
@@ -35,7 +35,7 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
 
           it "removes the inbox entry" do
             expect { subject }.to(change { user.inboxes.count }.by(-1))
-            expect { Inbox.find(inbox_entry.id) }.to raise_error(ActiveRecord::RecordNotFound)
+            expect { InboxEntry.find(inbox_entry.id) }.to raise_error(ActiveRecord::RecordNotFound)
           end
 
           include_examples "returns the expected response"
@@ -112,7 +112,7 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
         end
 
         it "deletes all the entries from the user's inbox" do
-          expect { subject }.to(change { [Inbox.count, user.inboxes.count] }.from([20, 10]).to([10, 0]))
+          expect { subject }.to(change { [InboxEntry.count, user.inbox_entries.count] }.from([20, 10]).to([10, 0]))
         end
 
         include_examples "returns the expected response"

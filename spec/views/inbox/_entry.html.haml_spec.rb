@@ -3,7 +3,7 @@
 require "rails_helper"
 
 describe "inbox/_entry.html.haml", type: :view do
-  let(:inbox_entry)         { Inbox.create(user: inbox_user, question:, new:) }
+  let(:inbox_entry)         { InboxEntry.create(user: inbox_user, question:, new:) }
   let(:inbox_user)          { user }
   let(:user)                { FactoryBot.create(:user, sharing_enabled:, sharing_custom_url:) }
   let(:sharing_enabled)     { true }

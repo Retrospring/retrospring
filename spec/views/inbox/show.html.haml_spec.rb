@@ -25,8 +25,8 @@ describe "inbox/show.html.haml", type: :view do
   end
 
   context "with some inbox entries" do
-    let(:inbox_entry1) { Inbox.create(user:, question: FactoryBot.create(:question)) }
-    let(:inbox_entry2) { Inbox.create(user:, question: FactoryBot.create(:question)) }
+    let(:inbox_entry1) { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
+    let(:inbox_entry2) { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
 
     before do
       assign :inbox, [inbox_entry2, inbox_entry1]
