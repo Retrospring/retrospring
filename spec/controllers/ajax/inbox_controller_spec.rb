@@ -34,7 +34,7 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
           end
 
           it "removes the inbox entry" do
-            expect { subject }.to(change { user.inboxes.count }.by(-1))
+            expect { subject }.to(change { user.inbox_entries.count }.by(-1))
             expect { InboxEntry.find(inbox_entry.id) }.to raise_error(ActiveRecord::RecordNotFound)
           end
 
@@ -52,8 +52,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
           end
 
           it "does not remove the inbox entry" do
-            expect { subject }.not_to(change { Inbox.count })
-            expect { Inbox.find(inbox_entry.id) }.not_to raise_error
+            expect { subject }.not_to(change { InboxEntry.count })
+            expect { InboxEntry.find(inbox_entry.id) }.not_to raise_error
           end
 
           include_examples "returns the expected response"
@@ -107,8 +107,8 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
       context "when user has some inbox entries" do
         let(:some_other_user) { FactoryBot.create(:user) }
         before do
-          10.times { FactoryBot.create(:inbox, user: user) }
-          10.times { FactoryBot.create(:inbox, user: some_other_user) }
+          10.times { FactoryBot.create(:inbox_entry, user: user) }
+          10.times { FactoryBot.create(:inbox_entry, user: some_other_user) }
         end
 
         it "deletes all the entries from the user's inbox" do
@@ -162,13 +162,13 @@ describe Ajax::InboxController, :ajax_controller, type: :controller do
           normal_question = FactoryBot.create(:question, user: some_other_user, author_is_anonymous: false)
           anon_question = FactoryBot.create(:question, user: some_other_user, author_is_anonymous: true)
 
-          10.times { FactoryBot.create(:inbox, user: user) }
-          3.times { FactoryBot.create(:inbox, user: user, question: normal_question) }
-          2.times { FactoryBot.create(:inbox, user: user, question: anon_question) }
+          10.times { FactoryBot.create(:inbox_entry, user: user) }
+          3.times { FactoryBot.create(:inbox_entry, user: user, question: normal_question) }
+          2.times { FactoryBot.create(:inbox_entry, user: user, question: anon_question) }
         end
 
         it "deletes all the entries asked by some other user which are not anonymous from the user's inbox" do
-          expect { subject }.to(change { user.inboxes.count }.from(15).to(12))
+          expect { subject }.to(change { user.inbox_entries.count }.from(15).to(12))
         end
 
         include_examples "returns the expected response"

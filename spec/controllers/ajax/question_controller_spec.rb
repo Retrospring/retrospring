@@ -14,8 +14,8 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       if check_for_inbox
         it "adds the question to the target users' inbox" do
-          expect { subject }.to(change { target_user.inboxes.count }.by(1))
-          expect(target_user.inboxes.last.question.content).to eq(question_content)
+          expect { subject }.to(change { target_user.inbox_entries.count }.by(1))
+          expect(target_user.inbox_entries.last.question.content).to eq(question_content)
         end
       end
 
@@ -29,7 +29,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
 
       if check_for_inbox
         it "does not add the question to the target users' inbox" do
-          expect { subject }.not_to(change { target_user.inboxes.count })
+          expect { subject }.not_to(change { target_user.inbox_entries.count })
         end
       end
 
@@ -42,7 +42,7 @@ describe Ajax::QuestionController, :ajax_controller, type: :controller do
       end
 
       it "does not add the question to the target users' inbox" do
-        expect { subject }.not_to(change { target_user.inboxes.count })
+        expect { subject }.not_to(change { target_user.inbox_entries.count })
       end
 
       include_examples "returns the expected response"

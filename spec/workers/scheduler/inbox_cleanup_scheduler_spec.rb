@@ -4,7 +4,7 @@ require "rails_helper"
 
 describe Scheduler::InboxCleanupScheduler do
   let(:user) { FactoryBot.create(:user) }
-  let(:inbox) { FactoryBot.create(:inbox, user:) }
+  let(:inbox) { FactoryBot.create(:inbox_entry, user:) }
 
   describe "#perform" do
     before do

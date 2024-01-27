@@ -23,9 +23,9 @@ describe UseCase::Question::Create do
       expect(question.direct).to eq(true)
 
       if should_send_to_inbox
-        expect(target_user.inboxes.first.question_id).to eq(question.id)
+        expect(target_user.inbox_entries.first.question_id).to eq(question.id)
       else
-        expect(target_user.inboxes.first).to be_nil
+        expect(target_user.inbox_entries.first).to be_nil
       end
     end
   end

@@ -44,8 +44,8 @@ class Ajax::InboxController < AjaxController
   def remove_all_author
     begin
       @target_user = User.where('LOWER(screen_name) = ?', params[:author].downcase).first!
-      @inbox = current_user.inboxes.joins(:question)
-                                   .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
+      @inbox = current_user.inbox_entries.joins(:question)
+                                         .where(questions: { user_id: @target_user.id, author_is_anonymous: false })
       @inbox.each { |i| i.remove }
     rescue => e
       Sentry.capture_exception(e)
