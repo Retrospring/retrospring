@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/raccube/carrierwave_backgrounder.git
+  remote: https://github.com/retrospring/carrierwave_backgrounder.git
   revision: 41b756f7514c0e410c561bc8b5ee321cd8cce1ee
   specs:
     carrierwave_backgrounder (0.4.2)
@@ -7,7 +7,7 @@ GIT
       mime-types (>= 3.0.0)
 
 GIT
-  remote: https://github.com/raccube/hcaptcha
+  remote: https://github.com/retrospring/hcaptcha
   revision: f8de70ee2d629ac34395902dbee724c21297960c
   ref: fix/flash-in-turbo-streams
   specs:
