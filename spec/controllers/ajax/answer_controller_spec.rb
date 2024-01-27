@@ -65,7 +65,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         let(:shared_services) { %w[twitter] }
 
         context "when inbox is true" do
-          let(:id) { FactoryBot.create(:inbox, user: inbox_user, question:).id }
+          let(:id) { FactoryBot.create(:inbox_entry, user: inbox_user, question:).id }
           let(:inbox) { true }
 
           context "when the inbox entry belongs to the user" do
@@ -325,13 +325,13 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
         include_examples "deletes the answer"
 
         it "returns the question back to the user's inbox" do
-          expect { subject }.to(change { Inbox.where(question_id: answer.question.id, user_id: user.id).count }.by(1))
+          expect { subject }.to(change { InboxEntry.where(question_id: answer.question.id, user_id: user.id).count }.by(1))
         end
 
         it "returns the question back to the user's inbox when the user has anonymous questions disabled" do
           user.privacy_allow_anonymous_questions = false
           user.save
-          expect { subject }.to(change { Inbox.where(question_id: answer.question.id, user_id: user.id).count }.by(1))
+          expect { subject }.to(change { InboxEntry.where(question_id: answer.question.id, user_id: user.id).count }.by(1))
         end
 
         it "updates the inbox caching timestamp for the user who answered" do

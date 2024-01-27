@@ -13,7 +13,7 @@ class Ajax::AnswerController < AjaxController
     inbox = (params[:inbox] == "true")
 
     if inbox
-      inbox_entry = Inbox.find(params[:id])
+      inbox_entry = InboxEntry.find(params[:id])
 
       unless current_user == inbox_entry.user
         @response[:status] = :fail
@@ -59,7 +59,7 @@ class Ajax::AnswerController < AjaxController
       return
     end
 
-    Inbox.create!(user: answer.user, question: answer.question, new: true, returning: true) if answer.user == current_user
+    InboxEntry.create!(user: answer.user, question: answer.question, new: true, returning: true) if answer.user == current_user
     answer.destroy
 
     @response[:status] = :okay

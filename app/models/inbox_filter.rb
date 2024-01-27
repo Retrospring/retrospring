@@ -22,7 +22,7 @@ class InboxFilter
   end
 
   def results
-    return Inbox.none unless valid_params?
+    return InboxEntry.none unless valid_params?
 
     scope = @user.inboxes
                  .includes(:question, user: :profile)

@@ -20,7 +20,7 @@ module UseCase
         increment_asked_count
         increment_metric
 
-        inbox = ::Inbox.create!(user: target_user, question:, new: true)
+        inbox = ::InboxEntry.create!(user: target_user, question:, new: true)
         notify(inbox)
 
         {

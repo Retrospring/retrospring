@@ -22,7 +22,7 @@ describe QuestionWorker do
     it "places the question in the inbox of the user's followers" do
       expect { subject }
         .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+          change { InboxEntry.where(user_id: user.followers.ids, question_id:, new: true).count }
             .from(0)
             .to(5)
         )
@@ -36,7 +36,7 @@ describe QuestionWorker do
 
       expect { subject }
         .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+          change { InboxEntry.where(user_id: user.followers.ids, question_id:, new: true).count }
             .from(0)
             .to(4)
         )
@@ -47,7 +47,7 @@ describe QuestionWorker do
 
       expect { subject }
         .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+          change { InboxEntry.where(user_id: user.followers.ids, question_id:, new: true).count }
             .from(0)
             .to(4)
         )
@@ -58,7 +58,7 @@ describe QuestionWorker do
 
       expect { subject }
         .to(
-          change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+          change { InboxEntry.where(user_id: user.followers.ids, question_id:, new: true).count }
             .from(0)
             .to(4)
         )
@@ -102,7 +102,7 @@ describe QuestionWorker do
 
         expect { subject }
           .to(
-            change { Inbox.where(user_id: user.followers.ids, question_id:, new: true).count }
+            change { InboxEntry.where(user_id: user.followers.ids, question_id:, new: true).count }
               .from(0)
               .to(1)
           )

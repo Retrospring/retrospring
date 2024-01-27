@@ -2,7 +2,7 @@ class Ajax::InboxController < AjaxController
   def remove
     params.require :id
 
-    inbox = Inbox.find(params[:id])
+    inbox = InboxEntry.find(params[:id])
 
     unless current_user == inbox.user
       @response[:status] = :fail
@@ -28,7 +28,7 @@ class Ajax::InboxController < AjaxController
     raise unless user_signed_in?
 
     begin
-      Inbox.where(user: current_user).each { |i| i.remove }
+      InboxEntry.where(user: current_user).each { |i| i.remove }
     rescue => e
       Sentry.capture_exception(e)
       @response[:status] = :err

@@ -12,8 +12,8 @@ describe "inbox/show.turbo_stream.haml", type: :view do
   subject(:rendered) { render }
 
   context "with some inbox entries" do
-    let(:inbox_entry1) { Inbox.create(user:, question: FactoryBot.create(:question)) }
-    let(:inbox_entry2) { Inbox.create(user:, question: FactoryBot.create(:question)) }
+    let(:inbox_entry1) { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
+    let(:inbox_entry2) { InboxEntry.create(user:, question: FactoryBot.create(:question)) }
 
     before do
       assign :inbox, [inbox_entry2, inbox_entry1]

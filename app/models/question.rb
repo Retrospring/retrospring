@@ -26,7 +26,7 @@ class Question < ApplicationRecord
 
   def can_be_removed?
     return false if self.answers.count > 0
-    return false if Inbox.where(question: self).count > 1
+    return false if InboxEntry.where(question: self).count > 1
     true
   end
 

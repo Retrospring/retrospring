@@ -14,7 +14,7 @@ class SendToInboxJob
 
     return if skip_inbox?(follower, question)
 
-    inbox = Inbox.create(user_id: follower.id, question_id:, new: true)
+    inbox = InboxEntry.create(user_id: follower.id, question_id:, new: true)
     follower.push_notification(webpush_app, inbox) if webpush_app
   end
 

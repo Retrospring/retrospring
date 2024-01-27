@@ -21,7 +21,7 @@ describe SendToInboxJob do
     it "places the question in the inbox of the user's followers" do
       expect { subject }
         .to(
-          change { Inbox.where(user_id: follower_id, question_id:, new: true).count }
+          change { InboxEntry.where(user_id: follower_id, question_id:, new: true).count }
             .from(0)
             .to(1),
         )
@@ -34,21 +34,21 @@ describe SendToInboxJob do
       MuteRule.create(user_id: follower_id, muted_phrase: "spicy")
 
       subject
-      expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
+      expect(InboxEntry.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
     end
 
     it "respects inbox locks" do
       follower.update(privacy_lock_inbox: true)
 
       subject
-      expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
+      expect(InboxEntry.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
     end
 
     it "does not send questions to banned users" do
       follower.ban
 
       subject
-      expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
+      expect(InboxEntry.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
     end
 
     context "receiver has push notifications enabled" do
@@ -86,7 +86,7 @@ describe SendToInboxJob do
 
         expect { subject }
           .to(
-            change { Inbox.where(user_id: follower_id, question_id:, new: true).count }
+            change { InboxEntry.where(user_id: follower_id, question_id:, new: true).count }
               .from(0)
               .to(1),
           )
@@ -94,7 +94,7 @@ describe SendToInboxJob do
 
       it "does not send to recipients who do not allow long questions" do
         subject
-        expect(Inbox.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
+        expect(InboxEntry.where(user_id: follower_id, question_id:, new: true).count).to eq(0)
       end
     end
   end

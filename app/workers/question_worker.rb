@@ -16,7 +16,7 @@ class QuestionWorker
     user.followers.each do |f|
       next if skip_inbox?(f, question, user)
 
-      inbox = Inbox.create(user_id: f.id, question_id:, new: true)
+      inbox = InboxEntry.create(user_id: f.id, question_id:, new: true)
       f.push_notification(webpush_app, inbox) if webpush_app
     end
   rescue StandardError => e

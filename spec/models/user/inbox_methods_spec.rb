@@ -18,7 +18,7 @@ describe User::InboxMethods do
       context "user has 1 question in their inbox" do
         # FactoryBot seems to have issues with setting the +new+ field on inbox entries
         # so we can create it manually instead
-        let!(:inbox) { Inbox.create(question: FactoryBot.create(:question), user:, new: true) }
+        let!(:inbox) { InboxEntry.create(question: FactoryBot.create(:question), user:, new: true) }
 
         it "should return 1" do
           expect(subject).to eq(1)

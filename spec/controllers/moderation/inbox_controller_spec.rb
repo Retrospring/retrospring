@@ -7,7 +7,7 @@ describe Moderation::InboxController do
     subject { get :index, params: params }
 
     let(:target_user) { FactoryBot.create(:user) }
-    let!(:inboxes) { FactoryBot.create_list(:inbox, 60, user: target_user) }
+    let!(:inboxes) { FactoryBot.create_list(:inbox_entry, 60, user: target_user) }
     let(:params) { { user: target_user.screen_name } }
 
     context "moderator signed in" do
