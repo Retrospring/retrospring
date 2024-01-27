@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Inbox < ApplicationRecord
+class InboxEntry < ApplicationRecord
   belongs_to :user, touch: :inbox_updated_at
   belongs_to :question
 
