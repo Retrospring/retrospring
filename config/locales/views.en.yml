@@ -644,11 +644,7 @@ en:
           title: "Members"
           none: "No members yet."
     moderation:
-      all: "All reports"
-      answers: :activerecord.models.answer.other
-      comments: :activerecord.models.comment.other
-      users: :activerecord.models.user.other
-      questions: :activerecord.models.question.other
+      reports: "Reports"
       site_wide_blocks: "Site-wide anonymous blocks"
     notifications:
       all: "All notifications"
