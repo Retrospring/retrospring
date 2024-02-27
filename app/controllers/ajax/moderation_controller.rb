@@ -84,7 +84,7 @@ class Ajax::ModerationController < AjaxController
     target_user = User.find_by_screen_name!(params[:user])
 
     @response[:message] = t(".error")
-    return unless %w(moderator admin).include? params[:type].downcase
+    return unless %w(moderator administrator).include? params[:type].downcase
 
     unless current_user.has_cached_role?(:administrator)
       @response[:status] = :nopriv
@@ -94,7 +94,7 @@ class Ajax::ModerationController < AjaxController
 
     @response[:checked] = status
     type = params[:type].downcase
-    target_role = {'admin' => 'administrator'}.fetch(type, type).to_sym
+    target_role = type.to_sym
 
     if status
       target_user.add_role target_role
