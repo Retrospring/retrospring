@@ -3,7 +3,11 @@
 %li.list-group-item{ id: "privilege-#{privilege}" }
   .d-flex
     .flex-shrink-0
-      %input{ type: :checkbox, name: "check-your-privileges", data: { type: privilege, user: user.screen_name }, checked: user.has_cached_role?(privilege.to_sym), autocomplete: :off }
+      %input{ type: :checkbox,
+              name: "check-your-privileges",
+              data: { type: privilege, user: user.screen_name },
+              checked: user.has_cached_role?(privilege.to_sym),
+              autocomplete: :off }
     .flex-grow-1
       .list-group-item-heading= privilege.capitalize
       - unless description.blank?

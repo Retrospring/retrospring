@@ -84,7 +84,7 @@ class Ajax::ModerationController < AjaxController
     target_user = User.find_by_screen_name!(params[:user])
 
     @response[:message] = t(".error")
-    return unless %w(moderator administrator).include? params[:type].downcase
+    return unless %w[moderator administrator].include? params[:type].downcase
 
     unless current_user.has_cached_role?(:administrator)
       @response[:status] = :nopriv
