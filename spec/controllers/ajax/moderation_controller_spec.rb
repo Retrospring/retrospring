@@ -225,7 +225,7 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
   describe "#privilege" do
     valid_role_pairs = {
       moderator: :moderator,
-      admin: :administrator
+      administrator: :administrator
     }.freeze
 
     let(:params) do
