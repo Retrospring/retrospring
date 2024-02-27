@@ -703,6 +703,8 @@ en:
       ban: "Ban Control"
       title: "Actions"
       list: "Manage list memberships"
+      reports_from: "Reports from %{user}"
+      reports_of: "Reports of %{user}"
     profile:
       badge:
         admin: "Admin"
