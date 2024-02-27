@@ -1,7 +1,10 @@
 .card
   .card-body
     .dropdown
-      %button.btn.dropdown-toggle{ class: @filter_enabled ? "btn-primary" : "btn-light", type: :button, data: { bs_toggle: :dropdown }, aria: { expanded: :false }}
+      %button.btn.dropdown-toggle{ class: @filter_enabled ? "btn-primary" : "btn-light",
+                                   type: :button,
+                                   data: { bs_toggle: :dropdown },
+                                   aria: { expanded: :false } }
         %i.fa.fa-filter
         = t("voc.filter")
       .dropdown-menu{ style: "min-width: 300px;" }
