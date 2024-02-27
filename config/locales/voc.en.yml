@@ -1,6 +1,7 @@
 en:
   voc:
     add: "Add"
+    all: "All"
     answer: "Answer"
     block: "Block"
     block_site_wide: "Block user site-wide"
@@ -9,6 +10,7 @@ en:
     confirm: "Are you sure?"
     delete: "Delete"
     edit: "Edit"
+    filter: "Filter"
     follow: "Follow"
     format_markdown: "Styling with Markdown is supported"
     load: "Load more"
