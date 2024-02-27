@@ -1,3 +1,17 @@
+.card
+  .card-body
+    .dropdown
+      %button.btn.dropdown-toggle{ class: @filter_enabled ? "btn-primary" : "btn-light", type: :button, data: { bs_toggle: :dropdown }, aria: { expanded: :false }}
+        %i.fa.fa-filter
+        = t("voc.filter")
+      .dropdown-menu{ style: "min-width: 300px;" }
+        = bootstrap_form_tag url: moderation_reports_path, method: :get, html: { class: "px-3 py-2" } do |f|
+          = f.select :type, options_for_select(@type_options, params[:type]), {}, { class: "form-control" }
+          = f.text_field :user, value: params[:user]
+          = f.text_field :target_user, value: params[:target_user]
+          .d-flex.flex-row-reverse
+            = f.primary t("voc.filter")
+
 #reports
   - if @reports.empty?
     = render "shared/empty", icon: "fa-regular fa-smile-beam", translation_key: ".moderation.reports"

@@ -2,6 +2,8 @@
 
 class Moderation::ReportsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_filter_enabled
+  before_action :set_type_options
 
   def index
     filter = ReportFilter.new(filter_params)
@@ -19,5 +21,22 @@ class Moderation::ReportsController < ApplicationController
 
   def filter_params
     params.slice(*ReportFilter::KEYS).permit(*ReportFilter::KEYS)
+  end
+
+  def set_filter_enabled
+    @filter_enabled = params.slice(*ReportFilter::KEYS)
+                            .reject! { |_, value| value.empty? || value.nil? }
+                            .values
+                            .any?
+  end
+
+  def set_type_options
+    @type_options = [
+      [t("voc.all"), ""],
+      [t("activerecord.models.answer.one"), :answer],
+      [t("activerecord.models.comment.one"), :comment],
+      [t("activerecord.models.question.one"), :question],
+      [t("activerecord.models.user.one"), :user]
+    ]
   end
 end
