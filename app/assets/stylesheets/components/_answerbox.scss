@@ -35,9 +35,9 @@
   }
 
   &__action {
-    padding-left: 0;
-    padding-right: map.get($spacers, 1);
     color: RGBA(var(--raised-text), 0.75);
+    padding: var(--btn-padding-y);
+    margin-right: map.get($spacers, 1);
     text-decoration: none;
 
     & i {
@@ -66,6 +66,10 @@
       &:hover {
         color: var(--danger);
       }
+    }
+
+    &.dropdown-toggle::after {
+      margin-left: 0;
     }
   }
 
