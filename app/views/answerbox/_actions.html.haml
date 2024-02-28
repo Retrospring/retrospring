@@ -6,12 +6,12 @@
   %button.btn.btn-link.answerbox__action{ type: :button, name: "ab-comments", data: { a_id: a.id, state: :hidden, selection_hotkey: "x" } }
     %i.fa.fa-fw.fa-comments
     %span{ id: "ab-comment-count-#{a.id}" }= a.comment_count
-.btn-group
+.dropdown.d-inline
   %button.btn.btn-link.answerbox__action{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
     %i.fa.fa-fw.fa-share-alt{ title: t(".share.title") }
   = render "actions/share", answer: a
 - if user_signed_in?
-  .btn-group
-    %button.btn.btn-default.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+  .dropdown.d-inline
+    %button.btn.btn-link.answerbox__action.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
       %span.caret
     = render "actions/answer", answer: a
