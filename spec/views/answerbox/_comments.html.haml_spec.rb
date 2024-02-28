@@ -40,7 +40,7 @@ describe "answerbox/_comments.html.haml", type: :view do
 
     it "shows the delete option" do
       html = Nokogiri::HTML.parse(rendered)
-      selector = %(li.comment[data-comment-id="#{comment.id}"] .btn-group a[data-action="ab-comment-destroy"])
+      selector = %(li.comment[data-comment-id="#{comment.id}"] .dropdown a[data-action="ab-comment-destroy"])
       element = html.css(selector)
       expect(element).to_not be_nil
       expect(element.text.strip).to eq("Delete")
@@ -57,7 +57,7 @@ describe "answerbox/_comments.html.haml", type: :view do
 
     it "does not show the delete option" do
       html = Nokogiri::HTML.parse(rendered)
-      selector = %(li.comment[data-comment-id="#{comment.id}"] .btn-group a[data-action="ab-comment-destroy"])
+      selector = %(li.comment[data-comment-id="#{comment.id}"] .dropdown a[data-action="ab-comment-destroy"])
       expect(html.css(selector)).to be_empty
     end
   end
