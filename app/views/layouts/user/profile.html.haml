@@ -8,8 +8,9 @@
       .d-none.d-sm-block= render 'shared/links'
     .col-lg-9.col-md-8.col-xs-12.col-sm-8
       = render 'questionbox', user: @user
-      = render 'tabs/profile', user: @user
-      = yield
+      - unless @user.banned?
+        = render 'tabs/profile', user: @user
+        = yield
 - if user_signed_in?
   = render 'modal/list', user: @user
   - if current_user.mod? && @user != current_user

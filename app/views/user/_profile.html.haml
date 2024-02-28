@@ -37,4 +37,5 @@
       .profile__location
         %i.fa.fa-fw.fa-location-arrow
         = user.profile.location
-    = render "user/actions", user: user, type: :follower
+    - unless user.banned?
+      = render "user/actions", user: user, type: :follower
