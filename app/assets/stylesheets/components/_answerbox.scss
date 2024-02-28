@@ -37,6 +37,7 @@
   &__action {
     padding-left: 0;
     padding-right: map.get($spacers, 1);
+    color: RGBA(var(--raised-text), 0.75);
     text-decoration: none;
 
     & i {
@@ -47,6 +48,7 @@
     &:hover,
     &:focus,
     &:active {
+      color: RGBA(var(--raised-text), 1);
       text-decoration: none;
     }
 
