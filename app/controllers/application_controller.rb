@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   around_action :switch_locale
   before_action :banned?
   before_action :find_active_announcements
+  before_action :set_has_new_reports
 
   # check if user wants to read
   def switch_locale(&)
@@ -46,6 +47,18 @@ class ApplicationController < ActionController::Base
 
   def find_active_announcements
     @active_announcements ||= Announcement.find_active
+  end
+
+  def set_has_new_reports
+    return unless current_user&.mod?
+
+    @has_new_reports = if current_user.last_reports_visit.nil?
+                        true
+                       else
+                        Report.where(deleted: false)
+                              .where("created_at > ?", current_user.last_reports_visit)
+                              .count > 0
+                       end
   end
 
   include ApplicationHelper
