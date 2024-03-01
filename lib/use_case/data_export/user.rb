@@ -15,6 +15,7 @@ module UseCase
         reset_password_token
         inbox_updated_at
         notifications_updated_at
+        last_reports_visit
       ].freeze
 
       IGNORED_FIELDS_PROFILES = %i[
