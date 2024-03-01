@@ -73,6 +73,7 @@ class Ajax::AnswerController < AjaxController
     url:      answer_share_url(answer),
     text:     prepare_tweet(answer, nil, true),
     twitter:  twitter_share_url(answer),
+    bluesky:  bluesky_share_url(answer),
     tumblr:   tumblr_share_url(answer),
     telegram: telegram_share_url(answer),
     custom:   CGI.escape(prepare_tweet(answer)),
