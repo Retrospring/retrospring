@@ -21,9 +21,12 @@
         .align-self-center
           %p.fs-3.fw-bold= t(".sharing.heading")
           %p
-            %a.btn.btn-primary.mb-1{ href: "https://twitter.com/intent/tweet?text=", data: { inbox_sharing_target: "twitter" }, target: "_blank" }
+            %a.btn.btn-primary.mb-1{ href: "#", data: { inbox_sharing_target: "twitter" }, target: "_blank" }
               %i.fab.fa-twitter.fa-fw
               Twitter
+            %a.btn.btn-primary.mb-1{ href: "#", data: { inbox_sharing_target: "bluesky" }, target: "_blank" }
+              %i.fas.fa-cloud.fa-fw
+              Bluesky
             %a.btn.btn-primary.mb-1{ href: "#", data: { inbox_sharing_target: "tumblr" }, target: "_blank" }
               %i.fab.fa-tumblr.fa-fw
               Tumblr
