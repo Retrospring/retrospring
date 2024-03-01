@@ -176,6 +176,7 @@ describe Ajax::AnswerController, :ajax_controller, type: :controller do
                     "url"      => a_string_matching("https://#{APP_CONFIG['hostname']}/"),
                     "text"     => a_string_matching("Werfen Sie nicht länger das Fenster zum Geld hinaus!"),
                     "twitter"  => a_string_matching("https://twitter.com/"),
+                    "bluesky"  => a_string_matching("https://bsky.app/"),
                     "tumblr"   => a_string_matching("https://www.tumblr.com/"),
                     "telegram" => a_string_matching("https://t.me/"),
                     "custom"   => a_string_matching(/Werfen\+Sie\+nicht\+l%C3%A4nger\+das\+Fenster\+zum\+Geld\+hinaus%21/),
