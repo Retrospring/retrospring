@@ -3,6 +3,8 @@
 require "rails_helper"
 
 describe SocialHelper::BlueskyMethods, type: :helper do
+  include SocialHelper::TwitterMethods
+
   let(:user) { FactoryBot.create(:user) }
   let(:question_content) { "q" * 255 }
   let(:answer_content) { "a" * 255 }
