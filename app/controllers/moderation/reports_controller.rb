@@ -4,6 +4,7 @@ class Moderation::ReportsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_filter_enabled
   before_action :set_type_options
+  before_action :set_last_reports_visit
 
   def index
     filter = ReportFilter.new(filter_params)
@@ -38,5 +39,10 @@ class Moderation::ReportsController < ApplicationController
       [t("activerecord.models.question.one"), :question],
       [t("activerecord.models.user.one"), :user]
     ]
+  end
+
+  def set_last_reports_visit
+    current_user.last_reports_visit = DateTime.now
+    current_user.save
   end
 end
