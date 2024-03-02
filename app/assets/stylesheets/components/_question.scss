@@ -10,8 +10,11 @@
   &__text,
   &__user {
     margin-bottom: 0;
-    overflow: hidden;
     word-break: break-word;
+  }
+
+  &__text {
+    overflow: hidden;
   }
 
   &--sticky {
