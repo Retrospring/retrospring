@@ -5,7 +5,7 @@
                       data: { controller: :reaction, action: "turbo:submit-start->reaction#disable turbo:submit-end->reaction#enable" } },
               class: "btn btn-link answerbox__action smile",
               data: { reaction_target: :button } do
-    %i.fa.fa-fw.fa-smile-o
+    %i.fa.fa-smile-o
     %span= target.smile_count
 
 - if type == "Comment"
@@ -15,5 +15,5 @@
                       data: { controller: :reaction, action: "turbo:submit-start->reaction#disable turbo:submit-end->reaction#enable" } },
               class: "btn btn-link answerbox__action smile",
               data: { reaction_target: :button } do
-    %i.fa.fa-fw.fa-smile-o
+    %i.fa.fa-smile-o
     %span= target.smile_count
