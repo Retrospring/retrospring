@@ -12,19 +12,23 @@
           %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_to_you") } }
         - elsif moderation_view?
           %i.fa.fa-eye-slash{ data: { bs_toggle: "tooltip", bs_title: t(".visible_mod_mode") } }
-      = t(".asked_html", user: user_screen_name(@question.user, context_user: @context_user, author_identifier: author_identifier), time: time_tooltip(@question))
+      = user_screen_name(@question.user, context_user: @context_user, author_identifier: author_identifier)
       - if follower_question?
         ·
         %a{ href: question_path(@question.user.screen_name, @question.id), data: { selection_hotkey: "a" } }
           = t(".answers", count: @question.answer_count)
+        ·
+        = time_tooltip(@question)
+      - else
+        ·
+        = link_to(time_tooltip(@question), question_path(@question.user.screen_name, @question.id))
+      - if user_signed_in?
+        .dropdown.d-inline
+          %button.btn.btn-link.btn-sm.p-0{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+            %i.fa.fa-fw.fa-ellipsis
+          = render "actions/question", question: @question
     .question__body{ data: { controller: @question.long? ? "collapse" : nil } }
       .question__text{ class: @question.long? && @collapse ? "collapsed" : "", data: { collapse_target: "content" } }
         = question_markdown @question.content
       - if @question.long? && @collapse
         = render "shared/collapse", type: "question"
-  - if user_signed_in?
-    .flex-shrink-0.ms-auto
-      .btn-group
-        %button.btn.btn-link.btn-sm.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-          %span.caret
-        = render "actions/question", question: @question

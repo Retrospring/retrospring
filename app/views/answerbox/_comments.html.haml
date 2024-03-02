@@ -21,6 +21,6 @@
             - else
               = render "reactions/create", type: "Comment", target: comment
             .dropdown.d-inline
-              %button.btn.btn-link.answerbox__action.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-                %span.caret
+              %button.btn.btn-link.answerbox__action{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+                %i.fa.fa-fw.fa-ellipsis
               = render "actions/comment", comment: comment, answer: a
