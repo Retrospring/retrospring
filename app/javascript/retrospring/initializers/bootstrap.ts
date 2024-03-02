@@ -11,7 +11,7 @@ export default function (): void {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-    const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+    const dropdownElementList = document.querySelectorAll('[data-bs-toggle="dropdown"]');
     [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
 
     // HACK/BUG?: Bootstrap disables dropdowns in navbars, here we re-enable and "kinda" fix it
