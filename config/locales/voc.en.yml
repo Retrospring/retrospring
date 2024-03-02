@@ -42,3 +42,43 @@ en:
     days: "days"
     weeks: "weeks"
     months: "months"
+  datetime:
+    distance_in_words:
+      short:
+        about_x_hours:
+          one: "1h"
+          other: "%{count}h"
+        about_x_months:
+          one: "1mo"
+          other: "%{count}mo"
+        about_x_years:
+          one: "1y"
+          other: "%{count}y"
+        almost_x_years:
+          one: "1y"
+          other: "%{count}y"
+        half_a_minute: 1m
+        less_than_x_seconds:
+          one: "1s"
+          other: "%{count}s"
+        less_than_x_minutes:
+          one: "1m"
+          other: "%{count}m"
+        over_x_years:
+          one: "1y"
+          other: "%{count}y"
+        x_seconds:
+          one: "1s"
+          other: "%{count}s"
+        x_minutes:
+          one: "1m"
+          other: "%{count}m"
+        x_days:
+          one: "1d"
+          other: "%{count}d"
+        x_months:
+          one: "1mo"
+          other: "%{count}mo"
+        x_years:
+          one: "1y"
+          other: "%{count}y"

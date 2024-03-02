@@ -73,8 +73,7 @@ module BootstrapHelper
   end
 
   def time_tooltip(subject, placement = "bottom")
-    tooltip time_ago_in_words(subject.created_at), localize(subject.created_at), placement
-  end
+    tooltip time_ago_in_words(subject.created_at, scope: "datetime.distance_in_words.short"), localize(subject.created_at, format: :long), placement
   end
 
   ##
