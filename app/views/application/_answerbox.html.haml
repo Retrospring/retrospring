@@ -20,6 +20,11 @@
               = user_screen_name(a.user)
               ·
               = link_to(time_tooltip(a), answer_path(a.user.screen_name, a.id), data: { selection_hotkey: "l" })
+              - if a.pinned_at.present?
+                %span.answerbox__pinned
+                  ·
+                  %i.fa.fa-thumbtack
+                  = t(".pinned")
       .d-flex.d-md-block.answerbox__actions.ms-auto
         = render "answerbox/actions", a:, display_all:
   .card-footer{ id: "ab-comments-section-#{a.id}", class: display_all.nil? ? "d-none" : nil }
