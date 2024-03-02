@@ -23,6 +23,10 @@
       .text-muted {
         color: RGBA(var(--primary-text), 0.8) !important;
       }
+
+      .btn {
+        color: inherit;
+      }
     }
   }
 
