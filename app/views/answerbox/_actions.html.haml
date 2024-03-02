@@ -12,6 +12,6 @@
   = render "actions/share", answer: a
 - if user_signed_in?
   .dropdown.d-inline
-    %button.btn.btn-link.answerbox__action.dropdown-toggle{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
-      %span.caret
+    %button.btn.btn-link.answerbox__action{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+      %i.fa.fa-fw.fa-ellipsis
     = render "actions/answer", answer: a
