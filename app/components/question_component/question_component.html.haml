@@ -17,11 +17,8 @@
         ·
         %a{ href: question_path(@question.user.screen_name, @question.id), data: { selection_hotkey: "a" } }
           = t(".answers", count: @question.answer_count)
-        ·
-        = time_tooltip(@question)
-      - else
-        ·
-        = link_to(time_tooltip(@question), question_path(@question.user.screen_name, @question.id))
+      ·
+      = time_tooltip(@question)
       - if user_signed_in?
         .dropdown.d-inline
           %button.btn.btn-link.btn-sm.p-0{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
