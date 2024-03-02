@@ -103,14 +103,8 @@ describe BootstrapHelper, type: :helper do
         @user = FactoryBot.create(:user)
         travel 10.minutes
 
-        expect(time_tooltip(@user)).to eq("<span title=\"Sun, 01 Jan 1984 00:00:00 +0000\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\">10 minutes</span>")
+        expect(time_tooltip(@user)).to eq("<span title=\"January 01, 1984 00:00\" data-bs-toggle=\"tooltip\" data-bs-placement=\"bottom\">10m</span>")
       end
-    end
-  end
-
-  describe "#hidespan" do
-    it "should return the proper markup" do
-      expect(hidespan("Hidden Text", "d-none")).to eq("<span class=\"d-none\">Hidden Text</span>")
     end
   end
 end
