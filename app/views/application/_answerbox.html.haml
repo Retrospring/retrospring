@@ -9,27 +9,6 @@
         = markdown a.content
       - if a.long? && !display_all
         = render "shared/collapse", type: "answer"
-    - if @user.nil?
-      .row
-        .col-sm-6.text-start.text-muted
-          .d-flex
-            .flex-shrink-0
-              %a{ href: user_path(a.user) }
-                = render AvatarComponent.new(user: a.user, size: "sm", classes: ["answerbox__answer-user-avatar"])
-            .flex-grow-1
-              %h6.answerbox__answer-user
-                = raw t(".answered", hide: hidespan(t(".hide"), "d-none d-sm-inline"), user: user_screen_name(a.user))
-              .answerbox__answer-date
-                = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), data: { selection_hotkey: "l" })
-        .col-md-6.d-flex.d-md-block.answerbox__actions
-          = render "answerbox/actions", a:, display_all:
-    - else
-      .row
-        .col-md-6.text-start.text-muted
-          %i.fa.fa-clock-o
-          = link_to(raw(t("time.distance_ago", time: time_tooltip(a))), answer_path(a.user.screen_name, a.id), class: "answerbox__permalink")
-          - if a.pinned_at.present?
-            %span.answerbox__pinned
               ·
               %i.fa.fa-thumbtack
               = t(".pinned")
