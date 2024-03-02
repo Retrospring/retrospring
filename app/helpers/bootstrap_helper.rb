@@ -75,9 +75,6 @@ module BootstrapHelper
   def time_tooltip(subject, placement = "bottom")
     tooltip time_ago_in_words(subject.created_at), localize(subject.created_at), placement
   end
-
-  def hidespan(body, hide)
-    content_tag(:span, body, class: hide)
   end
 
   ##
