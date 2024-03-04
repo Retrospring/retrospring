@@ -82,7 +82,7 @@ group :development, :test do
   gem "better_errors"
   gem "bullet"
   gem "database_cleaner"
-  gem "dotenv-rails", "~> 3.0"
+  gem "dotenv-rails", "~> 3.1"
   gem "factory_bot_rails", require: false
   gem "faker"
   gem "haml_lint", require: false
