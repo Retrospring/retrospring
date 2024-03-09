@@ -11,8 +11,9 @@
           .flex-grow-1
             %h6.comment__user
               = user_screen_name comment.user
-              %span.text-muted{ title: comment.created_at, data: { bs_toggle: :tooltip, bs_placement: :right } }
-                = t("time.distance_ago", time: time_ago_in_words(comment.created_at))
+              %span.text-muted
+                ·
+                = time_tooltip comment
             .comment__content
               = markdown comment.content
           .flex-shrink-0.ms-auto
