@@ -36,5 +36,13 @@ describe UseCase::Question::CreateFollowers do
     it "increments the asked count" do
       expect { subject }.to change { source_user.reload.asked_count }.by(1)
     end
+
+    context "content is over 32768 characters long" do
+      let(:content) { "a" * 32769 }
+
+      it "raises an error" do
+        expect { subject }.to raise_error(Errors::QuestionTooLong)
+      end
+    end
   end
 end
