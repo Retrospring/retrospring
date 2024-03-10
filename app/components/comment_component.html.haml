@@ -1,0 +1,22 @@
+%li.comment{ data: { comment_id: @comment.id } }
+  .d-flex
+    .flex-shrink-0
+      %a{ href: user_path(@comment.user), target: :_top }
+        = render AvatarComponent.new(user: @comment.user, size: "sm", classes: ["comment__user-avatar"])
+    .flex-grow-1
+      %h6.comment__user
+        = user_screen_name @comment.user
+        %span.text-muted
+          ·
+          = time_tooltip @comment
+      .comment__content
+        = markdown @comment.content
+    .flex-shrink-0.ms-auto
+      - if current_user&.smiled?(@comment)
+        = render "reactions/destroy", type: "Comment", target: @comment
+      - else
+        = render "reactions/create", type: "Comment", target: @comment
+      .dropdown.d-inline
+        %button.btn.btn-link.answerbox__action{ data: { bs_toggle: :dropdown }, aria: { expanded: false } }
+          %i.fa.fa-fw.fa-ellipsis
+        = render "actions/comment", comment: @comment, answer: @answer
