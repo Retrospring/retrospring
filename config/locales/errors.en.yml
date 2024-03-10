@@ -37,3 +37,5 @@ en:
     record_not_found: "Record not found"
 
     not_authorized: "You need to be logged in to perform this action"
+
+    question_too_long: "Question is too long"
