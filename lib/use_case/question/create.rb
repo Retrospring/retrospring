@@ -65,6 +65,7 @@ module UseCase
       def check_user
         raise Errors::NotAuthorized if target_user.privacy_require_user && !source_user_id
         raise Errors::QuestionTooLong if content.length > ::Question::SHORT_QUESTION_MAX_LENGTH && !target_user.profile.allow_long_questions
+        raise Errors::QuestionTooLong if content.length > ::Question::LONG_QUESTION_MAX_LENGTH && target_user.profile.allow_long_questions
       end
 
       def create_question

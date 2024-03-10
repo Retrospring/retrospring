@@ -11,6 +11,7 @@ class Question < ApplicationRecord
   validates :content, length: { minimum: 1 }
 
   SHORT_QUESTION_MAX_LENGTH = 512
+  LONG_QUESTION_MAX_LENGTH = 32768
 
   before_destroy do
     rep = Report.where(target_id: self.id, type: "Reports::Question")
