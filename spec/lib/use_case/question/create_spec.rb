@@ -75,6 +75,27 @@ describe UseCase::Question::Create do
         it_behaves_like "creates the question"
       end
     end
+
+    context "content is over 32768 characters long" do
+      let(:content) { "a" * 32769 }
+
+      context "recipient does not allow long questions" do
+        it "raises an error" do
+          expect { subject }.to raise_error(Errors::QuestionTooLong)
+        end
+      end
+
+      context "recipient allows long questions" do
+        before do
+          target_user.profile.allow_long_questions = true
+          target_user.profile.save
+        end
+
+        it "raises an error" do
+          expect { subject }.to raise_error(Errors::QuestionTooLong)
+        end
+      end
+    end
   end
 
   shared_examples "filters questions" do
