@@ -35,7 +35,7 @@ RailsAdmin.config do |config|
     Comment
     List
     ListMember
-    Inbox
+    InboxEntry
     MuteRule
     Notification
     Profile
@@ -59,7 +59,7 @@ RailsAdmin.config do |config|
     "Answer"                => "exclamation",
     "Reaction"              => "smile",
     "Comment"               => "comment",
-    "Inbox"                 => "inbox",
+    "InboxEntry"            => "inbox",
     "List"                  => "list",
     "ListMember"            => "users",
     "MuteRule"              => "volume-mute",
@@ -86,7 +86,7 @@ RailsAdmin.config do |config|
   # set up custom parents for certain models to group them nicely together
   {
     "AnonymousBlock"      => User,
-    "Inbox"               => User,
+    "InboxEntry"          => User,
     "List"                => User,
     "MuteRule"            => User,
     "Notification"        => User,
