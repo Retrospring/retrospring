@@ -17,7 +17,7 @@
         - else
           %p.px-4.pb-2
             - list.members.each do |member|
-              %a{ href: user_path(member.user), title: member.user.screen_name, data: { bs_toggle: :tooltip, bs_placement: :top } }
+              %a{ href: user_path(member.user), title: member.user.screen_name, data: { controller: :tooltip, bs_placement: :top } }
                 = render AvatarComponent.new(user: member.user, size: "xs")
       - if !list && lists.empty?
         .p-3= t(".lists.notice_html")
