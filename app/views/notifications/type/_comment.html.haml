@@ -10,16 +10,14 @@
               answer: link_to(t(".active.link_text"),
                               answer_path(username: notification.target.user.screen_name,
                               id: notification.target.answer.id),
-                              target: "_top"),
-              time: time_tooltip(notification.target))
+                              target: "_top"))
       - elsif notification.target.user == notification.target.answer.user
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
               answer: link_to(t(".passive.link_text"),
                               answer_path(username: notification.target.user.screen_name,
                               id: notification.target.answer.id),
-                              target: "_top"),
-              time: time_tooltip(notification.target))
+                              target: "_top"))
       - else
         = t(".heading_html",
               user: user_screen_name(notification.target.user),
@@ -27,8 +25,9 @@
                                 user: user_screen_name(notification.target.answer.user, url: false)),
                                 answer_path(username: notification.target.user.screen_name,
                                 id: notification.target.answer.id),
-                                target: "_top"),
-              time: time_tooltip(notification.target))
+                                target: "_top"))
+      ·
+      = time_tooltip(notification.target)
     .list-group
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.answer.one")
