@@ -9,6 +9,8 @@ module UseCase
       option :send_to_own_inbox, type: Types::Params::Bool, default: proc { false }
 
       def call
+        check_question
+
         question = ::Question.create!(
           content:,
           author_is_anonymous: false,
@@ -31,6 +33,10 @@ module UseCase
       end
 
       private
+
+      def check_question
+        raise Errors::QuestionTooLong if content.length > ::Question::LONG_QUESTION_MAX_LENGTH
+      end
 
       def increment_asked_count
         source_user.increment(:asked_count)
