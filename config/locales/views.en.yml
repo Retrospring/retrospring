@@ -343,10 +343,10 @@ en:
       none: "No new notifications."
     type:
       answer:
-        heading_html: "%{user} answered %{question} %{time} ago"
+        heading_html: "%{user} answered %{question}"
         link_text: "your question"
       comment:
-        heading_html: "%{user} commented on %{answer} %{time} ago"
+        heading_html: "%{user} commented on %{answer}"
         active:
           link_text: "your answer"
         passive:
@@ -358,7 +358,7 @@ en:
         text_html: "Head over to %{settings_export} to download it."
         settings_export: "the settings page"
       reaction:
-        heading_html: "%{user} smiled %{type} %{time} ago"
+        heading_html: "%{user} smiled %{type}"
         answer:
           link_text: "your answer"
         comment:

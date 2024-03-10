@@ -6,8 +6,9 @@
       = render AvatarComponent.new(user: notification.target.user, size: "xs")
       = t(".heading_html",
           user: user_screen_name(notification.target.user),
-          question: link_to(t(".link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.id), target: "_top"),
-          time: time_tooltip(notification.target))
+          question: link_to(t(".link_text"), answer_path(username: notification.target.user.screen_name, id: notification.target.id), target: "_top"))
+      ·
+      = time_tooltip(notification.target)
     .list-group
       .list-group-item
         %h6.notification__list-heading= t("activerecord.models.question.one")
