@@ -8,5 +8,5 @@
       - a.smiles.all.each do |smile|
         %a{ href: user_path(smile.user),
           title: user_screen_name(smile.user, url: false),
-          data: { bs_toggle: :tooltip, bs_placement: :top, smile_id: smile.id, turbo: :false } }
+          data: { controller: :tooltip, bs_placement: :top, smile_id: smile.id, turbo: :false } }
           = render AvatarComponent.new(user: smile.user, size: "xs")

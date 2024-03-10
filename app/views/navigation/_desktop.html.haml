@@ -15,7 +15,7 @@
         = nav_entry t("navigation.discover"), discover_path, icon: "compass", hotkey: "g d"
     %ul.nav.navbar-nav
       - if @user.present? && @user != current_user
-        %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t(".list") }
+        %li.nav-item.d-none.d-sm-block{ data: { controller: 'tooltip', bs_placement: 'bottom' }, title: t(".list") }
           %a.nav-link{ href: '#', data: { bs_target: '#modal-list-memberships', bs_toggle: :modal } }
             %i.fa.fa-list.hidden-xs
             %span.d-none.d-sm-inline.d-md-none= t(".list")
@@ -29,7 +29,7 @@
             - cache current_user.notification_dropdown_cache_key, expires_in: 12.hours do
               - notifications = Notification.for(current_user).where(new: true).includes([:target]).limit(4)
               = render "navigation/dropdown/notifications", notifications:, size: "desktop"
-      %li.nav-item.d-none.d-sm-block{ data: { bs_toggle: 'tooltip', bs_placement: 'bottom' }, title: t('.ask_question') }
+      %li.nav-item.d-none.d-sm-block{ data: { controller: :tooltip, bs_placement: 'bottom' }, title: t('.ask_question') }
         %a.nav-link{ href: "#", name: "toggle-all-ask", data: { bs_target: "#modal-ask-followers", bs_toggle: :modal, hotkey: "n" } }
           %i.fa.fa-pencil-square-o
       %li.nav-item.dropdown.profile--image-dropdown
