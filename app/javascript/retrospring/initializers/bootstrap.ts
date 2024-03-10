@@ -8,9 +8,6 @@ import * as bootstrap from 'bootstrap';
  */
 export default function (): void {
   document.addEventListener('turbo:load', () => {
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-
     const dropdownElementList = document.querySelectorAll('[data-bs-toggle="dropdown"]');
     [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
 
