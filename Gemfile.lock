@@ -451,7 +451,7 @@ GEM
     sentry-sidekiq (5.17.1)
       sentry-ruby (~> 5.17.1)
       sidekiq (>= 3.0)
-    shoulda-matchers (6.1.0)
+    shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
     sidekiq (6.5.12)
       connection_pool (>= 2.2.5, < 3)
@@ -594,7 +594,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   sentry-sidekiq
-  shoulda-matchers (~> 6.1)
+  shoulda-matchers (~> 6.2)
   sidekiq (< 7)
   sidekiq-scheduler
   simplecov
