@@ -214,7 +214,7 @@ GEM
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.1)
+    i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     i18n-js (4.0.0)
       glob
@@ -268,7 +268,7 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.22.2)
+    minitest (5.22.3)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -287,7 +287,7 @@ GEM
     net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
-    nokogiri (1.16.2)
+    nokogiri (1.16.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oj (3.16.3)
@@ -442,13 +442,14 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sentry-rails (5.16.1)
+    sentry-rails (5.17.1)
       railties (>= 5.0)
-      sentry-ruby (~> 5.16.1)
-    sentry-ruby (5.16.1)
+      sentry-ruby (~> 5.17.1)
+    sentry-ruby (5.17.1)
+      bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-sidekiq (5.16.1)
-      sentry-ruby (~> 5.16.1)
+    sentry-sidekiq (5.17.1)
+      sentry-ruby (~> 5.17.1)
       sidekiq (>= 3.0)
     shoulda-matchers (6.1.0)
       activesupport (>= 5.2.0)
