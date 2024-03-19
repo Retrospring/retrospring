@@ -71,4 +71,8 @@ class Answer < ApplicationRecord
   def long? = content.length > SHORT_ANSWER_MAX_LENGTH
 
   def pinned? = pinned_at.present?
+
+  def has_reacted = self.attributes["has_reacted"] || false
+
+  def is_subscribed = self.attributes["is_subscribed"] || false
 end
