@@ -13,7 +13,7 @@ describe UseCase::Reaction::Destroy do
     end
   end
 
-  subject { UseCase::Reaction::Destroy.call(source_user: user, target:) }
+  subject { UseCase::Reaction::Destroy.call(source_user_id: user.id, target:) }
 
   let(:user) { FactoryBot.create(:user) }
 
