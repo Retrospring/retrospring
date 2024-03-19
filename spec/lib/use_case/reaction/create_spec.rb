@@ -9,7 +9,7 @@ describe UseCase::Reaction::Create do
     end
   end
 
-  subject { UseCase::Reaction::Create.call(source_user: user, target:) }
+  subject { UseCase::Reaction::Create.call(source_user_id: user.id, target:) }
 
   let(:user) { FactoryBot.create(:user) }
 
