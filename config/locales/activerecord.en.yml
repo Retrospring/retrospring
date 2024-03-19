@@ -54,6 +54,8 @@ en:
         success_text: "Success text colour"
         warning_color: "Warning colour"
         warning_text: "Warning text colour"
+      reaction:
+        parent_id: "Target"
       user:
         created_at: "Account created at"
         current_password: "Current password"
@@ -107,6 +109,11 @@ en:
     errors:
       messages:
         invalid_url: "does not look like a valid URL"
+      models:
+        reaction:
+          attributes:
+            parent_id:
+              taken: "already smiled"
   helpers:
     submit:
       user:
