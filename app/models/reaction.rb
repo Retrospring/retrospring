@@ -4,6 +4,8 @@ class Reaction < ApplicationRecord
   belongs_to :parent, polymorphic: true
   belongs_to :user
 
+  validates_uniqueness_of :parent_id, :scope => :user_id
+
   # rubocop:disable Rails/SkipsModelValidations
   after_create do
     Notification.notify parent.user, self unless parent.user == user
