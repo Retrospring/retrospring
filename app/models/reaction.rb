@@ -4,7 +4,7 @@ class Reaction < ApplicationRecord
   belongs_to :parent, polymorphic: true
   belongs_to :user
 
-  validates_uniqueness_of :parent_id, :scope => :user_id
+  validates :parent_id, uniqueness: { scope: :user_id }
 
   # rubocop:disable Rails/SkipsModelValidations
   after_create do
