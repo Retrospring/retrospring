@@ -19,7 +19,7 @@ class ReactionsController < ApplicationController
     target = target_class.find(params[:id])
 
     UseCase::Reaction::Create.call(
-      source_user: current_user,
+      source_user_id: current_user.id,
       target:,
     )
 
@@ -43,7 +43,7 @@ class ReactionsController < ApplicationController
     target = target_class.find(params[:id])
 
     UseCase::Reaction::Destroy.call(
-      source_user: current_user,
+      source_user_id: current_user.id,
       target:,
     )
 
