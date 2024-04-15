@@ -90,7 +90,7 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
-    bigdecimal (3.1.5)
+    bigdecimal (3.1.7)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
     bootsnap (1.18.3)
@@ -447,7 +447,7 @@ GEM
     sentry-rails (5.17.1)
       railties (>= 5.0)
       sentry-ruby (~> 5.17.1)
-    sentry-ruby (5.17.1)
+    sentry-ruby (5.17.3)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
     sentry-sidekiq (5.17.1)
