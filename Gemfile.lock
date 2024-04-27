@@ -173,7 +173,7 @@ GEM
     fake_email_validator (1.0.11)
       activemodel
       mail
-    faker (3.3.0)
+    faker (3.3.1)
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     fog-aws (3.22.0)
