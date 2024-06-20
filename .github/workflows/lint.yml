@@ -11,7 +11,7 @@ jobs:
     name: Rubocop
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v4.1.7
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
@@ -37,7 +37,7 @@ jobs:
     name: ESLint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v4.1.7
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
@@ -63,7 +63,7 @@ jobs:
   haml-lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v4.1.7
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
@@ -86,7 +86,7 @@ jobs:
   stylelint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.6
+      - uses: actions/checkout@v4.1.7
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v44
