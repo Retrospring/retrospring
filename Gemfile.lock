@@ -165,7 +165,7 @@ GEM
     erubi (1.13.0)
     et-orbi (1.2.11)
       tzinfo
-    excon (0.110.0)
+    excon (0.111.0)
     factory_bot (6.4.5)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
@@ -181,7 +181,7 @@ GEM
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
-    fog-core (2.4.0)
+    fog-core (2.5.0)
       builder
       excon (~> 0.71)
       formatador (>= 0.2, < 2.0)
@@ -265,7 +265,7 @@ GEM
     method_source (1.1.0)
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0604)
+    mime-types-data (3.2024.0702)
     mimemagic (0.4.3)
       nokogiri (~> 1)
       rake
