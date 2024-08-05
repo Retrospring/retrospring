@@ -303,7 +303,7 @@ GEM
     parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.6)
+    pg (1.5.7)
     pghero (3.5.0)
       activerecord (>= 6)
     prometheus-client (4.2.3)
