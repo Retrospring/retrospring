@@ -15,14 +15,15 @@ describe User::RegistrationsController, type: :controller do
                    justask_admin retrospring_admin admin justask retrospring
                    moderation moderator mod administrator siteadmin site_admin
                    help retro_spring retroospring retrosprlng
-                 ]
-               })
+                 ],
+               },)
   end
 
   describe "#create" do
     context "valid user sign up" do
       before do
         allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(true)
+        allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
         allow(controller).to receive(:verify_hcaptcha).and_return(captcha_successful)
       end
 
@@ -32,8 +33,8 @@ describe User::RegistrationsController, type: :controller do
             screen_name:           "dio",
             email:                 "the-world-21@somewhere.everywhere.now",
             password:              "AReallySecurePassword456!",
-            password_confirmation: "AReallySecurePassword456!"
-          }
+            password_confirmation: "AReallySecurePassword456!",
+          },
         }
       end
 
@@ -59,6 +60,7 @@ describe User::RegistrationsController, type: :controller do
     context "invalid user sign up" do
       before do
         allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
+        allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
       end
 
       subject { post :create, params: registration_params }
@@ -70,8 +72,8 @@ describe User::RegistrationsController, type: :controller do
               screen_name:           "",
               email:                 "",
               password:              "",
-              password_confirmation: ""
-            }
+              password_confirmation: "",
+            },
           }
         end
 
@@ -87,8 +89,8 @@ describe User::RegistrationsController, type: :controller do
               screen_name:           "Dio Brando",
               email:                 "the-world-21@somewhere.everywhere.now",
               password:              "AReallySecurePassword456!",
-              password_confirmation: "AReallySecurePassword456!"
-            }
+              password_confirmation: "AReallySecurePassword456!",
+            },
           }
         end
 
@@ -104,14 +106,42 @@ describe User::RegistrationsController, type: :controller do
               screen_name:           "moderator",
               email:                 "the-world-21@somewhere.everywhere.now",
               password:              "AReallySecurePassword456!",
-              password_confirmation: "AReallySecurePassword456!"
-            }
+              password_confirmation: "AReallySecurePassword456!",
+            },
           }
         end
 
         it "does not create a user" do
           expect { subject }.not_to(change { User.count })
         end
+      end
+    end
+
+    context "when registrations are disabled" do
+      before do
+        allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
+        allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(false)
+      end
+
+      it "redirects to the root page" do
+        subject
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+  describe "#new" do
+    subject { get :new }
+
+    context "when registrations are disabled" do
+      before do
+        allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
+        allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(false)
+      end
+
+      it "redirects to the root page" do
+        subject
+        expect(response).to redirect_to(root_path)
       end
     end
   end
