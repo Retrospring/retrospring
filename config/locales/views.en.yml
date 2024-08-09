@@ -146,6 +146,9 @@ en:
         non_anonymous_html: |
           This user does not want to receive anonymous questions. <br/>
           (%{sign_in} or %{sign_up})
+        non_anonymous_no_registration_html: |
+          This user does not want to receive anonymous questions. <br/>
+          (%{sign_in})
   comment:
     show_reactions:
       title: "People who smiled this comment"
