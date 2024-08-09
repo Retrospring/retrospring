@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User::RegistrationsController < Devise::RegistrationsController
-  before_action :redirect_if_registrations_disabled!, only: %w[create new]
+  before_action :redirect_if_registrations_disabled!, only: %w[create new] # rubocop:disable Rails/LexicallyScopedActionFilter
 
   def create
     if captcha_valid?
