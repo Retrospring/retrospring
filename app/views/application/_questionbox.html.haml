@@ -40,24 +40,29 @@
                 %input{ name: "qb-to", type: "hidden", value: user.id }/
                 %button.btn.btn-primary{ name: "qb-ask",
                   type: :button,
-                  data: { loading_text: t(".load"), promote: user_signed_in? ? "false" : "true", "character-count-target": "action" } }
+                  data: { loading_text: t(".load"), promote: user_signed_in? || !user_signed_in? && !APP_CONFIG.dig(:features, :registration, :enabled) ? "false" : "true", "character-count-target": "action" } }
                   Ask
       - unless user_signed_in?
         - if user.privacy_allow_anonymous_questions?
-          .d-none#question-box-promote
-            .row
-              .col-12.text-center
-                %strong= t(".promote.message")
-            .row
-              .col-sm-5.offset-sm-1
-                .d-grid
-                  %button.btn.btn-primary#create-account= t(".promote.create")
-              .col-sm-5
-                .d-grid
-                  %button.btn.btn-default#new-question= t(".promote.another")
-            .row
-              .col-xs-12.col-sm-10.offset-sm-1.text-center
-                %small= t(".promote.join", app_title: APP_CONFIG["site_name"])
+          - if APP_CONFIG.dig(:features, :registration, :enabled)
+            .d-none#question-box-promote
+              .row
+                .col-12.text-center
+                  %strong= t(".promote.message")
+              .row
+                .col-sm-5.offset-sm-1
+                  .d-grid
+                    %button.btn.btn-primary#create-account= t(".promote.create")
+                .col-sm-5
+                  .d-grid
+                    %button.btn.btn-default#new-question= t(".promote.another")
+              .row
+                .col-xs-12.col-sm-10.offset-sm-1.text-center
+                  %small= t(".promote.join", app_title: APP_CONFIG["site_name"])
         - else
           .text-center
-            %strong= t(".status.non_anonymous_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))
+            - if APP_CONFIG.dig(:features, :registration, :enabled)
+              %strong= t(".status.non_anonymous_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))
+            - else
+              %strong= t(".status.non_anonymous_no_registration_html", sign_in: link_to(t("voc.login"), new_user_session_path))
+

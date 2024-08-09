@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 class User::RegistrationsController < Devise::RegistrationsController
+  before_action :redirect_if_registrations_disabled!, only: %w[create new]
+
   def create
     if captcha_valid?
       super
     else
-      respond_with_navigational(resource){ redirect_to new_user_registration_path }
+      respond_with_navigational(resource) { redirect_to new_user_registration_path }
     end
   end
 
@@ -18,7 +22,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     resource.destroy
     set_flash_message :notice, :destroyed if is_flashing_format?
     yield resource if block_given?
-    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    respond_with_navigational(resource) { redirect_to after_sign_out_path_for(resource_name) }
   end
 
   private
@@ -28,5 +32,9 @@ class User::RegistrationsController < Devise::RegistrationsController
     return true unless APP_CONFIG.dig(:hcaptcha, :enabled)
 
     verify_hcaptcha
+  end
+
+  def redirect_if_registrations_disabled!
+    redirect_to root_path unless APP_CONFIG.dig(:features, :registration, :enabled)
   end
 end
