@@ -24,7 +24,6 @@ describe User::RegistrationsController, type: :controller do
       before do
         allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(true)
         allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
-        allow(controller).to receive(:verify_hcaptcha).and_return(captcha_successful)
       end
 
       let :registration_params do
@@ -41,7 +40,10 @@ describe User::RegistrationsController, type: :controller do
       subject { post :create, params: registration_params }
 
       context "when captcha is invalid" do
-        let(:captcha_successful) { false }
+        before do
+          allow(controller).to receive(:verify_hcaptcha).and_return(false)
+        end
+
         it "doesn't allow a registration with an invalid captcha" do
           expect { subject }.not_to(change { User.count })
           expect(response).to redirect_to :new_user_registration
@@ -49,10 +51,31 @@ describe User::RegistrationsController, type: :controller do
       end
 
       context "when captcha is valid" do
-        let(:captcha_successful) { true }
+        before do
+          allow(controller).to receive(:verify_hcaptcha).and_return(true)
+        end
+
         it "creates a user" do
           allow(controller).to receive(:verify_hcaptcha).and_return(true)
           expect { subject }.to change { User.count }.by(1)
+        end
+      end
+
+      context "when registrations are disabled" do
+        before do
+          allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
+          allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(false)
+        end
+
+        it "redirects to the root page" do
+          allow(controller).to receive(:verify_hcaptcha).and_return(true)
+          subject
+          expect(response).to redirect_to(root_path)
+        end
+
+        it "does not create a user" do
+          allow(controller).to receive(:verify_hcaptcha).and_return(true)
+          expect { subject }.not_to(change { User.count })
         end
       end
     end
@@ -114,18 +137,6 @@ describe User::RegistrationsController, type: :controller do
         it "does not create a user" do
           expect { subject }.not_to(change { User.count })
         end
-      end
-    end
-
-    context "when registrations are disabled" do
-      before do
-        allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
-        allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(false)
-      end
-
-      it "redirects to the root page" do
-        subject
-        expect(response).to redirect_to(root_path)
       end
     end
   end
