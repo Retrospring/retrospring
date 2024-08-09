@@ -63,7 +63,7 @@ Rails.application.routes.draw do
     # :registrations
     get "settings/delete_account" => "devise/registrations#cancel", :as => :cancel_user_registration
     post "/user/create" => "user/registrations#create", :as => :user_registration
-    get "/sign_up" => "devise/registrations#new", :as => :new_user_registration
+    get "/sign_up" => "user/registrations#new", :as => :new_user_registration
     get "/settings/account" => "devise/registrations#edit", :as => :edit_user_registration
     patch "/settings/account" => "devise/registrations#update", :as => :update_user_registration
     put "/settings/account" => "devise/registrations#update"

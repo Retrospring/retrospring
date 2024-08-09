@@ -52,6 +52,9 @@ features:
   # Public timeline
   public:
     enabled: true
+  # Registrations
+  registration:
+    enabled: true
 
 # Redis
 redis_url: "redis://localhost:6379"
