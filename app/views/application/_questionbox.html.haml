@@ -19,9 +19,13 @@
         %strong= t(".status.locked")
     - elsif !user_signed_in? && user.privacy_require_user?
       .text-center
-        %strong= t(".status.require_user_html",
-          sign_in: link_to(t("voc.login"), new_user_session_path),
-          sign_up: link_to(t("voc.register"), new_user_registration_path))
+        - if Retrospring::Config.registrations_enabled?
+          %strong= t(".status.require_user_html",
+            sign_in: link_to(t("voc.login"), new_user_session_path),
+            sign_up: link_to(t("voc.register"), new_user_registration_path))
+        - else
+          %strong= t(".status.require_user_no_registration_html",
+            sign_in: link_to(t("voc.login"), new_user_session_path))
     - else
       - if user_signed_in? || user.privacy_allow_anonymous_questions?
         #question-box{

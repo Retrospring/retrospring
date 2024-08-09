@@ -143,6 +143,9 @@ en:
         require_user_html: |
           This user requires others to be logged in to ask questions. <br/>
           (%{sign_in} or %{sign_up})
+        require_user_no_registration_html: |
+          This user requires others to be logged in to ask questions. <br/>
+          (%{sign_in})
         non_anonymous_html: |
           This user does not want to receive anonymous questions. <br/>
           (%{sign_in} or %{sign_up})
