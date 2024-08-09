@@ -19,10 +19,14 @@
         %strong= t(".status.locked")
     - elsif !user_signed_in? && user.privacy_require_user?
       .text-center
-        %strong= t(".status.require_user_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))
+        %strong= t(".status.require_user_html",
+          sign_in: link_to(t("voc.login"), new_user_session_path),
+          sign_up: link_to(t("voc.register"), new_user_registration_path))
     - else
       - if user_signed_in? || user.privacy_allow_anonymous_questions?
-        #question-box{ data: user.profile.allow_long_questions ? {} : { controller: "character-count", "character-count-max-value": user.profile.question_length_limit }}
+        #question-box{
+            data: user.profile.allow_long_questions ? {} : { controller: "character-count", "character-count-max-value": user.profile.question_length_limit }
+          }
           %textarea.form-control{ name: "qb-question", placeholder: t(".placeholder"), data: { "character-count-target": "input" } }
           .row{ style: "padding-top: 5px;" }
             .col-6
@@ -36,11 +40,17 @@
                   %input{ name: "qb-anonymous", type: :hidden, value: false }/
             .col-6
               %p.pull-right
-                %span.text-muted.me-1{ class: user.profile.allow_long_questions ? "d-none" : "", data: { "character-count-target": "counter" } }= Question::SHORT_QUESTION_MAX_LENGTH
+                %span.text-muted.me-1{ class: user.profile.allow_long_questions ? "d-none" : "",
+                                       data: { "character-count-target": "counter" } }= Question::SHORT_QUESTION_MAX_LENGTH
                 %input{ name: "qb-to", type: "hidden", value: user.id }/
                 %button.btn.btn-primary{ name: "qb-ask",
                   type: :button,
-                  data: { loading_text: t(".load"), promote: user_signed_in? || !user_signed_in? && !Retrospring::Config.registrations_enabled ? "false" : "true", "character-count-target": "action" } }
+                  data: {
+                    loading_text: t(".load"),
+                    promote: user_signed_in? || !user_signed_in? && !Retrospring::Config.registrations_enabled ? "false" : "true",
+                    "character-count-target": "action"
+                    }
+                }
                   Ask
       - unless user_signed_in?
         - if user.privacy_allow_anonymous_questions?
@@ -62,7 +72,8 @@
         - else
           .text-center
             - if Retrospring::Config.registrations_enabled?
-              %strong= t(".status.non_anonymous_html", sign_in: link_to(t("voc.login"), new_user_session_path), sign_up: link_to(t("voc.register"), new_user_registration_path))
+              %strong= t(".status.non_anonymous_html",
+                sign_in: link_to(t("voc.login"), new_user_session_path),
+                sign_up: link_to(t("voc.register"), new_user_registration_path))
             - else
               %strong= t(".status.non_anonymous_no_registration_html", sign_in: link_to(t("voc.login"), new_user_session_path))
-
