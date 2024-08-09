@@ -5,7 +5,7 @@
       = render "layouts/messages"
       %h1= APP_CONFIG["site_name"]
       %p= t(".subtitle")
-      - if APP_CONFIG.dig(:features, :registration, :enabled)
+      - if Retrospring::Config.registrations_enabled?
         %p
           %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_registration_path) }
             = t(".register")

@@ -35,6 +35,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   end
 
   def redirect_if_registrations_disabled!
-    redirect_to root_path unless APP_CONFIG.dig(:features, :registration, :enabled)
+    redirect_to root_path unless Retrospring::Config.registrations_enabled?
   end
 end
