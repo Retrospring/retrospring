@@ -13,8 +13,6 @@ module Retrospring
       env_config = {
         # The site name, shown everywhere
         site_name: ENV.fetch("SITE_NAME", nil),
-
-        hostname:  ENV.fetch("HOSTNAME", nil),
       }.compact
       hash.merge!(env_config)
 
