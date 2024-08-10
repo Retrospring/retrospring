@@ -2,7 +2,6 @@ en:
   language: "English"
   about:
     index:
-      subtitle: "Ask questions, give answers and learn more about your friends."
       register: "Register now"
       already_member: "Already a member?"
       more_features: "But wait, there's more!"
