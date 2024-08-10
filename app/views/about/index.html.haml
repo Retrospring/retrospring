@@ -4,7 +4,7 @@
     .card-body.py-4
       = render "layouts/messages"
       %h1= APP_CONFIG["site_name"]
-      %p= t(".subtitle")
+      %p= APP_CONFIG["site_tagline"]
       - if Retrospring::Config.registrations_enabled?
         %p
           %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_registration_path) }

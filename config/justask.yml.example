@@ -1,6 +1,9 @@
 # The site name, shown everywhere.
 site_name: "justask"
 
+# The sites tagline, shown on the start page
+site_tagline: "Ask questions, give answers and learn more about your friends."
+
 # Use the SVG logo from `/public/logo.svg`
 use_svg_logo: false
 
