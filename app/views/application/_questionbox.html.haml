@@ -51,7 +51,7 @@
                   type: :button,
                   data: {
                     loading_text: t(".load"),
-                    promote: user_signed_in? || !user_signed_in? && !Retrospring::Config.registrations_enabled ? "false" : "true",
+                    promote: user_signed_in? || !user_signed_in? && !Retrospring::Config.registrations_enabled? ? "false" : "true",
                     "character-count-target": "action"
                     }
                 }
