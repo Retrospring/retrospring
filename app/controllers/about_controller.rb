@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class AboutController < ApplicationController
-  def index; end
+  def index
+    if Retrospring::Config.advanced_frontpage_enabled?
+      render template: "about/index_advanced"
+    end
+  end
 
   def about
     @users = Rails.cache.fetch("about_count_users", expires_in: 1.hour) { user_count - current_ban_count }

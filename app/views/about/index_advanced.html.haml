@@ -1,0 +1,95 @@
+- provide(:title, APP_CONFIG["site_name"])
+.container
+  .card.bg-primary.my-3.text-bg-primary.text-center
+    .card-body.py-4
+      = render "layouts/messages"
+      %h1= APP_CONFIG["site_name"]
+      %p= APP_CONFIG["site_tagline"]
+      - if Retrospring::Config.registrations_enabled?
+        %p
+          %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_registration_path) }
+            = t("voc.register_now")
+        %small
+          = t(".already_member")
+          = link_to t("voc.login"), new_user_session_path
+      - else
+        %p
+          %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_session_path) }
+            = t("voc.login")
+
+  .row.my-5.my-sm-10
+    .col-sm-6.order-5.order-sm-1.text-center.text-sm-right
+      %h2.mb-4= t(".questions.header")
+      = t(".questions.body_html", app_name: APP_CONFIG["site_name"])
+    .col-sm-6.order-1.order-sm-5
+      .text-center.text-primary.d-flex.h-100.justify-content-center.fs-10
+        %i.fa.fa-envelope.align-self-center.mb-5.mb-sm-0
+
+  .row.my-5.my-sm-10
+    .col-sm-6
+      .text-center.text-primary.d-flex.h-100.justify-content-center.fs-10
+        %i.fa.fa-comments.align-self-center.mb-5.mb-sm-0
+    .col-sm-6.text-center.text-sm-left
+      %h2.mb-4= t(".discussions.header")
+      = t(".discussions.body_html", app_name: APP_CONFIG["site_name"])
+
+  .row.my-5.my-sm-10
+    .col-sm-6.order-5.order-sm-1.text-center.text-sm-right
+      %h2.mb-4= t(".share.header")
+      = t(".share.body_html", app_name: APP_CONFIG["site_name"])
+    .col-sm-6.order-1.order-sm-5
+      .text-center.text-primary.d-flex.h-100.justify-content-center.fs-10
+        %i.fa.fa-share.align-self-center.mb-5.mb-sm-0
+
+  .row.my-5.my-sm-10
+    .col-sm-6
+      .text-center.text-primary.d-flex.h-100.justify-content-center.fs-10
+        %i.fa.fa-paint-brush.align-self-center.mb-5.mb-sm-0
+    .col-sm-6.text-center.text-sm-left
+      %h2.mb-4= t(".customize.header")
+      = t(".customize.body_html", app_name: APP_CONFIG["site_name"])
+      .card
+        .card-body
+          .row.mx-n2
+            .col.px-2
+              .d-grid
+                %button.btn.btn-success.js-theme-button{ data: { theme: "theme-success" } }= t(".customize.themes.green")
+            .col.px-2
+              .d-grid
+                %button.btn.btn-warning.js-theme-button{ data: { theme: "theme-warning" } }= t(".customize.themes.orange")
+            .col.px-2
+              .d-grid
+                %button.btn.btn-danger.js-theme-button{ data: { theme: "theme-danger" } }= t(".customize.themes.red")
+            .col.px-2
+              .d-grid
+                %button.btn.btn-default.js-theme-button{ data: { theme: "reset" } }= t(".customize.themes.reset")
+
+.container.text-center
+  %h2.mb-4= t(".more_features")
+  .row.my-5
+    .col-sm-4
+      %h3.mb-3
+        %i.fa.fa-fw.fa-globe.text-primary
+        = t(".open_source.header")
+      %p= t(".open_source.body", app_name: APP_CONFIG["site_name"])
+    .col-sm-4
+      %h3.mb-3
+        %i.fa.fa-fw.fa-eye-slash.text-primary
+        = t(".no_ads.header")
+      %p= t(".no_ads.body")
+    .col-sm-4
+      %h3.mb-3
+        %i.fa.fa-fw.fa-user-secret.text-primary
+        = t(".your_data.header")
+      %p= t(".your_data.body", app_name: APP_CONFIG["site_name"])
+
+  - if APP_CONFIG.dig(:features, :registration, :enabled)
+    .card
+      .card-body
+        %h2= t(".prompt.header")
+        %p= t(".prompt.body")
+        %p
+          %a.btn.btn-primary.btn-lg{ href: url_for(new_user_registration_path) }
+            = t(".register")
+
+= render "shared/links"

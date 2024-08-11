@@ -2,7 +2,8 @@ en:
   language: "English"
   about:
     index:
-      register: "Register now"
+      or: "or"
+    index_advanced:
       already_member: "Already a member?"
       more_features: "But wait, there's more!"
       questions:
