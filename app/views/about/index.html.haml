@@ -13,10 +13,11 @@
               DEV
         %p.lead= APP_CONFIG["site_tagline"]
       .col-md-4
-        %a.btn.btn-primary.d-grid{ href: url_for(new_user_registration_path) }
-          = t("voc.register_now")
-        .d-block.text-center.py-2.text-secondary
-          = t(".or")
+        - if Retrospring::Config.registrations_enabled?
+          %a.btn.btn-primary.d-grid{ href: url_for(new_user_registration_path) }
+            = t("voc.register_now")
+          .d-block.text-center.py-2.text-secondary
+            = t(".or")
         .card
           .card-body
             = bootstrap_form_for(User.new, as: :user, url: session_path(:user), data: { turbo: false }) do |f|
