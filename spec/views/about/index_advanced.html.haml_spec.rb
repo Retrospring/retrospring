@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "about/index.html.haml", type: :view do
+describe "about/index_advanced.html.haml", type: :view do
   before do
     stub_const("APP_CONFIG", {
                  "hostname" => "example.com",
