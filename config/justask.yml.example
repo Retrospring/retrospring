@@ -58,6 +58,9 @@ features:
   # Registrations
   registration:
     enabled: true
+  # Advanced (marketing) frontpage layout
+  advanced_frontpage:
+    enabled: false
 
 # Redis
 redis_url: "redis://localhost:6379"

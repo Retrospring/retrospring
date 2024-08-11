@@ -23,5 +23,7 @@ module Retrospring
     end
 
     def registrations_enabled? = APP_CONFIG.dig(:features, :registration, :enabled)
+
+    def advanced_frontpage_enabled? = APP_CONFIG.dig(:features, :advanced_frontpage, :enabled)
   end
 end
