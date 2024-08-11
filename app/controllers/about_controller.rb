@@ -2,9 +2,9 @@
 
 class AboutController < ApplicationController
   def index
-    if Retrospring::Config.advanced_frontpage_enabled?
-      render template: "about/index_advanced"
-    end
+    return unless Retrospring::Config.advanced_frontpage_enabled?
+
+    render template: "about/index_advanced"
   end
 
   def about
