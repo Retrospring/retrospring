@@ -313,7 +313,7 @@ GEM
     public_suffix (6.0.1)
     puma (6.4.2)
       nio4r (~> 2.0)
-    pundit (2.3.2)
+    pundit (2.4.0)
       activesupport (>= 3.0.0)
     questiongenerator (1.1.0)
     raabro (1.4.0)
@@ -580,7 +580,7 @@ DEPENDENCIES
   pghero
   prometheus-client (~> 4.2)
   puma
-  pundit (~> 2.3)
+  pundit (~> 2.4)
   questiongenerator (~> 1.1)
   rails (~> 7.0.8)
   rails-controller-testing
