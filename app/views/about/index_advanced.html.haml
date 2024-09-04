@@ -5,17 +5,9 @@
       = render "layouts/messages"
       %h1= APP_CONFIG["site_name"]
       %p= APP_CONFIG["site_tagline"]
-      - if Retrospring::Config.registrations_enabled?
-        %p
-          %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_registration_path) }
-            = t("voc.register_now")
-        %small
-          = t(".already_member")
-          = link_to t("voc.login"), new_user_session_path
-      - else
-        %p
-          %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_session_path) }
-            = t("voc.login")
+      %p
+        %a.btn.btn-outline-light.btn-lg{ href: url_for(new_user_session_path) }
+          = t("voc.login")
 
   .row.my-5.my-sm-10
     .col-sm-6.order-5.order-sm-1.text-center.text-sm-right
@@ -82,14 +74,5 @@
         %i.fa.fa-fw.fa-user-secret.text-primary
         = t(".your_data.header")
       %p= t(".your_data.body", app_name: APP_CONFIG["site_name"])
-
-  - if APP_CONFIG.dig(:features, :registration, :enabled)
-    .card
-      .card-body
-        %h2= t(".prompt.header")
-        %p= t(".prompt.body")
-        %p
-          %a.btn.btn-primary.btn-lg{ href: url_for(new_user_registration_path) }
-            = t(".register")
 
 = render "shared/links"

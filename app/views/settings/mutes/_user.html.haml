@@ -1,6 +1,0 @@
-.d-flex.mb-2
-  = render AvatarComponent.new(user:, size: "md", classes: ["me-2"])
-  %p.align-self-center.m-0= user_screen_name(user, context_user: current_user)
-  .ms-auto.d-inline-flex
-    %button.btn.btn-default.align-self-center{ data: { action: :unmute, target: user.screen_name } }
-      %span.pe-none= t("voc.unmute")

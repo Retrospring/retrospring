@@ -6,6 +6,7 @@ RSpec.describe Retrospring::Version do
     allow(Retrospring::Version).to receive(:month) { 1 }
     allow(Retrospring::Version).to receive(:day) { 1 }
     allow(Retrospring::Version).to receive(:patch) { 0 }
+    allow(Retrospring::Version).to receive(:suffix) { nil }
   end
 
   describe "#to_s" do

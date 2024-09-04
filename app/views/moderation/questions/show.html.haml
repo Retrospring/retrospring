@@ -1,7 +1,0 @@
-- provide(:title, generate_title(t(".title", author_identifier: params[:author_identifier].truncate(32))))
-
-= render "header", author_identifier: params[:author_identifier]
-
-.container-lg.question-page
-  - @questions.each do |q|
-    = render "shared/question", q:, type: "moderation"

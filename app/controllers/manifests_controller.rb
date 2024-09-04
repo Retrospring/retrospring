@@ -3,9 +3,6 @@
 class ManifestsController < ApplicationController
   include ThemeHelper
 
-  skip_before_action :banned?
-  skip_before_action :find_active_announcements
-
   def show
     expires_in 1.day
     return if fresh_when current_user&.theme
@@ -28,7 +25,6 @@ class ManifestsController < ApplicationController
   private
 
   def shortcuts = [
-    webapp_shortcut(inbox_url, t("navigation.inbox"), "inbox")
   ]
 
   def webapp_shortcut(url, name, icon_name)

@@ -1,7 +1,0 @@
-.card
-  .list-group.list-group-horizontal-sm.text-center
-    = list_group_item t(".answers"), user_path(user), badge: user.answered_count
-    = list_group_item t(".questions"), show_user_questions_path(user.screen_name), badge: user.asked_count
-    - if user == current_user || !user.privacy_hide_social_graph
-      = list_group_item t(".followers"), show_user_followers_path(user.screen_name), badge: user.followers.count
-      = list_group_item t(".following"), show_user_followings_path(user.screen_name), badge: user.followings.count

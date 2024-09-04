@@ -1,9 +1,2 @@
-:ruby
-  inbox_count = current_user.unread_inbox_count
-  notification_count = current_user.unread_notification_count
-= render "navigation/desktop", inbox_count:, notification_count:
-= render "navigation/mobile", inbox_count:, notification_count:
-
-= render "modal/ask"
-%button.btn.btn-primary.btn-fab.d-block.d-lg-none.d-print-none{ data: { bs_target: "#modal-ask-followers", bs_toggle: :modal }, type: "button" }
-  %i.fa.fa-pencil-square-o
+= render "navigation/desktop"
+= render "navigation/mobile"

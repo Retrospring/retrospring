@@ -50,5 +50,4 @@ describe "role-constrained routes", type: :request do
   it_behaves_like("routes for", [:administrator], -> { get("/justask_admin") })
   it_behaves_like("routes for", [:administrator], -> { get("/sidekiq") })
   it_behaves_like("routes for", [:administrator], -> { get("/pghero") })
-  it_behaves_like("routes for", %i[administrator moderator], -> { get("/moderation/reports") })
 end

@@ -1,42 +1,8 @@
 .dropdown-menu.dropdown-menu-end.profile-dropdown{ id: "rs-#{size}-nav-profile" }
   %h6.dropdown-header.d-none.d-sm-block= current_user.screen_name
-  %a.dropdown-item{ href: user_path(current_user), data: { hotkey: "g p" } }
-    %i.fa.fa-fw.fa-user
-    = t(".profile")
   %a.dropdown-item{ href: edit_user_registration_path }
     %i.fa.fa-fw.fa-cog
     = t(".settings")
-  .dropdown-divider
-  - if current_user.mod?
-    - if moderation_view?
-      = link_to moderation_toggle_unmask_path, class: "dropdown-item", data: { turbo_method: :post } do
-        %i.fa.fa-toggle-on
-        = t(".unmask.disable")
-    - else
-      = link_to moderation_toggle_unmask_path, class: "dropdown-item", data: { turbo_method: :post } do
-        %i.fa.fa-toggle-off
-        = t(".unmask.enable")
-    %a.dropdown-item{ class: @has_new_reports ? "text-primary" : nil, href: moderation_reports_path }
-      %i.fa.fa-fw.fa-gavel{ class: @has_new_reports ? "fa-fade" : nil }
-      = t(".moderation")
-    - if current_user.has_cached_role?(:administrator)
-      %a.dropdown-item{ href: admin_dashboard_path }
-        %i.fa.fa-fw.fa-cogs
-        = t(".admin")
-    .dropdown-divider
-  - if APP_CONFIG["canny"]
-    %h6.dropdown-header.d-none.d-sm-block
-      = t(".feedback.heading")
-    %a.dropdown-item{ href: feedback_bugs_path }
-      %i.fa.fa-fw.fa-bug
-      = t(".feedback.bugs")
-    %a.dropdown-item{ href: feedback_features_path }
-      %i.fa.fa-fw.fa-flask
-      = t(".feedback.features")
-    .dropdown-divider
-  %a.dropdown-item{ href: "#", data: { bs_target: "#modal-hotkeys", bs_toggle: "modal", hotkey: "Shift+?,?,Shift+ß" } }
-    %i.fa.fa-keyboard
-    = t(".hotkeys")
   .dropdown-divider
   = link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" do
     %i.fa.fa-fw.fa-sign-out

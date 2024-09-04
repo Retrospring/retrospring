@@ -1,6 +1,0 @@
-%p= t(".body")
-%p= t(".recovery_code_count", count: recovery_code_count)
-= link_to t(".remove.action"), settings_two_factor_authentication_otp_authentication_path, class: "btn btn-danger mb-1",
-          data: { turbo_confirm: t(".remove.confirm"), turbo_method: :delete }
-= link_to t(".regenerate.action"), settings_two_factor_authentication_otp_authentication_reset_path, class: "btn btn-primary mb-1",
-          data: { turbo_confirm: t(".regenerate.confirm"), turbo_method: :delete }

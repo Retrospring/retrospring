@@ -1,6 +1,0 @@
-- if comments.all.count.zero?
-  = t(".none")
-- else
-  %ul.comment__container
-    - comments.order(:created_at).each do |comment|
-      = render CommentComponent.new(comment:, answer: a)

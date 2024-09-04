@@ -23,7 +23,7 @@ describe "version bumping tasks" do
 
       Rake::Task["version:bump"].execute
 
-      expect($stdout).to have_received(:puts).with "New version: 2069.0621.0"
+      expect($stdout).to have_received(:puts).with "New version: 2069.0621.0+onlyexport"
       travel_back
     end
 
@@ -52,8 +52,8 @@ describe "version bumping tasks" do
 
         Rake::Task["version:bump"].execute
 
-        expect($stdout).to have_received(:puts).with "Current version: 2069.0621.0"
-        expect($stdout).to have_received(:puts).with "New version: 2069.0621.1"
+        expect($stdout).to have_received(:puts).with "Current version: 2069.0621.0+onlyexport"
+        expect($stdout).to have_received(:puts).with "New version: 2069.0621.1+onlyexport"
         travel_back
       end
     end
@@ -73,10 +73,10 @@ describe "version bumping tasks" do
 
       expect_any_instance_of(Rake::FileUtilsExt)
         .to receive(:sh)
-        .with(%(git commit -m 'Bump version to 2069.0621.3' -- #{version_path.to_s.inspect}))
+        .with(%(git commit -m 'Bump version to 2069.0621.3+onlyexport' -- #{version_path.to_s.inspect}))
       expect_any_instance_of(Rake::FileUtilsExt)
         .to receive(:sh)
-        .with(%(git tag -a -m 'Bump version to 2069.0621.3' 2069.0621.3))
+        .with(%(git tag -a -m 'Bump version to 2069.0621.3+onlyexport' 2069.0621.3+onlyexport))
 
       Rake::Task["version:commit"].execute
     end

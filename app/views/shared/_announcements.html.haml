@@ -1,9 +1,0 @@
-.announcement__container
-  - @active_announcements.each do |announcement|
-    .alert.announcement.alert-info.alert-dismissable.d-none{ data: { controller: 'announcement', "announcement-id-value": announcement.id } }
-      .container.d-flex
-        %p.flex-grow-1
-          = announcement.content
-          - if announcement.link_present?
-            %a.alert-link{ href: announcement.link_href }= announcement.link_text
-        %button.btn-close.ms-auto.flex-shrink-0{ type: :button, data: { action: "click->announcement#close" } }

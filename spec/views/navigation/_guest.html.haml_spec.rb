@@ -12,8 +12,8 @@ describe "navigation/_guest.html.haml", type: :view do
       allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
     end
 
-    it "has a sign up link" do
-      expect(rendered).to match(/Sign up/)
+    it "has no sign up link" do
+      expect(rendered).to_not match(/Sign up/)
     end
   end
 

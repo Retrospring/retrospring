@@ -14,5 +14,3 @@
     .collapse.navbar-collapse#j2-main-navbar-collapse
       %ul.nav.navbar-nav.ms-auto
         = nav_entry t("voc.login"), new_user_session_path
-        - if Retrospring::Config.registrations_enabled?
-          = nav_entry t("voc.register"), new_user_registration_path

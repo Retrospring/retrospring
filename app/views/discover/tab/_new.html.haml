@@ -1,3 +1,0 @@
-.tab-pane.active.fade.show{ role: :tabpanel, id: "new" }
-  - new.each do |user|
-    = render "discover/userbox", u: user, type: "new", value: time_ago_in_words(user.created_at)

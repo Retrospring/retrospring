@@ -1,4 +1,0 @@
-- type ||= nil
-.card.questionbox{ data: { id: q.id } }
-  .card-body{ data: { controller: q.long? ? "collapse" : nil } }
-    = render QuestionComponent.new(question: q, hide_avatar: type == "discover" ? false : true, profile_question: true)

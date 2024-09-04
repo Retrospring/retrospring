@@ -4,11 +4,7 @@
     %meta{ charset: 'utf-8' }
     %meta{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover' }
-    - if user_signed_in?
-      %meta{ name: 'theme-color', content: theme_color, media: '(min-width: 993px)' }
-      %meta{ name: 'theme-color', content: mobile_theme_color, media: '(max-width: 992px)' }
-    - else
-      %meta{ name: 'theme-color', content: theme_color }
+    %meta{ name: 'theme-color', content: theme_color }
     - if @user&.privacy_noindex? || @answer&.user&.privacy_noindex? || @question&.user&.privacy_noindex?
       %meta{ name: 'robots', content: 'noindex' }
     %link{ rel: 'manifest', href: '/manifest.json', crossorigin: 'use-credentials' }
@@ -28,10 +24,7 @@
       = render 'navigation/main'
     - else
       = render 'navigation/guest'
-    = render 'shared/announcements'
     = yield
-    = render "shared/formatting"
-    = render "shared/hotkeys"
     = turbo_frame_tag "modal"
     .d-none#toasts
     - if Rails.env.development?

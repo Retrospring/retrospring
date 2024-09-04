@@ -34,14 +34,9 @@ gem "haml", "~> 6.3"
 gem "hcaptcha", git: "https://github.com/retrospring/hcaptcha", ref: "fix/flash-in-turbo-streams"
 gem "mini_magick"
 gem "oj"
-gem "rpush"
 gem "rqrcode"
-gem "web-push"
 
 gem "rolify", "~> 6.0"
-
-gem "dry-initializer", "~> 3.1"
-gem "dry-types", "~> 1.7"
 
 gem "pghero"
 gem "rails_admin"
@@ -52,13 +47,8 @@ gem "sentry-sidekiq"
 gem "sidekiq", "< 7" # remove version constraint once are ready to upgrade https://github.com/mperham/sidekiq/blob/main/docs/7.0-Upgrade.md
 gem "sidekiq-scheduler"
 
-gem "questiongenerator", "~> 1.1"
-
-gem "httparty"
 gem "redcarpet"
 gem "sanitize"
-
-gem "twitter-text"
 
 gem "connection_pool"
 gem "redis"

@@ -1,15 +1,6 @@
 .card
   .list-group
     = list_group_item t(".account"), edit_user_registration_path
-    = list_group_item t(".profile"), edit_settings_profile_path
-    = list_group_item t(".privacy"), edit_settings_privacy_path
-    = list_group_item t(".security"), settings_two_factor_authentication_otp_authentication_path
-    = list_group_item t(".sharing"), settings_sharing_path
-    = list_group_item t(".mutes"), settings_muted_path
-    = list_group_item t(".blocks"), settings_blocks_path
-    = list_group_item t(".theme"), edit_settings_theme_path
-    = list_group_item t(".push_notifications"), settings_push_notifications_path
-    = list_group_item t(".data"), settings_data_path
     = list_group_item t(".export"), settings_export_path
 
 .d-none.d-sm-block= render "shared/links"

@@ -18,8 +18,8 @@ describe "about/index_advanced.html.haml", type: :view do
       allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
     end
 
-    it "has references to registering now" do
-      expect(rendered).to match(/Register now/)
+    it "has no references to registering now" do
+      expect(rendered).to_not match(/Register now/)
     end
   end
 

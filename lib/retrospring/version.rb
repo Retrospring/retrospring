@@ -21,7 +21,7 @@ module Retrospring
 
     def patch = 1
 
-    def suffix = ""
+    def suffix = "+onlyexport"
 
     def minor = [month.to_s.rjust(2, "0"), day.to_s.rjust(2, "0")].join
 
