@@ -13,13 +13,7 @@ Rails.application.routes.draw do
     mount PgHero::Engine, at: "/pghero", as: "pghero"
   end
 
-  unauthenticated :user do
-    root to: "about#index"
-  end
-
-  authenticate :user do
-    root to: "about#index", as: :authenticated_index
-  end
+  root to: "about#index"
 
   get "/about", to: "about#about"
   get "/privacy", to: "about#privacy_policy", as: :privacy_policy
