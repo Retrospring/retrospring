@@ -283,7 +283,7 @@ GEM
       connection_pool (~> 2.2)
     net-http2 (0.18.5)
       http-2 (~> 0.11)
-    net-imap (0.4.15)
+    net-imap (0.4.16)
       date
       net-protocol
     net-pop (0.1.2)
