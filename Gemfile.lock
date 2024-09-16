@@ -232,7 +232,7 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     i18n-js (4.0.0)
       glob
@@ -524,7 +524,7 @@ GEM
     tldv (0.1.0)
       tldv-data (~> 1.0)
     tldv-data (1.0.2023080900)
-    turbo-rails (2.0.6)
+    turbo-rails (2.0.7)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
