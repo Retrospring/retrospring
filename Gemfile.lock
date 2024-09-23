@@ -524,9 +524,8 @@ GEM
     tldv (0.1.0)
       tldv-data (~> 1.0)
     tldv-data (1.0.2023080900)
-    turbo-rails (2.0.7)
+    turbo-rails (2.0.10)
       actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
       railties (>= 6.0.0)
     twitter-text (3.1.0)
       idn-ruby
