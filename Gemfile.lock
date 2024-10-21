@@ -525,7 +525,7 @@ GEM
     tldv (0.1.0)
       tldv-data (~> 1.0)
     tldv-data (1.0.2023080900)
-    turbo-rails (2.0.10)
+    turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     twitter-text (3.1.0)
@@ -551,7 +551,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.7.0)
+    zeitwerk (2.7.1)
 
 PLATFORMS
   ruby
