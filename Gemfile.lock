@@ -326,7 +326,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.8)
-    pghero (3.6.0)
+    pghero (3.6.1)
       activerecord (>= 6.1)
     prometheus-client (4.2.3)
       base64
