@@ -1,0 +1,18 @@
+# TODO: Replace "/home/retrospring/retrospring" with directory of your Retrospring installation
+
+[Unit]
+Description=retrospring-sidekiq
+After=network.target
+
+[Service]
+Type=simple
+User=retrospring
+WorkingDirectory=/home/retrospring/retrospring
+Environment="RAILS_ENV=production"
+ExecStart=/home/retrospring/.rbenv/shims/bundle exec sidekiq -e production -C ./config/sidekiq.yml
+TimeoutSec=15
+Restart=always
+WorkingDirectory=/home/retrospring/retrospring
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,19 @@
+# TODO: Replace "/home/retrospring/retrospring" with directory of your Retrospring installation
+
+[Unit]
+Description=retrospring-web
+After=network.target
+
+[Service]
+Type=simple
+User=retrospring
+WorkingDirectory=/home/retrospring/retrospring
+Environment="RAILS_ENV=production"
+Environment="PORT=3000"
+ExecStart=/home/retrospring/.rbenv/shims/bundle exec puma
+TimeoutSec=15
+Restart=always
+WorkingDirectory=/home/retrospring/retrospring
+
+[Install]
+WantedBy=multi-user.target
