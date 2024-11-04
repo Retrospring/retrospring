@@ -90,7 +90,7 @@ group :development, :test do
   gem "letter_opener" # Use this just in local test environments
   gem "rails-controller-testing"
   gem "rake"
-  gem "rspec-its", "~> 1.3"
+  gem "rspec-its", "~> 2.0"
   gem "rspec-mocks"
   gem "rspec-rails", "~> 7.0"
   gem "rspec-sidekiq", "~> 5.0", require: false
