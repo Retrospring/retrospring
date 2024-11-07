@@ -244,7 +244,7 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (2.7.5)
+    json (2.8.1)
     json-schema (5.0.1)
       addressable (~> 2.8)
     jwt (2.9.3)
@@ -323,7 +323,7 @@ GEM
     os (1.1.4)
     ostruct (0.6.0)
     parallel (1.26.3)
-    parser (3.3.5.1)
+    parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
@@ -448,9 +448,9 @@ GEM
       rubocop-ast (>= 1.32.2, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.33.1)
+    rubocop-ast (1.34.0)
       parser (>= 3.3.1.0)
-    rubocop-rails (2.26.2)
+    rubocop-rails (2.27.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
@@ -619,7 +619,7 @@ DEPENDENCIES
   rspec-rails (~> 7.0)
   rspec-sidekiq (~> 5.0)
   rubocop (~> 1.68)
-  rubocop-rails (~> 2.26)
+  rubocop-rails (~> 2.27)
   rubyzip (~> 2.3)
   sanitize
   sassc-rails
