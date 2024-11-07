@@ -183,9 +183,9 @@ GEM
     faraday-net_http (3.3.0)
       net-http
     ffi (1.16.3)
-    fog-aws (3.28.0)
+    fog-aws (3.29.0)
       base64 (~> 0.2.0)
-      fog-core (~> 2.1)
+      fog-core (~> 2.6)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
     fog-core (2.6.0)
