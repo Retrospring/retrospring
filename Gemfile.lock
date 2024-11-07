@@ -326,7 +326,7 @@ GEM
     parser (3.3.5.1)
       ast (~> 2.4.1)
       racc
-    pg (1.5.8)
+    pg (1.5.9)
     pghero (3.6.1)
       activerecord (>= 6.1)
     prometheus-client (4.2.3)
