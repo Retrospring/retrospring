@@ -75,7 +75,7 @@ jobs:
         env:
           POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
           REDIS_URL: "redis://localhost:${{ job.services.redis.ports[6379] }}"
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/coverage.xml
