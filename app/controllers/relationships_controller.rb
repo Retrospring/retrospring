@@ -3,10 +3,10 @@
 class RelationshipsController < ApplicationController
   include TurboStreamable
 
+  turbo_stream_actions :create, :destroy
+
   before_action :authenticate_user!
   before_action :not_readonly!
-
-  turbo_stream_actions :create, :destroy
 
   def create
     params.require :screen_name
