@@ -72,7 +72,8 @@ class User < ApplicationRecord
             format:      { with: SCREEN_NAME_REGEX, message: I18n.t("activerecord.validation.user.screen_name.format") },
             length:      { minimum: 1, maximum: 16 },
             uniqueness:  { case_sensitive: false },
-            screen_name: true
+            screen_name: true,
+            read_only: true
 
   mount_uploader :profile_picture, ProfilePictureUploader, mount_on: :profile_picture_file_name
   process_in_background :profile_picture
