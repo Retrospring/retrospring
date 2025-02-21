@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class AnswerController < ApplicationController
-  before_action :authenticate_user!, only: %i[pin unpin]
-  before_action :not_readonly!, except: %i[show]
-
   include TurboStreamable
 
   turbo_stream_actions :pin, :unpin
+
+  before_action :authenticate_user!, only: %i[pin unpin]
+  before_action :not_readonly!, except: %i[show]
 
   def show
     @answer = Answer.for_user(current_user).includes(question: [:user], smiles: [:user]).find(params[:id])
