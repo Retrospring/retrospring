@@ -24,6 +24,7 @@ describe User::RegistrationsController, type: :controller do
       before do
         allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(true)
         allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
+        allow(APP_CONFIG).to receive(:dig).with(:features, :readonly, :enabled).and_return(false)
       end
 
       let :registration_params do
@@ -65,6 +66,7 @@ describe User::RegistrationsController, type: :controller do
         before do
           allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
           allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(false)
+          allow(APP_CONFIG).to receive(:dig).with(:features, :readonly, :enabled).and_return(false)
         end
 
         it "redirects to the root page" do
@@ -84,6 +86,7 @@ describe User::RegistrationsController, type: :controller do
       before do
         allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
         allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
+        allow(APP_CONFIG).to receive(:dig).with(:features, :readonly, :enabled).and_return(false)
       end
 
       subject { post :create, params: registration_params }
@@ -148,6 +151,7 @@ describe User::RegistrationsController, type: :controller do
       before do
         allow(APP_CONFIG).to receive(:dig).with(:hcaptcha, :enabled).and_return(false)
         allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(false)
+        allow(APP_CONFIG).to receive(:dig).with(:features, :readonly, :enabled).and_return(false)
       end
 
       it "redirects to the root page" do

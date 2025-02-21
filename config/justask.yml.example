@@ -61,6 +61,8 @@ features:
   # Advanced (marketing) frontpage layout
   advanced_frontpage:
     enabled: false
+  # readonly mode -- users can only delete
+  readonly: false
 
 # Redis
 redis_url: "redis://localhost:6379"
