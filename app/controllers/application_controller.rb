@@ -98,7 +98,7 @@ class ApplicationController < ActionController::Base
   def not_readonly_flash!(view_name)
     return unless Retrospring::Config.readonly?
 
-    flash[:error] = t("errors.read_only_mode")
+    flash.now[:error] = t("errors.read_only_mode")
     render view_name
 
     false

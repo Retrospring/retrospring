@@ -62,7 +62,8 @@ features:
   advanced_frontpage:
     enabled: false
   # readonly mode -- users can only delete
-  readonly: false
+  readonly:
+    enabled: false
 
 # Redis
 redis_url: "redis://localhost:6379"
