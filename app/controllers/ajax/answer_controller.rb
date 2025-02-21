@@ -5,6 +5,8 @@ require "cgi"
 class Ajax::AnswerController < AjaxController
   include SocialHelper
 
+  before_action :not_readonly!, except: %i[destroy]
+
   def create
     params.require :id
     params.require :answer

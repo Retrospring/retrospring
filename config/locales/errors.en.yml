@@ -23,6 +23,8 @@ en:
     blocking_self: "You cannot block yourself"
     muting_self: "You cannot mute yourself"
 
+    read_only_mode: "The website is in read-only mode."
+
     not_found: "That does not exist"
     user_not_found: "User not found"
 

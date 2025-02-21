@@ -2,6 +2,7 @@
 
 class Ajax::ListController < AjaxController
   before_action :authenticate_user!
+  before_action :not_readonly!, except: %i[destroy]
 
   def create
     params.require :name

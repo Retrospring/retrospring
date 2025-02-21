@@ -2,6 +2,7 @@
 
 class AnswerController < ApplicationController
   before_action :authenticate_user!, only: %i[pin unpin]
+  before_action :not_readonly!, except: %i[show]
 
   include TurboStreamable
 

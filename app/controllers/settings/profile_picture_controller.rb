@@ -2,6 +2,7 @@
 
 class Settings::ProfilePictureController < ApplicationController
   before_action :authenticate_user!
+  before_action -> { not_readonly_flash!("settings/profile/edit") }, only: %i[update]
 
   def update
     user_attributes = params.require(:user).permit(:show_foreign_themes, :profile_picture_x, :profile_picture_y, :profile_picture_w, :profile_picture_h,

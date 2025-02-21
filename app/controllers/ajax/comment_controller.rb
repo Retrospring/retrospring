@@ -1,4 +1,6 @@
 class Ajax::CommentController < AjaxController
+  before_action :not_readonly!, except: %i[destroy]
+
   def create
     params.require :answer
     params.require :comment
