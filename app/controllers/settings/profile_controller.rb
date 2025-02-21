@@ -2,6 +2,7 @@
 
 class Settings::ProfileController < ApplicationController
   before_action :authenticate_user!
+  before_action -> { not_readonly_flash!(:edit) }, only: %i[update]
 
   def edit; end
 

@@ -20,21 +20,29 @@ module Errors
   end
 
   class BadRequest < Base
-    def status
-      400
-    end
+    def status = 400
+  end
+
+  class NotAuthorized < Base
+    def status = 401
+  end
+
+  class Forbidden < Base
+    def status = 403
+  end
+
+  class NotFound < Base
+    def status = 404
+  end
+
+  class MethodNotAllowed < Base
+    def status = 405
   end
 
   class InvalidBanDuration < BadRequest
   end
 
   class QuestionTooLong < BadRequest
-  end
-
-  class Forbidden < Base
-    def status
-      403
-    end
   end
 
   class SelfAction < Forbidden
@@ -44,18 +52,6 @@ module Errors
   end
 
   class FollowingSelf < SelfAction
-  end
-
-  class NotFound < Base
-    def status
-      404
-    end
-  end
-
-  class NotAuthorized < Base
-    def status
-      401
-    end
   end
 
   class UserNotFound < NotFound
@@ -124,5 +120,8 @@ module Errors
   # endregion
 
   class MutingSelf < SelfAction
+  end
+
+  class ReadOnlyMode < MethodNotAllowed
   end
 end

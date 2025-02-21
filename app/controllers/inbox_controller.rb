@@ -18,6 +18,8 @@ class InboxController < ApplicationController
   end
 
   def create
+    return redirect_to inbox_path if Retrospring::Config.readonly?
+
     question = Question.create!(content:             QuestionGenerator.generate,
                                 author_is_anonymous: true,
                                 author_identifier:   "justask",

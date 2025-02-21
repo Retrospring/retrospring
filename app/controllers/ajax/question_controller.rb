@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Ajax::QuestionController < AjaxController
+  before_action :not_readonly!, except: %i[destroy]
+
   def create
     params.require :question
     params.require :anonymousQuestion

@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
   include TurboStreamable
 
   before_action :authenticate_user!
+  before_action :not_readonly!
 
   turbo_stream_actions :create, :destroy
 

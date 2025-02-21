@@ -4,6 +4,7 @@ class Settings::ThemeController < ApplicationController
   include ThemeHelper
 
   before_action :authenticate_user!
+  before_action -> { not_readonly_flash!(:edit) }, only: %i[update destroy]
 
   def edit; end
 
