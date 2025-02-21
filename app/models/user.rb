@@ -73,7 +73,7 @@ class User < ApplicationRecord
             length:      { minimum: 1, maximum: 16 },
             uniqueness:  { case_sensitive: false },
             screen_name: true,
-            read_only: true
+            read_only:   true
 
   mount_uploader :profile_picture, ProfilePictureUploader, mount_on: :profile_picture_file_name
   process_in_background :profile_picture
