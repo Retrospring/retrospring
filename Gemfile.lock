@@ -356,7 +356,7 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prometheus-client (4.2.3)
+    prometheus-client (4.2.4)
       base64
     psych (5.2.3)
       date
