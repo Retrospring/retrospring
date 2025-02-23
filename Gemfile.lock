@@ -478,7 +478,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 8)
     rspec-support (3.13.1)
-    rubocop (1.72.1)
+    rubocop (1.72.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -667,7 +667,7 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails (~> 7.1)
   rspec-sidekiq (~> 5.0)
-  rubocop (~> 1.71)
+  rubocop (~> 1.72)
   rubocop-rails (~> 2.30)
   rubyzip (~> 2.4)
   sanitize
