@@ -25,6 +25,8 @@ module Retrospring
 
     def minor = [month.to_s.rjust(2, "0"), day.to_s.rjust(2, "0")].join
 
+    def source_url = APP_CONFIG.dig(:source_url) || "https://github.com/retrospring/retrospring"
+
     def to_a = [year.to_s, minor, patch.to_s]
 
     def to_s = [to_a.join("."), suffix].join

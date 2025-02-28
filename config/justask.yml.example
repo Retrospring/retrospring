@@ -108,3 +108,6 @@ sentry_dsn: ''
 #  sso: "CANNY_SSO_TOKEN_HERE"
 #  feature_board: "CANNY_FEATURE_BOARD_TOKEN"
 #  bug_board: "CANNY_BUGS_BOARD_TOKEN"
+
+# If you run a fork, please uncomment and adjust this url!
+# source_url: "https://github.com/retrospring/retrospring"
