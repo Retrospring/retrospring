@@ -2,4 +2,4 @@
 .container-lg.container--main
   .card
     .card-body
-      = raw_markdown_io 'service-docs/en/policy/privacy.md'
+      = t("policy.privacy_policy_html", app_name: APP_CONFIG["site_name"], contact_email: APP_CONFIG["contact_email"])
