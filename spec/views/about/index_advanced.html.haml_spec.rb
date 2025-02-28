@@ -13,6 +13,10 @@ describe "about/index_advanced.html.haml", type: :view do
 
   subject(:rendered) { render }
 
+  before do
+    allow(APP_CONFIG).to receive(:dig).and_call_original
+  end
+
   context "registrations are enabled" do
     before do
       allow(APP_CONFIG).to receive(:dig).with(:features, :registration, :enabled).and_return(true)
