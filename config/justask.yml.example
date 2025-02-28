@@ -11,8 +11,11 @@ hostname: "justask.rrerr.net"
 https: true
 
 email_from: "noreply@justask.rrerr.net"
-# Required by WebPush spec in case of problems with notifications
-contact_email: "contact@justask.rrerr.net"
+
+# Used in two cases:
+# * Required by WebPush spec in case of problems with notifications
+# * Used as a contact email on the Privacy Policy page
+contact_email: "contact@example.com"
 
 # Name of the "Anonymous" user. (e.g. "Anonymous Coward", "Arno Nym", "Mr. X", ...)
 anonymous_name: "Anonymous"
