@@ -2,4 +2,4 @@
 .container-lg.container--main
   .card
     .card-body
-      = raw_markdown_io 'service-docs/en/policy/terms.md'
+      = t("policy.terms_of_service_html", app_name: APP_CONFIG["site_name"])
