@@ -159,8 +159,6 @@ class User < ApplicationRecord
     existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, resolved: false)
     if existing.nil?
       Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, reason:)
-    elsif !reason.nil? && reason.length.positive?
-      existing.append_reason(reason)
     end
   end
   # endregion
