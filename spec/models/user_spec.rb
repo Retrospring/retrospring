@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
         other_user.report me, "va tutto benissimo"
 
         expect { me.destroy }
-          .to change { Reports::User.find_by(target_id: me.id).deleted? }
+          .to change { Reports::User.find_by(target_id: me.id).resolved? }
           .from(false)
           .to(true)
       end
