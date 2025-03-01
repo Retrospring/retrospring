@@ -18,7 +18,7 @@ class ReportFilter
   end
 
   def results
-    scope = Report.where(deleted: false)
+    scope = Report.where(resolved: false)
                   .order(:created_at)
                   .reverse_order
 

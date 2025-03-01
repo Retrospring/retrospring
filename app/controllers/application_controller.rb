@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
     @has_new_reports = if current_user.last_reports_visit.nil?
                          true
                        else
-                         Report.where(deleted: false)
+                         Report.where(resolved: false)
                                .where("created_at > ?", current_user.last_reports_visit)
                                .count.positive?
                        end

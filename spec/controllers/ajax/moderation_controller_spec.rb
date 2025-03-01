@@ -58,8 +58,8 @@ describe Ajax::ModerationController, :ajax_controller, type: :controller do
         expect { subject }.to_not(change { Report.count })
       end
 
-      it "only marks the report as deleted" do
-        expect { subject }.to(change { report.reload.deleted }.from(false).to(true))
+      it "only marks the report as resolved" do
+        expect { subject }.to(change { report.reload.resolved }.from(false).to(true))
       end
 
       include_examples "returns the expected response"

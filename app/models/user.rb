@@ -84,7 +84,7 @@ class User < ApplicationRecord
   before_destroy do
     Report.where(target_id: id, type: "Reports::User").find_each do |r|
       unless r.nil?
-        r.deleted = true
+        r.resolved = true
         r.save
       end
     end
@@ -156,7 +156,7 @@ class User < ApplicationRecord
                     object.user
                   end
 
-    existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, deleted: false)
+    existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, resolved: false)
     if existing.nil?
       Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, reason:)
     elsif !reason.nil? && reason.length.positive?

@@ -7,7 +7,7 @@ class Ajax::ModerationController < AjaxController
     report = Report.find(params[:id])
 
     begin
-      report.deleted = true
+      report.resolved = true
       report.save
     rescue => e
       Sentry.capture_exception(e)

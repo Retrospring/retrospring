@@ -16,7 +16,7 @@ class Comment < ApplicationRecord
     rep = Report.where(target_id: self.id, type: 'Reports::Comment')
     rep.each do |r|
       unless r.nil?
-        r.deleted = true
+        r.resolved = true
         r.save
       end
     end

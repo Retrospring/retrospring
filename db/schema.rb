@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_01_203930) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_01_170817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -171,7 +171,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_203930) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.boolean "deleted", default: false
+    t.boolean "resolved", default: false
     t.string "reason"
     t.bigint "target_user_id"
     t.index ["target_user_id"], name: "index_reports_on_target_user_id"
@@ -186,7 +186,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_203930) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "rpush_apps", force: :cascade do |t|
@@ -202,7 +202,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_203930) do
     t.string "client_id"
     t.string "client_secret"
     t.string "access_token"
-    t.datetime "access_token_expiration", precision: nil
+    t.datetime "access_token_expiration"
     t.text "apn_key"
     t.string "apn_key_id"
     t.string "team_id"
@@ -393,5 +393,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_203930) do
     t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
   end
 
+  add_foreign_key "anonymous_blocks", "users", column: "target_user_id"
   add_foreign_key "profiles", "users"
 end
