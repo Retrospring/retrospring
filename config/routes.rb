@@ -177,10 +177,7 @@ Rails.application.routes.draw do
 
   namespace :well_known, path: "/.well-known" do
     get "/change-password", to: redirect("/settings/account")
-    get "/nodeinfo", to: "node_info#discovery"
   end
-
-  get "/nodeinfo/2.1", to: "well_known/node_info#nodeinfo", as: :node_info
 
   get "/modal/close", to: "modal#close", as: :modal_close
 
