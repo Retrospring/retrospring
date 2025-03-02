@@ -3,8 +3,8 @@
 source "https://rubygems.org"
 
 gem "i18n-js", "4.0"
-gem "rails", "~> 7.1"
-gem "rails-i18n", "~> 7.0"
+gem "rails", "~> 8.0"
+gem "rails-i18n", "~> 8.0"
 
 gem "cssbundling-rails", "~> 1.4"
 gem "jsbundling-rails", "~> 1.3"
@@ -118,6 +118,6 @@ gem "rubyzip", "~> 2.4"
 gem "openssl", "~> 3.3"
 
 # mail 2.8.0 breaks sendmail usage: https://github.com/mikel/mail/issues/1538
-gem "mail", "~> 2.7.1"
+gem "mail", "~> 2.8.1"
 
 gem "prometheus-client", "~> 4.2"
