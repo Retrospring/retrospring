@@ -118,4 +118,43 @@ describe Moderation::ReportsController, type: :controller do
       end
     end
   end
+
+  describe "#show" do
+    shared_examples_for "sets the expected ivars" do
+      let(:expected_assigns) { {} }
+
+      it "sets the expected ivars" do
+        subject
+
+        expected_assigns.each do |name, value|
+          expect(assigns[name]).to eq(value)
+        end
+      end
+    end
+
+    context "template rendering" do
+      let(:other_user) { FactoryBot.create :user }
+      let(:report) { Report.create(user:, target_id: other_user.id, type: "Reports::User") }
+
+      subject { get :show, params: { id: report.id } }
+
+      before do
+        report
+        sign_in user
+      end
+
+      it "renders the moderation/reports/show template" do
+        subject
+        expect(response).to render_template("moderation/reports/show")
+      end
+
+      include_examples "sets the expected ivars" do
+        let(:expected_assigns) do
+          {
+            report:
+          }
+        end
+      end
+    end
+  end
 end
