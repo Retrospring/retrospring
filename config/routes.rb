@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     post "/moderation/unmask", to: "moderation#toggle_unmask", as: :moderation_toggle_unmask
     get "/moderation/blocks", to: "moderation/anonymous_block#index", as: :mod_anon_block_index
     get "/moderation/inbox/:user", to: "moderation/inbox#index", as: :mod_inbox_index
+    get "/moderation/report/:id", to: "moderation/reports#show", as: :moderation_report
     get "/moderation/reports(/:type)", to: "moderation/reports#index", as: :moderation_reports
     get "/moderation/questions/:author_identifier", to: "moderation/questions#show", as: :moderation_questions
     namespace :ajax do

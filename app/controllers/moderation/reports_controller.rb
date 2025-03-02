@@ -18,6 +18,10 @@ class Moderation::ReportsController < ApplicationController
     end
   end
 
+  def show
+    @report = Report.find(params[:id])
+  end
+
   private
 
   def filter_params
