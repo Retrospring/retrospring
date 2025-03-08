@@ -13,7 +13,7 @@ module ApplicationHelper::TitleMethods
              end
     end
 
-    list = [name, junction].compact
+    list = [strip_tags(name), junction].compact
 
     unless content.nil?
       content = strip_markdown(content)
