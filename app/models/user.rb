@@ -148,21 +148,6 @@ class User < ApplicationRecord
 
   def admin? = has_cached_role?(:administrator)
 
-  # region stuff used for reporting/moderation
-  def report(object, reason = nil)
-    target_user = if object.instance_of?(::User)
-                    object
-                  elsif object.respond_to? :user
-                    object.user
-                  end
-
-    existing = Report.find_by(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, resolved: false)
-    if existing.nil?
-      Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: id, target_user_id: target_user&.id, reason:)
-    end
-  end
-  # endregion
-
   def can_export?
     return (Time.zone.now > export_created_at.in(1.week)) && !export_processing unless export_created_at.nil?
 
