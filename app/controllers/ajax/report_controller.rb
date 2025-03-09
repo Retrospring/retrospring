@@ -20,12 +20,8 @@ class Ajax::ReportController < AjaxController
       reason:      params[:reason],
     )
 
-    if result[:status] == 201
-      @response[:status] = :okay
-      @response[:message] = t(".success", parameter: params[:type].titleize)
-      @response[:success] = true
-    else
-      @response[:message] = t(".error")
-    end
+    @response[:status] = :okay
+    @response[:message] = t(".success", parameter: params[:type].titleize)
+    @response[:success] = true
   end
 end
