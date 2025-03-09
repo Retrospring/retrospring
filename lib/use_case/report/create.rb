@@ -34,7 +34,7 @@ module UseCase
       end
 
       def check_object_exists
-        raise Errors::NotFound.new("#{object_type.capitalize} not found") unless object
+        object
       end
 
       def create_report
