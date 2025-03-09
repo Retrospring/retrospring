@@ -33,7 +33,7 @@ describe UseCase::Report::Create do
 
   shared_examples "object not found" do
     it "raises an error" do
-      expect { subject }.to raise_error(Errors::NotFound, "#{object_type.capitalize} not found")
+      expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
