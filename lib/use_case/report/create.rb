@@ -53,13 +53,13 @@ module UseCase
       def object
         @object ||= case object_type.strip.capitalize
                     when "User"
-                      ::User.find_by!(screen_name: object_id)
+                      ::User.find_by_screen_name!(object_id)
                     when "Question"
-                      ::Question.find_by(id: object_id)
+                      ::Question.find_by_id(object_id)
                     when "Answer"
-                      ::Answer.find_by(id: object_id)
+                      ::Answer.find_by_id(object_id)
                     when "Comment"
-                      ::Comment.find_by(id: object_id)
+                      ::Comment.find_by_id(object_id)
                     end
       end
 
