@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper::TitleMethods
+  include ActionView::Helpers::SanitizeHelper 
   include MarkdownHelper
   include UserHelper
 
