@@ -50,6 +50,7 @@ module UseCase
         ::Report.create(type: "Reports::#{object.class}", target_id: object.id, user_id: reporter.id, target_user_id: target_user&.id, reason: reason)
       end
 
+      # rubocop:disable Rails/DynamicFindBy
       def object
         @object ||= case object_type.strip.capitalize
                     when "User"
@@ -62,6 +63,7 @@ module UseCase
                       ::Comment.find_by_id(object_id)
                     end
       end
+      # rubocop:enable Rails/DynamicFindBy
 
       def reporter
         @reporter ||= ::User.find(reporter_id)
