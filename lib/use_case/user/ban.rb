@@ -18,22 +18,27 @@ module UseCase
         if reason == REASON_SPAM
           target_user.update!(
             profile_picture: nil,
-            profile_header:  nil
+            profile_header:  nil,
           )
           target_user.profile.update!(
             display_name: nil,
             description:  "",
             location:     "",
-            website:      ""
+            website:      "",
           )
+        end
+
+        if permanent_ban?
+          remove_inbox_entries
+          resolve_reports
         end
 
         {
           status:   201,
           resource: ban,
           extra:    {
-            target_user:
-          }
+            target_user:,
+          },
         }
       end
 
@@ -43,6 +48,20 @@ module UseCase
 
       def source_user
         @source_user ||= ::User.find(source_user_id) if source_user_id
+      end
+
+      private
+
+      def permanent_ban?
+        expiry.nil?
+      end
+
+      def remove_inbox_entries
+        InboxEntry.joins(:question).where(questions: { user_id: target_user_id }).destroy_all
+      end
+
+      def resolve_reports
+        Report.where(target_user_id: target_user_id).update_all(resolved: true) # rubocop:disable Rails/SkipsModelValidations
       end
     end
   end

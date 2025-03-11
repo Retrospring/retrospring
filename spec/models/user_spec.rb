@@ -37,7 +37,13 @@ RSpec.describe User, type: :model do
     describe "before_destroy" do
       it "marks reports about this user as deleted" do
         other_user = FactoryBot.create(:user)
-        other_user.report me, "va tutto benissimo"
+        
+        UseCase::Report::Create.call(
+          reporter_id: other_user.id,
+          object_id:   me.screen_name,
+          object_type: "User",
+          reason:      "va tutto benissimo",
+        )
 
         expect { me.destroy }
           .to change { Reports::User.find_by(target_id: me.id).resolved? }
