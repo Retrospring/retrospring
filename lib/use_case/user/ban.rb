@@ -57,11 +57,11 @@ module UseCase
       end
 
       def remove_inbox_entries
-        InboxEntry.joins(:question).where(questions: { user_id: target_user_id }).destroy_all
+        ::InboxEntry.joins(:question).where(questions: { user_id: target_user_id }).destroy_all
       end
 
       def resolve_reports
-        Report.where(target_user_id: target_user_id).update_all(resolved: true) # rubocop:disable Rails/SkipsModelValidations
+        ::Report.where(target_user_id: target_user_id).update_all(resolved: true) # rubocop:disable Rails/SkipsModelValidations
       end
     end
   end
