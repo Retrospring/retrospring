@@ -10,12 +10,12 @@ class TimelineController < ApplicationController
   end
 
   def list
-    @title = list_title(@list)
+    @title = helpers.list_title(@list)
     paginate_timeline { |args| @list.cursored_timeline(**args, current_user:) }
   end
 
   def public
-    @title = generate_title(t(".title"))
+    @title = helpers.generate_title(t(".title"))
     paginate_timeline { |args| Answer.cursored_public_timeline(**args, current_user:) }
   end
 
