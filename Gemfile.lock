@@ -237,7 +237,7 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    haml_lint (0.60.0)
+    haml_lint (0.61.0)
       haml (>= 5.0)
       parallel (~> 1.10)
       rainbow
@@ -489,7 +489,7 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.38.0)
+    rubocop-ast (1.38.1)
       parser (>= 3.3.1.0)
     rubocop-rails (2.30.2)
       activesupport (>= 4.2.0)
