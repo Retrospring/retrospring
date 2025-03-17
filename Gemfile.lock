@@ -335,9 +335,9 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.3-aarch64-linux-gnu)
+    nokogiri (1.18.4-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.18.3-x86_64-linux-gnu)
+    nokogiri (1.18.4-x86_64-linux-gnu)
       racc (~> 1.4)
     oj (3.16.10)
       bigdecimal (>= 3.0)
@@ -515,14 +515,14 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-    sentry-rails (5.22.4)
+    sentry-rails (5.23.0)
       railties (>= 5.0)
-      sentry-ruby (~> 5.22.4)
-    sentry-ruby (5.22.4)
+      sentry-ruby (~> 5.23.0)
+    sentry-ruby (5.23.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-sidekiq (5.22.4)
-      sentry-ruby (~> 5.22.4)
+    sentry-sidekiq (5.23.0)
+      sentry-ruby (~> 5.23.0)
       sidekiq (>= 3.0)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
