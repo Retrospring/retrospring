@@ -351,7 +351,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
-    pghero (3.6.1)
+    pghero (3.6.2)
       activerecord (>= 6.1)
     pp (0.6.2)
       prettyprint
