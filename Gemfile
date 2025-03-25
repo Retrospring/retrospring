@@ -49,7 +49,7 @@ gem "sentry-rails"
 gem "sentry-ruby"
 gem "sentry-sidekiq"
 
-gem "sidekiq", "< 7" # remove version constraint once are ready to upgrade https://github.com/mperham/sidekiq/blob/main/docs/7.0-Upgrade.md
+gem "sidekiq", "< 8" # remove version constraint once are ready to upgrade https://github.com/mperham/sidekiq/blob/main/docs/7.0-Upgrade.md
 gem "sidekiq-scheduler"
 
 gem "questiongenerator", "~> 1.1"
