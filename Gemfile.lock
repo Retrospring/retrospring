@@ -297,7 +297,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.24.0)
+    loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.7.1)
@@ -360,7 +360,7 @@ GEM
     prism (1.4.0)
     prometheus-client (4.2.4)
       base64
-    psych (5.2.3)
+    psych (5.2.6)
       date
       stringio
     public_suffix (6.0.1)
@@ -371,7 +371,7 @@ GEM
     questiongenerator (1.1.0)
     raabro (1.4.0)
     racc (1.8.1)
-    rack (2.2.13)
+    rack (2.2.15)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -518,14 +518,14 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-    sentry-rails (5.23.0)
+    sentry-rails (5.24.0)
       railties (>= 5.0)
-      sentry-ruby (~> 5.23.0)
-    sentry-ruby (5.23.0)
+      sentry-ruby (~> 5.24.0)
+    sentry-ruby (5.24.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-sidekiq (5.23.0)
-      sentry-ruby (~> 5.23.0)
+    sentry-sidekiq (5.24.0)
+      sentry-ruby (~> 5.24.0)
       sidekiq (>= 3.0)
     shoulda-matchers (6.4.0)
       activesupport (>= 5.2.0)
