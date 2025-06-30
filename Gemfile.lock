@@ -115,16 +115,16 @@ GEM
     bullet (8.0.8)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    carrierwave (2.1.1)
-      activemodel (>= 5.0.0)
-      activesupport (>= 5.0.0)
+    carrierwave (3.1.2)
+      activemodel (>= 6.0.0)
+      activesupport (>= 6.0.0)
       addressable (~> 2.6)
       image_processing (~> 1.1)
-      mimemagic (>= 0.3.0)
-      mini_mime (>= 0.1.3)
+      marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
-    carrierwave_backgrounder (0.4.3)
-      carrierwave (>= 0.5, < 2.2)
+    carrierwave_backgrounder (1.0.2)
+      carrierwave (> 2.0, < 4.0)
+      rails (> 6.0, < 8.0)
     childprocess (5.0.0)
     chunky_png (1.4.0)
     colorize (1.1.0)
@@ -200,7 +200,8 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
-    ffi (1.16.3)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-gnu)
     fog-aws (3.32.0)
       base64 (~> 0.2.0)
       fog-core (~> 2.6)
@@ -257,8 +258,8 @@ GEM
       glob
       i18n
     idn-ruby (0.1.5)
-    image_processing (1.12.2)
-      mini_magick (>= 4.9.5, < 5)
+    image_processing (1.14.0)
+      mini_magick (>= 4.9.5, < 6)
       ruby-vips (>= 2.0.17, < 3)
     io-console (0.8.0)
     irb (1.15.2)
@@ -309,9 +310,6 @@ GEM
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
     mime-types-data (3.2025.0527)
-    mimemagic (0.4.3)
-      nokogiri (~> 1)
-      rake
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -364,7 +362,7 @@ GEM
     psych (5.2.6)
       date
       stringio
-    public_suffix (6.0.1)
+    public_suffix (6.0.2)
     puma (6.6.0)
       nio4r (~> 2.0)
     pundit (2.5.0)
@@ -453,10 +451,10 @@ GEM
       rainbow
       thor (>= 0.18.1, < 2.0)
       web-push
-    rqrcode (2.2.0)
+    rqrcode (3.1.0)
       chunky_png (~> 1.0)
-      rqrcode_core (~> 1.0)
-    rqrcode_core (1.2.0)
+      rqrcode_core (~> 2.0)
+    rqrcode_core (2.0.0)
     rspec-core (3.13.3)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
@@ -503,8 +501,9 @@ GEM
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.44.0, < 2.0)
     ruby-progressbar (1.13.0)
-    ruby-vips (2.2.1)
+    ruby-vips (2.2.4)
       ffi (~> 1.12)
+      logger
     rubyzip (2.4.1)
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
@@ -564,7 +563,7 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    ssrf_filter (1.1.2)
+    ssrf_filter (1.3.0)
     stringio (3.1.7)
     sysexits (1.2.0)
     temple (0.10.3)
@@ -618,8 +617,8 @@ DEPENDENCIES
   bootsnap
   bootstrap_form (~> 5.0)
   bullet
-  carrierwave (~> 2.1)
-  carrierwave_backgrounder (~> 0.4.2)
+  carrierwave (~> 3.1)
+  carrierwave_backgrounder (~> 1.0.2)
   colorize
   connection_pool
   cssbundling-rails (~> 1.4)
