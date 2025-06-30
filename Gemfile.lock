@@ -574,7 +574,7 @@ GEM
     tldv (0.1.0)
       tldv-data (~> 1.0)
     tldv-data (1.0.2023080900)
-    turbo-rails (2.0.13)
+    turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     twitter-text (3.1.0)
