@@ -192,7 +192,7 @@ GEM
     fake_email_validator (1.0.11)
       activemodel
       mail
-    faker (3.5.1)
+    faker (3.5.2)
       i18n (>= 1.8.11, < 2)
     faraday (2.12.1)
       faraday-net_http (>= 2.0, < 3.5)
