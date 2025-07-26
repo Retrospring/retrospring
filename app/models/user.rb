@@ -24,8 +24,8 @@ class User < ApplicationRecord
          :validatable, :confirmable, authentication_keys: [:login]
 
   has_one_time_password
-  attribute :otp_module, :string
-  enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true, _default:0
+  attribute :otp_module, :integer
+  enum otp_module: { disabled: 0, enabled: 1 }, _prefix: true, _default: 0
   attr_accessor :otp_attempt, :otp_validation
   attr_writer :login
 
