@@ -431,7 +431,7 @@ GEM
       psych (>= 4.0.0)
     redcarpet (3.6.1)
     redis (4.8.1)
-    regexp_parser (2.11.0)
+    regexp_parser (2.11.1)
     reline (0.6.1)
       io-console (~> 0.5)
     request_store (1.5.1)
@@ -497,7 +497,7 @@ GEM
     rubocop-ast (1.46.0)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
-    rubocop-rails (2.32.0)
+    rubocop-rails (2.33.0)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -675,7 +675,7 @@ DEPENDENCIES
   rspec-rails (~> 7.1)
   rspec-sidekiq (~> 5.2)
   rubocop (~> 1.78)
-  rubocop-rails (~> 2.32)
+  rubocop-rails (~> 2.33)
   rubyzip (~> 2.4)
   sanitize
   sassc-rails
