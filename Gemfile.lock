@@ -353,7 +353,8 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    pg (1.5.9)
+    pg (1.6.1-aarch64-linux)
+    pg (1.6.1-x86_64-linux)
     pghero (3.6.2)
       activerecord (>= 6.1)
     pp (0.6.2)
