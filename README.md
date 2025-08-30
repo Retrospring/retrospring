@@ -14,14 +14,14 @@ the timeline and to ask their followers interesting questions.
 ## Installation
 
 You can find all the installation instructions needed for a local/production
-setup of Retrospring in the [Wiki](https://github.com/Retrospring/retrospring/wiki/Setup).
+setup of Retrospring in the [documentation](/docs/setup/source.md).
 
 ## Contributing
 
 Retrospring is **free, open-source software** licensed under **AGPLv3**.
 
 Our guidelines and general information about how you can help us
-improving Retrospring can be found in the [CONTRIBUTING.md](https://github.com/Retrospring/retrospring/blob/master/.github/CONTRIBUTING.md) file.
+improving Retrospring can be found in the [CONTRIBUTING.md](/.github/CONTRIBUTING.md) file.
 
 ## Licence
 
