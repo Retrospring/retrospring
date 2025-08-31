@@ -15,7 +15,7 @@ ARG BUNDLER_VERSION=2.5.5
 ENV RAILS_ENV=production
 
 # update and install dependencies
-RUN zypper addrepo https://download.opensuse.org/repositories/devel:languages:nodejs/15.5/devel:languages:nodejs.repo \
+RUN zypper addrepo https://download.opensuse.org/repositories/devel:languages:nodejs/15.6/devel:languages:nodejs.repo \
  && zypper --gpg-auto-import-keys up -y \
  && zypper in -y \
       # build dependencies (ruby-install)
